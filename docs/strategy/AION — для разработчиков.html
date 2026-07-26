@@ -1,0 +1,728 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION — Для разработчиков</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #D4A853;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --deep-blue: #0A1628;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .cover {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1a2a4a 50%, var(--deep-blue) 100%);
+    color: white;
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '∞';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.04;
+    top: -60px;
+    right: -40px;
+    font-weight: 100;
+  }
+  .cover::after {
+    content: 'AION';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.03;
+    bottom: -40px;
+    left: -20px;
+    font-weight: 900;
+    letter-spacing: 20px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+  }
+  .cover .subtitle {
+    font-size: 18px;
+    opacity: 0.75;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  .cover .tagline {
+    margin-top: 24px;
+    font-size: 16px;
+    font-style: italic;
+    opacity: 0.5;
+  }
+  .cover .meta {
+    margin-top: 36px;
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav a:hover { background: var(--bg-alt); color: var(--accent); }
+  .section { padding: 32px 40px 40px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--deep-blue);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 16px 24px; }
+  li { margin-bottom: 6px; }
+  strong { color: var(--deep-blue); }
+
+  .highlight-box {
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .highlight-box strong { color: var(--accent); }
+
+  .info-box {
+    background: #fefce8;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .info-box strong { color: #92400e; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .stat-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .stat-card .label {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag-blue { background: #eef2ff; color: var(--accent); }
+  .tag-gold { background: #fefce8; color: #ca8a04; }
+  .tag-green { background: #ecfdf5; color: #059669; }
+  .tag-red { background: #fef2f2; color: #dc2626; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    background: var(--deep-blue);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: var(--bg-alt); }
+
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 28px; }
+    .section { padding: 24px 20px; }
+    .nav { padding: 8px 12px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">For Developers</div>
+  <h1>AION</h1>
+  <div class="subtitle">Рассказ о проекте · Техническая часть · Команда · Планы</div>
+  <div class="tagline">Operating System for Life</div>
+  <div class="meta">Июль 2026 · Для разработчиков</div>
+</div>
+
+<nav class="nav">
+  <a href="#product">О продукте</a>
+  <a href="#company">О компании</a>
+  <a href="#team">Команда</a>
+  <a href="#stack">Техстек</a>
+  <a href="#architecture">Архитектура</a>
+  <a href="#code">Как устроен код</a>
+  <a href="#interesting">Технические кейсы</a>
+  <a href="#processes">Процессы</a>
+  <a href="#work">Что делать</a>
+  <a href="#plans">Планы</a>
+  <a href="#offer">Условия</a>
+</nav>
+
+<!-- 1. О продукте -->
+<div class="section" id="product">
+  <h2>1. О продукте</h2>
+
+  <p><strong>AION</strong> (от др.-греч. <em>aiōn</em> — «эон», «эра», «вечность») — Telegram-first платформа для русскоязычных людей, которые живут или путешествуют в Юго-Восточной Азии. MVP запущен в <strong>Нячанге, Вьетнам</strong>. Soft launch — 24 июня 2026, full launch — 29 июня 2026.</p>
+
+  <div class="highlight-box">
+    <strong>Суть:</strong> человек переехал или приехал — и у него куча бытовых задач (трансфер, жильё, медицина, документы, экскурсии). AION закрывает до 90% таких задач через проверенных локальных партнёров, структурированный каталог услуг и операторов, которые помогают довести заказ.
+  </div>
+
+  <h3>Что внутри</h3>
+  <ul>
+    <li><strong>Telegram Mini App</strong> — основная поверхность для пользователей. Не нужно скачивать приложение, всё внутри Telegram.</li>
+    <li><strong>Админка для операторов</strong> — модерация партнёров, услуги, заказы, выплаты.</li>
+    <li><strong>Единый бот</strong> — сам определяет город пользователя.</li>
+    <li><strong>22 категории услуг</strong> с первого дня: жильё, медицина, визы, трансферы, экскурсии, уборка, красота, доставка еды, спорт, юристы, SOS и другие.</li>
+    <li><strong>SOS-кнопка</strong> — 6 категорий экстренной помощи, SLA 5 минут, GPS-координаты.</li>
+  </ul>
+
+  <div class="info-box">
+    <strong>Важно:</strong> мы НЕ маркетплейс-клон и НЕ «ещё один AI-чатбот». Мы — <strong>операционный слой для жизни за границей</strong>: оркестрация услуг плюс доверие и координация. Операторы 24/7, AI —辅助, человек принимает решения.
+  </div>
+
+  <h3>География</h3>
+  <p>Вьетнам (Нячанг, Дананг, Хошимин, Ханой, Фукуок, Муйне, Вунгтау), Таиланд (Паттайя, Пхукет, Бангкок, Чиангмай), Турция, Грузия, ОАЭ, Россия и далее 25+ городов в 10+ странах.</p>
+</div>
+
+<!-- 2. О компании -->
+<div class="section" id="company">
+  <h2>2. О компании</h2>
+
+  <h3>Статус</h3>
+  <p><strong>Bootstrapped-стартап.</strong> Никаких внешних инвесторов. Полный бюджет покрыт основателями. Работаем с июня 2026, продукт уже в продакшене, есть первые заказы и партнёры.</p>
+
+  <h3>Бизнес-модель</h3>
+  <ul>
+    <li><strong>Комиссия</strong> с каждой транзакции (~10%, обсуждается индивидуально с каждым партнёром)</li>
+    <li><strong>Подписки для бизнеса</strong> (премиум-инструменты для партнёров) — цель 12% выручки</li>
+    <li><strong>Премиум-размещение</strong> — дополнительная видимость для лидеров категорий — цель 8% выручки</li>
+  </ul>
+
+  <h3>Реферальная программа (ядро роста)</h3>
+  <ul>
+    <li><strong>Пользовательская:</strong> 30% комиссии платформы, 4 уровня (20+5+3+2%), пожизненно</li>
+    <li><strong>City Governor:</strong> 20% комиссии, 4 уровня (10+5+3+2%), для локальных партнёров</li>
+    <li>~40% пользователей приходят по реферальным ссылкам с CAC = $0</li>
+  </ul>
+
+  <h3>Геймификация — LVLUP</h3>
+  <p>11 уровней пользователей, 10 уровней исполнителей. 1 XP = $1 комиссии платформы. На 11 уровне — 0% комиссия навсегда. Ежедневные квесты, ачивки, коллекции, колесо фортуны.</p>
+
+  <h3>Метрики и цели</h3>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num">25+</div><div class="label">Городов в плане</div></div>
+    <div class="stat-card"><div class="num">10+</div><div class="label">Стран</div></div>
+    <div class="stat-card"><div class="num">22</div><div class="label">Категории услуг</div></div>
+    <div class="stat-card"><div class="num">~$100K</div><div class="label">GMV/мес цель (мес 1-2)</div></div>
+    <div class="stat-card"><div class="num">$600K</div><div class="label">Commission/мес (год)</div></div>
+    <div class="stat-card"><div class="num">500K</div><div class="label">Пользователи (год)</div></div>
+  </div>
+
+  <h3>5-летняя проекция</h3>
+  <table>
+    <tr><th>Период</th><th>Users</th><th>Orders/мес</th><th>GMV/мес</th><th>Commission/мес</th></tr>
+    <tr><td>Месяц 1 (июль 2026)</td><td>10K</td><td>2K</td><td>$100K</td><td>$10K</td></tr>
+    <tr><td>Месяц 3 (сентябрь 2026)</td><td>40K</td><td>8K</td><td>$400K</td><td>$40K</td></tr>
+    <tr><td>Месяц 6 (декабрь 2026)</td><td>150K</td><td>35K</td><td>$1.75M</td><td>$175K</td></tr>
+    <tr><td>Месяц 12 (июнь 2027)</td><td>500K</td><td>120K</td><td>$6M</td><td>$600K</td></tr>
+    <tr><td>Месяц 24 (июнь 2028)</td><td>2M</td><td>500K</td><td>$25M</td><td>$2.5M</td></tr>
+    <tr><td>Месяц 60 (июнь 2031)</td><td>20M</td><td>6M</td><td>$300M</td><td>$30M</td></tr>
+  </table>
+
+  <h3>Конкурентные преимущества (14)</h3>
+  <ol>
+    <li>Единое окно (vs разрозненные чаты)</li>
+    <li>Верифицированные партнёры (контроль качества)</li>
+    <li>Прозрачные цены (без туристической наценки)</li>
+    <li>Лучшая реферальная программа на рынке (30%)</li>
+    <li>Модель City Governor (локальные лидеры, мотивированные развивать город)</li>
+    <li>Готовый MVP (запуск сразу, а не «через полгода»)</li>
+    <li>Полный бюджет (без давления инвесторов)</li>
+    <li>Мультигород с первого дня</li>
+    <li>SOS / экстренная помощь (инфраструктура жизни)</li>
+    <li>Геймификация LVLUP (двигатель удержания)</li>
+    <li>Мультиязычность (русский, английский, тайский, вьетнамский и др.)</li>
+    <li>AI-поиск и подбор</li>
+    <li>Поддержка операторов 24/7</li>
+    <li>0% комиссия для VIP-пользователей</li>
+  </ol>
+
+  <h3>Каналы трафика (13)</h3>
+  <ul>
+    <li>Парсинг/скрапинг аудитории</li>
+    <li>Блогеры / инфлюенсеры (ключевой канал, 440K подписчиков Instagram)</li>
+    <li>Сетевой маркетинг (агенты, рефералы, 9 полевых сотрудников)</li>
+    <li>Офлайн-размещение (QR-стикеры в 150+ точках Нячанга)</li>
+    <li>Telegram-каналы (посевы в 160+ чатах)</li>
+    <li>SMM + YouTube (ежедневный контент)</li>
+    <li>Печатная реклама (5 000+ визиток с QR)</li>
+    <li>Таргет (Telegram Ads, VK)</li>
+    <li>Промоутеры в каждом городе</li>
+    <li>SEO / контент-маркетинг</li>
+    <li>Ивенты / нетворкинг</li>
+    <li>Dota 2 (турниры, стримы, AION Cup)</li>
+    <li>Колл-центры (квалификация лидов)</li>
+  </ul>
+</div>
+
+<!-- 3. Команда -->
+<div class="section" id="team">
+  <h2>3. Команда</h2>
+
+  <p>На текущий момент в команде <strong>12 человек</strong>. Проект self-funded, без внешних инвесторов.</p>
+
+  <h3>Состав команды</h3>
+  <table>
+    <tr><th>#</th><th>Имя</th><th>Роль</th><th>Доля</th></tr>
+    <tr><td>1</td><td><strong>Василий</strong></td><td>Руководитель партнёрских отношений и операционной деятельности</td><td>20.64%</td></tr>
+    <tr><td>2</td><td><strong>Влад</strong></td><td>Руководитель по продукту и развитию</td><td>20.64%</td></tr>
+    <tr><td>3</td><td><strong>Артур</strong></td><td>Технический директор (CTO)</td><td>11.39%</td></tr>
+    <tr><td>4</td><td><strong>Людмила</strong></td><td>Операционный директор (CCO)</td><td>9.00%</td></tr>
+    <tr><td>5</td><td><strong>Дарина</strong></td><td>Руководитель B2B-направления</td><td>6.20%</td></tr>
+    <tr><td>6</td><td><strong>Дарья</strong></td><td>Руководитель дизайна и контента</td><td>6.20%</td></tr>
+    <tr><td>7</td><td><strong>Евгений</strong></td><td>Маркетинг Лид</td><td>5.28%</td></tr>
+    <tr><td>8</td><td><strong>Стас</strong></td><td>Медиа Лид</td><td>5.28%</td></tr>
+    <tr><td>9</td><td><strong>Виктория</strong></td><td>Амбассадор</td><td>5.00%</td></tr>
+    <tr><td>10</td><td><strong>Гульназ</strong></td><td>Ассистент по B2B</td><td>4.63%</td></tr>
+    <tr><td>11</td><td><strong>Тамила</strong></td><td>Ассистент по офлайн-размещению</td><td>3.52%</td></tr>
+    <tr><td>12</td><td><strong><span style="color:#d97706">Вакантно</span></strong></td><td>Менеджер по наполнению и модерации</td><td>2.22%</td></tr>
+  </table>
+
+  <div class="highlight-box">
+    <strong>Сейчас ищем 3 разработчиков</strong> (full-stack TypeScript) в команду. Это ключевой найм — техническая команда будет состоять из CTO + 3 разработчиков.
+  </div>
+
+  <h3>Документация</h3>
+  <p>В папке <code>docs/</code> проекта — <strong>90+ HTML-файлов</strong> полной документации: стратегия, финансы, маркетинг, метрики, контент-планы, бренд-бук, сценарии, баги/edge cases, конкуренты, партнёрская модель, реферальная программа, геймификация, структура Telegram — всё.</p>
+</div>
+
+<!-- 4. Техстек -->
+<div class="section" id="stack">
+  <h2>4. Технический стек</h2>
+
+  <h3>Backend</h3>
+  <ul>
+    <li><strong>NestJS</strong> (на Fastify) — фреймворк</li>
+    <li><strong>Prisma</strong> — ORM</li>
+    <li><strong>PostgreSQL</strong> — база данных</li>
+    <li><strong>Redis</strong> — кеш, сессии, очереди</li>
+    <li><strong>Vitest</strong> — тесты</li>
+    <li><strong>ESM-only</strong>, TypeScript со strictNullChecks</li>
+  </ul>
+
+  <h3>Frontend</h3>
+  <ul>
+    <li><strong>Next.js</strong> (App Router)</li>
+    <li><strong>React</strong></li>
+    <li><strong>Ant Design</strong> — UI-кит</li>
+    <li><strong>Tailwind</strong> — стилизация</li>
+    <li><strong>SWR</strong> — работа с данными</li>
+    <li><strong>superagent</strong> — HTTP-клиент</li>
+    <li><strong>Telegram Mini App SDK</strong></li>
+  </ul>
+
+  <h3>Инфраструктура</h3>
+  <ul>
+    <li><strong>Docker Compose</strong> локально: Postgres, Redis, LocalStack (S3-эмуляция), backend, два фронта</li>
+    <li><strong>Hot-reload</strong> через volume-монтирование src</li>
+    <li><strong>CI/CD</strong> на GitLab CI: test → build → scan → deploy</li>
+  </ul>
+
+  <h3>Авторизация</h3>
+  <ul>
+    <li><strong>Telegram-first:</strong> валидируем initData от Telegram по HMAC с токеном бота → выдаём JWT</li>
+    <li><strong>Админка:</strong> отдельная сессия на HttpOnly-cookie</li>
+  </ul>
+
+  <div class="info-box">
+    <strong>ESM-only:</strong> весь код на ESM-модулях. Никакого CommonJS. TypeScript со strictNullChecks. Prettier + ESLint flat-config. Conventional Commits.
+  </div>
+
+  <h3>Изюминка фронта</h3>
+  <p><strong>Один кодбейс — две сборки.</strong> Telegram-приложение (.tsx) и админка (.admin.tsx) собираются из одного репозитория через переменную BUILD_TARGET. Есть автоматическая проверка, что Telegram SDK не «протекает» в админ-бандл. Мобайл-first, оптимизация под слабые телефоны и нестабильный интернет.</p>
+</div>
+
+<!-- 5. Архитектура -->
+<div class="section" id="architecture">
+  <h2>5. Архитектура и принципы</h2>
+
+  <div class="highlight-box">
+    <strong>Ключевой посыл:</strong> это MVP. Приоритеты — скорость итераций, простота, отлаживаемость, надёжность. Не строим «идеальную масштабируемую архитектуру наперёд».
+  </div>
+
+  <h3>Принципы</h3>
+  <ul>
+    <li><strong>Модульный монолит.</strong> Сознательно НЕ микросервисы — для MVP это лишняя сложность.</li>
+    <li><strong>PostgreSQL-first.</strong> Одна база, всё крутится вокруг неё.</li>
+    <li><strong>Доступ к данным:</strong> Prisma для CRUD/транзакций/админки; сырой SQL — для поиска, агрегаций, ранжирования, графовых и рекурсивных запросов.</li>
+    <li><strong>Сервис-ориентированность:</strong> feature-модули — каждый домен (orders, partners, referrals…) самодостаточен.</li>
+  </ul>
+
+  <h3>Чего осознанно избегаем</h3>
+  <p><span class="tag tag-red">✕</span> Микросервисы<br>
+  <span class="tag tag-red">✕</span> CQRS<br>
+  <span class="tag tag-red">✕</span> Event sourcing<br>
+  <span class="tag tag-red">✕</span> Распределённые транзакции<br>
+  <span class="tag tag-red">✕</span> Kubernetes</p>
+
+  <h3>Глобальный конвейер запроса</h3>
+  <ol>
+    <li>Rate-limiter</li>
+    <li>Интерсептор — оборачивает все ответы в единый формат <code>{data, success}</code></li>
+    <li>Централизованный фильтр ошибок (типизированные исключения, никаких сырых SQL-ошибок наружу)</li>
+  </ol>
+  <p>Все ручки под <code>/v1/</code>.</p>
+
+  <h3>База данных</h3>
+  <p>Сейчас SQLite (<code>data/invite.db</code>) — для быстрого старта. Плановый переход на PostgreSQL при масштабировании.</p>
+</div>
+
+<!-- 6. Как устроен код -->
+<div class="section" id="code">
+  <h2>6. Как устроен код</h2>
+
+  <h3>Структура монорепозитория</h3>
+  <pre style="background:var(--bg-alt);padding:16px;border-radius:8px;font-size:13px;line-height:1.8;overflow-x:auto">
+apps/
+  backend/   — NestJS, Prisma-схема, миграции, сиды, скрипты
+  frontend/  — Next.js, две сборки (Telegram + Админка)
+  </pre>
+
+  <h3>Backend-модуль (feature)</h3>
+  <pre style="background:var(--bg-alt);padding:16px;border-radius:8px;font-size:13px;line-height:1.8;overflow-x:auto">
+*.module.ts           — регистрация модуля
+*.controller.ts       — только транспорт: валидация, вызов сервиса, маппинг ответа
+*.service.ts          — бизнес-логика
+repositories/         — Prisma и сырой SQL
+dto/                  — валидация через class-validator
+  </pre>
+
+  <div class="highlight-box">
+    <strong>Правило:</strong> контроллеры — ТОЛЬКО HTTP-слой. Никакой бизнес-логики и SQL в контроллерах.
+  </div>
+
+  <h3>Frontend (на каждый домен)</h3>
+  <pre style="background:var(--bg-alt);padding:16px;border-radius:8px;font-size:13px;line-height:1.8;overflow-x:auto">
+src/api/
+  *-api.ts     — HTTP-запросы
+  *-types.ts   — TypeScript-типы
+  *-hooks.ts   — SWR-хуки
+  </pre>
+
+  <h3>Telegram Invite Machine (отдельный репозиторий)</h3>
+  <p>Параллельно существует инструмент для приглашений в Telegram-чаты городов:</p>
+  <ul>
+    <li><strong>aion_engine.py</strong> — ядро: Telegram-клиенты (Telethon), AccountManager, InviteEngine, прогреваем аккаунтов, БД, планировщик кампаний, node-регистрация/heartbeat</li>
+    <li><strong>server.py</strong> — центральный Flask-сервер: админка, управление нодами, кампаниями, расписанием, контактами</li>
+    <li><strong>node.py</strong> — клиент-нода с локальной Flask-панелью (порт 5100)</li>
+    <li><strong>33 аккаунта</strong> (покупные, по ~30 руб), загружаются через StringSession, прогрева 4+ дня</li>
+    <li>Архитектура: центральный сервер (VPS) + клиентские ноды (ноутбуки команды), каждая на своём домашнем IP</li>
+  </ul>
+</div>
+
+<!-- 7. Что технически интересно -->
+<div class="section" id="interesting">
+  <h2>7. Что технически интересно — примеры</h2>
+
+  <p>Хорошие истории, чтобы показать глубину и заодно нащупать уровень кандидата.</p>
+
+  <h3>🔄 State machines</h3>
+  <p>Все важные потоки (заказы, модерация, выплаты) — через явные, валидируемые, идемпотентные переходы статусов. Никаких неявных мутаций.</p>
+
+  <h3>🌳 Реферальная система (свежая большая фича)</h3>
+  <p>Отличный кейс для обсуждения на собеседовании:</p>
+  <ul>
+    <li>Две модели: пользователь→пользователь (20/5/3/2% на 4 уровня по дереву referrerId) и пользователь→бизнес (приглашающий = L1 10%, дальше по его цепочке)</li>
+    <li><strong>Леджер начислений</strong> с <code>@@unique([orderId, kind, level])</code> → идемпотентность: повторное завершение заказа не задваивает деньги</li>
+    <li><strong>Баланс вычисляемый</strong>, без денормализации</li>
+    <li>Начисление — хук в момент завершения заказа, запись пачкой внутри транзакции</li>
+    <li><strong>Хороший баг для обсуждения:</strong> при прямом джойне начислений и заказов получался fan-out — сумма умножалась на количество заказов и раздувалась. Чинится предагрегацией каждой таблицы в отдельных подзапросах до джойна. (Можно дать кандидату как задачку «почему сумма неверная?»)</li>
+    <li><strong>Графовые запросы</strong> — сырой SQL: рекурсивный CTE для дерева, keyset/cursor-пагинация вместо OFFSET</li>
+  </ul>
+
+  <h3>⚡ Производительность</h3>
+  <ul>
+    <li>Все списки пагинируются</li>
+    <li>Без SELECT *</li>
+    <li>Индексы обязательны</li>
+    <li>Тяжёлые запросы проходят EXPLAIN ANALYZE</li>
+  </ul>
+
+  <h3>🔐 Telegram-авторизация</h3>
+  <p>Валидация initData от Telegram через HMAC с токеном бота → JWT. Админка — отдельная сессия на HttpOnly-cookie. Telegram-first подход.</p>
+</div>
+
+<!-- 8. Процессы -->
+<div class="section" id="processes">
+  <h2>8. Процессы и культура</h2>
+
+  <div class="highlight-box">
+    <strong>Посыл:</strong> «Читаемый код важнее умного. Оптимизируем под поддерживаемость и отлаживаемость.»
+  </div>
+
+  <h3>Тесты</h3>
+  <ul>
+    <li>Меняешь сервис/контроллер/DTO — в том же коммите правишь *.spec.ts</li>
+    <li>Критичные потоки требуют тестов: auth, онбординг, создание заказа, переходы статусов</li>
+  </ul>
+
+  <h3>Миграции</h3>
+  <ul>
+    <li>Любое изменение схемы — только через миграцию</li>
+    <li>Ревью сгенерированного SQL обязательно</li>
+  </ul>
+
+  <h3>Документация</h3>
+  <ul>
+    <li>Swagger: каждый эндпоинт документирует все коды ошибок, которые может вернуть</li>
+    <li>Полная документация — только для значимых изменений</li>
+    <li>Мелкий контекст — в dev-notes</li>
+  </ul>
+
+  <h3>Код-стайл</h3>
+  <ul>
+    <li>Общий Prettier</li>
+    <li>ESLint flat-config</li>
+    <li>Conventional Commits</li>
+    <li>TypeScript strictNullChecks</li>
+  </ul>
+</div>
+
+<!-- 9. Что делать -->
+<div class="section" id="work">
+  <h2>9. Над чем будет работать разработчик</h2>
+
+  <p><strong>Full-stack TypeScript.</strong> Фичи сквозь оба слоя — от Prisma-схемы и NestJS-сервиса до экрана в Telegram Mini App или в админке.</p>
+
+  <h3>Реальные домены</h3>
+  <ul>
+    <li><strong>Заказы</strong> — полный lifecycle: создание, оплата, статусы, отмена, возвраты</li>
+    <li><strong>Партнёры</strong> — онбординг, верификация, уровни (Basic → Verified → Premium → VIP), выплаты</li>
+    <li><strong>Каталог услуг</strong> — 22 категории, мультигород, ценообразование</li>
+    <li><strong>Реферальная программа</strong> — деревья, начисления, леджер, вывод</li>
+    <li><strong>Выплаты</strong> — внутренний кошелёк, вывод на карты/USDT/нал</li>
+    <li><strong>Уведомления</strong> — Telegram-уведомления, in-app</li>
+    <li><strong>Геймификация</strong> — LVLUP, XP, квесты, ачивки</li>
+    <li><strong>AI-консьерж</strong> — подбор специалистов по локации, цене, отзывам</li>
+    <li><strong>Telegram Invite Machine</strong> — распределённая система приглашений</li>
+  </ul>
+
+  <h3>Сейчас в активной разработке</h3>
+  <ul>
+    <li>Реферальная программа (закончена, идут доработки)</li>
+    <li>Платежи и вывод средств</li>
+    <li>Админка для операторов</li>
+    <li>Мультигород (добавление новых городов)</li>
+    <li>Английская версия (планово — месяц 6)</li>
+  </ul>
+</div>
+
+<!-- 10. Планы -->
+<div class="section" id="plans">
+  <h2>10. Планы на будущее</h2>
+
+  <h3>Ближайшие 3 месяца</h3>
+  <ul>
+    <li><strong>Нячанг</strong> — полный запуск, 150+ офлайн-точек, 50+ партнёров, 1000+ пользователей</li>
+    <li><strong>Добавление городов:</strong> Дананг, Хошимин, Паттайя, Пхукет</li>
+    <li><strong>City Governor</strong> — запуск модели в каждом городе</li>
+    <li><strong>Платежи</strong> — Stripe, Wise, MoMo</li>
+    <li><strong>Блогеры/инфлюенсеры</strong> — подключение 10+ блогеров по реферальной модели</li>
+    <li><strong>Точка безубыточности</strong> — $40K/мес комиссии (месяц 3)</li>
+  </ul>
+
+  <h3>6-12 месяцев</h3>
+  <ul>
+    <li><strong>Английская версия</strong> — выход на международную аудиторию</li>
+    <li><strong>25+ городов</strong> в 10+ странах</li>
+    <li><strong>AI-консьерж</strong> — ML-подбор специалистов, автоматизация 80% запросов</li>
+    <li><strong>500K пользователей</strong></li>
+    <li><strong>$600K/мес</strong> комиссии</li>
+    <li><strong>White-label платформа</strong> — API для сторонних разработчиков</li>
+  </ul>
+
+  <h3>2-5 лет</h3>
+  <ul>
+    <li><strong>20M пользователей</strong></li>
+    <li><strong>1000+ городов</strong> в 70+ странах</li>
+    <li><strong>$30M/мес</strong> комиссии</li>
+    <li><strong>Global marketplace для экспатов</strong></li>
+    <li><strong>95% процессов через AI</strong></li>
+    <li><strong>Digital passport для путешественников</strong></li>
+    <li><strong>IPO / exit</strong></li>
+  </ul>
+
+  <div class="info-box">
+    <strong>Ключевые развилки (inflection points):</strong><br>
+    Месяц 3 ($40K/мес) — точка безубыточности<br>
+    Месяц 6 ($175K/мес) — запуск английской версии<br>
+    Месяц 12 ($600K/мес) — доминирование среди русскоязычных экспатов в Азии<br>
+    Месяц 24 ($2.5M/мес) — выход на глобальный рынок
+  </div>
+</div>
+
+<!-- 11. Условия -->
+<div class="section" id="offer">
+  <h2>11. Почему 4% — это состояние</h2>
+
+  <div class="highlight-box">
+    <strong>Ищем 3 full-stack TypeScript разработчиков</strong> в ключевую команду. Техническая команда: CTO + 3 разработчика.
+  </div>
+
+  <p>Мы bootstrapped-стартап без внешних инвесторов. <strong>4% сейчас — это не «размытая доля после 5 раундов».</strong> Это чистая доля в компании, которая растёт с нуля до миллионов. Доли основателей фиксированы, новых раундов с размытием не планируется.</p>
+
+  <h3>Математика</h3>
+  <p>Консервативная проекция по нашей стратегии (категории услуг, 22 направления, 25+ городов):</p>
+
+  <table>
+    <tr><th>Период</th><th>Комиссия / мес</th><th>Оценка компании (x12)</th><th>Ваши 4%</th></tr>
+    <tr><td>Сейчас (июль 2026)</td><td>$0 → $10K</td><td>—</td><td>—</td></tr>
+    <tr><td><strong>Месяц 12 (июнь 2027)</strong></td><td><strong>$600K/мес</strong></td><td><strong>~$7.2M</strong></td><td><strong>~$288K</strong></td></tr>
+    <tr><td><strong>Месяц 24 (июнь 2028)</strong></td><td><strong>$2.5M/мес</strong></td><td><strong>~$30M</strong></td><td><strong>~$1.2M</strong></td></tr>
+    <tr><td><strong>Месяц 60 (июнь 2031)</strong></td><td><strong>$30M/мес</strong></td><td><strong>~$360M</strong></td><td><strong>~$14.4M</strong></td></tr>
+  </table>
+
+  <div class="info-box">
+    <strong>Простыми словами:</strong> через год твои 4% могут стоить ~$300K. Через 5 лет — >$14 млн. И это консервативный сценарий (услуги для русскоязычных, 25 городов). С выходом на английский рынок (месяц 6) и глобальную экспансию цифры умножаются.
+  </div>
+
+  <h3>Почему 4% — это много</h3>
+  <ul>
+    <li><strong>Основатели</strong> (Влад, Василий) имеют по ~20% — ты получаешь в 5 раз меньше, чем создатели компании. На старте это честно.</li>
+    <li><strong>Людмила</strong> (CCO) получила 9% за операционное управление всей компанией. Разработчик получает 4% — почти половину от COO, просто за код.</li>
+    <li><strong>Ты заходишь наравне с ключевыми сотрудниками.</strong> 4% — это уровень топ-менеджмента. В любой другой компании на такой стадии разработчик получил бы 0.5-1%.</li>
+    <li><strong>Без инвесторов</strong> — долю не размывают раунды. Мы не берём деньги снаружи. То, что ты получил, — твоё.</li>
+  </ul>
+
+  <h3>Что ещё важно</h3>
+  <ul>
+    <li><strong>4% — это не опционы, а доля (equity).</strong> Ты совладелец, а не наёмник с обещанием.</li>
+    <li><strong>Доход с первого дня:</strong> реферальная программа (30% комиссии платформы с приглашённых) + внутренние услуги компании без комиссии.</li>
+    <li><strong>Работа из любой точки мира.</strong> Команда распределённая.</li>
+    <li><strong>Короткие итерации, фичи в продакшн каждую неделю.</strong> Не бюрократия, а стройка.</li>
+    <li><strong>Реальный продукт</strong> с реальными пользователями и деньгами. Не «сделаем стартап и умрём».</li>
+    <li><strong>Влияние на архитектуру и стек.</strong> Ты формируешь техническое лицо продукта.</li>
+    <li>NestJS, Next.js, PostgreSQL, Prisma, Redis, Docker. Никаких микросервисов, K8s и прочего оверинжиниринга.</li>
+  </ul>
+
+  <h3>Тебе с нами по пути, если</h3>
+  <ul>
+    <li>Хочешь <strong>быть совладельцем</strong>, а не винтиком</li>
+    <li>Готов <strong>строить</strong>, а не «поддерживать легаси»</li>
+    <li>Понимаешь, что 4% в компании с потенциалом $360M — <strong>это шанс изменить жизнь</strong></li>
+    <li>Не боишься ответственности и хочешь влиять на продукт</li>
+  </ul>
+
+  <h3>Что нужно</h3>
+  <ul>
+    <li>TypeScript (NestJS / Next.js, strictNullChecks)</li>
+    <li>PostgreSQL, Prisma, SQL</li>
+    <li>React, Tailwind, Ant Design</li>
+    <li>Docker / Docker Compose</li>
+    <li>Git, CI/CD, тесты</li>
+    <li>Product-minded — понимание бизнеса, а не просто «написать код»</li>
+  </ul>
+
+  <h3>Процесс</h3>
+  <ol>
+    <li>Созвон с CTO (Артур) — технический разговор, обсуждение кейсов (30-40 мин)</li>
+    <li>Созвон с продакт-лидом (Влад) — мотивация, видение (20-30 мин)</li>
+    <li>Решение за 2-3 дня</li>
+  </ol>
+
+  <p style="margin-top:20px;text-align:center;border-top:1px solid var(--border);padding-top:20px;font-size:13px;color:var(--text-light)">
+    AION · Июль 2026
+  </p>
+</div>
+
+</body>
+</html>

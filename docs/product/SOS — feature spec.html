@@ -1,0 +1,348 @@
+<html>
+<head><meta charset='utf-8'><title>SOS / Экстренная помощь — AION</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact}
+body{font-family:system-ui,-apple-system,sans-serif;max-width:960px;margin:2em auto;padding:0 1.5em;line-height:1.6;color:#1a1a2e;background:#fafafa}
+h1{font-size:2.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.15em;margin-top:1.2em}
+h1:first-child{margin-top:0}
+.title{text-align:center;margin-bottom:2em}
+.title h1{font-size:2.5rem;margin-bottom:0.1em}
+.title .sub{color:#666;font-size:0.95rem}
+h2{font-size:1.4rem;font-weight:700;margin-top:2em;padding-bottom:0.3em;border-bottom:3px solid #d4a017;display:flex;align-items:center;gap:10px}
+h2 .badge{font-size:0.7rem;background:#1a1a2e;color:#fff;padding:2px 10px;border-radius:10px;font-weight:600}
+h3{font-size:1.15rem;font-weight:600;margin-top:1.5em;margin-bottom:0.3em;color:#1a1a2e}
+table{width:100%;border-collapse:collapse;margin:1em 0;font-size:0.9rem}
+th,td{border:1px solid #ddd;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#1a1a2e;color:#fff;font-weight:600;font-size:0.85rem}
+tr:nth-child(even){background:#f9f9f9}
+blockquote{border-left:3px solid #d4a017;margin:1em 0;padding:0.8em 1.2em;background:#faf6ef;font-size:0.9rem;border-radius:0 6px 6px 0}
+hr{border:none;border-top:1px solid #e0d5c1;margin:1.8em 0}
+code{background:rgba(135,131,120,0.15);border-radius:3px;padding:0.2em 0.4em;font-size:85%;color:#d63384}
+pre{background:#1a1a2e;color:#f8f8f2;border-radius:6px;padding:1em;overflow-x:auto;font-size:0.85rem;line-height:1.5;margin:0.8em 0}
+.sos-card{background:#fff;border:1px solid #e0d5c1;border-radius:8px;padding:0.8em 1.2em;margin:0.5em 0;border-left:4px solid #e53935}
+.sos-card .name{font-weight:700;font-size:1rem}
+.sos-card .desc{font-size:0.85rem;color:#555}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1em;margin:1em 0}
+@media(max-width:700px){.grid-2{grid-template-columns:1fr}}
+.flow-step{background:#fff;border:1px solid #d4a017;border-radius:8px;padding:0.8em 1.2em;margin:0.4em 0;display:flex;align-items:flex-start;gap:12px}
+.flow-step .num{background:#d4a017;color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;flex-shrink:0}
+.flow-step .content{flex:1}
+.flow-step .content .title{font-weight:600;font-size:0.95rem}
+.flow-step .content .detail{font-size:0.85rem;color:#555}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8em;margin:1em 0}
+@media(max-width:600px){.kpi-grid{grid-template-columns:1fr}}
+.kpi-card{background:#fff;border:1px solid #e0d5c1;border-radius:8px;padding:0.8em;text-align:center}
+.kpi-card .val{font-size:1.3rem;font-weight:700;color:#e53935}
+.kpi-card .lbl{font-size:0.78rem;color:#666}
+.btn-pill{display:inline-block;padding:2px 12px;border-radius:12px;font-size:0.75rem;font-weight:600}
+.btn-green{background:#e8f5e9;color:#2e7d32}
+.btn-red{background:#ffebee;color:#c62828}
+.btn-blue{background:#e3f2fd;color:#1565c0}
+</style>
+</head><body>
+
+<div class="title">
+  <h1>🚨 SOS / Экстренная помощь</h1>
+  <div class="sub">Feature Spec · AION · Нячанг (MVP)</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- OVERVIEW -->
+<!-- ============================================================ -->
+<h2>1. Концепция <span class="badge">WHY</span></h2>
+
+<p>SOS — не просто «кнопка вызова 112». Это <strong>экстренная инфраструктура AION</strong>, которая делает платформу не маркетплейсом услуг, а инфраструктурой для жизни. Пользователь знает: <em>«Если что-то случилось — я нажимаю SOS, и AION решает»</em>.</p>
+
+<blockquote>
+<strong>Ключевое отличие от 112:</strong> AION не просто даёт номера, а берёт на себя координацию: определяет геолокацию, подставляет локальные номера, ищет ближайшие места помощи, отправляет приоритетный тикет менеджеру, открывает чат с переводчиком.
+</blockquote>
+
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="val">&lt; 5 сек</div><div class="lbl">Время от нажатия до появления помощи</div></div>
+  <div class="kpi-card"><div class="val">24/7</div><div class="lbl">Доступность кнопки</div></div>
+  <div class="kpi-card"><div class="val">SLA 5 мин</div><div class="lbl">Макс. время реакции менеджера на SOS</div></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- UI -->
+<!-- ============================================================ -->
+<h2>2. Размещение в UI <span class="badge">UX</span></h2>
+
+<table>
+<tr><th>Позиция</th><th>Описание</th><th>Приоритет для MVP</th></tr>
+<tr>
+  <td>🔴 Главный экран — плавающая кнопка</td>
+  <td>Floating action button в правом нижнем углу. Красная с glow-эффектом (amber/orange). Иконка щита/SOS. Видна всегда.</td>
+  <td><span class="btn-pill btn-green">MVP</span></td>
+</tr>
+<tr>
+  <td>🔴 AI поиск — фиксированная кнопка</td>
+  <td>Рядом со строкой поиска. Красная иконка. Продублирована на случай, если пользователь уже открыл поиск.</td>
+  <td><span class="btn-pill btn-green">MVP</span></td>
+</tr>
+<tr>
+  <td>🔴 Экран заказа — быстрый доступ</td>
+  <td>Внутри активного заказа — кнопка «Мне нужна помощь» в шапке.</td>
+  <td><span class="btn-pill btn-blue">V2</span></td>
+</tr>
+</table>
+
+<h3>Визуальные требования к кнопке</h3>
+<ul>
+  <li>Красный / amber glow (свечение) — чтобы привлекала внимание в любой ситуации</li>
+  <li>Минималистичная — только иконка, без текста</li>
+  <li>Всегда поверх контента (z-index выше всего)</li>
+  <li>Не перекрывает критический контент (тестировать на разных экранах)</li>
+  <li>Нажатие требует подтверждения (чтобы избежать ложных срабатываний)</li>
+</ul>
+
+<!-- ============================================================ -->
+<!-- FLOW -->
+<!-- ============================================================ -->
+<h2>3. Пользовательский сценарий <span class="badge">FLOW</span></h2>
+
+<div class="flow-step">
+  <div class="num">1</div>
+  <div class="content">
+    <div class="title">Нажатие кнопки SOS</div>
+    <div class="detail">На любом экране. Кнопка доступна всегда, даже без авторизации (только базовые номера).</div>
+  </div>
+</div>
+
+<div class="flow-step">
+  <div class="num">2</div>
+  <div class="content">
+    <div class="title">Экран «Что случилось?»</div>
+    <div class="detail">6 больших карточек-категорий. Без текста — только иконка + 2–3 слова. Крупные, чтобы можно было нажать трясущимися руками.</div>
+  </div>
+</div>
+
+<div class="flow-step">
+  <div class="num">3</div>
+  <div class="content">
+    <div class="title">Система автоматически определяет:</div>
+    <div class="detail">Страну · Город · Геолокацию (GPS). Показывает локальные экстренные номера, ближайшие места помощи, маршрут до них.</div>
+  </div>
+</div>
+
+<div class="flow-step">
+  <div class="num">4</div>
+  <div class="content">
+    <div class="title">Создаётся emergency ticket</div>
+    <div class="detail">Приоритетный тикет в системе. Менеджер получает alert мгновенно. Тикет идёт отдельно от обычных запросов, выше всех по приоритету.</div>
+  </div>
+</div>
+
+<div class="flow-step">
+  <div class="num">5</div>
+  <div class="content">
+    <div class="title">Экран помощи</div>
+    <div class="detail">Пользователь видит: «Мы уже ищем помощь рядом». Кнопки: Call (номер), Telegram, WhatsApp, Navigate (построить маршрут), Share Location.</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CATEGORIES -->
+<!-- ============================================================ -->
+<h2>4. Категории экстренных ситуаций <span class="badge">SOS TYPES</span></h2>
+
+<div class="grid-2">
+
+<div class="sos-card">
+  <div class="name">🚑 Медицинская помощь</div>
+  <div class="desc">
+    Ближайшая клиника · Вызов скорой · Параметры: <em>нужен русский врач? нужна скорая? госпитализация?</em><br>
+    <strong>Контент:</strong> список клиник с русским персоналом, номера скорой (115), маршрут
+  </div>
+</div>
+
+<div class="sos-card">
+  <div class="name">👮 Полиция</div>
+  <div class="desc">
+    Локальный номер (113) · Помощь переводчика · Экстренный чат с менеджером для перевода<br>
+    <strong>Контент:</strong> номера полиции, контакты консульства РФ, образцы фраз на вьетнамском
+  </div>
+</div>
+
+<div class="sos-card">
+  <div class="name">🚘 ДТП / транспорт</div>
+  <div class="desc">
+    Эвакуатор · Страховая (контакты) · Помощь на дороге · Вызов водителя<br>
+    <strong>Контент:</strong> номера эвакуаторов, контакты страховых, памятка при ДТП
+  </div>
+</div>
+
+<div class="sos-card">
+  <div class="name">🆘 Опасная ситуация</div>
+  <div class="desc">
+    Срочная связь с русскоязычным менеджером · Геолокация передаётся менеджеру · Emergency escalation<br>
+    <strong>Контент:</strong> прямая связь с дежурным менеджером, live-локация
+  </div>
+</div>
+
+<div class="sos-card">
+  <div class="name">💸 Потеря документов / денег</div>
+  <div class="desc">
+    Помощь · Контакты посольства · Вызов переводчика для полиции · Блокировка карт<br>
+    <strong>Контент:</strong> консульство РФ в Нячанге/Хошимине, образцы заявлений, контакты банков
+  </div>
+</div>
+
+<div class="sos-card">
+  <div class="name">👩‍💻 Связь с оператором</div>
+  <div class="desc">
+    Если нужен человек, а не робот. Telegram · WhatsApp · Голосовой вызов менеджера<br>
+    <strong>Контент:</strong> прямая связь с дежурным менеджером 24/7
+  </div>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- LOGIC -->
+<!-- ============================================================ -->
+<h2>5. Бэкенд-логика <span class="badge">BACKEND</span></h2>
+
+<h3>5.1 Emergency ticket</h3>
+<p>При нажатии SOS создаётся тикет с жёстким приоритетом:</p>
+
+<pre><code>type: SOS
+priority: highest (отдельная очередь, выше всех обычных тикетов)
+location: GPS (lat, lng)
+country: автоопределение
+city: автоопределение
+time: now
+status: urgent
+category: [медицина|полиция|дтп|опасность|документы|оператор]
+user_id: если авторизован
+language: язык пользователя</code></pre>
+
+<h3>5.2 Очередь (US-3.3 emergency queue)</h3>
+<ul>
+  <li>SOS-тикеты попадают в <strong>отдельную очередь</strong>, не смешиваясь с обычными запросами</li>
+  <li>Всегда выше по приоритету, чем любые другие тикеты</li>
+  <li>Менеджер получает: звуковой alert, всплывающее уведомление, push в Telegram</li>
+  <li>SLA на первый отклик: <strong>5 минут</strong> (в идеале — 1 минута)</li>
+  <li>Если менеджер не ответил за 5 минут — эскалация следующему дежурному + второму кругу</li>
+</ul>
+
+<h3>5.3 Автоматические действия системы</h3>
+<table>
+<tr><th>Действие</th><th>Описание</th><th>MVP/V2</th></tr>
+<tr><td>Определение геолокации</td><td>GPS-координаты + обратное геокодирование (адрес)</td><td><span class="btn-pill btn-green">MVP</span></td></tr>
+<tr><td>Подстановка локальных номеров</td><td>Номера полиции/скорой/пожарных для страны/города</td><td><span class="btn-pill btn-green">MVP</span></td></tr>
+<tr><td>Поиск ближайших мест помощи</td><td>Больницы, аптеки, полицейские участки в радиусе 2 км</td><td><span class="btn-pill btn-green">MVP</span></td></tr>
+<tr><td>Построение маршрута</td><td>Ссылка на Google Maps / Apple Maps до ближайшей точки</td><td><span class="btn-pill btn-green">MVP</span></td></tr>
+<tr><td>Уведомление менеджера</td><td>Push + Telegram + звуковой alert</td><td><span class="btn-pill btn-green">MVP</span></td></tr>
+<tr><td>Live-локация</td><td>Менеджер видит передвижение пользователя в реальном времени</td><td><span class="btn-pill btn-blue">V2</span></td></tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- PREMIUM -->
+<!-- ============================================================ -->
+<h2>6. Premium-функции <span class="badge">V2+</span></h2>
+
+<table>
+<tr><th>Функция</th><th>Описание</th><th>Ценность</th></tr>
+<tr>
+  <td>📡 Live location sharing</td>
+  <td>Менеджер видит перемещение пользователя в реальном времени. Непрерывная передача геолокации до отмены SOS.</td>
+  <td>Критично при опасных ситуациях — менеджер может направить помощь точно</td>
+</tr>
+<tr>
+  <td>🌐 Автоперевод</td>
+  <td>AI генерирует фразы на местном языке для конкретной ситуации. «Мне нужна помощь, я говорю только по-русски» + медизопрос.</td>
+  <td>Снимает языковой барьер в стрессовой ситуации</td>
+</tr>
+<tr>
+  <td>👤 Trusted contact</td>
+  <td>Указать доверенное лицо. При SOS автоматически отправляется уведомление с геолокацией.</td>
+  <td>Дополнительный уровень безопасности</td>
+</tr>
+<tr>
+  <td>🧠 AI emergency routing</td>
+  <td>AI анализирует ситуацию (по ключевым словам) и сам определяет, куда направить: ближайшая клиника, полиция, консульство.</td>
+  <td>Минимизирует время принятия решения</td>
+</tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- IDEAL FLOW -->
+<!-- ============================================================ -->
+<h2>7. Идеальный сценарий (Complete Flow)</h2>
+
+<ol>
+  <li>Пользователь нажал <strong>SOS</strong></li>
+  <li>Выбрал ситуацию: <strong>🚑 Медицина</strong></li>
+  <li>AION моментально (0.5 сек):
+    <ul>
+      <li>Определил страну, город, GPS</li>
+      <li>Показал: номер скорой 115, ближайшие 3 клиники с русским врачом, маршрут до них</li>
+      <li>Создал emergency-тикет, отправил менеджеру</li>
+      <li>Предложил: позвонить, написать в Telegram, поделиться локацией</li>
+    </ul>
+  </li>
+  <li>Менеджер получил alert, через 30 секунд написал: «Я с вами, чем помочь? Может, нужен переводчик?»</li>
+  <li>Пользователь в безопасности. AION подтвердил свою ценность как инфраструктура для жизни.</li>
+</ol>
+
+<!-- ============================================================ -->
+<!-- WHY -->
+<!-- ============================================================ -->
+<h2>8. Стратегическое обоснование <span class="badge">STRATEGY</span></h2>
+
+<blockquote>
+<strong>SOS — это не фича, это заявление о позиционировании.</strong><br><br>
+Без SOS: AION — маркетплейс услуг (как Avito, Яндекс.Услуги).<br>
+С SOS: AION — инфраструктура для жизни за границей.<br><br>
+Вторая модель стоит в глазах пользователя в 10 раз дороже. SOS — самый дешёвый способ сделать этот прыжок.
+</blockquote>
+
+<table>
+<tr><th>Аспект</th><th>Влияние</th></tr>
+<tr><td>Trust / Доверие</td><td>Пользователь знает: AION поможет не только с арендой квартиры, но и в реальной беде</td></tr>
+<tr><td>Retention</td><td>SOS создаёт эмоциональную привязку. После использования — лояльность на годы</td></tr>
+<tr><td>Вирусность</td><td>История «AION спас меня в Нячанге» — лучший маркетинг. Люди рассказывают таким</td></tr>
+<tr><td>Отстройка</td><td>Ни один конкурент (чат-рулетки, агрегаторы) не даёт экстренной поддержки 24/7</td></tr>
+<tr><td>Premium-монетизация</td><td>Live-локация, trusted contact, приоритетный дозвон — то, за что готовы платить</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- MVP -->
+<!-- ============================================================ -->
+<h2>9. MVP vs V2 <span class="badge">SCOPE</span></h2>
+
+<table>
+<tr><th>Компонент</th><th>MVP (сейчас)</th><th>V2 (14 дней)</th></tr>
+<tr><td>Кнопка SOS на главном экране</td><td>✅</td><td>✅</td></tr>
+<tr><td>6 карточек-категорий</td><td>✅</td><td>✅</td></tr>
+<tr><td>Определение страны/города/GPS</td><td>✅</td><td>✅</td></tr>
+<tr><td>Локальные экстренные номера</td><td>✅ (Нячанг)</td><td>✅ (все города)</td></tr>
+<tr><td>Поиск ближайших мест помощи</td><td>✅ (Google Maps API)</td><td>✅</td></tr>
+<tr><td>Emergency-тикет + уведомление менеджера</td><td>✅ (Telegram + CRM)</td><td>✅</td></tr>
+<tr><td>Приоритетная очередь (US-3.3)</td><td>⚠️ (ручная сортировка)</td><td>✅ (автоматическая)</td></tr>
+<tr><td>Live location sharing</td><td>❌</td><td>✅</td></tr>
+<tr><td>Trusted contact</td><td>❌</td><td>✅</td></tr>
+<tr><td>AI emergency routing</td><td>❌</td><td>⚠️</td></tr>
+<tr><td>Автоперевод для полиции/клиники</td><td>❌</td><td>✅</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- RISKS -->
+<!-- ============================================================ -->
+<h2>10. Риски и митигация</h2>
+
+<table>
+<tr><th>Риск</th><th>Вероятность</th><th>Митигация</th></tr>
+<tr><td>Ложные срабатывания (нажал случайно)</td><td>Высокая</td><td>Подтверждение: «Вы точно хотите вызвать SOS?» + отмена 5 сек</td></tr>
+<tr><td>Менеджер не ответил вовремя</td><td>Средняя</td><td>Эскалация второму дежурному через 5 мин. Звуковой alert на телефоны всей команды</td></tr>
+<tr><td>Нет GPS / интернета</td><td>Низкая</td><td>Кэшированные номера экстренных служб. Базовая SMS-заглушка</td></tr>
+<tr><td>Злоупотребление SOS</td><td>Низкая</td><td>Лимит 3 SOS в день для бесплатных пользователей. Premium — без лимита</td></tr>
+<tr><td>Юридические риски (неоказание помощи)</td><td>Средняя</td><td>Дисклеймер: AION — информационная платформа, не заменяет госслужбы. Прозрачные SLA</td></tr>
+</table>
+
+<hr>
+<p style="text-align:center;color:#888;font-size:0.85rem">AION · Feature Spec · SOS/Экстренная помощь · Июнь 2026 · Версия 1.0</p>
+
+</body></html>

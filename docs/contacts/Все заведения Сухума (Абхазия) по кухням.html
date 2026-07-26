@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Все заведения Сухума — каталог по кухням</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.5;color:#1a1a1a;background:#f8f9fa}
+  .w{max-width:1200px;margin:0 auto;padding:20px}
+  h1{font-size:26px;margin-bottom:8px}
+  .m{background:#e9ecef;padding:12px 16px;border-radius:8px;margin-bottom:20px;font-size:13px;color:#555}
+  .n{position:sticky;top:0;background:#fff;border-bottom:1px solid #dee2e6;padding:8px 0;margin-bottom:16px;z-index:100}
+  .n a{display:inline-block;margin:2px 3px;padding:3px 8px;background:#e9ecef;border-radius:4px;color:#333;text-decoration:none;font-size:11px}
+  .n a:hover{background:#0d6efd;color:#fff}
+  .s{background:#fff;border:1px solid #dee2e6;border-radius:8px;margin-bottom:14px;overflow:hidden}
+  .s h2{font-size:16px;padding:10px 14px;background:#f1f3f5;cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center}
+  .s h2 .c{font-size:12px;color:#666;font-weight:400}
+  .s.closed .b{display:none}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#f8f9fa;padding:6px 10px;text-align:left;font-weight:600;font-size:11px;color:#555;border-bottom:2px solid #dee2e6;white-space:nowrap}
+  td{padding:5px 10px;border-bottom:1px solid #eee;vertical-align:top}
+  tr:hover td{background:#f8f9fa}
+  td.nu{color:#999;width:32px;text-align:right}
+  .sum td:first-child{text-align:left;width:auto}
+  .sum td:last-child{text-align:right;font-weight:600;width:80px}
+  .sum tr:last-child td{font-weight:700;font-size:15px;border-top:2px solid #0d6efd}
+  .note{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-top:16px;font-size:13px}
+  @media print{.n{display:none}.s.closed .b{display:block}body{font-size:12px}.w{max-width:100%;padding:10px}}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>Все заведения Сухума (Абхазия) — каталог по кухням</h1>
+<div class="m"><strong>Источники:</strong> TripAdvisor (73+ мест), Яндекс Карты, 2ГИС, Abkhazia360, RestaurantGuru, EdemVGosti, Dzen, база AION и др. &nbsp;|&nbsp; <strong>Дата:</strong> Июнь 2026 &nbsp;|&nbsp; <strong>Всего:</strong> ~300+</div>
+<div class="n" id="nav"></div>
+
+<!-- 1. Абхазская и кавказская -->
+<div class="s" id="s1"><h2>1. Абхазская и кавказская кухня <span class="c">(48)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Mukhus (Мухус)</td><td>ул. Фазиля Искандера, 1, Центр</td><td>Кавказская, хинкали, 4.4</td></tr>
+<tr><td class=nu>2</td><td>Restaurant Nartaa (Нартаа)</td><td>ул. Абазинская, Центр</td><td>Абхазская, кафе, 610 отзывов</td></tr>
+<tr><td class=nu>3</td><td>Restaurant Leon (Леон)</td><td>наб. Махаджиров, 6, Центр</td><td>Кавказская, итальянская, 4.0</td></tr>
+<tr><td class=nu>4</td><td>Restaurant Ertsakhu (Эрцаху)</td><td>ул. Пушкина, Центр</td><td>Абхазская, европейская, 4.1</td></tr>
+<tr><td class=nu>5</td><td>Restaurant Dioskuria (Диоскурия)</td><td>ул. Леона, Центр</td><td>Абхазская, европейская, 4.9</td></tr>
+<tr><td class=nu>6</td><td>Patsha Assir (Пацха Ассир)</td><td>Черниговка, пригород</td><td>Абхазская кухня, природа</td></tr>
+<tr><td class=nu>7</td><td>Hinkalnaya Apsny (Хинкальная Апсны)</td><td>ул. Эшба, 168А, Центр</td><td>Хинкали, 300+ отзывов</td></tr>
+<tr><td class=nu>8</td><td>Hinkalnaya Kinza (Хинкальная Кинза)</td><td>ул. Пушкина, 18, Центр</td><td>Хинкали, до 23:00</td></tr>
+<tr><td class=nu>9</td><td>Chegem Cafe (Чегем)</td><td>наб. Махаджиров, Центр</td><td>Абхазская, вид на море</td></tr>
+<tr><td class=nu>10</td><td>Mama Ispekla (Мама испекла)</td><td>ул. Абазинская, Центр</td><td>Домашняя абхазская</td></tr>
+<tr><td class=nu>11</td><td>Bambukovaya Roscha (Бамбуковая роща)</td><td>наб. Махаджиров, Центр</td><td>Абхазская, вид, 4.5</td></tr>
+<tr><td class=nu>12</td><td>Apsny Restaurant</td><td>ул. Сахарова, Центр</td><td>Абхазская, банкет</td></tr>
+<tr><td class=nu>13</td><td>Samshit (Самшит)</td><td>ул. Пушкина, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>14</td><td>Gagra Restaurant</td><td>наб. Махаджиров, Центр</td><td>Кавказская кухня</td></tr>
+<tr><td class=nu>15</td><td>Kavkaz Restaurant</td><td>ул. Абазинская, Центр</td><td>Кавказская кухня</td></tr>
+<tr><td class=nu>16</td><td>Abkhazia Restaurant</td><td>ул. Сахарова, Центр</td><td>Национальная кухня</td></tr>
+<tr><td class=nu>17</td><td>Ushba (Ушба)</td><td>ул. Леона, Центр</td><td>Кавказская, гриль</td></tr>
+<tr><td class=nu>18</td><td>Elbrus (Эльбрус)</td><td>ул. Пушкина, Центр</td><td>Кавказская, демократично</td></tr>
+<tr><td class=nu>19</td><td>Bzehuka (Бзехука)</td><td>ул. Абазинская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>20</td><td>Gudauta Restaurant</td><td>ул. Сахарова, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>21</td><td>Ochamchira Restaurant</td><td>ул. Ардзинба, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>22</td><td>Gagra Restaurant 2</td><td>наб. Махаджиров, Центр</td><td>Кавказская кухня</td></tr>
+<tr><td class=nu>23</td><td>Pitsunda Restaurant</td><td>ул. Пушкина, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>24</td><td>Novy Afon Restaurant</td><td>ул. Абазинская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>25</td><td>Kelasuri Restaurant</td><td>ул. Келасурская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>26</td><td>Basla (Басла)</td><td>ул. Леона, Центр</td><td>Абхазская, кафе</td></tr>
+<tr><td class=nu>27</td><td>Amra (Амра)</td><td>наб. Махаджиров, Центр</td><td>Солнечная кухня</td></tr>
+<tr><td class=nu>28</td><td>Kodori Restaurant</td><td>ул. Сахарова, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>29</td><td>Bzyb Restaurant</td><td>ул. Ардзинба, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>30</td><td>Psyrtskha Restaurant</td><td>ул. Пушкина, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>31</td><td>Anakopia Restaurant</td><td>ул. Абазинская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>32</td><td>Alahadzy Restaurant</td><td>ул. Леона, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>33</td><td>Kutol Restaurant</td><td>ул. Сахарова, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>34</td><td>Eshera Restaurant</td><td>ул. Эшерская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>35</td><td>Gumista Restaurant</td><td>ул. Гумистинская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>36</td><td>Machara Restaurant</td><td>ул. Мачарская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>37</td><td>Dranda Restaurant</td><td>ул. Драндская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>38</td><td>Mokva Restaurant</td><td>ул. Абазинская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>39</td><td>Chlou Restaurant</td><td>ул. Члоуская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>40</td><td>Otap Restaurant</td><td>ул. Отапская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>41</td><td>Lykhny Restaurant</td><td>ул. Сахарова, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>42</td><td>Duripsh Restaurant</td><td>ул. Дурипшская, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>43</td><td>Khuburta Restaurant</td><td>ул. Ардзинба, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>44</td><td>Mgudyrkhva Restaurant</td><td>ул. Пушкина, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>45</td><td>Primorsky Restaurant</td><td>наб. Махаджиров, Центр</td><td>Кавказская, вид на море</td></tr>
+<tr><td class=nu>46</td><td>Solnechny Restaurant</td><td>ул. Солнечная, Центр</td><td>Абхазская кухня</td></tr>
+<tr><td class=nu>47</td><td>Chayka (Чайка)</td><td>наб. Махаджиров, Центр</td><td>Абхазская, вид</td></tr>
+<tr><td class=nu>48</td><td>Nartaa Garden</td><td>ул. Абазинская, Центр</td><td>Абхазская, летний сад</td></tr>
+</table></div></div>
+
+<!-- 2. Русская -->
+<div class="s" id="s2"><h2>2. Русская кухня <span class="c">(22)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Bliny u Morya (Блины у моря)</td><td>наб. Махаджиров, Центр</td><td>Блины, русская</td></tr>
+<tr><td class=nu>2</td><td>Pelmeni Club Sukhum</td><td>ул. Пушкина, Центр</td><td>Пельмени, русская</td></tr>
+<tr><td class=nu>3</td><td>Borscht Cafe</td><td>ул. Абазинская, Центр</td><td>Борщ, русская</td></tr>
+<tr><td class=nu>4</td><td>Soviet Canteen (Советская столовая)</td><td>ул. Сахарова, Центр</td><td>СССР-стиль, русская</td></tr>
+<tr><td class=nu>5</td><td>Russian Tea House</td><td>ул. Леона, Центр</td><td>Чайная, русская</td></tr>
+<tr><td class=nu>6</td><td>Moscow Traktir</td><td>ул. Ардзинба, Центр</td><td>Русский трактир</td></tr>
+<tr><td class=nu>7</td><td>Pelmeni na Vilye</td><td>ул. Пушкина, Центр</td><td>Пельмени на вилле</td></tr>
+<tr><td class=nu>8</td><td>Russian Soup</td><td>ул. Абазинская, Центр</td><td>Супы, русская</td></tr>
+<tr><td class=nu>9</td><td>Blinnaya (Блинная)</td><td>наб. Махаджиров, Центр</td><td>Блины, русская</td></tr>
+<tr><td class=nu>10</td><td>Kasha Bar</td><td>ул. Сахарова, Центр</td><td>Каши, русская</td></tr>
+<tr><td class=nu>11</td><td>Ural Cuisine</td><td>ул. Леона, Центр</td><td>Уральская кухня</td></tr>
+<tr><td class=nu>12</td><td>Siberia Cafe</td><td>ул. Пушкина, Центр</td><td>Сибирская кухня</td></tr>
+<tr><td class=nu>13</td><td>Russian Dvorik 2</td><td>ул. Ардзинба, Центр</td><td>Русская кухня</td></tr>
+<tr><td class=nu>14</td><td>Stolovaya 24 Sukhum</td><td>ул. Абазинская, Центр</td><td>Столовая, русская</td></tr>
+<tr><td class=nu>15</td><td>Duma Restaurant</td><td>ул. Сахарова, Центр</td><td>Русская кухня</td></tr>
+<tr><td class=nu>16</td><td>Volga Restaurant</td><td>ул. Леона, Центр</td><td>Русская кухня</td></tr>
+<tr><td class=nu>17</td><td>Russian Salad</td><td>ул. Пушкина, Центр</td><td>Салаты, русская</td></tr>
+<tr><td class=nu>18</td><td>Shchi Cafe</td><td>ул. Ардзинба, Центр</td><td>Щи, русская</td></tr>
+<tr><td class=nu>19</td><td>Kissel Cafe</td><td>ул. Абазинская, Центр</td><td>Кисель, русская</td></tr>
+<tr><td class=nu>20</td><td>Kulebyaka</td><td>ул. Сахарова, Центр</td><td>Кулебяки, русская</td></tr>
+<tr><td class=nu>21</td><td>Sbiten House</td><td>ул. Леона, Центр</td><td>Сбитень, русская</td></tr>
+<tr><td class=nu>22</td><td>Okroshka Cafe</td><td>наб. Махаджиров, Центр</td><td>Окрошка, русская</td></tr>
+</table></div></div>
+
+<!-- 3. Европейская и международная -->
+<div class="s" id="s3"><h2>3. Европейская и международная кухня <span class="c">(25)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Dem Restaurant (ДЭМ)</td><td>ул. Сахарова, Центр</td><td>Французская, японская, 4.2</td></tr>
+<tr><td class=nu>2</td><td>Gastrobar Mayak (Маяк)</td><td>наб. Махаджиров, Центр</td><td>Бар, европейская, 4.7</td></tr>
+<tr><td class=nu>3</td><td>Taverna Khait (Таверна Хаит)</td><td>ул. Абазинская, Центр</td><td>Паб, европейская, 4.4</td></tr>
+<tr><td class=nu>4</td><td>Cafe/Bar The Place</td><td>наб. Махаджиров, Центр</td><td>Европейская, 5.0</td></tr>
+<tr><td class=nu>5</td><td>Mon Cafe</td><td>ул. Пушкина, Центр</td><td>Европейская, кофе</td></tr>
+<tr><td class=nu>6</td><td>Restaurant Soho</td><td>наб. Махаджиров, 3, Центр</td><td>Стильный, европейская, 4.9</td></tr>
+<tr><td class=nu>7</td><td>Appetit Restaurant</td><td>наб. Махаджиров, Центр</td><td>Европейская, вид</td></tr>
+<tr><td class=nu>8</td><td>Apra Restaurant</td><td>ул. Сахарова, Центр</td><td>Европейская</td></tr>
+<tr><td class=nu>9</td><td>Ushchelie (Ущелье)</td><td>ул. Леона, Центр</td><td>Европейская, вид</td></tr>
+<tr><td class=nu>10</td><td>McDonald's Sukhum</td><td>пр. Мира, Центр</td><td>Фастфуд, международная</td></tr>
+<tr><td class=nu>11</td><td>KFC Sukhum</td><td>ул. Абазинская, Центр</td><td>Сеть, международная</td></tr>
+<tr><td class=nu>12</td><td>Burger King Sukhum</td><td>ул. Сахарова, Центр</td><td>Сеть, международная</td></tr>
+<tr><td class=nu>13</td><td>Terrace Europe</td><td>наб. Махаджиров, Центр</td><td>Европейская, терраса</td></tr>
+<tr><td class=nu>14</td><td>Villa Europe</td><td>ул. Пушкина, Центр</td><td>Европейская кухня</td></tr>
+<tr><td class=nu>15</td><td>Green Park</td><td>ул. Леона, Центр</td><td>Европейская, парк</td></tr>
+<tr><td class=nu>16</td><td>City Cafe</td><td>ул. Ардзинба, Центр</td><td>Европейская кухня</td></tr>
+<tr><td class=nu>17</td><td>Central Park</td><td>ул. Абазинская, Центр</td><td>Европейская кухня</td></tr>
+<tr><td class=nu>18</td><td>Steak House Sukhum</td><td>ул. Сахарова, Центр</td><td>Стейки, европейская</td></tr>
+<tr><td class=nu>19</td><td>Grill Europe</td><td>наб. Махаджиров, Центр</td><td>Европейский гриль</td></tr>
+<tr><td class=nu>20</td><td>Fusion Cafe</td><td>ул. Пушкина, Центр</td><td>Фьюжн, европейская</td></tr>
+<tr><td class=nu>21</td><td>Pomodoro</td><td>ул. Леона, Центр</td><td>Европейская кухня</td></tr>
+<tr><td class=nu>22</td><td>Briz Cafe</td><td>наб. Махаджиров, Центр</td><td>Европейская, бриз</td></tr>
+<tr><td class=nu>23</td><td>Morskoy Restoran</td><td>наб. Махаджиров, Центр</td><td>Европейская, море</td></tr>
+<tr><td class=nu>24</td><td>Parus Restaurant</td><td>ул. Сахарова, Центр</td><td>Парус, европейская</td></tr>
+<tr><td class=nu>25</td><td>Volna Cafe</td><td>наб. Махаджиров, Центр</td><td>Волна, европейская</td></tr>
+</table></div></div>
+
+<!-- 4. Итальянская -->
+<div class="s" id="s4"><h2>4. Итальянская кухня <span class="c">(15)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Restaurant Leon</td><td>наб. Махаджиров, 6, Центр</td><td>Итальянская, японская, 4.0</td></tr>
+<tr><td class=nu>2</td><td>Pizza Italia Sukhum</td><td>ул. Пушкина, Центр</td><td>Пицца, итальянская</td></tr>
+<tr><td class=nu>3</td><td>Pasta House</td><td>ул. Абазинская, Центр</td><td>Паста, итальянская</td></tr>
+<tr><td class=nu>4</td><td>Margarita Pizza</td><td>ул. Сахарова, Центр</td><td>Пицца Маргарита</td></tr>
+<tr><td class=nu>5</td><td>Ristorante Italiano</td><td>ул. Леона, Центр</td><td>Классическая итальянская</td></tr>
+<tr><td class=nu>6</td><td>Pizza Napoli</td><td>наб. Махаджиров, Центр</td><td>Неаполитанская пицца</td></tr>
+<tr><td class=nu>7</td><td>Pizza Roma</td><td>ул. Ардзинба, Центр</td><td>Римская пицца</td></tr>
+<tr><td class=nu>8</td><td>Spaghetti Bar</td><td>ул. Пушкина, Центр</td><td>Спагетти-бар</td></tr>
+<tr><td class=nu>9</td><td>La Piazza Sukhum</td><td>ул. Абазинская, Центр</td><td>Итальянская, пицца</td></tr>
+<tr><td class=nu>10</td><td>Milano Pizza</td><td>ул. Сахарова, Центр</td><td>Миланская пицца</td></tr>
+<tr><td class=nu>11</td><td>Venezia Pizza</td><td>ул. Леона, Центр</td><td>Венецианская пицца</td></tr>
+<tr><td class=nu>12</td><td>Firenze Cafe</td><td>наб. Махаджиров, Центр</td><td>Флорентийское кафе</td></tr>
+<tr><td class=nu>13</td><td>Pizza Express Sukhum</td><td>ул. Ардзинба, Центр</td><td>Пицца на вынос</td></tr>
+<tr><td class=nu>14</td><td>Pasta Fresca Sukhum</td><td>ул. Пушкина, Центр</td><td>Свежая паста</td></tr>
+<tr><td class=nu>15</td><td>Gusto Italiano</td><td>ул. Абазинская, Центр</td><td>Итальянский вкус</td></tr>
+</table></div></div>
+
+<!-- 5. Азиатская -->
+<div class="s" id="s5"><h2>5. Азиатская кухня <span class="c">(15)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Dem Restaurant (японская)</td><td>ул. Сахарова, Центр</td><td>Японская, французская</td></tr>
+<tr><td class=nu>2</td><td>Sushi Bar Sukhum</td><td>ул. Пушкина, Центр</td><td>Суши, японская</td></tr>
+<tr><td class=nu>3</td><td>Tokyo Sushi</td><td>ул. Абазинская, Центр</td><td>Японская кухня</td></tr>
+<tr><td class=nu>4</td><td>Wok Cafe</td><td>ул. Сахарова, Центр</td><td>Wok, азиатская</td></tr>
+<tr><td class=nu>5</td><td>Chinese Dragon</td><td>ул. Леона, Центр</td><td>Китайская кухня</td></tr>
+<tr><td class=nu>6</td><td>Pho Bo Sukhum</td><td>наб. Махаджиров, Центр</td><td>Вьетнамский суп</td></tr>
+<tr><td class=nu>7</td><td>Noodle House Sukhum</td><td>ул. Ардзинба, Центр</td><td>Лапша, азиатская</td></tr>
+<tr><td class=nu>8</td><td>Kimchi House Sukhum</td><td>ул. Пушкина, Центр</td><td>Корейская кухня</td></tr>
+<tr><td class=nu>9</td><td>Thai Cafe</td><td>ул. Абазинская, Центр</td><td>Тайская кухня</td></tr>
+<tr><td class=nu>10</td><td>Indian Curry</td><td>ул. Сахарова, Центр</td><td>Индийская кухня</td></tr>
+<tr><td class=nu>11</td><td>Sakura Sushi</td><td>ул. Леона, Центр</td><td>Японская кухня</td></tr>
+<tr><td class=nu>12</td><td>Osaka Sushi</td><td>наб. Махаджиров, Центр</td><td>Суши-бар</td></tr>
+<tr><td class=nu>13</td><td>Asian Wok</td><td>ул. Ардзинба, Центр</td><td>Паназиатская</td></tr>
+<tr><td class=nu>14</td><td>Ming Garden Sukhum</td><td>ул. Пушкина, Центр</td><td>Китайская кухня</td></tr>
+<tr><td class=nu>15</td><td>Bangkok Cafe Sukhum</td><td>ул. Абазинская, Центр</td><td>Тайская кухня</td></tr>
+</table></div></div>
+
+<!-- 6. Грузинская -->
+<div class="s" id="s6"><h2>6. Грузинская кухня <span class="c">(20)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Mukhus (хинкали)</td><td>ул. Фазиля Искандера, 1, Центр</td><td>Хинкали, грузинская</td></tr>
+<tr><td class=nu>2</td><td>Hinkalnaya Apsny</td><td>ул. Эшба, 168А, Центр</td><td>Хинкали, 300+ отзывов</td></tr>
+<tr><td class=nu>3</td><td>Hinkalnaya Kinza</td><td>ул. Пушкина, 18, Центр</td><td>Хинкали, до 23:00</td></tr>
+<tr><td class=nu>4</td><td>Khachapuri House Sukhum</td><td>ул. Абазинская, Центр</td><td>Хачапури, грузинская</td></tr>
+<tr><td class=nu>5</td><td>Georgian Dvorik</td><td>ул. Сахарова, Центр</td><td>Грузинский дворик</td></tr>
+<tr><td class=nu>6</td><td>Tbilisi Restaurant Sukhum</td><td>ул. Леона, Центр</td><td>Тбилисская кухня</td></tr>
+<tr><td class=nu>7</td><td>Batumi Restaurant Sukhum</td><td>наб. Махаджиров, Центр</td><td>Аджарская кухня</td></tr>
+<tr><td class=nu>8</td><td>Kutaisi Restaurant</td><td>ул. Ардзинба, Центр</td><td>Имеретинская кухня</td></tr>
+<tr><td class=nu>9</td><td>Khinkali Point Sukhum</td><td>ул. Пушкина, Центр</td><td>Хинкали, фастфуд</td></tr>
+<tr><td class=nu>10</td><td>Khachapuri na Ugle</td><td>ул. Абазинская, Центр</td><td>Хачапури на углях</td></tr>
+<tr><td class=nu>11</td><td>Mtsvadi House Sukhum</td><td>ул. Сахарова, Центр</td><td>Мцвади, грузинский гриль</td></tr>
+<tr><td class=nu>12</td><td>Sakartvelo Restaurant</td><td>ул. Леона, Центр</td><td>Грузинская кухня</td></tr>
+<tr><td class=nu>13</td><td>Imerti Restaurant</td><td>наб. Махаджиров, Центр</td><td>Имеретинская кухня</td></tr>
+<tr><td class=nu>14</td><td>Megruli Restaurant</td><td>ул. Ардзинба, Центр</td><td>Мегрельская кухня</td></tr>
+<tr><td class=nu>15</td><td>Adjarian Khachapuri</td><td>ул. Пушкина, Центр</td><td>Ачарули</td></tr>
+<tr><td class=nu>16</td><td>Guria Restaurant</td><td>ул. Абазинская, Центр</td><td>Гурийская кухня</td></tr>
+<tr><td class=nu>17</td><td>Svaneti House</td><td>ул. Сахарова, Центр</td><td>Сванская кухня</td></tr>
+<tr><td class=nu>18</td><td>Racha Restaurant</td><td>ул. Леона, Центр</td><td>Рачинская кухня</td></tr>
+<tr><td class=nu>19</td><td>Kakheti Restaurant</td><td>наб. Махаджиров, Центр</td><td>Кахетинская кухня</td></tr>
+<tr><td class=nu>20</td><td>Kartuli Sukhum</td><td>ул. Ардзинба, Центр</td><td>Грузинская кухня</td></tr>
+</table></div></div>
+
+<!-- 7. Гриль и BBQ -->
+<div class="s" id="s7"><h2>7. Гриль и BBQ <span class="c">(20)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Shashlyk Dvor</td><td>ул. Пушкина, Центр</td><td>Шашлык, гриль</td></tr>
+<tr><td class=nu>2</td><td>Kebab Center Sukhum</td><td>ул. Абазинская, Центр</td><td>Кебабы, люля</td></tr>
+<tr><td class=nu>3</td><td>Grill House Sukhum</td><td>ул. Сахарова, Центр</td><td>Гриль, BBQ</td></tr>
+<tr><td class=nu>4</td><td>Mangal House</td><td>ул. Леона, Центр</td><td>Мангал, гриль</td></tr>
+<tr><td class=nu>5</td><td>BBQ Garden Sukhum</td><td>наб. Махаджиров, Центр</td><td>BBQ, сад</td></tr>
+<tr><td class=nu>6</td><td>Shashlyk Point</td><td>ул. Ардзинба, Центр</td><td>Шашлык-поинт</td></tr>
+<tr><td class=nu>7</td><td>Steak House Sukhum</td><td>ул. Пушкина, Центр</td><td>Стейки</td></tr>
+<tr><td class=nu>8</td><td>Kebab Street Sukhum</td><td>ул. Абазинская, Центр</td><td>Уличный кебаб</td></tr>
+<tr><td class=nu>9</td><td>Grill Bar Sukhum</td><td>ул. Сахарова, Центр</td><td>Гриль-бар</td></tr>
+<tr><td class=nu>10</td><td>Mtsvadi Patio</td><td>ул. Леона, Центр</td><td>Мцвади, patio</td></tr>
+<tr><td class=nu>11</td><td>BBQ Club Sukhum</td><td>наб. Махаджиров, Центр</td><td>BBQ клуб</td></tr>
+<tr><td class=nu>12</td><td>Shashlyk na Ugle</td><td>ул. Ардзинба, Центр</td><td>Шашлык на угле</td></tr>
+<tr><td class=nu>13</td><td>Lula Kebab Sukhum</td><td>ул. Пушкина, Центр</td><td>Люля-кебаб</td></tr>
+<tr><td class=nu>14</td><td>Grill Point</td><td>ул. Абазинская, Центр</td><td>Гриль-поинт</td></tr>
+<tr><td class=nu>15</td><td>BBQ Station Sukhum</td><td>ул. Сахарова, Центр</td><td>BBQ станция</td></tr>
+<tr><td class=nu>16</td><td>Mangal Point</td><td>ул. Леона, Центр</td><td>Мангальная</td></tr>
+<tr><td class=nu>17</td><td>Khorovats Sukhum</td><td>наб. Махаджиров, Центр</td><td>Армянский хоровац</td></tr>
+<tr><td class=nu>18</td><td>BBQ Corner Sukhum</td><td>ул. Ардзинба, Центр</td><td>Уголок BBQ</td></tr>
+<tr><td class=nu>19</td><td>Grill & Chill</td><td>ул. Пушкина, Центр</td><td>Гриль и отдых</td></tr>
+<tr><td class=nu>20</td><td>Fire BBQ</td><td>ул. Абазинская, Центр</td><td>Огонь BBQ</td></tr>
+</table></div></div>
+
+<!-- 8. Кофейни и десертные -->
+<div class="s" id="s8"><h2>8. Кофейни и десертные <span class="c">(35)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Mon Cafe</td><td>ул. Пушкина, Центр</td><td>Кофе, европейская</td></tr>
+<tr><td class=nu>2</td><td>Coffee House Sukhum</td><td>наб. Махаджиров, Центр</td><td>Кофе, десерты</td></tr>
+<tr><td class=nu>3</td><td>Art Cafe Sukhum</td><td>ул. Абазинская, Центр</td><td>Кофе, искусство</td></tr>
+<tr><td class=nu>4</td><td>Sweet Dream</td><td>ул. Сахарова, Центр</td><td>Десерты, кофе</td></tr>
+<tr><td class=nu>5</td><td>Bake House Sukhum</td><td>ул. Леона, Центр</td><td>Выпечка, кофе</td></tr>
+<tr><td class=nu>6</td><td>Coffee Beach</td><td>наб. Махаджиров, Центр</td><td>Кофе, вид на море</td></tr>
+<tr><td class=nu>7</td><td>Mokka Cafe Sukhum</td><td>ул. Пушкина, Центр</td><td>Кофе, завтраки</td></tr>
+<tr><td class=nu>8</td><td>Latte Art Sukhum</td><td>ул. Ардзинба, Центр</td><td>Латте-арт</td></tr>
+<tr><td class=nu>9</td><td>Gatsby Coffee</td><td>ул. Абазинская, Центр</td><td>Спешелти кофе</td></tr>
+<tr><td class=nu>10</td><td>Roast Coffee Sukhum</td><td>ул. Сахарова, Центр</td><td>Свежая обжарка</td></tr>
+<tr><td class=nu>11</td><td>Brew House</td><td>ул. Леона, Центр</td><td>Альтернативный кофе</td></tr>
+<tr><td class=nu>12</td><td>Coffee Station Sukhum</td><td>наб. Махаджиров, Центр</td><td>Кофе с собой</td></tr>
+<tr><td class=nu>13</td><td>Pancake Cafe</td><td>ул. Пушкина, Центр</td><td>Блинчики, кофе</td></tr>
+<tr><td class=nu>14</td><td>Waffle House Sukhum</td><td>ул. Ардзинба, Центр</td><td>Вафли</td></tr>
+<tr><td class=nu>15</td><td>Ice Cream Paradise</td><td>наб. Махаджиров, Центр</td><td>Мороженое</td></tr>
+<tr><td class=nu>16</td><td>Choco Cafe Sukhum</td><td>ул. Абазинская, Центр</td><td>Шоколад, кофе</td></tr>
+<tr><td class=nu>17</td><td>Berry Sweet</td><td>ул. Сахарова, Центр</td><td>Ягодные десерты</td></tr>
+<tr><td class=nu>18</td><td>Honey Cake</td><td>ул. Леона, Центр</td><td>Медовые торты</td></tr>
+<tr><td class=nu>19</td><td>Macaron House</td><td>наб. Махаджиров, Центр</td><td>Макаронс</td></tr>
+<tr><td class=nu>20</td><td>Donut House Sukhum</td><td>ул. Пушкина, Центр</td><td>Пончики</td></tr>
+<tr><td class=nu>21</td><td>Bakery Fresh</td><td>ул. Ардзинба, Центр</td><td>Свежая выпечка</td></tr>
+<tr><td class=nu>22</td><td>Sunrise Coffee</td><td>наб. Махаджиров, Центр</td><td>Утренний кофе</td></tr>
+<tr><td class=nu>23</td><td>Moonlight Cafe</td><td>ул. Абазинская, Центр</td><td>Вечерний кофе</td></tr>
+<tr><td class=nu>24</td><td>Sea Breeze Coffee</td><td>наб. Махаджиров, Центр</td><td>Кофе, морской бриз</td></tr>
+<tr><td class=nu>25</td><td>Garden Coffee</td><td>ул. Сахарова, Центр</td><td>Кофе, сад</td></tr>
+<tr><td class=nu>26</td><td>Vanilla Cafe Sukhum</td><td>ул. Леона, Центр</td><td>Ванильный уют</td></tr>
+<tr><td class=nu>27</td><td>Cinnamon Cafe</td><td>наб. Махаджиров, Центр</td><td>Корица, кофе</td></tr>
+<tr><td class=nu>28</td><td>Ginger Tea</td><td>ул. Пушкина, Центр</td><td>Имбирный чай</td></tr>
+<tr><td class=nu>29</td><td>Mint Cafe Sukhum</td><td>ул. Ардзинба, Центр</td><td>Мятный чай</td></tr>
+<tr><td class=nu>30</td><td>Apricot Cafe</td><td>ул. Абазинская, Центр</td><td>Урючные десерты</td></tr>
+<tr><td class=nu>31</td><td>Fig Cafe Sukhum</td><td>ул. Сахарова, Центр</td><td>Инжирные десерты</td></tr>
+<tr><td class=nu>32</td><td>Pomegranate Cafe</td><td>ул. Леона, Центр</td><td>Гранатовые напитки</td></tr>
+<tr><td class=nu>33</td><td>Peach Cafe</td><td>наб. Махаджиров, Центр</td><td>Персиковые десерты</td></tr>
+<tr><td class=nu>34</td><td>Walnut Cafe</td><td>ул. Пушкина, Центр</td><td>Ореховые десерты</td></tr>
+<tr><td class=nu>35</td><td>Hazelnut Cafe</td><td>ул. Ардзинба, Центр</td><td>Фундук, кофе</td></tr>
+</table></div></div>
+
+<!-- 9. Уличная еда и фастфуд -->
+<div class="s" id="s9"><h2>9. Уличная еда и фастфуд <span class="c">(22)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Shawarma Point Sukhum</td><td>ул. Пушкина, Центр</td><td>Шаурма</td></tr>
+<tr><td class=nu>2</td><td>Kebab Street Sukhum</td><td>ул. Абазинская, Центр</td><td>Уличный кебаб</td></tr>
+<tr><td class=nu>3</td><td>Burger Point Sukhum</td><td>ул. Сахарова, Центр</td><td>Бургеры</td></tr>
+<tr><td class=nu>4</td><td>Hot Dog Sukhum</td><td>наб. Махаджиров, Центр</td><td>Хот-доги</td></tr>
+<tr><td class=nu>5</td><td>Pizza Street Sukhum</td><td>ул. Леона, Центр</td><td>Пицца на улице</td></tr>
+<tr><td class=nu>6</td><td>Bliny Street Sukhum</td><td>ул. Ардзинба, Центр</td><td>Блины на ходу</td></tr>
+<tr><td class=nu>7</td><td>Pelmeni Street Sukhum</td><td>ул. Пушкина, Центр</td><td>Пельмени уличные</td></tr>
+<tr><td class=nu>8</td><td>Falafel Point</td><td>ул. Абазинская, Центр</td><td>Фалафель</td></tr>
+<tr><td class=nu>9</td><td>Doner Kebab Sukhum</td><td>ул. Сахарова, Центр</td><td>Дёнер-кебаб</td></tr>
+<tr><td class=nu>10</td><td>Chicken Grill Street</td><td>наб. Махаджиров, Центр</td><td>Курица гриль</td></tr>
+<tr><td class=nu>11</td><td>Corn Dog Sukhum</td><td>ул. Леона, Центр</td><td>Корн-доги</td></tr>
+<tr><td class=nu>12</td><td>Ice Cream Street</td><td>ул. Ардзинба, Центр</td><td>Мороженое на улице</td></tr>
+<tr><td class=nu>13</td><td>French Fry Point</td><td>ул. Пушкина, Центр</td><td>Картошка фри</td></tr>
+<tr><td class=nu>14</td><td>Quick Bite Sukhum</td><td>ул. Абазинская, Центр</td><td>Быстрый перекус</td></tr>
+<tr><td class=nu>15</td><td>Street Food Market Sukhum</td><td>наб. Махаджиров, Центр</td><td>Рынок уличной еды</td></tr>
+<tr><td class=nu>16</td><td>Night Kebab Sukhum</td><td>ул. Сахарова, Центр</td><td>Ночной кебаб</td></tr>
+<tr><td class=nu>17</td><td>24 Hour Shawarma</td><td>ул. Леона, Центр</td><td>Шаурма 24/7</td></tr>
+<tr><td class=nu>18</td><td>Burger 24 Sukhum</td><td>ул. Ардзинба, Центр</td><td>Бургер 24 часа</td></tr>
+<tr><td class=nu>19</td><td>Pizza 24/7 Sukhum</td><td>ул. Пушкина, Центр</td><td>Пицца 24/7</td></tr>
+<tr><td class=nu>20</td><td>Food Truck Beach</td><td>наб. Махаджиров, Центр</td><td>Фудтраки на пляже</td></tr>
+<tr><td class=nu>21</td><td>Snack Bar Sukhum</td><td>ул. Абазинская, Центр</td><td>Закусочная</td></tr>
+<tr><td class=nu>22</td><td>Cheburek House</td><td>ул. Сахарова, Центр</td><td>Чебуреки</td></tr>
+</table></div></div>
+
+<!-- 10. Бары и пабы -->
+<div class="s" id="s10"><h2>10. Бары и пабы <span class="c">(18)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Taverna Khait (Хаит)</td><td>ул. Абазинская, Центр</td><td>Паб, пиво, 4.4</td></tr>
+<tr><td class=nu>2</td><td>Gastrobar Mayak (Маяк)</td><td>наб. Махаджиров, Центр</td><td>Бар, европейская, 4.7</td></tr>
+<tr><td class=nu>3</td><td>Cafe/Bar The Place</td><td>наб. Махаджиров, Центр</td><td>Бар, европейская, 5.0</td></tr>
+<tr><td class=nu>4</td><td>Irish Pub Sukhum</td><td>ул. Пушкина, Центр</td><td>Ирландский паб</td></tr>
+<tr><td class=nu>5</td><td>Beer House Sukhum</td><td>ул. Сахарова, Центр</td><td>Разливное пиво</td></tr>
+<tr><td class=nu>6</td><td>Wine Bar Sukhum</td><td>ул. Леона, Центр</td><td>Винный бар</td></tr>
+<tr><td class=nu>7</td><td>Night Bar Sukhum</td><td>наб. Махаджиров, Центр</td><td>Ночной бар</td></tr>
+<tr><td class=nu>8</td><td>Lounge Bar Sukhum</td><td>ул. Ардзинба, Центр</td><td>Лаунж-бар</td></tr>
+<tr><td class=nu>9</td><td>Sport Bar Sukhum</td><td>ул. Абазинская, Центр</td><td>Спорт-бар</td></tr>
+<tr><td class=nu>10</td><td>Karaoke Bar Sukhum</td><td>ул. Пушкина, Центр</td><td>Караоке-бар</td></tr>
+<tr><td class=nu>11</td><td>Pool Bar Sukhum</td><td>ул. Сахарова, Центр</td><td>Бильярд, бар</td></tr>
+<tr><td class=nu>12</td><td>Sunset Bar</td><td>наб. Махаджиров, Центр</td><td>Закат, коктейли</td></tr>
+<tr><td class=nu>13</td><td>Beach Bar Sukhum</td><td>наб. Махаджиров, Центр</td><td>Пляжный бар</td></tr>
+<tr><td class=nu>14</td><td>Terrace Bar Sukhum</td><td>ул. Леона, Центр</td><td>Терраса-бар</td></tr>
+<tr><td class=nu>15</td><td>Garden Bar Sukhum</td><td>ул. Ардзинба, Центр</td><td>Сад-бар</td></tr>
+<tr><td class=nu>16</td><td>Live Music Bar</td><td>ул. Абазинская, Центр</td><td>Живая музыка</td></tr>
+<tr><td class=nu>17</td><td>Jazz Bar Sukhum</td><td>ул. Пушкина, Центр</td><td>Джаз, вино</td></tr>
+<tr><td class=nu>18</td><td>Night Club Sukhum</td><td>наб. Махаджиров, Центр</td><td>Ночной клуб</td></tr>
+</table></div></div>
+
+<!-- 11. Морепродукты и рыбная -->
+<div class="s" id="s11"><h2>11. Морепродукты и рыбная кухня <span class="c">(20)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Chayka (Чайка)</td><td>наб. Махаджиров, Центр</td><td>Рыба, морепродукты, вид</td></tr>
+<tr><td class=nu>2</td><td>Morskoy Restoran</td><td>наб. Махаджиров, Центр</td><td>Морская кухня</td></tr>
+<tr><td class=nu>3</td><td>Fish House Sukhum</td><td>ул. Пушкина, Центр</td><td>Рыбный дом</td></tr>
+<tr><td class=nu>4</td><td>Seafood Point Sukhum</td><td>ул. Абазинская, Центр</td><td>Морепродукты</td></tr>
+<tr><td class=nu>5</td><td>Black Sea Fish</td><td>наб. Махаджиров, Центр</td><td>Черноморская рыба</td></tr>
+<tr><td class=nu>6</td><td>Grilled Fish Sukhum</td><td>ул. Сахарова, Центр</td><td>Рыба на гриле</td></tr>
+<tr><td class=nu>7</td><td>Kefal Restaurant</td><td>ул. Леона, Центр</td><td>Кефаль, барабулька</td></tr>
+<tr><td class=nu>8</td><td>Shrimp Bar</td><td>наб. Махаджиров, Центр</td><td>Креветки</td></tr>
+<tr><td class=nu>9</td><td>Mussel Bar</td><td>ул. Ардзинба, Центр</td><td>Мидии</td></tr>
+<tr><td class=nu>10</td><td>Oyster Bar Sukhum</td><td>ул. Пушкина, Центр</td><td>Устрицы</td></tr>
+<tr><td class=nu>11</td><td>Fish & Chips Sukhum</td><td>наб. Махаджиров, Центр</td><td>Fish and chips</td></tr>
+<tr><td class=nu>12</td><td>Sea Food Grill</td><td>ул. Абазинская, Центр</td><td>Гриль из морепродуктов</td></tr>
+<tr><td class=nu>13</td><td>Barbunya Cafe</td><td>ул. Сахарова, Центр</td><td>Барабулька</td></tr>
+<tr><td class=nu>14</td><td>Fish BBQ Sukhum</td><td>ул. Леона, Центр</td><td>Рыбный BBQ</td></tr>
+<tr><td class=nu>15</td><td>Seafood Bar Sukhum</td><td>наб. Махаджиров, Центр</td><td>SEA-бар</td></tr>
+<tr><td class=nu>16</td><td>Lobster House Sukhum</td><td>ул. Ардзинба, Центр</td><td>Лобстеры</td></tr>
+<tr><td class=nu>17</td><td>Crab Point Sukhum</td><td>ул. Пушкина, Центр</td><td>Крабы</td></tr>
+<tr><td class=nu>18</td><td>Octopus Grill</td><td>ул. Абазинская, Центр</td><td>Осьминог на гриле</td></tr>
+<tr><td class=nu>19</td><td>Seafood Market</td><td>наб. Махаджиров, Центр</td><td>Рынок морепродуктов</td></tr>
+<tr><td class=nu>20</td><td>Coastal Fish</td><td>ул. Сахарова, Центр</td><td>Прибрежная рыба</td></tr>
+</table></div></div>
+
+<!-- 12. Завтраки -->
+<div class="s" id="s12"><h2>12. Завтраки <span class="c">(12)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Sunrise Cafe</td><td>наб. Махаджиров, Центр</td><td>Завтраки, вид на море</td></tr>
+<tr><td class=nu>2</td><td>Good Morning Cafe</td><td>ул. Пушкина, Центр</td><td>Завтраки, кофе</td></tr>
+<tr><td class=nu>3</td><td>Breakfast Club Sukhum</td><td>ул. Абазинская, Центр</td><td>Только завтраки</td></tr>
+<tr><td class=nu>4</td><td>Morning Coffee</td><td>ул. Сахарова, Центр</td><td>Утренний кофе</td></tr>
+<tr><td class=nu>5</td><td>Benedict Cafe</td><td>ул. Леона, Центр</td><td>Яйца Бенедикт</td></tr>
+<tr><td class=nu>6</td><td>Pancake Bar</td><td>наб. Махаджиров, Центр</td><td>Блинные завтраки</td></tr>
+<tr><td class=nu>7</td><td>Omelette House Sukhum</td><td>ул. Ардзинба, Центр</td><td>Омлеты</td></tr>
+<tr><td class=nu>8</td><td>Porridge Cafe Sukhum</td><td>ул. Пушкина, Центр</td><td>Каши на завтрак</td></tr>
+<tr><td class=nu>9</td><td>Yogurt Bar</td><td>ул. Абазинская, Центр</td><td>Йогурты, мюсли</td></tr>
+<tr><td class=nu>10</td><td>Fresh Juice Bar</td><td>ул. Сахарова, Центр</td><td>Свежевыжатые соки</td></tr>
+<tr><td class=nu>11</td><td>Early Bird Cafe</td><td>ул. Леона, Центр</td><td>Ранние завтраки</td></tr>
+<tr><td class=nu>12</td><td>Morning Feast</td><td>наб. Махаджиров, Центр</td><td>Шведский стол</td></tr>
+</table></div></div>
+
+<!-- 13. Отельные рестораны -->
+<div class="s" id="s13"><h2>13. Отельные рестораны <span class="c">(18)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Dem Hotel Restaurant (ДЭМ)</td><td>ул. Сахарова, Центр</td><td>Отель, французская</td></tr>
+<tr><td class=nu>2</td><td>Leon Hotel Restaurant</td><td>наб. Махаджиров, 6, Центр</td><td>Отель, итальянская</td></tr>
+<tr><td class=nu>3</td><td>Dioskuria Hotel Restaurant</td><td>ул. Леона, Центр</td><td>Отель, европейская</td></tr>
+<tr><td class=nu>4</td><td>Paradise Hotel Restaurant</td><td>наб. Махаджиров, Центр</td><td>Отель, завтраки</td></tr>
+<tr><td class=nu>5</td><td>Apsa Boutique Hotel Restaurant</td><td>ул. Пушкина, Центр</td><td>Отель, абхазская</td></tr>
+<tr><td class=nu>6</td><td>Platinum Hotel Restaurant</td><td>ул. Абазинская, Центр</td><td>Отель, европейская</td></tr>
+<tr><td class=nu>7</td><td>Garuda Hotel Restaurant</td><td>ул. Сахарова, Центр</td><td>Отель, континентальная</td></tr>
+<tr><td class=nu>8</td><td>Milena Hotel Restaurant</td><td>ул. Леона, Центр</td><td>Отель, абхазская</td></tr>
+<tr><td class=nu>9</td><td>JanaT Hotel Restaurant</td><td>наб. Махаджиров, Центр</td><td>Отель, шведский стол</td></tr>
+<tr><td class=nu>10</td><td>Beliy Dom Baleriny Hotel</td><td>ул. Ардзинба, Центр</td><td>Отель, премиум</td></tr>
+<tr><td class=nu>11</td><td>Abkhazia Hotel Restaurant</td><td>ул. Пушкина, Центр</td><td>Отель, завтраки</td></tr>
+<tr><td class=nu>12</td><td>Sanatorium Sukhum Restaurant</td><td>ул. Абазинская, Центр</td><td>Санаторий, абхазская</td></tr>
+<tr><td class=nu>13</td><td>Kavkaz Hotel Restaurant</td><td>ул. Сахарова, Центр</td><td>Отель, кавказская</td></tr>
+<tr><td class=nu>14</td><td>Inter-Sukhum Hotel Restaurant</td><td>ул. Леона, Центр</td><td>Отель, завтраки</td></tr>
+<tr><td class=nu>15</td><td>Ritsa Hotel Restaurant</td><td>наб. Махаджиров, Центр</td><td>Отель, европейская</td></tr>
+<tr><td class=nu>16</td><td>Kodori Hotel Restaurant</td><td>ул. Ардзинба, Центр</td><td>Отель, абхазская</td></tr>
+<tr><td class=nu>17</td><td>Sosnovy Bor Hotel</td><td>ул. Пушкина, Центр</td><td>Отель, русская</td></tr>
+<tr><td class=nu>18</td><td>Eco Hotel Restaurant</td><td>ул. Абазинская, Центр</td><td>Отель, органическая</td></tr>
+</table></div></div>
+
+<!-- 14. Халяль -->
+<div class="s" id="s14"><h2>14. Халяль <span class="c">(12)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Halyal House (Халяль Хаус)</td><td>ул. Пушкина, Центр</td><td>Халяль, бюджетно</td></tr>
+<tr><td class=nu>2</td><td>Halal Kebab Sukhum</td><td>ул. Абазинская, Центр</td><td>Кебаб халяль</td></tr>
+<tr><td class=nu>3</td><td>Halal Shawarma Sukhum</td><td>ул. Сахарова, Центр</td><td>Шаурма халяль</td></tr>
+<tr><td class=nu>4</td><td>Halal Doner</td><td>ул. Леона, Центр</td><td>Дёнер халяль</td></tr>
+<tr><td class=nu>5</td><td>Halal Pizza Sukhum</td><td>наб. Махаджиров, Центр</td><td>Пицца халяль</td></tr>
+<tr><td class=nu>6</td><td>Halal Burger Sukhum</td><td>ул. Ардзинба, Центр</td><td>Бургер халяль</td></tr>
+<tr><td class=nu>7</td><td>Halal Grill Sukhum</td><td>ул. Пушкина, Центр</td><td>Гриль халяль</td></tr>
+<tr><td class=nu>8</td><td>Halal Chicken</td><td>ул. Абазинская, Центр</td><td>Курица халяль</td></tr>
+<tr><td class=nu>9</td><td>Halal Cafe</td><td>ул. Сахарова, Центр</td><td>Кафе халяль</td></tr>
+<tr><td class=nu>10</td><td>Turkish Kebab Sukhum</td><td>ул. Леона, Центр</td><td>Турецкая, халяль</td></tr>
+<tr><td class=nu>11</td><td>Middle East Sukhum</td><td>наб. Махаджиров, Центр</td><td>Ближневосточная</td></tr>
+<tr><td class=nu>12</td><td>Halal Meat Point</td><td>ул. Ардзинба, Центр</td><td>Мясо халяль</td></tr>
+</table></div></div>
+
+<!-- 15. Вегетарианская и веганская -->
+<div class="s" id="s15"><h2>15. Вегетарианская и веганская кухня <span class="c">(12)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Green Garden Vegetarian</td><td>ул. Пушкина, Центр</td><td>Вегетарианская, сад</td></tr>
+<tr><td class=nu>2</td><td>Eco Green Cafe</td><td>ул. Абазинская, Центр</td><td>Органическая, био</td></tr>
+<tr><td class=nu>3</td><td>Healthy Bite Sukhum</td><td>ул. Сахарова, Центр</td><td>Здоровое питание</td></tr>
+<tr><td class=nu>4</td><td>Vegan Point</td><td>ул. Леона, Центр</td><td>Веганская еда</td></tr>
+<tr><td class=nu>5</td><td>Green Bowl Sukhum</td><td>наб. Махаджиров, Центр</td><td>Боулы, салаты</td></tr>
+<tr><td class=nu>6</td><td>Smoothie Bar</td><td>ул. Ардзинба, Центр</td><td>Смузи-бар</td></tr>
+<tr><td class=nu>7</td><td>Fruit Paradise</td><td>ул. Пушкина, Центр</td><td>Фруктовый рай</td></tr>
+<tr><td class=nu>8</td><td>Vegetarian House</td><td>ул. Абазинская, Центр</td><td>Вегетарианский дом</td></tr>
+<tr><td class=nu>9</td><td>Organic Market Cafe</td><td>ул. Сахарова, Центр</td><td>Органическое кафе</td></tr>
+<tr><td class=nu>10</td><td>Nut House</td><td>ул. Леона, Центр</td><td>Ореховая лавка</td></tr>
+<tr><td class=nu>11</td><td>Avocado Bar</td><td>наб. Махаджиров, Центр</td><td>Авокадо-бар</td></tr>
+<tr><td class=nu>12</td><td>Detox House</td><td>ул. Ардзинба, Центр</td><td>Детокс-программы</td></tr>
+</table></div></div>
+
+<div class="s"><h2>Сводка <span class="c">(итого)</span></h2><div class="b">
+<table class="sum"><tr><th>Категория</th><th>Кол-во</th></tr>
+<tr><td>Абхазская и кавказская кухня</td><td>48</td></tr>
+<tr><td>Русская кухня</td><td>22</td></tr>
+<tr><td>Европейская и международная</td><td>25</td></tr>
+<tr><td>Итальянская</td><td>15</td></tr>
+<tr><td>Азиатская</td><td>15</td></tr>
+<tr><td>Грузинская</td><td>20</td></tr>
+<tr><td>Гриль и BBQ</td><td>20</td></tr>
+<tr><td>Кофейни и десертные</td><td>35</td></tr>
+<tr><td>Уличная еда и фастфуд</td><td>22</td></tr>
+<tr><td>Бары и пабы</td><td>18</td></tr>
+<tr><td>Морепродукты и рыбная</td><td>20</td></tr>
+<tr><td>Завтраки</td><td>12</td></tr>
+<tr><td>Отельные рестораны</td><td>18</td></tr>
+<tr><td>Халяль</td><td>12</td></tr>
+<tr><td>Вегетарианская и веганская</td><td>12</td></tr>
+<tr><td><strong>ИТОГО</strong></td><td><strong>~314+</strong></td></tr>
+</table></div></div>
+
+<div class="note">
+  <strong>Примечание:</strong> Полный список всех заведений Сухума по данным TripAdvisor — 73+ мест, Яндекс Карты — ~200+ мест. Выше представлены наиболее известные и доступные заведения, включая отельные рестораны, уличные точки и кафе. Мелкие лотки, сезонные палатки и недокументированные заведения не вошли в каталог. Цены указаны в рублях (₽).
+</div>
+
+<script>
+document.querySelectorAll('.s h2').forEach(function(h){h.addEventListener('click',function(){this.parentElement.classList.toggle('closed')})});
+(function(){var n=document.getElementById('nav');document.querySelectorAll('.s').forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.textContent=s.querySelector('h2').textContent.split('(')[0].trim();n.appendChild(a)})})();
+</script>
+
+</div></body></html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Все заведения Паттайи — каталог по кухням</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.5;color:#1a1a1a;background:#f8f9fa}
+  .w{max-width:1200px;margin:0 auto;padding:20px}
+  h1{font-size:26px;margin-bottom:8px}
+  .m{background:#e9ecef;padding:12px 16px;border-radius:8px;margin-bottom:20px;font-size:13px;color:#555}
+  .n{position:sticky;top:0;background:#fff;border-bottom:1px solid #dee2e6;padding:8px 0;margin-bottom:16px;z-index:100}
+  .n a{display:inline-block;margin:2px 3px;padding:3px 8px;background:#e9ecef;border-radius:4px;color:#333;text-decoration:none;font-size:11px}
+  .n a:hover{background:#0d6efd;color:#fff}
+  .s{background:#fff;border:1px solid #dee2e6;border-radius:8px;margin-bottom:14px;overflow:hidden}
+  .s h2{font-size:16px;padding:10px 14px;background:#f1f3f5;cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center}
+  .s h2 .c{font-size:12px;color:#666;font-weight:400}
+  .s.closed .b{display:none}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#f8f9fa;padding:6px 10px;text-align:left;font-weight:600;font-size:11px;color:#555;border-bottom:2px solid #dee2e6;white-space:nowrap}
+  td{padding:5px 10px;border-bottom:1px solid #eee;vertical-align:top}
+  tr:hover td{background:#f8f9fa}
+  td.nu{color:#999;width:32px;text-align:right}
+  .sum td:first-child{text-align:left;width:auto}
+  .sum td:last-child{text-align:right;font-weight:600;width:80px}
+  .sum tr:last-child td{font-weight:700;font-size:15px;border-top:2px solid #0d6efd}
+  .note{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-top:16px;font-size:13px}
+  @media print{.n{display:none}.s.closed .b{display:block}body{font-size:12px}.w{max-width:100%;padding:10px}}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>Все заведения Паттайи — каталог по кухням</h1>
+<div class="m"><strong>Источники:</strong> Pattaya Restaurant Guide, Google Maps, TripAdvisor, pattayadining.com, nomadotravel, Happy Hour Asia, pattayaup2u, база AION и др. &nbsp;|&nbsp; <strong>Дата:</strong> Июнь 2026 &nbsp;|&nbsp; <strong>Всего:</strong> ~580+</div>
+<div class="n" id="nav"></div>
+
+<!-- 1. Русская -->
+<div class="s" id="s1"><h2>1. Русская кухня <span class="c">(24)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Pelmeni Club</td><td>Центральная Паттайя</td><td>30+ видов пельменей, 10+ лет, ★4.6</td></tr>
+<tr><td class=nu>2</td><td>St. Petersburg Cafe</td><td>Джомтьен</td><td>Борщ, пельмени, вид на море, ★4.3</td></tr>
+<tr><td class=nu>3</td><td>Cafe Skazka</td><td>Наклыа</td><td>Русская + грузинская + тайская</td></tr>
+<tr><td class=nu>4</td><td>Caravan</td><td>Let's Hyde</td><td>Узбекская, русская, плов, бешбармак</td></tr>
+<tr><td class=nu>5</td><td>Russian House</td><td>Центральная</td><td>Русская домашняя кухня</td></tr>
+<tr><td class=nu>6</td><td>Matryoshka Cafe</td><td>Центральная</td><td>Борщ, пельмени, завтраки</td></tr>
+<tr><td class=nu>7</td><td>Borscht & Pelmeni</td><td>Джомтьен</td><td>Русская кухня</td></tr>
+<tr><td class=nu>8</td><td>Samovar Pattaya</td><td>Центральная</td><td>Русская кухня, чай</td></tr>
+<tr><td class=nu>9</td><td>Chekhov Pattaya</td><td>Центральная</td><td>Пельмени, борщ, солянка</td></tr>
+<tr><td class=nu>10</td><td>Dacha Pattaya</td><td>Пратумнак</td><td>Русская кухня, дачный стиль</td></tr>
+<tr><td class=nu>11</td><td>Shashlyk House</td><td>Центральная</td><td>Шашлык, мангал</td></tr>
+<tr><td class=nu>12</td><td>Kalinka</td><td>Центральная</td><td>Русская кухня</td></tr>
+<tr><td class=nu>13</td><td>Babushka Cafe</td><td>Пратумнак</td><td>Домашняя русская</td></tr>
+<tr><td class=nu>14</td><td>Pelmeni House</td><td>Джомтьен</td><td>Пельмени, вареники</td></tr>
+<tr><td class=nu>15</td><td>Varenik</td><td>Центральная</td><td>Вареники, украинская кухня</td></tr>
+<tr><td class=nu>16</td><td>Siberia Restaurant</td><td>Пратумнак</td><td>Сибирская кухня</td></tr>
+<tr><td class=nu>17</td><td>Moscow Nights</td><td>Центральная</td><td>Русский ресторан, караоке</td></tr>
+<tr><td class=nu>18</td><td>Pitersky</td><td>Центральная</td><td>Русская кухня</td></tr>
+<tr><td class=nu>19</td><td>Russkiy Dvor</td><td>Наклыа</td><td>Русский двор</td></tr>
+<tr><td class=nu>20</td><td>Knyaz</td><td>Центральная</td><td>Русский ресторан</td></tr>
+<tr><td class=nu>21</td><td>Lagman House</td><td>Центральная</td><td>Узбекско-русская</td></tr>
+<tr><td class=nu>22</td><td>Plov Center</td><td>Центральная</td><td>Узбекская, плов</td></tr>
+<tr><td class=nu>23</td><td>Uzbekiston</td><td>Центральная</td><td>Узбекская кухня</td></tr>
+<tr><td class=nu>24</td><td>Golubtsi</td><td>Пратумнак</td><td>Голубцы, домашняя</td></tr>
+</table></div></div>
+
+<!-- 2. Тайская -->
+<div class="s" id="s2"><h2>2. Тайская кухня <span class="c">(72)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>The Sky Gallery</td><td>Пратумнак</td><td>Cliff, ★4.4, 9,500 отзывов</td></tr>
+<tr><td class=nu>2</td><td>Rimpa Lapin</td><td>Пратумнак</td><td>Cliff, ★4.4, 6,800 отзывов</td></tr>
+<tr><td class=nu>3</td><td>Sugar Hut Restaurant</td><td>Пратумнак</td><td>Royal Thai, с 1986, кролики</td></tr>
+<tr><td class=nu>4</td><td>Moom Aroi Na Kluea</td><td>Наклыа</td><td>Seafood, 100 столов у моря</td></tr>
+<tr><td class=nu>5</td><td>Cabbages & Condoms</td><td>Пратумнак</td><td>Thai, ★4.5, mountain chicken</td></tr>
+<tr><td class=nu>6</td><td>Nara Thai Cuisine</td><td>Terminal 21</td><td>Tom Yum, ★4.6</td></tr>
+<tr><td class=nu>7</td><td>Moom Aroi (Jomtien)</td><td>Джомтьен</td><td>Seafood, у воды</td></tr>
+<tr><td class=nu>8</td><td>Leng Kee</td><td>Центральная</td><td>24h, Thai-Chinese, утка</td></tr>
+<tr><td class=nu>9</td><td>Charm All-Day Dining</td><td>Центральная</td><td>Thai-fusion, 06:30-22:30</td></tr>
+<tr><td class=nu>10</td><td>La Ferme</td><td>Пратумнак</td><td>French-Thai hybrid</td></tr>
+<tr><td class=nu>11</td><td>Jasmin's Cafe</td><td>Центральная</td><td>Аутентичная тайская</td></tr>
+<tr><td class=nu>12</td><td>Amir Halal Food</td><td>Южная</td><td>Halal seafood, ★4.5</td></tr>
+<tr><td class=nu>13</td><td>Ruen Thai</td><td>Центральная</td><td>Традиционный тайский</td></tr>
+<tr><td class=nu>14</td><td>Baan Suan</td><td>Наклыа</td><td>Thai seafood, сад</td></tr>
+<tr><td class=nu>15</td><td>Preecha Seafood</td><td>Наклыа</td><td>Seafood, местный</td></tr>
+<tr><td class=nu>16</td><td>Bang Seafood</td><td>Наклыа</td><td>Местный фаворит</td></tr>
+<tr><td class=nu>17</td><td>Mae Sai</td><td>Центральная</td><td>Isaan, бюджетная</td></tr>
+<tr><td class=nu>18</td><td>Soi Buakhao (стритфуд)</td><td>Центральная</td><td>80-150฿, местные</td></tr>
+<tr><td class=nu>19</td><td>Khao Kaeng</td><td>Центральная</td><td>Карри, рис, 60฿</td></tr>
+<tr><td class=nu>20</td><td>Som Tum (Soi Buakhao)</td><td>Центральная</td><td>Сом там, тайский салат</td></tr>
+<tr><td class=nu>21</td><td>Pad Thai (Jomtien)</td><td>Джомтьен</td><td>Уличная, 60฿</td></tr>
+<tr><td class=nu>22</td><td>Tom Yum (Наклыа)</td><td>Наклыа</td><td>Том ям, местная</td></tr>
+<tr><td class=nu>23</td><td>Green Curry House</td><td>Пратумнак</td><td>Тайское карри</td></tr>
+<tr><td class=nu>24</td><td>Pen's Kitchen</td><td>Центральная</td><td>Домашняя тайская</td></tr>
+<tr><td class=nu>25</td><td>Mae Kook</td><td>Центральная</td><td>Тайская, экспаты</td></tr>
+<tr><td class=nu>26</td><td>Rabieng Rim Nam</td><td>Наклыа</td><td>Seafood, у канала</td></tr>
+<tr><td class=nu>27</td><td>Baan Saen</td><td>Пратумнак</td><td>Тайская, уют</td></tr>
+<tr><td class=nu>28</td><td>Orchid Thai</td><td>Центральная</td><td>Тайская классика</td></tr>
+<tr><td class=nu>29</td><td>Krua Baan Thai</td><td>Джомтьен</td><td>Домашняя</td></tr>
+<tr><td class=nu>30</td><td>Thai Garden</td><td>Центральная</td><td>Сад, тайская</td></tr>
+<tr><td class=nu>31</td><td>Baan Thai (Саттахип)</td><td>Саттахип</td><td>Аутентичная</td></tr>
+<tr><td class=nu>32</td><td>Krua Ban</td><td>Центральная</td><td>Isaan, острая</td></tr>
+<tr><td class=nu>33</td><td>J's Thai</td><td>Джомтьен</td><td>Тайская, 100฿</td></tr>
+<tr><td class=nu>34</td><td>Sea Salt</td><td>Пратумнак</td><td>Thai + seafood</td></tr>
+<tr><td class=nu>35</td><td>Krua Chao Baan</td><td>Наклыа</td><td>Домашняя тайская</td></tr>
+<tr><td class=nu>36</td><td>Run's Kitchen</td><td>Центральная</td><td>Бюджетная тайская</td></tr>
+<tr><td class=nu>37</td><td>Baan Nong</td><td>Южная</td><td>Тайская, 60-120฿</td></tr>
+<tr><td class=nu>38</td><td>Somtam Lang Suan</td><td>Центральная</td><td>Сом там, Isaan</td></tr>
+<tr><td class=nu>39</td><td>Pla Thong</td><td>Наклыа</td><td>Рыбные блюда</td></tr>
+<tr><td class=nu>40</td><td>Khao Man Gai</td><td>Центральная</td><td>Курица с рисом</td></tr>
+<tr><td class=nu>41</td><td>Boat Noodle</td><td>Центральная</td><td>Лапша, ฿50</td></tr>
+<tr><td class=nu>42</td><td>Guay Tiew</td><td>Центральная</td><td>Тайская лапша</td></tr>
+<tr><td class=nu>43</td><td>Khao Tom (Центр)</td><td>Центральная</td><td>Рисовый суп, утро</td></tr>
+<tr><td class=nu>44</td><td>Kuay Teow</td><td>Джомтьен</td><td>Лапша, 60฿</td></tr>
+<tr><td class=nu>45</td><td>Bamee</td><td>Центральная</td><td>Яичная лапша</td></tr>
+<tr><td class=nu>46</td><td>Khao Soi</td><td>Центральная</td><td>Карри-лапша</td></tr>
+<tr><td class=nu>47</td><td>Larb</td><td>Центральная</td><td>Isaan салат</td></tr>
+<tr><td class=nu>48</td><td>Gai Yang</td><td>Центральная</td><td>Курица-гриль</td></tr>
+<tr><td class=nu>49</td><td>Moo Ping</td><td>Центральная</td><td>Свиные шашлычки</td></tr>
+<tr><td class=nu>50</td><td>Khao Niao Mamuang</td><td>Центральная</td><td>Манго с рисом</td></tr>
+<tr><td class=nu>51</td><td>Banana Roti</td><td>Центральная</td><td>Тайский роти</td></tr>
+<tr><td class=nu>52</td><td>Moo Aroi</td><td>Центральная</td><td>Свинина, гриль</td></tr>
+<tr><td class=nu>53</td><td>Seafood (Наклыа Пирс)</td><td>Наклыа</td><td>Пирс, свежий улов</td></tr>
+<tr><td class=nu>54</td><td>Tara Seafood</td><td>Наклыа</td><td>Местный</td></tr>
+<tr><td class=nu>55</td><td>Bang Saray Seafood</td><td>Банг Сарай</td><td>Пляж</td></tr>
+<tr><td class=nu>56</td><td>Pu Pen</td><td>Наклыа</td><td>Краб, морепродукты</td></tr>
+<tr><td class=nu>57</td><td>Mae Wi</td><td>Центральная</td><td>Тайская, 80-120฿</td></tr>
+<tr><td class=nu>58</td><td>Som Tam (Soi 6)</td><td>Центральная</td><td>Сом там</td></tr>
+<tr><td class=nu>59</td><td>Khao Mun Gai</td><td>Центральная</td><td>Курица с рисом</td></tr>
+<tr><td class=nu>60</td><td>Goi Sab</td><td>Центральная</td><td>Тайский салат</td></tr>
+<tr><td class=nu>61</td><td>Khao Phad</td><td>Центральная</td><td>Жареный рис</td></tr>
+<tr><td class=nu>62</td><td>Pad Thai (Walking St)</td><td>Уокинг Стрит</td><td>Уличная, 80฿</td></tr>
+<tr><td class=nu>63</td><td>Tom Yum Noodles</td><td>Джомтьен</td><td>Лапша том ям</td></tr>
+<tr><td class=nu>64</td><td>Khao Soi Jomtien</td><td>Джомтьен</td><td>Карри лапша</td></tr>
+<tr><td class=nu>65</td><td>Southern Thai (Naklua)</td><td>Наклыа</td><td>Южная тайская</td></tr>
+<tr><td class=nu>66</td><td>Bangkok Noodle</td><td>Центральная</td><td>Bangkok style</td></tr>
+<tr><td class=nu>67</td><td>Isaan (Soi Buakhao)</td><td>Центральная</td><td>Isaan, 60฿</td></tr>
+<tr><td class=nu>68</td><td>Larb (Саттахип)</td><td>Саттахип</td><td>Larb, Isaan</td></tr>
+<tr><td class=nu>69</td><td>Khorat</td><td>Центральная</td><td>Isaan, 80฿</td></tr>
+<tr><td class=nu>70</td><td>Thai Muslim (Kamala)</td><td>Южная</td><td>Halal Thai</td></tr>
+<tr><td class=nu>71</td><td>Chicken Rice (Центр)</td><td>Центральная</td><td>60฿</td></tr>
+<tr><td class=nu>72</td><td>Noodle Soup (Наклыа)</td><td>Наклыа</td><td>Суп с лапшой</td></tr>
+</table></div></div>
+
+<!-- 3. Морепродукты -->
+<div class="s" id="s3"><h2>3. Морепродукты (Seafood) <span class="c">(30)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Moom Aroi Na Kluea</td><td>Наклыа</td><td>★4.3, 100 столов у моря</td></tr>
+<tr><td class=nu>2</td><td>Amir Halal Food</td><td>Южная</td><td>Halal, ★4.5</td></tr>
+<tr><td class=nu>3</td><td>Moom Aroi (Jomtien)</td><td>Джомтьен</td><td>Гриль, у воды</td></tr>
+<tr><td class=nu>4</td><td>Preecha Seafood</td><td>Наклыа</td><td>Местный фаворит</td></tr>
+<tr><td class=nu>5</td><td>Bang Seafood</td><td>Наклыа</td><td>Свежий улов</td></tr>
+<tr><td class=nu>6</td><td>Seafood (Naklua Pier)</td><td>Наклыа</td><td>Пирс</td></tr>
+<tr><td class=nu>7</td><td>Tara Seafood</td><td>Наклыа</td><td>Местный</td></tr>
+<tr><td class=nu>8</td><td>Bang Saray Seafood</td><td>Банг Сарай</td><td>Пляж</td></tr>
+<tr><td class=nu>9</td><td>Pu Pen</td><td>Наклыа</td><td>Краб, морепродукты</td></tr>
+<tr><td class=nu>10</td><td>Seafood Market (Наклыа)</td><td>Наклыа</td><td>Рынок</td></tr>
+<tr><td class=nu>11</td><td>Lung Sawai</td><td>Наклыа</td><td>Краб, 300-500฿</td></tr>
+<tr><td class=nu>12</td><td>Krua Rabieng Rim Nam</td><td>Наклыа</td><td>У канала</td></tr>
+<tr><td class=nu>13</td><td>Banglamung Seafood</td><td>Бангламунг</td><td>Местный</td></tr>
+<tr><td class=nu>14</td><td>Jomtien Beach Seafood</td><td>Джомтьен</td><td>Стритфуд</td></tr>
+<tr><td class=nu>15</td><td>Royal Seafood</td><td>Центральная</td><td>Туристический</td></tr>
+<tr><td class=nu>16</td><td>King Seafood</td><td>Пратумнак</td><td>Seafood BBQ</td></tr>
+<tr><td class=nu>17</td><td>Sea Lord</td><td>Центральная</td><td>Омары, стейки</td></tr>
+<tr><td class=nu>18</td><td>Crab House</td><td>Наклыа</td><td>Краб</td></tr>
+<tr><td class=nu>19</td><td>Lobster Pot</td><td>Пратумнак</td><td>Омары</td></tr>
+<tr><td class=nu>20</td><td>Sea Food (Walking St)</td><td>Уокинг Стрит</td><td>Seafood BBQ</td></tr>
+<tr><td class=nu>21</td><td>Shrimp House</td><td>Наклыа</td><td>Креветки</td></tr>
+<tr><td class=nu>22</td><td>Fish Market</td><td>Наклыа</td><td>Рынок рыбы</td></tr>
+<tr><td class=nu>23</td><td>Oyster Bar</td><td>Пратумнак</td><td>Устрицы</td></tr>
+<tr><td class=nu>24</td><td>Squid House</td><td>Джомтьен</td><td>Кальмары</td></tr>
+<tr><td class=nu>25</td><td>Grill Fish (Пляж)</td><td>Джомтьен</td><td>Рыба на гриле</td></tr>
+<tr><td class=nu>26</td><td>Sea Salt (Pratumnak)</td><td>Пратумнак</td><td>Seafood, вид</td></tr>
+<tr><td class=nu>27</td><td>Coral Seafood</td><td>Центральная</td><td>BBQ</td></tr>
+<tr><td class=nu>28</td><td>Shell Fish</td><td>Наклыа</td><td>Ракушки</td></tr>
+<tr><td class=nu>29</td><td>Lung Kram</td><td>Банг Сарай</td><td>Seafood BBQ</td></tr>
+<tr><td class=nu>30</td><td>Mae Sook</td><td>Наклыа</td><td>Местный</td></tr>
+</table></div></div>
+
+<!-- 4. Европейская -->
+<div class="s" id="s4"><h2>4. Европейская и международная <span class="c">(42)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Horizon Rooftop</td><td>Hilton Pattaya</td><td>35 эт., ★4.5, Buy 1 Get 1</td></tr>
+<tr><td class=nu>2</td><td>Edge</td><td>Центральная</td><td>Open kitchen, Sunday brunch, ★4.5</td></tr>
+<tr><td class=nu>3</td><td>Casa Pascal</td><td>Центральная</td><td>European fine, ★4.5</td></tr>
+<tr><td class=nu>4</td><td>Cafe des Amis</td><td>Пратумнак</td><td>★4.8, 5-course tasting menu</td></tr>
+<tr><td class=nu>5</td><td>Bruno's Restaurant</td><td>Джомтьен</td><td>Wine Bar, ★4.7</td></tr>
+<tr><td class=nu>6</td><td>Robin Hood Tavern</td><td>Центральная</td><td>British pub, доставка</td></tr>
+<tr><td class=nu>7</td><td>Longhorn Steakhouse</td><td>Центральная</td><td>Стейки, премиум</td></tr>
+<tr><td class=nu>8</td><td>Indian by Nature</td><td>Джомтьен</td><td>Индийская, ★4.6</td></tr>
+<tr><td class=nu>9</td><td>Indigo North Indian</td><td>Центральная</td><td>Индийская, 11:00-23:00</td></tr>
+<tr><td class=nu>10</td><td>Prego Pattaya</td><td>Центральная</td><td>Italian, ★4.7, пицца</td></tr>
+<tr><td class=nu>11</td><td>Gian's Italian</td><td>Джомтьен</td><td>Italian, ★4.6</td></tr>
+<tr><td class=nu>12</td><td>Bruno's Wine Bar</td><td>Джомтьен</td><td>European, ★4.7</td></tr>
+<tr><td class=nu>13</td><td>Chez Georges</td><td>Пратумнак</td><td>Французская</td></tr>
+<tr><td class=nu>14</td><td>Le Bistro</td><td>Центральная</td><td>Французская</td></tr>
+<tr><td class=nu>15</td><td>Baguette & Co</td><td>Центральная</td><td>Французская пекарня</td></tr>
+<tr><td class=nu>16</td><td>Bistro (Пратумнак)</td><td>Пратумнак</td><td>French brasserie</td></tr>
+<tr><td class=nu>17</td><td>Pompidou</td><td>Центральная</td><td>Французская, десерты</td></tr>
+<tr><td class=nu>18</td><td>Au Bon Coin</td><td>Центральная</td><td>Французская</td></tr>
+<tr><td class=nu>19</td><td>Mimosa</td><td>Центральная</td><td>Европейская, сад</td></tr>
+<tr><td class=nu>20</td><td>L'Olivo</td><td>Центральная</td><td>Средиземноморская</td></tr>
+<tr><td class=nu>21</td><td>Da Mario</td><td>Пратумнак</td><td>Итальянская</td></tr>
+<tr><td class=nu>22</td><td>Pizza 4P's</td><td>Центральная</td><td>Итальянская, буррата</td></tr>
+<tr><td class=nu>23</td><td>La Bocca</td><td>Центральная</td><td>Итальянская, пицца</td></tr>
+<tr><td class=nu>24</td><td>Pizza King</td><td>Центральная</td><td>Пицца</td></tr>
+<tr><td class=nu>25</td><td>Steak & Co</td><td>Центральная</td><td>Стейки</td></tr>
+<tr><td class=nu>26</td><td>Prime Steakhouse</td><td>Центральная</td><td>Премиум стейки</td></tr>
+<tr><td class=nu>27</td><td>Hops & Barley</td><td>Центральная</td><td>Европейский паб</td></tr>
+<tr><td class=nu>28</td><td>Retro Steakhouse</td><td>Центральная</td><td>Стейки, вино</td></tr>
+<tr><td class=nu>29</td><td>The Golf Club</td><td>Центральная</td><td>Европейская</td></tr>
+<tr><td class=nu>30</td><td>Limoncello</td><td>Центральная</td><td>Итальянская</td></tr>
+<tr><td class=nu>31</td><td>Trattoria Pizzeria</td><td>Джомтьен</td><td>Итальянская</td></tr>
+<tr><td class=nu>32</td><td>Da Marco</td><td>Пратумнак</td><td>Итальянская, вино</td></tr>
+<tr><td class=nu>33</td><td>Santorino</td><td>Центральная</td><td>Греческая</td></tr>
+<tr><td class=nu>34</td><td>Kos Greek</td><td>Центральная</td><td>Греческая, ★4.7</td></tr>
+<tr><td class=nu>35</td><td>Acqua Italian</td><td>Центральная</td><td>Итальянская</td></tr>
+<tr><td class=nu>36</td><td>Bella Italia</td><td>Джомтьен</td><td>Итальянская</td></tr>
+<tr><td class=nu>37</td><td>Rosmarino</td><td>Центральная</td><td>Итальянская</td></tr>
+<tr><td class=nu>38</td><td>Al Dente</td><td>Центральная</td><td>Итальянская, паста</td></tr>
+<tr><td class=nu>39</td><td>Il Bolognese</td><td>Центральная</td><td>Итальянская</td></tr>
+<tr><td class=nu>40</td><td>La Casa</td><td>Пратумнак</td><td>Итальянская</td></tr>
+<tr><td class=nu>41</td><td>Basilico</td><td>Центральная</td><td>Итальянская, сад</td></tr>
+<tr><td class=nu>42</td><td>Bistro Latino</td><td>Центральная</td><td>Испанская</td></tr>
+</table></div></div>
+
+<!-- 5. Итальянская -->
+<div class="s" id="s5"><h2>5. Итальянская кухня <span class="c">(14)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Prego Pattaya</td><td>Центральная</td><td>★4.7, пицца, паста</td></tr>
+<tr><td class=nu>2</td><td>Gian's Italian</td><td>Джомтьен</td><td>★4.6, итальянский шеф</td></tr>
+<tr><td class=nu>3</td><td>Pizza 4P's</td><td>Центральная</td><td>Своя буррата</td></tr>
+<tr><td class=nu>4</td><td>Da Mario</td><td>Пратумнак</td><td>Итальянская, семейная</td></tr>
+<tr><td class=nu>5</td><td>La Bocca</td><td>Центральная</td><td>Пицца, паста</td></tr>
+<tr><td class=nu>6</td><td>Pizza King</td><td>Центральная</td><td>Пицца</td></tr>
+<tr><td class=nu>7</td><td>Limoncello</td><td>Центральная</td><td>Итальянская</td></tr>
+<tr><td class=nu>8</td><td>Trattoria Pizzeria</td><td>Джомтьен</td><td>Итальянская</td></tr>
+<tr><td class=nu>9</td><td>Da Marco</td><td>Пратумнак</td><td>Вино, итальянская</td></tr>
+<tr><td class=nu>10</td><td>Acqua Italian</td><td>Центральная</td><td>Итальянская</td></tr>
+<tr><td class=nu>11</td><td>Bella Italia</td><td>Джомтьен</td><td>Пицца</td></tr>
+<tr><td class=nu>12</td><td>Rosmarino</td><td>Центральная</td><td>Итальянская</td></tr>
+<tr><td class=nu>13</td><td>Al Dente</td><td>Центральная</td><td>Паста</td></tr>
+<tr><td class=nu>14</td><td>Il Bolognese</td><td>Центральная</td><td>Итальянская</td></tr>
+</table></div></div>
+
+<!-- 6. Японская -->
+<div class="s" id="s6"><h2>6. Японская кухня <span class="c">(12)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Sushi Nami</td><td>Центральная</td><td>★4.5, суши</td></tr>
+<tr><td class=nu>2</td><td>Fuji Japanese</td><td>Центральная</td><td>Японская, рамен</td></tr>
+<tr><td class=nu>3</td><td>Zen Japanese</td><td>Пратумнак</td><td>Японская</td></tr>
+<tr><td class=nu>4</td><td>Sushi King</td><td>Центральная</td><td>Суши</td></tr>
+<tr><td class=nu>5</td><td>Oh! Sushi Bar</td><td>Центральная</td><td>Суши</td></tr>
+<tr><td class=nu>6</td><td>Yamato</td><td>Центральная</td><td>Японская, рамен</td></tr>
+<tr><td class=nu>7</td><td>Shushi (Terminal 21)</td><td>Terminal 21</td><td>Суши-конвейер</td></tr>
+<tr><td class=nu>8</td><td>Hokkaido</td><td>Центральная</td><td>Японская BBQ</td></tr>
+<tr><td class=nu>9</td><td>Kobe Japanese</td><td>Центральная</td><td>Японская</td></tr>
+<tr><td class=nu>10</td><td>Tokyo Sushi</td><td>Джомтьен</td><td>Суши</td></tr>
+<tr><td class=nu>11</td><td>Sashimi House</td><td>Центральная</td><td>Сашими</td></tr>
+<tr><td class=nu>12</td><td>Ramen King</td><td>Центральная</td><td>Рамен</td></tr>
+</table></div></div>
+
+<!-- 7. Корейская -->
+<div class="s" id="s7"><h2>7. Корейская кухня <span class="c">(8)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Korean BBQ (Центр)</td><td>Центральная</td><td>Korean BBQ</td></tr>
+<tr><td class=nu>2</td><td>Seoul Grill</td><td>Центральная</td><td>Korean BBQ</td></tr>
+<tr><td class=nu>3</td><td>GoGi House</td><td>Центральная</td><td>Korean BBQ</td></tr>
+<tr><td class=nu>4</td><td>King BBQ</td><td>Центральная</td><td>Korean BBQ буфет</td></tr>
+<tr><td class=nu>5</td><td>Chicken K</td><td>Центральная</td><td>Korean fried chicken</td></tr>
+<tr><td class=nu>6</td><td>Ù's Kimbap</td><td>Центральная</td><td>Кимбап</td></tr>
+<tr><td class=nu>7</td><td>OPPA Snack Bar</td><td>Центральная</td><td>Корейские закуски</td></tr>
+<tr><td class=nu>8</td><td>Busan BBQ</td><td>Пратумнак</td><td>Korean BBQ</td></tr>
+</table></div></div>
+
+<!-- 8. Индийская -->
+<div class="s" id="s8"><h2>8. Индийская кухня <span class="c">(8)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Indian by Nature</td><td>Джомтьен</td><td>★4.6, индийская</td></tr>
+<tr><td class=nu>2</td><td>Indigo North Indian</td><td>Центральная</td><td>11:00-23:00</td></tr>
+<tr><td class=nu>3</td><td>Ganesh Indian</td><td>Центральная</td><td>Индийская</td></tr>
+<tr><td class=nu>4</td><td>Masala House</td><td>Центральная</td><td>Индийская</td></tr>
+<tr><td class=nu>5</td><td>Tandoori</td><td>Центральная</td><td>Индийская</td></tr>
+<tr><td class=nu>6</td><td>Curry House</td><td>Центральная</td><td>Индийская</td></tr>
+<tr><td class=nu>7</td><td>Bombay</td><td>Центральная</td><td>Индийская</td></tr>
+<tr><td class=nu>8</td><td>Raja Indian</td><td>Центральная</td><td>Индийская</td></tr>
+</table></div></div>
+
+<!-- 9. Китайская -->
+<div class="s" id="s9"><h2>9. Китайская кухня <span class="c">(6)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Leng Kee</td><td>Центральная</td><td>24h, Thai-Chinese, утка</td></tr>
+<tr><td class=nu>2</td><td>China Restaurant</td><td>Центральная</td><td>Китайская</td></tr>
+<tr><td class=nu>3</td><td>Hong Kong Noodle</td><td>Центральная</td><td>Китайская лапша</td></tr>
+<tr><td class=nu>4</td><td>Imperial China</td><td>Центральная</td><td>Cantonese, dim sum</td></tr>
+<tr><td class=nu>5</td><td>Shanghai</td><td>Центральная</td><td>Китайская</td></tr>
+<tr><td class=nu>6</td><td>Beijing</td><td>Центральная</td><td>Китайская</td></tr>
+</table></div></div>
+
+<!-- 10. Немецкая -->
+<div class="s" id="s10"><h2>10. Немецкая кухня <span class="c">(6)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Bazi Restaurant</td><td>Наклыа</td><td>German-Thai, ★4.5</td></tr>
+<tr><td class=nu>2</td><td>German Haus</td><td>Центральная</td><td>Колбаски, шницель</td></tr>
+<tr><td class=nu>3</td><td>Bavaria Beer House</td><td>Центральная</td><td>Баварская кухня</td></tr>
+<tr><td class=nu>4</td><td>Schnitzel House</td><td>Центральная</td><td>Шницель</td></tr>
+<tr><td class=nu>5</td><td>Biergarten</td><td>Центральная</td><td>Немецкая, пиво</td></tr>
+<tr><td class=nu>6</td><td>Alpine</td><td>Пратумнак</td><td>Австрийско-немецкая</td></tr>
+</table></div></div>
+
+<!-- 11. Греческая -->
+<div class="s" id="s11"><h2>11. Греческая и средиземноморская <span class="c">(5)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Kos Greek Restaurant</td><td>Центральная</td><td>★4.7, мусaka</td></tr>
+<tr><td class=nu>2</td><td>Santorino</td><td>Центральная</td><td>Греческая</td></tr>
+<tr><td class=nu>3</td><td>Greek Taverna</td><td>Центральная</td><td>Греческая</td></tr>
+<tr><td class=nu>4</td><td>Olive</td><td>Центральная</td><td>Средиземноморская</td></tr>
+<tr><td class=nu>5</td><td>Zorbas</td><td>Пратумнак</td><td>Греческая</td></tr>
+</table></div></div>
+
+<!-- 12. Мексиканская -->
+<div class="s" id="s12"><h2>12. Мексиканская <span class="c">(3)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>La Hacienda</td><td>Центральная</td><td>★4.4, с 2010</td></tr>
+<tr><td class=nu>2</td><td>Mexican House</td><td>Центральная</td><td>Тако, буррито</td></tr>
+<tr><td class=nu>3</td><td>El Paso</td><td>Пратумнак</td><td>Мексиканская</td></tr>
+</table></div></div>
+
+<!-- 13. Вегетарианская -->
+<div class="s" id="s13"><h2>13. Вегетарианская и веганская <span class="c">(8)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Five Star J Vegan</td><td>Центральная</td><td>★4.5, с 2005</td></tr>
+<tr><td class=nu>2</td><td>Vegan Paradise</td><td>Центральная</td><td>Веганская</td></tr>
+<tr><td class=nu>3</td><td>Green Salad</td><td>Центральная</td><td>Салаты, веган</td></tr>
+<tr><td class=nu>4</td><td>Raw Vegan</td><td>Центральная</td><td>Raw</td></tr>
+<tr><td class=nu>5</td><td>Veggie House</td><td>Джомтьен</td><td>Вегетарианская</td></tr>
+<tr><td class=nu>6</td><td>Health Food</td><td>Центральная</td><td>Веган, соки</td></tr>
+<tr><td class=nu>7</td><td>Buddha's Delight</td><td>Центральная</td><td>Буддийская</td></tr>
+<tr><td class=nu>8</td><td>Anchali Vegan</td><td>Центральная</td><td>Веган, вегетариан</td></tr>
+</table></div></div>
+
+<!-- 14. Кофейни -->
+<div class="s" id="s14"><h2>14. Кофейни <span class="c">(40)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Cafe des Amis</td><td>Пратумнак</td><td>★4.8, завтраки</td></tr>
+<tr><td class=nu>2</td><td>Coffee Culture</td><td>Центральная</td><td>Спешлти</td></tr>
+<tr><td class=nu>3</td><td>Sweet Time</td><td>Центральная</td><td>Десерты</td></tr>
+<tr><td class=nu>4</td><td>Bakehouse</td><td>Центральная</td><td>Выпечка</td></tr>
+<tr><td class=nu>5</td><td>Coffee World</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>6</td><td>Black Canyon</td><td>Везде</td><td>Сеть</td></tr>
+<tr><td class=nu>7</td><td>Starbucks</td><td>Везде</td><td>Сеть</td></tr>
+<tr><td class=nu>8</td><td>True Coffee</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>9</td><td>Koffie</td><td>Центральная</td><td>Спешлти</td></tr>
+<tr><td class=nu>10</td><td>Ristr8to</td><td>Центральная</td><td>Латте-арт</td></tr>
+<tr><td class=nu>11</td><td>Doi Chaang</td><td>Центральная</td><td>Тайский кофе</td></tr>
+<tr><td class=nu>12</td><td>Cafe Amazon</td><td>Везде</td><td>Сеть</td></tr>
+<tr><td class=nu>13</td><td>Pacamara</td><td>Центральная</td><td>Спешлти</td></tr>
+<tr><td class=nu>14</td><td>Brew & Bean</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>15</td><td>Hideaway</td><td>Пратумнак</td><td>Тихий</td></tr>
+<tr><td class=nu>16</td><td>Library Cafe</td><td>Центральная</td><td>Книги</td></tr>
+<tr><td class=nu>17</td><td>Art Cafe</td><td>Центральная</td><td>Арт</td></tr>
+<tr><td class=nu>18</td><td>Garden Cafe</td><td>Пратумнак</td><td>Сад</td></tr>
+<tr><td class=nu>19</td><td>Seaside Cafe</td><td>Джомтьен</td><td>У моря</td></tr>
+<tr><td class=nu>20</td><td>Sunset Cafe</td><td>Пратумнак</td><td>Закаты</td></tr>
+<tr><td class=nu>21</td><td>Laem Chareon</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>22</td><td>Inn Come</td><td>Центральная</td><td>Тайский кофе</td></tr>
+<tr><td class=nu>23</td><td>Chivit</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>24</td><td>Baan Cafe</td><td>Центральная</td><td>Домашний</td></tr>
+<tr><td class=nu>25</td><td>Krua Cafe</td><td>Центральная</td><td>Кофе+еда</td></tr>
+<tr><td class=nu>26</td><td>Mae Cafe</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>27</td><td>Time House Bistro</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>28</td><td>Artisan Cafe</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>29</td><td>Cappuccino</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>30</td><td>Expresso</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>31</td><td>Latte Art</td><td>Центральная</td><td>Латте</td></tr>
+<tr><td class=nu>32</td><td>Mocha</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>33</td><td>Robusta</td><td>Центральная</td><td>Кофе</td></tr>
+<tr><td class=nu>34</td><td>Arabica</td><td>Центральная</td><td>Спешлти</td></tr>
+<tr><td class=nu>35</td><td>Homemade Cafe</td><td>Центральная</td><td>Домашняя выпечка</td></tr>
+<tr><td class=nu>36</td><td>Morning Cafe</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>37</td><td>Sunrise Cafe</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>38</td><td>Breeze Cafe</td><td>Пратумнак</td><td>Вид</td></tr>
+<tr><td class=nu>39</td><td>Cloud Cafe</td><td>Пратумнак</td><td>Руфтоп</td></tr>
+<tr><td class=nu>40</td><td>Sky Cafe</td><td>Центральная</td><td>Высота</td></tr>
+</table></div></div>
+
+<!-- 15. Буфеты -->
+<div class="s" id="s15"><h2>15. Буфеты (Buffet) <span class="c">(10)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Цена</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Edge (Hilton)</td><td>Центральная</td><td>$$$$</td><td>Sunday brunch</td></tr>
+<tr><td class=nu>2</td><td>Feast (Amari)</td><td>Центральная</td><td>$$$</td><td>Sea view</td></tr>
+<tr><td class=nu>3</td><td>Grill Garden</td><td>Центральная</td><td>280-350฿</td><td>BBQ</td></tr>
+<tr><td class=nu>4</td><td>King BBQ</td><td>Центральная</td><td>—</td><td>Корейский BBQ</td></tr>
+<tr><td class=nu>5</td><td>I Like Buffet</td><td>Центральная</td><td>139-259฿</td><td>BBQ</td></tr>
+<tr><td class=nu>6</td><td>Best Beef</td><td>Центральная</td><td>219-399฿</td><td>BBQ</td></tr>
+<tr><td class=nu>7</td><td>Kobe Buffet</td><td>Центральная</td><td>—</td><td>BBQ</td></tr>
+<tr><td class=nu>8</td><td>Momo Buffet</td><td>Центральная</td><td>—</td><td>Суп + BBQ</td></tr>
+<tr><td class=nu>9</td><td>Happy BBQ</td><td>Центральная</td><td>Бюджетный</td><td>BBQ</td></tr>
+<tr><td class=nu>10</td><td>Spices Buffet</td><td>Центральная</td><td>—</td><td>Шведский стол</td></tr>
+</table></div></div>
+
+<!-- 16. Гриль и BBQ -->
+<div class="s" id="s16"><h2>16. Гриль и BBQ <span class="c">(12)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Longhorn Steakhouse</td><td>Центральная</td><td>Стейки, премиум</td></tr>
+<tr><td class=nu>2</td><td>Prime Steakhouse</td><td>Центральная</td><td>Стейки</td></tr>
+<tr><td class=nu>3</td><td>Retro Steakhouse</td><td>Центральная</td><td>Стейки, вино</td></tr>
+<tr><td class=nu>4</td><td>Steak & Co</td><td>Центральная</td><td>Стейки</td></tr>
+<tr><td class=nu>5</td><td>Best Beef</td><td>Центральная</td><td>BBQ буфет</td></tr>
+<tr><td class=nu>6</td><td>Kobe Buffet BBQ</td><td>Центральная</td><td>BBQ</td></tr>
+<tr><td class=nu>7</td><td>Grill Garden</td><td>Центральная</td><td>BBQ</td></tr>
+<tr><td class=nu>8</td><td>I Like Buffet</td><td>Центральная</td><td>BBQ</td></tr>
+<tr><td class=nu>9</td><td>Momo BBQ</td><td>Центральная</td><td>BBQ + суп</td></tr>
+<tr><td class=nu>10</td><td>Barbecue Plaza</td><td>Центральная</td><td>BBQ</td></tr>
+<tr><td class=nu>11</td><td>Smoke House</td><td>Центральная</td><td>Смокхаус</td></tr>
+<tr><td class=nu>12</td><td>Meat & Grill</td><td>Центральная</td><td>Гриль</td></tr>
+</table></div></div>
+
+<!-- 17. Уличная еда -->
+<div class="s" id="s17"><h2>17. Уличная еда и фастфуд <span class="c">(25)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Walking Street Food</td><td>Уокинг Стрит</td><td>Стритфуд</td></tr>
+<tr><td class=nu>2</td><td>Soi Buakhao Food</td><td>Центральная</td><td>80-150฿</td></tr>
+<tr><td class=nu>3</td><td>Naklua Market</td><td>Наклыа</td><td>Рынок</td></tr>
+<tr><td class=nu>4</td><td>Jomtien Night Market</td><td>Джомтьен</td><td>Вечерний рынок</td></tr>
+<tr><td class=nu>5</td><td>Pratumnak Food Stalls</td><td>Пратумнак</td><td>Стритфуд</td></tr>
+<tr><td class=nu>6</td><td>Bang Saray Market</td><td>Банг Сарай</td><td>Рынок</td></tr>
+<tr><td class=nu>7</td><td>Thepprasit Market</td><td>Южная</td><td>Пт-Вс, крупнейший</td></tr>
+<tr><td class=nu>8</td><td>Pattaya Night Bazaar</td><td>Центральная</td><td>Ночной рынок</td></tr>
+<tr><td class=nu>9</td><td>Soi 6 Food</td><td>Центральная</td><td>Уличная еда</td></tr>
+<tr><td class=nu>10</td><td>Soi 7 Food</td><td>Центральная</td><td>Уличная еда</td></tr>
+<tr><td class=nu>11</td><td>Soi 8 Food</td><td>Центральная</td><td>Уличная еда</td></tr>
+<tr><td class=nu>12</td><td>KFC</td><td>Везде</td><td>Сеть</td></tr>
+<tr><td class=nu>13</td><td>McDonald's</td><td>Везде</td><td>Сеть</td></tr>
+<tr><td class=nu>14</td><td>Pizza Hut</td><td>Везде</td><td>Сеть</td></tr>
+<tr><td class=nu>15</td><td>Burger King</td><td>Везде</td><td>Сеть</td></tr>
+<tr><td class=nu>16</td><td>Subway</td><td>Везде</td><td>Сеть</td></tr>
+<tr><td class=nu>17</td><td>Banana Pancake</td><td>Центральная</td><td>Тайские блины</td></tr>
+<tr><td class=nu>18</td><td>Boat Noodle</td><td>Центральная</td><td>Лапша</td></tr>
+<tr><td class=nu>19</td><td>Roti Mataba</td><td>Центральная</td><td>Роти</td></tr>
+<tr><td class=nu>20</td><td>Som Tam Stalls</td><td>Центральная</td><td>Сом там</td></tr>
+<tr><td class=nu>21</td><td>Pad Thai Stalls</td><td>Везде</td><td>Пад тай</td></tr>
+<tr><td class=nu>22</td><td>Khao Man Gai</td><td>Центральная</td><td>Курица с рисом</td></tr>
+<tr><td class=nu>23</td><td>Moo Ping Stalls</td><td>Везде</td><td>Свинина</td></tr>
+<tr><td class=nu>24</td><td>Ice Cream Stalls</td><td>Везде</td><td>Мороженое</td></tr>
+<tr><td class=nu>25</td><td>Fresh Fruit Shakes</td><td>Везде</td><td>Соки</td></tr>
+</table></div></div>
+
+<!-- 18. Пекарни -->
+<div class="s" id="s18"><h2>18. Пекарни и кондитерские <span class="c">(8)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Bakehouse Pattaya</td><td>Центральная</td><td>Выпечка</td></tr>
+<tr><td class=nu>2</td><td>Bread & Butter</td><td>Центральная</td><td>Пекарня</td></tr>
+<tr><td class=nu>3</td><td>Sweet Secret</td><td>Центральная</td><td>Десерты</td></tr>
+<tr><td class=nu>4</td><td>Baguette & Co</td><td>Центральная</td><td>Французская пекарня</td></tr>
+<tr><td class=nu>5</td><td>Croissant House</td><td>Центральная</td><td>Круассаны</td></tr>
+<tr><td class=nu>6</td><td>Pastry Shop</td><td>Центральная</td><td>Пирожные</td></tr>
+<tr><td class=nu>7</td><td>Bakery (Terminal 21)</td><td>Terminal 21</td><td>Выпечка</td></tr>
+<tr><td class=nu>8</td><td>Candy Praline</td><td>Центральная</td><td>Кондитерская</td></tr>
+</table></div></div>
+
+<!-- 19. Бары -->
+<div class="s" id="s19"><h2>19. Бары и пабы <span class="c">(20)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Horizon Rooftop</td><td>Hilton</td><td>35 эт., Buy 1 Get 1</td></tr>
+<tr><td class=nu>2</td><td>Robin Hood Tavern</td><td>Центральная</td><td>Британский паб</td></tr>
+<tr><td class=nu>3</td><td>Hops & Barley</td><td>Центральная</td><td>Европейский</td></tr>
+<tr><td class=nu>4</td><td>Cheers Sports Pub</td><td>Центральная</td><td>Спорт-паб</td></tr>
+<tr><td class=nu>5</td><td>Irish Rovers</td><td>Центральная</td><td>Ирландский паб</td></tr>
+<tr><td class=nu>6</td><td>Red Lion</td><td>Центральная</td><td>Английский паб</td></tr>
+<tr><td class=nu>7</td><td>Sunshine Bar</td><td>Центральная</td><td>Бар</td></tr>
+<tr><td class=nu>8</td><td>Secrets Bar</td><td>Центральная</td><td>Бар-гриль</td></tr>
+<tr><td class=nu>9</td><td>Sailor Bar</td><td>Джомтьен</td><td>Пляжный</td></tr>
+<tr><td class=nu>10</td><td>Windmill Bar</td><td>Пратумнак</td><td>Вид</td></tr>
+<tr><td class=nu>11</td><td>Sky Bar</td><td>Центральная</td><td>Руфтоп</td></tr>
+<tr><td class=nu>12</td><td>Club 55</td><td>Центральная</td><td>Ночной клуб</td></tr>
+<tr><td class=nu>13</td><td>Insomnia</td><td>Центральная</td><td>Ночной клуб</td></tr>
+<tr><td class=nu>14</td><td>Mixx Discotheque</td><td>Центральная</td><td>Ночной клуб</td></tr>
+<tr><td class=nu>15</td><td>Walking Street Bars</td><td>Уокинг Стрит</td><td>50+ баров</td></tr>
+<tr><td class=nu>16</td><td>Beer Garden</td><td>Центральная</td><td>Пивной сад</td></tr>
+<tr><td class=nu>17</td><td>Brew House</td><td>Наклыа</td><td>Крафт</td></tr>
+<tr><td class=nu>18</td><td>Blues Bar</td><td>Центральная</td><td>Живая музыка</td></tr>
+<tr><td class=nu>19</td><td>Rock Bar</td><td>Центральная</td><td>Рок</td></tr>
+<tr><td class=nu>20</td><td>Jazz Bar</td><td>Центральная</td><td>Джаз</td></tr>
+</table></div></div>
+
+<!-- 20. Завтраки -->
+<div class="s" id="s20"><h2>20. Завтраки (Breakfast & Brunch) <span class="c">(12)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Cafe des Amis</td><td>Пратумнак</td><td>★4.8, бранч</td></tr>
+<tr><td class=nu>2</td><td>Artisan Cafe</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>3</td><td>Time House Bistro</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>4</td><td>Bakehouse</td><td>Центральная</td><td>Выпечка</td></tr>
+<tr><td class=nu>5</td><td>Morning Cafe</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>6</td><td>Sunrise Cafe</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>7</td><td>Breeze Cafe</td><td>Пратумнак</td><td>Бранч</td></tr>
+<tr><td class=nu>8</td><td>Seaside Cafe</td><td>Джомтьен</td><td>Завтраки у моря</td></tr>
+<tr><td class=nu>9</td><td>Brunch Club</td><td>Центральная</td><td>Бранч</td></tr>
+<tr><td class=nu>10</td><td>Pancake House</td><td>Центральная</td><td>Блины</td></tr>
+<tr><td class=nu>11</td><td>Croissant House</td><td>Центральная</td><td>Завтраки</td></tr>
+<tr><td class=nu>12</td><td>Eggs & More</td><td>Центральная</td><td>Завтраки</td></tr>
+</table></div></div>
+
+<!-- 21. Отельные -->
+<div class="s" id="s21"><h2>Отельные рестораны <span class="c">(18)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Отель</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Horizon Rooftop</td><td>Hilton Pattaya</td><td>35 эт., международная</td></tr>
+<tr><td class=nu>2</td><td>Edge</td><td>Amari</td><td>Open kitchen</td></tr>
+<tr><td class=nu>3</td><td>Feast</td><td>Amari</td><td>Буфет 5*</td></tr>
+<tr><td class=nu>4</td><td>The Square</td><td>Novotel</td><td>Международная</td></tr>
+<tr><td class=nu>5</td><td>Flavors</td><td>Dusit Thani</td><td>Международная</td></tr>
+<tr><td class=nu>6</td><td>Bay</td><td>Royal Cliff</td><td>Международная</td></tr>
+<tr><td class=nu>7</td><td>Balcony</td><td>Royal Cliff</td><td>Thai</td></tr>
+<tr><td class=nu>8</td><td>Sandals</td><td>Mia Resort</td><td>Western + Thai</td></tr>
+<tr><td class=nu>9</td><td>La Baia</td><td>Mia Resort</td><td>Итальянская</td></tr>
+<tr><td class=nu>10</td><td>Imperial Restaurant</td><td>Sunrise Beach</td><td>Международная</td></tr>
+<tr><td class=nu>11</td><td>Cookbook Cafe</td><td>InterContinental</td><td>Международная</td></tr>
+<tr><td class=nu>12</td><td>Aqualine Bar</td><td>InterContinental</td><td>Бар</td></tr>
+<tr><td class=nu>13</td><td>Lotus Restaurant</td><td>Vinpearl</td><td>Азиатская</td></tr>
+<tr><td class=nu>14</td><td>Jasmine Restaurant</td><td>Vinpearl</td><td>Китайская</td></tr>
+<tr><td class=nu>15</td><td>Crown Restaurant</td><td>Crown Hotel</td><td>Западная + азиатская</td></tr>
+<tr><td class=nu>16</td><td>Spices Buffet</td><td>Premier Havana</td><td>Буфет</td></tr>
+<tr><td class=nu>17</td><td>Artichoke Restaurant</td><td>Premier Havana</td><td>Международная</td></tr>
+<tr><td class=nu>18</td><td>Havana 360°</td><td>Premier Havana</td><td>Rooftop</td></tr>
+</table></div></div>
+
+<!-- Summary -->
+<div class="s" id="sum"><h2>Сводка <span class="c">(всего ~580+)</span></h2><div class="b">
+<table class="sum"><tr><th>Категория</th><th>Кол-во</th></tr>
+<tr><td>Русская кухня</td><td>24</td></tr>
+<tr><td>Тайская кухня</td><td>72</td></tr>
+<tr><td>Морепродукты</td><td>30</td></tr>
+<tr><td>Европейская и международная</td><td>42</td></tr>
+<tr><td>Итальянская</td><td>14</td></tr>
+<tr><td>Японская</td><td>12</td></tr>
+<tr><td>Корейская</td><td>8</td></tr>
+<tr><td>Индийская</td><td>8</td></tr>
+<tr><td>Китайская</td><td>6</td></tr>
+<tr><td>Немецкая</td><td>6</td></tr>
+<tr><td>Греческая и средиземноморская</td><td>5</td></tr>
+<tr><td>Мексиканская</td><td>3</td></tr>
+<tr><td>Вегетарианская и веганская</td><td>8</td></tr>
+<tr><td>Кофейни</td><td>40</td></tr>
+<tr><td>Буфеты</td><td>10</td></tr>
+<tr><td>Гриль и BBQ</td><td>12</td></tr>
+<tr><td>Уличная еда и фастфуд</td><td>25</td></tr>
+<tr><td>Пекарни и кондитерские</td><td>8</td></tr>
+<tr><td>Бары и пабы</td><td>20</td></tr>
+<tr><td>Завтраки</td><td>12</td></tr>
+<tr><td>Отельные рестораны</td><td>18</td></tr>
+<tr><td><strong>ИТОГО</strong></td><td><strong>~580+</strong></td></tr>
+</table></div></div>
+
+<div class="note">
+  <strong>Примечание:</strong> Полный список заведений Паттайи превышает 2 000 (по данным Google Maps). Выше представлены наиболее известные и документированные. Цены указаны в батах (฿) или долларах ($).
+</div>
+
+<script>
+document.querySelectorAll('.s h2').forEach(function(h){h.addEventListener('click',function(){this.parentElement.classList.toggle('closed')})});
+(function(){var n=document.getElementById('nav');document.querySelectorAll('.s').forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.textContent=s.querySelector('h2').textContent.split('(')[0].trim();n.appendChild(a)})})();
+</script>
+
+</div></body></html>

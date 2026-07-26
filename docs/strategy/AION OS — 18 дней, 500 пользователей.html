@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION OS — 18 дней после старта</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+body{font-family:'Inter',system-ui,sans-serif;background:#0a0a12;color:#e2e8f0;overflow-x:hidden}
+.wrap{max-width:960px;margin:0 auto;padding:24px 20px}
+
+/* hero */
+.hero{text-align:center;padding:40px 0 32px;position:relative}
+.hero::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(99,102,241,0.06) 0%,transparent 70%);pointer-events:none}
+.hero .badge{display:inline-block;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.2);border-radius:20px;padding:6px 18px;font-size:0.72rem;font-weight:600;color:#818cf8;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:3rem;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,#fff 30%,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.hero .sub{font-size:1rem;color:#64748b;margin-top:8px;font-weight:300}
+
+/* grid stats */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+@media(max-width:640px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-card{background:linear-gradient(135deg,rgba(17,24,39,0.8),rgba(26,35,50,0.6));border:1px solid rgba(255,255,255,0.04);border-radius:16px;padding:20px;text-align:center;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:-40%;left:-40%;width:180%;height:180%;background:conic-gradient(from 0deg,transparent,rgba(99,102,241,0.02),transparent,rgba(245,158,11,0.02),transparent);animation:spin 20s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stat-card .c{position:relative;z-index:1}
+.stat-card .num{font-size:2.4rem;font-weight:800;letter-spacing:-1px}
+.stat-card .num.gold{color:#f59e0b}
+.stat-card .num.blue{color:#818cf8}
+.stat-card .num.green{color:#34d399}
+.stat-card .num.pink{color:#f472b6}
+.stat-card .label{font-size:0.75rem;color:#64748b;margin-top:2px;font-weight:500;text-transform:uppercase;letter-spacing:1px}
+.stat-card .sub-label{font-size:0.65rem;color:#475569;margin-top:4px}
+
+/* row stats */
+.row-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+@media(max-width:640px){.row-stats{grid-template-columns:1fr}}
+
+/* section title */
+.section{margin-top:36px}
+.section .title{font-size:0.65rem;text-transform:uppercase;letter-spacing:3px;color:#475569;font-weight:600;margin-bottom:14px;text-align:center}
+.section .title span{background:rgba(99,102,241,0.08);padding:4px 16px;border-radius:12px;border:1px solid rgba(99,102,241,0.06)}
+
+/* chart bars */
+.chart{display:flex;align-items:flex-end;gap:10px;height:180px;padding:10px 0;justify-content:center}
+.chart .bar-group{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:70px}
+.chart .bar{width:100%;border-radius:6px 6px 2px 2px;min-height:4px;position:relative;transition:all 0.3s}
+.chart .bar .val{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:0.65rem;font-weight:700;color:#e2e8f0;white-space:nowrap}
+.chart .bar-group .label{font-size:0.6rem;color:#64748b;text-align:center;font-weight:500}
+.chart .bar-group .label strong{color:#94a3b8}
+
+/* progress bars */
+.progress-list{display:flex;flex-direction:column;gap:10px}
+.progress-item{display:grid;grid-template-columns:140px 1fr 50px;align-items:center;gap:12px;font-size:0.82rem}
+@media(max-width:500px){.progress-item{grid-template-columns:100px 1fr 40px;font-size:0.75rem}}
+.progress-item .name{color:#94a3b8;font-weight:500;text-align:right}
+.progress-item .track{height:8px;background:rgba(255,255,255,0.04);border-radius:10px;overflow:hidden;position:relative}
+.progress-item .track .fill{height:100%;border-radius:10px;transition:width 1s ease}
+.progress-item .track .fill.purple{background:linear-gradient(90deg,#6366f1,#818cf8)}
+.progress-item .track .fill.gold{background:linear-gradient(90deg,#d97706,#f59e0b)}
+.progress-item .track .fill.green{background:linear-gradient(90deg,#059669,#34d399)}
+.progress-item .track .fill.pink{background:linear-gradient(90deg,#db2777,#f472b6)}
+.progress-item .track .fill.blue{background:linear-gradient(90deg,#2563eb,#60a5fa)}
+.progress-item .pct{font-weight:700;font-size:0.8rem;color:#e2e8f0;text-align:right}
+
+/* cards */
+.card{background:linear-gradient(135deg,rgba(17,24,39,0.8),rgba(26,35,50,0.5));border:1px solid rgba(255,255,255,0.04);border-radius:16px;padding:20px;margin:12px 0}
+.card .card-title{font-size:0.85rem;font-weight:700;color:#f59e0b;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+
+/* timeline */
+.timeline{position:relative;padding:12px 0}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(99,102,241,0.4),rgba(99,102,241,0.05))}
+.tl-item{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:8px 0;position:relative}
+.tl-item .dot{width:12px;height:12px;border-radius:50%;margin-top:4px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.tl-item .dot.gold{background:#f59e0b;box-shadow:0 0 12px rgba(245,158,11,0.3)}
+.tl-item .dot.purple{background:#818cf8;box-shadow:0 0 12px rgba(99,102,241,0.3)}
+.tl-item .dot.green{background:#34d399;box-shadow:0 0 12px rgba(52,211,153,0.3)}
+.tl-item .dot.gray{background:#475569}
+.tl-item .tl-time{font-size:0.7rem;color:#64748b;font-weight:600;white-space:nowrap}
+.tl-item .tl-text{font-size:0.82rem;color:#cbd5e1;line-height:1.5}
+.tl-item .tl-text strong{color:#e2e8f0}
+
+/* geography */
+.geo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+@media(max-width:640px){.geo-grid{grid-template-columns:repeat(2,1fr)}}
+.geo-item{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:10px;padding:10px 12px;font-size:0.78rem;color:#94a3b8;display:flex;align-items:center;gap:8px}
+.geo-item .flag{font-size:1.1rem}
+
+/* footer */
+.footer{text-align:center;padding:32px 0 16px;border-top:1px solid rgba(255,255,255,0.04);margin-top:32px}
+.footer p{font-size:0.7rem;color:#334155;letter-spacing:1px;text-transform:uppercase}
+
+/* pulse ring */
+.pulse-ring{position:relative}
+.pulse-ring::after{content:'';position:absolute;width:100%;height:100%;top:0;left:0;border-radius:50%;border:2px solid rgba(99,102,241,0.2);animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.8);opacity:0}}
+
+/* flex cols */
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0}
+@media(max-width:640px){.cols-2{grid-template-columns:1fr}}
+
+/* quote */
+.quote{text-align:center;padding:24px;margin:20px 0;font-size:0.9rem;color:#64748b;font-style:italic;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)}
+.quote strong{color:#cbd5e1;font-style:normal}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="badge">⚡ 18 дней после старта</div>
+  <h1>AION OS</h1>
+  <p class="sub">Первые результаты — мы только начали</p>
+</div>
+
+<!-- ===== STATS ===== -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="c">
+      <div class="num gold">500</div>
+      <div class="label">Пользователей</div>
+      <div class="sub-label">и растём каждый день</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="c">
+      <div class="num blue">300+</div>
+      <div class="label">Услуг</div>
+      <div class="sub-label">в 24 категориях</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="c">
+      <div class="num green">13</div>
+      <div class="label">Городов</div>
+      <div class="sub-label">в 3 странах</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="c">
+      <div class="num pink">18</div>
+      <div class="label">Дней</div>
+      <div class="sub-label">с момента запуска MVP</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ДИНАМИКА ===== -->
+<div class="section">
+  <div class="title"><span>📈 Динамика роста</span></div>
+</div>
+
+<div class="card">
+  <div class="card-title">👥 Рост пользователей по дням</div>
+  <div class="chart">
+    <div class="bar-group">
+      <div class="bar" style="height:8px;background:linear-gradient(180deg,#818cf8,#6366f1)"><div class="val">10</div></div>
+      <div class="label">день 1</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:16px;background:linear-gradient(180deg,#818cf8,#6366f1)"><div class="val">30</div></div>
+      <div class="label">день 3</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:28px;background:linear-gradient(180deg,#818cf8,#6366f1)"><div class="val">60</div></div>
+      <div class="label">день 5</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:50px;background:linear-gradient(180deg,#818cf8,#6366f1)"><div class="val">120</div></div>
+      <div class="label">день 7</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:90px;background:linear-gradient(180deg,#818cf8,#6366f1)"><div class="val">210</div></div>
+      <div class="label">день 10</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:140px;background:linear-gradient(180deg,#818cf8,#6366f1)"><div class="val">350</div></div>
+      <div class="label">день 14</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar" style="height:180px;background:linear-gradient(180deg,#a78bfa,#818cf8);box-shadow:0 0 20px rgba(99,102,241,0.2)"><div class="val" style="color:#a78bfa">500</div></div>
+      <div class="label"><strong>день 18</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ПРОГРЕСС ===== -->
+<div class="row-stats">
+  <div class="card">
+    <div class="card-title">🎯 Ключевые метрики</div>
+    <div class="progress-list">
+      <div class="progress-item">
+        <span class="name">Пользователи</span>
+        <div class="track"><div class="fill purple" style="width:25%"></div></div>
+        <span class="pct">500</span>
+      </div>
+      <div class="progress-item">
+        <span class="name">Услуги</span>
+        <div class="track"><div class="fill gold" style="width:60%"></div></div>
+        <span class="pct">300+</span>
+      </div>
+      <div class="progress-item">
+        <span class="name">Города</span>
+        <div class="track"><div class="fill green" style="width:30%"></div></div>
+        <span class="pct">13</span>
+      </div>
+      <div class="progress-item">
+        <span class="name">Категории</span>
+        <div class="track"><div class="fill pink" style="width:100%"></div></div>
+        <span class="pct">24/24</span>
+      </div>
+      <div class="progress-item">
+        <span class="name">Партнёры</span>
+        <div class="track"><div class="fill blue" style="width:20%"></div></div>
+        <span class="pct">100+</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌍 География</div>
+    <div style="text-align:center;padding:20px 0">
+      <div style="font-size:2rem;font-weight:800;color:#34d399">13 городов</div>
+      <div style="color:#64748b;font-size:0.85rem;margin-top:4px">в 3 странах</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ТАЙМЛАЙН ===== -->
+<div class="section">
+  <div class="title"><span>🗺 Что мы сделали за 18 дней</span></div>
+</div>
+
+<div class="card">
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="dot gold"></div>
+      <div><div class="tl-time">День 1</div><div class="tl-text">Запуск MVP — Telegram Mini App с <strong>24 категориями</strong> услуг. Первые пользователи.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="dot purple"></div>
+      <div><div class="tl-time">День 3</div><div class="tl-text"><strong>30 пользователей.</strong> Подключены первые партнёры. Пошли первые заказы.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="dot purple"></div>
+      <div><div class="tl-time">День 7</div><div class="tl-text"><strong>120 пользователей.</strong> Запуск реферальной программы. Начали подключать агентов.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="dot green"></div>
+      <div><div class="tl-time">День 10</div><div class="tl-text"><strong>210 пользователей.</strong> 6 городов активны. Начали печать визиток с QR-кодами.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="dot green"></div>
+      <div><div class="tl-time">День 14</div><div class="tl-text"><strong>350 пользователей.</strong> 10+ городов. Подключены десятки бизнесов. Старт контента в соцсетях.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="dot gold"></div>
+      <div><div class="tl-time">День 18</div><div class="tl-text"><strong style="color:#f59e0b">500 пользователей.</strong> 300 услуг. 12 городов. 24 категории. Только начало 🚀</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ИТОГО ===== -->
+<div class="quote">
+  «Мы не строим очередной агрегатор. Мы строим экосистему, в которой <strong>русскоязычный человек в любой точке мира</strong> может решить любой бытовой вопрос — без переплаты, без языкового барьера, без риска. 500 пользователей за 18 дней — это только первая тысяча шага на пути к миллионам.»
+</div>
+
+<!-- ===== ПЛАНЫ ===== -->
+<div class="card" style="margin-bottom:20px">
+  <div class="card-title">🎯 Ближайшие цели</div>
+  <ul style="list-style:none;font-size:0.82rem;color:#94a3b8;line-height:2">
+    <li>✅ 1 000 пользователей — <span style="color:#34d399">ближайшие 2 недели</span></li>
+    <li>⏳ 20+ городов — <span style="color:#f59e0b">Q3 2026</span></li>
+    <li>⏳ Интеграция платежей Stripe/Wise</li>
+    <li>⏳ Сайт AION OS — лендинг + каталог услуг</li>
+    <li>⏳ CRM для партнёров — заказы, статистика, выплаты</li>
+    <li>⏳ AI-маршрутизация заказов</li>
+  </ul>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+  <div class="card-title">🤖 Технологии — 2026</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px">
+    <div style="background:#1e293b;border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:1.8rem;margin-bottom:4px">📱</div>
+      <div style="font-size:0.78rem;font-weight:700;color:#fff">Нативное приложение</div>
+      <div style="font-size:0.63rem;color:#64748b;margin-top:2px">iOS + Android</div>
+    </div>
+    <div style="background:#1e293b;border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:1.8rem;margin-bottom:4px">🌐</div>
+      <div style="font-size:0.78rem;font-weight:700;color:#fff">Сайт + CRM</div>
+      <div style="font-size:0.63rem;color:#64748b;margin-top:2px">кабинет партнёра</div>
+    </div>
+    <div style="background:#1e293b;border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:1.8rem;margin-bottom:4px">🆔</div>
+      <div style="font-size:0.78rem;font-weight:700;color:#fff">Цифровые паспорта</div>
+      <div style="font-size:0.63rem;color:#64748b;margin-top:2px">2027</div>
+    </div>
+  </div>
+
+  <div style="margin-top:14px;background:linear-gradient(135deg,#1e293b,#0f172a);border-radius:12px;padding:16px">
+    <div style="font-size:0.82rem;font-weight:700;color:#a78bfa;margin-bottom:6px">🧠 Искусственный интеллект — 2027</div>
+    <ul style="list-style:none;font-size:0.75rem;color:#94a3b8;line-height:1.9">
+      <li>🧠 <strong style="color:#e2e8f0">AI-ассистент клиента</strong> — подбор услуги за секунду без скролла</li>
+      <li>🧠 <strong style="color:#e2e8f0">AI-маршрутизация</strong> — заказ сам находит нужного партнёра по цене/рейтингу/локации</li>
+      <li>🧠 <strong style="color:#e2e8f0">AI-модерация чатов</strong> — автоматическая поддержка агентов и партнёров 24/7</li>
+      <li>🧠 <strong style="color:#e2e8f0">AI-аналитика</strong> — прогноз спроса, динамическое ценообразование, поиск узких мест</li>
+    </ul>
+  </div>
+
+  <div style="margin-top:14px;background:linear-gradient(135deg,#1e293b,#0f172a);border-radius:12px;padding:16px">
+    <div style="font-size:0.82rem;font-weight:700;color:#f59e0b;margin-bottom:6px">🆔 Цифровые паспорта — 2027</div>
+    <div style="font-size:0.75rem;color:#94a3b8;line-height:1.7">
+      Каждый пользователь AION получит <strong style="color:#e2e8f0">цифровой паспорт</strong> — единый профиль с верификацией,
+      историей заказов, рейтингом и репутацией. Паспорт открывает доступ к закрытым категориям,
+      страховке и премиальным партнёрам. Это база для <strong style="color:#e2e8f0">цифровой идентичности</strong>
+      русскоязычного человека за рубежом.
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">📊 Цель — до конца 2026</div>
+  <div style="text-align:center;padding:12px 0">
+    <div style="font-size:2.6rem;font-weight:800;color:#f59e0b">100 000</div>
+    <div style="font-size:0.75rem;color:#64748b;margin-top:-2px">ПОЛЬЗОВАТЕЛЕЙ</div>
+    <div style="display:flex;justify-content:center;gap:20px;margin-top:12px">
+      <div><div style="font-size:1.2rem;font-weight:700;color:#818cf8">30+</div><div style="font-size:0.65rem;color:#475569">ГОРОДОВ</div></div>
+      <div><div style="font-size:1.2rem;font-weight:700;color:#34d399">10K</div><div style="font-size:0.65rem;color:#475569">ЗАКАЗОВ/МЕС</div></div>
+      <div><div style="font-size:1.2rem;font-weight:700;color:#f472b6">1 000+</div><div style="font-size:0.65rem;color:#475569">УСЛУГ</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ФУТЕР ===== -->
+<div class="footer">
+  <p>AION OS · 18 дней после старта · Июль 2026</p>
+</div>
+
+</div>
+</body>
+</html>

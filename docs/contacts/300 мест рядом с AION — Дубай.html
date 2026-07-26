@@ -1,0 +1,915 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>300 мест рядом — Дубай | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #D4A853;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --deep-blue: #0A1628;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .cover {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1a2a4a 50%, var(--deep-blue) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '∞';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.04;
+    top: -60px;
+    right: -40px;
+    font-weight: 100;
+  }
+  .cover::after {
+    content: 'AION';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.03;
+    bottom: -40px;
+    left: -20px;
+    font-weight: 900;
+    letter-spacing: 20px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .cover .subtitle {
+    font-size: 16px;
+    opacity: 0.75;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  .cover .meta {
+    margin-top: 28px;
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav a:hover { background: var(--bg-alt); color: var(--accent); }
+  .section {
+    padding: 24px 32px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--deep-blue);
+  }
+  .section-header .count {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+  }
+  .entry {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+  .entry:hover { border-color: var(--accent); }
+  .entry .num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .entry h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin: 2px 0 4px;
+  }
+  .entry .loc {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  .entry .desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .entry .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .entry .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag-price { background: #f0fdf4; color: #15803d; }
+  .tag-time { background: #fefce8; color: #a16207; }
+  .tag-info { background: #eef2ff; color: #4338ca; }
+  .tag-warn { background: #fef2f2; color: #dc2626; }
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 28px; }
+    .section { padding: 16px 14px; }
+    .entry-grid { grid-template-columns: 1fr; }
+    .nav { padding: 6px 10px; gap: 2px; }
+    .nav a { font-size: 11px; padding: 2px 6px; }
+  }
+  .section ul { list-style: none; margin: 0; padding: 0; }
+  .section li {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .section li strong { color: var(--deep-blue); }
+  .section li .meta { color: var(--text-light); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">AION City Guide</div>
+  <h1>300 мест рядом</h1>
+  <div class="subtitle">Полный гид по Дубаю — всё, что нужно русскоязычному</div>
+  <div class="meta">AION · Июнь 2026 · 14 разделов · 310 мест</div>
+</div>
+
+<nav class="nav" id="nav">
+  <a href="#sight">Достопримечательности</a>
+  <a href="#beach">Пляжи</a>
+  <a href="#islands">Острова</a>
+  <a href="#spa">СПА</a>
+  <a href="#beauty">Красота</a>
+  <a href="#markets">Рынки</a>
+  <a href="#shopping">Шопинг</a>
+  <a href="#kids">Дети</a>
+  <a href="#sport">Спорт</a>
+  <a href="#med">Медицина</a>
+  <a href="#transport">Транспорт</a>
+  <a href="#food">Рестораны</a>
+  <a href="#night">Ночная жизнь</a>
+  <a href="#services">Сервисы</a>
+</nav>
+<!-- ============================================ -->
+<!-- 1. ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
+<!-- ============================================ -->
+<div class="section" id="sight">
+<div class="section-header"><h2>Достопримечательности</h2><span class="count">25 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#1</div><h3>Бурдж-Халифа</h3><div class="loc">Downtown Dubai</div><div class="desc">Самое высокое здание в мире (828 м). Смотровые площадки At The Top (124–125 эт.) и At.mosphere (122 эт.), фонтаны.</div><div class="tags"><span class="tag tag-price">~170 AED</span><span class="tag tag-time">8:30–22:00</span><span class="tag tag-info">828 м</span></div></div>
+
+<div class="entry"><div class="num">#2</div><h3>Dubai Mall</h3><div class="loc">Downtown Dubai</div><div class="desc">Крупнейший ТЦ мира. 1200+ магазинов, океанариум, ледовый каток, кинотеатр, фонтан Dubai Fountain.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#3</div><h3>Palm Jumeirah</h3><div class="loc">Jumeirah</div><div class="desc">Искусственный остров-пальма. Atlantis, The Pointe, Nakheel Mall, пляжи, рестораны.</div><div class="tags"><span class="tag tag-info">The Palm</span></div></div>
+
+<div class="entry"><div class="num">#4</div><h3>Ain Dubai</h3><div class="loc">Bluewaters Island</div><div class="desc">Самое высокое колесо обозрения в мире (250 м). Панорама города, моря и пустыни.</div><div class="tags"><span class="tag tag-price">~130 AED</span><span class="tag tag-time">12:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#5</div><h3>Burj Al Arab</h3><div class="loc">Jumeirah</div><div class="desc">Знаменитый отель-парус, символ Дубая. Рестораны, пляж, вертолётная площадка.</div><div class="tags"><span class="tag tag-info">7* отель</span></div></div>
+
+<div class="entry"><div class="num">#6</div><h3>Madinat Jumeirah</h3><div class="loc">Jumeirah</div><div class="desc">Комплекс в арабском стиле с каналами, рынком, ресторанами. Вид на Burj Al Arab.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#7</div><h3>Dubai Marina</h3><div class="loc">Dubai Marina</div><div class="desc">Искусственный канал 3 км с небоскрёбами, яхтами, набережной, ресторанами, JBR рядом.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#8</div><h3>Музей будущего</h3><div class="loc">Sheikh Zayed Road</div><div class="desc">Футуристическое здание-бублик. Экспозиции о будущем человечества, роботы, VR.</div><div class="tags"><span class="tag tag-price">~149 AED</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#9</div><h3>Dubai Frame</h3><div class="loc">Zabeel Park</div><div class="desc">Гигантская рамка 150 м. Вид на старый и новый Дубай. Стеклянный пол.</div><div class="tags"><span class="tag tag-price">~50 AED</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#10</div><h3>La Mer</h3><div class="loc">Jumeirah 1</div><div class="desc">Пляжно-ресторанный район. Стрит-арт, кафе, магазины, водные развлечения.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#11</div><h3>City Walk</h3><div class="loc">Jumeirah</div><div class="desc">Современный квартал с архитектурой, арт-объектами, бутиками, ресторанами, Vox Cinema.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#12</div><h3>Al Fahidi Historical District</h3><div class="loc">Bur Dubai</div><div class="desc">Старый квартал с ветряными башнями, музеями, арт-галереями. Атмосфера Старого Дубая.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#13</div><h3>Dubai Creek</h3><div class="loc">Bur Dubai / Deira</div><div class="desc">Историческое сердце города. Прогулка на абра (водное такси), рынки, традиционные лодки дау.</div><div class="tags"><span class="tag tag-price">Абра ~2 AED</span></div></div>
+
+<div class="entry"><div class="num">#14</div><h3>Gold Souk</h3><div class="loc">Deira</div><div class="desc">Золотой рынок: 300+ магазинов золота и серебра. Цены по весу, торг уместен.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#15</div><h3>Spice Souk</h3><div class="loc">Deira</div><div class="desc">Рынок специй. Шафран, кардамон, ладан, сушёные лимоны. Восточная атмосфера.</div><div class="tags"><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#16</div><h3>Dubai Miracle Garden</h3><div class="loc">Al Barsha</div><div class="desc">Крупнейший цветочный сад мира. 150 млн цветов, фигуры, арки. Сезон: ноябрь–апрель.</div><div class="tags"><span class="tag tag-price">~70 AED</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#17</div><h3>Global Village</h3><div class="loc">Sheikh Mohammed Bin Zayed Rd</div><div class="desc">Парк развлечений и шопинга. Павильоны 80+ стран, аттракционы, фуд-корт. Сезонно.</div><div class="tags"><span class="tag tag-price">~25 AED</span><span class="tag tag-time">16:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#18</div><h3>Dubai Aquarium</h3><div class="loc">Dubai Mall</div><div class="desc">Огромный аквариум 10 млн литров. Туннель 48 м, акулы, скаты. Кормление рыб.</div><div class="tags"><span class="tag tag-price">~120 AED</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#19</div><h3>Dubai Opera</h3><div class="loc">Downtown Dubai</div><div class="desc">Главный театр в форме дау (традиционной лодки). Оперы, балет, концерты мировых звёзд.</div><div class="tags"><span class="tag tag-price">От 200 AED</span></div></div>
+
+<div class="entry"><div class="num">#20</div><h3>Desert Safari</h3><div class="loc">Dubai Desert Conservation Reserve</div><div class="desc">Сафари по пустыне: дюны, квадроциклы, бедуинский ужин, звёзды.</div><div class="tags"><span class="tag tag-price">~250 AED</span></div></div>
+
+<div class="entry"><div class="num">#21</div><h3>The Pointe</h3><div class="loc">Palm Jumeirah</div><div class="desc">Набережная с фонтанами, ресторанами, видом на Atlantis. Бесплатно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#22</div><h3>Alserkal Avenue</h3><div class="loc">Al Quoz</div><div class="desc">Арт-квартал: галереи, студии, кафе, инсталляции. Центр современного искусства.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#23</div><h3>Hatta</h3><div class="loc">~130 км от Дубая</div><div class="desc">Горный анклав. Озеро Hatta, каякинг, горный велосипед, хатки, музей.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#24</div><h3>Dubai Garden Glow</h3><div class="loc">Zabeel Park</div><div class="desc">Парк светящихся фигур. Динозавры,动漫, инсталляции. Ночное шоу.</div><div class="tags"><span class="tag tag-price">~65 AED</span><span class="tag tag-time">17:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#25</div><h3>Ski Dubai</h3><div class="loc">Mall of the Emirates</div><div class="desc">Горнолыжный комплекс в ТЦ. Настоящий снег, трассы, пингвины.</div><div class="tags"><span class="tag tag-price">~200 AED</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 2. ПЛЯЖИ -->
+<!-- ============================================ -->
+<div class="section" id="beach">
+<div class="section-header"><h2>Пляжи</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#26</div><h3>JBR Beach</h3><div class="loc">Jumeirah Beach Residence</div><div class="desc">Самый популярный пляж с променадом The Walk. Шезлонги, души, кафе, прокат.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#27</div><h3>Kite Beach</h3><div class="loc">Umm Suqeim</div><div class="desc">Рай для кайтсёрфинга. Фуд-траки, волейбол, вид на Burj Al Arab.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#28</div><h3>Sunset Beach</h3><div class="loc">Umm Suqeim</div><div class="desc">Культовый пляж с видом на Burj Al Arab. Лучшие закаты.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#29</div><h3>La Mer Beach</h3><div class="loc">Jumeirah 1</div><div class="desc">Модный пляж с ресторанами, шезлонгами, водными видами спорта.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">7:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#30</div><h3>Black Palace Beach</h3><div class="loc">Al Sufouh</div><div class="desc">«Секретный» пляж. Мало людей, вид на Atlantis. Вход через пустырь.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#31</div><h3>Al Mamzar Beach Park</h3><div class="loc">Deira</div><div class="desc">Парк с 5 пляжами, бассейнами, барбекю. Идеально для семей.</div><div class="tags"><span class="tag tag-price">~30 AED</span><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#32</div><h3>Jumeirah Open Beach</h3><div class="loc">Jumeirah</div><div class="desc">Общественный пляж с душами, раздевалками, детской площадкой.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#33</div><h3>Mercato Beach</h3><div class="loc">Jumeirah</div><div class="desc">Небольшой ухоженный пляж с флагом ОАЭ. Души, теневые зоны.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#34</div><h3>Al Sufouh Beach</h3><div class="loc">Sufouh</div><div class="desc">Спокойный пляж без высоток. Песчаные дюны, чистое море, малолюдно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#35</div><h3>Nikki Beach Dubai</h3><div class="loc">Pearl Jumeirah</div><div class="desc">Премиальный пляжный клуб. Белые шезлонги, ресторан, коктейли.</div><div class="tags"><span class="tag tag-price">~100–300 AED</span></div></div>
+
+<div class="entry"><div class="num">#36</div><h3>Drift Beach</h3><div class="loc">One&Only Royal Mirage</div><div class="desc">Эксклюзивный пляжный клуб. Официанты, полотенца, хаммам.</div><div class="tags"><span class="tag tag-price">~150 AED</span></div></div>
+
+<div class="entry"><div class="num">#37</div><h3>Azure Beach (Rixos)</h3><div class="loc">JBR</div><div class="desc">Пляжный клуб 5* с бассейном, видом на Ain Dubai.</div><div class="tags"><span class="tag tag-price">~100 AED</span></div></div>
+
+<div class="entry"><div class="num">#38</div><h3>White Beach</h3><div class="loc">Atlantis, The Palm</div><div class="desc">Премиальный пляж. Бассейн-инфинити, коктейли, музыка.</div><div class="tags"><span class="tag tag-price">От 200 AED</span></div></div>
+
+<div class="entry"><div class="num">#39</div><h3>Barasti Beach</h3><div class="loc">Dubai Marina</div><div class="desc">Легендарный пляжный бар. Шезлонги бесплатно с заказом. Закаты.</div><div class="tags"><span class="tag tag-info">Пляжный бар</span></div></div>
+
+<div class="entry"><div class="num">#40</div><h3>Jumeirah Bay Island</h3><div class="loc">Jumeirah Bay</div><div class="desc">Элитный пляж с песком с Сардинии. Доступ через Bulgari Resort.</div><div class="tags"><span class="tag tag-info">Bulgari Resort</span></div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 3. ОСТРОВА И ВОДНЫЕ РАЗВЛЕЧЕНИЯ -->
+<!-- ============================================ -->
+<div class="section" id="islands">
+<div class="section-header"><h2>Острова и водные развлечения</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#41</div><h3>Palm Jumeirah</h3><div class="loc">Jumeirah</div><div class="desc">Искусственный остров-пальма. Atlantis, The Pointe, Nakheel Mall, пляжи, яхты.</div></div>
+
+<div class="entry"><div class="num">#42</div><h3>Bluewaters Island</h3><div class="loc">JBR</div><div class="desc">Остров с Ain Dubai, ресторанами, отелями, магазинами.</div></div>
+
+<div class="entry"><div class="num">#43</div><h3>The World Islands</h3><div class="loc">~4 км от берега</div><div class="desc">300 островов в карте мира. Доступ на лодке или вертолёте.</div></div>
+
+<div class="entry"><div class="num">#44</div><h3>Aquaventure (Atlantis)</h3><div class="loc">Atlantis, The Palm</div><div class="desc">Огромный аквапарк. Ленивая река, горки с акулами, пляж.</div><div class="tags"><span class="tag tag-price">~310 AED</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#45</div><h3>Wild Wadi Waterpark</h3><div class="loc">Jumeirah</div><div class="desc">Аквапарк с 30 аттракционами, волновым бассейном, видом на Burj Al Arab.</div><div class="tags"><span class="tag tag-price">~295 AED</span></div></div>
+
+<div class="entry"><div class="num">#46</div><h3>Яхта Dubai Marina</h3><div class="loc">Dubai Marina</div><div class="desc">Аренда яхт, водное такси, прогулки вдоль берега. От 300 AED/час.</div><div class="tags"><span class="tag tag-price">От 300 AED</span></div></div>
+
+<div class="entry"><div class="num">#47</div><h3>Seaplane Seawings</h3><div class="loc">Dubai Creek</div><div class="desc">Обзорный полёт на гидросамолёте. 45 мин над Пальмой и городом.</div><div class="tags"><span class="tag tag-price">~800 AED</span></div></div>
+
+<div class="entry"><div class="num">#48</div><h3>Парасейлинг JBR</h3><div class="loc">JBR Beach</div><div class="desc">Полёт над морем на парашюте за катером. Высота 80 м.</div><div class="tags"><span class="tag tag-price">~250 AED</span></div></div>
+
+<div class="entry"><div class="num">#49</div><h3>Дайвинг в Дубае</h3><div class="loc">Palm / The World</div><div class="desc">Дайв-центры Al Boom. Кораллы, затонувшие корабли, PADI.</div><div class="tags"><span class="tag tag-price">От 400 AED</span></div></div>
+
+<div class="entry"><div class="num">#50</div><h3>Каякинг Hatta</h3><div class="loc">Hatta Dam</div><div class="desc">Каякинг на горном озере. Бирюзовая вода, горы, прокат 60 AED.</div><div class="tags"><span class="tag tag-price">От 60 AED/час</span></div></div>
+
+<div class="entry"><div class="num">#51</div><h3>Pearl Jumeirah</h3><div class="loc">Jumeirah</div><div class="desc">Остров-жемчужина. Элитная застройка, пляжи, рестораны.</div></div>
+
+<div class="entry"><div class="num">#52</div><h3>Водное такси (Abra)</h3><div class="loc">Dubai Creek / Marina</div><div class="desc">Традиционное водное такси. Маршруты по Creek и Марине. Всего 2 AED.</div><div class="tags"><span class="tag tag-price">~2 AED</span></div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 4. СПА И ОЗДОРОВЛЕНИЕ -->
+<!-- ============================================ -->
+<div class="section" id="spa">
+<div class="section-header"><h2>СПА и оздоровление</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#53</div><h3>Talise Ottoman Spa</h3><div class="loc">Jumeirah Zabeel Saray</div><div class="desc">Крупнейший турецкий хамам в Дубае. Мрамор, сауны, бассейны, массаж.</div><div class="tags"><span class="tag tag-price">От 400 AED</span></div></div>
+
+<div class="entry"><div class="num">#54</div><h3>One&Only Spa</h3><div class="loc">One&Only Royal Mirage</div><div class="desc">Премиальный спа. Сады, бассейны, восточные ритуалы.</div><div class="tags"><span class="tag tag-price">От 500 AED</span></div></div>
+
+<div class="entry"><div class="num">#55</div><h3>Anantara Spa</h3><div class="loc">Anantara The Palm</div><div class="desc">Тайский массаж, хаммам, криотерапия, флоатинг с видом на море.</div><div class="tags"><span class="tag tag-price">От 350 AED</span></div></div>
+
+<div class="entry"><div class="num">#56</div><h3>ESPA at Atlantis</h3><div class="loc">Atlantis, The Palm</div><div class="desc">12 кабинетов, акватерапия, грязи, водоросли. Премиум.</div><div class="tags"><span class="tag tag-price">От 450 AED</span></div></div>
+
+<div class="entry"><div class="num">#57</div><h3>Spa at Address Beach</h3><div class="loc">Address Beach Resort JBR</div><div class="desc">Панорамный на 68 эт. Вид на море и Ain Dubai.</div><div class="tags"><span class="tag tag-price">От 400 AED</span></div></div>
+
+<div class="entry"><div class="num">#58</div><h3>Cleopatra Spa</h3><div class="loc">Dubai</div><div class="desc">Русскоязычный спа-салон. Массаж, уходы, обёртывания. Хорошие цены.</div><div class="tags"><span class="tag tag-price">От 200 AED</span></div></div>
+
+<div class="entry"><div class="num">#59</div><h3>Royal Spa Burj Al Arab</h3><div class="loc">Burj Al Arab</div><div class="desc">Золотые процедуры, премиум-косметика, вид на море.</div><div class="tags"><span class="tag tag-price">От 1000 AED</span></div></div>
+
+<div class="entry"><div class="num">#60</div><h3>Thai Sense Spa</h3><div class="loc">JLT / Barsha</div><div class="desc">Традиционный тайский массаж. Травяные компрессы, стоун.</div><div class="tags"><span class="tag tag-price">От 250 AED</span></div></div>
+
+<div class="entry"><div class="num">#61</div><h3>So Spa (SO/ Uptown)</h3><div class="loc">SO/ Uptown Dubai</div><div class="desc">Хаммам, инфракрасная сауна, ледяной фонтан.</div><div class="tags"><span class="tag tag-price">От 350 AED</span></div></div>
+
+<div class="entry"><div class="num">#62</div><h3>Palazzo Versace Spa</h3><div class="loc">Palazzo Versace Dubai</div><div class="desc">Процедуры Versace, мрамор, золото. Итальянский стиль.</div><div class="tags"><span class="tag tag-price">От 500 AED</span></div></div>
+
+<div class="entry"><div class="num">#63</div><h3>Park Hyatt Spa</h3><div class="loc">Dubai Creek</div><div class="desc">СПА с видом на Creek. Хаммам, сауна, джакузи.</div><div class="tags"><span class="tag tag-price">От 350 AED</span></div></div>
+
+<div class="entry"><div class="num">#64</div><h3>Emirates Spa</h3><div class="loc">Emirates Towers</div><div class="desc">Тренажёрный зал, бассейн, сауна, массаж.</div><div class="tags"><span class="tag tag-price">От 300 AED</span></div></div>
+
+<div class="entry"><div class="num">#65</div><h3>Iridium Spa</h3><div class="loc">Dubai</div><div class="desc">Йога-терапия, медитация, гонги. Холистический подход.</div><div class="tags"><span class="tag tag-price">От 200 AED</span></div></div>
+
+<div class="entry"><div class="num">#66</div><h3>Massage Centre Dubai</h3><div class="loc">Al Barsha / Marina</div><div class="desc">Тайский, шведский, спортивный массаж. Доступные цены.</div><div class="tags"><span class="tag tag-price">От 150 AED/час</span></div></div>
+
+<div class="entry"><div class="num">#67</div><h3>The Spa at Address Downtown</h3><div class="loc">Address Downtown</div><div class="desc">СПА с видом на Бурдж-Халифа. Хаммам, джакузи, премиум.</div><div class="tags"><span class="tag tag-price">От 400 AED</span></div></div>
+
+</div></div>
+<!-- ============================================ -->
+<!-- 5. САЛОНЫ КРАСОТЫ -->
+<!-- ============================================ -->
+<div class="section" id="beauty">
+<div class="section-header"><h2>Салоны красоты</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#68</div><h3>Nail Studio Dubai</h3><div class="loc">Marina / JBR</div><div class="desc">Маникюр, педикюр, гель-лак. Русскоязычные мастера.</div><div class="tags"><span class="tag tag-price">Маникюр от 150 AED</span></div></div>
+
+<div class="entry"><div class="num">#69</div><h3>Beauty Palace</h3><div class="loc">Al Barsha</div><div class="desc">Салон красоты для русскоязычных. Стрижки, окрашивание, укладки.</div><div class="tags"><span class="tag tag-price">Стрижка от 200 AED</span></div></div>
+
+<div class="entry"><div class="num">#70</div><h3>The Nail Spa</h3><div class="loc">Dubai Mall / JBR</div><div class="desc">Люксовый маникюр и педикюр. Спа-уходы, дизайн.</div><div class="tags"><span class="tag tag-price">От 250 AED</span></div></div>
+
+<div class="entry"><div class="num">#71</div><h3>M Salon Dubai</h3><div class="loc">Sheikh Zayed Road</div><div class="desc">Стрижки, окрашивание, кератин, ботокс для волос.</div><div class="tags"><span class="tag tag-price">Стрижка от 180 AED</span></div></div>
+
+<div class="entry"><div class="num">#72</div><h3>Chaps & Co</h3><div class="loc">Dubai Mall / JLT</div><div class="desc">Мужская парикмахерская. Бритьё опасной бритвой, стрижки.</div><div class="tags"><span class="tag tag-price">Мужская стрижка от 150 AED</span></div></div>
+
+<div class="entry"><div class="num">#73</div><h3>Lush Beauty Lounge</h3><div class="loc">JLT</div><div class="desc">Ресницы, брови, маникюр. Ламинирование, наращивание.</div><div class="tags"><span class="tag tag-price">Брови от 120 AED</span></div></div>
+
+<div class="entry"><div class="num">#74</div><h3>Misses Beauty Salon</h3><div class="loc">Deira</div><div class="desc">Салон для женщин. Стрижки, уходы, макияж. Доступно.</div><div class="tags"><span class="tag tag-price">Стрижка от 100 AED</span></div></div>
+
+<div class="entry"><div class="num">#75</div><h3>Brow Bar Dubai</h3><div class="loc">City Walk / Dubai Mall</div><div class="desc">Специалисты по бровям. Коррекция, окрашивание, ламинирование.</div><div class="tags"><span class="tag tag-price">От 150 AED</span></div></div>
+
+<div class="entry"><div class="num">#76</div><h3>Forever Nails</h3><div class="loc">Al Barsha</div><div class="desc">Nail-студия с русскими мастерами. Широкий выбор дизайнов.</div><div class="tags"><span class="tag tag-price">Маникюр от 120 AED</span></div></div>
+
+<div class="entry"><div class="num">#77</div><h3>Russian Beauty Salon</h3><div class="loc">Dubai</div><div class="desc">Русскоязычный салон с полным спектром услуг. Стрижки, окрашивание.</div><div class="tags"><span class="tag tag-price">Стрижка от 200 AED</span></div></div>
+
+<div class="entry"><div class="num">#78</div><h3>Glamour Beauty Center</h3><div class="loc">Marina</div><div class="desc">Комплексный салон. Маникюр, педикюр, стрижки, уход за лицом.</div><div class="tags"><span class="tag tag-price">От 150 AED</span></div></div>
+
+<div class="entry"><div class="num">#79</div><h3>Luxury Lash Studio</h3><div class="loc">JLT</div><div class="desc">Наращивание ресниц. Классика, 2D/3D, ламинирование.</div><div class="tags"><span class="tag tag-price">От 250 AED</span></div></div>
+
+<div class="entry"><div class="num">#80</div><h3>Nailicious</h3><div class="loc">Mirdif / Dubai</div><div class="desc">Яркий дизайн ногтей, гель-лак, наращивание.</div><div class="tags"><span class="tag tag-price">Маникюр от 130 AED</span></div></div>
+
+<div class="entry"><div class="num">#81</div><h3>Salon Deauville</h3><div class="loc">Jumeirah</div><div class="desc">Премиальный салон. Стрижки, окрашивание, спа-уходы.</div><div class="tags"><span class="tag tag-price">От 300 AED</span></div></div>
+
+<div class="entry"><div class="num">#82</div><h3>The Barber's Shop</h3><div class="loc">Dubai Marina</div><div class="desc">Мужской барбершоп. Борода, стрижка, горячее бритьё.</div><div class="tags"><span class="tag tag-price">Стрижка от 150 AED</span></div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 6. РЫНКИ -->
+<!-- ============================================ -->
+<div class="section" id="markets">
+<div class="section-header"><h2>Рынки</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#83</div><h3>Gold Souk</h3><div class="loc">Deira</div><div class="desc">Знаменитый золотой рынок. 300+ магазинов, цены по весу, торг.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#84</div><h3>Spice Souk</h3><div class="loc">Deira</div><div class="desc">Рынок специй. Шафран, кардамон, ладан, сухофрукты, орехи.</div><div class="tags"><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#85</div><h3>Textile Souk</h3><div class="loc">Bur Dubai</div><div class="desc">Рынок тканей. Шёлк, хлопок, кашемир, шерсть. Пошив на заказ.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#86</div><h3>Perfume Souk</h3><div class="loc">Deira</div><div class="desc">Арабские парфюмы, масла, уд. Создание собственного аромата.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#87</div><h3>Naif Souk</h3><div class="loc">Deira</div><div class="desc">Народный рынок. Одежда, обувь, электроника, парфюм. Цены ниже.</div><div class="tags"><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#88</div><h3>Waterfront Market</h3><div class="loc">Deira</div><div class="desc">Новый рыбный рынок. Свежая рыба, морепродукты, мясо, фрукты.</div><div class="tags"><span class="tag tag-time">6:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#89</div><h3>Ripe Market</h3><div class="loc">Al Barsha / Dubai Police Academy</div><div class="desc">Фермерский рынок по выходным. Органика, ремёсла, фуд-траки.</div><div class="tags"><span class="tag tag-time">9:00–17:00 (сб-вс)</span></div></div>
+
+<div class="entry"><div class="num">#90</div><h3>Friday Market</h3><div class="loc">Al Aweer</div><div class="desc">Блошиный рынок. Подержанные вещи, антиквариат, растения, ковры.</div><div class="tags"><span class="tag tag-time">Пт 6:00–12:00</span></div></div>
+
+<div class="entry"><div class="num">#91</div><h3>Souk Al Bahar</h3><div class="loc">Downtown Dubai</div><div class="desc">Рынок у Dubai Mall. Рестораны, сувениры, вид на фонтан.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#92</div><h3>Al Seef Souk</h3><div class="loc">Dubai Creek</div><div class="desc">Современный рынок в стиле старого города. Сувениры, кафе.</div><div class="tags"><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#93</div><h3>Крытый рынок Al Karama</h3><div class="loc">Al Karama</div><div class="desc">Бюджетный шопинг. Одежда, обувь, сумки, часы. Торг обязателен.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#94</div><h3>Сук Аль Марраши (Madinat)</h3><div class="loc">Madinat Jumeirah</div><div class="desc">Традиционный рынок в комплексе Madinat. Ковры, лампы, керамика.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 7. ТОРГОВЫЕ ЦЕНТРЫ И ШОПИНГ -->
+<!-- ============================================ -->
+<div class="section" id="shopping">
+<div class="section-header"><h2>Торговые центры и шопинг</h2><span class="count">20 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#95</div><h3>Dubai Mall</h3><div class="loc">Downtown Dubai</div><div class="desc">Крупнейший ТЦ мира. 1200+ брендов, океанариум, ледовый каток, фонтаны.</div><div class="tags"><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#96</div><h3>Mall of the Emirates</h3><div class="loc">Al Barsha</div><div class="desc">Второй по величине. Ski Dubai, Vox Cinema, 600+ магазинов.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#97</div><h3>Ibn Battuta Mall</h3><div class="loc">Sheikh Zayed Road</div><div class="desc">ТЦ в стиле путешествий. 6 тематических зон, 300+ магазинов.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#98</div><h3>Dubai Festival City</h3><div class="loc">Garhoud</div><div class="desc">ТЦ + набережная. IKEA, шоу фонтанов, рестораны.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#99</div><h3>City Centre Deira</h3><div class="loc">Deira</div><div class="desc">Крупный ТЦ в старом районе. 300+ магазинов, кинотеатр.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#100</div><h3>City Centre Mirdif</h3><div class="loc">Mirdif</div><div class="desc">Семейный ТЦ с магазинами, кафе, кинотеатром.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#101</div><h3>Nakheel Mall</h3><div class="loc">Palm Jumeirah</div><div class="desc">Главный ТЦ на Пальме. Вид на Atlantis, рестораны на крыше.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#102</div><h3>The Beach (JBR)</h3><div class="loc">JBR</div><div class="desc">Открытый ТЦ у пляжа. Магазины, кафе, аттракционы.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#103</div><h3>Carrefour</h3><div class="loc">По всему городу</div><div class="desc">Французский гипермаркет. Продукты, техника, одежда. Лучшие цены.</div><div class="tags"><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#104</div><h3>Spinneys</h3><div class="loc">По всему городу</div><div class="desc">Премиальный супермаркет. Европейские продукты, мясо, сыры.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#105</div><h3>Waitrose</h3><div class="loc">Dubai Mall / Jumeirah</div><div class="desc">Британская сеть премиум. Импортные продукты, органические товары.</div><div class="tags"><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#106</div><h3>Union Coop</h3><div class="loc">По всему городу</div><div class="desc">Местная сеть супермаркетов. Хорошие цены на продукты.</div><div class="tags"><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#107</div><h3>Emirates Mall</h3><div class="loc">Deira</div><div class="desc">Бюджетный ТЦ в Deira. Одежда, обувь, электроника.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#108</div><h3>Market Al Barsha</h3><div class="loc">Al Barsha</div><div class="desc">Районный ТЦ. Магазины, кафе, аптеки.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#109</div><h3>Marina Mall</h3><div class="loc">Dubai Marina</div><div class="desc">ТЦ в Марине с видом на яхты. Магазины, рестораны.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#110</div><h3>Galleria Mall</h3><div class="loc">Al Wasl</div><div class="desc">Небольшой ТЦ с бутиками, кафе.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#111</div><h3>Al Ghurair Centre</h3><div class="loc">Deira</div><div class="desc">Старейший ТЦ Дубая. Более 200 магазинов, кинотеатр.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#112</div><h3>The Outlet Village</h3><div class="loc">Jebel Ali</div><div class="desc">Аутлет-молл со скидками до 90%. Известные бренды.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#113</div><h3>Dubai Hills Mall</h3><div class="loc">Dubai Hills</div><div class="desc">Новый ТЦ премиум. Рестораны, кинотеатр, зелёная зона.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#114</div><h3>Аутлет Dubai South</h3><div class="loc">Dubai South</div><div class="desc">Аутлет-центр у Expo City. Бренды со скидками.</div><div class="tags"><span class="tag tag-time">10:00–21:00</span></div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 8. ДЕТСКИЕ ЦЕНТРЫ И РАЗВЛЕЧЕНИЯ -->
+<!-- ============================================ -->
+<div class="section" id="kids">
+<div class="section-header"><h2>Детские центры и развлечения</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#115</div><h3>KidZania Dubai</h3><div class="loc">Dubai Mall</div><div class="desc">Город профессий для детей 4–14 лет. 60+ профессий, форма, обучение.</div><div class="tags"><span class="tag tag-price">~170 AED</span></div></div>
+
+<div class="entry"><div class="num">#116</div><h3>Aquaventure Waterpark</h3><div class="loc">Atlantis, The Palm</div><div class="desc">Аквапарк с детскими горками, ленивой рекой, пляжем.</div><div class="tags"><span class="tag tag-price">~310 AED</span></div></div>
+
+<div class="entry"><div class="num">#117</div><h3>Little Explorers Dubai Mall</h3><div class="loc">Dubai Mall</div><div class="desc">Бесплатная детская зона. Игровой комплекс, лабиринты.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#118</div><h3>Bounce Dubai</h3><div class="loc">Al Quoz / Mirdif</div><div class="desc">Парк батутов. Поролоновые ямы, доджбол, ниндзя-трасса.</div><div class="tags"><span class="tag tag-price">От 100 AED</span></div></div>
+
+<div class="entry"><div class="num">#119</div><h3>Ski Dubai</h3><div class="loc">Mall of the Emirates</div><div class="desc">Настоящий снег, тюбинг, лыжи, сноуборд, пингвины.</div><div class="tags"><span class="tag tag-price">~200 AED</span></div></div>
+
+<div class="entry"><div class="num">#120</div><h3>VR Park Dubai</h3><div class="loc">Dubai Mall</div><div class="desc">Парк виртуальной реальности. Аттракционы, симуляторы, игры.</div><div class="tags"><span class="tag tag-price">От 120 AED</span></div></div>
+
+<div class="entry"><div class="num">#121</div><h3>Dubai Ice Rink</h3><div class="loc">Dubai Mall</div><div class="desc">Ледовый каток олимпийского размера. Прокат коньков.</div><div class="tags"><span class="tag tag-price">~70 AED</span></div></div>
+
+<div class="entry"><div class="num">#122</div><h3>Laguna Waterpark</h3><div class="loc">La Mer</div><div class="desc">Аквапарк у моря с детскими зонами, горками.</div><div class="tags"><span class="tag tag-price">~150 AED</span></div></div>
+
+<div class="entry"><div class="num">#123</div><h3>Play DXB</h3><div class="loc">City Centre Mirdif</div><div class="desc">Игровой центр. Лабиринты, горки, мягкие зоны для малышей.</div><div class="tags"><span class="tag tag-price">От 80 AED</span></div></div>
+
+<div class="entry"><div class="num">#124</div><h3>Star Wars Galaxy's Edge</h3><div class="loc">Dubai Mall (VR)</div><div class="desc">VR-аттракцион по Звёздным Войнам. 4D-симулятор.</div><div class="tags"><span class="tag tag-price">~80 AED</span></div></div>
+
+<div class="entry"><div class="num">#125</div><h3>Green Planet Dubai</h3><div class="loc">City Walk</div><div class="desc">Тропический лес под куполом. Ленивцы, обезьяны, бабочки.</div><div class="tags"><span class="tag tag-price">~99 AED</span></div></div>
+
+<div class="entry"><div class="num">#126</div><h3>Bowling Dubai</h3><div class="loc">Dubai Mall / Mall of Emirates</div><div class="desc">Боулинг-центры. Прокат обуви, кафе.</div><div class="tags"><span class="tag tag-price">От 80 AED/игра</span></div></div>
+
+<div class="entry"><div class="num">#127</div><h3>Cheeky Monkeys</h3><div class="loc">Umm Suqeim</div><div class="desc">Игровой центр для детей от 0 до 10 лет. Кафе, зона для малышей.</div><div class="tags"><span class="tag tag-price">От 70 AED</span></div></div>
+
+<div class="entry"><div class="num">#128</div><h3>Flying Cup (карусель)</h3><div class="loc">Dubai Mall</div><div class="desc">Карусель на 2 этаже Dubai Mall. Красивая подсветка.</div><div class="tags"><span class="tag tag-price">~20 AED</span></div></div>
+
+<div class="entry"><div class="num">#129</div><h3>Miniature Train JBR</h3><div class="loc">JBR The Walk</div><div class="desc">Маленький поезд вдоль набережной JBR. Дети в восторге.</div><div class="tags"><span class="tag tag-price">~30 AED</span></div></div>
+
+</div></div>
+<!-- ============================================ -->
+<!-- 9. СПОРТ И АКТИВНОСТИ -->
+<!-- ============================================ -->
+<div class="section" id="sport">
+<div class="section-header"><h2>Спорт и активности</h2><span class="count">20 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#130</div><h3>Пустынное сафари</h3><div class="loc">Dubai Desert Reserve</div><div class="desc">Дюны, квадроциклы, сэндбординг, ужин под звёздами.</div><div class="tags"><span class="tag tag-price">~250 AED</span></div></div>
+
+<div class="entry"><div class="num">#131</div><h3>Гольф в Дубае</h3><div class="loc">Emirates GC / Address Montgomerie</div><div class="desc">Поля мирового класса. С ночной подсветкой, видом на город.</div><div class="tags"><span class="tag tag-price">От 300 AED</span></div></div>
+
+<div class="entry"><div class="num">#132</div><h3>Дайвинг</h3><div class="loc">Palm Jumeirah</div><div class="desc">Дайв-сафари, кораллы, акулы. PADI-сертификация.</div><div class="tags"><span class="tag tag-price">От 400 AED</span></div></div>
+
+<div class="entry"><div class="num">#133</div><h3>Кайтсёрфинг Kite Beach</h3><div class="loc">Kite Beach</div><div class="desc">Школы, прокат, ветер 15–25 узлов. Сезон: ноябрь–март.</div><div class="tags"><span class="tag tag-price">Урок от 200 AED</span></div></div>
+
+<div class="entry"><div class="num">#134</div><h3>Велотрек Al Qudra</h3><div class="loc">Al Qudra</div><div class="desc">Велошоссе 90 км по пустыне. Прокат велосипедов.</div><div class="tags"><span class="tag tag-price">Прокат от 100 AED</span></div></div>
+
+<div class="entry"><div class="num">#135</div><h3>Треккинг в Hatta</h3><div class="loc">Hatta Mountains</div><div class="desc">Пешие маршруты, горы, плотина. 5 маршрутов разной сложности.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#136</div><h3>Теннис в Дубае</h3><div class="loc">Несколько клубов</div><div class="desc">Корты с покрытием Hard. Прокат ракеток, тренер.</div><div class="tags"><span class="tag tag-price">От 100 AED/час</span></div></div>
+
+<div class="entry"><div class="num">#137</div><h3>Фитнес-клубы</h3><div class="loc">По всему городу</div><div class="desc">Fitness First, Warehouse Gym, 24 Hour Fitness. Дневные абонементы.</div><div class="tags"><span class="tag tag-price">Дневной от 50 AED</span></div></div>
+
+<div class="entry"><div class="num">#138</div><h3>Параглайдинг</h3><div class="loc">Dubai Marina</div><div class="desc">Тандем-полёты с видом на город и море.</div><div class="tags"><span class="tag tag-price">~500 AED</span></div></div>
+
+<div class="entry"><div class="num">#139</div><h3>Картинг Dubai</h3><div class="loc">Dubai Kartdrome</div><div class="desc">Трасса под крышей. Карты от 60 км/ч. Гонки для компаний.</div><div class="tags"><span class="tag tag-price">От 120 AED</span></div></div>
+
+<div class="entry"><div class="num">#140</div><h3>Скалолазание</h3><div class="loc">The Cave (Al Quoz)</div><div class="desc">Скалодром с трассами разных уровней. Дети и взрослые.</div><div class="tags"><span class="tag tag-price">От 80 AED</span></div></div>
+
+<div class="entry"><div class="num">#141</div><h3>Конный клуб</h3><div class="loc">Dubai Equestrian Club</div><div class="desc">Верховая езда в пустыне. Для начинающих и опытных.</div><div class="tags"><span class="tag tag-price">От 200 AED/час</span></div></div>
+
+<div class="entry"><div class="num">#142</div><h3>Strike Bowling</h3><div class="loc">Dubai Mall</div><div class="desc">Современный боулинг. Прокат обуви, бар, кафе.</div><div class="tags"><span class="tag tag-price">От 80 AED/игра</span></div></div>
+
+<div class="entry"><div class="num">#143</div><h3>Пейнтбол</h3><div class="loc">Al Quoz / Dubai</div><div class="desc">Поле с укрытиями. Снаряжение включено. От 8 человек.</div><div class="tags"><span class="tag tag-price">От 150 AED</span></div></div>
+
+<div class="entry"><div class="num">#144</div><h3>SUP (сапсёрфинг)</h3><div class="loc">Kite Beach, La Mer</div><div class="desc">Стоячий сёрфинг с веслом. Прокат, уроки.</div><div class="tags"><span class="tag tag-price">От 80 AED/час</span></div></div>
+
+<div class="entry"><div class="num">#145</div><h3>Футбол в парке</h3><div class="loc">Al Barsha / Zabeel Park</div><div class="desc">Крытые и открытые поля. Сборные команды экспатов.</div><div class="tags"><span class="tag tag-price">От 100 AED/час</span></div></div>
+
+<div class="entry"><div class="num">#146</div><h3>Zorb Ball Dubai</h3><div class="loc">Dubai Parks</div><div class="desc">Катание в прозрачном шаре. По воде и траве.</div><div class="tags"><span class="tag tag-price">~80 AED</span></div></div>
+
+<div class="entry"><div class="num">#147</div><h3>Стрельба (Shooting)</h3><div class="loc">Al Ain / Dubai</div><div class="desc">Тиры с пистолетами, винтовками. Инструктор.</div><div class="tags"><span class="tag tag-price">От 300 AED</span></div></div>
+
+<div class="entry"><div class="num">#148</div><h3>Bounce Dubai</h3><div class="loc">Al Quoz</div><div class="desc">Парк батутов. Доджбол, слэм-данк, фристайл.</div><div class="tags"><span class="tag tag-price">От 100 AED</span></div></div>
+
+<div class="entry"><div class="num">#149</div><h3>Motorsports Dubai</h3><div class="loc">Dubai Autodrome</div><div class="desc">Гоночная трасса. Drifting, track day, инструктор.</div><div class="tags"><span class="tag tag-price">От 200 AED</span></div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 10. МЕДИЦИНА И КЛИНИКИ -->
+<!-- ============================================ -->
+<div class="section" id="med">
+<div class="section-header"><h2>Медицина и клиники</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#150</div><h3>Mediclinic City Hospital</h3><div class="loc">Dubai Mall / Jumeirah</div><div class="desc">Международная клиника. Многопрофильная, скорая помощь, русскоговорящие врачи.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#151</div><h3>Emirates Hospital</h3><div class="loc">Jumeirah</div><div class="desc">Частная больница 4*. Международные стандарты, русский персонал.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#152</div><h3>American Hospital Dubai</h3><div class="loc">Al Barsha</div><div class="desc">Премиум-клиника. Все направления, МРТ, КТ, лаборатория.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#153</div><h3>Saudi German Hospital</h3><div class="loc">Al Barsha</div><div class="desc">Крупная многопрофильная больница. Особое отделение для женщин.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#154</div><h3>Aster Hospital</h3><div class="loc">Al Qusais / Mirdif</div><div class="desc">Сеть клиник. Доступные цены, лаборатории, аптека.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#155</div><h3>Zulekha Hospital</h3><div class="loc">Al Nahda</div><div class="desc">Многопрофильная. Хирургия, роддом, стоматология.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#156</div><h3>Russian Medical Center Dubai</h3><div class="loc">Dubai</div><div class="desc">Русскоязычные врачи. Терапия, педиатрия, гинекология.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#157</div><h3>Клиника RUS-DOC</h3><div class="loc">Al Barsha</div><div class="desc">Русскоязычная клиника. Анализы, УЗИ, терапия.</div></div>
+
+<div class="entry"><div class="num">#158</div><h3>Dubai Dental Clinic</h3><div class="loc">Несколько районов</div><div class="desc">Стоматология: лечение, импланты, виниры, отбеливание.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#159</div><h3>Аптека Life Pharmacy</h3><div class="loc">По всему городу</div><div class="desc">Крупнейшая сеть. Лекарства, витамины, косметика. 24/7.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#160</div><h3>Boots Pharmacy</h3><div class="loc">TC / аптеки</div><div class="desc">Британская сеть. Лекарства, косметика, БАДы.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#161</div><h3>OptiCare Eye Centre</h3><div class="loc">Dubai</div><div class="desc">Офтальмология. Лазерная коррекция, подбор очков/линз.</div><div class="tags"><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#162</div><h3>Health Bay Clinic</h3><div class="loc">JLT</div><div class="desc">Многопрофильная клиника. Семейная медицина, стоматология.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#163</div><h3>First Response (скорая)</h3><div class="loc">По городу</div><div class="desc">Скорая помощь. 998. Операторы на английском.</div><div class="tags"><span class="tag tag-warn">998</span></div></div>
+
+<div class="entry"><div class="num">#164</div><h3>Ветеринарные клиники</h3><div class="loc">По городу</div><div class="desc">British Veterinary Centre, The Veterinary Hospital. Стерилизация.</div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 11. ТАКСИ И ТРАНСПОРТ -->
+<!-- ============================================ -->
+<div class="section" id="transport">
+<div class="section-header"><h2>Такси и транспорт</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#165</div><h3>Careem</h3><div class="loc">Везде</div><div class="desc">Основное приложение для такси. Фиксированные цены, комфорт.</div><div class="tags"><span class="tag tag-price">От 20 AED</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#166</div><h3>Uber Dubai</h3><div class="loc">Везде</div><div class="desc">Международный сервис такси. Выбор класса авто.</div><div class="tags"><span class="tag tag-price">От 25 AED</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#167</div><h3>Dubai Taxi Corporation</h3><div class="loc">Тел: +971 4 208 0808</div><div class="desc">Официальные такси кремового цвета. Счётчик, надёжно.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#168</div><h3>Метро Дубая</h3><div class="loc">Красная и Зелёная линии</div><div class="desc">Поезда без машиниста. 53 станции. Красная линия вдоль SZR.</div><div class="tags"><span class="tag tag-price">От 3 AED</span><span class="tag tag-time">5:00–0:00</span></div></div>
+
+<div class="entry"><div class="num">#169</div><h3>Трамвай Dubai Marina</h3><div class="loc">Marina / JBR / Palm</div><div class="desc">Трамвайная линия, связывающая Marina, JBR и Palm.</div><div class="tags"><span class="tag tag-price">От 3 AED</span></div></div>
+
+<div class="entry"><div class="num">#170</div><h3>Водное такси (Abra)</h3><div class="loc">Creek / Marina</div><div class="desc">Традиционные лодки. Маршруты через Creek и Марину.</div><div class="tags"><span class="tag tag-price">~2–10 AED</span></div></div>
+
+<div class="entry"><div class="num">#171</div><h3>Автобусы RTA</h3><div class="loc">По городу</div><div class="desc">Городские автобусы. Кондиционеры, маршруты во все районы.</div><div class="tags"><span class="tag tag-price">От 3 AED</span></div></div>
+
+<div class="entry"><div class="num">#172</div><h3>Аренда авто</h3><div class="loc">Аэропорт / город</div><div class="desc">Hertz, Thrifty, Budget. От 80 AED/день. Нужны права.</div><div class="tags"><span class="tag tag-price">От 80 AED/день</span></div></div>
+
+<div class="entry"><div class="num">#173</div><h3>Аренда самоката/вело</h3><div class="loc">JBR / The Beach / La Mer</div><div class="desc">Прокат электросамокатов и велосипедов вдоль набережных.</div><div class="tags"><span class="tag tag-price">От 30 AED/час</span></div></div>
+
+<div class="entry"><div class="num">#174</div><h3>Транспорт: трансфер в аэропорт</h3><div class="loc">Любой район</div><div class="desc">Фиксированная цена. Такси ~50–100 AED. Через Careem.</div><div class="tags"><span class="tag tag-price">~50–100 AED</span></div></div>
+
+<div class="entry"><div class="num">#175</div><h3>Nol Card</h3><div class="loc">Метро / трамвай / автобус</div><div class="desc">Единая транспортная карта. Пополнение на станциях.</div><div class="tags"><span class="tag tag-price">Карта 6 AED</span></div></div>
+
+<div class="entry"><div class="num">#176</div><h3>Паром до Hatta</h3><div class="loc">Dubai Creek → Hatta</div><div class="desc">Водный маршрут до Hatta Dam. Живописный 2-часовой путь.</div><div class="tags"><span class="tag tag-price">~50 AED</span></div></div>
+
+</div></div>
+<!-- ============================================ -->
+<!-- 12. РЕСТОРАНЫ И КАФЕ -->
+<!-- ============================================ -->
+<div class="section" id="food">
+<div class="section-header"><h2>Рестораны и кафе</h2><span class="count">110 мест</span></div>
+
+<h3 style="margin-bottom:6px">Русская кухня</h3>
+<ul>
+<li><strong>#177 Suvoroff JBR</strong> — JBR · Русская, хинкали, люля-кебаб · <span class="meta">100% халяль</span></li>
+<li><strong>#178 Pechka (JBR)</strong> — JBR · Блины, пельмени, 100+ блюд</li>
+<li><strong>#179 Sakhalin</strong> — J1 Beach · Fine seafood, русский Дальний Восток</li>
+<li><strong>#180 Magadan</strong> — Palm West Beach · Краб, омары, премиум</li>
+<li><strong>#181 Rodina</strong> — Dubai Marina · Russian Mediterranean fine dining</li>
+<li><strong>#182 Babushka</strong> — Dubai · Русская, от Novikov</li>
+<li><strong>#183 Novikov Dubai</strong> — Dubai · Русско-азиатская</li>
+<li><strong>#184 Pushkin</strong> — Ibn Battuta / JLT · Русская, завтраки</li>
+<li><strong>#185 CHAIHONA No1</strong> — JLT · Русско-узбекская, 150+ блюд</li>
+<li><strong>#186 IKRA Caviar Bar</strong> — Bluewaters · Икра, кавиар-бар, премиум</li>
+<li><strong>#187 Suvoroff Grand</strong> — Damac Hills · Премиум русская, семейный ресторан</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Арабская и эмиратская кухня</h3>
+<ul>
+<li><strong>#188 Al Fanar</strong> — Dubai Festival City · Эмиратская, аутентичная атмосфера</li>
+<li><strong>#189 Seven Sands</strong> — JBR / City Walk · Современная эмиратская</li>
+<li><strong>#190 Al Khayma</strong> — Al Fahidi · Эмиратская в историческом районе</li>
+<li><strong>#191 Al Ustad Special</strong> — Al Mankhool · Персидская, легенда с 1978</li>
+<li><strong>#192 Abd El Wahab</strong> — La Mer · Ливанская, вид на море</li>
+<li><strong>#193 Al Nafoorah</strong> — Jumeirah · Ливанская премиум</li>
+<li><strong>#194 Zaroob</strong> — Sheikh Zayed Road · Ливанский стритфуд, круглосуточно</li>
+<li><strong>#195 Operation: Falafel</strong> — JLT · Фалафель, стритфуд, бюджет</li>
+<li><strong>#196 Al Mallah</strong> — Al Karama · Шаурма, с 1979, культовое место</li>
+<li><strong>#197 Nusr-Et</strong> — Four Seasons · Стейки, Nusret Salt Bae, $$$$</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Европейская и международная</h3>
+<ul>
+<li><strong>#198 Atelier Robuchon</strong> — Dubai Mall · Michelin, французская</li>
+<li><strong>#199 Gordon Ramsay</strong> — Atlantis · Стейки, премиум</li>
+<li><strong>#200 La Petite Maison</strong> — DIFC · Французско-средиземноморская</li>
+<li><strong>#201 CUT by Wolfgang Puck</strong> — DIFC · Стейки, Michelin</li>
+<li><strong>#202 At.mosphere</strong> — Burj Khalifa · 122 этаж, премиум, вид на город</li>
+<li><strong>#203 Ce La Vi</strong> — Address Sky View · Pan-Asian, 54 этаж</li>
+<li><strong>#204 Eataly</strong> — Dubai Mall · Итальянский маркет-ресторан</li>
+<li><strong>#205 Texas de Brazil</strong> — Dubai · Бразильская, Churrascaria</li>
+<li><strong>#206 The Maine</strong> — JBR · Американская, стейки, морепродукты</li>
+<li><strong>#207 GAIA</strong> — Dubai · Греческая, средиземноморская</li>
+<li><strong>#208 Santorini</strong> — Dubai · Греческая, вид на море</li>
+<li><strong>#209 Coya</strong> — Dubai · Перуанская, премиум</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Итальянская кухня</h3>
+<ul>
+<li><strong>#210 Ronda Locatelli</strong> — Atlantis · Michelin, итальянская</li>
+<li><strong>#211 Scalini</strong> — Emirates Towers · Итальянская, премиум</li>
+<li><strong>#212 Armani Ristorante</strong> — Burj Khalifa · Итальянская, Armani</li>
+<li><strong>#213 Gia</strong> — Dubai · Итальянская, тренд, модное место</li>
+<li><strong>#214 Il Borro</strong> — Dubai · Тосканская кухня</li>
+<li><strong>#215 Pizza Express</strong> — Dubai · Итальянская сеть</li>
+<li><strong>#216 Vapiano</strong> — Dubai · Итальянская сеть, паста на заказ</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Паназиатская и азиатская</h3>
+<ul>
+<li><strong>#217 Zuma Dubai</strong> — DIFC · Японская премиум, мировое имя</li>
+<li><strong>#218 Nobu Dubai</strong> — Atlantis · Японско-перуанская, Michelin</li>
+<li><strong>#219 Hakkasan</strong> — Atlantis · Китайская, Michelin</li>
+<li><strong>#220 Thiptara</strong> — Dubai Mall · Тайская, у фонтанов</li>
+<li><strong>#221 Pai Thai</strong> — Dubai · Тайская у воды, лучшая</li>
+<li><strong>#222 Trèsind</strong> — Dubai · Индийская премиум</li>
+<li><strong>#223 Indego by Vineet</strong> — Dubai · Индийская, Michelin</li>
+<li><strong>#224 Bombay Bungalow</strong> — Dubai · Индийская, современная</li>
+<li><strong>#225 Benihana</strong> — Dubai · Японская, теппаньяки театр</li>
+<li><strong>#226 Wagamama</strong> — Dubai Mall · Японская лапша, сеть</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Морепродукты</h3>
+<ul>
+<li><strong>#227 Ossiano</strong> — Atlantis · Michelin, у аквариума</li>
+<li><strong>#228 Bu Qtair</strong> — Umm Suqeim · Легендарная рыба-фреш, с 1980</li>
+<li><strong>#229 Pier 7</strong> — Dubai Marina · 7 ресторанов, вид на Марину</li>
+<li><strong>#230 Rockfish</strong> — Dubai · Seafood BBQ, бюджетный</li>
+<li><strong>#231 The Fish Market</strong> — Dubai · Рынок + ресторан, свежайшая рыба</li>
+<li><strong>#232 Dampa Seafood</strong> — Dubai · Seafood, бюджет, концепция</li>
+<li><strong>#233 Crab & Claw</strong> — Dubai · Краб, омары</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Индийская кухня</h3>
+<ul>
+<li><strong>#234 Trèsind</strong> — Dubai · Индийская премиум, дегустация</li>
+<li><strong>#235 Avatara</strong> — Dubai · Вегетарианская индийская премиум</li>
+<li><strong>#236 Rang Mahal</strong> — Dubai · Индийская, люкс</li>
+<li><strong>#237 Mint Leaf</strong> — Dubai · Индийская, вид на город</li>
+<li><strong>#238 Sarvana Bhavan</strong> — Dubai · Южно-индийская, вегетарианская</li>
+<li><strong>#239 Woodlands</strong> — Dubai · Южно-индийская</li>
+<li><strong>#240 Bikanervala</strong> — Dubai · Северо-индийская, бюджет</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Японская кухня</h3>
+<ul>
+<li><strong>#241 Zuma Dubai</strong> — DIFC · Японская, премиум</li>
+<li><strong>#242 99 Sushi Bar</strong> — Dubai · Японская премиум, суши</li>
+<li><strong>#243 Miyako</strong> — Dubai · Теппаньяки, японская</li>
+<li><strong>#244 Nobu by the Beach</strong> — Atlantis · Японская, пляжный</li>
+<li><strong>#245 Sho Cho</strong> — Dubai · Японская, суши, лаунж</li>
+<li><strong>#246 Sushi Sushi</strong> — Dubai · Суши-сеть, доступно</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Китайская кухня</h3>
+<ul>
+<li><strong>#247 Shang Palace</strong> — Shangri-La · Michelin, аутентичная</li>
+<li><strong>#248 Long Yin</strong> — Dubai · Китайская, димсамы</li>
+<li><strong>#249 Maiden Shanghai</strong> — Dubai · Премиум китайская</li>
+<li><strong>#250 PF Chang's</strong> — Dubai Mall · Китайско-американская</li>
+<li><strong>#251 Zheng He</strong> — Dubai · Китайская премиум</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Корейская кухня</h3>
+<ul>
+<li><strong>#252 Korean Grill House</strong> — Dubai · Korean BBQ</li>
+<li><strong>#253 Seoul Kitchen</strong> — Dubai · Корейская классика</li>
+<li><strong>#254 Manna</strong> — Dubai · Корейская премиум</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Вегетарианская и веганская</h3>
+<ul>
+<li><strong>#255 Avatara</strong> — Dubai · Вегетарианская индийская премиум</li>
+<li><strong>#256 Wild & Raw</strong> — Dubai · Веганская, raw food</li>
+<li><strong>#257 Life n One</strong> — Dubai · Веган, органический</li>
+<li><strong>#258 Green Bar</strong> — Dubai · Веган, салаты, соки</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Кофейни</h3>
+<ul>
+<li><strong>#259 % Arabica</strong> — Dubai Mall / Al Seef · Спешлти кофе</li>
+<li><strong>#260 RAW Coffee</strong> — Dubai · Ростер, свежая обжарка</li>
+<li><strong>#261 Nightjar Coffee</strong> — Dubai · Спешлти, третья волна</li>
+<li><strong>#262 Tom & Serg</strong> — Dubai · Австралийский стиль</li>
+<li><strong>#263 Boston Lane</strong> — Dubai · Австралийский кофе</li>
+<li><strong>#264 Saddle House</strong> — Dubai · Кофе, завтраки</li>
+<li><strong>#265 Karak House</strong> — Dubai · Karak чай, арабский</li>
+<li><strong>#266 Filli</strong> — Dubai · Karak чай, закуски</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Уличная еда и фастфуд</h3>
+<ul>
+<li><strong>#267 Al Mallah</strong> — Al Karama · Шаурма, культовое место</li>
+<li><strong>#268 Bu Qtair</strong> — Umm Suqeim · Рыба-фреш, легенда</li>
+<li><strong>#269 Automatic Restaurant</strong> — Al Karama · Ливанская, бюджет</li>
+<li><strong>#270 Al Ibrahimi</strong> — Al Karama · Сирийская, бюджет</li>
+<li><strong>#271 Foul W Hummus</strong> — Deira · Египетская, фул медамес</li>
+<li><strong>#272 Shawarma Stalls</strong> — Al Karama / Bur Dubai · Уличная шаурма</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Буфеты и бранчи</h3>
+<ul>
+<li><strong>#273 Bubbalicious (Westin)</strong> — Westin Dubai · Знаменитый пятничный бранч</li>
+<li><strong>#274 Brunch Atlantis</strong> — Atlantis, The Palm · Пятничный бранч, премиум</li>
+<li><strong>#275 Kitchen6</strong> — Dubai · Международный буфет, 6 станций</li>
+<li><strong>#276 Market Place</strong> — Dubai · Международный буфет</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Завтраки и бранчи</h3>
+<ul>
+<li><strong>#277 Comptoir 102</strong> — Dubai · Organic, завтраки, здоровый образ</li>
+<li><strong>#278 Saddle House</strong> — Dubai · Кофе, завтраки весь день</li>
+<li><strong>#279 Boston Lane</strong> — Dubai · Австралийские завтраки</li>
+<li><strong>#280 Jones the Grocer</strong> — Dubai · Гурме-продукты, завтраки</li>
+</ul>
+
+</div>
+<!-- ============================================ -->
+<!-- 13. НОЧНАЯ ЖИЗНЬ -->
+<!-- ============================================ -->
+<div class="section" id="night">
+<div class="section-header"><h2>Ночная жизнь</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#281</div><h3>White Dubai</h3><div class="loc">Dubai</div><div class="desc">Главный ночной клуб. Открытая терраса, мировые диджеи, дресс-код.</div><div class="tags"><span class="tag tag-time">23:00–03:00</span></div></div>
+
+<div class="entry"><div class="num">#282</div><h3>Ce La Vi</h3><div class="loc">Address Sky View</div><div class="desc">54 этаж, панорамный бар, коктейли, вид на Бурдж-Халифа.</div><div class="tags"><span class="tag tag-time">18:00–02:00</span></div></div>
+
+<div class="entry"><div class="num">#283</div><h3>Buddha Bar Dubai</h3><div class="loc">Dubai</div><div class="desc">Культовый азиатский лаунж-бар. Интерьер, коктейли, музыка.</div><div class="tags"><span class="tag tag-time">19:00–02:00</span></div></div>
+
+<div class="entry"><div class="num">#284</div><h3>Nasimi Beach</h3><div class="loc">Atlantis, The Palm</div><div class="desc">Пляжный клуб Atlantis. Коктейли, музыка, закат на Пальме.</div><div class="tags"><span class="tag tag-time">10:00–01:00</span></div></div>
+
+<div class="entry"><div class="num">#285</div><h3>Barasti Bar</h3><div class="loc">Dubai Marina</div><div class="desc">Легендарный пляжный бар. Днём чилл, ночью танцы на песке.</div><div class="tags"><span class="tag tag-time">8:00–02:00</span></div></div>
+
+<div class="entry"><div class="num">#286</div><h3>Soho Garden</h3><div class="loc">Dubai</div><div class="desc">Ночной клуб под открытым небом. Сад, бассейн, диджей.</div><div class="tags"><span class="tag tag-time">22:00–03:00</span></div></div>
+
+<div class="entry"><div class="num">#287</div><h3>Lock, Stock & Barrel</h3><div class="loc">Dubai</div><div class="desc">Британский паб. Спорт-трансляции, пиво, закуски.</div><div class="tags"><span class="tag tag-time">12:00–02:00</span></div></div>
+
+<div class="entry"><div class="num">#288</div><h3>McGettigan's</h3><div class="loc">Dubai</div><div class="desc">Ирландский паб. Живая музыка, гигантские порции, уют.</div><div class="tags"><span class="tag tag-time">12:00–02:00</span></div></div>
+
+<div class="entry"><div class="num">#289</div><h3>Irish Village</h3><div class="loc">Dubai</div><div class="desc">Ирландский паб в саду. Пиво, трансляции спорт, атмосфера.</div><div class="tags"><span class="tag tag-time">12:00–01:00</span></div></div>
+
+<div class="entry"><div class="num">#290</div><h3>Cavalli Club</h3><div class="loc">Dubai</div><div class="desc">Премиум-ночной клуб. Интерьер Roberto Cavalli, люкс.</div><div class="tags"><span class="tag tag-time">23:00–03:00</span></div></div>
+
+<div class="entry"><div class="num">#291</div><h3>Sky Bar</h3><div class="loc">Dubai</div><div class="desc">Руфтоп-бар с панорамным видом. Коктейли, лаунж.</div><div class="tags"><span class="tag tag-time">17:00–02:00</span></div></div>
+
+<div class="entry"><div class="num">#292</div><h3>Marina Bar</h3><div class="loc">Dubai Marina</div><div class="desc">Бар у воды. Яхты, закаты, кальян, музыка.</div><div class="tags"><span class="tag tag-time">16:00–02:00</span></div></div>
+
+</div></div>
+
+<!-- ============================================ -->
+<!-- 14. ПОЛЕЗНЫЕ СЕРВИСЫ -->
+<!-- ============================================ -->
+<div class="section" id="services">
+<div class="section-header"><h2>Полезные сервисы</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#293</div><h3>Обмен валют (AION)</h3><div class="loc">Mini App / Telegram</div><div class="desc">Лучший курс в Дубае. AED ↔ USD ↔ RUB ↔ EUR. 1% комиссия. 24/7.</div><div class="tags"><span class="tag tag-info">Через AION</span></div></div>
+
+<div class="entry"><div class="num">#294</div><h3>Прачечная / химчистка</h3><div class="loc">Множество точек</div><div class="desc">Прачечные самообслуживания и с доставкой. 15–30 AED.</div></div>
+
+<div class="entry"><div class="num">#295</div><h3>Ремонт телефонов</h3><div class="loc">Al Karama / Deira</div><div class="desc">Рынок мобильной техники. Замена экрана, батареи. Быстро.</div></div>
+
+<div class="entry"><div class="num">#296</div><h3>Визовый центр</h3><div class="loc">По городу</div><div class="desc">Продление виз, визаран. Русскоязычные агенты.</div></div>
+
+<div class="entry"><div class="num">#297</div><h3>Emirates Post</h3><div class="loc">По городу</div><div class="desc">Почтовая служба ОАЭ. Посылки, EMS, отслеживание.</div></div>
+
+<div class="entry"><div class="num">#298</div><h3>Печать и копирование</h3><div class="loc">Al Barsha / Marina</div><div class="desc">Центры печати. Фото на визу, документы, сканирование.</div></div>
+
+<div class="entry"><div class="num">#299</div><h3>Фото на документы</h3><div class="loc">ТЦ / аптеки</div><div class="desc">Фотокабины в ТЦ. Визовые фото, 6x4, 3x4.</div></div>
+
+<div class="entry"><div class="num">#300</div><h3>Швейная мастерская</h3><div class="loc">Al Karama / Deira</div><div class="desc">Пошив и ремонт одежды. Подшить, ушить, переделать.</div></div>
+
+<div class="entry"><div class="num">#301</div><h3>Ключи и замки</h3><div class="loc">Al Karama</div><div class="desc">Изготовление ключей, ремонт замков. Быстро, недорого.</div></div>
+
+<div class="entry"><div class="num">#302</div><h3>Ремонт обуви</h3><div class="loc">Al Karama / рынки</div><div class="desc">Мастерские по ремонту обуви. Набойки, швы.</div></div>
+
+<div class="entry"><div class="num">#303</div><h3>Туристическая полиция</h3><div class="loc">Тел: 901</div><div class="desc">Помощь туристам. Английский, арабский. Кража, потеря.</div><div class="tags"><span class="tag tag-warn">901</span></div></div>
+
+<div class="entry"><div class="num">#304</div><h3>Скорая помощь</h3><div class="loc">По городу</div><div class="desc">Экстренная помощь. 998/999. Оператор на английском.</div><div class="tags"><span class="tag tag-warn">998 / 999</span></div></div>
+
+</div></div>
+
+<div style="text-align:center;padding:24px 32px;font-size:12px;color:var(--text-light);border-top:1px solid var(--border);letter-spacing:1px">
+  AION · 300 мест рядом · Июнь 2026 · Дубай, ОАЭ<br>
+  Обновляется · Для Mini App AION
+</div>
+
+</body>
+</html>

@@ -1,0 +1,854 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О городе — Нячанг | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #f59e0b;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  /* Header */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    margin: 0 -16px;
+    border-radius: 0 0 24px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+
+  /* Quick actions */
+  .quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 16px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quick-actions::-webkit-scrollbar { display: none; }
+  .quick-btn {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .quick-btn.emergency { background: var(--danger); }
+  .quick-btn.transport { background: var(--info); }
+  .quick-btn.sim { background: var(--success); }
+  .quick-btn.currency { background: var(--gold); color: #1e293b; }
+  .quick-btn.food { background: #ec4899; }
+
+  /* Table of Contents */
+  .toc {
+    background: var(--bg-alt);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 8px 0 20px;
+    border: 1px solid var(--border);
+  }
+  .toc-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--primary);
+  }
+  .toc-item {
+    display: block;
+    padding: 6px 0;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { opacity: 0.8; }
+
+  /* Sections */
+  .section {
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .emoji { font-size: 22px; }
+
+  .subsection {
+    margin: 16px 0;
+    padding: 14px;
+    background: var(--bg-alt);
+    border-radius: 12px;
+  }
+  .subsection-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  /* Cards */
+  .card {
+    padding: 12px;
+    margin: 8px 0;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .card-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .card-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .card .price { color: var(--accent); font-weight: 700; }
+
+  /* Contact item */
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-label { font-weight: 500; }
+  .contact-value { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+  /* Info boxes */
+  .info-box {
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+  .info-box.tip { background: #f0fdf4; border-left: 3px solid var(--success); }
+  .info-box.warn { background: #fffbeb; border-left: 3px solid var(--warning); }
+  .info-box.danger { background: #fef2f2; border-left: 3px solid var(--danger); }
+  .info-box.info { background: #eff6ff; border-left: 3px solid var(--info); }
+
+  /* Grid */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 480px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag.green { background: #dcfce7; color: #166534; }
+  .tag.yellow { background: #fef3c7; color: #92400e; }
+  .tag.red { background: #fee2e2; color: #991b1b; }
+  .tag.blue { background: #dbeafe; color: #1e40af; }
+
+  /* Price table */
+  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  .price-table th { text-align: left; padding: 8px; background: var(--bg-alt); font-weight: 600; }
+  .price-table td { padding: 8px; border-bottom: 1px solid var(--border); }
+
+  /* Lists */
+  ul, ol { padding-left: 20px; font-size: 14px; }
+  li { margin: 4px 0; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Нячанг, Вьетнам</h1>
+  <p>Полный гид для туристов и экспатов</p>
+</div>
+
+<div class="quick-actions">
+  <a href="#emergency" class="quick-btn emergency">🚨 Экстренно</a>
+  <a href="#transport" class="quick-btn transport">🚕 Транспорт</a>
+  <a href="#internet" class="quick-btn sim">📱 SIM / Internet</a>
+  <a href="#money" class="quick-btn currency">💰 Деньги</a>
+  <a href="#food" class="quick-btn food">🍜 Еда</a>
+</div>
+
+<div class="toc">
+  <div class="toc-title">📌 Содержание</div>
+  <a class="toc-item" href="#overview">1. Общая информация</a>
+  <a class="toc-item" href="#emergency">2. ☎️ Экстренные контакты</a>
+  <a class="toc-item" href="#weather">3. Погода и сезоны</a>
+  <a class="toc-item" href="#districts">4. Районы города</a>
+  <a class="toc-item" href="#transport">5. Транспорт</a>
+  <a class="toc-item" href="#airport">6. Аэропорт и трансфер</a>
+  <a class="toc-item" href="#internet">7. SIM-карты и Интернет</a>
+  <a class="toc-item" href="#money">8. Деньги и цены</a>
+  <a class="toc-item" href="#medicine">9. Медицина</a>
+  <a class="toc-item" href="#housing">10. Жильё</a>
+  <a class="toc-item" href="#food">11. Еда и рестораны</a>
+  <a class="toc-item" href="#safety">12. Безопасность</a>
+  <a class="toc-item" href="#visa">13. Виза и въезд</a>
+  <a class="toc-item" href="#families">14. Семьям с детьми</a>
+  <a class="toc-item" href="#nomads">15. Digital-номадам</a>
+  <a class="toc-item" href="#faq">16. FAQ — 20 вопросов</a>
+  <a class="toc-item" href="#checklist">17. Чек-лист: Первый день в Нячанге</a>
+  <a class="toc-item" href="#links">18. Быстрые ссылки</a>
+</div>
+
+<!-- ============================================================
+1. ОБЩАЯ ИНФОРМАЦИЯ
+============================================================ -->
+<div class="section" id="overview">
+  <div class="section-title"><span class="emoji">🌴</span> Общая информация</div>
+  <div class="card">
+    <div class="card-text">
+      <strong>Нячанг</strong> (Nha Trang) — приморский курортный город на юго-востоке Вьетнама,
+      столица провинции Кханьхоа. Главный пляжный курорт страны с населением около 520 000 человек.
+    </div>
+  </div>
+  <table class="price-table">
+    <tr><td><strong>Население</strong></td><td>~520 000</td></tr>
+    <tr><td><strong>Язык</strong></td><td>Вьетнамский (английский — в туристических зонах, русский — распространён)</td></tr>
+    <tr><td><strong>Валюта</strong></td><td>Вьетнамский донг (VND) — 1 CNY ≈ 3 400 VND</td></tr>
+    <tr><td><strong>Часовой пояс</strong></td><td>UTC+7 (Индо­китай)</td></tr>
+    <tr><td><strong>Телефонный код</strong></td><td>+84</td></tr>
+    <tr><td><strong>Розетки</strong></td><td>Типы A, C, F (220V / 50Hz)</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================
+2. ЭКСТРЕННЫЕ КОНТАКТЫ
+============================================================ -->
+<div class="section" id="emergency">
+  <div class="section-title"><span class="emoji">🚨</span> Экстренные контакты</div>
+  <div class="info-box danger">
+    <strong>Важно!</strong> Сохраните эти номера перед поездкой. При звонке с вьетнамской SIM — набирайте без кода страны.
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚑 Скорая помощь</span>
+    <a href="tel:115" class="contact-value">115</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚒 Пожарная служба</span>
+    <a href="tel:114" class="contact-value">114</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚔 Полиция</span>
+    <a href="tel:113" class="contact-value">113</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Международная клиника (CMI)</span>
+    <a href="tel:+842583521588" class="contact-value">+84 258 352 1588</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Vinmec International Hospital</span>
+    <a href="tel:+842583522268" class="contact-value">+84 258 352 2268</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🕊 Консульство России (Дананг)</span>
+    <a href="tel:+842363817871" class="contact-value">+84 236 381 7871</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">📞 Туристическая полиция</span>
+    <a href="tel:+842583528488" class="contact-value">+84 258 352 8488</a>
+  </div>
+</div>
+
+<!-- ============================================================
+3. ПОГОДА И СЕЗОНЫ
+============================================================ -->
+<div class="section" id="weather">
+  <div class="section-title"><span class="emoji">🌤</span> Погода и сезоны</div>
+  <p style="font-size:14px; margin-bottom:10px;">Нячанг — тропический муссонный климат. Среднегодовая температура +27°C.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">☀️ Сухой сезон</div>
+      <div class="card-text">
+        Январь — сентябрь. Температура +28–35°C. Солнечно, дожди редки.<br>
+        <span class="tag yellow">Высокий сезон: июнь — август</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌧 Сезон дождей</div>
+      <div class="card-text">
+        Октябрь — декабрь. Температура +24–28°C. Кратковременные ливни, возможны тайфуны.<br>
+        <span class="tag blue">Низкий сезон: октябрь — декабрь</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Лучшее время для визита:</strong> февраль — май. Море спокойное, вода +25–28°C, дождей почти нет.
+  </div>
+</div>
+
+<!-- ============================================================
+4. РАЙОНЫ ГОРОДА
+============================================================ -->
+<div class="section" id="districts">
+  <div class="section-title"><span class="emoji">🗺</span> Районы города</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏖 Центр — Tran Phu Street</div>
+    <div class="card-text">
+      Главная туристическая улица вдоль пляжа. Отели, рестораны, бары, массажные салоны, магазины.
+      <span class="tag green">Рекомендуется для отдыха</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🛵 Север города — Vinh Phu, Vinh Tho</div>
+    <div class="card-text">
+      Местный колорит, рынки, аутентичные вьетнамские кафе. Меньше туристов, ниже цены на жильё.
+      <span class="tag yellow">Хорошо для долгосрочной аренды</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🌴 Юг — An Vien, Luong Son</div>
+    <div class="card-text">
+      Престижный район с новыми жилыми комплексами. Развитая инфраструктура, много русскоязычных.
+      <span class="tag green">Популярно у экспатов с семьями</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏘 Vinh Truong (левый берег)</div>
+    <div class="card-text">
+      Район за мостом через реку Кай. Местная жизнь, низкие цены, но удалён от пляжа.
+      <span class="tag yellow">Транспорт нужен ежедневно</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+5. ТРАНСПОРТ
+============================================================ -->
+<div class="section" id="transport">
+  <div class="section-title"><span class="emoji">🚕</span> Транспорт</div>
+
+  <div class="card">
+    <div class="card-title">🚗 Grab / Gojek / Be</div>
+    <div class="card-text">
+      Основной способ передвижения. Скачайте Grab заранее. Работает как Uber: такси, мототакси, доставка.
+      Мотоцикл по городу — от 15 000 VND (~55 ₽). Авто по городу — от 40 000 VND (~145 ₽).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏍 Аренда мотоцикла</div>
+    <div class="card-text">
+      Цена: 100 000 – 200 000 VND/день (360–720 ₽). Нужны права (международные или ВУ с нотариальным переводом).
+      <span class="tag yellow">Обязательно надевайте шлем — штраф 500 000 VND</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚌 Автобусы</div>
+    <div class="card-text">
+      Городские автобусы: 5 000 – 10 000 VND. Маршруты: от аэропорта до города, по основным улицам.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🦶 Пешком</div>
+    <div class="card-text">
+      Центр (Tran Phu — пляжная зона) компактен, всё в пешей доступности. До 15 минут до моря из любой точки центра.
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Внимание:</strong> Движение во Вьетнаме хаотичное. Переходите дорогу медленно и равномерно — мотоциклисты объезжают вас.
+  </div>
+</div>
+
+<!-- ============================================================
+6. АЭРОПОРТ И ТРАНСФЕР
+============================================================ -->
+<div class="section" id="airport">
+  <div class="section-title"><span class="emoji">✈️</span> Аэропорт и трансфер</div>
+  <div class="card-text">
+    Аэропорт Камрань (Cam Ranh International Airport, CXR) — в 35 км от центра Нячанга.
+    Время в пути до города: ~45–60 минут.
+  </div>
+
+  <div class="info-box tip">
+    <strong>Лучший вариант:</strong> заранее заказать трансфер на AION или через Grab (VND 250 000–350 000 / ~900–1 260 ₽).
+  </div>
+
+  <table class="price-table">
+    <tr><th>Вид трансфера</th><th>Цена (VND)</th><th>Время</th></tr>
+    <tr><td>Такси (аэропорт — центр)</td><td>250 000 – 400 000</td><td>45 мин</td></tr>
+    <tr><td>Grab Car</td><td>200 000 – 350 000</td><td>45 мин</td></tr>
+    <tr><td>Шаттл-бас</td><td>50 000 – 80 000</td><td>1 час</td></tr>
+    <tr><td>Мотоцикл (Grab Bike)</td><td>80 000 – 150 000</td><td>40 мин</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================
+7. SIM-КАРТЫ И ИНТЕРНЕТ
+============================================================ -->
+<div class="section" id="internet">
+  <div class="section-title"><span class="emoji">📱</span> SIM-карты и Интернет</div>
+
+  <div class="info-box tip">
+    <strong>Совет:</strong> Купите SIM в аэропорту по прилёте или закажите eSIM заранее (Airalo, Viettel eSIM).
+    В городе — магазины Viettel, Mobifone, Vinaphone.
+  </div>
+
+  <table class="price-table">
+    <tr><th>Оператор</th><th>Тариф (месяц)</th><th>Трафик</th></tr>
+    <tr><td><strong>Viettel</strong></td><td>100 000 VND (~360 ₽)</td><td>5 GB/день (150 GB/мес)</td></tr>
+    <tr><td><strong>Mobifone</strong></td><td>120 000 VND (~430 ₽)</td><td>4 GB/день</td></tr>
+    <tr><td><strong>Vinaphone</strong></td><td>90 000 VND (~325 ₽)</td><td>3 GB/день</td></tr>
+    <tr><td><strong>Vietnamobile</strong></td><td>70 000 VND (~250 ₽)</td><td>2 GB/день</td></tr>
+  </table>
+
+  <div class="subsection">
+    <div class="subsection-title">📶 Wi-Fi в городе</div>
+    <div class="card-text">
+      Почти все кафе, рестораны и отели предлагают бесплатный Wi-Fi. Скорость — 20–100 Мбит/с в центре.
+      В удалённых районах — 5–20 Мбит/с.
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🌐 eSIM (без физической SIM)</div>
+    <div class="card-text">
+      Airalo: $5–15 за 7–30 дней, установка до поездки. Подходит для коротких визитов.
+      Viettel eSIM: доступна в официальных магазинах Viettel при предъявлении паспорта.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+8. ДЕНЬГИ И ЦЕНЫ
+============================================================ -->
+<div class="section" id="money">
+  <div class="section-title"><span class="emoji">💰</span> Деньги и цены</div>
+
+  <div class="card">
+    <div class="card-title">💳 Карты и наличные</div>
+    <div class="card-text">
+      <strong>Наличные</strong> — основной способ. Карты принимают в крупных отелях, ТЦ, некоторых ресторанах.
+      Снимите донги в банкомате по прилёте (лучше Vietcombank, BIDV, Techcombank — низкая комиссия).
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Важно:</strong> Всегда имейте при себе наличные. Многие заведения, рынки и такси не принимают карты.
+    Не меняйте деньги в уличных обменниках — только в банках или через AION.
+  </div>
+
+  <div class="subsection-title" style="margin-top:12px;">💰 Примерные цены</div>
+  <table class="price-table">
+    <tr><th>Категория</th><th>Цена (VND)</th><th>Цена (~₽)</th></tr>
+    <tr><td>Чашка кофе (кафе)</td><td>15 000 – 40 000</td><td>55 – 145</td></tr>
+    <tr><td>Обед (уличная еда)</td><td>25 000 – 50 000</td><td>90 – 180</td></tr>
+    <tr><td>Обед (ресторан)</td><td>80 000 – 200 000</td><td>290 – 720</td></tr>
+    <tr><td>Бутылка воды</td><td>5 000 – 10 000</td><td>18 – 36</td></tr>
+    <tr><td>Пиво (местное, бар)</td><td>15 000 – 30 000</td><td>55 – 110</td></tr>
+    <tr><td>Массаж (60 мин)</td><td>200 000 – 400 000</td><td>720 – 1 440</td></tr>
+    <tr><td>Аренда мотоцикла/день</td><td>100 000 – 200 000</td><td>360 – 720</td></tr>
+    <tr><td>Такси по городу</td><td>30 000 – 80 000</td><td>110 – 290</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Счёт в ресторане:</strong> Часто добавляют 5% НДС и 5–10% за обслуживание. Чаевые не обязательны, но 10% приветствуются.
+  </div>
+</div>
+
+<!-- ============================================================
+9. МЕДИЦИНА
+============================================================ -->
+<div class="section" id="medicine">
+  <div class="section-title"><span class="emoji">🏥</span> Медицина</div>
+
+  <div class="card">
+    <div class="card-title">🏥 Международные клиники</div>
+    <div class="contact-item">
+      <span class="contact-label">CMI International Clinic</span>
+      <a href="tel:+842583521588" class="contact-value">+84 258 352 1588</a>
+    </div>
+    <div class="card-text">Принимают по страховке, English / Русский. Адрес: 2 Nguyen Thi Minh Khai.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🤒 Аптеки</div>
+    <div class="card-text">
+      Открыты 7:00–22:00. Некоторые круглосуточные (Pharmacy 24h на Tran Phu).
+      Многие лекарства без рецепта, но будьте осторожны с дженериками.
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Страховка обязательна!</strong> Медицина для иностранцев дорогая. Рекомендуем полис с покрытием не менее $50 000.
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🦷 Стоматология</div>
+    <div class="card-text">
+      Нячанг популярен стоматологическим туризмом. Качество высокое, цены ниже европейских в 2–3 раза.
+      Популярные клиники: <strong>Nha Khoa Minh</strong>, <strong>Aurora Dental</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+10. ЖИЛЬЁ
+============================================================ -->
+<div class="section" id="housing">
+  <div class="section-title"><span class="emoji">🏠</span> Жильё</div>
+
+  <table class="price-table">
+    <tr><th>Тип</th><th>Цена/мес (VND)</th><th>Цена/мес (~₽)</th></tr>
+    <tr><td>Комната (гостевой дом)</td><td>5 – 10 млн</td><td>18 000 – 36 000</td></tr>
+    <tr><td>Студия (центр)</td><td>8 – 15 млн</td><td>29 000 – 54 000</td></tr>
+    <tr><td>1-комнатная (центр)</td><td>10 – 20 млн</td><td>36 000 – 72 000</td></tr>
+    <tr><td>Апартаменты (An Vien)</td><td>12 – 25 млн</td><td>43 000 – 90 000</td></tr>
+    <tr><td>Вилла (юг)</td><td>25 – 50 млн</td><td>90 000 – 180 000</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Как искать:</strong> Facebook-группы («Аренда жилья Нячанг»), AION, сайты: batdongsan.vn, nhatrang.apartments.
+    Депозит обычно 1 месяц. Договор — от 3 месяцев.
+  </div>
+</div>
+
+<!-- ============================================================
+11. ЕДА И РЕСТОРАНЫ
+============================================================ -->
+<div class="section" id="food">
+  <div class="section-title"><span class="emoji">🍜</span> Еда и рестораны</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🥢 Что обязательно попробовать</div>
+    <ul>
+      <li><strong>Фо бо</strong> (Pho Bo) — суп с говядиной — 25 000–50 000 VND</li>
+      <li><strong>Бань ми</strong> (Banh Mi) — вьетнамский сэндвич — 12 000–25 000 VND</li>
+      <li><strong>Нэм ныонг</strong> (Nem Nuong) — жареные мясные рулетики — от 5 000 VND/шт</li>
+      <li><strong>Морепродукты</strong> — рынок Ло Тхать (Lo Thach), ужин от 150 000 VND</li>
+      <li><strong>Бань кхо</strong> (Banh Can) — мини-блинчики с яйцом и морепродуктами</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🥤 Напитки</div>
+    <ul>
+      <li><strong>Ка фэ суа да</strong> (Ca phe sua da) — вьетнамский кофе со сгущёнкой, лёд</li>
+      <li><strong>Бира Сайгон</strong> / <strong>Бира 333</strong> — местное пиво — от 10 000 VND</li>
+      <li><strong>Кокосовая вода</strong> — свежая, 20 000 VND</li>
+      <li><strong>Сок сахарного тростника</strong> (mia da) — 10 000 VND</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Где поесть:</strong> Ищите места, где много местных — это лучший показатель качества.
+    В кафе меню часто только на вьетнамском; Google Lens поможет перевести.
+  </div>
+</div>
+
+<!-- ============================================================
+12. БЕЗОПАСНОСТЬ
+============================================================ -->
+<div class="section" id="safety">
+  <div class="section-title"><span class="emoji">🔒</span> Безопасность</div>
+
+  <div class="info-box info">
+    Нячанг — безопасный город. Основные риски: мелкие кражи и дорожное движение.
+  </div>
+
+  <ul>
+    <li>🔐 Не оставляйте телефон и сумку на столике уличного кафе — выхватывают проезжающие на мотоциклах</li>
+    <li>🏍 Сумку через плечо держите со стороны противоположной дороге</li>
+    <li>📷 Не доставайте телефон на перекрёстках — могут выхватить</li>
+    <li>🌙 Ночью центр безопасен, но окраины лучше избегать</li>
+    <li>🚰 Воду из-под крана не пить — только бутилированную (5 000–10 000 VND)</li>
+    <li>🦟 Используйте репеллент от комаров — риск лихорадки денге</li>
+  </ul>
+
+  <div class="info-box danger">
+    <strong>Не оставляйте паспорт в rental-залог!</strong> Делайте копию или оставляйте депозит деньгами.
+    Паспорт нужен для продления визы — без него проблемы.
+  </div>
+</div>
+
+<!-- ============================================================
+13. ВИЗА И ВЪЕЗД
+============================================================ -->
+<div class="section" id="visa">
+  <div class="section-title"><span class="emoji">🛂</span> Виза и правила въезда</div>
+
+  <table class="price-table">
+    <tr><th>Гражданство</th><th>Безвизовый срок</th><th>Продление</th></tr>
+    <tr><td>Россия</td><td>45 дней</td><td>Можно продлить до 3 мес через агентство</td></tr>
+    <tr><td>Казахстан</td><td>45 дней</td><td>Можно продлить до 3 мес через агентство</td></tr>
+    <tr><td>Украина</td><td>15 дней (eVisa опционально)</td><td>eVisa до 30 дней</td></tr>
+    <tr><td>Беларусь</td><td>45 дней</td><td>Можно продлить до 3 мес через агентство</td></tr>
+    <tr><td>Китай</td><td>Требуется виза</td><td>eVisa 30 дней</td></tr>
+    <tr><td>Евросоюз / США / UK</td><td>45 дней (с 2025)</td><td>Продление до 3 мес</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Продление визы:</strong> В Нячанге множество визовых агентств. Цена продления на 1 месяц — ~50–80 USD.
+    Обращаться можно через AION — наши партнёры помогут.
+  </div>
+
+  <ul style="margin-top:10px;">
+    <li>Паспорт должен быть действителен минимум 6 месяцев</li>
+    <li>Заполните онлайн-декларацию (https://tokhaiyte.vn) до вылета</li>
+    <li>Штраф за просрочку визы: 500 000 VND/день (~1 800 ₽)</li>
+    <li>При просрочке более 3 дней — возможен выезд с отметкой в паспорте</li>
+  </ul>
+</div>
+
+<!-- ============================================================
+14. СЕМЬЯМ С ДЕТЬМИ
+============================================================ -->
+<div class="section" id="families">
+  <div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Семьям с детьми</div>
+
+  <ul>
+    <li><strong>Пляж:</strong> Пологий вход, чистая вода. Днём сильное солнце — используйте SPF 50+</li>
+    <li><strong>Винпериленд</strong> (VinWonders) — огромный парк развлечений на острове (канатная дорога, аквапарк, зоопарк)</li>
+    <li><strong>Детские сады и школы:</strong> Международные (British International School, Russian International School) — от $500/мес</li>
+    <li><strong>Детские врачи:</strong> CMI Clinic принимает детей, есть русскоговорящие педиатры</li>
+    <li><strong>Детские товары:</strong> Con Cung, Bibomart (подгузники, смеси, игрушки)</li>
+    <li><strong>Анимация:</strong> Вечерние программы на пляже, детские клубы при отелях</li>
+  </ul>
+</div>
+
+<!-- ============================================================
+15. DIGITAL-НОМАДАМ
+============================================================ -->
+<div class="section" id="nomads">
+  <div class="section-title"><span class="emoji">💻</span> Digital-номадам</div>
+
+  <div class="card">
+    <div class="card-title">☕ Коворкинги и кафе для работы</div>
+    <div class="card-text">
+      <strong>Geco Cafe</strong> — сеть коворкингов-кафе. Wi-Fi 50+ Мбит, розетки, кондиционер. Кофе от 25 000 VND.
+      <strong>Pheva Cao Nguyen</strong> — тихое место с хорошим кофе.
+      <strong>Cong Caphe</strong> — атмосферно, но шумно.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏢 Коворкинги</div>
+    <div class="card-text">
+      <strong>Space To Create</strong> — 2 000 000 VND/мес (~7 200 ₽).<br>
+      <strong>The Alley</strong> — 1 500 000 VND/мес (~5 400 ₽).<br>
+      <strong>AION Coworking</strong> — скоро!
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Почему Нячанг для номадов:</strong> Низкая стоимость жизни (от $600/мес), отличный интернет, развитое комьюнити,
+    тёплый климат круглый год, много русскоязычных экспатов.
+  </div>
+</div>
+
+<!-- ============================================================
+16. FAQ — 20 ВОПРОСОВ
+============================================================ -->
+<div class="section" id="faq">
+  <div class="section-title"><span class="emoji">❓</span> FAQ — 20 вопросов</div>
+
+  <div class="subsection">
+    <div class="subsection-title">1. Нужна ли виза в Нячанг?</div>
+    <div class="card-text">Россиянам, белорусам, казахам — 45 дней без визы. Остальным — см. раздел «Виза».</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">2. Какой язык в ходу?</div>
+    <div class="card-text">В центре понимают английский. Много русскоговорящих (официанты, массажисты, таксисты).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">3. Какую валюту брать?</div>
+    <div class="card-text">Доллары или евро — обменять на донги в банке. Снять с карты в банкомате (комиссия 20 000–40 000 VND).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">4. Когда лучший сезон?</div>
+    <div class="card-text">Февраль — май. Сухо, солнечно, море спокойное.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">5. Безопасно ли в Нячанге?</div>
+    <div class="card-text">Да. Но соблюдайте базовые меры: не носите ценности в задних карманах, не оставляйте сумки без присмотра.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">6. Как позвонить в Россию?</div>
+    <div class="card-text">Через Telegram / WhatsApp / Zoom. С вьетнамской SIM — +7-код-номер (~2 000 VND/мин).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">7. Есть ли морские гады?</div>
+    <div class="card-text">Медузы бывают в сезон дождей (октябрь-ноябрь). В основном у берега — мелкие, неопасные.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">8. Как легализовать права?</div>
+    <div class="card-text">Нужно международное водительское удостоверение или нотариальный перевод национальных прав.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">9. Сколько стоит аренда жилья?</div>
+    <div class="card-text">От 5 млн VND/мес (комната) до 20+ млн VND/мес (апартаменты в центре).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">10. Где искать жильё?</div>
+    <div class="card-text">Facebook-группы, AION, batdongsan.vn. Лично осматривайте перед арендой.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">11. Можно ли снять квартиру на сутки?</div>
+    <div class="card-text">Да. Booking.com, Airbnb, AION (скоро). Цена: от 400 000 VND/ночь.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">12. Какой транспорт лучше?</div>
+    <div class="card-text">Grab — самый удобный. Аренда мотоцикла — для длительного пребывания.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">13. Нужно ли платить налоги?</div>
+    <div class="card-text">Если находитесь во Вьетнаме более 183 дней — становитесь налоговым резидентом. Ставка НДФЛ до 35%.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">14. Где купить сим-карту?</div>
+    <div class="card-text">В аэропорту, магазинах Viettel/Mobifone. Нужен паспорт.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">15. Работает ли YouTube?</div>
+    <div class="card-text">Да. Во Вьетнаме нет блокировок (кроме некоторых политических сайтов).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">16. Как сэкономить на еде?</div>
+    <div class="card-text">Ешьте в уличных кафе (quán cơm) — обед от 25 000 VND. Покупайте фрукты на рынке.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">17. Какие приложения скачать?</div>
+    <div class="card-text">Grab (такси/еда), Google Translate, Google Maps, AION (скоро), Vietjet (билеты).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">18. Куда сводить детей?</div>
+    <div class="card-text">VinWonders, пляж, аквапарк, водный спорт (каяки, бананы).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">19. Есть ли русские школы?</div>
+    <div class="card-text">Да, несколько: «Росинка», «Алые паруса», «Радуга». От $300/мес.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">20. Как открыть бизнес во Вьетнаме?</div>
+    <div class="card-text">Нужна инвестиционная лицензия (ERC). Минимальный уставной капитал — от $10 000.
+    Лучше через юриста (компании-помощники есть в AION-каталоге).</div>
+  </div>
+</div>
+
+<!-- ============================================================
+17. ЧЕК-ЛИСТ: ПЕРВЫЙ ДЕНЬ
+============================================================ -->
+<div class="section" id="checklist">
+  <div class="section-title"><span class="emoji">✅</span> Чек-лист: Первый день в Нячанге</div>
+  <ol>
+    <li>Купить SIM-карту (аэропорт или Viettel)</li>
+    <li>Снять наличные (банкомат в аэропорту, Vietcombank — без комиссии)</li>
+    <li>Заказать Grab до отеля (250 000–400 000 VND)</li>
+    <li>Заселиться, проверить Wi-Fi</li>
+    <li>Купить воду, перекусить в ближайшем кафе</li>
+    <li>Установить Grab, Telegram, Google Translate, Google Maps</li>
+    <li>Найти ближайший банк/обменник (сравнить курс через AION)</li>
+    <li>Проверить ближайшие аптеки и больницы</li>
+    <li>Погулять по набережной Tran Phu, поужинать морепродуктами</li>
+    <li>В 21:00 — наблюдать закат у Хон Чонг (Hòn Chồng)</li>
+  </ol>
+  <div class="info-box info">
+    <strong>Не забудьте:</strong> все вопросы по городу — в AION Mini App!
+  </div>
+</div>
+
+<!-- ============================================================
+18. БЫСТРЫЕ ССЫЛКИ
+============================================================ -->
+<div class="section" id="links">
+  <div class="section-title"><span class="emoji">🔗</span> Быстрые ссылки</div>
+  <div class="contact-item">
+    <span class="contact-label">📋 AION — все заведения</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏠 AION — аренда жилья</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚕 AION — трансфер</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">💱 AION — обмен валюты</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🤝 AION — найти русское комьюнити</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">✈️ Визовое агентство</span>
+    <a class="contact-value" href="#">Через AION</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">💬 Чат AION Нячанг</span>
+    <a class="contact-value" href="#">Telegram</a>
+  </div>
+</div>
+
+<div class="footer">
+  <p>© 2026 AION — Ваш городской помощник в Нячанге</p>
+  <p style="margin-top:8px; opacity:0.6;">Telegram Mini App</p>
+</div>
+
+</body>
+</html>

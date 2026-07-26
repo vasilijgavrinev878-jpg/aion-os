@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AION Visual Bible — Главная визуальная вселенная</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:#05080f;color:#c8d0e0;font-family:'Inter',sans-serif;line-height:1.7}
+  .bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(0,240,255,0.03)1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,0.03)1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+  .container{max-width:1200px;margin:0 auto;padding:40px 24px;position:relative;z-index:1}
+  .header{text-align:center;padding:60px 0 50px;border-bottom:1px solid rgba(0,240,255,0.12);margin-bottom:50px}
+  .header h1{font-size:3.4em;font-weight:800;background:linear-gradient(135deg,#00f0ff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .header .badge{display:inline-block;margin-top:16px;padding:8px 24px;border:1px solid rgba(0,240,255,0.3);border-radius:20px;font-size:0.85em;color:#00f0ff}
+  .toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;margin-bottom:50px;padding:24px;background:rgba(10,16,30,0.5);border:1px solid rgba(0,240,255,0.08);border-radius:16px}
+  .toc a{padding:6px 12px;border:1px solid rgba(0,240,255,0.08);border-radius:6px;color:#6b7a9a;text-decoration:none;font-size:0.78em;transition:all 0.2s}
+  .toc a:hover{border-color:#00f0ff;color:#00f0ff;background:rgba(0,240,255,0.05)}
+  .section{margin-bottom:60px}
+  .section-title{font-size:2.4em;font-weight:700;color:#fff;margin:50px 0 30px;padding-bottom:14px;border-bottom:1px solid rgba(0,240,255,0.12)}
+  .section-title .num{color:#00f0ff;font-weight:300;margin-right:14px;font-family:'JetBrains Mono',monospace}
+  .subsection-title{font-size:1.4em;font-weight:600;color:#00f0ff;margin:36px 0 16px}
+  .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+  @media(max-width:700px){.card-grid{grid-template-columns:1fr}}
+  .card{background:rgba(10,16,30,0.6);backdrop-filter:blur(8px);border:1px solid rgba(0,240,255,0.06);border-radius:12px;padding:20px}
+  .card h4{color:#fff;font-size:1em;font-weight:600;margin-bottom:8px}
+  .card p{color:#8a9ab0;font-size:0.82em;line-height:1.6}
+  .color-swatch{display:inline-block;width:20px;height:20px;border-radius:4px;vertical-align:middle;margin-right:8px;border:1px solid rgba(255,255,255,0.1)}
+  .color-row{display:flex;align-items:center;gap:12px;padding:8px 12px;margin:4px 0;background:rgba(0,0,0,0.2);border-radius:8px;font-size:0.85em;flex-wrap:wrap}
+  .color-row .label{color:#6b7a9a;min-width:100px;font-size:0.8em}
+  .color-row .value{font-family:'JetBrains Mono',monospace;color:#c8d0e0;font-size:0.85em}
+  .ten-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:20px 0}
+  .tenet{background:rgba(10,16,30,0.6);border-left:3px solid #00f0ff;border-radius:0 10px 10px 0;padding:14px 16px}
+  .tenet .num{color:#00f0ff;font-family:'JetBrains Mono',monospace;font-size:0.75em}
+  .tenet h4{color:#fff;font-size:0.9em}
+  .tenet p{color:#8a9ab0;font-size:0.78em;margin-top:4px}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.82em}
+  th{background:rgba(0,240,255,0.06);border:1px solid rgba(0,240,255,0.1);padding:10px 12px;text-align:left;color:#00f0ff;font-weight:600}
+  td{border:1px solid rgba(0,240,255,0.06);padding:8px 12px;color:#8a9ab0}
+  tr:nth-child(even) td{background:rgba(0,240,255,0.02)}
+  .tag{padding:2px 8px;border-radius:4px;font-size:0.75em;font-weight:500}
+  .tag-cyan{background:rgba(0,240,255,0.12);color:#00f0ff;border:1px solid rgba(0,240,255,0.15)}
+  .tag-gold{background:rgba(245,158,11,0.12);color:#f59e0b;border:1px solid rgba(245,158,11,0.15)}
+  .tag-purple{background:rgba(168,85,247,0.12);color:#a855f7;border:1px solid rgba(168,85,247,0.15)}
+  .material-card{background:rgba(10,16,30,0.5);border:1px solid rgba(0,240,255,0.06);border-radius:10px;padding:16px;margin-bottom:10px}
+  .material-card h4{color:#fff;font-size:0.95em;font-weight:600}
+  .material-card .meta{color:#4a5a7a;font-size:0.78em;font-family:'JetBrains Mono',monospace}
+  .material-card p{color:#8a9ab0;font-size:0.8em;margin-top:4px}
+</style></head><body>
+<div class="bg-grid"></div>
+<div class="container">
+<div class="header">
+  <h1>✦ AION Visual Bible</h1>
+  <div class="badge">Версия 1.0 · 2090 · Главный визуальный документ вселенной</div>
+  <p style="color:#6b7a9a;margin-top:18px;font-size:1em;max-width:700px;margin-left:auto;margin-right:auto">
+    Единый визуальный язык для фильмов, сериалов, AI-видео, приложений, сайтов, рекламы, интерфейсов, игр, мерча, архитектуры и маркетинга AION.
+    Внутренний брендбук — стандарт Apple × NASA × Tesla.
+  </p>
+</div>
+
+<div class="toc" id="toc">
+  <a href="#s1">01. Design Philosophy</a>
+  <a href="#s2">02. Visual DNA</a>
+  <a href="#s3">03. Color System</a>
+  <a href="#s4">04. Materials</a>
+  <a href="#s5">05. Lighting</a>
+  <a href="#s6">06. Architecture</a>
+  <a href="#s7">07. Interior Design</a>
+  <a href="#s8">08. Transport Design</a>
+  <a href="#s9">09. People Style</a>
+  <a href="#s10">10. Technology Design</a>
+  <a href="#s11">11. Interface Language</a>
+  <a href="#s12">12. Icon System</a>
+  <a href="#s13">13. Typography</a>
+  <a href="#s14">14. Motion Design</a>
+  <a href="#s15">15. Brand Symbols</a>
+  <a href="#s16">16. Photography Style</a>
+  <a href="#s17">17. Cinematic Style</a>
+  <a href="#s18">18. AI Image Rules</a>
+  <a href="#s19">19. AI Video Rules</a>
+  <a href="#s20">20. Brand Consistency</a>
+  <a href="#s21">+1. 10 Заповедей дизайна</a>
+  <a href="#s22">+2. Таблица объект→стиль</a>
+  <a href="#s23">+3. Чек-лист</a>
+</div>
+
+<!-- ================================ 1 ================================ -->
+<div class="section" id="s1">
+<div class="section-title"><span class="num">01</span>Design Philosophy</div>
+
+<div class="subsection-title">Почему мир выглядит именно так</div>
+<p style="color:#8a9ab0;margin-bottom:16px">
+AION — не антиутопия и не утопия. Это мир, в котором технологии стали тишиной.
+Дизайн исходит из принципа: <strong style="color:#c8d0e0">AI не кричит. Он шепчет.</strong>
+Визуальный язык построен на контрасте: глубокий космос (фон) и чистый свет (AI).
+Человек — центр. Технологии — прозрачные, почти невидимые.
+</p>
+
+<div class="subsection-title">7 принципов дизайна</div>
+<div class="card-grid">
+  <div class="card"><h4>01 · Радикальная простота</h4><p>Убирай всё, без чего можно обойтись. Каждый элемент должен быть функциональным. Пустота — не отсутствие, а пространство для дыхания.</p></div>
+  <div class="card"><h4>02 · Технологическая тишина</h4><p>AI не демонстрирует себя — он встроен. Никаких «роботизированных» эстетик. Интерфейсы исчезают, оставляя только содержание.</p></div>
+  <div class="card"><h4>03 · Свет как материал</h4><p>Свет — основной строительный материал. Неоновые линии, мягкое свечение, полупрозрачные слои. Тьма — не враг, а холст.</p></div>
+  <div class="card"><h4>04 · Человеческая теплота</h4><p>Никакого холодного «AI-дизайна». Матовые поверхности, тёплый свет, органические формы в точках контакта с человеком.</p></div>
+  <div class="card"><h4>05 · Премиальная сдержанность</h4><p>Дорого выглядит не то, что блестит, а то, что молчит. Качество в деталях: микро-анимации, идеальные отступы, бесшовные переходы.</p></div>
+  <div class="card"><h4>06 · Единая система</h4><p>Пентхаус в Сингапуре, больница в Найроби, интерфейс в Токио — всё подчиняется одним правилам. Узнаваемость за 0.3 секунды.</p></div>
+  <div class="card"><h4>07 · Эволюция, не революция</h4><p>Дизайн не меняется каждый год — он уточняется. Визуальный язык рассчитан на десятилетия. Классика будущего.</p></div>
+</div>
+
+<div class="subsection-title">Эмоции и ассоциации</div>
+<div class="card-grid">
+  <div class="card"><h4>Эмоции</h4><p>Спокойствие · Уверенность · Восхищение · Защищённость · Любопытство · Ясность · Вдохновение · Доверие</p></div>
+  <div class="card"><h4>Ассоциации</h4><p>Первый свет на Марсе · Чистый лист бумаги · Тёплый бриз с океана · Тишина библиотеки · Идеально настроенный рояль · Прозрачная вода</p></div>
+  <div class="card"><h4>Слова стиля</h4><p>Minimal · Serene · Premium · Intelligent · Warm-future · Transparent · Fluid · Precise · Human · Timeless</p></div>
+  <div class="card"><h4>Anti-слова (что НЕ является стилем)</h4><p>Cyberpunk · Dark · Aggressive · Cold-tech · Industrial · Gritty · Cluttered · Noisy · Robotic · Cheap-futuristic</p></div>
+</div>
+</div>
+
+<!-- ================================ 2 ================================ -->
+<div class="section" id="s2">
+<div class="section-title"><span class="num">02</span>Visual DNA</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Основные ценности</h4><p>Trust · Clarity · Humanity · Intelligence · Elegance · Unity · Future</p></div>
+  <div class="card"><h4>Основные формы</h4><p>Круг (бесконечность, целостность, AI) · Прямоугольник со скруглёнными углами (интерфейсы, архитектура) · Тонкая линия (связь, свет) · Органическая капля (человеческий контакт)</p></div>
+  <div class="card"><h4>Основные линии</h4><p>Горизонтальные (стабильность, интерфейсы) · Вертикальные (рост, архитектура) · Тонкие изогнутые (движение, энергия) · Световые дуги (AI-присутствие)</p></div>
+  <div class="card"><h4>Пропорции</h4><p>Золотое сечение (1:1.618) — базовая сетка · 8px — минимальный шаг сетки · 4px — микро-шаг для иконок · 12-колоночная сетка для интерфейсов</p></div>
+  <div class="card"><h4>Главные элементы</h4><p>Световой контур (glow) · Полупрозрачные слои (glassmorphism) · Парящие элементы (3D depth) · Голографические интерфейсы · Микро-анимации в каждой точке контакта</p></div>
+  <div class="card"><h4>Повторяющиеся мотивы</h4><p>Кольца (орбиты, циклы, AION-аура) · Бесконечные петли (данные, AI) · Светящиеся линии (энергия, информация) · Парящие частицы (данные в воздухе) · Геометрические паттерны (сетка города)</p></div>
+</div>
+</div>
+
+<!-- ================================ 3 ================================ -->
+<div class="section" id="s3">
+<div class="section-title"><span class="num">03</span>Color System</div>
+
+<div class="subsection-title">Основные цвета</div>
+<div class="color-row"><span class="color-swatch" style="background:#00f0ff"></span><span class="label">Cyan AION</span><span class="value">HEX: #00f0ff · RGB: 0, 240, 255</span><span class="tag tag-cyan">Основной бренд-цвет</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#05080f"></span><span class="label">Deep Space</span><span class="value">HEX: #05080f · RGB: 5, 8, 15</span><span class="tag tag-cyan">Фон вселенной</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#ffffff"></span><span class="label">Pure Light</span><span class="value">HEX: #ffffff · RGB: 255, 255, 255</span><span class="tag tag-cyan">Текст, свет</span></div>
+
+<p style="color:#6b7a9a;font-size:0.85em;margin:12px 0">Эмоция: доверие, чистота, бесконечность, интеллект.</p>
+
+<div class="subsection-title">Дополнительные цвета</div>
+<div class="color-row"><span class="color-swatch" style="background:#a855f7"></span><span class="label">Purple Nebula</span><span class="value">HEX: #a855f7 · RGB: 168, 85, 247</span><span class="tag tag-purple">AI-акценты, глубина</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#f59e0b"></span><span class="label">Gold Signal</span><span class="value">HEX: #f59e0b · RGB: 245, 158, 11</span><span class="tag tag-gold">Важные события, премиум</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#c8d0e0"></span><span class="label">Lunar Text</span><span class="value">HEX: #c8d0e0 · RGB: 200, 208, 224</span><span class="tag tag-cyan">Основной текст</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#6b7a9a"></span><span class="label">Stellar Muted</span><span class="value">HEX: #6b7a9a · RGB: 107, 122, 154</span><span class="tag tag-cyan">Вторичный текст</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#4a5a7a"></span><span class="label">Deep Blue</span><span class="value">HEX: #4a5a7a · RGB: 74, 90, 122</span><span class="tag tag-cyan">Третичный, рамки</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#1a2a3a"></span><span class="label">Void</span><span class="value">HEX: #1a2a3a · RGB: 26, 42, 58</span><span class="tag tag-cyan">Карточки, поверхности</span></div>
+
+<div class="subsection-title">Акцентные цвета</div>
+<div class="color-row"><span class="color-swatch" style="background:#00ff88"></span><span class="label">Emerald Pulse</span><span class="value">HEX: #00ff88 · RGB: 0, 255, 136</span><span class="tag tag-cyan">Здоровье, успех, природа</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#ff4d6d"></span><span class="label">Signal Red</span><span class="value">HEX: #ff4d6d · RGB: 255, 77, 109</span><span class="tag tag-cyan">Опасность, ошибка, срочно</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#ffd166"></span><span class="label">Warm Amber</span><span class="value">HEX: #ffd166 · RGB: 255, 209, 102</span><span class="tag tag-cyan">Тёплый свет, уют</span></div>
+<div class="color-row"><span class="color-swatch" style="background:#7c3aed"></span><span class="label">Deep Violet</span><span class="value">HEX: #7c3aed · RGB: 124, 58, 237</span><span class="tag tag-purple">AI-core, ночная тема</span></div>
+
+<div class="subsection-title">Фоновые / световые</div>
+<div class="card-grid">
+  <div class="card"><h4>Фоны</h4><p>Deep Space #05080f · Void #1a2a3a · Glass (rgba 10,16,30,0.6) · Card (rgba 10,16,30,0.5) · Hover (rgba 0,240,255,0.05)</p></div>
+  <div class="card"><h4>Световые эффекты</h4><p>Cyan Glow (0,240,255, 0.08–0.15) · Purple Aurora (168,85,247, 0.06–0.12) · Gold Halo (245,158,11, 0.08) · Emerald Pulse (0,255,136, 0.1)</p></div>
+  <div class="card"><h4>Ночная тема</h4><p>База: #020408 · Акценты: #7c3aed (Deep Violet) · Текст: #8a9ab0 · Подсветка: Cyan Glow 0.06 · Звёзды: белые точки opacity 0.3</p></div>
+  <div class="card"><h4>Сценарии использования</h4><p>Cyan AION — CTA, ссылки, активные состояния · Purple — AI-персонажи, нейроинтерфейсы · Gold — достижения, премиум-статус · Emerald — здоровье, подтверждения · Red — ошибки, предупреждения</p></div>
+</div>
+</div>
+
+<!-- ================================ 4 ================================ -->
+<div class="section" id="s4">
+<div class="section-title"><span class="num">04</span>Materials</div>
+
+<div class="card-grid">
+  <div class="material-card"><h4>Стекло</h4><div class="meta">#0a1a2a · Прозрачность 40–80%</div><p>Цвет: лёгкий сине-голубой оттенок. Фактура: идеально гладкая, без пузырьков. Отражения: мягкие, размытые. Ощущения: прохладное, чистое, невесомое. Используется: окна, экраны, перегородки, купола.</p></div>
+  <div class="material-card"><h4>Матовый металл</h4><div class="meta">#2a3a4a → #1a2a3a · Сатин</div><p>Цвет: тёмный титан, антрацит с синим подтоном. Фактура: микро-шёрстка, царапины не видны. Отражения: рассеянные, без бликов. Ощущения: тёплый металл, дорогой, тихий. Используется: корпуса устройств, мебель, архитектурные панели.</p></div>
+  <div class="material-card"><h4>Полированный металл</h4><div class="meta">#c8d0e0 · Зеркальный</div><p>Цвет: серебристо-белый с голубым рефлексом. Фактура: зеркальная. Отражения: чёткие, искажённые формой. Ощущения: холодный, точный, премиальный. Используется: акценты, логотипы, рамки, детали.</p></div>
+  <div class="material-card"><h4>Керамика</h4><div class="meta">#e8e0d8 · Матовая</div><p>Цвет: тёплый белый, слоновая кость, светло-серый. Фактура: микро-пористая, приятная на ощупь. Отражения: минимальные. Ощущения: земная, тёплая, человеческая. Используется: посуда, сантехника, интерьерные элементы, корпуса настольных устройств.</p></div>
+  <div class="material-card"><h4>Карбон</h4><div class="meta">#0a0a0f · Плетение 2×2</div><p>Цвет: чёрный с тёмно-синим отливом. Фактура: геометрическое плетение (едва заметное). Отражения: минимальные. Ощущения: лёгкий, прочный, технологичный. Используется: транспорт, дроны, корпуса high-end устройств.</p></div>
+  <div class="material-card"><h4>Наноматериалы</h4><div class="meta">Переливающийся · 0.1–1mm</div><p>Цвет: меняется от голубого к фиолетовому в зависимости от угла. Фактура: идеально гладкая, почти жидкая. Отражения: иризирующие, радужные. Ощущения: инопланетное, магическое, будущее. Используется: AI-корпуса, купола колоний, голографические проекторы.</p></div>
+  <div class="material-card"><h4>Жидкий металл</h4><div class="meta">#00c8d0 · Текучее состояние</div><p>Цвет: циановое серебро, живёт. Фактура: текучая, пульсирующая. Отражения: искажённые, волнообразные. Ощущения: живой металл, AI-присутствие. Используется: интерфейсы физические, элементы управления, декоративные инсталляции.</p></div>
+  <div class="material-card"><h4>Полупрозрачные поверхности</h4><div class="meta">rgba(10,16,30,0.4–0.7) · Frosted</div><p>Цвет: затемнённый фон с размытием. Фактура: матово-прозрачная (frosted glass). Отражения: размытые, мягкие. Ощущения: layer, глубина, загадочность. Используется: модальные окна, навигация, перегородки, карточки.</p></div>
+  <div class="material-card"><h4>Дерево</h4><div class="meta">#4a3a2a · Тёмный дуб / орех</div><p>Цвет: глубокий коричневый с тёплым подтоном. Фактура: открытые поры, натуральные линии. Отражения: матовые. Ощущения: натуральное, тёплое, человеческое. Используется: жилые интерьеры, премиум-рестораны, столы.</p></div>
+  <div class="material-card"><h4>Камень</h4><div class="meta">#3a4a5a · Тёмный гранит</div><p>Цвет: серо-синий, глубокий сланец. Фактура: натуральная, с текстурой. Отражения: матовые, влажные. Ощущения: вечный, стабильный, спокойный. Используется: полы, фасады, общественные пространства.</p></div>
+  <div class="material-card"><h4>Бетон</h4><div class="meta">#2a303a · Полированный</div><p>Цвет: тёплый серый. Фактура: гладкий, но с микро-порами. Отражения: мягкие, рассеянные. Ощущения: индустриальный, но тёплый, честный. Используется: стены, потолки, городская среда.</p></div>
+  <div class="material-card"><h4>Ткань</h4><div class="meta">#1a2a3a · Шерсть/лён/микрофибра</div><p>Цвет: глубокий синий, тёплый серый. Фактура: плотная, ворсистая или льняная. Отражения: отсутствуют. Ощущения: уютная, акустическая, мягкая. Используется: мебель, акустические панели, одежда.</p></div>
+</div>
+</div>
+
+<!-- ================================ 5 ================================ -->
+<div class="section" id="s5">
+<div class="section-title"><span class="num">05</span>Lighting</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Дневной свет</h4><p>Мягкий, рассеянный через облака и стекло. Цветовая температура: 5500K. Тени: мягкие, голубоватые. Отражения от стеклянных фасадов. Никогда — жёсткий прямой солнечный свет.</p></div>
+  <div class="card"><h4>Ночной свет</h4><p>Тёмно-синий фон с подсветкой зданий. Cyan-неон как основной источник. Звёзды (вне города — яркие). Тени: глубокие, чёрные с синим отливом.</p></div>
+  <div class="card"><h4>Закат</h4><p>Golden hour — тёплый оранжево-розовый (#ff7b4a → #a855f7). Силуэты зданий. Отражения в стёклах. Длится 30 минут визуально.</p></div>
+  <div class="card"><h4>Рассвет</h4><p>Холодный фиолетово-голубой (#7c3aed → #00f0ff). Туман, рассеянный свет. Пробуждение AI-интерфейсов.</p></div>
+  <div class="card"><h4>Дождь</h4><p>Серый рассеянный свет. Мокрые поверхности отражают cyan-неон. Размытые огни, глубокая перспектива. Атмосфера: тихая, медитативная.</p></div>
+  <div class="card"><h4>Интерьер — Офис AION</h4><p>Потолочные световые панели (4000K, мягкий). Акцентный cyan-подсветка стен. Мониторы — основной источник в тёмное время. Никаких люминесцентных ламп.</p></div>
+  <div class="card"><h4>Интерьер — Дом</h4><p>Тёплый 2700K — лампы, торшеры, встроенный свет. AI-адаптация под время суток. Свечение от голографических панелей (soft cyan).</p></div>
+  <div class="card"><h4>Интерьер — Ресторан</h4><p>Тёплый amber (2200K) — свечи, лампы. Акцентный gold на столах. Тени глубокие, контрастные.</p></div>
+  <div class="card"><h4>Интерьер — Больница</h4><p>Чистый белый 5000K с зелёным акцентом (emerald pulse). Рассеянный, без теней. Ночью — тёплый amber (палаты), холодный cyan (коридоры).</p></div>
+  <div class="card"><h4>Улица</h4><p>Основной: cyan-фонари (4000K с голубым фильтром). Реклама — soft purple glow. Транспорт — белый перед, красный зад. AR-элементы — semi-transparent cyan.</p></div>
+</div>
+</div>
+
+<!-- ================================ 6 ================================ -->
+<div class="section" id="s6">
+<div class="section-title"><span class="num">06</span>Architecture</div>
+
+<div class="subsection-title">Общий стиль</div>
+<p style="color:#8a9ab0;margin-bottom:16px">
+Neo-Brutalism + Biophilic Design + Smart Glass. Формы: блоки со скруглёнными углами, горизонтальные линии, зелёные террасы. Материалы: полированный бетон, стекло, матовый металл. Цвет: светло-серый, тёплый бежевый, акценты cyan.
+</p>
+
+<div class="card-grid">
+  <div class="card"><h4>Небоскрёбы</h4><p>Сужающиеся кверху башни. Скруглённые углы. Стеклянные фасады с горизонтальными линиями (металл). Зелёные террасы каждые 5 этажей. Cyan-подсветка по краям. Высота: 200–600 м.</p></div>
+  <div class="card"><h4>Жилые дома</h4><p>Средняя высота: 10–25 этажей. Панорамное остекление. Деревянные и каменные акценты на первых этажах. Внутренние дворы с садами. Паркинг — подземный.</p></div>
+  <div class="card"><h4>Отели</h4><p>Футуристические органические формы. Вход — огромный стеклянный атриум. Водные элементы. Номера — панорамные окна, минимализм. Цвет: белый, тёплый серый, cyan-акценты.</p></div>
+  <div class="card"><h4>Рестораны</h4><p>Смесь indoor/outdoor. Полупрозрачные перегородки. Живые стены. Тёплый свет. Органические формы мебели. Открытая кухня — стекло.</p></div>
+  <div class="card"><h4>Больницы</h4><p>Монохром: белый, светло-серый, emerald-акценты. Скруглённые коридоры без углов. Максимум естественного света. Зелёные зоны отдыха. AI-терминалы на каждом этаже.</p></div>
+  <div class="card"><h4>Университеты</h4><p>Открытые атриумы. Стеклянные купола. Амфитеатры с голографическими досками. Лаунж-зоны с озеленением. Библиотеки — тихие зоны с cyan-подсветкой.</p></div>
+  <div class="card"><h4>Парки</h4><p>Естественный ландшафт + минимальные AI-вмешательства. Светящиеся дорожки (cyan). AR-информационные точки. «Умные» скамейки с зарядкой.</p></div>
+  <div class="card"><h4>Аэропорты</h4><p>Гигантские стеклянные пространства. Белый каркас. Cyan-навигация на полу и стенах. Автономные гейты. Прозрачные эскалаторы.</p></div>
+  <div class="card"><h4>Вокзалы</h4><p>Стеклянные купола над путями. Открытые платформы. Вертикальные сады. Минималистичные навигационные стойки.</p></div>
+  <div class="card"><h4>Порты</h4><p>Плавные линии, белый бетон. Прозрачные волнорезы. AI-швартовка. Пассажирские терминалы — стеклянные купола над водой.</p></div>
+  <div class="card"><h4>Башня AION</h4><p>Высота: 888 м. Форма: закрученная спираль (символ бесконечности). Полностью стеклянная с голубым оттенком. Cyan-подсветка всей высоты. Шпиль: световой луч в небо (видим за 50 км). Основание: стеклянный атриум с тропическим садом.</p></div>
+</div>
+</div>
+
+<!-- ================================ 7 ================================ -->
+<div class="section" id="s7">
+<div class="section-title"><span class="num">07</span>Interior Design</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Квартиры</h4><p>Минимализм. Белые стены, тёплый бетон, деревянные полы. Панорамные окна. Встроенная мебель с AI-поверхностями (гладкий белый пластик). Скрытые голографические панели. Тёплый свет 2700K.</p></div>
+  <div class="card"><h4>Пентхаусы</h4><p>Максимум пространства. Потолки 4+ м. Стеклянные стены-окна. Мраморные полы (тёмный). Живые зелёные стены. Дорогая тканевая мебель (лен, шерсть). Холодный cyan vs тёплый огонь.</p></div>
+  <div class="card"><h4>Отели</h4><p>Лобби: мрамор, дерево, вода. Номера: керамика, лён, матовый металл. Ванные: тёмный камень, парящие раковины, подсветка зеркал (cyan).</p></div>
+  <div class="card"><h4>Кафе</h4><p>Тёплая атмосфера: дерево, живые растения, матовый металл. Открытые витрины. Минималистичные стулья. AI-терминал заказа — стеклянный экран. Звукоизоляция — тканевые панели.</p></div>
+  <div class="card"><h4>Офисы</h4><p>Open space с акустическими зонами. Стеклянные переговорные. Зелёные стены. Прозрачные потолки. Свет: 4000K + cyan-акценты на стенах. Парящие голографические доски.</p></div>
+  <div class="card"><h4>Клиники</h4><p>Монохром: белый + светло-серый + emerald. Скруглённая мебель. Никаких острых углов. Полумягкий свет 5000K. Стены с текстурой ткани (акустика).</p></div>
+  <div class="card"><h4>Лобби</h4><p>Двухсветное пространство. Парящая стойка ресепшн (белый камень + подсветка). Водные элементы. Крупные живые растения. Голографический логотип AION.</p></div>
+  <div class="card"><h4>Консьерж-зоны</h4><p>AI-киоски: стеклянные цилиндры с голографическим интерфейсом. Мягкие зоны ожидания. Приватные кабины для разговоров с AI.</p></div>
+  <div class="card"><h4>Коворкинги</h4><p>Гибкое пространство: стеклянные перегородки, складная мебель. Phone booths — акустические капсулы. Лаунж-зоны: мягкий свет, ковры, растения.</p></div>
+</div>
+</div>
+
+<!-- ================================ 8 ================================ -->
+<div class="section" id="s8">
+<div class="section-title"><span class="num">08</span>Transport Design</div>
+
+<div class="subsection-title">Общий принцип</div>
+<p style="color:#8a9ab0;margin-bottom:16px">
+Aero-dynamic minimalism. Плавные линии, скрытые колёса, отсутствие лишних деталей. Цвет: белый, серебристый, чёрный с cyan-акцентами. Материалы: карбон, матовый металл, стекло.
+</p>
+
+<div class="card-grid">
+  <div class="card"><h4>Автомобили (AION Auto)</h4><p>Форма: капля на колёсах. Скруглённые углы. Панорамное стекло-купол. Световая полоса вместо фар (cyan). Двери: распашные вверх. Салон: минимализм, экран во всю ширину.</p></div>
+  <div class="card"><h4>Такси (AION Taxi)</h4><p>Белый кузов с cyan-полосой. Прозрачная крыша. Двери-крылья. Внутри: два кресла, голографический маршрут. Вызов через AR.</p></div>
+  <div class="card"><h4>Поезда</h4><p>Пуля-образная форма. Полностью белый с cyan-линией. Окна-ленты. Интерьер: мягкий свет, деревянные акценты, информационные экраны.</p></div>
+  <div class="card"><h4>Метро</h4><p>Автономные составы. Белые, без кабины машиниста. Сквозной проход. Cyan-поручни. Карты на стёклах (AR). Тишина.</p></div>
+  <div class="card"><h4>Дроны</h4><p>Форма: овал с 4/8 винтами (закрыты кожухом). Белый карбон. Cyan-огни посадки. Грузовые — крупнее, с отсеком. Пассажирские — капсула на 1–2 человек.</p></div>
+  <div class="card"><h4>Водный транспорт</h4><p>Электрические катамараны. Белый корпус, панорамные окна. Палуба с зелёным садом. Тихие двигатели. Cyan-подсветка корпуса.</p></div>
+  <div class="card"><h4>Самолёты</h4><p>Сверхзвуковые бизнес-джеты. Плавные линии, стреловидное крыло. Окна без рамок. Белый + cyan-акценты. Салон: кожа, дерево, голографические дисплеи.</p></div>
+  <div class="card"><h4>Электровелосипеды</h4><p>Минималистичная рама, белый. Колёса без спиц (диски). Встроенный дисплей. Фара — тонкая cyan-полоса. Бесшумный двигатель.</p></div>
+  <div class="card"><h4>Автономный транспорт (робо-шаттлы)</h4><p>Прямоугольная капсула на колёсах. Без руля. Вход — раздвижная дверь. Внутри: диваны по кругу, голографические экраны. Полупрозрачные стены.</p></div>
+</div>
+</div>
+
+<!-- ================================ 9 ================================ -->
+<div class="section" id="s9">
+<div class="section-title"><span class="num">09</span>People Style</div>
+
+<div class="subsection-title">Общий принцип</div>
+<p style="color:#8a9ab0;margin-bottom:16px">
+Функциональная элегантность. Одежда — не статус, а инструмент. Качество ткани, идеальная посадка, отсутствие логотипов. Цвета: нейтральные с одним акцентом.
+</p>
+
+<div class="card-grid">
+  <div class="card"><h4>Повседневная</h4><p>Органический хлопок, лён, трикотаж. Oversized силуэты. Цвета: белый, серый, чёрный, тёплый беж. Smart-ткани (терморегуляция). Минимум аксессуаров.</p></div>
+  <div class="card"><h4>Премиум</h4><p>Шерсть, кашемир, шёлк. Идеальный крой. Монохром. Тёмно-синий, угольный, глубокий бордо. Единственный акцент — часы или кольцо (матовый металл).</p></div>
+  <div class="card"><h4>Бизнес</h4><p>Умные ткани (без сминания). Пиджаки без лацканов. Брюки прямые. Платья минималистичные. Цвета: тёмно-синий, серый, пыльный розовый. Обувь: без шнурков.</p></div>
+  <div class="card"><h4>Спорт</h4><p>Техничные ткани (дышащие, компрессия). Минималистичные кроссовки (белые, без лого). Светоотражающие cyan-вставки для безопасности ночью.</p></div>
+  <div class="card"><h4>Путешествия</h4><p>Многослойность. Лёгкие куртки из нано-ткани. Рюкзаки из матового нейлона. Удобная обувь. Умный багаж (GPS, зарядка).</p></div>
+  <div class="card"><h4>Дети</h4><p>Натуральные ткани (хлопок, бамбук). Яркие акценты (orange, mint). Минималистичный дизайн. Адаптивная одежда (растёт вместе с ребёнком).</p></div>
+  <div class="card"><h4>Пожилые</h4><p>Комфортный крой. Тёплые ткани (шерсть, флис). Цвета: спокойные (серый, тёмно-синий, бордо). Функциональные детали: удобные застёжки, карманы.</p></div>
+  <div class="card"><h4>Медики</h4><p>Униформа: белые/светло-серые куртки. Ткань с антибактериальной пропиткой. Минималистичные кроссовки. Smart-badge на груди (AI-ассистент).</p></div>
+  <div class="card"><h4>Инженеры</h4><p>Функциональные жилеты с карманами. Тёмные джинсы. Прочная обувь. AR-очки на лбу. Матовые планшеты в руках.</p></div>
+  <div class="card"><h4>Предприниматели</h4><p>Дорогой casual. Кашемировые водолазки. Часы минималистичные. Микро-гарнитура в ухе. Нет галстуков. Уверенность в каждой детали.</p></div>
+</div>
+</div>
+
+<!-- ================================ 10 ================================ -->
+<div class="section" id="s10">
+<div class="section-title"><span class="num">10</span>Technology Design</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Смартфоны (AION Phone)</h4><p>Цельный стеклянный корпус. Без разъёмов (беспроводная зарядка). Экран — весь перед. Форма: скруглённый прямоугольник. Цвет: белое стекло, чёрный, серебро. Cyan-логотип.</p></div>
+  <div class="card"><h4>AR-очки (AION Vision)</h4><p>Тонкая титановая оправа. Стекла — дисплеи (невидимые в выключенном состоянии). Минималистичные дужки. Встроенный нейро-сенсор. Цвет: матовый титан.</p></div>
+  <div class="card"><h4>Нейроинтерфейсы (NeuroLink)</h4><p>Тонкий обруч на голове (матовый металл). Тканевая подкладка. Светодиодная полоса (cyan — активно, purple — сон, amber — зарядка). Размер: 3mm толщина.</p></div>
+  <div class="card"><h4>Часы (AION Ring / AION Watch)</h4><p>Кольцо: матовый чёрный керамический обод. Экран отсутствует — проекция на руку. Часы: круглый циферблат без цифр. Только световые линии. Белый керамический корпус.</p></div>
+  <div class="card"><h4>Домашние устройства (AION Home)</h4><p>Керамические и тканевые корпуса. Формы: плавные, органические. Цвет: белый, тёплый серый. Световая индикация — мягкий cyan. Никаких экранов — голос + жесты.</p></div>
+  <div class="card"><h4>Роботы (AION Bot)</h4><p>Человекоподобные — минимум деталей. Матовый белый пластик. Стеклянное лицо (экран с глазами). Движения — плавные, тихие. Промышленные — функциональные чёрные формы.</p></div>
+  <div class="card"><h4>Дроны</h4><p>Белые сферические/овальные корпуса. Складные arms. Cyan-навигационные огни. Полностью бесшумные. Размер: от 20 см (персональные) до 2 м (грузовые).</p></div>
+  <div class="card"><h4>Голограммы</h4><p>Полупрозрачные с cyan-оттенком. Лёгкий партикл-эффект (едва заметные светящиеся точки). Плавные переходы. Мерцание в углах. Разрешение: 8K-качество.</p></div>
+</div>
+</div>
+
+<!-- ================================ 11 ================================ -->
+<div class="section" id="s11">
+<div class="section-title"><span class="num">11</span>Interface Language</div>
+
+<div class="subsection-title">Общие правила</div>
+<p style="color:#8a9ab0;margin-bottom:16px">
+Glassmorphism + Neumorphism + Floating UI. Тёмный фон, полупрозрачные карточки, тонкие границы. Микро-анимации в каждом элементе. Никаких теней — только glow (свечение).
+</p>
+
+<div class="card-grid">
+  <div class="card"><h4>Карточки</h4><p>Фон: rgba(10,16,30,0.6). Border: 1px rgba(0,240,255,0.08). Border-radius: 12–16px. Backdrop-filter: blur(8px). Hover: border-opacity 0.15. Padding: 20px.</p></div>
+  <div class="card"><h4>Кнопки</h4><p>Primary: bg #00f0ff, text #05080f, border-radius 8px. Secondary: transparent, border 1px rgba(0,240,255,0.2), text #00f0ff. Tertiary: text only, цвет #6b7a9a. Height: 40–48px. Hover: scale 1.02.</p></div>
+  <div class="card"><h4>Навигация</h4><p>Вертикальная слева или горизонтальная сверху. Активный пункт: cyan-подсветка слева (3px). Иконка + текст. Полупрозрачный фон при скролле. Sticky.</p></div>
+  <div class="card"><h4>AI-чат</h4><p>Круглая кнопка вызова (48px, cyan glow). Окно: скруглённые углы, полупрозрачный фон. Сообщения AI: слева, белый текст, bg rgba(0,240,255,0.06). Сообщения пользователя: справа, bg rgba(0,240,255,0.12). AI typing indicator: три пульсирующие точки.</p></div>
+  <div class="card"><h4>Каталог</h4><p>Сетка 3 колонки (десктоп). Фильтры слева или сверху. Каждая карточка: изображение 16:9, заголовок, цена, рейтинг. Hover: лёгкое поднятие (translateY -2px).</p></div>
+  <div class="card"><h4>Карта</h4><p>Минималистичная. Тёмные тона. Дороги — тонкие cyan-линии. Здания — серые блоки. Анимация при зуме — плавная. Маркеры — пульсирующие точки cyan.</p></div>
+  <div class="card"><h4>Поиск</h4><p>Строка поиска: bg rgba(10,16,30,0.6), border 1px rgba(0,240,255,0.1), border-radius 24px. Иконка поиска слева (cyan). Подсказки — выпадающий список с glass-фоном. Голосовой поиск — микрофон-кнопка.</p></div>
+  <div class="card"><h4>Анимации</h4><p>Ease-in-out. Длительность: 200–400ms. Появление: fade + translateY(12px). Переходы страниц: cross-fade 300ms. Hover: scale 1.02 + border-brightness.</p></div>
+  <div class="card"><h4>Переходы</h4><p>Страница → страница: fade (300ms). Модальное окно: scale 0.95→1 + fade (250ms). Аккордеон: height ease (300ms). Табы: cross-fade (200ms).</p></div>
+  <div class="card"><h4>Иконки</h4><p>Line-style, stroke-width 1.5–2px. Round caps, round joins. Размер: 20×20px (inline), 24×24px (buttons), 32×32px (nav). Цвет: #6b7a9a, active: #00f0ff.</p></div>
+</div>
+</div>
+
+<!-- ================================ 12 ================================ -->
+<div class="section" id="s12">
+<div class="section-title"><span class="num">12</span>Icon System</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Толщина линий</h4><p>Stroke-width: 1.5px (мелкие 16–20px), 2px (стандарт 24px), 2.5px (крупные 32px+). Никогда — жирные линии. Воздух внутри иконки важнее линий.</p></div>
+  <div class="card"><h4>Углы</h4><p>Round caps: все линии заканчиваются скруглением radius 1px. Round joins: углы соединений скруглены. Формы: в основном скруглённые прямоугольники, изредка круги. Никаких острых углов.</p></div>
+  <div class="card"><h4>Размеры</h4><p>16×16 — inline text · 20×20 — дополнительно · 24×24 — кнопки, навигация · 32×32 — заголовки · 48×48 — пустые состояния · 64×64 — onboard / промо. Все размеры — чётные.</p></div>
+  <div class="card"><h4>Форма и правила</h4><p>Closed paths — предпочтительно. Open paths — только для линий/стрелок. Внутреннее пространство — не менее 4px просвета. Pixel-perfect на 24×24. Горизонтальная/вертикальная симметрия. Анимация: draw animation (появление линий).</p></div>
+</div>
+</div>
+
+<!-- ================================ 13 ================================ -->
+<div class="section" id="s13">
+<div class="section-title"><span class="num">13</span>Typography</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Основной шрифт</h4><p>Inter (Variable) — для интерфейсов, веба, презентаций, печати. Sans-serif, нейтральный, читаемый. Начертания: Light 300 · Regular 400 · Medium 500 · Semibold 600 · Bold 700 · ExtraBold 800.</p></div>
+  <div class="card"><h4>Моноширинный</h4><p>JetBrains Mono — для кода, данных, метрик, цифр, таймингов. Начертания: Regular 400 · Medium 500 · Bold 700.</p></div>
+  <div class="card"><h4>Размеры (Scale 1.25)</h4><p>Display: 72px/80px · H1: 48px/56px · H2: 36px/44px · H3: 28px/36px · H4: 20px/28px · Body: 16px/24px · Small: 14px/20px · Caption: 12px/16px · Micro: 10px/14px.</p></div>
+  <div class="card"><h4>Правила</h4><p>Никогда — декоративные шрифты. Всегда — интерлиньяж +4 от кегля (16px текст → 20px line-height). Letter-spacing: заголовки -0.02em, текст 0em, captions +0.04em. Выравнивание: заголовки — по левому краю.</p></div>
+</div>
+</div>
+
+<!-- ================================ 14 ================================ -->
+<div class="section" id="s14">
+<div class="section-title"><span class="num">14</span>Motion Design</div>
+
+<div class="subsection-title">Физика движения</div>
+<p style="color:#8a9ab0;margin-bottom:16px">
+Ease-in-out (cubic-bezier 0.4, 0, 0.2, 1). Длительность: 200–500ms. Никаких bounce-эффектов. Движение — плавное, предсказуемое, «жидкое».
+</p>
+
+<div class="card-grid">
+  <div class="card"><h4>Появление окон</h4><p>Scale 0.92 → 1.0 + opacity 0→1. Duration: 300ms. Origin: center. Backdrop blur fade-in 200ms. Закрытие: reverse 200ms.</p></div>
+  <div class="card"><h4>Открытие карточек</h4><p>Expand from center. Content появляется с задержкой 50ms на каждый элемент (stagger). Image: scale 1.1→1 (parallax). Duration: 400ms.</p></div>
+  <div class="card"><h4>Исчезновение</h4><p>Opacity 1→0 + scale 1→0.96. Duration: 200ms. Никогда — резкое исчезновение. Все элементы должны исчезать в обратной анимации появления.</p></div>
+  <div class="card"><h4>AI-состояния</h4><p>Thinking: пульсирующий glow (opacity 0.6→1, duration 1.5s). Listening: волна на границе интерфейса. Speaking: тёплое свечение + микро-движения. Processing: спиральная анимация данных.</p></div>
+  <div class="card"><h4>Голограммы</h4><p>Constant micro-float (translateY ±2px, 4s duration). Scan line effect (едва заметная линия сверху вниз). Particle shimmer (мелкие точки вокруг объекта). Появление: строятся линиями.</p></div>
+</div>
+</div>
+
+<!-- ================================ 15 ================================ -->
+<div class="section" id="s15">
+<div class="section-title"><span class="num">15</span>Brand Symbols</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Логотип AION</h4><p>Буквы A-I-O-N тонким гротеском (Inter, Light). Промежутки: 0.3em. Слева — символ бесконечности (∞) из тонких линий cyan. Монохром: белый на тёмном, cyan на белом. Минимальный размер: 16px высота.</p></div>
+  <div class="card"><h4>Символ ИИ</h4><p>Три горизонтальные линии (waveform) + точка над средней. Толщина: 1.5px. Форма: скруглённая. Цвет: cyan. Используется: статусы AI, чат, голосовые ассистенты.</p></div>
+  <div class="card"><h4>Символ доверия</h4><p>Щит с минималистичной галочкой. Без заливки. Цвет: emerald. Используется: верификация, безопасность, подтверждения, SSL.</p></div>
+  <div class="card"><h4>Символ путешествий</h4><p>Стилизованная стрелка, переходящая в волну. Направление: вправо-вверх. Цвет: cyan. Используется: транспорт, отели, маршруты.</p></div>
+  <div class="card"><h4>Символ медицины</h4><p>Круг с пульсирующей точкой внутри. Линии: тонкие. Цвет: emerald #00ff88. Используется: здравоохранение, аптеки, клиники.</p></div>
+  <div class="card"><h4>Символ дома</h4><p>Минималистичный домик: крыша-линия, стены, дверь. Без деталей. Цвет: тёплый amber. Используется: недвижимость, жильё, район.</p></div>
+  <div class="card"><h4>Символ безопасности</h4><p>Шестиугольник (гексагон) без заливки. Цвет: cyan. Используется: охрана, SOS, emergency, протоколы.</p></div>
+  <div class="card"><h4>Символ образования</h4><p>Раскрытая книга с парящей точкой над страницей. Цвет: purple. Используется: школы, университеты, курсы, обучение.</p></div>
+</div>
+</div>
+
+<!-- ================================ 16 ================================ -->
+<div class="section" id="s16">
+<div class="section-title"><span class="num">16</span>Photography Style</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Композиция</h4><p>Асимметричная, но уравновешенная. Negative space — минимум 40% кадра. Ведущие линии к объекту. Съёмка: чуть снизу (уважение). Горизонт — идеально ровный. Rule of thirds.</p></div>
+  <div class="card"><h4>Глубина резкости</h4><p>Shallow DOF (f/1.4–2.8) для портретов. Medium DOF (f/4–5.6) для архитектуры. Deep focus для городов (f/8–11). Bokeh — мягкий, без «мыльных пузырей».</p></div>
+  <div class="card"><h4>Освещение</h4><p>Natural light — приоритет. Golden hour — для тёплых кадров. Рассеянный свет — для технологий. Никогда — жёсткий вспышечный свет. Light painting — для ночных сцен.</p></div>
+  <div class="card"><h4>Объективы</h4><p>35mm — основной (среда + человек) · 50mm — портреты · 85mm — детали · 16mm — архитектура · 70-200mm — кандид. Широкий угол — без искажений (коррекция).</p></div>
+  <div class="card"><h4>Палитра</h4><p>Приглушённая: синие, серые, голубые тона. Акцент — тёплый (кожа, дерево). Никакой перенасыщенности. Vibrance: -10. Contrast: +5. Shadows: подняты. Highlights: слегка приглушены.</p></div>
+  <div class="card"><h4>Настроение</h4><p>Спокойное, созерцательное. Люди — естественные, не позируют. Технологии — вписаны в среду, не доминируют. Время: утро / вечер. Чистота, тишина, порядок.</p></div>
+</div>
+</div>
+
+<!-- ================================ 17 ================================ -->
+<div class="section" id="s17">
+<div class="section-title"><span class="num">17</span>Cinematic Style</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Камеры</h4><p>Large format (Full Frame / Alexa 65). Минимальный шум ISO. 24fps — стандарт. 48fps — для action/экшена. 120fps — slow-mo (только в ключевые моменты).</p></div>
+  <div class="card"><h4>Линзы</h4><p>Vintage lenses с современной оправой. Лёгкая хроматическая аберрация (0.5%). Тёплый оттенок старых линз. Flare — минимальный, контролируемый. Пост-фокус в AI-сценах.</p></div>
+  <div class="card"><h4>Движение камеры</h4><p>Gimbal / дрон — плавное скольжение. Ручная камера — только документальные сцены. Никогда — энергичная тряска. Slow push-in — для важных моментов. Orbit — вокруг AI-объектов.</p></div>
+  <div class="card"><h4>Монтаж</h4><p>Темп: медленный, медитативный. Средняя длина кадра: 8–15 секунд. Jump cuts — запрещены. Cross-cutting — только для параллельных сюжетов. Тишина — важнее музыки.</p></div>
+  <div class="card"><h4>Переходы</h4><p>Fade to black — конец сцены. Cross-fade — смена времени/места. Whip pan — только для action. Match cut — только по форме/свету. Никаких слайд-переходов.</p></div>
+  <div class="card"><h4>Цветокоррекция</h4><p>LUT AION: Shadows #0a1a2a, Midtones #4a5a7a, Highlights #c8d0e0. Cyan в тенях. Тёплый amber в midtones. Чистый белый в highlights. 709 color space. Low saturation, high contrast.</p></div>
+</div>
+</div>
+
+<!-- ================================ 18 ================================ -->
+<div class="section" id="s18">
+<div class="section-title"><span class="num">18</span>AI Image Rules</div>
+
+<div class="subsection-title">Постоянные параметры генерации</div>
+<div class="card" style="margin-bottom:14px">
+<p style="color:#c8d0e0;font-family:'JetBrains Mono',monospace;font-size:0.82em">
+--ar 16:9 · --style raw · --v 6.2+ · --s 100-250 · --stylize low · --iw 1.0
+</p>
+<p style="color:#8a9ab0;font-size:0.82em;margin-top:6px">
+Style: photorealistic, cinematic lighting, soft contrast, muted palette, cyan and deep blue tones, minimalist, clean lines, premium. 
+</p>
+</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Что всегда должно присутствовать</h4><p>• Чистые линии, отсутствие шума · Цветовая гармония (cyan + deep blue + neutral) · Мягкий рассеянный свет · Пространство, воздух (negative space 30%+) · Человеческий scale · Матовые и стеклянные поверхности · Технологии как часть среды, не центр · Глубина: передний/средний/задний план</p></div>
+  <div class="card"><h4>Что никогда не должно появляться</h4><p>• Агрессивный киберпанк · Грязь, ржавчина, разруха · Яркие RGB-неоны (только cyan) · Дождь из кода (matrix) · Роботы-убийцы · Тёмные переулки · Готика · Откровенная сексуализация · Оружие в кадре (кроме спецконтекста) · Логотипы реальных брендов</p></div>
+  <div class="card"><h4>Как сохранять единый стиль</h4><p>• Использовать LUT AION · Проверять: узнаётся ли мир AION? · Сравнивать с референсами: архитектура -> Zaha Hadid, Norman Foster — портреты -> Peter Lindbergh, Mario Testino — интерфейсы -> Apple HIG · Всегда задавать вопрос: «Могло бы это быть в AION?»</p></div>
+</div>
+</div>
+
+<!-- ================================ 19 ================================ -->
+<div class="section" id="s19">
+<div class="section-title"><span class="num">19</span>AI Video Rules</div>
+
+<div class="subsection-title">Постоянные параметры</div>
+<div class="card" style="margin-bottom:14px">
+<p style="color:#c8d0e0;font-family:'JetBrains Mono',monospace;font-size:0.82em">
+Resolution: 3840×2160 (4K) · FPS: 24 · Shutter: 180° · Aspect: 16:9 · Depth of field: f/2.8–5.6 · Color: AION LUT · Lighting: soft diffused
+</p>
+</div>
+
+<div class="card-grid">
+  <div class="card"><h4>Камера</h4><p>Locked-off или slow gimbal. Pan: не быстрее 5 сек на 90°. Tilt: редко. Dolly push/pull: только для эмоциональных моментов. Никогда: handheld, crash zoom.</p></div>
+  <div class="card"><h4>Свет</h4><p>Key light: softbox 45° · Fill: 1/2 intensity · Rim: cyan LED 1/4 · Ночные сцены: motivated light (только источники в кадре) · Дождь: backlight + практикалы</p></div>
+  <div class="card"><h4>Материалы</h4><p>Все материалы — по библиотеке (секция 4). AI не должен галлюцинировать текстуры. Glass — реальный рефракция. Metal — правильный IOR (@1.5). Fabrics — микро-детали.</p></div>
+  <div class="card"><h4>Глубина</h4><p>Обязателен depth pass. Передний план — bg blur 8+. Средний — фокус. Задний — атмосферная перспектива (haze 0.1–0.3). Никогда — плоская композиция.</p></div>
+  <div class="card"><h4>Движение</h4><p>Motion blur: 1/48 sec (180° shutter). Люди — естественные движения. AI-объекты — плавные, с micro-float. Транспорт — speed lines (subtle). Никакого strobing.</p></div>
+  <div class="card"><h4>Анимации</h4><p>UI: ease-in-out 300ms. AI-появление: build-up (линии/частицы). Переходы: fade 1s. Замедления в ключевые моменты (speed ramp). Тишина между действиями.</p></div>
+</div>
+</div>
+
+<!-- ================================ 20 ================================ -->
+<div class="section" id="s20">
+<div class="section-title"><span class="num">20</span>Brand Consistency</div>
+
+<div class="subsection-title">Гарантия узнаваемости</div>
+<p style="color:#8a9ab0;margin-bottom:20px">
+Любой элемент вселенной AION должен быть узнаваем за <strong style="color:#c8d0e0">0.3 секунды</strong>. Это достигается через жёсткое соблюдение правил ниже.
+</p>
+
+<div class="card-grid">
+  <div class="card"><h4>Изображения</h4><p>Проверка: цветовая гамма → cyan + deep blue? Фон → тёмный или нейтральный? Технологии → вписаны или доминируют? Материалы → из библиотеки? Освещение → мягкое рассеянное? Если нет — не AION.</p></div>
+  <div class="card"><h4>Интерфейсы</h4><p>Проверка: тёмная тема → основа? Glassmorphism → используется? Шрифт → Inter? Иконки → line-style? Анимации → ease-in-out 300ms? Цвета → из системы? Если нет — не AION.</p></div>
+  <div class="card"><h4>Архитектура / Города</h4><p>Проверка: скруглённые блоки? Зелёные террасы? Glass + matte metal? Cyan-подсветка? Нет хаоса? Нет грязи? Если нет — не AION.</p></div>
+  <div class="card"><h4>Персонажи</h4><p>Проверка: одежда → функциональная элегантность? Цвета → нейтральные? Технологии → носимые, встроенные? Эмоция → спокойная уверенность? Если нет — не AION.</p></div>
+  <div class="card"><h4>Видео</h4><p>Проверка: темп → медленный? Цветокоррекция → AION LUT? Камера → стабильная? Переходы → fade/cross? Тишина → есть? Если нет — не AION.</p></div>
+  <div class="card"><h4>Реклама / Маркетинг</h4><p>Проверка: макет → соблюдена сетка? Свободное пространство → 40%+? Цвета → из системы? Шрифт → Inter? Логотип → корректный? Тон → уверенный, спокойный. Если нет — не AION.</p></div>
+</div>
+</div>
+
+<!-- ================================ +1 ================================ -->
+<div class="section" id="s21">
+<div class="section-title" style="color:#f59e0b"><span class="num" style="color:#f59e0b">+1</span>10 заповедей дизайна AION</div>
+
+<div class="ten-grid">
+  <div class="tenet"><span class="num">01</span><h4>Свет — это материал</h4><p>Не используй тени. Используй свечение. Каждый элемент должен быть освещён, не затенён.</p></div>
+  <div class="tenet"><span class="num">02</span><h4>Пустота — это содержание</h4><p>Не заполняй пространство. 40% пустоты — минимум. Дай зрителю дышать.</p></div>
+  <div class="tenet"><span class="num">03</span><h4>Технологии — тихие</h4><p>AI не кричит. Он шепчет. Интерфейсы исчезают, остаётся только действие.</p></div>
+  <div class="tenet"><span class="num">04</span><h4>Цветовая дисциплина</h4><p>Только палитра AION. Никаких случайных цветов. Cyan — основной. Purple — AI. Gold — премиум. Emerald — здоровье.</p></div>
+  <div class="tenet"><span class="num">05</span><h4>Всё скруглено</h4><p>Никаких острых углов. Radius 8px — минимум. Мир AION безопасен.</p></div>
+  <div class="tenet"><span class="num">06</span><h4>Материалы имеют значение</h4><p>Стекло, матовый металл, керамика, дерево. Никакого дешёвого пластика. Качество — в каждой текстуре.</p></div>
+  <div class="tenet"><span class="num">07</span><h4>Движение — тишина</h4><p>Все анимации — ease-in-out, 200–400ms. Никаких bounce. Никаких задержек. Плавность — абсолют.</p></div>
+  <div class="tenet"><span class="num">08</span><h4>Человек — центр</h4><p>Технологии служат, не доминируют. Кадр всегда начинается с человека или среда для человека.</p></div>
+  <div class="tenet"><span class="num">09</span><h4>0.3 секунды на узнавание</h4><p>Любой элемент AION узнаваем мгновенно. Если сомневаешься — сравни с брендбуком. Если не совпадает — переделай.</p></div>
+  <div class="tenet"><span class="num">10</span><h4>Классика будущего</h4><p>Не следуй трендам. Создавай то, что будет выглядеть современно через 20 лет. Вечность в каждой линии.</p></div>
+</div>
+</div>
+
+<!-- ================================ +2 ================================ -->
+<div class="section" id="s22">
+<div class="section-title" style="color:#f59e0b"><span class="num" style="color:#f59e0b">+2</span>Таблица объект → стиль</div>
+
+<table>
+<tr><th>Объект</th><th>Цвета</th><th>Материалы</th><th>Освещение</th><th>Стиль</th><th>Где используется</th></tr>
+<tr><td>Логотип AION</td><td>White / Cyan</td><td>—</td><td>Self-lit</td><td>Minimal, ∞-широкий</td><td>Все носители</td></tr>
+<tr><td>Небоскрёбы</td><td>Серый + Cyan + Зелень</td><td>Glass + Matte metal + Plant</td><td>4000K + Cyan edge</td><td>Neo-brutal biophilic</td><td>Города, районы AION</td></tr>
+<tr><td>AI-интерфейс</td><td>#05080f + #00f0ff</td><td>Glass + Glow</td><td>Cyan glow 0.08</td><td>Glassmorphism floating</td><td>Приложения, экраны, AR</td></tr>
+<tr><td>Чат AI</td><td>Cyan + White + Dark</td><td>Glass card + blur</td><td>Soft cyan backlight</td><td>Floating UI</td><td>Все экраны, AR, NeuroLink</td></tr>
+<tr><td>Транспорт</td><td>White + Cyan stripe + Black</td><td>Carbon + Matte metal + Glass</td><td>4000K + LED strip</td><td>Aero minimal</td><td>Улицы, дороги, воздух</td></tr>
+<tr><td>Одежда (премиум)</td><td>Navy + Charcoal + Burgundy</td><td>Wool + Cashmere + Silk</td><td>Natural / Soft</td><td>Functional elegance</td><td>Персонажи, жители</td></tr>
+<tr><td>Фото (промо)</td><td>Blue + Grey + Warm accent</td><td>—</td><td>Golden hour diffused</td><td>Minimal cinematic</td><td>Сайт, соцсети, реклама</td></tr>
+<tr><td>AR-навигация</td><td>Cyan lines + transp white</td><td>Holographic + particles</td><td>Self-illuminated</td><td>Light AR overlay</td><td>Города, аэропорты, музеи</td></tr>
+<tr><td>Голограмма</td><td>Cyan + Purple particles</td><td>Light + semi-transparent</td><td>Core glow 0.12</td><td>Volumetric light</td><td>Презентации, AI-образы</td></tr>
+<tr><td>Медицина</td><td>White + Light grey + Emerald</td><td>Matte plastic + Fabric + Ceramic</td><td>5000K diffused</td><td>Clean minimal</td><td>Клиники, больницы</td></tr>
+<tr><td>Башня AION</td><td>Cyan + Glass blue + White</td><td>Glass + Steel + Light</td><td>Cyan beam 24/7</td><td>Spiral minimal icon</td><td>Все города AION</td></tr>
+<tr><td>Интерьер (жильё)</td><td>White + Warm beige + Wood</td><td>Wood + Textile + Ceramic + Glass</td><td>2700K warm</td><td>Warm minimal</td><td>Квартиры, дома</td></tr>
+<tr><td>Дроны</td><td>White carbon + Cyan lights</td><td>Carbon + Glass + Matte plastic</td><td>LED + ambient</td><td>Aero sphere</td><td>Доставка, город, транспорт</td></tr>
+<tr><td>Реклама</td><td>Dark + Cyan + White + Gold</td><td>Digital</td><td>Self-lit / Backlit</td><td>Clean premium</td><td>Баннеры, билборды, AR</td></tr>
+<tr><td>Космические колонии</td><td>Red-brown + Cyan dome + Green</td><td>Regolite + Glass + Metal</td><td>Artificial sky + LED</td><td>Functional futuristic</td><td>Марс, Луна, орбита</td></tr>
+</table>
+</div>
+
+<!-- ================================ +3 ================================ -->
+<div class="section" id="s23">
+<div class="section-title" style="color:#f59e0b"><span class="num" style="color:#f59e0b">+3</span>Чек-лист для дизайнеров, художников и AI</div>
+
+<div class="subsection-title">Обязательно соблюдать</div>
+<div class="card" style="margin-bottom:10px">
+<p style="color:#c8d0e0;font-size:0.85em">
+✅ Всегда использовать палитру AION (секция 3) — без импровизаций<br>
+✅ Всегда использовать Inter и JetBrains Mono — никаких других шрифтов<br>
+✅ Всегда соблюдать 8px сетку и золотое сечение<br>
+✅ Всегда скруглять углы (min 8px) — никаких острых краёв<br>
+✅ Всегда соблюдать negative space (30–40%)<br>
+✅ Всегда использовать glassmorphism для интерфейсов (backdrop-filter + rgba)<br>
+✅ Всегда использовать ease-in-out для анимаций (200–400ms)<br>
+✅ Всегда проверять цветокоррекцию через AION LUT<br>
+✅ Всегда использовать материалы из библиотеки (секция 4)<br>
+✅ Всегда проверять: узнаваемость за 0.3 сек?
+</p>
+</div>
+
+<div class="subsection-title">Строго запрещено</div>
+<div class="card" style="margin-bottom:10px">
+<p style="color:#ff4d6d;font-size:0.85em">
+❌ Использовать яркие «игровые» цвета (electric green, hot pink, bright yellow)<br>
+❌ Использовать сложные текстуры на фоне (шум, градиентные «пятна»)<br>
+❌ Добавлять реалистичный шум, грязь, царапины, потёртости<br>
+❌ Делать агрессивные тени (drop-shadow с opacity >0.3)<br>
+❌ Использовать bounce, spring, elastic-анимации<br>
+❌ Показывать людей с агрессивными выражениями лиц<br>
+❌ Добавлять киберпанк-элементы (дождь в городе, дымы, грязь)<br>
+❌ Использовать хардкорный sci-fi (лазеры, щиты, взрывы)<br>
+❌ Делать интерфейсы яркими, с высоким контрастом<br>
+❌ Использовать логотипы реальных брендов внутри вселенной
+</p>
+</div>
+
+<div class="subsection-title">Как проверять соответствие стилю</div>
+<div class="card" style="margin-bottom:10px">
+<p style="color:#c8d0e0;font-size:0.85em">
+🔍 <strong>Визуальный тест:</strong> Открой работу на 3 секунды. Закрой. Что запомнил? Если первое впечатление — спокойствие и чистота, тест пройден.<br>
+🔍 <strong>Цветовой тест:</strong> Наложи палитру AION. Все ли цвета из системы? Есть ли «чужие» цвета?<br>
+🔍 <strong>Тест материалов:</strong> Каждый материал — из библиотеки? Никаких «случайных» текстур?<br>
+🔍 <strong>Тест источника:</strong> Где находится источник света? Он мотивирован? Это физический источник или абстрактный?<br>
+🔍 <strong>Тест пропорций:</strong> Измерь отступы. Они кратны 8? Есть ли золотое сечение?<br>
+🔍 <strong>Тест на Anti-AION:</strong> Нарисуй то же самое в стиле анти-AION (cyberpunk, cold, aggressive). Отличается? Если нет — переделай.
+</p>
+</div>
+
+<div class="subsection-title">AI Prompts — шаблоны для генерации</div>
+<div class="card">
+<p style="color:#8a9ab0;font-size:0.82em">
+<strong style="color:#c8d0e0">Архитектура:</strong> «AION universe architecture, neo-brutalist biophilic skyscraper, rounded corners, glass facade with horizontal metal lines, green terraces every 5 floors, cyan edge lighting, soft matte concrete ground, cinematic lighting, diffused overcast sky, premium minimalist, photorealistic, 8K, --ar 16:9 --style raw»<br><br>
+<strong style="color:#c8d0e0">Портрет:</strong> «AION universe character portrait, 35-year-old man, functional elegant clothing, navy merino turtleneck, natural expression, soft diffused light, shallow depth of field, background neutral dark blue, cinematic, Peter Lindbergh style, premium, realistic skin texture, --ar 16:9 --style raw»<br><br>
+<strong style="color:#c8d0e0">Интерфейс:</strong> «AION mobile interface, dark theme #05080f, cyan glassmorphism cards, rounded corners 12px, Inter typography, minimal line-style icons, floating UI elements, soft cyan glow, premium app design, dark blue #1a2a3a secondary elements, high end mobile UI, --ar 9:16 --style raw»<br><br>
+<strong style="color:#c8d0e0">Городской пейзаж:</strong> «AION universe cityscape, Shanghai skyline 2090, clean futuristic skyscrapers with green terraces, cyan night lighting, calm atmosphere, wide angle, low angle view, cinematic, soft contrast, muted blue palette, premium future, no people, photorealistic, --ar 16:9 --style raw»
+</p>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:50px 0;border-top:1px solid rgba(0,240,255,0.1);margin-top:40px">
+  <p style="color:#4a5a7a;font-size:0.85em">AION Universe Project · Visual Bible · Версия 1.0</p>
+  <p style="color:#3a4a6a;font-size:0.8em;margin-top:4px">Главный документ визуального языка вселенной · 20 разделов · 3 приложения</p>
+</div>
+</div>
+</body></html>

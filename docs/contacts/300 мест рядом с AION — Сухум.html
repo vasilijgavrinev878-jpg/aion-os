@@ -1,0 +1,815 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>300 мест рядом — Сухум | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #D4A853;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --deep-blue: #0A1628;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .cover {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1a2a4a 50%, var(--deep-blue) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '∞';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.04;
+    top: -60px;
+    right: -40px;
+    font-weight: 100;
+  }
+  .cover::after {
+    content: 'AION';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.03;
+    bottom: -40px;
+    left: -20px;
+    font-weight: 900;
+    letter-spacing: 20px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .cover .subtitle {
+    font-size: 16px;
+    opacity: 0.75;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  .cover .meta {
+    margin-top: 28px;
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav a:hover { background: var(--bg-alt); color: var(--accent); }
+  .section {
+    padding: 24px 32px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--deep-blue);
+  }
+  .section-header .count {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+  }
+  .entry {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+  .entry:hover { border-color: var(--accent); }
+  .entry .num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .entry h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin: 2px 0 4px;
+  }
+  .entry .loc {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  .entry .desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .entry .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .entry .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag-price { background: #f0fdf4; color: #15803d; }
+  .tag-time { background: #fefce8; color: #a16207; }
+  .tag-info { background: #eef2ff; color: #4338ca; }
+  .tag-warn { background: #fef2f2; color: #dc2626; }
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 28px; }
+    .section { padding: 16px 14px; }
+    .entry-grid { grid-template-columns: 1fr; }
+    .nav { padding: 6px 10px; gap: 2px; }
+    .nav a { font-size: 11px; padding: 2px 6px; }
+  }
+  .section ul { list-style: none; margin: 0; padding: 0; }
+  .section li {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .section li strong { color: var(--deep-blue); }
+  .section li .meta { color: var(--text-light); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">AION City Guide</div>
+  <h1>300 мест рядом</h1>
+  <div class="subtitle">Полный гид по Сухуму — всё, что нужно русскоязычному</div>
+  <div class="meta">AION · Июнь 2026 · 14 разделов · 320 мест</div>
+</div>
+
+<nav class="nav" id="nav">
+  <a href="#sight">Достопримечательности</a>
+  <a href="#beach">Пляжи</a>
+  <a href="#islands">Острова и экскурсии</a>
+  <a href="#spa">СПА</a>
+  <a href="#beauty">Красота</a>
+  <a href="#markets">Рынки</a>
+  <a href="#shopping">Шопинг</a>
+  <a href="#kids">Дети</a>
+  <a href="#sport">Спорт</a>
+  <a href="#med">Медицина</a>
+  <a href="#transport">Транспорт</a>
+  <a href="#food">Рестораны</a>
+  <a href="#night">Ночная жизнь</a>
+  <a href="#services">Сервисы</a>
+</nav>
+
+<div class="section" id="sight">
+<div class="section-header"><h2>Достопримечательности</h2><span class="count">22 места</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#1</div><h3>Набережная Махаджиров</h3><div class="loc">Вдоль побережья, 5 км</div><div class="desc">Главная прогулочная набережная Сухума. Пальмы, скамейки, кафе, вид на море. Вечером — закаты.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#2</div><h3>Колоннада Сухума</h3><div class="loc">Набережная, центр</div><div class="desc">Знаменитая белая колоннада с куполом. Символ города. Популярное место для фото.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#3</div><h3>Ботанический сад Абхазии</h3><div class="loc">Ул. Гулия, центр</div><div class="desc">Один из старейших ботанических садов Кавказа. 30 га, 5000+ видов растений. Очень красиво.</div><div class="tags"><span class="tag tag-price">200–500₽</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#4</div><h3>Крепость Сухум-Кале</h3><div class="loc">Центр, у порта</div><div class="desc">Историческая крепость XVI века. Стены, башни, вид на море. Внутри — музей.</div><div class="tags"><span class="tag tag-price">100₽</span><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#5</div><h3>Абхазский государственный музей</h3><div class="loc">Центр</div><div class="desc">История Абхазии от древности до наших дней. Археология, этнография, природа.</div><div class="tags"><span class="tag tag-price">150₽</span><span class="tag tag-time">10:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#6</div><h3>Обезьяний питомник</h3><div class="loc">Ул. Гицба, пригород</div><div class="desc">Уникальный питомник, где живут обезьяны. Научная станция. Детям очень интересно.</div><div class="tags"><span class="tag tag-price">200₽</span><span class="tag tag-time">9:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#7</div><h3>Замок Баграта</h3><div class="loc">Холм над городом</div><div class="desc">Развалины средневекового замка X века. Панорамный вид на Сухум и море.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#8</div><h3>Рынок «Сухумский базар»</h3><div class="loc">Центр</div><div class="desc">Главный рынок Сухума. Аджика, сыры, фрукты, сухофрукты, специи, чай.</div><div class="tags"><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#9</div><h3>Собор Благовещения Пресвятой Богородицы</h3><div class="loc">Центр</div><div class="desc">Главный православный собор Сухума. Красивая архитектура, иконы.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#10</div><h3>Сухумский маяк</h3><div class="loc">Набережная, у порта</div><div class="desc">Старый маяк на мысе. Живописное место, популярно для фото.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#11</div><h3>Парк «Маяк» (бывш. парк Горького)</h3><div class="loc">Набережная</div><div class="desc">Зелёный парк вдоль набережной. Аттракционы, кафе, колесо обозрения.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#12</div><h3>Дом правительства Абхазии</h3><div class="loc">Центр</div><div class="desc">Здание на набережной. Интересная архитектура советского периода.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#13</div><h3>Театр имени Чанбы</h3><div class="loc">Пр. Леона</div><div class="desc">Главный театр Абхазии. Здание с колоннами, спектакли на абхазском и русском.</div><div class="tags"><span class="tag tag-price">от 300₽</span></div></div>
+
+<div class="entry"><div class="num">#14</div><h3>Дача Сталина в Холодной Речке</h3><div class="loc">Холодная Речка, ~5 км</div><div class="desc">Одна из дач Сталина. Сохранена обстановка, музей. Вид на море.</div><div class="tags"><span class="tag tag-price">200₽</span><span class="tag tag-time">10:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#15</div><h3>Водопад «Великан»</h3><div class="loc">Окрестности Сухума</div><div class="desc">Живописный водопад высотой 25 м. Прохлада в жару, красивая природа.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#16</div><h3>Голубое озеро</h3><div class="loc">Пригород</div><div class="desc">Небольшое озеро с бирюзовой водой. Живописное место для пикника.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#17</div><h3>Беслетский мост</h3><div class="loc">Район Беслетка</div><div class="desc">Средневековый арочный мост XII века. Исторический памятник.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#18</div><h3>Каманский монастырь</h3><div class="loc">Село Каманы, ~15 км</div><div class="desc">Древний монастырь. Место мученической смерти святого Василиска.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#19</div><h3>Курорт «Агудзера»</h3><div class="loc">Агудзера, ~10 км</div><div class="desc">Пригород с санаториями и пляжами. Минеральные источники.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#20</div><h3>Абхазская филармония</h3><div class="loc">Центр</div><div class="desc">Концертный зал. Выступления национальных танцевальных коллективов.</div><div class="tags"><span class="tag tag-price">от 300₽</span></div></div>
+
+<div class="entry"><div class="num">#21</div><h3>Санаторий «Сухум»</h3><div class="loc">Набережная</div><div class="desc">Историческое здание санатория сталинской эпохи. Архитектура, парк.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#22</div><h3>Этнографический парк «Апсны»</h3><div class="loc">Пригород</div><div class="desc">Абхазские традиционные дома, утварь, дегустация национальной кухни.</div><div class="tags"><span class="tag tag-price">от 300₽</span></div></div>
+
+</div></div>
+
+<div class="section" id="beach">
+<div class="section-header"><h2>Пляжи</h2><span class="count">14 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#23</div><h3>Центральный пляж Сухума</h3><div class="loc">Набережная, центр</div><div class="desc">Главный городской пляж с галькой. Шезлонги, зонты, кафе, водные аттракционы.</div><div class="tags"><span class="tag tag-price">Лежак 100–200₽</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#24</div><h3>Пляж «Маяк»</h3><div class="loc">Район маяка</div><div class="desc">Популярный пляж у маяка. Галька, прозрачная вода, меньше народу.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#25</div><h3>Пляж «Агудзера»</h3><div class="loc">Агудзера, ~10 км</div><div class="desc">Протяжённый пляж с галькой. Санатории, кафе. Чистый воздух.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#26</div><h3>Пляж «Айтар»</h3><div class="loc">Район Айтар</div><div class="desc">Дикий пляж с крупной галькой. Подходит для уединённого отдыха.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#27</div><h3>Пляж санатория «Суккун»</h3><div class="loc">Центр, санаторий Суккун</div><div class="desc">Оборудованный пляж санатория. Лежаки, зонты, душевые.</div><div class="tags"><span class="tag tag-price">от 100₽</span><span class="tag tag-time">8:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#28</div><h3>Пляж «Кяласур»</h3><div class="loc">Район Кяласур, юг города</div><div class="desc">Тихий пляж на южной окраине. Мало людей.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#29</div><h3>Пляж «Синоп»</h3><div class="loc">Район Синоп</div><div class="desc">Популярен среди местных. Галька, кафе рядом.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#30</div><h3>Пляж «Гумиста»</h3><div class="loc">Район Гумиста</div><div class="desc">Пляж у устья реки Гумиста. Вода прохладнее из-за реки.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#31</div><h3>Пляж «Черниговка»</h3><div class="loc">Черниговка, пригород</div><div class="desc">Уединённый пляж с крупной галькой. Хорошо для снорклинга.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#32</div><h3>Пляж «Бамбуковый»</h3><div class="loc">Район Бамбуковой рощи</div><div class="desc">Пляж рядом с бамбуковой рощей. Тенистые участки, романтично.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#33</div><h3>Пляж пансионата «Гагрский»</h3><div class="loc">Набережная</div><div class="desc">Обустроенный пляж с лежаками, раздевалками.</div><div class="tags"><span class="tag tag-price">100–200₽</span></div></div>
+
+<div class="entry"><div class="num">#34</div><h3>Пляж «Догва» (Догвский)</h3><div class="loc">Район Догва</div><div class="desc">Песчано-галечный пляж. Чистая вода. Подходит для детей.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#35</div><h3>Пляж «Очамчира»</h3><div class="loc">Очамчира, ~50 км</div><div class="desc">Популярный загородный пляж. Длинная береговая линия, чисто.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#36</div><h3>Пляж на Новой набережной</h3><div class="loc">Новая набережная</div><div class="desc">Недавно реконструированный участок набережной. Пляж, велодорожки, кафе.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+</div></div>
+
+<div class="section" id="islands">
+<div class="section-header"><h2>Острова и морские экскурсии</h2><span class="count">10 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#37</div><h3>Морская прогулка вдоль побережья</h3><div class="loc">От порта Сухума</div><div class="desc">Обзорная прогулка на катере вдоль побережья. Вид на колоннаду, маяк, горы.</div><div class="tags"><span class="tag tag-price">500–1000₽</span><span class="tag tag-time">11:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#38</div><h3>Тур в Новый Афон</h3><div class="loc">~20 км от Сухума</div><div class="desc">Морская экскурсия к Новоафонскому монастырю. Пещеры, храмы, набережная.</div><div class="tags"><span class="tag tag-price">1000–2000₽</span><span class="tag tag-time">5–7 часов</span></div></div>
+
+<div class="entry"><div class="num">#39</div><h3>Катание на «банане»</h3><div class="loc">Центральный пляж</div><div class="desc">Весёлое водное развлечение для всей семьи.</div><div class="tags"><span class="tag tag-price">200–400₽</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#40</div><h3>Парасейлинг</h3><div class="loc">Центральный пляж</div><div class="desc">Полёт на парашюте за катером. Адреналин и вид на Сухум с высоты.</div><div class="tags"><span class="tag tag-price">1500–2000₽</span><span class="tag tag-time">10:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#41</div><h3>Дайвинг в Сухуме</h3><div class="loc">Дайв-центры города</div><div class="desc">Погружения в Чёрном море. Затонувшие объекты, скалы, рыбы.</div><div class="tags"><span class="tag tag-price">от 1500₽</span><span class="tag tag-time">По записи</span></div></div>
+
+<div class="entry"><div class="num">#42</div><h3>Рыбалка в Чёрном море</h3><div class="loc">От порта</div><div class="desc">Морская рыбалка с капитаном. Снаряжение включено.</div><div class="tags"><span class="tag tag-price">1000–2000₽</span><span class="tag tag-time">3–5 часов</span></div></div>
+
+<div class="entry"><div class="num">#43</div><h3>Тур на катере закат</h3><div class="loc">От порта</div><div class="desc">Романтическая прогулка на закате. Закатное солнце над морем.</div><div class="tags"><span class="tag tag-price">800–1200₽</span><span class="tag tag-time">18:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#44</div><h3>Экскурсия в Гудауту</h3><div class="loc">Северное побережье</div><div class="desc">Комбинированный тур: храмы Гудауты, дегустация, пляж.</div><div class="tags"><span class="tag tag-price">1000–1500₽</span><span class="tag tag-time">5–6 часов</span></div></div>
+
+<div class="entry"><div class="num">#45</div><h3>SUP-сёрфинг</h3><div class="loc">Пляжи Сухума</div><div class="desc">Стоячий сёрфинг с веслом. Прокат досок.</div><div class="tags"><span class="tag tag-price">300–500₽/час</span><span class="tag tag-time">8:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#46</div><h3>Виндсёрфинг</h3><div class="loc">Пляжи города</div><div class="desc">Школа виндсёрфинга. Прокат оборудования.</div><div class="tags"><span class="tag tag-price">Урок от 1000₽</span><span class="tag tag-time">9:00–18:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="spa">
+<div class="section-header"><h2>СПА и сауны</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#47</div><h3>СПА-отель «Абхазия»</h3><div class="loc">Набережная</div><div class="desc">СПА с бассейном, сауной, массажем. Дневной вход.</div><div class="tags"><span class="tag tag-price">от 500₽</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#48</div><h3>СПА «Диоскурия»</h3><div class="loc">Центр</div><div class="desc">СПА-центр с хамамом, финской сауной, джакузи.</div><div class="tags"><span class="tag tag-price">от 600₽</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#49</div><h3>Грязелечебница Сухума</h3><div class="loc">Пригород</div><div class="desc">Лечебные грязевые ванны. Показания: суставы, нервы.</div><div class="tags"><span class="tag tag-price">от 400₽</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#50</div><h3>СПА «Рица»</h3><div class="loc">Центр</div><div class="desc">СПА-процедуры, массаж, обёртывания. Русскоязычные мастера.</div><div class="tags"><span class="tag tag-price">от 500₽</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#51</div><h3>Русская баня Сухум</h3><div class="loc">Центр</div><div class="desc">Настоящая русская баня с вениками. Парная, бассейн, чай.</div><div class="tags"><span class="tag tag-price">от 300₽</span><span class="tag tag-time">12:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#52</div><h3>СПА «Апсны»</h3><div class="loc">Центр</div><div class="desc">Массаж, стоун-терапия, уход за лицом.</div><div class="tags"><span class="tag tag-price">от 500₽</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#53</div><h3>Thai Spa Sukhum</h3><div class="loc">Центр</div><div class="desc">Тайский массаж, масляный массаж. Аутентично.</div><div class="tags"><span class="tag tag-price">от 700₽</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#54</div><h3>СПА «Кавказ»</h3><div class="loc">Набережная</div><div class="desc">СПА-центр с бассейном, сауной. Массажные программы.</div><div class="tags"><span class="tag tag-price">от 600₽</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#55</div><h3>Санаторий «Москва»</h3><div class="loc">Пригород</div><div class="desc">Курортный санаторий. Массаж, грязи, минеральные ванны.</div><div class="tags"><span class="tag tag-price">от 1000₽</span></div></div>
+
+<div class="entry"><div class="num">#56</div><h3>СПА «Жоэквар»</h3><div class="loc">Центр</div><div class="desc">Оздоровительный центр. Кедровая бочка, массаж.</div><div class="tags"><span class="tag tag-price">от 500₽</span></div></div>
+
+<div class="entry"><div class="num">#57</div><h3>Массажный салон «Релакс»</h3><div class="loc">Центр</div><div class="desc">Классический и спортивный массаж.</div><div class="tags"><span class="tag tag-price">от 400₽</span></div></div>
+
+<div class="entry"><div class="num">#58</div><h3>Хамам «Восточный»</h3><div class="loc">Центр</div><div class="desc">Восточная парная с мраморным полом. Пилинг, чай.</div><div class="tags"><span class="tag tag-price">от 500₽</span></div></div>
+
+</div></div>
+
+<div class="section" id="beauty">
+<div class="section-header"><h2>Салоны красоты</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#59</div><h3>Beauty Studio Sukhum</h3><div class="loc">Центр</div><div class="desc">Стрижки, окрашивание, маникюр. Русскоязычные мастера.</div><div class="tags"><span class="tag tag-price">Стрижка от 300₽</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#60</div><h3>Nail Studio Sukhum</h3><div class="loc">Центр</div><div class="desc">Маникюр, педикюр, гель-лак.</div><div class="tags"><span class="tag tag-price">Маникюр от 400₽</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#61</div><h3>Glamour Hair</h3><div class="loc">Центр</div><div class="desc">Модные стрижки, окрашивание, укладка.</div><div class="tags"><span class="tag tag-price">Стрижка от 250₽</span><span class="tag tag-time">9:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#62</div><h3>Brow & Lash Bar</h3><div class="loc">Центр</div><div class="desc">Брови, ресницы, ламинирование, наращивание.</div><div class="tags"><span class="tag tag-price">Брови от 200₽</span><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#63</div><h3>Barber Shop Sukhum</h3><div class="loc">Центр</div><div class="desc">Мужские стрижки, бритьё, борода.</div><div class="tags"><span class="tag tag-price">Стрижка от 300₽</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#64</div><h3>Pink Nail & Beauty</h3><div class="loc">Центр</div><div class="desc">Маникюр, педикюр, дизайн любой сложности.</div><div class="tags"><span class="tag tag-price">от 350₽</span></div></div>
+
+<div class="entry"><div class="num">#65</div><h3>Cosmo Hair Studio</h3><div class="loc">Центр</div><div class="desc">Стрижки, окрашивание, кератин.</div><div class="tags"><span class="tag tag-price">Стрижка от 250₽</span></div></div>
+
+<div class="entry"><div class="num">#66</div><h3>Elegance Nail</h3><div class="loc">Центр</div><div class="desc">Премиальная nail-студия. Большой выбор.</div><div class="tags"><span class="tag tag-price">от 500₽</span></div></div>
+
+<div class="entry"><div class="num">#67</div><h3>Lotus Beauty</h3><div class="loc">Центр</div><div class="desc">Стрижки, маникюр, массаж, уход за лицом.</div><div class="tags"><span class="tag tag-price">от 300₽</span></div></div>
+
+<div class="entry"><div class="num">#68</div><h3>Beauty Spot Sukhum</h3><div class="loc">Центр</div><div class="desc">Все виды услуг. Русскоязычный персонал.</div><div class="tags"><span class="tag tag-price">от 300₽</span></div></div>
+
+<div class="entry"><div class="num">#69</div><h3>Depilation Studio</h3><div class="loc">Центр</div><div class="desc">Шугаринг, восковая депиляция.</div><div class="tags"><span class="tag tag-price">от 200₽</span></div></div>
+
+<div class="entry"><div class="num">#70</div><h3>Tattoo Studio</h3><div class="loc">Центр</div><div class="desc">Тату, перманентный макияж.</div><div class="tags"><span class="tag tag-price">от 1500₽</span></div></div>
+
+</div></div>
+
+<div class="section" id="markets">
+<div class="section-header"><h2>Рынки</h2><span class="count">10 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#71</div><h3>Центральный рынок Сухума</h3><div class="loc">Ул. Абазинская</div><div class="desc">Главный продуктовый рынок. Фрукты, овощи, аджика, сыры, сухофрукты, лаваш.</div><div class="tags"><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#72</div><h3>Рынок на набережной</h3><div class="loc">Набережная Махаджиров</div><div class="desc">Сувениры, магниты, одежда, чай, кофе. Вечером оживлённо.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#73</div><h3>Мясной рынок</h3><div class="loc">Центр</div><div class="desc">Свежее мясо от местных производителей.</div><div class="tags"><span class="tag tag-time">6:00–14:00</span></div></div>
+
+<div class="entry"><div class="num">#74</div><h3>Рыбный рынок</h3><div class="loc">У порта</div><div class="desc">Свежая черноморская рыба: ставрида, барабулька, кефаль. По утрам.</div><div class="tags"><span class="tag tag-time">6:00–12:00</span></div></div>
+
+<div class="entry"><div class="num">#75</div><h3>Медовый и сырный ряд</h3><div class="loc">Центральный рынок</div><div class="desc">Сорта абхазского мёда и домашнего сыра.</div><div class="tags"><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#76</div><h3>Вещевой рынок</h3><div class="loc">Район вокзала</div><div class="desc">Одежда, обувь, ткани. Недорого.</div><div class="tags"><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#77</div><h3>Чайный ряд</h3><div class="loc">Центральный рынок</div><div class="desc">Абхазский чай, травяные сборы.</div><div class="tags"><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#78</div><h3>Блошиный рынок</h3><div class="loc">Район старого города</div><div class="desc">Винтаж, советские вещи, посуда.</div><div class="tags"><span class="tag tag-time">8:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#79</div><h3>Цветочный рынок</h3><div class="loc">Центр</div><div class="desc">Цветы, рассада, саженцы.</div><div class="tags"><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#80</div><h3>Аджика-базар</h3><div class="loc">Центральный рынок</div><div class="desc">Абхазская аджика всех видов. Соусы, приправы.</div><div class="tags"><span class="tag tag-time">7:00–17:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="shopping">
+<div class="section-header"><h2>Торговые центры и шопинг</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#81</div><h3>ТЦ «Москва»</h3><div class="loc">Центр</div><div class="desc">Крупный ТЦ с магазинами одежды, обуви, супермаркетом.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#82</div><h3>ГУМ Сухума</h3><div class="loc">Центр</div><div class="desc">Универмаг. Одежда, косметика, товары для дома.</div><div class="tags"><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#83</div><h3>ТЦ «Галактика»</h3><div class="loc">Центр</div><div class="desc">Торговый центр с бутиками, фуд-кортом, детской зоной.</div><div class="tags"><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#84</div><h3>Супермаркет «Континент»</h3><div class="loc">Несколько точек</div><div class="desc">Крупная сеть супермаркетов. Продукты, бытовая химия.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#85</div><h3>Супермаркет «Ашанчик»</h3><div class="loc">Центр</div><div class="desc">Продукты, фрукты, выпечка. Бюджетно.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#86</div><h3>Магазины на проспекте Леона</h3><div class="loc">Пр. Леона</div><div class="desc">Главная торговая улица. Одежда, обувь, сувениры.</div><div class="tags"><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#87</div><h3>Сувенирная лавка «Апсны»</h3><div class="loc">Набережная</div><div class="desc">Сувениры, магниты, абхазские сладости, чай.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#88</div><h3>Винный магазин «Вина Абхазии»</h3><div class="loc">Центр</div><div class="desc">Абхазские вина и чача. Дегустация.</div><div class="tags"><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#89</div><h3>Магазин абхазского мёда</h3><div class="loc">Центр</div><div class="desc">Натуральный мёд, орехи, варенье из фейхоа.</div><div class="tags"><span class="tag tag-time">9:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#90</div><h3>Ювелирный магазин «Сухум»</h3><div class="loc">Центр</div><div class="desc">Золото, серебро, украшения с местными самоцветами.</div><div class="tags"><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#91</div><h3>Магазин трикотажа</h3><div class="loc">Центр</div><div class="desc">Абхазский трикотаж. Носки, свитера, шапки.</div><div class="tags"><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#92</div><h3>Магазин чая и кофе</h3><div class="loc">Центральный рынок</div><div class="desc">Абхазский чай, турецкий кофе, травы.</div><div class="tags"><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#93</div><h3>Зоомагазин «Айболит»</h3><div class="loc">Центр</div><div class="desc">Корма, зоотовары. </div><div class="tags"><span class="tag tag-time">9:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#94</div><h3>Книжный магазин</h3><div class="loc">Центр</div><div class="desc">Книги, карты, открытки.</div><div class="tags"><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#95</div><h3>Спорттовары «Экстрим»</h3><div class="loc">Центр</div><div class="desc">Спортивная одежда, инвентарь.</div><div class="tags"><span class="tag tag-time">9:00–19:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="kids">
+<div class="section-header"><h2>Детские центры</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#96</div><h3>Парк аттракционов «Маяк»</h3><div class="loc">Парк Маяк</div><div class="desc">Карусели, батуты, колесо обозрения. Дети обожают.</div><div class="tags"><span class="tag tag-price">от 100₽</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#97</div><h3>Обезьяний питомник</h3><div class="loc">Пригород</div><div class="desc">Уникальный питомник с обезьянами. Детям очень интересно.</div><div class="tags"><span class="tag tag-price">200₽</span><span class="tag tag-time">9:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#98</div><h3>Детский клуб «Карусель»</h3><div class="loc">Центр</div><div class="desc">Игровая комната, лабиринт, сухой бассейн.</div><div class="tags"><span class="tag tag-price">от 150₽</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#99</div><h3>Дельфинарий (в сезон)</h3><div class="loc">Набережная</div><div class="desc">Представления с дельфинами в летний сезон.</div><div class="tags"><span class="tag tag-price">300–500₽</span></div></div>
+
+<div class="entry"><div class="num">#100</div><h3>Детская площадка на набережной</h3><div class="loc">Набережная</div><div class="desc">Современные игровые комплексы. Бесплатно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#101</div><h3>Боулинг в ТЦ «Москва»</h3><div class="loc">ТЦ Москва</div><div class="desc">Детские дорожки. Прокат обуви.</div><div class="tags"><span class="tag tag-price">200–400₽/игра</span></div></div>
+
+<div class="entry"><div class="num">#102</div><h3>Детский центр развития</h3><div class="loc">Центр</div><div class="desc">Занятия, творчество, русскоязычные педагоги.</div><div class="tags"><span class="tag tag-info">Русскоязычный</span></div></div>
+
+<div class="entry"><div class="num">#103</div><h3>Зоопарк «Абхазский»</h3><div class="loc">Пригород</div><div class="desc">Животные Кавказа. Медведи, олени, волки.</div><div class="tags"><span class="tag tag-price">200₽</span></div></div>
+
+<div class="entry"><div class="num">#104</div><h3>Прокат детских машинок</h3><div class="loc">Набережная</div><div class="desc">Дети самостоятельно катаются. Безопасно.</div><div class="tags"><span class="tag tag-price">100₽/10 мин</span></div></div>
+
+<div class="entry"><div class="num">#105</div><h3>Веревочный парк</h3><div class="loc">Ботанический сад</div><div class="desc">Трассы на деревьях. От 4 лет.</div><div class="tags"><span class="tag tag-price">200–350₽</span></div></div>
+
+<div class="entry"><div class="num">#106</div><h3>Студия творчества</h3><div class="loc">Центр</div><div class="desc">Рисование, лепка, поделки.</div><div class="tags"><span class="tag tag-price">от 150₽</span></div></div>
+
+<div class="entry"><div class="num">#107</div><h3>Кинотеатр (детские сеансы)</h3><div class="loc">ТЦ Москва</div><div class="desc">Мультфильмы, детское кино.</div><div class="tags"><span class="tag tag-price">200–300₽</span></div></div>
+
+</div></div>
+
+<div class="section" id="sport">
+<div class="section-header"><h2>Спорт и активности</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#108</div><h3>Фитнес-клуб «Абхазия»</h3><div class="loc">Центр</div><div class="desc">Тренажёры, групповые занятия, сауна.</div><div class="tags"><span class="tag tag-price">Разовый 300₽</span><span class="tag tag-time">7:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#109</div><h3>Бассейн «Айтар»</h3><div class="loc">Центр</div><div class="desc">Крытый бассейн с дорожками. Сауна.</div><div class="tags"><span class="tag tag-price">200₽</span><span class="tag tag-time">7:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#110</div><h3>Теннисные корты</h3><div class="loc">Центр</div><div class="desc">Открытые корты. Прокат ракеток.</div><div class="tags"><span class="tag tag-price">300–500₽/час</span></div></div>
+
+<div class="entry"><div class="num">#111</div><h3>Футбольное поле</h3><div class="loc">Стадион</div><div class="desc">Поле для мини-футбола.</div><div class="tags"><span class="tag tag-price">500–1000₽/час</span></div></div>
+
+<div class="entry"><div class="num">#112</div><h3>Бег на набережной</h3><div class="loc">Набережная, 5 км</div><div class="desc">Ровная дорожка вдоль моря. Бесплатно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#113</div><h3>Спортзал «Кавказ»</h3><div class="loc">Центр</div><div class="desc">Тренажёры, гантели, кардио.</div><div class="tags"><span class="tag tag-price">200₽</span></div></div>
+
+<div class="entry"><div class="num">#114</div><h3>Боевые искусства</h3><div class="loc">Центр</div><div class="desc">Дзюдо, карате, MMA.</div><div class="tags"><span class="tag tag-price">от 200₽</span></div></div>
+
+<div class="entry"><div class="num">#115</div><h3>Бильярд</h3><div class="loc">Центр</div><div class="desc">Русский бильярд, пул.</div><div class="tags"><span class="tag tag-price">100–200₽/час</span></div></div>
+
+<div class="entry"><div class="num">#116</div><h3>Велопрокат</h3><div class="loc">Набережная</div><div class="desc">Велопрогулки вдоль побережья.</div><div class="tags"><span class="tag tag-price">100–200₽/час</span></div></div>
+
+<div class="entry"><div class="num">#117</div><h3>Походы в горы</h3><div class="loc">Окрестности</div><div class="desc">Пешие маршруты с гидом. Водопады, озёра.</div><div class="tags"><span class="tag tag-price">от 500₽</span></div></div>
+
+<div class="entry"><div class="num">#118</div><h3>Йога на пляже</h3><div class="loc">Центральный пляж</div><div class="desc">Утренняя йога с видом на море.</div><div class="tags"><span class="tag tag-price">200₽</span></div></div>
+
+<div class="entry"><div class="num">#119</div><h3>Настольный теннис</h3><div class="loc">Парк Маяк</div><div class="desc">Столы в парке. Прокат.</div><div class="tags"><span class="tag tag-price">50₽</span></div></div>
+
+<div class="entry"><div class="num">#120</div><h3>Воркаут</h3><div class="loc">Набережная, парки</div><div class="desc">Турники, брусья. Бесплатно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#121</div><h3>Конный клуб</h3><div class="loc">Пригород</div><div class="desc">Верховая езда.</div><div class="tags"><span class="tag tag-price">500–1000₽/час</span></div></div>
+
+<div class="entry"><div class="num">#122</div><h3>Пейнтбол</h3><div class="loc">Пригород</div><div class="desc">Снаряжение включено.</div><div class="tags"><span class="tag tag-price">от 500₽</span></div></div>
+
+</div></div>
+
+<div class="section" id="med">
+<div class="section-header"><h2>Медицина и клиники</h2><span class="count">13 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#123</div><h3>Центральная больница Сухума</h3><div class="loc">Центр</div><div class="desc">Главная государственная больница. Скорая, стационар.</div><div class="tags"><span class="tag tag-warn">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#124</div><h3>Клиника «Санитас»</h3><div class="loc">Центр</div><div class="desc">Частная клиника. Русскоязычный персонал.</div><div class="tags"><span class="tag tag-price">Консультация от 500₽</span></div></div>
+
+<div class="entry"><div class="num">#125</div><h3>Стоматология «Dent»</h3><div class="loc">Центр</div><div class="desc">Лечение, импланты. Русскоязычный персонал.</div><div class="tags"><span class="tag tag-price">Консультация от 300₽</span></div></div>
+
+<div class="entry"><div class="num">#126</div><h3>Аптека «Айболит»</h3><div class="loc">Несколько точек</div><div class="desc">Лекарства, витамины.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#127</div><h3>Женская консультация</h3><div class="loc">Центр</div><div class="desc">Гинекология, ведение беременности.</div><div class="tags"><span class="tag tag-price">от 500₽</span></div></div>
+
+<div class="entry"><div class="num">#128</div><h3>Диагностический центр</h3><div class="loc">Центр</div><div class="desc">Анализы, УЗИ.</div><div class="tags"><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#129</div><h3>Детская поликлиника</h3><div class="loc">Центр</div><div class="desc">Педиатрия, прививки.</div></div>
+
+<div class="entry"><div class="num">#130</div><h3>Травмпункт</h3><div class="loc">Центр</div><div class="desc">Круглосуточная помощь при травмах.</div><div class="tags"><span class="tag tag-warn">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#131</div><h3>Психолог</h3><div class="loc">По запросу</div><div class="desc">Русскоязычные специалисты.</div></div>
+
+<div class="entry"><div class="num">#132</div><h3>Скорая помощь 103</h3><div class="loc">По всему городу</div><div class="desc">Экстренная помощь. Номер 103.</div><div class="tags"><span class="tag tag-warn">103</span></div></div>
+
+<div class="entry"><div class="num">#133</div><h3>Санаторий «Суккун»</h3><div class="loc">Набережная</div><div class="desc">Лечение минеральными водами, грязями.</div><div class="tags"><span class="tag tag-price">от 1000₽</span></div></div>
+
+<div class="entry"><div class="num">#134</div><h3>СПА-медицина / грязелечение</h3><div class="loc">Санатории</div><div class="desc">Оздоровительные программы.</div><div class="tags"><span class="tag tag-price">от 500₽</span></div></div>
+
+<div class="entry"><div class="num">#135</div><h3>Офтальмолог</h3><div class="loc">Центр</div><div class="desc">Проверка зрения, подбор очков.</div><div class="tags"><span class="tag tag-price">от 300₽</span></div></div>
+
+</div></div>
+
+<div class="section" id="transport">
+<div class="section-header"><h2>Такси и транспорт</h2><span class="count">10 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#136</div><h3>Яндекс Такси</h3><div class="loc">По всему городу</div><div class="desc">Основное приложение такси. Русскоязычный интерфейс.</div><div class="tags"><span class="tag tag-price">от 100₽</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#137</div><h3>Местное такси (по городу)</h3><div class="loc">По всему городу</div><div class="desc">Можно поймать на улице. Цена договорная.</div><div class="tags"><span class="tag tag-price">от 100₽</span></div></div>
+
+<div class="entry"><div class="num">#138</div><h3>Городские автобусы</h3><div class="loc">Маршруты по городу</div><div class="desc">Общественный транспорт. Ходят по расписанию.</div><div class="tags"><span class="tag tag-price">от 20₽</span></div></div>
+
+<div class="entry"><div class="num">#139</div><h3>Маршрутки</h3><div class="loc">По всему городу</div><div class="desc">Быстрый транспорт.</div><div class="tags"><span class="tag tag-price">от 20₽</span></div></div>
+
+<div class="entry"><div class="num">#140</div><h3>Аренда авто</h3><div class="loc">Прокатные конторы</div><div class="desc">Прокат машин. С водителем или без.</div><div class="tags"><span class="tag tag-price">от 1000₽/день</span></div></div>
+
+<div class="entry"><div class="num">#141</div><h3>Такси до аэропорта</h3><div class="loc">Аэропорт Сухум</div><div class="desc">Трансфер в аэропорт.</div><div class="tags"><span class="tag tag-price">300–500₽</span></div></div>
+
+<div class="entry"><div class="num">#142</div><h3>Поезд Сухум — Гудаута</h3><div class="loc">Ж/д вокзал</div><div class="desc">Пригородные электрички.</div><div class="tags"><span class="tag tag-price">от 50₽</span></div></div>
+
+<div class="entry"><div class="num">#143</div><h3>Паром (морское сообщение)</h3><div class="loc">Порт</div><div class="desc">Морские рейсы. Сезонно.</div><div class="tags"><span class="tag tag-price">от 500₽</span></div></div>
+
+<div class="entry"><div class="num">#144</div><h3>Электросамокаты</h3><div class="loc">Набережная</div><div class="desc">Аренда самокатов.</div><div class="tags"><span class="tag tag-price">от 10₽/мин</span></div></div>
+
+<div class="entry"><div class="num">#145</div><h3>Такси в город</h3><div class="loc">По запросу</div><div class="desc">Автомобиль с русскоязычным водителем.</div><div class="tags"><span class="tag tag-info">Русскоязычный</span></div></div>
+
+</div></div>
+
+<div class="section" id="food">
+<div class="section-header"><h2>Рестораны и кафе</h2><span class="count">100 мест</span></div>
+
+<h3 style="margin-bottom:6px">Абхазская и кавказская кухня</h3>
+<ul>
+<li><strong>#146 Mukhus (Мухус)</strong> — ул. Фазиля Искандера, 1, Центр · Кавказская, хинкали, 4.4, 300–800₽ · <span class="meta">48 заведений в каталоге</span></li>
+<li><strong>#147 Restaurant Nartaa (Нартаа)</strong> — ул. Абазинская, Центр · Абхазская, 610 отзывов</li>
+<li><strong>#148 Restaurant Leon (Леон)</strong> — наб. Махаджиров, 6, Центр · Кавказская, итальянская, 4.0</li>
+<li><strong>#149 Restaurant Ertsakhu (Эрцаху)</strong> — ул. Пушкина, Центр · Абхазская, европейская, 4.1</li>
+<li><strong>#150 Restaurant Dioskuria (Диоскурия)</strong> — ул. Леона, Центр · Абхазская, европейская, 4.9</li>
+<li><strong>#151 Patsha Assir (Пацха Ассир)</strong> — Черниговка, пригород · Абхазская кухня, природа</li>
+<li><strong>#152 Hinkalnaya Apsny (Хинкальная Апсны)</strong> — ул. Эшба, 168А, Центр · Хинкали, 300+ отзывов</li>
+<li><strong>#153 Hinkalnaya Kinza (Хинкальная Кинза)</strong> — ул. Пушкина, 18, Центр · Хинкали, до 23:00</li>
+<li><strong>#154 Chegem Cafe (Чегем)</strong> — наб. Махаджиров, Центр · Абхазская, вид на море</li>
+<li><strong>#155 Bambukovaya Roscha (Бамбуковая роща)</strong> — наб. Махаджиров, Центр · Абхазская, вид, 4.5</li>
+<li><strong>#156 Apsny Restaurant</strong> — ул. Сахарова, Центр · Абхазская, банкет</li>
+<li><strong>#157 Samshit (Самшит)</strong> — ул. Пушкина, Центр · Абхазская кухня</li>
+<li><strong>#158 Gagra Restaurant</strong> — наб. Махаджиров, Центр · Кавказская кухня</li>
+<li><strong>#159 Kavkaz Restaurant</strong> — ул. Абазинская, Центр · Кавказская кухня</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Русская кухня</h3>
+<ul>
+<li><strong>#160 Bliny u Morya (Блины у моря)</strong> — наб. Махаджиров, Центр · Блины, русская</li>
+<li><strong>#161 Pelmeni Club Sukhum</strong> — ул. Пушкина, Центр · Пельмени, русская</li>
+<li><strong>#162 Borscht Cafe</strong> — ул. Абазинская, Центр · Борщ, русская</li>
+<li><strong>#163 Soviet Canteen (Советская столовая)</strong> — ул. Сахарова, Центр · СССР-стиль, русская</li>
+<li><strong>#164 Moscow Traktir</strong> — ул. Ардзинба, Центр · Русский трактир</li>
+<li><strong>#165 Russian Tea House</strong> — ул. Леона, Центр · Чайная, русская</li>
+<li><strong>#166 Kasha Bar</strong> — ул. Сахарова, Центр · Каши, русская</li>
+<li><strong>#167 Stolovaya 24 Sukhum</strong> — ул. Абазинская, Центр · Столовая, русская</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Европейская и международная</h3>
+<ul>
+<li><strong>#168 Dem Restaurant (ДЭМ)</strong> — ул. Сахарова, Центр · Французская, японская, 4.2</li>
+<li><strong>#169 Gastrobar Mayak (Маяк)</strong> — наб. Махаджиров, Центр · Бар, европейская, 4.7</li>
+<li><strong>#170 Taverna Khait (Таверна Хаит)</strong> — ул. Абазинская, Центр · Паб, европейская, 4.4</li>
+<li><strong>#171 Cafe/Bar The Place</strong> — наб. Махаджиров, Центр · Европейская, 5.0</li>
+<li><strong>#172 Restaurant Soho</strong> — наб. Махаджиров, 3, Центр · Стильный, европейская, 4.9</li>
+<li><strong>#173 Appetit Restaurant</strong> — наб. Махаджиров, Центр · Европейская, вид</li>
+<li><strong>#174 Ushchelie (Ущелье)</strong> — ул. Леона, Центр · Европейская, вид</li>
+<li><strong>#175 McDonald's Sukhum</strong> — пр. Мира, Центр · Фастфуд</li>
+<li><strong>#176 Steak House Sukhum</strong> — ул. Сахарова, Центр · Стейки</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Итальянская кухня</h3>
+<ul>
+<li><strong>#177 Restaurant Leon</strong> — наб. Махаджиров, 6, Центр · Итальянская, японская, 4.0</li>
+<li><strong>#178 Pizza Italia Sukhum</strong> — ул. Пушкина, Центр · Пицца, итальянская</li>
+<li><strong>#179 Pasta House</strong> — ул. Абазинская, Центр · Паста, итальянская</li>
+<li><strong>#180 Ristorante Italiano</strong> — ул. Леона, Центр · Классическая итальянская</li>
+<li><strong>#181 Pizza Napoli</strong> — наб. Махаджиров, Центр · Неаполитанская пицца</li>
+<li><strong>#182 Spaghetti Bar</strong> — ул. Пушкина, Центр · Спагетти-бар</li>
+<li><strong>#183 La Piazza Sukhum</strong> — ул. Абазинская, Центр · Итальянская, пицца</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Азиатская кухня</h3>
+<ul>
+<li><strong>#184 Dem Restaurant (японская)</strong> — ул. Сахарова, Центр · Японская, французская</li>
+<li><strong>#185 Sushi Bar Sukhum</strong> — ул. Пушкина, Центр · Суши, японская</li>
+<li><strong>#186 Wok Cafe</strong> — ул. Сахарова, Центр · Wok, азиатская</li>
+<li><strong>#187 Chinese Dragon</strong> — ул. Леона, Центр · Китайская кухня</li>
+<li><strong>#188 Pho Bo Sukhum</strong> — наб. Махаджиров, Центр · Вьетнамский суп</li>
+<li><strong>#189 Kimchi House Sukhum</strong> — ул. Пушкина, Центр · Корейская кухня</li>
+<li><strong>#190 Indian Curry</strong> — ул. Сахарова, Центр · Индийская кухня</li>
+<li><strong>#191 Noodle House Sukhum</strong> — ул. Ардзинба, Центр · Лапша, азиатская</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Грузинская кухня</h3>
+<ul>
+<li><strong>#192 Mukhus (хинкали)</strong> — ул. Фазиля Искандера, 1, Центр · Хинкали, грузинская</li>
+<li><strong>#193 Hinkalnaya Apsny</strong> — ул. Эшба, 168А, Центр · Хинкали, 300+ отзывов</li>
+<li><strong>#194 Hinkalnaya Kinza</strong> — ул. Пушкина, 18, Центр · Хинкали, до 23:00</li>
+<li><strong>#195 Khachapuri House Sukhum</strong> — ул. Абазинская, Центр · Хачапури, грузинская</li>
+<li><strong>#196 Georgian Dvorik</strong> — ул. Сахарова, Центр · Грузинский дворик</li>
+<li><strong>#197 Tbilisi Restaurant Sukhum</strong> — ул. Леона, Центр · Тбилисская кухня</li>
+<li><strong>#198 Batumi Restaurant Sukhum</strong> — наб. Махаджиров, Центр · Аджарская кухня</li>
+<li><strong>#199 Khinkali Point Sukhum</strong> — ул. Пушкина, Центр · Хинкали, фастфуд</li>
+<li><strong>#200 Mtsvadi House Sukhum</strong> — ул. Сахарова, Центр · Мцвади, грузинский гриль</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Гриль и BBQ</h3>
+<ul>
+<li><strong>#201 Shashlyk Dvor</strong> — ул. Пушкина, Центр · Шашлык, гриль</li>
+<li><strong>#202 Kebab Center Sukhum</strong> — ул. Абазинская, Центр · Кебабы, люля</li>
+<li><strong>#203 Grill House Sukhum</strong> — ул. Сахарова, Центр · Гриль, BBQ</li>
+<li><strong>#204 Mangal House</strong> — ул. Леона, Центр · Мангал, гриль</li>
+<li><strong>#205 BBQ Garden Sukhum</strong> — наб. Махаджиров, Центр · BBQ, сад</li>
+<li><strong>#206 Steak House Sukhum</strong> — ул. Пушкина, Центр · Стейки</li>
+<li><strong>#207 Lula Kebab Sukhum</strong> — ул. Пушкина, Центр · Люля-кебаб</li>
+<li><strong>#208 Khorovats Sukhum</strong> — наб. Махаджиров, Центр · Армянский хоровац</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Морепродукты и рыбная кухня</h3>
+<ul>
+<li><strong>#209 Chayka (Чайка)</strong> — наб. Махаджиров, Центр · Рыба, морепродукты, вид</li>
+<li><strong>#210 Morskoy Restoran</strong> — наб. Махаджиров, Центр · Морская кухня</li>
+<li><strong>#211 Fish House Sukhum</strong> — ул. Пушкина, Центр · Рыбный дом</li>
+<li><strong>#212 Black Sea Fish</strong> — наб. Махаджиров, Центр · Черноморская рыба</li>
+<li><strong>#213 Kefal Restaurant</strong> — ул. Леона, Центр · Кефаль, барабулька</li>
+<li><strong>#214 Shrimp Bar</strong> — наб. Махаджиров, Центр · Креветки</li>
+<li><strong>#215 Mussel Bar</strong> — ул. Ардзинба, Центр · Мидии</li>
+<li><strong>#216 Fish & Chips Sukhum</strong> — наб. Махаджиров, Центр · Fish and chips</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Кофейни и десертные</h3>
+<ul>
+<li><strong>#217 Mon Cafe</strong> — ул. Пушкина, Центр · Кофе, европейская</li>
+<li><strong>#218 Coffee House Sukhum</strong> — наб. Махаджиров, Центр · Кофе, десерты</li>
+<li><strong>#219 Art Cafe Sukhum</strong> — ул. Абазинская, Центр · Кофе, искусство</li>
+<li><strong>#220 Coffee Beach</strong> — наб. Махаджиров, Центр · Кофе, вид на море</li>
+<li><strong>#221 Mokka Cafe Sukhum</strong> — ул. Пушкина, Центр · Кофе, завтраки</li>
+<li><strong>#222 Gatsby Coffee</strong> — ул. Абазинская, Центр · Спешелти кофе</li>
+<li><strong>#223 Bake House Sukhum</strong> — ул. Леона, Центр · Выпечка, кофе</li>
+<li><strong>#224 Sweet Dream</strong> — ул. Сахарова, Центр · Десерты, кофе</li>
+<li><strong>#225 Choco Cafe Sukhum</strong> — ул. Абазинская, Центр · Шоколад, кофе</li>
+<li><strong>#226 Pancake Cafe</strong> — ул. Пушкина, Центр · Блинчики, кофе</li>
+<li><strong>#227 Ice Cream Paradise</strong> — наб. Махаджиров, Центр · Мороженое</li>
+<li><strong>#228 Macaron House</strong> — наб. Махаджиров, Центр · Макаронс</li>
+<li><strong>#229 Bakery Fresh</strong> — ул. Ардзинба, Центр · Свежая выпечка</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Уличная еда и фастфуд</h3>
+<ul>
+<li><strong>#230 Shawarma Point Sukhum</strong> — ул. Пушкина, Центр · Шаурма</li>
+<li><strong>#231 Kebab Street Sukhum</strong> — ул. Абазинская, Центр · Уличный кебаб</li>
+<li><strong>#232 Burger Point Sukhum</strong> — ул. Сахарова, Центр · Бургеры</li>
+<li><strong>#233 Doner Kebab Sukhum</strong> — ул. Сахарова, Центр · Дёнер-кебаб</li>
+<li><strong>#234 Bliny Street Sukhum</strong> — ул. Ардзинба, Центр · Блины на ходу</li>
+<li><strong>#235 Hot Dog Sukhum</strong> — наб. Махаджиров, Центр · Хот-доги</li>
+<li><strong>#236 Falafel Point</strong> — ул. Абазинская, Центр · Фалафель</li>
+<li><strong>#237 Corn Dog Sukhum</strong> — ул. Леона, Центр · Корн-доги</li>
+<li><strong>#238 Street Food Market Sukhum</strong> — наб. Махаджиров, Центр · Рынок уличной еды</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Завтраки и бранчи</h3>
+<ul>
+<li><strong>#239 Sunrise Cafe</strong> — наб. Махаджиров, Центр · Завтраки, вид на море</li>
+<li><strong>#240 Good Morning Cafe</strong> — ул. Пушкина, Центр · Завтраки, кофе</li>
+<li><strong>#241 Breakfast Club Sukhum</strong> — ул. Абазинская, Центр · Только завтраки</li>
+<li><strong>#242 Benedict Cafe</strong> — ул. Леона, Центр · Яйца Бенедикт</li>
+<li><strong>#243 Pancake Bar</strong> — наб. Махаджиров, Центр · Блинные завтраки</li>
+<li><strong>#244 Early Bird Cafe</strong> — ул. Леона, Центр · Ранние завтраки</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Бары и пабы</h3>
+<ul>
+<li><strong>#245 Taverna Khait (Хаит)</strong> — ул. Абазинская, Центр · Паб, пиво, 4.4</li>
+<li><strong>#246 Gastrobar Mayak (Маяк)</strong> — наб. Махаджиров, Центр · Бар, 4.7</li>
+<li><strong>#247 Irish Pub Sukhum</strong> — ул. Пушкина, Центр · Ирландский паб</li>
+<li><strong>#248 Beer House Sukhum</strong> — ул. Сахарова, Центр · Разливное пиво</li>
+<li><strong>#249 Wine Bar Sukhum</strong> — ул. Леона, Центр · Винный бар</li>
+<li><strong>#250 Sunset Bar</strong> — наб. Махаджиров, Центр · Закат, коктейли</li>
+<li><strong>#251 Live Music Bar</strong> — ул. Абазинская, Центр · Живая музыка</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Халяль</h3>
+<ul>
+<li><strong>#252 Halyal House (Халяль Хаус)</strong> — ул. Пушкина, Центр · Халяль, бюджетно</li>
+<li><strong>#253 Halal Kebab Sukhum</strong> — ул. Абазинская, Центр · Кебаб халяль</li>
+<li><strong>#254 Halal Shawarma Sukhum</strong> — ул. Сахарова, Центр · Шаурма халяль</li>
+<li><strong>#255 Turkish Kebab Sukhum</strong> — ул. Леона, Центр · Турецкая, халяль</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Вегетарианская и веганская</h3>
+<ul>
+<li><strong>#256 Green Garden Vegetarian</strong> — ул. Пушкина, Центр · Вегетарианская, сад</li>
+<li><strong>#257 Eco Green Cafe</strong> — ул. Абазинская, Центр · Органическая, био</li>
+<li><strong>#258 Healthy Bite Sukhum</strong> — ул. Сахарова, Центр · Здоровое питание</li>
+<li><strong>#259 Vegan Point</strong> — ул. Леона, Центр · Веганская еда</li>
+<li><strong>#260 Green Bowl Sukhum</strong> — наб. Махаджиров, Центр · Боулы, салаты</li>
+</ul>
+
+</div>
+
+<div class="section" id="night">
+<div class="section-header"><h2>Ночная жизнь</h2><span class="count">10 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#261</div><h3>Gastrobar Mayak (Маяк)</h3><div class="loc">Наб. Махаджиров, Центр</div><div class="desc">Стильный гастробар с видом на море. Коктейли, музыка, рейтинг 4.7.</div><div class="tags"><span class="tag tag-time">18:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#262</div><h3>Cafe/Bar The Place</h3><div class="loc">Наб. Махаджиров, Центр</div><div class="desc">Модный бар с европейской кухней. Рейтинг 5.0. Живая музыка.</div><div class="tags"><span class="tag tag-time">12:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#263</div><h3>Taverna Khait (Хаит)</h3><div class="loc">Ул. Абазинская, Центр</div><div class="desc">Ирландский паб с большим выбором пива. Спорт-трансляции.</div><div class="tags"><span class="tag tag-time">16:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#264</div><h3>Irish Pub Sukhum</h3><div class="loc">Ул. Пушкина, Центр</div><div class="desc">Ирландский паб с разливным пивом.</div><div class="tags"><span class="tag tag-time">16:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#265</div><h3>Beer House Sukhum</h3><div class="loc">Ул. Сахарова, Центр</div><div class="desc">Разливное пиво, закуски. Демократично.</div><div class="tags"><span class="tag tag-time">14:00–0:00</span></div></div>
+
+<div class="entry"><div class="num">#266</div><h3>Wine Bar Sukhum</h3><div class="loc">Ул. Леона, Центр</div><div class="desc">Винный бар с абхазскими винами. Дегустация.</div><div class="tags"><span class="tag tag-time">17:00–0:00</span></div></div>
+
+<div class="entry"><div class="num">#267</div><h3>Sunset Bar</h3><div class="loc">Наб. Махаджиров, Центр</div><div class="desc">Бар на набережной. Закат, коктейли, музыка.</div><div class="tags"><span class="tag tag-time">17:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#268</div><h3>Night Club Sukhum</h3><div class="loc">Наб. Махаджиров, Центр</div><div class="desc">Ночной клуб с диджеями, танцами. Вечеринки до утра.</div><div class="tags"><span class="tag tag-time">22:00–5:00</span></div></div>
+
+<div class="entry"><div class="num">#269</div><h3>Karaoke Bar Sukhum</h3><div class="loc">Ул. Пушкина, Центр</div><div class="desc">Караоке-бар. Русские песни.</div><div class="tags"><span class="tag tag-time">19:00–4:00</span></div></div>
+
+<div class="entry"><div class="num">#270</div><h3>Lounge Bar Sukhum</h3><div class="loc">Ул. Ардзинба, Центр</div><div class="desc">Лаунж-бар с кальяном, коктейлями.</div><div class="tags"><span class="tag tag-time">18:00–2:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="services">
+<div class="section-header"><h2>Полезные сервисы</h2><span class="count">10 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#271</div><h3>Обмен валют (AION)</h3><div class="loc">Mini App / Telegram</div><div class="desc">Лучший курс в Сухуме. USD ↔ RUB. 24/7. Без очередей.</div><div class="tags"><span class="tag tag-info">Через AION</span></div></div>
+
+<div class="entry"><div class="num">#272</div><h3>Прачечная / химчистка</h3><div class="loc">Множество точек</div><div class="desc">Прачечные самообслуживания. 100–150₽/кг. Есть с доставкой.</div></div>
+
+<div class="entry"><div class="num">#273</div><h3>Ремонт телефонов</h3><div class="loc">Рынки, центр</div><div class="desc">Ремонт цифровой техники. Быстро.</div></div>
+
+<div class="entry"><div class="num">#274</div><h3>Почта и пересылка</h3><div class="loc">Главпочтамт</div><div class="desc">Международные посылки, письма.</div></div>
+
+<div class="entry"><div class="num">#275</div><h3>Печать и копирование</h3><div class="loc">Центр</div><div class="desc">Фото на документы, сканирование.</div></div>
+
+<div class="entry"><div class="num">#276</div><h3>Фото на документы</h3><div class="loc">Центр</div><div class="desc">Моментальная печать, визовые фото.</div></div>
+
+<div class="entry"><div class="num">#277</div><h3>Швейная мастерская</h3><div class="loc">Рынки</div><div class="desc">Пошив и ремонт одежды.</div></div>
+
+<div class="entry"><div class="num">#278</div><h3>Изготовление ключей</h3><div class="loc">Рынки</div><div class="desc">Ключи, ремонт замков.</div></div>
+
+<div class="entry"><div class="num">#279</div><h3>Ремонт обуви</h3><div class="loc">Центр, рынки</div><div class="desc">Мастерские по ремонту обуви.</div></div>
+
+<div class="entry"><div class="num">#280</div><h3>Туристическая полиция</h3><div class="loc">Центр</div><div class="desc">Помощь туристам.</div></div>
+
+</div></div>
+
+<div style="text-align:center;padding:24px 32px;font-size:12px;color:var(--text-light);border-top:1px solid var(--border);letter-spacing:1px">
+  AION · 300 мест рядом · Июнь 2026 · Сухум, Абхазия<br>
+  Обновляется · Для Mini App AION
+</div>
+
+</body>
+</html>

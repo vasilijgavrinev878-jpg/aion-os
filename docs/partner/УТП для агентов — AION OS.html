@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION OS — УТП для агентов</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#060B18;color:#e0e0e0;line-height:1.7;padding:20px;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 20% 15%,rgba(99,102,241,0.04) 0%,transparent 50%),radial-gradient(ellipse at 80% 85%,rgba(192,132,252,0.03) 0%,transparent 50%);pointer-events:none;z-index:0}
+.wrap{max-width:960px;margin:2em auto;position:relative;z-index:1}
+h1{font-size:2.6rem;color:#a78bfa;display:flex;align-items:center;gap:14px;margin-bottom:2px;text-shadow:0 0 40px rgba(167,139,250,0.12)}
+h1 .sub{font-size:0.5rem;color:#64748b;font-weight:400;letter-spacing:2px;text-transform:uppercase}
+.sub{color:#64748b;font-size:0.85rem;padding-bottom:12px;border-bottom:1px solid rgba(167,139,250,0.08);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+h2{font-size:1.15rem;color:#f59e0b;display:flex;align-items:center;gap:10px;margin-top:2.2em;margin-bottom:12px;padding-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;border-bottom:1px solid rgba(245,158,11,0.1)}
+h3{font-size:1rem;color:#a78bfa;margin-top:1.5em;margin-bottom:8px}
+.hero{background:linear-gradient(135deg,rgba(20,10,40,0.95),rgba(40,20,70,0.9));border:1px solid rgba(167,139,250,0.12);border-radius:24px;padding:32px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80%;left:-80%;width:260%;height:260%;background:conic-gradient(from 0deg,transparent,rgba(167,139,250,0.04),transparent,rgba(245,158,11,0.04),transparent);animation:hspin 25s linear infinite;pointer-events:none}
+@keyframes hspin{to{transform:rotate(360deg)}}
+.hero .c{position:relative;z-index:1}
+.hero .tagline{color:#f59e0b;font-size:0.8rem;text-transform:uppercase;letter-spacing:4px;margin-bottom:6px;font-weight:600}
+.hero .big{font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:8px}
+.hero .big span{color:#a78bfa}
+.hero .desc{color:#94a3b8;font-size:0.9rem;max-width:700px;margin:0 auto 16px}
+.hero .stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.hero .stats .s{text-align:center}
+.hero .stats .s .n{font-size:2rem;font-weight:700;color:#a78bfa;line-height:1.1}
+.hero .stats .s .l{font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:2px}
+.glass{background:linear-gradient(135deg,rgba(17,24,39,0.8),rgba(26,35,50,0.6));border:1px solid rgba(167,139,250,0.06);border-radius:16px;padding:20px;margin:14px 0}
+.glass p{color:#94a3b8;font-size:0.9rem;line-height:1.7;margin-bottom:4px}
+.glass p strong{color:#e0e0e0}
+.principle{text-align:center;font-size:1.15rem;padding:20px;background:linear-gradient(135deg,rgba(20,10,40,0.95),rgba(40,20,70,0.8));border:1px solid rgba(245,158,11,0.2);border-radius:16px;color:#fff;margin:20px 0}
+.principle small{display:block;font-size:0.8rem;color:#f59e0b;margin-top:4px}
+.tag{display:inline-block;padding:3px 12px;border-radius:10px;font-size:0.72rem;font-weight:600;margin:2px}
+.tag-purple{background:rgba(167,139,250,0.08);color:#a78bfa;border:1px solid rgba(167,139,250,0.15)}
+.tag-gold{background:rgba(245,158,11,0.08);color:#f59e0b;border:1px solid rgba(245,158,11,0.15)}
+.tag-green{background:rgba(34,197,94,0.08);color:#22c55e;border:1px solid rgba(34,197,94,0.15)}
+.tag-red{background:rgba(239,68,68,0.08);color:#ef4444;border:1px solid rgba(239,68,68,0.15)}
+.tag-blue{background:rgba(59,130,246,0.08);color:#3b82f6;border:1px solid rgba(59,130,246,0.15)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:0.88rem}
+th{text-align:left;padding:10px 12px;background:rgba(17,24,39,0.9);color:#a78bfa;font-weight:600;border:1px solid rgba(167,139,250,0.08)}
+td{padding:10px 12px;border:1px solid rgba(255,255,255,0.04);vertical-align:top;color:#94a3b8}
+td strong{color:#e0e0e0}
+tr:nth-child(even) td{background:rgba(255,255,255,0.01)}
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media(max-width:640px){.benefits{grid-template-columns:1fr}}
+.ben-card{background:rgba(17,24,39,0.6);border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:16px;transition:all .3s}
+.ben-card:hover{border-color:rgba(167,139,250,0.12);transform:translateY(-1px)}
+.ben-card .ico{font-size:1.4rem;margin-bottom:4px}
+.ben-card .title{color:#e0e0e0;font-weight:600;font-size:0.9rem}
+.ben-card .desc{color:#64748b;font-size:0.78rem;margin-top:4px;line-height:1.6}
+.income-box{background:rgba(17,24,39,0.6);border:1px solid rgba(245,158,11,0.1);border-radius:14px;padding:18px;margin:10px 0}
+.income-box .scenario{font-size:0.85rem;color:#94a3b8;margin-top:4px}
+.income-box .scenario strong{color:#f59e0b}
+.income-box .total{font-size:1.3rem;font-weight:700;color:#a78bfa}
+.income-box .label{font-size:0.7rem;color:#64748b;text-transform:uppercase;letter-spacing:1px}
+.steps{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:14px 0}
+@media(max-width:640px){.steps{grid-template-columns:1fr 1fr}}
+.step{background:rgba(17,24,39,0.6);border:1px solid rgba(167,139,250,0.06);border-radius:12px;padding:14px;text-align:center}
+.step .num{font-size:1.1rem;font-weight:700;color:#f59e0b;margin-bottom:4px}
+.step .txt{font-size:0.78rem;color:#94a3b8}
+.faq-item{background:rgba(17,24,39,0.5);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:14px 16px;margin:8px 0}
+.faq-item .q{color:#e0e0e0;font-weight:600;font-size:0.9rem}
+.faq-item .a{color:#94a3b8;font-size:0.85rem;margin-top:4px;line-height:1.7}
+.cta{text-align:center;padding:36px;background:linear-gradient(135deg,rgba(20,10,40,0.95),rgba(40,20,70,0.9));border:1px solid rgba(167,139,250,0.12);border-radius:24px;margin:32px 0;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;background:conic-gradient(from 0deg,transparent,rgba(167,139,250,0.02),transparent,rgba(245,158,11,0.02),transparent);animation:hspin 30s linear infinite;pointer-events:none}
+.cta .c{position:relative;z-index:1}
+.cta .hl{color:#a78bfa;font-weight:700}
+.footer{text-align:center;color:#1e293b;font-size:0.7rem;margin-top:28px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.03);letter-spacing:1px;text-transform:uppercase}
+ul{list-style:none;padding:0}
+ul li{padding:4px 0 4px 20px;position:relative;color:#94a3b8;font-size:0.88rem}
+ul li::before{content:'→';position:absolute;left:0;color:#f59e0b}
+.role-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:640px){.role-cards{grid-template-columns:1fr}}
+.role-card{background:rgba(17,24,39,0.6);border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:18px;text-align:center}
+.role-card .ico{font-size:2rem;margin-bottom:6px}
+.role-card .title{color:#e0e0e0;font-weight:700;font-size:1rem}
+.role-card .desc{color:#64748b;font-size:0.78rem;margin-top:4px;line-height:1.6}
+.role-card .example{color:#f59e0b;font-size:0.78rem;margin-top:8px;font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="c">
+    <div class="tagline">AION — OS для жизни</div>
+    <div class="big">Зарабатывай, приводя людей в <span>AION OS</span></div>
+    <div class="desc">
+      AION OS — международная платформа сервисов для людей по всему миру.<br>
+      Telegram Mini App (PWA в разработке). 24 ниши, закрывающих 90% потребностей человека.<br>
+      Ты приводишь клиентов и бизнесы — получаешь процент с их заказов пожизненно.
+    </div>
+    <div class="stats">
+      <div class="s"><div class="n">24</div><div class="l">ниши услуг</div></div>
+      <div class="s"><div class="n">90%</div><div class="l">потребностей человека</div></div>
+      <div class="s"><div class="n">30%</div><div class="l">доход с пользователей</div></div>
+      <div class="s"><div class="n">20%</div><div class="l">доход с бизнесов</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ЧТО ТАКОЕ AION OS ===== -->
+<h2>⟁ Что такое AION OS</h2>
+
+<div class="glass">
+<p><strong>AION OS</strong> — это операционная система для жизни за границей. Единое окно, где человек может решить любой бытовой вопрос: обменять валюту, арендовать жильё, продлить визу, найти врача, заказать трансфер, устроить ребёнка в школу — и всё это без переплат и посредников.</p>
+<p>24 ниши услуг закрывают <strong>90% повседневных потребностей</strong> человека в любой стране.</p>
+<p style="margin-top:8px"><strong>Модель:</strong> Пользователь не платит за вход. Комиссия — только с бизнеса за выполненный заказ. Ты получаешь процент с этой комиссии за каждого приведённого клиента и каждый подключённый бизнес.</p>
+</div>
+
+<!-- ===== КТО ТАКОЙ АГЕНТ ===== -->
+<h2>🎯 Кто такой агент AION OS</h2>
+
+<div class="glass">
+<p>Агент AION OS — человек, который приводит людей и бизнесы на платформу и зарабатывает на этом. Не нужно быть продажником или маркетологом. Нужно просто знать, где искать людей, которым нужны услуги AION OS.</p>
+</div>
+
+<div class="role-cards">
+  <div class="role-card">
+    <div class="ico">🕵️</div>
+    <div class="title">Работа с клиентами</div>
+    <div class="desc">Работаешь в Telegram-чатах, группах, форумах. Находишь людей с запросами — «ищу визу», «нужен обмен», «сниму жильё» — и приводишь в AION. Каждый заказ = твой процент.</div>
+    <div class="example">Пример: зашёл в чат Нячанга, увидел вопрос про визу → ответил → отправил ссылку → получил процент с заказа</div>
+  </div>
+  <div class="role-card">
+    <div class="ico">🔗</div>
+    <div class="title">Построение сети</div>
+    <div class="desc">Приводишь других агентов, блогеров, партнёров. Они приводят клиентов — ты получаешь процент с оборота всей структуры. 4 уровня вглубь.</div>
+    <div class="example">Пример: привёл владельца канала → тот привёл 50 подписчиков → ты получаешь % с заказов каждого</div>
+  </div>
+</div>
+
+<div class="principle">
+  Работаешь с клиентами + строишь сеть = доход растёт и так, и так.
+  <small>И сам зарабатываешь, и команда на тебя работает.</small>
+</div>
+
+<!-- ===== ЧТО ПОЛУЧАЕТ АГЕНТ ===== -->
+<h2>🎁 Что ты получаешь</h2>
+
+<div class="benefits">
+  <div class="ben-card">
+    <div class="ico">💰</div>
+    <div class="title">Пассивный доход</div>
+    <div class="desc">Привёл человека один раз → он делает заказы каждый месяц → ты получаешь процент с каждого заказа. Пожизненно.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🔗</div>
+    <div class="title">4 уровня реферальной сети</div>
+    <div class="desc">Ты зарабатываешь не только с тех, кого привёл лично, но и с тех, кого привели они. 4 уровня вглубь.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🏪</div>
+    <div class="title">Доход с бизнесов</div>
+    <div class="desc">Подключаешь кафе, отели, клиники, школы к платформе → 20% от комиссии AION с их оборота. Бизнесы работают годами.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">📚</div>
+    <div class="title">Готовые скрипты и материалы</div>
+    <div class="desc">База скриптов для работы в чатах, воронки привлечения, ответы на возражения. Бери и используй.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🎯</div>
+    <div class="title">Еженедельные цели и конкурсы</div>
+    <div class="desc">Фокус на категорию или город. Призовой фонд. Соревнования с розыгрышами и призами.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🧠</div>
+    <div class="title">Обучение и разборы</div>
+    <div class="desc">Вебинары, созвоны, разборы твоих диалогов. Учишься продавать и закрывать лучше с каждым разом.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">📊</div>
+    <div class="title">Прозрачная статистика</div>
+    <div class="desc">В личном кабинете видишь: переходы, заказы, доход. Всё честно, без серых схем.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">📩</div>
+    <div class="title">Автоматические лиды</div>
+    <div class="desc">В чат #10 парсятся сообщения людей, которые уже ищут услугу. Тебе остаётся только ответить.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🏆</div>
+    <div class="title">Конкурсы и призы</div>
+    <div class="desc">Розыгрыши призов, бонусы за активность, конкурсы среди агентов. Лучшие получают ценные подарки.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🤝</div>
+    <div class="title">Сообщество</div>
+    <div class="desc">Чат AION Маркетинг — десятки агентов. Обмен опытом, кейсы, поддержка, коллаборации.</div>
+  </div>
+</div>
+
+<!-- ===== СКОЛЬКО МОЖНО ЗАРАБОТАТЬ ===== -->
+<h2>📊 Сколько можно заработать</h2>
+
+<h3>👥 За пользователей — 30% от комиссии</h3>
+<div class="income-box">
+  <table>
+    <tr><th>Показатель</th><th>Значение</th></tr>
+    <tr><td>Привлёк</td><td>100 человек</td></tr>
+    <tr><td>Активных (консервативно)</td><td>30</td></tr>
+    <tr><td>Средний чек</td><td>$20</td></tr>
+    <tr><td>Заказов в месяц на человека</td><td>2</td></tr>
+    <tr><td><strong>Оборот</strong></td><td><strong style="color:#fff">$1 200 / мес</strong></td></tr>
+    <tr><td>Комиссия платформы (~20%)</td><td>$240 / мес</td></tr>
+    <tr><td><span class="tag tag-gold">Твой доход (30% от комиссии)</span></td><td><strong style="color:#f59e0b">$72 / мес</strong></td></tr>
+  </table>
+  <div class="scenario">📈 1 000 человек → <strong>$720 / мес</strong>. 10 000 → <strong>$7 200 / мес</strong>. Каждый месяц.</div>
+</div>
+
+<h3>🏪 За бизнесы — 20% от комиссии</h3>
+<div class="income-box">
+  <table>
+    <tr><th>Показатель</th><th>Значение</th></tr>
+    <tr><td>Подключил бизнесов</td><td>5</td></tr>
+    <tr><td>Средний оборот одного бизнеса</td><td>$2 000 / мес</td></tr>
+    <tr><td><strong>Общий оборот</strong></td><td><strong style="color:#fff">$10 000 / мес</strong></td></tr>
+    <tr><td>Комиссия платформы (~20%)</td><td>$2 000 / мес</td></tr>
+    <tr><td><span class="tag tag-gold">Твой доход (20% от комиссии)</span></td><td><strong style="color:#f59e0b">$400 / мес</strong></td></tr>
+  </table>
+  <div class="scenario">📈 20 бизнесов → <strong>$1 600 / мес</strong>. 50 бизнесов → <strong>$4 000 / мес</strong>.</div>
+</div>
+
+<div class="principle">
+  Совмещаешь два потока:<br>
+  100 клиентов + 5 бизнесов = <strong style="color:#a78bfa">$472 / мес</strong><br>
+  1 000 клиентов + 20 бизнесов = <strong style="color:#a78bfa">$2 320 / мес</strong><br>
+  10 000 клиентов + 50 бизнесов = <strong style="color:#a78bfa">$11 200+ / мес</strong>
+  <small>И это без учёта 4 уровней реферальной сети</small>
+</div>
+
+<!-- ===== 4 УРОВНЯ ===== -->
+<h2>🔗 Реферальная программа — 4 уровня</h2>
+
+<div class="glass">
+<p>Ты получаешь процент не только с тех, кого привёл лично, но и с тех, кого привели они. <strong>4 уровня вглубь — пожизненно.</strong></p>
+</div>
+
+<table>
+  <tr><th>Уровень</th><th>Кто это</th><th>% от комиссии (пользователи)</th><th>% от комиссии (бизнесы)</th></tr>
+  <tr><td><span class="tag tag-gold">1 уровень</span></td><td>Твои прямые приглашённые</td><td><strong>20%</strong></td><td><strong>10%</strong></td></tr>
+  <tr><td><span class="tag tag-purple">2 уровень</span></td><td>Те, кого пригласили твои приглашённые</td><td><strong>5%</strong></td><td><strong>5%</strong></td></tr>
+  <tr><td><span class="tag tag-blue">3 уровень</span></td><td>Третий уровень сети</td><td><strong>3%</strong></td><td><strong>3%</strong></td></tr>
+  <tr><td><span class="tag tag-green">4 уровень</span></td><td>Четвёртый уровень сети</td><td><strong>2%</strong></td><td><strong>2%</strong></td></tr>
+</table>
+
+<div class="income-box">
+  <p style="color:#94a3b8;font-size:0.85rem"><strong style="color:#f59e0b">Пример 1 — пользователи:</strong> Ты пригласил Ивана → Иван пригласил Марию → Мария пригласила Алексея → Алексей пригласил Ольгу. Каждый делает заказы на $100/мес. Комиссия AION = $20. Твой доход: Иван $4 + Мария $1 + Алексей $0.60 + Ольга $0.40 = <strong style="color:#fff">$6/мес с одной цепочки</strong>. А если у тебя 10 таких цепочек? <strong style="color:#a78bfa">$60/мес</strong>.</p>
+</div>
+
+<h3>👥 Приглашай других агентов — получай % с их дохода</h3>
+<div class="glass">
+<p><strong>Реферальная программа работает и на привлечение агентов.</strong> Ты можешь строить свою команду: приглашаешь человека стать агентом AION OS — и получаешь процент со всего, что зарабатывает он и его структура.</p>
+<p><strong>Как это выглядит:</strong></p>
+<ul>
+  <li>Ты привлёк агента Петра (1 уровень) — ты получаешь <strong>20%</strong> от комиссии AION со всех заказов, которые сделали клиенты Петра</li>
+  <li>Пётр привлёк агента Анну (2 уровень) — ты получаешь <strong>5%</strong> с заказов клиентов Анны</li>
+  <li>Анна привлекла агента Михаила (3 уровень) — ты получаешь <strong>3%</strong> с заказов его клиентов</li>
+  <li>Михаил привлёк агента Ольгу (4 уровень) — ты получаешь <strong>2%</strong> с заказов её клиентов</li>
+</ul>
+</div>
+
+<div class="income-box">
+  <p style="color:#94a3b8;font-size:0.85rem"><strong style="color:#f59e0b">Пример 2 — команда агентов:</strong> Ты привлёк 5 агентов (1 уровень). Каждый привёл ещё по 3 агента (2 уровень) = 15. Каждый из них привёл ещё по 2 (3 уровень) = 30. Итого в твоей структуре <strong style="color:#fff">50+ человек</strong>. Каждый агент в среднем приводит 30 клиентов, каждый клиент делает заказы на $40/мес. Комиссия AION = $8. Твой доход с каждого агента 1 уровня: 30 × $8 × 20% = <strong style="color:#fff">$48/мес</strong>. Со всей структуры: 5 агентов 1 ур. × $48 + 15 агентов 2 ур. × $12 + 30 агентов 3 ур. × $7.20 + их агенты 4 ур. × $4.80 = <strong style="color:#a78bfa">$700+/мес</strong>. И это только с агентов — а ещё есть твои собственные клиенты и бизнесы.</p>
+</div>
+
+<div class="principle">
+  Чем больше агентов ты привлёк — тем больше твой доход.<br>
+  Ты обучаешь их, они зарабатывают — ты зарабатываешь с каждого.<br>
+  <strong style="color:#a78bfa">Построй команду — и доход будет расти без твоего участия.</strong>
+  <small>4 уровня вглубь. Пожизненно. Работает, пока работают твои агенты.</small>
+</div>
+
+<!-- ===== ЧАТ AION МАРКЕТИНГ ===== -->
+<h2>💬 AION Маркетинг — чат для агентов</h2>
+
+<div class="glass">
+<p><strong>AION Маркетинг</strong> — единый чат, где работают агенты. 10 веток: 2 для общения (агентская и маркетинговая) + 8 общих рабочих.</p>
+</div>
+
+<div class="benefits">
+  <div class="ben-card">
+    <div class="ico">🗣️</div>
+    <div class="title">#1 — Агент чат</div>
+    <div class="desc">Общение агентов: вопросы, советы, тактики работы в чатах, флуд в меру.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">📢</div>
+    <div class="title">#2 — Маркетинг чат</div>
+    <div class="desc">Общение агентов: реферальные сети, каналы, блогеры, обмен опытом.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🎯</div>
+    <div class="title">#3 — Цели и задания</div>
+    <div class="desc">Еженедельные фокусы от AION: категория, город, план. Призовой фонд.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">📚</div>
+    <div class="title">#4 — База материалов</div>
+    <div class="desc">Скрипты, воронки, инструкции, база Telegram-чатов по городам для работы.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🖼️</div>
+    <div class="title">#5 — Визуалы и ссылки</div>
+    <div class="desc">Баннеры, QR-коды, карточки, промо-материалы. Бери и отправляй.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">📊</div>
+    <div class="title">#6 — Результаты</div>
+    <div class="desc">Публикуешь свои кейсы и доходы. Лучшие — топ недели + бонусы.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🧠</div>
+    <div class="title">#7 — Обучение</div>
+    <div class="desc">Вебинары, созвоны, разборы диалогов. Расписание анонсируется в #3.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">🏆</div>
+    <div class="title">#8 — Конкурсы</div>
+    <div class="desc">Номинации: лучший агент, лучший партнёр, первопроходец. Призы каждую неделю.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">❓</div>
+    <div class="title">#9 — FAQ</div>
+    <div class="desc">Вопросы по рефералке, выплатам, работе. Ответ куратора в течение часа.</div>
+  </div>
+  <div class="ben-card">
+    <div class="ico">📩</div>
+    <div class="title">#10 — Лиды</div>
+    <div class="desc">Автоматически падают сообщения людей, которые ищут услуги. Ты просто отвечаешь.</div>
+  </div>
+</div>
+
+<!-- ===== КАК НАЧАТЬ ===== -->
+<h2>🚀 Как начать — 5 шагов</h2>
+
+<div class="steps">
+  <div class="step">
+    <div class="num">Шаг 1</div>
+    <div class="txt">Пишешь <strong>@Im_chudo</strong> в Telegram. Рассказываешь о себе: имя, город, опыт.</div>
+  </div>
+  <div class="step">
+    <div class="num">Шаг 2</div>
+    <div class="txt">Получаешь ссылку в чат <strong>AION Маркетинг</strong>. Проходишь онбординг от куратора.</div>
+  </div>
+  <div class="step">
+    <div class="num">Шаг 3</div>
+    <div class="txt">Получаешь <strong>персональную реферальную ссылку</strong> через @aion_ref_bot и доступ ко всем материалам.</div>
+  </div>
+  <div class="step">
+    <div class="num">Шаг 4</div>
+    <div class="txt">Выбираешь фокус: агент в чатах или агент. Берёшь скрипты из #4 и начинаешь работать.</div>
+  </div>
+  <div class="step">
+    <div class="num">Шаг 5</div>
+    <div class="txt">Публикуешь первые результаты в #6. Участвуешь в конкурсах. Растёшь.</div>
+  </div>
+</div>
+
+<!-- ===== СРАВНЕНИЕ ===== -->
+<h2>📐 Почему это выгоднее обычной работы</h2>
+
+<table>
+  <tr><th></th><th>Обычная работа / фриланс</th><th>Агент AION OS</th></tr>
+  <tr><td><strong>Доход</strong></td><td>Разовый — сделал → получил</td><td>Повторяющийся — каждый месяц с одних и тех же клиентов</td></tr>
+  <tr><td><strong>Рост</strong></td><td>Линейный — больше часов = больше денег</td><td>Экспоненциальный — сеть растёт, доход растёт сам</td></tr>
+  <tr><td><strong>Риски</strong></td><td>Нет заказов → нет денег</td><td>Люди заказывают услуги каждый день. Твой доход не зависит от тебя лично</td></tr>
+  <tr><td><strong>Масштаб</strong></td><td>Ты работаешь руками</td><td>Ты строишь систему. Она работает без тебя</td></tr>
+  <tr><td><strong>Вход</strong></td><td>Нужен опыт, портфолио, навыки</td><td>Нужно только желание. Обучим с нуля</td></tr>
+  <tr><td><strong>География</strong></td><td>Привязан к месту</td><td>Работаешь из любой точки мира</td></tr>
+</table>
+
+<!-- ===== ПОЧЕМУ СЕЙЧАС ===== -->
+<h2>⏳ Почему важно зайти сейчас</h2>
+
+<div class="benefits">
+  <div class="ben-card" style="border-color:rgba(239,68,68,0.15)">
+    <div class="ico">🔥</div>
+    <div class="title" style="color:#ef4444">Ранний этап</div>
+    <div class="desc">Платформа только запустилась. Лучшие условия, максимальные проценты. Позже будет жёстче.</div>
+  </div>
+  <div class="ben-card" style="border-color:rgba(239,68,68,0.15)">
+    <div class="ico">👑</div>
+    <div class="title" style="color:#ef4444">Закрепляешь территорию</div>
+    <div class="desc">Ты становишься одним из первых в своём городе. Когда придёт поток — ты уже в топе.</div>
+  </div>
+  <div class="ben-card" style="border-color:rgba(239,68,68,0.15)">
+    <div class="ico">📈</div>
+    <div class="title" style="color:#ef4444">Рост платформы = твой рост</div>
+    <div class="desc">Каждый новый город AION OS — твоя аудитория. Ты растёшь вместе с платформой.</div>
+  </div>
+  <div class="ben-card" style="border-color:rgba(239,68,68,0.15)">
+    <div class="ico">🎯</div>
+    <div class="title" style="color:#ef4444">Приоритетная поддержка</div>
+    <div class="desc">Первые агенты получают личный онбординг, разбор диалогов, помощь куратора 24/7.</div>
+  </div>
+</div>
+
+<!-- ===== КОМУ ПОДХОДИТ ===== -->
+<h2>🎯 Кому это подходит</h2>
+
+<div class="glass">
+<ul>
+  <li><strong>🙋 Тем, кто уже сидит в Telegram-чатах</strong> — ты всё равно там общаешься. Начни зарабатывать на этом.</li>
+  <li><strong>🌍 Экспаты и релоканты</strong> — ты знаешь местные чаты и боли людей. Помогай и зарабатывай.</li>
+  <li><strong>💼 В продажах</strong> — твой навык закрывать сделки пригодится. AION — продукт, который продаёт себя сам.</li>
+  <li><strong>👩 Мамы в декрете</strong> — работа из дома, гибкий график. Никаких начальников и дедлайнов.</li>
+  <li><strong>🎓 Студенты</strong> — подработка без опыта. Обучим всему.</li>
+  <li><strong>🏗️ Предприниматели</strong> — строй реферальную сеть как второй бизнес. Доход без вложений.</li>
+  <li><strong>✈️ Тревел-блогеры</strong> — твоя аудитория — наши клиенты. Совмещай контент и рефералку.</li>
+</ul>
+</div>
+
+<!-- ===== FAQ ===== -->
+<h2>❓ Часто задаваемые вопросы</h2>
+
+<div class="faq-item">
+  <div class="q">Нужен ли опыт продаж?</div>
+  <div class="a">Нет. Всё, что нужно — уметь общаться в чатах. Обучим скриптам и воронкам с нуля.</div>
+</div>
+<div class="faq-item">
+  <div class="q">Сколько времени нужно уделять?</div>
+  <div class="a">Минимум — 30 минут в день. Оптимально — 1-2 часа. Больше времени → больше доход. Но даже минимальная активность даёт результат.</div>
+</div>
+<div class="faq-item">
+  <div class="q">Когда я получу первый доход?</div>
+  <div class="a">Как только приведённый тобой человек сделает заказ. Некоторые получают первые деньги в день регистрации.</div>
+</div>
+<div class="faq-item">
+  <div class="q">Я ничего не заработаю в первый месяц?</div>
+  <div class="a">Заработаешь. Даже 1-2 заказа — это уже доход. А каждый новый клиент будет приносить деньги повторно каждый месяц.</div>
+</div>
+<div class="faq-item">
+  <div class="q">Что если я не умею продавать?</div>
+  <div class="a">Ты не продаёшь. Ты рекомендуешь. AION OS — реально полезный сервис. Люди сами хотят им пользоваться, когда узнают.</div>
+</div>
+<div class="faq-item">
+  <div class="q">Можно ли совмещать с основной работой?</div>
+  <div class="a">Да. Большинство агентов начинали как подработку. Через 2-3 месяца доход может превысить зарплату.</div>
+</div>
+<div class="faq-item">
+  <div class="q">Как я узнаю, сколько заработал?</div>
+  <div class="a">В боте @aion_ref_bot — прозрачная статистика: переходы, заказы, доход. В реальном времени.</div>
+</div>
+<div class="faq-item">
+  <div class="q">Что я должен делать каждый день?</div>
+  <div class="a">Заходить в чаты, находить людей с запросами, отвечать с рекомендацией AION OS. Или строить сеть — приглашать партнёров и блогеров.</div>
+</div>
+
+<!-- ===== CTA ===== -->
+<div class="cta">
+  <div class="c">
+    <div style="font-size:1.6rem;font-weight:700;margin-bottom:6px">Готов начать?</div>
+    <p style="color:#94a3b8;margin-bottom:12px">Пиши в Telegram — покажем платформу, выдадим доступ, обучим.<br>
+    Никаких вложений. Никаких обязательств. Просто попробуй.</p>
+    <p style="font-size:1.1rem">
+      <span class="tag tag-purple" style="font-size:1rem;padding:8px 20px">@Im_chudo</span>
+    </p>
+  </div>
+</div>
+
+<!-- ===== ГЛАВНАЯ МЫСЛЬ ===== -->
+<div class="principle">
+  Ты не продаёшь.<br>
+  Ты рекомендуешь людям реально полезный сервис.<br><br>
+  Ты приводишь клиентов → они заказывают → AION OS получает комиссию → ты получаешь процент.<br>
+  Ты подключаешь бизнесы → они зарабатывают → AION OS получает комиссию → ты получаешь процент.<br><br>
+  <strong style="color:#a78bfa">Один раз — доход на годы.</strong>
+</div>
+
+<div class="footer">AION OS — партнёрство с агентами · Июль 2026 · v1.0</div>
+
+</div>
+</body>
+</html>

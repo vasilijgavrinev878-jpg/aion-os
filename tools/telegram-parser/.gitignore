@@ -1,0 +1,24 @@
+# AION Invite Machine v2
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Data & sessions
+data/
+server_data/
+node_data/
+sessions/
+*.log
+
+# Config
+.env
+node_data/config.json
+
+# OS
+.DS_Store
+Thumbs.db

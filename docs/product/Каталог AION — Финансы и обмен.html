@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог — Финансы и обмен | AION</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#e2e8f0;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#f8fafc,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:28px 0 2px}
+.sub{color:#64748b;font-size:0.85rem;margin-bottom:4px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.meta span{background:#1e293b;border:1px solid #2a3344;border-radius:6px;padding:3px 10px;font-size:0.7rem;color:#94a3b8}
+.meta .p1{background:#1a1a2e;color:#fff;border-color:#1a1a2e}
+h2{font-size:1.2rem;font-weight:700;color:#f1f5f9;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #2a3344}
+h3{font-size:0.9rem;font-weight:600;color:#e2e8f0;margin:18px 0 6px}
+.phone-wrap{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.phone{width:240px;background:#0f172a;border:2px solid #2a3344;border-radius:24px;padding:12px 10px;flex-shrink:0}
+.phone .notch{width:70px;height:5px;background:#2a3344;border-radius:10px;margin:0 auto 8px}
+.phone .screen{background:#0f172a;border-radius:12px;overflow:hidden}
+.phone .status-bar{font-size:0.55rem;color:#64748b;padding:2px 4px 6px;display:flex;justify-content:space-between}
+.app{background:#fff;color:#1a1a2e;border-radius:10px;overflow:hidden;font-family:system-ui,sans-serif}
+.app-header{background:#0A1628;color:#fff;padding:8px 10px;font-size:0.65rem;font-weight:600;display:flex;align-items:center;gap:6px}
+.app-header .back{font-size:0.8rem;opacity:0.6}
+.app-header .title{flex:1;text-align:center}
+
+/* sub grid */
+.sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px}
+.sub-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 8px;text-align:center}
+.sub-item .icon{font-size:1.1rem}
+.sub-item .name{font-size:0.58rem;font-weight:600;color:#0A1628;margin-top:2px}
+.sub-item .count{font-size:0.5rem;color:#94a3b8}
+
+/* rate table */
+.rate-table{padding:4px 8px 8px}
+.rate-table .row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #f1f5f9;font-size:0.58rem}
+.rate-table .row:last-child{border:none}
+.rate-table .ccy{font-weight:700;color:#0A1628;width:44px}
+.rate-table .name{color:#475569;width:50px}
+.rate-table .buy{color:#059669;font-weight:600;width:44px;text-align:right}
+.rate-table .sell{color:#dc2626;font-weight:600;width:44px;text-align:right}
+.rate-table .change{width:36px;text-align:right;font-size:0.5rem}
+.rate-table .change.up{color:#059669}
+.rate-table .change.down{color:#dc2626}
+
+/* converter */
+.converter{padding:6px 8px}
+.converter .amt{display:flex;gap:6px;align-items:center;margin-bottom:4px}
+.converter .amt input{flex:1;padding:5px 6px;font-size:0.65rem;border:1px solid #ddd;border-radius:6px;font-family:inherit;text-align:left;background:#fff}
+.converter .amt select{padding:5px 6px;font-size:0.58rem;border:1px solid #ddd;border-radius:6px;background:#fff;font-family:inherit;width:68px}
+.converter .result{text-align:center;font-size:0.75rem;font-weight:700;color:#059669;padding:4px;background:#f0fdf4;border-radius:6px}
+.converter .swap-btn{text-align:center;font-size:0.6rem;color:#64748b;margin:2px 0;cursor:pointer}
+
+/* bank card */
+.bank-card{display:flex;gap:6px;padding:6px 8px;border-bottom:1px solid #eee;align-items:center}
+.bank-card:last-child{border:none}
+.bank-card .icon{width:32px;height:32px;border-radius:6px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0}
+.bank-card .info{flex:1;min-width:0}
+.bank-card .name{font-size:0.58rem;font-weight:600;color:#0A1628}
+.bank-card .addr{font-size:0.5rem;color:#94a3b8}
+.bank-card .rates{font-size:0.5rem;color:#475569}
+.bank-card .action{font-size:0.5rem;color:#059669;font-weight:600;flex-shrink:0}
+
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.flow-step{flex:1;min-width:100px;background:#1e293b;border:1px solid #2a3344;border-radius:10px;padding:12px;text-align:center}
+.flow-step .num{width:24px;height:24px;border-radius:50%;background:#0a1628;color:#22c55e;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;border:1px solid #22c55e}
+.flow-step .title{font-size:0.62rem;color:#e2e8f0;font-weight:600}
+.flow-step .desc{font-size:0.58rem;color:#64748b;margin-top:2px}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+@media(max-width:600px){.spec{grid-template-columns:1fr}}
+.spec-item{background:#1e293b;border:1px solid #2a3344;border-radius:10px;padding:12px 14px}
+.spec-item .label{font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.04em}
+.spec-item .value{font-size:0.82rem;color:#f1f5f9;font-weight:600;margin-top:2px}
+.card{background:linear-gradient(135deg,#1e293b,#1a1f2e);border:1px solid #2a3344;border-radius:14px;padding:16px 20px;margin:10px 0}
+.card-title{font-weight:700;font-size:0.85rem;color:#f1f5f9;margin-bottom:6px}
+.card ul{list-style:none;padding:0}
+.card li{padding:4px 0 4px 16px;position:relative;font-size:0.78rem;color:#cbd5e1}
+.card li::before{content:"→";position:absolute;left:0;color:#f59e0b}
+.footer{text-align:center;color:#334155;font-size:0.75rem;padding:24px 0;border-top:1px solid #1e293b;margin-top:20px}
+.structure{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0;padding:16px;background:#131827;border-radius:12px}
+.structure .elem{background:#1e293b;border:1px solid #2a3344;border-radius:8px;padding:8px 14px;text-align:center;font-size:0.72rem}
+.structure .elem .l{font-size:0.55rem;color:#64748b;margin-top:1px}
+.structure .arrow{color:#64748b;font-size:1rem}
+.structure .elem.active{border-color:#22c55e;background:rgba(34,197,94,0.08)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>💳 Каталог — Финансы и обмен</h1>
+<div class="sub">Курсы валют · конвертер · обменники · банки</div>
+<div class="meta">
+  <span class="p1">P1 — Ядро</span>
+  <span>#4 из 24</span>
+  <span>Обмен · Счета · Переводы</span>
+</div>
+
+<div class="structure">
+  <div class="elem active">
+    💳 Финансы
+    <div class="l">категория</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Обмен валют · Счета · Переводы
+    <div class="l">подкатегории</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    USD → VND<br>25 450
+    <div class="l">курс с калькулятором</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Обменник «Gold Money»<br>4.6 ★
+    <div class="l">партнёр внутри</div>
+  </div>
+</div>
+
+<!-- ═══ ЭКРАНЫ ═══ -->
+<h2>📱 Основные экраны</h2>
+
+<div class="phone-wrap">
+
+  <!-- Screen 1: Subcategories -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>15:30</span><span>🔋 84%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">💳 Финансы</span>
+          <span style="font-size:0.55rem;color:#64748b">📍 Нячанг</span>
+        </div>
+        <div class="sub-grid">
+          <div class="sub-item">
+            <div class="icon">💱</div>
+            <div class="name">Обмен валют</div>
+            <div class="count">6 валют · 18 обменников</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">🏦</div>
+            <div class="name">Счета и банки</div>
+            <div class="count">открытие · переводы · карты</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">📤</div>
+            <div class="name">Переводы</div>
+            <div class="count">из РФ · SWIFT · USDT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📋 3 подкатегории</div>
+  </div>
+
+  <!-- Screen 2: Rate table + converter -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>15:30</span><span>🔋 84%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">💱 Обмен валют</span>
+          <span style="font-size:0.55rem;color:#64748b">Сегодня 15:30</span>
+        </div>
+        <div class="rate-table">
+          <div class="row" style="color:#94a3b8;font-size:0.5rem;border-bottom:2px solid #e2e8f0;font-weight:600">
+            <span class="ccy">Валюта</span>
+            <span class="name"></span>
+            <span class="buy">Покупка</span>
+            <span class="sell">Продажа</span>
+            <span class="change">Изм</span>
+          </div>
+          <div class="row">
+            <span class="ccy">🇺🇸 USD</span>
+            <span class="name">доллар</span>
+            <span class="buy">25 450</span>
+            <span class="sell">25 550</span>
+            <span class="change up">+0.2%</span>
+          </div>
+          <div class="row">
+            <span class="ccy">🇪🇺 EUR</span>
+            <span class="name">евро</span>
+            <span class="buy">27 800</span>
+            <span class="sell">27 950</span>
+            <span class="change down">-0.1%</span>
+          </div>
+          <div class="row">
+            <span class="ccy">🇷🇺 RUB</span>
+            <span class="name">рубль</span>
+            <span class="buy">271</span>
+            <span class="sell">286</span>
+            <span class="change up">+0.8%</span>
+          </div>
+          <div class="row">
+            <span class="ccy">🇹🇭 THB</span>
+            <span class="name">бат</span>
+            <span class="buy">710</span>
+            <span class="sell">740</span>
+            <span class="change">0.0%</span>
+          </div>
+        </div>
+        <!-- converter -->
+        <div class="converter">
+          <div class="amt">
+            <input type="text" value="100" placeholder="Сумма">
+            <select><option>USD</option><option>EUR</option><option>RUB</option><option selected>VND</option></select>
+          </div>
+          <div class="swap-btn">⇅ Поменять местами</div>
+          <div class="amt">
+            <input type="text" value="2 545 000" style="font-weight:700;color:#059669" readonly>
+            <select><option selected>VND</option><option>USD</option><option>EUR</option></select>
+          </div>
+          <div class="result">💰 2 545 000 VND</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📊 Таблица курсов + конвертер</div>
+  </div>
+
+  <!-- Screen 3: Exchange offices list -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>15:30</span><span>🔋 84%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">💱 Обменники рядом</span>
+          <span style="font-size:0.55rem;color:#64748b">📍 0.3 км</span>
+        </div>
+        <div class="bank-card">
+          <div class="icon">🥇</div>
+          <div class="info">
+            <div class="name">Gold Money Exchange</div>
+            <div class="addr">ул. Нгуен Тхи Минь Кай, 12</div>
+            <div class="rates">USD 25 460 / 25 540</div>
+          </div>
+          <div class="action">→</div>
+        </div>
+        <div class="bank-card">
+          <div class="icon">🏦</div>
+          <div class="info">
+            <div class="name">Vietcombank (отделение)</div>
+            <div class="addr">ул. Хоанг Ван Тху, 5</div>
+            <div class="rates">USD 25 400 / 25 600</div>
+          </div>
+          <div class="action">→</div>
+        </div>
+        <div class="bank-card">
+          <div class="icon">🤝</div>
+          <div class="info">
+            <div class="name">Частный обменник (Анна)</div>
+            <div class="addr">район Чанфу, доставка</div>
+            <div class="rates">RUB 275 / 285</div>
+          </div>
+          <div class="action">→</div>
+        </div>
+        <div class="bank-card">
+          <div class="icon">🏛️</div>
+          <div class="info">
+            <div class="name">Sacombank (главный офис)</div>
+            <div class="addr">ул. Ле Лой, 22</div>
+            <div class="rates">USD 25 370 / 25 630</div>
+          </div>
+          <div class="action">→</div>
+        </div>
+        <div style="padding:6px 8px;text-align:center;font-size:0.55rem;color:#64748b;border-top:1px solid #eee">
+          🗺️ Показать на карте
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📍 Обменники на карте</div>
+  </div>
+
+  <!-- Screen 4: Partner card -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>15:30</span><span>🔋 84%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">Gold Money Exchange</span>
+          <span style="font-size:0.7rem">♡</span>
+        </div>
+        <div style="padding:8px 10px">
+          <div style="font-size:0.7rem;font-weight:700;color:#0A1628">Gold Money Exchange</div>
+          <div style="font-size:0.5rem;color:#d97706">★★★★★ 4.6 · 42 отзыва</div>
+          <div style="font-size:0.52rem;color:#475569;margin:4px 0">На AION с июня 2026 · Работает 08:00–20:00</div>
+          <div style="font-size:0.5rem;color:#475569">📍 ул. Нгуен Тхи Минь Кай, 12, Нячанг</div>
+          <div style="font-size:0.5rem;color:#475569">📞 +84 90 123 45 67</div>
+          <div style="margin:8px 0">
+            <div style="font-size:0.55rem;font-weight:600;color:#0A1628;margin-bottom:4px">Курсы на сегодня:</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px;font-size:0.5rem">🇺🇸 USD 25 460 / 25 540</span>
+              <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px;font-size:0.5rem">🇪🇺 EUR 27 850 / 27 980</span>
+              <span style="background:#f1f5f9;padding:3px 8px;border-radius:4px;font-size:0.5rem">🇷🇺 RUB 272 / 284</span>
+            </div>
+          </div>
+          <div style="font-size:0.52rem;color:#475569;margin-bottom:6px"><strong>Условия:</strong> от $50 · паспорт · без комиссии · бронь курса на 1 час</div>
+          <div class="app-detail-btn" style="background:#059669;color:#fff;text-align:center;padding:7px;border-radius:8px;font-size:0.6rem;font-weight:600;margin-bottom:4px">📩 Связаться с партнёром</div>
+          <div class="app-detail-btn2" style="text-align:center;padding:4px;font-size:0.52rem;color:#64748b;font-weight:500;border-top:1px solid #eee;margin-top:2px;padding-top:6px">📞 Показать телефон</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📄 Карточка обменника</div>
+  </div>
+
+</div>
+
+<!-- ═══ ПОЛЬЗОВАТЕЛЬСКИЙ ПУТЬ ═══ -->
+<h2>🔄 Пользовательский путь</h2>
+
+<div class="flow">
+  <div class="flow-step">
+    <div class="num">1</div>
+    <div class="title">Категория «Финансы»</div>
+    <div class="desc">3 подкатегории: обмен, счета, переводы</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">2</div>
+    <div class="title">Таблица курсов</div>
+    <div class="desc">Актуальные курсы + конвертер</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">3</div>
+    <div class="title">Выбор обменника</div>
+    <div class="desc">Список с курсами, адресом, расстоянием</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">4</div>
+    <div class="title">Карточка партнёра</div>
+    <div class="desc">Курсы, условия, отзывы, контакты</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">5</div>
+    <div class="title">Связь / Бронь курса</div>
+    <div class="desc">Забронировать курс на 1 час или позвонить</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">6</div>
+    <div class="title">Апсейл</div>
+    <div class="desc">Страховка, SIM-карта, жильё</div>
+  </div>
+</div>
+
+<!-- ═══ СПЕЦИФИКАЦИЯ ═══ -->
+<h2>📋 Спецификация</h2>
+
+<div class="spec">
+  <div class="spec-item">
+    <div class="label">Структура</div>
+    <div class="value">Категория → 3 подкатегории → таблица курсов → обменник</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Подкатегории</div>
+    <div class="value">Обмен валют · Счета и банки · Переводы</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Таблица курсов</div>
+    <div class="value">Флаг · валюта · покупка · продажа · изменение за день</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Конвертер</div>
+    <div class="value">Поле суммы · выбор валюты от/до · результат · кнопка «Поменять»</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Список обменников</div>
+    <div class="value">Название · адрес · курсы · рейтинг · расстояние · кнопка «→»</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Карточка партнёра</div>
+    <div class="value">Курсы · условия · отзывы · телефон · адрес · чат</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Фильтры</div>
+    <div class="value">По валюте · по району · лучший курс · работает сейчас</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Действия</div>
+    <div class="value">Связаться · Позвонить · Забронировать курс · Избранное</div>
+  </div>
+</div>
+
+<!-- ═══ ДЕТАЛИ ═══ -->
+<h2>🧩 Детальная проработка</h2>
+
+<div class="card">
+  <div class="card-title">🎯 Экран подкатегорий</div>
+  <ul>
+    <li>Сетка 3 колонки: Обмен валют / Счета и банки / Переводы</li>
+    <li>Обмен валют — самый частый (по умолчанию открыт)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Таблица курсов</div>
+  <ul>
+    <li>Автообновление каждые 30 секунд</li>
+    <li>Строки: флаг + код валюты · покупка (зелёный) · продажа (красный) · изменение</li>
+    <li>Тап по строке — конвертер для этой валюты</li>
+    <li>Средний курс по всем обменникам города</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Конвертер</div>
+  <ul>
+    <li>Два поля: отдать → получить</li>
+    <li>Мгновенный пересчёт при вводе</li>
+    <li>Кнопка «⇅ Поменять местами»</li>
+    <li>Подсказка: «💰 2 545 000 VND» крупно</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Список обменников</div>
+  <ul>
+    <li>Карточки: название · адрес · курс USD покупка/продажа · рейтинг</li>
+    <li>Сортировка: по лучшему курсу · по расстоянию · по рейтингу</li>
+    <li>Фильтр: «работает сейчас» / «с доставкой» / «без паспорта»</li>
+    <li>Кнопка «🗺️ Показать на карте» — встроенная карта</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Карточка партнёра</div>
+  <ul>
+    <li>Название · ★ · отзывы · на AION с...</li>
+    <li>Курсы всех валют (блок чипами)</li>
+    <li>Условия: мин. сумма, документы, комиссия, бронь курса</li>
+    <li>Адрес · часы работы · телефон</li>
+    <li>Кнопка «Забронировать курс» — фиксация курса на 1 час</li>
+    <li>Кнопки: «📩 Связаться» / «📞 Позвонить»</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Счета и банки</div>
+  <ul>
+    <li>Услуги: открытие счёта (резидент/нерезидент), выпуск карты, кредит</li>
+    <li>Список банков с условиями для иностранцев</li>
+    <li>Помощь с документами и переводом</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Переводы</div>
+  <ul>
+    <li>Способы: SWIFT · USDT (крипта) · Золотая Корона · ЮМани</li>
+    <li>Калькулятор: сколько получу на руки</li>
+    <li>Карточки партнёров, кто помогает с переводом</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Апсейл</div>
+  <ul>
+    <li>После обмена: «📄 SIM-карта · 🏠 Жильё рядом · 🛡️ Страховка»</li>
+    <li>После открытия счёта: «💳 Выпуск карты · 📤 Перевод денег · ⚖️ Налоговая консультация»</li>
+  </ul>
+</div>
+
+<h2>⚙️ Технические заметки</h2>
+
+<div class="card">
+  <ul>
+    <li><strong>Курсы:</strong> партнёры загружают через CRM. Средний курс считается автоматически</li>
+    <li><strong>Обновление:</strong> курс может меняться несколько раз в день, нужен polling или WebSocket</li>
+    <li><strong>Бронь курса:</strong> партнёр подтверждает фиксацию. Срок — 1 час</li>
+    <li><strong>Геолокация:</strong> определение ближайших обменников, сортировка по расстоянию</li>
+    <li><strong>USD:</strong> <code>/category/finance</code> → <code>/category/finance/exchange</code> → <code>/category/finance/exchange/123</code></li>
+  </ul>
+</div>
+
+<div class="footer">
+AION · Референс каталога Финансы и обмен · Июль 2026
+</div>
+</div>
+</body>
+</html>

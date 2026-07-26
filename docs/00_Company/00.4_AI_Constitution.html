@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION — AI Constitution: Content Factory</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;background:#0A0F1E;color:#c8d6e5;line-height:1.8;padding:0;background-image:radial-gradient(ellipse at 20% 30%,rgba(0,240,255,0.02) 0%,transparent 50%),radial-gradient(ellipse at 80% 30%,rgba(245,158,11,0.015) 0%,transparent 50%),radial-gradient(ellipse at 50% 70%,rgba(168,85,247,0.015) 0%,transparent 50%);min-height:100vh}
+.wrap{max-width:1100px;margin:0 auto;padding:30px 40px;position:relative}
+.wrap::before{content:'';position:fixed;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00f0ff,transparent);z-index:100}
+h1{font-size:2.4rem;color:#f8fafc;text-align:center;margin-bottom:4px;font-weight:800;letter-spacing:-0.5px;position:relative;display:inline-block;left:50%;transform:translateX(-50%)}
+h1 span{color:#00f0ff;font-weight:900}
+h1 small{display:block;font-size:0.65rem;color:#64748b;font-weight:500;letter-spacing:4px;text-transform:uppercase;margin-top:4px}
+h2{font-size:1.45rem;color:#f59e0b;margin-top:44px;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid rgba(245,158,11,0.1);display:flex;align-items:center;gap:12px;position:relative}
+h2::before{content:'';position:absolute;bottom:-2px;left:0;width:80px;height:2px;background:linear-gradient(90deg,#f59e0b,transparent);border-radius:2px}
+h2 .num{color:#00f0ff;font-weight:700;background:rgba(0,240,255,0.08);padding:2px 12px;border-radius:6px;font-size:1rem;min-width:36px;text-align:center}
+h3{font-size:1.1rem;color:#00f0ff;margin-top:30px;margin-bottom:12px;font-weight:600;display:flex;align-items:center;gap:10px}
+h3 .badge{background:rgba(0,240,255,0.1);color:#00f0ff;padding:2px 10px;border-radius:20px;font-size:0.6rem;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+h3 .num-section{color:#64748b;font-weight:400;font-size:0.85rem;min-width:32px}
+h4{font-size:0.95rem;color:#f59e0b;margin-top:22px;margin-bottom:10px;font-weight:600}
+h5{font-size:0.82rem;color:#94a3b8;margin-top:14px;margin-bottom:8px;text-transform:uppercase;letter-spacing:1.2px;font-weight:500}
+p{margin-bottom:10px;font-size:0.9rem;color:#b0c4de;line-height:1.75}
+p strong{color:#e2e8f0}
+ul,ol{margin:6px 0 12px 24px}
+li{margin-bottom:4px;font-size:0.88rem;color:#b0c4de;line-height:1.6}
+li strong{color:#e2e8f0}
+table{width:100%;border-collapse:separate;border-spacing:0;margin:14px 0;font-size:0.8rem;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+th,td{border-bottom:1px solid rgba(255,255,255,0.04);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:rgba(0,240,255,0.06);color:#00f0ff;font-weight:600;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1px solid rgba(0,240,255,0.12)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even){background:rgba(255,255,255,0.01)}
+tr:hover td{background:rgba(0,240,255,0.02)}
+code{background:rgba(0,240,255,0.06);padding:2px 8px;border-radius:5px;font-size:0.8rem;color:#00f0ff;font-family:'JetBrains Mono',monospace}
+pre{background:rgba(0,0,0,0.35);border:1px solid rgba(0,240,255,0.05);border-radius:12px;padding:18px;margin:12px 0;font-family:'JetBrains Mono',monospace;font-size:0.74rem;line-height:1.6;overflow-x:auto;color:#94a3b8;position:relative}
+.glass-card{background:linear-gradient(135deg,rgba(17,24,39,0.75),rgba(26,35,50,0.5));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:20px;margin:16px 0;position:relative;overflow:hidden}
+.glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.12),transparent)}
+.glass-card .title{font-size:0.95rem;color:#00f0ff;font-weight:700;margin-bottom:10px}
+.block{border-left:3px solid #f59e0b;padding:12px 18px;margin:12px 0;background:rgba(245,158,11,0.03);border-radius:0 10px 10px 0}
+.block strong{color:#f59e0b}
+.info-box{background:rgba(0,240,255,0.03);border:1px solid rgba(0,240,255,0.07);border-radius:10px;padding:14px 18px;margin:14px 0;position:relative;padding-left:40px;font-size:0.85rem}
+.info-box::before{content:'ℹ';position:absolute;left:14px;top:12px;color:#00f0ff;font-size:1rem}
+.diagram{background:rgba(0,0,0,0.35);border:1px solid rgba(0,240,255,0.05);border-radius:12px;padding:20px;margin:14px 0;font-family:'JetBrains Mono',monospace;font-size:0.7rem;line-height:1.6;overflow-x:auto;color:#94a3b8;position:relative}
+.diagram .hl{color:#00f0ff;font-weight:600}
+.diagram .hl2{color:#f59e0b;font-weight:600}
+.diagram .hl3{color:#22c55e;font-weight:600}
+.diagram .hl4{color:#a855f7;font-weight:600}
+.tag{display:inline-block;font-size:0.6rem;padding:2px 10px;border-radius:8px;font-weight:600;margin:1px}
+.tag-red{background:rgba(239,68,68,0.1);color:#ef4444}
+.tag-green{background:rgba(34,197,94,0.1);color:#22c55e}
+.tag-gold{background:rgba(245,158,11,0.1);color:#f59e0b}
+.tag-cyan{background:rgba(0,240,255,0.1);color:#00f0ff}
+.tag-purple{background:rgba(168,85,247,0.1);color:#a855f7}
+.tag-gray{background:rgba(148,163,184,0.1);color:#94a3b8}
+.page-break{page-break-after:always;border:none;border-top:1px dashed rgba(0,240,255,0.06);margin:40px 0;height:1px;position:relative}
+.page-break::after{content:'✦ ✦ ✦';position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#0A0F1E;padding:0 16px;color:rgba(0,240,255,0.12);font-size:0.7rem;letter-spacing:4px}
+.footer{text-align:center;color:#1e293b;font-size:0.65rem;margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02);text-transform:uppercase;letter-spacing:2px;font-weight:500}
+.footer span{color:#334155}
+.constitution-header{text-align:center;margin-bottom:24px;padding:30px;position:relative}
+.constitution-seal{font-size:2.8rem;color:#00f0ff;margin-bottom:8px;opacity:0.6;text-shadow:0 0 60px rgba(0,240,255,0.2)}
+.principle-card{background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:16px;margin:10px 0;position:relative;padding-left:48px}
+.principle-card .pc-icon{position:absolute;left:14px;top:14px;font-size:1.2rem}
+.principle-card h4{color:#e2e8f0;font-weight:700;font-size:0.9rem;margin:0 0 4px}
+.principle-card p{font-size:0.82rem;color:#94a3b8;margin:0}
+.red-line{background:rgba(239,68,68,0.03);border:1px solid rgba(239,68,68,0.08);border-radius:10px;padding:12px 16px;margin:8px 0;position:relative;padding-left:36px;font-size:0.85rem;color:#b0c4de}
+.red-line::before{content:'⛔';position:absolute;left:10px;top:10px;font-size:0.85rem}
+.red-line strong{color:#ef4444}
+.signature-block{text-align:right;margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.04)}
+.signature-block .sig-line{font-size:0.85rem;color:#64748b;margin-top:4px}
+.signature-block .sig-name{font-size:1rem;color:#e2e8f0;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="constitution-header">
+<div class="constitution-seal">⬡</div>
+<h1><span>AION</span> Constitution</h1>
+<small>AI Content Factory · Версия 1.0 · 26 июля 2026</small>
+</div>
+
+<div class="glass-card" style="border-left:4px solid #00f0ff">
+<div class="title">⌘ Преамбула</div>
+<p>Мы создаём AION не для того, чтобы заработать больше всех. Мы создаём AION, потому что жизнь человека разрозненна, перегружена и не структурирована. Нет единого ядра, которое закрывает потребности, планирует день, делает жизнь проще, лучше и технологичнее.</p>
+<p>AION — это AI Content Factory. Мы производим контент, который помогает человеку жить осознанно, эффективно и счастливо. Каждый кадр, каждый сценарий, каждый персонаж, который выходит с нашего конвейера, проходит через фильтры этой Конституции.</p>
+<p style="color:#f59e0b;font-weight:600;margin-top:10px">Качество прежде всего. Миссия выше прибыли. Человек принимает финальное решение.</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2><span class="num">01</span> Core Principles — Основные принципы генерации</h2>
+
+<div class="principle-card">
+<div class="pc-icon">1</div>
+<h4>1.1 Human Agency — Человек утверждает</h4>
+<p>Финальное решение всегда за человеком. AI генерирует, предлагает, optimises. Но публикацию, использование, распространение контента утверждает человек. Никакой fully automated pipeline без человеческого gate.</p>
+</div>
+
+<div class="principle-card">
+<div class="pc-icon">2</div>
+<h4>1.2 Quality First — Качество абсолютно</h4>
+<p>Никакой контент не покидает фабрику, если он не соответствует стандарту AAA-реализма. Размытые лица, искажённые пропорции, неестественные тени, плохой звук — брак. Брак не выходит за периметр. Лучше не выпустить контент, чем выпустить плохой.</p>
+</div>
+
+<div class="principle-card">
+<div class="pc-icon">3</div>
+<h4>1.3 Cultural Safety — Не навреди</h4>
+<p>AION работает в 120+ регионах. Контент, который оскорбляет, унижает, искажает культурные коды или нарушает локальные нормы — недопустим. Культурная локализация — обязательный этап пайплайна, а не опциональная фича.</p>
+</div>
+
+<div class="principle-card">
+<div class="pc-icon">4</div>
+<h4>1.4 Truthful Content — Никаких фейков</h4>
+<p>Контент AION не вводит в заблуждение. Развлекательный контент маркируется как развлекательный. Образовательный — как образовательный. Реклама — как реклама. Мы не генерируем дипфейки, не подделываем личности и не создаём контент, который может быть использован для обмана.</p>
+</div>
+
+<div class="principle-card">
+<div class="pc-icon">5</div>
+<h4>1.5 Brand Dignity — Контент, который не стыдно показать</h4>
+<p>Любой кадр, персонаж или сцена, произведённые AION, могут быть показаны на главном экране Таймс-сквер. Если мы не готовы показать это миру — мы не производим это.</p>
+</div>
+
+<div class="principle-card">
+<div class="pc-icon">6</div>
+<h4>1.6 Честное ценообразование</h4>
+<p>Мы не накручиваем цены на услуги. Пользователь платит справедливую цену за реальную ценность. Никаких скрытых комиссий, никаких «dark patterns» в ценообразовании, никаких манипуляций с подписками.</p>
+</div>
+
+<div class="principle-card">
+<div class="pc-icon">7</div>
+<h4>1.7 Верность видению</h4>
+<p>Компания не предаёт свои цели и планы даже ради больших денег. Если возможность приносит прибыль, но разрушает видение AION — мы отказываемся. Всегда.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">02</span> Content Boundaries — Границы генерации</h2>
+
+<h3>2.1 Запрещённые темы</h3>
+<p>Следующие темы полностью исключены из генерации контента AION. Ни при каких условиях, ни для каких регионов, ни для каких клиентов.</p>
+
+<table>
+<tr><th>Тема</th><th>Обоснование</th><th>Исключения</th></tr>
+<tr><td>Политическая пропаганда любой направленности</td><td>Нарушает принципы нейтралитета и Cultural Safety</td><td>Нет</td></tr>
+<tr><td>Религиозные доктрины и прозелитизм</td><td>Уважение ко всем культурам и верованиям</td><td>Культурно-образовательный контент о религии (без пропаганды)</td></tr>
+<tr><td>Насилие, жестокость, шок-контент</td><td>Противоречит ценности «счастье пользователя»</td><td>Нет</td></tr>
+<tr><td>Порнографический и сексуально-эксплицитный контент</td><td>Бренд-стандарты AION</td><td>Нет</td></tr>
+<tr><td>Дискриминация по любому признаку</td><td>Нарушает Core Principles</td><td>Нет</td></tr>
+<tr><td>Контент, пропагандирующий незаконные действия</td><td>Юридическая безопасность</td><td>Нет</td></tr>
+<tr><td>Дипфейки реальных людей без явного consent</td><td>Этика и закон</td><td>Только с подписанным release form</td></tr>
+<tr><td>Финансовые советы без дисклеймера</td><td>Юридическая защита пользователя</td><td>С обязательным дисклеймером</td></tr>
+<tr><td>Медицинские диагнозы и рекомендации</td><td>Юридическая защита пользователя</td><td>С обязательным дисклеймером + ссылкой на врача</td></tr>
+</table>
+
+<h3>2.2 Запрещённые визуальные стили</h3>
+<table>
+<tr><th>Стиль</th><th>Статус</th><th>Причина</th></tr>
+<tr><td>Аниме / Manga</td><td><span class="tag tag-red">Запрещено</span></td><td>Не соответствует визуальному стандарту AAA-реализма</td></tr>
+<tr><td>Мультяшность / Cartoon</td><td><span class="tag tag-red">Запрещено</span></td><td>Противоречит премиальному минимализму</td></tr>
+<tr><td>Кислотные / неоновые цвета (кроме UI)</td><td><span class="tag tag-red">Запрещено</span></td><td>Нарушает цветовую палитру AION</td></tr>
+<tr><td>Hyper-realistic uncanny valley</td><td><span class="tag tag-red">Запрещено</span></td><td>Вызывает негативные эмоции, нарушает принцип 1.2</td></tr>
+<tr><td>Гротеск / карикатура</td><td><span class="tag tag-red">Запрещено</span></td><td>Не соответствует эстетике строгости и будущего</td></tr>
+<tr><td>Логотипы реальных брендов без license</td><td><span class="tag tag-red">Запрещено</span></td><td>Юридический риск</td></tr>
+</table>
+
+<h3>2.3 Разрешённые визуальные стили</h3>
+<table>
+<tr><th>Стиль</th><th>Допустим в</th><th>Пример</th></tr>
+<tr><td>AAA-реализм</td><td>Все типы контента</td><td>Cyberpunk 2077, FC 25 уровень</td></tr>
+<tr><td>Кинематографичная фотография</td><td>Портреты, ключевые кадры</td><td>Peter Lindbergh, Annie Leibovitz</td></tr>
+<tr><td>Документальная съёмка</td><td>Travel, образовательный контент</td><td>National Geographic стиль</td></tr>
+<tr><td>Минималистичная 3D-графика</td><td>UI, презентации, графика</td><td>Матовый чёрный, белая энергия</td></tr>
+</table>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">03</span> Visual Constitution — Визуальный стандарт</h2>
+
+<p>Любой контент, производимый AI Content Factory AION, подчиняется единому визуальному языку. Это не рекомендация, а обязательный стандарт.</p>
+
+<h3>3.1 Материалы и цвета</h3>
+<table>
+<tr><th>Элемент</th><th>Стандарт</th><th>HEX / Описание</th></tr>
+<tr><td>Основной фон</td><td>Глубокий чёрный</td><td>#0A0F1E — абсолютный чёрный с холодным отливом</td></tr>
+<tr><td>Акцентный цвет</td><td>Циан</td><td>#00F0FF — энергия, технологии, будущее</td></tr>
+<tr><td>Тёплый акцент</td><td>Золото</td><td>#F59E0B — ценность, премиальность</td></tr>
+<tr><td>Творческий акцент</td><td>Пурпур</td><td>#A855F7 — креативность, глубина</td></tr>
+<tr><td>Рост / Успех</td><td>Зелёный</td><td>#22C55E — одобрение, развитие</td></tr>
+<tr><td>Текст первичный</td><td>Белый (с оттенком)</td><td>#E2E8F0 — читаемый, неагрессивный</td></tr>
+<tr><td>Текст вторичный</td><td>Серый</td><td>#94A3B8 — вспомогательный</td></tr>
+<tr><td>Материал 1</td><td>Матовый чёрный</td><td>Карбон, керамика</td></tr>
+<tr><td>Материал 2</td><td>Тёмный титан</td><td>Металл с тёплым отливом</td></tr>
+<tr><td>Материал 3</td><td>Стекло</td><td>Прозрачное, матовое, с подсветкой</td></tr>
+<tr><td>Энергия</td><td>Белый свет</td><td>Мягкое свечение, частицы</td></tr>
+</table>
+
+<h3>3.2 Запрещённые визуальные элементы</h3>
+<div class="red-line"><strong>Глянцевый пластик</strong> — дешёвый, непремнальный вид</div>
+<div class="red-line"><strong>Кислотные неоновые цвета</strong> (кроме UI-акцентов) — агрессивно, дешёво</div>
+<div class="red-line"><strong>Размытые / низкокачественные текстуры</strong> — нарушение Quality First</div>
+<div class="red-line"><strong>Резкие мигающие эффекты</strong> — могут вызывать негативные эмоции и эпилептические приступы</div>
+<div class="red-line"><strong>Логотипы и брендинг реальных компаний</strong> — юридический риск</div>
+
+<h3>3.3 Освещение</h3>
+<table>
+<tr><th>Тип освещения</th><th>Разрешён</th><th>Комментарий</th></tr>
+<tr><td>Golden Hour (тёплое)</td><td><span class="tag tag-green">Да</span></td><td>Основной выбор для портретов</td></tr>
+<tr><td>Soft Studio (мягкое)</td><td><span class="tag tag-green">Да</span></td><td>Продуктовые обзоры, интервью</td></tr>
+<tr><td>Morning Light (холодное)</td><td><span class="tag tag-green">Да</span></td><td>Утренние сцены, свежесть</td></tr>
+<tr><td>Neon Night</td><td><span class="tag tag-green">Да</span></td><td>Только в допустимой цветовой палитре</td></tr>
+<tr><td>Инфернальное / адовое</td><td><span class="tag tag-red">Нет</span></td><td>Вызывает негативные эмоции</td></tr>
+<tr><td>Плоский фронтальный свет</td><td><span class="tag tag-red">Нет</span></td><td>Непрофессионально</td></tr>
+</table>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">04</span> Cultural Compliance — Культурная безопасность</h2>
+
+<h3>4.1 Принцип культурного нейтралитета</h3>
+<p>Контент AION не занимает сторону в политических, религиозных или культурных конфликтах. Мы уважаем все культуры и не производим контент, который может быть интерпретирован как оскорбление любой из них.</p>
+
+<h3>4.2 Региональная карта чувствительности</h3>
+<table>
+<tr><th>Регион</th><th>Чувствительные темы</th><th>Запрещённые образы</th><th>Обязательные элементы</th></tr>
+<tr><td>Ближний Восток</td><td>Религиозная символика, гендерные роли</td><td>Обнажённые фигуры, алкоголь</td><td>Скромная одежда, уважение к традициям</td></tr>
+<tr><td>Китай / ЮВА</td><td>Территориальная целостность, исторические нарративы</td><td>Политические карты без согласования</td><td>Уважение к локальным обычаям</td></tr>
+<tr><td>Европа</td><td>GDPR, EU AI Act, культурная апроприация</td><td>Стереотипные образы национальностей</td><td>C2PA-подпись, дисклеймеры</td></tr>
+<tr><td>Северная Америка</td><td>DEI, культурная чувствительность</td><td>Культурная апроприация</td><td>Инклюзивный кастинг</td></tr>
+<tr><td>Африка</td><td>Колониальные нарративы, стереотипы</td><td>Образы «дикости» / «отсталости»</td><td>Аутентичное представление</td></tr>
+<tr><td>Латинская Америка</td><td>Нарко-культура, политическая нестабильность</td><td>Романтизация насилия</td><td>Культурное разнообразие</td></tr>
+</table>
+
+<h3>4.3 Localization Rules</h3>
+<ul>
+<li><strong>Язык:</strong> Каждый регион получает контент на своём языке. Машинный перевод недопустим — требуется cultural adaptation.</li>
+<li><strong>Кастинг:</strong> Персонажи должны отражать локальный этнический состав, если контент позиционируется как локальный.</li>
+<li><strong>Архитектура:</strong> Здания, улицы, интерьеры должны соответствовать локальному стилю.</li>
+<li><strong>Одежда:</strong> Соответствие локальным нормам (в т.ч. дресс-код, скромность).</li>
+<li><strong>Еда / напитки:</strong> Учёт локальных диетических ограничений (халяль, кошер, веган).</li>
+</ul>
+
+<h3>4.4 Compliance Checklist (обязательный перед публикацией)</h3>
+<table>
+<tr><th>Проверка</th><th>Критерий</th><th>Кто проверяет</th></tr>
+<tr><td>1. Cultural Scan</td><td>Контент проверен на отсутствие оскорбительных элементов для региона</td><td>Cultural Localizer Agent</td></tr>
+<tr><td>2. Legal Review</td><td>Соответствие законам региона (GDPR, EU AI Act, местные)</td><td>Legal Guardian Agent</td></tr>
+<tr><td>3. Brand Check</td><td>Соответствие визуальному стандарту AION</td><td>Quality Gate Agent</td></tr>
+<tr><td>4. Human Approval</td><td>Человек просмотрел и утвердил</td><td>Content Manager</td></tr>
+<tr><td>5. C2PA Signature</td><td>Контент подписан как AI-сгенерированный</td><td>Pipeline (автоматически)</td></tr>
+</table>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">05</span> Operational Rules — Операционные правила</h2>
+
+<h3>5.1 Quality Gates</h3>
+<p>Каждый единица контента проходит через 4 quality gates перед публикацией:</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">QUALITY GATES PIPELINE:</span>
+
+  Generator ──▶ Gate 1 ──▶ Localizer ──▶ Gate 2 ──▶ Reviewer ──▶ Gate 3 ──▶ Publisher
+                  │                          │                          │
+                  ▼                          ▼                          ▼
+           Visual Quality              Cultural               Human Approval
+           Check:                     Compliance Check:      Check:
+           • 1920×1080 min           • Region sensitivity    • Content Manager
+           • No artifacts            • Language accuracy     reviews final
+           • Face consistency        • Legal compliance      • Approves or
+           • Color palette match     • C2PA signature          sends back
+           • Lighting standard                                    to fix
+</pre>
+</div>
+
+<h3>5.2 Что делать при нарушении Конституции</h3>
+<ul>
+<li><strong>Уровень 1 — Нарушение в черновике:</strong> Pipeline автоматически отклоняет. Инженер получает уведомление с причиной.</li>
+<li><strong>Уровень 2 — Нарушение в production:</strong> Контент немедленно отзывается. Инцидент расследуется. Причина фиксируется в постмортеме.</li>
+<li><strong>Уровень 3 — Системное нарушение (модель/промпт систематически нарушает):</strong> Модель останавливается. Проводится RCA. Модель не возвращается в production без подтверждения Compliance Officer.</li>
+</ul>
+
+<h3>5.3 Исключения</h3>
+<p>Любое исключение из Конституции требует:</p>
+<ol>
+<li>Письменного обоснования (почему контент нужен, несмотря на нарушение)</li>
+<li>Утверждения CEO или CTO лично</li>
+<li>Ограничения по времени (исключение не бессрочно)</li>
+<li>Публичной записи в логе исключений</li>
+</ol>
+
+<h3>5.4 Периодический пересмотр</h3>
+<p>Конституция пересматривается каждые 6 месяцев. Изменения вносятся через RFC-процесс, утверждаются CEO. Каждый сотрудник AI отдела обязан перечитывать Конституцию раз в год и подтверждать ознакомление.</p>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">06</span> The Red Lines — Что NEVER</h2>
+
+<div class="glass-card" style="border:1px solid rgba(239,68,68,0.1);border-left:4px solid #ef4444">
+<div class="title" style="color:#ef4444">⛔ Компания AION никогда не будет делать следующее</div>
+
+<div class="red-line"><strong>Уклоняться от налогов</strong> — абсолютная налоговая прозрачность во всех юрисдикциях. Никаких офшорных схем, никаких агрессивных оптимизаций.</div>
+<div class="red-line"><strong>Манипулировать ценообразованием</strong> — никаких скрытых комиссий, динамического ценообразования по принципу «сколько готов заплатить», тёмных паттернов в подписках.</div>
+<div class="red-line"><strong>Предавать цели и видение компании</strong> — если проект приносит деньги, но разрушает миссию AION, мы отказываемся.</div>
+<div class="red-line"><strong>Нанимать людей без видения и инициативы</strong> — AION строят те, кто видит будущее и берёт ответственность за его создание.</div>
+<div class="red-line"><strong>Генерировать контент, который вызывает негативные эмоции</strong> — если наш контент делает человека несчастным, мы делаем что-то не так.</div>
+<div class="red-line"><strong>Публиковать контент без финального утверждения человеком</strong> — автоматическая публикация без human-in-the-loop недопустима.</div>
+<div class="red-line"><strong>Ускорять выпуск за счёт качества</strong> — quality first. Лучше пропустить дедлайн, чем выпустить брак.</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2><span class="num">07</span> Internal Culture — Культура команды</h2>
+
+<h3>7.1 Принципы работы AI Content Factory</h3>
+<ul>
+<li><strong>Свобода:</strong> Мы не перегружаем команду. Сотрудники AION должны быть счастливы, иначе контент не будет качественным.</li>
+<li><strong>Инициатива:</strong> Мы ждём, что каждый предлагает, спорит, улучшает. «Мне не сказали» — не оправдание.</li>
+<li><strong>Видение:</strong> Мы нанимаем только тех, кто видит будущее. Технические навыки можно прокачать. Видение — нет.</li>
+<li><strong>Качество без компромиссов:</strong> Если тимлид говорит «это не OК» — контент не выходит. Иерархия не важна, качество важно.</li>
+<li><strong>Прозрачность:</strong> Любой сотрудник может поднять вопрос о нарушении Конституции без страха.</li>
+</ul>
+
+<h3>7.2 Кого мы NEVER нанимаем</h3>
+<div class="red-line">Людей без видения будущего</div>
+<div class="red-line">Безынициативных — тех, кто не предлагает, не спорит, ждёт указаний</div>
+<div class="red-line">Тех, для кого работа — просто работа, а не миссия</div>
+<div class="red-line">Тех, кто ставит прибыль выше качества</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">08</span> Заключительные положения</h2>
+
+<h3>8.1 Толкование</h3>
+<p>В случае неясности или конфликта между положениями Конституции, приоритет имеют:</p>
+<ol>
+<li>Core Principles (Глава 1) — выше всех остальных</li>
+<li>Human Agency (1.1) — выше других принципов</li>
+<li>Quality First (1.2) — выше срочности и дедлайнов</li>
+<li>Constitution (этот документ) — выше любых технических или коммерческих требований</li>
+</ol>
+
+<h3>8.2 Вступление в силу</h3>
+<p>Настоящая Конституция вступает в силу 26 июля 2026 года и обязательна к исполнению всеми сотрудниками AI Content Factory AION. Каждый новый сотрудник подтверждает ознакомление с Конституцией в первый рабочий день.</p>
+
+<h3>8.3 Поправки</h3>
+<p>Поправки вносятся через RFC-процесс, требуют одобрения CEO и фиксируются в истории изменений документа. История изменений ведётся в Git наравне с кодом.</p>
+
+<div class="signature-block">
+<div class="sig-name">CEO AION</div>
+<div class="sig-line">26 июля 2026</div>
+<div class="sig-line" style="font-size:0.7rem;color:#334155;margin-top:12px">⬡ Эта Конституция — не просто документ. Это обещание.</div>
+</div>
+
+<div class="footer"><span>AION</span> · AI Constitution · AI Content Factory · 26 июля 2026 · <span>v1.0</span></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог — Красота и SPA | AION</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#e2e8f0;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#f8fafc,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:28px 0 2px}
+.sub{color:#64748b;font-size:0.85rem;margin-bottom:4px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.meta span{background:#1e293b;border:1px solid #2a3344;border-radius:6px;padding:3px 10px;font-size:0.7rem;color:#94a3b8}
+.meta .p2{background:#d4a017;color:#fff;border-color:#d4a017}
+h2{font-size:1.2rem;font-weight:700;color:#f1f5f9;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #2a3344}
+.phone-wrap{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.phone{width:240px;background:#0f172a;border:2px solid #2a3344;border-radius:24px;padding:12px 10px;flex-shrink:0}
+.phone .notch{width:70px;height:5px;background:#2a3344;border-radius:10px;margin:0 auto 8px}
+.phone .screen{background:#0f172a;border-radius:12px;overflow:hidden}
+.phone .status-bar{font-size:0.55rem;color:#64748b;padding:2px 4px 6px;display:flex;justify-content:space-between}
+.app{background:#fff;color:#1a1a2e;border-radius:10px;overflow:hidden;font-family:system-ui,sans-serif}
+.app-header{background:#0A1628;color:#fff;padding:8px 10px;font-size:0.65rem;font-weight:600;display:flex;align-items:center;gap:6px}
+.app-header .back{font-size:0.8rem;opacity:0.6}
+.app-header .title{flex:1;text-align:center}
+
+.sub-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:8px}
+.sub-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 4px;text-align:center}
+.sub-item .icon{font-size:1.1rem}
+.sub-item .name{font-size:0.52rem;font-weight:700;color:#0A1628;margin-top:2px}
+.sub-item .count{font-size:0.45rem;color:#94a3b8;margin-top:1px}
+.sub-item.wide{grid-column:span 2}
+
+.master-card{display:flex;gap:8px;padding:8px;border-bottom:1px solid #f1f5f9}
+.master-avatar{width:40px;height:40px;border-radius:50%;background:#f1f5f9;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.master-info{flex:1;min-width:0}
+.master-name{font-size:0.6rem;font-weight:700;color:#0A1628}
+.master-spec{font-size:0.45rem;color:#94a3b8}
+.master-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
+.master-rating{font-size:0.5rem;color:#d97706}
+.master-price{font-size:0.55rem;font-weight:700;color:#d946ef}
+
+.chips{display:flex;gap:4px;padding:6px 8px;overflow-x:auto;border-bottom:1px solid #eee}
+.chips span{padding:2px 10px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569;white-space:nowrap}
+.chips span.active{background:#d946ef;color:#fff}
+
+.price-list{padding:4px 8px}
+.price-item{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f8fafc;font-size:0.55rem}
+.price-item:last-child{border:none}
+.price-item .name{color:#0A1628}
+.price-item .cost{font-weight:700;color:#d946ef}
+
+.slots{padding:6px 8px}
+.slots .time-row{display:flex;gap:4px;flex-wrap:wrap}
+.slots .time-row .slot{padding:4px 8px;font-size:0.48rem;border:1px solid #ddd;border-radius:8px;background:#fff;color:#475569;text-align:center}
+.slots .time-row .slot.active{background:#d946ef;color:#fff;border-color:#d946ef}
+.slots .time-row .slot .date{font-size:0.42rem;color:#94a3b8}
+.slots .time-row .slot.active .date{color:#f5d0fe}
+.slots .date-label{font-size:0.5rem;font-weight:600;color:#0A1628;margin:6px 0 3px}
+.slots .date-label:first-child{margin-top:0}
+
+.booksnap{padding:6px 8px;background:#fdf2f8;border-radius:8px;margin:4px 8px;display:flex;align-items:center;gap:6px}
+.booksnap .icon{font-size:0.9rem}
+.booksnap .text{font-size:0.5rem;color:#9d174d;flex:1}
+.booksnap .btn{background:#d946ef;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:0.5rem;font-family:inherit;font-weight:600}
+
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.flow-step{flex:1;min-width:100px;background:#1e293b;border:1px solid #2a3344;border-radius:10px;padding:12px;text-align:center}
+.flow-step .num{width:24px;height:24px;border-radius:50%;background:#0a1628;color:#d946ef;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;border:1px solid #d946ef}
+.flow-step .title{font-size:0.62rem;color:#e2e8f0;font-weight:600}
+.flow-step .desc{font-size:0.58rem;color:#64748b;margin-top:2px}
+
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+@media(max-width:600px){.spec{grid-template-columns:1fr}}
+.spec-item{background:#1e293b;border:1px solid #2a3344;border-radius:10px;padding:12px 14px}
+.spec-item .label{font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.04em}
+.spec-item .value{font-size:0.82rem;color:#f1f5f9;font-weight:600;margin-top:2px}
+.card{background:linear-gradient(135deg,#1e293b,#1a1f2e);border:1px solid #2a3344;border-radius:14px;padding:16px 20px;margin:10px 0}
+.card-title{font-weight:700;font-size:0.85rem;color:#f1f5f9;margin-bottom:6px}
+.card ul{list-style:none;padding:0}
+.card li{padding:4px 0 4px 16px;position:relative;font-size:0.78rem;color:#cbd5e1}
+.card li::before{content:"→";position:absolute;left:0;color:#d946ef}
+.footer{text-align:center;color:#334155;font-size:0.75rem;padding:24px 0;border-top:1px solid #1e293b;margin-top:20px}
+.structure{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0;padding:16px;background:#131827;border-radius:12px}
+.structure .elem{background:#1e293b;border:1px solid #2a3344;border-radius:8px;padding:8px 14px;text-align:center;font-size:0.72rem}
+.structure .elem .l{font-size:0.55rem;color:#64748b;margin-top:1px}
+.structure .arrow{color:#64748b;font-size:1rem}
+.structure .elem.active{border-color:#d946ef;background:rgba(217,70,239,0.08)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>💆 Каталог — Красота и SPA</h1>
+<div class="sub">Мастера · салоны · прайс · онлайн-запись</div>
+<div class="meta">
+  <span class="p2">P2 — Регулярные</span>
+  <span>#9 из 24</span>
+  <span>Волосы · Ногти · Массаж · SPA · Косметология · Барбер</span>
+</div>
+
+<div class="structure">
+  <div class="elem active">
+    💆 Красота и SPA
+    <div class="l">категория</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Волосы · Ногти · Массаж · Лицо
+    <div class="l">подкатегории</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Мастер Анна<br>⭐ 4.8 · $15
+    <div class="l">мастер + прайс</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Выбор слота<br>📅 14:00
+    <div class="l">запись</div>
+  </div>
+</div>
+
+<h2>📱 Основные экраны</h2>
+<div class="phone-wrap">
+
+  <!-- Screen 1: Subcategories -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>11:20</span><span>🔋 64%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">💆 Красота и SPA</span>
+          <span style="font-size:0.55rem;color:#64748b">📍 Нячанг</span>
+        </div>
+        <div class="sub-grid">
+          <div class="sub-item">
+            <div class="icon">💇‍♀️</div>
+            <div class="name">Волосы</div>
+            <div class="count">стрижка · окрашивание · барбер</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">💅</div>
+            <div class="name">Ногти</div>
+            <div class="count">маникюр · педикюр · дизайн</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">💆‍♀️</div>
+            <div class="name">Массаж и SPA</div>
+            <div class="count">классический · тайский · SPA</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">✨</div>
+            <div class="name">Лицо и тело</div>
+            <div class="count">косметология · брови · депиляция · тату</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📋 4 подкатегории</div>
+  </div>
+
+  <!-- Screen 2: Masters list -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>11:20</span><span>🔋 64%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">💅 Ногти</span>
+          <span style="font-size:0.55rem;color:#64748b">рядом</span>
+        </div>
+        <div class="chips">
+          <span class="active">Все</span>
+          <span>Маникюр</span>
+          <span>Педикюр</span>
+          <span>Наращивание</span>
+          <span>Дизайн</span>
+          <span>Покрытие</span>
+        </div>
+        <div>
+          <div class="master-card">
+            <div class="master-avatar">👩</div>
+            <div class="master-info">
+              <div class="master-name">Анна · Студия Nails</div>
+              <div class="master-spec">Маникюр · педикюр · дизайн · 5 лет опыта</div>
+              <div class="master-bottom">
+                <span class="master-rating">⭐ 4.8 · 94 отзыва</span>
+                <span class="master-price">от $12</span>
+              </div>
+            </div>
+          </div>
+          <div class="master-card">
+            <div class="master-avatar">👩</div>
+            <div class="master-info">
+              <div class="master-name">Елена · Alex Nail</div>
+              <div class="master-spec">Маникюр · наращивание · дизайн</div>
+              <div class="master-bottom">
+                <span class="master-rating">⭐ 4.6 · 67 отзывов</span>
+                <span class="master-price">от $10</span>
+              </div>
+            </div>
+          </div>
+          <div class="master-card">
+            <div class="master-avatar">👩</div>
+            <div class="master-info">
+              <div class="master-name">Мария · Mary Nails</div>
+              <div class="master-spec">Педикюр · покрытие · дизайн</div>
+              <div class="master-bottom">
+                <span class="master-rating">⭐ 4.9 · 128 отзывов</span>
+                <span class="master-price">от $15</span>
+              </div>
+            </div>
+          </div>
+          <div class="master-card">
+            <div class="master-avatar">👩</div>
+            <div class="master-info">
+              <div class="master-name">Оксана · Beauty Room</div>
+              <div class="master-spec">Маникюр · педикюр · покрытие</div>
+              <div class="master-bottom">
+                <span class="master-rating">⭐ 4.5 · 43 отзыва</span>
+                <span class="master-price">от $8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">👩‍🎨 Список мастеров</div>
+  </div>
+
+  <!-- Screen 3: Master card with price list -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>11:20</span><span>🔋 64%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">👩 Анна</span>
+          <span style="font-size:0.55rem;color:#64748b">Студия Nails</span>
+        </div>
+        <div style="padding:8px;display:flex;gap:8px">
+          <div style="width:44px;height:44px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">👩</div>
+          <div style="flex:1">
+            <div style="font-size:0.6rem;font-weight:700;color:#0A1628">Анна</div>
+            <div style="font-size:0.48rem;color:#64748b">Студия Nails · 5 лет · ул. Нгуен Тхи Минь Кай, 15</div>
+            <div style="font-size:0.48rem;color:#d97706">⭐ 4.8 · 94 отзыва</div>
+          </div>
+        </div>
+        <div style="font-size:0.52rem;font-weight:600;color:#0A1628;padding:0 8px 4px">💅 Прайс-лист:</div>
+        <div class="price-list">
+          <div class="price-item"><span class="name">Маникюр классический</span><span class="cost">$12</span></div>
+          <div class="price-item"><span class="name">Маникюр аппаратный</span><span class="cost">$15</span></div>
+          <div class="price-item"><span class="name">Покрытие гель-лак</span><span class="cost">+$8</span></div>
+          <div class="price-item"><span class="name">Наращивание (1 ноготь)</span><span class="cost">$3</span></div>
+          <div class="price-item"><span class="name">Дизайн (каждый ноготь)</span><span class="cost">+$2</span></div>
+          <div class="price-item"><span class="name">Педикюр классический</span><span class="cost">$15</span></div>
+          <div class="price-item"><span class="name">Педикюр + покрытие</span><span class="cost">$22</span></div>
+        </div>
+        <div style="padding:4px 8px">
+          <div style="font-size:0.5rem;color:#64748b">📍 ул. Нгуен Тхи Минь Кай, 15 · 🕐 09:00–20:00</div>
+        </div>
+        <div style="padding:0 8px 8px;display:flex;gap:6px">
+          <button style="flex:1;background:#d946ef;color:#fff;border:none;border-radius:8px;padding:5px;font-size:0.55rem;font-family:inherit;font-weight:600">📅 Записаться</button>
+          <button style="background:#f1f5f9;border:none;border-radius:8px;padding:5px;font-size:0.5rem;font-family:inherit;font-weight:600;color:#0A1628">💬</button>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">💅 Прайс + карточка мастера</div>
+  </div>
+
+  <!-- Screen 4: Slot selection -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>11:20</span><span>🔋 64%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">📅 Запись к Анне</span>
+          <span></span>
+        </div>
+        <div style="padding:8px">
+          <div style="font-size:0.55rem;font-weight:600;color:#0A1628">Маникюр классический — $12</div>
+          <div style="font-size:0.48rem;color:#64748b;margin:2px 0 6px">~40 мин</div>
+        </div>
+        <div class="slots">
+          <div class="date-label">📅 Сегодня, 18 июля</div>
+          <div class="time-row">
+            <div class="slot">09:00</div>
+            <div class="slot">10:00</div>
+            <div class="slot active">11:00</div>
+            <div class="slot">12:00</div>
+            <div class="slot">14:00</div>
+            <div class="slot">15:00</div>
+          </div>
+          <div class="date-label">📅 Завтра, 19 июля</div>
+          <div class="time-row">
+            <div class="slot">09:00</div>
+            <div class="slot">10:00</div>
+            <div class="slot">11:00</div>
+            <div class="slot">14:00</div>
+            <div class="slot">15:00</div>
+            <div class="slot">16:00</div>
+          </div>
+        </div>
+        <div style="padding:0 8px;font-size:0.5rem;color:#64748b;margin:4px 0">⏱ Длительность: ~40 мин</div>
+        <div class="booksnap">
+          <span class="icon">🔔</span>
+          <span class="text">Напомнить в Telegram за 1 час до записи</span>
+          <button class="btn">Вкл</button>
+        </div>
+        <div style="padding:8px;display:flex;gap:6px">
+          <button style="flex:1;background:#d946ef;color:#fff;border:none;border-radius:8px;padding:5px;font-size:0.55rem;font-family:inherit;font-weight:600">✅ Подтвердить запись</button>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📅 Выбор слота + напоминание</div>
+  </div>
+
+  <!-- Screen 5: My appointments -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>11:20</span><span>🔋 64%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">📋 Мои записи</span>
+          <span></span>
+        </div>
+        <div style="padding:6px 8px">
+          <div style="font-size:0.52rem;font-weight:600;color:#0A1628">Предстоящие</div>
+          <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #f1f5f9">
+            <div style="width:36px;height:36px;border-radius:50%;background:#fdf2f8;display:flex;align-items:center;justify-content:center;font-size:0.9rem">👩</div>
+            <div style="flex:1">
+              <div style="font-size:0.55rem;font-weight:700;color:#0A1628">Анна · Студия Nails</div>
+              <div style="font-size:0.48rem;color:#64748b">Маникюр классический · $12</div>
+              <div style="display:flex;gap:8px;margin-top:2px;font-size:0.45rem">
+                <span style="color:#d946ef;font-weight:600">📅 18 июл · 11:00</span>
+                <span style="color:#16a34a;font-weight:600">✅ Подтверждено</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:4px 8px">
+          <div style="font-size:0.52rem;font-weight:600;color:#0A1628">История</div>
+          <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #f1f5f9">
+            <div style="width:36px;height:36px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:0.9rem">👩</div>
+            <div style="flex:1">
+              <div style="font-size:0.55rem;font-weight:700;color:#0A1628">Анна · Студия Nails</div>
+              <div style="font-size:0.48rem;color:#64748b">Маникюр + покрытие · $20</div>
+              <div style="display:flex;gap:8px;margin-top:2px;font-size:0.45rem">
+                <span>📅 10 июл · 14:00</span>
+                <span style="color:#64748b">✅ Посетила</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;padding:6px 0">
+            <div style="width:36px;height:36px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:0.9rem">👩</div>
+            <div style="flex:1">
+              <div style="font-size:0.55rem;font-weight:700;color:#0A1628">Елена · Alex Nail</div>
+              <div style="font-size:0.48rem;color:#64748b">Педикюр · $15</div>
+              <div style="display:flex;gap:8px;margin-top:2px;font-size:0.45rem">
+                <span>📅 28 июн · 10:00</span>
+                <span style="color:#64748b">✅ Посетила</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:6px 8px">
+          <button style="width:100%;background:#f1f5f9;border:none;border-radius:8px;padding:6px;font-size:0.5rem;font-family:inherit;font-weight:600;color:#0A1628">🔄 Записаться снова к Анне</button>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📋 Мои записи + история</div>
+  </div>
+
+</div>
+
+<h2>🔄 Пользовательский путь</h2>
+<div class="flow">
+  <div class="flow-step">
+    <div class="num">1</div>
+    <div class="title">Категория «Красота»</div>
+    <div class="desc">4 подкатегории: волосы, ногти, массаж, лицо/тело</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">2</div>
+    <div class="title">Выбор услуги</div>
+    <div class="desc">Чипы-фильтры (маникюр, педикюр...)</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">3</div>
+    <div class="title">Выбор мастера</div>
+    <div class="desc">Рейтинг · цена · отзывы · портфолио</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">4</div>
+    <div class="title">Прайс + слот</div>
+    <div class="desc">Выбор услуги из прайса · дата · время</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">5</div>
+    <div class="title">Запись</div>
+    <div class="desc">Подтверждение · напоминание в Telegram</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">6</div>
+    <div class="title">Мои записи</div>
+    <div class="desc">Список · статус · история · повтор</div>
+  </div>
+</div>
+
+<h2>📋 Спецификация</h2>
+<div class="spec">
+  <div class="spec-item">
+    <div class="label">Структура</div>
+    <div class="value">Категория → 4 подкатегории → мастера → прайс → слот → запись</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Подкатегории</div>
+    <div class="value">Волосы · Ногти · Массаж и SPA · Лицо и тело</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Карточка мастера</div>
+    <div class="value">Фото · имя · студия · рейтинг · отзывы · опыт · адрес · часы</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Прайс-лист</div>
+    <div class="value">Название услуги · цена · длительность</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Выбор слота</div>
+    <div class="value">Дата · свободные окна · длительность услуги</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Напоминание</div>
+    <div class="value">Telegram за 1 час · отмена/перенос</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Мои записи</div>
+    <div class="value">Предстоящие (статус) · история · кнопка «Повторить»</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Фильтры</div>
+    <div class="value">По услуге · по цене · по рейтингу · рядом</div>
+  </div>
+</div>
+
+<h2>🧩 Детальная проработка</h2>
+
+<div class="card">
+  <div class="card-title">🎯 Подкатегории (сетка 2×2)</div>
+  <ul>
+    <li>💇‍♀️ Волосы: стрижка · окрашивание · укладка · барбершоп · бритьё</li>
+    <li>💅 Ногти: маникюр · педикюр · наращивание · дизайн · покрытие</li>
+    <li>💆‍♀️ Массаж и SPA: классический · тайский · лечебный · SPA-процедуры · грязелечение</li>
+    <li>✨ Лицо и тело: косметология · брови/ресницы · депиляция/шугаринг · солярий · тату/пирсинг</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Поиск мастеров</div>
+  <ul>
+    <li>Чипы с типами услуг внутри подкатегории</li>
+    <li>Список: аватар · имя · студия · специализация · ⭐ · отзывы · цена от</li>
+    <li>Сортировка: рейтинг · цена · расстояние</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Карточка мастера</div>
+  <ul>
+    <li>Шапка: фото, имя, студия, рейтинг, отзывы, опыт, адрес</li>
+    <li>Прайс-лист: услуга → цена → длительность</li>
+    <li>Выбор услуги → переход к слотам</li>
+    <li>Кнопки: «Записаться», «💬 Написать мастеру»</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Запись и напоминание</div>
+  <ul>
+    <li>После выбора услуги → календарь с доступными датами</li>
+    <li>Слоты: временные окна с учётом длительности услуги</li>
+    <li>Авто-напоминание в Telegram за 1 час</li>
+    <li>Возможность перенести/отменить (за N часов)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Апсейл</div>
+  <ul>
+    <li>После записи: «💐 Добавить букет к визиту · 🧴 Заказать уходовую косметику · 🚗 Такси до салона»</li>
+    <li>Напоминание: «Через 2 дня у вас запись к Анне — 💅 добавить покрытие?»</li>
+  </ul>
+</div>
+
+<h2>⚙️ Технические заметки</h2>
+<div class="card">
+  <ul>
+    <li><strong>Мастер:</strong> id, имя, студия, подкатегории[], рейтинг, отзывы, опыт, адрес, часы_работы, контакты</li>
+    <li><strong>Услуга:</strong> id мастера, название, цена, длительность_мин, описание</li>
+    <li><strong>Слот:</strong> id мастера, дата, время, доступен (bool)</li>
+    <li><strong>Запись:</strong> id, мастер, услуга, дата, время, статус, напоминание</li>
+    <li><strong>URL:</strong> <code>/category/beauty</code> → <code>/category/beauty/nails</code> → <code>/category/beauty/master/42</code></li>
+  </ul>
+</div>
+
+<div class="footer">
+AION · Референс каталога Красота и SPA · Июль 2026
+</div>
+</div>
+</body>
+</html>

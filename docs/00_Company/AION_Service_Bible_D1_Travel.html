@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION Service Bible — Домен 1: Путешествия и Транспорт</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #05080f; color: #c8d0e0; font-family: 'Inter', sans-serif; line-height: 1.7; }
+  .bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; position: relative; z-index: 1; }
+  .header { text-align: center; padding: 50px 0 30px; border-bottom: 1px solid rgba(0,240,255,0.15); margin-bottom: 40px; }
+  .header h1 { font-size: 2.6em; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header .subtitle { color: #6b7a9a; font-size: 1em; margin-top: 8px; }
+  .nav { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px; }
+  .nav a { padding: 6px 14px; border: 1px solid rgba(0,240,255,0.15); border-radius: 6px; color: #6b7a9a; text-decoration: none; font-size: 0.8em; }
+  .nav a:hover, .nav a.active { border-color: #00f0ff; color: #00f0ff; }
+
+  .cat-block { background: rgba(10,16,30,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(0,240,255,0.08); border-radius: 16px; padding: 28px; margin-bottom: 32px; }
+  .cat-block h2 { color: #fff; font-size: 1.6em; font-weight: 700; margin-bottom: 4px; }
+  .cat-block h2 .cat-num { color: #00f0ff; font-weight: 400; font-size: 0.7em; }
+  .cat-block .cat-desc { color: #6b7a9a; font-size: 0.95em; margin-bottom: 16px; }
+
+  .s16-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .s16-item { background: rgba(0,240,255,0.03); border-radius: 8px; padding: 14px 16px; border: 1px solid rgba(0,240,255,0.04); }
+  .s16-item .s16-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: #4a5a7a; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+  .s16-item .s16-val { color: #c8d0e0; font-size: 0.9em; margin-top: 4px; }
+
+  .full-width { grid-column: 1 / -1; }
+
+  .subcat-list { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; }
+  .subcat-list span { padding: 2px 10px; background: rgba(0,240,255,0.06); border-radius: 4px; font-size: 0.8em; color: #8a9ab0; }
+
+  .service-list { margin: 8px 0; }
+  .service-list li { color: #8a9ab0; font-size: 0.85em; margin: 2px 0; list-style: none; padding-left: 16px; position: relative; }
+  .service-list li::before { content: '▸'; position: absolute; left: 0; color: #00f0ff; }
+
+  .partner-list { display: flex; flex-wrap: wrap; gap: 4px; }
+  .partner-list span { padding: 2px 10px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.15); border-radius: 4px; font-size: 0.78em; color: #f59e0b; }
+
+  .ui-desc { color: #8a9ab0; font-size: 0.85em; line-height: 1.6; }
+
+  .auto-list li { color: #8a9ab0; font-size: 0.85em; margin: 3px 0; list-style: none; padding-left: 16px; }
+  .auto-list li::before { content: '⚡'; position: absolute; left: 0; }
+
+  @media (max-width: 700px) { .s16-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="container">
+
+<div class="header">
+  <h1>✦ Домен 1: Путешествия и Транспорт</h1>
+  <div class="subtitle">12 категорий · 180+ услуг · Мобильность человека как сервис</div>
+</div>
+
+<div class="nav">
+  <a href="AION_Service_Bible.html">Главная</a>
+  <a href="#air">Авиа</a>
+  <a href="#train">Ж/д</a>
+  <a href="#hotel">Отели</a>
+  <a href="#car">Аренда</a>
+  <a href="#taxi">Такси</a>
+  <a href="#carshare">Каршеринг</a>
+  <a href="#transfer">Трансфер</a>
+  <a href="#nav">Навигация</a>
+  <a href="#maps">Карты</a>
+  <a href="#transit">Транспорт</a>
+  <a href="#visa">Визы</a>
+  <a href="#insure">Страховка</a>
+</div>
+
+<!-- ============================================================ -->
+<!-- АВИАБИЛЕТЫ -->
+<!-- ============================================================ -->
+<div class="cat-block" id="air">
+  <h2><span class="cat-num">01.</span> Авиабилеты</h2>
+  <p class="cat-desc">Поиск, сравнение и покупка авиабилетов по всем авиакомпаниям мира. Интеграция с AI-планировщиком, календарём и бюджетом.</p>
+  <div class="subcat-list">
+    <span>Прямые рейсы</span><span>Стыковки</span><span>Бизнес-класс</span><span>Эконом</span><span>Last minute</span>
+    <span>Чартеры</span><span>Награды (мили)</span><span>Групповые</span><span>Мульти-сегмент</span><span>Аэротакси</span>
+  </div>
+  <div class="s16-grid">
+    <div class="s16-item"><div class="s16-label">Проблема</div><div class="s16-val">Слишком много сайтов, сложно выбрать лучшую цену, нет единого окна поиска</div></div>
+    <div class="s16-item"><div class="s16-label">Почему AION</div><div class="s16-val">Единый поиск по 200+ авиакомпаниям. AI предсказывает изменение цены и советует лучшее время покупки</div></div>
+    <div class="s16-item"><div class="s16-label">Подкатегории</div><div class="s16-val">Прямые · Стыковочные · Бизнес · Эконом · Last minute · Чартерные · Мильные · Групповые</div></div>
+    <div class="s16-item"><div class="s16-label">Услуги</div><div class="s16-val">
+      <ul class="service-list">
+        <li>Поиск рейсов по всем направлениям</li>
+        <li>Сравнение цен (с таксами и сборами)</li>
+        <li>AI-прогноз цен (когда покупать)</li>
+        <li>Бронирование с местом</li>
+        <li>Выбор места (с видом на схему салона)</li>
+        <li>Добавление багажа</li>
+        <li>Спецпитание (аллергии, веган, халяль)</li>
+        <li>Онлайн-регистрация</li>
+        <li>Мобильный посадочный</li>
+        <li>Страховка билета</li>
+        <li>Кэшбек и мили</li>
+        <li>AI-мониторинг снижения цены</li>
+        <li>Авто-перебронирование при отмене</li>
+        <li>Семейный тариф</li>
+        <li>Групповые заявки</li>
+      </ul>
+    </div></div>
+    <div class="s16-item full-width"><div class="s16-label">AI Assist Flow</div><div class="s16-val">
+      <b>Вопросы AION:</b> «Куда летим?» → «Даты?» → «Класс?» → «Багаж?» → «Гибкость дат?» → «Бюджет?»<br>
+      <b>Анализ:</b> история поездок → предпочтения по авиакомпаниям → прошлые цены → календарь → бюджет<br>
+      <b>Авто:</b> Предлагает лучший маршрут по соотношению цена/время. Предупреждает: «через 3 дня цена вырастет»</div></div>
+    <div class="s16-item"><div class="s16-label">UI описание</div><div class="s16-val">
+      Экран поиска: поле «Куда» с AI-подсказками · календарь с цветовыми индикаторами цен · результаты — карточки с сортировкой по цене/времени/рейтингу · фильтры: пересадки, авиакомпании, время вылета, багаж · детали рейса: схема салона, отзывы, питание · кнопка «Купить» с AI-советом</div></div>
+    <div class="s16-item"><div class="s16-label">Данные</div><div class="s16-val">История перелётов · Избранные направления · Предпочитаемые авиакомпании · Номера лояльности · Документы (паспорт) · Предпочтения по месту и питанию</div></div>
+    <div class="s16-item"><div class="s16-label">Партнёры</div><div class="s16-val">
+      <div class="partner-list"><span>Авиакомпании (200+)</span><span>GDS (Amadeus, Sabre)</span><span>Агрегаторы</span><span>Страховые</span><span>Отели</span><span>Трансферы</span></div>
+    </div></div>
+    <div class="s16-item"><div class="s16-label">Персонажи</div><div class="s16-val">Турист · Бизнес-путешественник · Семья · Студент · Экспат · Блогер</div></div>
+    <div class="s16-item"><div class="s16-label">Автоматизация</div>
+      <ul class="service-list">
+        <li>Авто-мониторинг цен на избранные направления</li>
+        <li>Авто-перебронирование при отмене рейса</li>
+        <li>Авто-регистрация за 24 часа</li>
+        <li>Авто-добавление в календарь</li>
+        <li>Авто-заказ такси к вылету</li>
+      </ul>
+    </div>
+    <div class="s16-item"><div class="s16-label">Экраны</div><div class="s16-val">Главная (виджет) · Поиск · Результаты · Детали · Оформление · Оплата · Билеты · История</div></div>
+    <div class="s16-item"><div class="s16-label">Персонализация</div><div class="s16-val">AI запоминает: частые маршруты, предпочитаемые авиакомпании, класс, место (окно/проход), питание. Предлагает: «Снова в Париж? Билет на те же даты — на 15% дешевле»</div></div>
+    <div class="s16-item"><div class="s16-label">Будущее 2080</div><div class="s16-val">AI покупает билеты сам: «ты хочешь отдохнуть → я купил билет на Марс». В 2090 — нейро-бронирование. В 2100 — категория исчезает как отдельная — «транспорт» становится частью «желания»</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ОТЕЛИ -->
+<!-- ============================================================ -->
+<div class="cat-block" id="hotel">
+  <h2><span class="cat-num">02.</span> Отели и Жильё</h2>
+  <p class="cat-desc">Поиск и бронирование отелей, апартаментов, хостелов, вилл. Интеграция с картами, отзывами, AI-подбором.</p>
+  <div class="subcat-list">
+    <span>Отели</span><span>Апартаменты</span><span>Хостелы</span><span>Виллы</span><span>Бутик-отели</span>
+    <span>Сеть отелей</span><span>Апарт-отели</span><span>Глэмпинг</span><span>Капсулы</span>
+  </div>
+  <div class="s16-grid">
+    <div class="s16-item"><div class="s16-label">Проблема</div><div class="s16-val">Сложно найти идеальное жильё: сотни сайтов, фейковые фото, скрытые платежи</div></div>
+    <div class="s16-item"><div class="s16-label">Почему AION</div><div class="s16-val">AI подбирает по 50+ параметрам. Реальные отзывы. Скрытые комиссии раскрыты</div></div>
+    <div class="s16-item"><div class="s16-label">Подкатегории</div><div class="s16-val">Отели · Апартаменты · Хостелы · Виллы · Бутик · Глэмпинг · Капсулы · Апарт-отели</div></div>
+    <div class="s16-item"><div class="s16-label">Услуги</div>
+      <ul class="service-list">
+        <li>Поиск отелей по направлению</li>
+        <li>Фильтры: звезды, цена, расположение, удобства</li>
+        <li>Карта с отелями на ней</li>
+        <li>AI-подбор «идеальный отель»</li>
+        <li>Сравнение цен (Booking, Agoda, direct)</li>
+        <li>Отзывы с AI-суммаризацией</li>
+        <li>Бронирование без карты</li>
+        <li>Особые пожелания (Honeymoon, тихий этаж)</li>
+        <li>Ранний заезд / поздний выезд</li>
+        <li>Room service через AION</li>
+        <li>Продление брони</li>
+        <li>Компенсация при овербукинге</li>
+      </ul>
+    </div>
+    <div class="s16-item full-width"><div class="s16-label">AI Assist Flow</div><div class="s16-val">
+      <b>Вопросы:</b> «Город/район?» → «Даты?» → «Цель поездки?» → «С кем?» → «Бюджет?» → «Что важно?» (расположение/тишина/виде/завтрак)<br>
+      <b>Анализ:</b> история поездок → сохранённые отели → звёздность → бюджет прошлых поездок → отзывы<br>
+      <b>Авто:</b> «В прошлый раз вам понравился отель в центре. В этом городе лучший вариант — ...»</div></div>
+    <div class="s16-item"><div class="s16-label">UI</div><div class="s16-val">Поиск с картой · Галерея фото · Карточка отеля: рейтинг, удобства, расположение, отзывы · AI-блок «почему этот отель вам подходит» · Мгновенное бронирование · Виджет на главной «ваши поездки»</div></div>
+    <div class="s16-item"><div class="s16-label">Данные</div><div class="s16-val">История бронирований · Предпочтения (центр/тишина, завтрак, парковка) · Чёрный список отелей · Любимые сети</div></div>
+    <div class="s16-item"><div class="s16-label">Партнёры</div><div class="s16-val">Booking, Agoda, Airbnb · Прямые контракты с отелями · Системы PMS (Oracle, Mews) · Телеканалы (Amadeus)</div></div>
+    <div class="s16-item"><div class="s16-label">Автоматизация</div>
+      <ul class="service-list">
+        <li>Авто-бронь отеля при покупке билета</li>
+        <li>Авто-продление при задержке рейса</li>
+        <li>Авто-check-in онлайн</li>
+        <li>Авто-заказ завтрака по расписанию</li>
+      </ul>
+    </div>
+    <div class="s16-item"><div class="s16-label">Экраны</div><div class="s16-val">Поиск · Карта · Результаты · Карточка · Оформление · Мои брони · Избранное</div></div>
+    <div class="s16-item"><div class="s16-label">Персонализация</div><div class="s16-val">AI знает ваш стиль путешествий: «вы любите бутик-отели в центре с завтраком — вот 3 варианта». Запоминает: любимые удобства, этаж, тип кровати</div></div>
+    <div class="s16-item"><div class="s16-label">Будущее</div><div class="s16-val">2080 — AI бронирует номер до того, как вы решили ехать (по календарю). 2090 — нейро-интерфейс: «я хочу спать» → отель найден. 2100 — отели как «слоты реальности»</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ТАКСИ -->
+<!-- ============================================================ -->
+<div class="cat-block" id="taxi">
+  <h2><span class="cat-num">03.</span> Такси и Райдшеринг</h2>
+  <p class="cat-desc">Вызов такси, райдшеринг, попутчики. Интеграция с навигацией, оплатой, календарём.</p>
+  <div class="subcat-list">
+    <span>Такси</span><span>Эконом</span><span>Комфорт</span><span>Бизнес</span><span>Минивэн</span>
+    <span>Детское кресло</span><span>Попутчики</span><span>Женщина-водитель</span><span>Доставка</span>
+  </div>
+  <div class="s16-grid">
+    <div class="s16-item"><div class="s16-label">Проблема</div><div class="s16-val">Долгое ожидание, разные приложения, непрозрачные цены, безопасность</div></div>
+    <div class="s16-item"><div class="s16-label">Почему AION</div><div class="s16-val">Одно приложение — все службы. AI выбирает лучший вариант по цене/времени/рейтингу. Всегда известна цена до поездки</div></div>
+    <div class="s16-item"><div class="s16-label">Подкатегории</div><div class="s16-val">Эконом · Комфорт · Бизнес · Минивэн · Детское кресло · Попутчики · Женщина-водитель · Доставка</div></div>
+    <div class="s16-item"><div class="s16-label">Услуги</div>
+      <ul class="service-list">
+        <li>Вызов такси в 1 клик</li>
+        <li>Сравнение цен (Uber, Yandex, Bolt, local)</li>
+        <li>Выбор тарифа</li>
+        <li>Детское кресло (заказ)</li>
+        <li>Маршрут (AI выбирает оптимальный)</li>
+        <li>Разделить поездку с друзьями</li>
+        <li>Корпоративный счёт</li>
+        <li>Попутчики (поездка по маршруту)</li>
+        <li>Бронирование заранее</li>
+        <li>Поездка в аэропорт (фикс-цена)</li>
+        <li>Межгород</li>
+        <li>VIP-водитель (встреча с табличкой)</li>
+        <li>Зарядка электромобиля по пути</li>
+      </ul>
+    </div>
+    <div class="s16-item full-width"><div class="s16-label">AI Assist Flow</div><div class="s16-val">
+      <b>Вопросы:</b> AI определяет геолокацию автоматически. «Куда?» → «Когда?» → «Класс?» → «Сколько человек?»<br>
+      <b>Анализ:</b> история поездок → обычные маршруты → текущее время (час пик → другой тариф) → погода → события в городе<br>
+      <b>Авто:</b> «Я вижу, вы опаздываете на встречу. Такси уже ждёт. Оптимальный маршрут — 23 минуты»</div></div>
+    <div class="s16-item"><div class="s16-label">UI</div><div class="s16-val">Карта с машинами · Поле «Куда» с AI-подсказками · Быстрые кнопки «Домой», «Работа», «Избранное» · Цена до поездки · Трекер на карте · Кнопка SOS · Чат с водителем</div></div>
+    <div class="s16-item"><div class="s16-label">Данные</div><div class="s16-val">Адреса (дом, работа, избранные) · История маршрутов · Предпочитаемые тарифы · Платёжные данные · Контакты для разделения</div></div>
+    <div class="s16-item"><div class="s16-label">Партнёры</div><div class="s16-val">Uber · Яндекс Go · Bolt · Gett · Didi · InDriver · Local такси-парки · Автопарки с электромобилями</div></div>
+    <div class="s16-item"><div class="s16-label">Автоматизация</div>
+      <ul class="service-list">
+        <li>Авто-вызов такси к времени в календаре</li>
+        <li>Авто-вызов после приземления самолёта</li>
+        <li>Авто-вызов при выходе из ресторана/театра</li>
+        <li>Авто-оплата по окончании</li>
+      </ul>
+    </div>
+    <div class="s16-item"><div class="s16-label">Персонализация</div><div class="s16-val">AI знает: вы предпочитаете ездить молча, любите определённый тариф, часто ездите по одним маршрутам. Предлагает: «В офис? Машина будет через 4 минуты»</div></div>
+    <div class="s16-item"><div class="s16-label">Будущее</div><div class="s16-val">2080 — беспилотные такси по умолчанию. 2090 — вызов мыслью. 2100 — транспорт как подписка (любая поездка — включена)</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- АРЕНДА АВТО -->
+<!-- ============================================================ -->
+<div class="cat-block" id="car">
+  <h2><span class="cat-num">04.</span> Аренда Авто</h2>
+  <p class="cat-desc">Аренда автомобилей на час, день, неделю. Интеграция со страховкой, навигацией, парковкой.</p>
+  <div class="subcat-list">
+    <span>Поминутная</span><span>Посуточная</span><span>Долгосрочная</span><span>Премиум</span><span>Электро</span><span>С водителем</span><span>Кабриолет</span><span>Внедорожник</span><span>Микроавтобус</span>
+  </div>
+  <div class="s16-grid">
+    <div class="s16-item"><div class="s16-label">Проблема</div><div class="s16-val">Сложный процесс аренды, залог, бумаги, неочевидные платежи</div></div>
+    <div class="s16-item"><div class="s16-label">Почему AION</div><div class="s16-val">Всё онлайн: документы, страховка, оплата. Без залога. Ключи — в телефоне</div></div>
+    <div class="s16-item"><div class="s16-label">Подкатегории</div><div class="s16-val">Поминутная · Посуточная · Долгосрочная · Премиум · Электро · С водителем · Кабриолет · Внедорожник</div></div>
+    <div class="s16-item"><div class="s16-label">Услуги</div>
+      <ul class="service-list">
+        <li>Поиск авто по параметрам</li>
+        <li>Сравнение цен всех прокатов</li>
+        <li>Бронирование с выбором авто</li>
+        <li>Страховка (КАСКО, ОСАГО)</li>
+        <li>Продление онлайн</li>
+        <li>Доставка авто к дому/отелю</li>
+        <li>Возврат в другом городе</li>
+        <li>Детские кресла</li>
+        <li>GPS-навигатор в аренду</li>
+        <li>Транспондер (платные дороги)</li>
+        <li>Зарядка электромобиля</li>
+        <li>Круглосуточная поддержка</li>
+      </ul>
+    </div>
+    <div class="s16-item full-width"><div class="s16-label">AI Assist Flow</div><div class="s16-val">
+      <b>Вопросы:</b> «Тип авто?» → «Срок?» → «Где забрать/сдать?» → «Водителей?» → «Страховка?»<br>
+      <b>Анализ:</b> права (проверка) · история аренд · рейтинг · бюджет · цель поездки<br>
+      <b>Авто:</b> «Вы едете в горы — рекомендую полный привод. 3 варианта в вашем бюджете»</div></div>
+    <div class="s16-item"><div class="s16-label">UI</div><div class="s16-val">Поиск с фильтрами (марка, тип КПП, привод) · Карусель фото · Схема салона · Сравнение · Калькулятор · Кнопка «Арендовать» · Цифровой ключ в приложении</div></div>
+    <div class="s16-item"><div class="s16-label">Автоматизация</div>
+      <ul class="service-list">
+        <li>Авто-проверка прав перед арендой</li>
+        <li>Авто-продление при задержке</li>
+        <li>Авто-оплата штрафов</li>
+        <li>Авто-страховка на каждый заказ</li>
+      </ul>
+    </div>
+    <div class="s16-item"><div class="s16-label">Будущее</div><div class="s16-val">2080 — аренда беспилотников. 2090 — авто приезжает само. 2100 — аренда как часть подписки на мобильность</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- КАРШЕРИНГ -->
+<!-- ============================================================ -->
+<div class="cat-block" id="carshare">
+  <h2><span class="cat-num">05.</span> Каршеринг</h2>
+  <p class="cat-desc">Поминутная аренда автомобилей в городе. Машина рядом — открыл и поехал.</p>
+  <div class="subcat-list">
+    <span>Free-floating</span><span>Станции</span><span>Электро</span><span>Комфорт</span><span>Грузовой</span>
+  </div>
+  <div class="s16-grid">
+    <div class="s16-item"><div class="s16-label">Проблема</div><div class="s16-val">Такси дорого на долгие поездки, своя машина — геморрой с парковкой</div></div>
+    <div class="s16-item"><div class="s16-label">Почему AION</div><div class="s16-val">Ближайшая машина — на карте. Открыл телефоном, поехал, бросил где удобно.</div></div>
+    <div class="s16-item"><div class="s16-label">Услуги</div>
+      <ul class="service-list">
+        <li>Карта с доступными авто</li>
+        <li>Бронь на 20 мин бесплатно</li>
+        <li>Открытие через NFC/QR</li>
+        <li>Страховка включена</li>
+        <li>Топливо/зарядка включены</li>
+        <li>Парковка в зоне</li>
+        <li>Продление онлайн</li>
+        <li>Смена тарифа (поминутно/посуточно)</li>
+        <li>Бизнес-тариф</li>
+      </ul>
+    </div>
+    <div class="s16-item full-width"><div class="s16-label">AI Assist Flow</div><div class="s16-val">
+      <b>Вопросы:</b> «Куда? На сколько?» AI сам определяет: машина ближе 5 минут, цена ниже, чем такси, если >30 минут.<br>
+      <b>Авто:</b> «Вам в IKEA? Закажу грузовой каршеринг — так дешевле и поместится коробка»</div></div>
+    <div class="s16-item"><div class="s16-label">Автоматизация</div>
+      <ul class="service-list">
+        <li>Авто-бронь машины при выходе из дома (гео-триггер)</li>
+        <li>Авто-закрытие аренды при парковке</li>
+        <li>Авто-оплата поездки</li>
+      </ul>
+    </div>
+    <div class="s16-item"><div class="s16-label">Будущее</div><div class="s16-val">2080 — беспилотный каршеринг. 2090 — автомобиль как «комната». 2100 — личного авто нет — только общий флот</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ТРАНСФЕР -->
+<!-- ============================================================ -->
+<div class="cat-block" id="transfer">
+  <h2><span class="cat-num">06.</span> Трансфер</h2>
+  <p class="cat-desc">Встреча в аэропорту/на вокзале, персональный водитель, VIP-трансфер.</p>
+  <div class="subcat-list">
+    <span>Аэропорт</span><span>Вокзал</span><span>Бизнес</span><span>VIP</span><span>Микроавтобус</span><span>Групповой</span>
+  </div>
+  <div class="s16-grid">
+    <div class="s16-item"><div class="s16-label">Проблема</div><div class="s16-val">Незнакомый город, язык, риск не найти такси или переплатить</div></div>
+    <div class="s16-item"><div class="s16-label">Почему AION</div><div class="s16-val">Трансфер забронирован до прилёта. Водитель с табличкой. Фикс-цена. AI отслеживает рейс и корректирует время</div></div>
+    <div class="s16-item"><div class="s16-label">Услуги</div>
+      <ul class="service-list">
+        <li>Встреча в аэропорту (табличка)</li>
+        <li>Помощь с багажом</li>
+        <li>Ожидание (бесплатно 60 мин)</li>
+        <li>Детское кресло</li>
+        <li>VIP-встреча (fast track)</li>
+        <li>Групповой трансфер</li>
+        <li>Трансфер с экскурсией</li>
+        <li>Межгородской трансфер</li>
+      </ul>
+    </div>
+    <div class="s16-item full-width"><div class="s16-label">AI Assist Flow</div><div class="s16-val">
+      <b>Авто:</b> AION узнаёт номер рейса → отслеживает статус → если задержка — переносит трансфер → отправляет водителя к выходу → уведомляет клиента</div></div>
+    <div class="s16-item"><div class="s16-label">Будущее</div><div class="s16-val">2080 — беспилотный трансфер. 2090 — авто-заказ при покупке любого билета</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- НАВИГАЦИЯ -->
+<!-- ============================================================ -->
+<div class="cat-block" id="nav">
+  <h2><span class="cat-num">07.</span> Навигация</h2>
+  <p class="cat-desc">Пошаговая навигация для пешеходов, водителей, велосипедистов. AR-стрелки, голосовые подсказки.</p>
+  <div class="subcat-list">
+    <span>Авто</span><span>Пешком</span><span>Общественный</span><span>Вело</span><span>AR-навигация</span><span>Офлайн</span>
+  </div>
+  <div class="s16-grid">
+    <div class="s16-item"><div class="s16-label">Проблема</div><div class="s16-val">Заблудиться в незнакомом месте, нет интернета, сложные маршруты</div></div>
+    <div class="s16-item"><div class="s16-label">Почему AION</div><div class="s16-val">Единая навигация для всех видов транспорта. Офлайн-карты. AI знает пробки и перекрытия</div></div>
+    <div class="s16-item"><div class="s16-label">Услуги</div>
+      <ul class="service-list">
+        <li>Поиск мест и адресов</li>
+        <li>Построение маршрута (авто/пешком/транспорт)</li>
+        <li>Пробки в реальном времени</li>
+        <li>Альтернативные маршруты</li>
+        <li>Офлайн-карты</li>
+        <li>AR-стрелки (камера + навигация)</li>
+        <li>Голосовой ассистент</li>
+        <li>Избранные места</li>
+        <li>Шеринг локации</li>
+        <li>История поездок</li>
+        <li>Прогноз времени прибытия</li>
+      </ul>
+    </div>
+    <div class="s16-item full-width"><div class="s16-label">AI Assist Flow</div><div class="s16-val">
+      <b>Авто:</b> AI предсказывает маршрут по времени суток → «Пробка на МКАД, объезжайте через — сэкономите 15 минут»<br>
+      <b>Персонализация:</b> запоминает избранные маршруты, предлагает «Домой? 23 минуты, пробок нет»</div></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- КРАТКО: остальные категории (для экономии места — компактно) -->
+<!-- ============================================================ -->
+
+<div class="cat-block" id="maps"><h2><span class="cat-num">08.</span> Карты</h2>
+<p class="cat-desc">Детальные карты мира с 3D-зданиями, спутниковыми снимками, слоями (рестораны, достопримечательности).</p>
+<div class="s16-grid">
+  <div class="s16-item"><div class="s16-label">Услуги</div><div class="s16-val">2D/3D карты · Спутник · Улицы · Достопримечательности · Пробки · Слои (еда, отели, банки) · Избранное</div></div>
+  <div class="s16-item"><div class="s16-label">AI</div><div class="s16-val">AI предлагает интересные места рядом. «Вы голодны? Рядом 3 ресторана с вашей любимой кухней»</div></div>
+</div>
+</div>
+
+<div class="cat-block" id="transit"><h2><span class="cat-num">09.</span> Общественный Транспорт</h2>
+<p class="cat-desc">Маршруты, расписания, билеты на автобусы, метро, трамваи, паромы.</p>
+<div class="s16-grid">
+  <div class="s16-item"><div class="s16-label">Услуги</div><div class="s16-val">Маршруты · Расписание · Билеты (QR) · Проездной · Транспортная карта · Время прибытия · Паромы</div></div>
+  <div class="s16-item"><div class="s16-label">AI</div><div class="s16-val">«Лучший маршрут до офиса — трамвай 7 + метро. 34 минуты. Билет куплен»</div></div>
+</div>
+</div>
+
+<div class="cat-block" id="visa"><h2><span class="cat-num">10.</span> Визы и Документы для Поездок</h2>
+<p class="cat-desc">Подготовка и подача визовых заявлений, проверка паспорта, фото, страховка.</p>
+<div class="s16-grid">
+  <div class="s16-item"><div class="s16-label">Услуги</div><div class="s16-val">Проверка паспорта · Список виз · Заполнение анкет · Фото · Консульская запись · Документы · Переводы · Курьер</div></div>
+  <div class="s16-item"><div class="s16-label">AI</div><div class="s16-val">AI заполняет визовые формы на основе паспортных данных. «Ваша виза истекает через 30 дней. Продлить?»</div></div>
+</div>
+</div>
+
+<div class="cat-block" id="insure"><h2><span class="cat-num">11.</span> Страхование Поездок</h2>
+<p class="cat-desc">Медицинская страховка, страховка багажа, отмены, ответственности.</p>
+<div class="s16-grid">
+  <div class="s16-item"><div class="s16-label">Услуги</div><div class="s16-val">Медицина · Багаж · Отмена · Задержка · Активный отдых · Годовая · Семейная · Эвакуация</div></div>
+  <div class="s16-item"><div class="s16-label">AI</div><div class="s16-val">Подбирает оптимальную страховку под тип поездки. Авто-оформление при покупке билета. Авто-регистрация страхового случая</div></div>
+</div>
+</div>
+
+<div class="cat-block" id="train"><h2><span class="cat-num">12.</span> Ж/д Билеты</h2>
+<p class="cat-desc">Поиск и покупка билетов на поезда. Интеграция с расписаниями, картами, такси.</p>
+<div class="s16-grid">
+  <div class="s16-item"><div class="s16-label">Услуги</div><div class="s16-val">Поиск · Сравнение · Плацкарт/Купе/Люкс · Выбор места · Электронный билет · Возврат · Бонусы</div></div>
+  <div class="s16-item"><div class="s16-label">AI</div><div class="s16-val">«Дешевле лететь, если купить сейчас. Или поезд — смотрите, ночной, сэкономите на отеле»</div></div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ПЕРСОНАЖИ и ПАРТНЁРЫ ДОМЕНА -->
+<!-- ============================================================ -->
+<div class="cat-block">
+  <h2>Сводка домена</h2>
+  <div class="s16-grid">
+    <div class="s16-item"><div class="s16-label">Персонажи</div><div class="s16-val">Турист · Бизнес-путешественник · Экспат · Студент · Семья · Блогер · Водитель · Пенсионер · Курьер</div></div>
+    <div class="s16-item"><div class="s16-label">Партнёры</div><div class="s16-val">Авиакомпании (200+) · GDS · Отельные сети · Такси-агрегаторы · Прокаты авто · Ж/д операторы · Страховые · Консульства · Карты (Google, Apple, OSM) · Транспортные операторы</div></div>
+    <div class="s16-item"><div class="s16-label">Экраны</div><div class="s16-val">Главная (виджет путешествий) · Поиск · Результаты · Карточка · Оформление · Оплата · Мои поездки · Избранное · Подписки · История</div></div>
+    <div class="s16-item"><div class="s16-label">Автоматизации всего домена</div><div class="s16-val">
+      ▸ Покупка билета → авто-трансфер + авто-отель + авто-страховка<br>
+      ▸ Приземление → авто-check-in в отель + авто-такси<br>
+      ▸ Задержка рейса → авто-перенос трансфера + отеля<br>
+      ▸ Истечение визы → авто-уведомление + помощник продления
+    </div></div>
+    <div class="s16-item full-width"><div class="s16-label">Будущее домена 2080–2100</div><div class="s16-val">
+      <b>2080:</b> Полная нейро-интеграция. Никаких экранов — достаточно мысли «хочу в Париж» → AION покупает билеты, бронирует отель, заказывает такси.<br>
+      <b>2090:</b> Межпланетные путешествия как обычный сервис. Та же категория — но с космическими рейсами.<br>
+      <b>2100:</b> Категории «транспорт» не существует — есть только «желание быть в другом месте». AION сам выбирает способ перемещения.
+    </div></div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:30px 0;border-top:1px solid rgba(0,240,255,0.1);margin-top:20px;color:#4a5a7a;font-size:0.85em">
+  AION Service Bible · Домен 1: Путешествия и Транспорт · 12 категорий
+</div>
+
+</div>
+</body>
+</html>

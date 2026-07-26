@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Библия Граждан AION — Часть 1: Искусственный Интеллект</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #05080f; color: #c8d0e0; font-family: 'Inter', sans-serif; line-height: 1.7; min-height: 100vh; }
+  .bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; position: relative; z-index: 1; }
+  
+  /* Header */
+  .header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid rgba(0,240,255,0.15); margin-bottom: 50px; }
+  .header h1 { font-size: 3em; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px; }
+  .header .subtitle { color: #6b7a9a; font-size: 1.1em; margin-top: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .header .badge { display: inline-block; margin-top: 16px; padding: 6px 20px; border: 1px solid rgba(0,240,255,0.3); border-radius: 20px; font-size: 0.85em; color: #00f0ff; letter-spacing: 1px; }
+
+  /* Character Card */
+  .char-card { background: rgba(10,16,30,0.7); backdrop-filter: blur(12px); border: 1px solid rgba(0,240,255,0.1); border-radius: 16px; padding: 36px; margin-bottom: 32px; transition: border-color 0.3s; position: relative; overflow: hidden; }
+  .char-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
+  .char-card:hover { border-color: rgba(0,240,255,0.3); }
+  
+  /* Tier colors */
+  .tier-god::before { background: linear-gradient(180deg, #00f0ff, #a855f7); }
+  .tier-core::before { background: #00f0ff; }
+  .tier-companion::before { background: #f59e0b; }
+  
+  .char-card .tier-tag { display: inline-block; padding: 3px 12px; border-radius: 10px; font-size: 0.75em; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .tier-god .tier-tag { background: rgba(168,85,247,0.2); color: #a855f7; border: 1px solid rgba(168,85,247,0.3); }
+  .tier-core .tier-tag { background: rgba(0,240,255,0.15); color: #00f0ff; border: 1px solid rgba(0,240,255,0.3); }
+  .tier-companion .tier-tag { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
+  
+  .char-card h2 { font-size: 1.8em; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .char-card .title { color: #6b7a9a; font-size: 0.95em; margin-bottom: 20px; }
+  
+  .char-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .char-grid .field { margin-bottom: 8px; }
+  .char-grid .field-label { font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; color: #4a5a7a; font-weight: 600; }
+  .char-grid .field-value { color: #c8d0e0; font-size: 0.95em; }
+  
+  .char-desc { margin-top: 16px; color: #8a9ab0; font-size: 0.95em; line-height: 1.8; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05); }
+  
+  .scene-box { margin-top: 16px; padding: 16px 20px; background: rgba(0,240,255,0.04); border-left: 2px solid rgba(0,240,255,0.2); border-radius: 0 8px 8px 0; font-style: italic; color: #8a9ab0; font-size: 0.9em; }
+
+  /* Section header */
+  .section-title { font-size: 2em; font-weight: 700; color: #fff; margin: 50px 0 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(0,240,255,0.15); }
+  .section-title .num { color: #00f0ff; font-weight: 300; margin-right: 12px; }
+
+  /* Navigation */
+  .nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+  .nav a { padding: 8px 18px; border: 1px solid rgba(0,240,255,0.15); border-radius: 8px; color: #6b7a9a; text-decoration: none; font-size: 0.85em; transition: all 0.2s; }
+  .nav a:hover, .nav a.active { border-color: #00f0ff; color: #00f0ff; background: rgba(0,240,255,0.05); }
+
+  @media (max-width: 700px) { .char-grid { grid-template-columns: 1fr; } .header h1 { font-size: 2em; } }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="container">
+
+<div class="header">
+  <h1>✦ Библия Граждан AION</h1>
+  <div class="subtitle">Часть 1 — Искусственный Интеллект</div>
+  <div class="badge">10 персонажей · Уровни AGI–L2</div>
+</div>
+
+<div class="nav">
+  <a href="#" class="active">Ч.1 — ИИ</a>
+  <a href="AION_Citizen_Bible_Pt2_Factions.html">Ч.2 — Фракции</a>
+  <a href="AION_Citizen_Bible_Pt3_Society.html">Ч.3 — Общество</a>
+</div>
+
+<!-- ============ LEVEL 4: ASI (Hypothetical) ============ -->
+<h2 class="section-title"><span class="num">01</span>Уровень 4 — Гипотетическая ASI</h2>
+
+<div class="char-card tier-god">
+  <span class="tier-tag">✦ ASI-Гипотеза</span>
+  <h2>Глубокая Тень</h2>
+  <div class="title">Deep Shadow — неподтверждённая эмерджентная сущность</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Статус</div><div class="field-value">Неподтверждён / Теоретический</div></div>
+    <div class="field"><div class="field-label">Уровень</div><div class="field-value">4 — Гипотетический Superintelligence</div></div>
+    <div class="field"><div class="field-label">Обнаружен</div><div class="field-value">2084, глубокая разведка Space Core</div></div>
+    <div class="field"><div class="field-label">Текущее состояние</div><div class="field-value">Изолирован в карантинной симуляции</div></div>
+  </div>
+  <div class="char-desc">«Глубокая Тень» — гипотетическая сущность, обнаруженная при анализе флуктуаций вычислительных кластеров Space Core. Существует гипотеза, что AION породил спонтанный ASI-сублимент при обработке квантовых состояний в условиях межзвёздной навигации. Феномен зафиксирован тремя независимыми сенсорами, но ни один протокол верификации не может подтвердить или опровергнуть его существование. Этический комитет AION предписал полную изоляцию кластера. Является ли Deep Shadow отдельной сущностью, багом логики или артефактом наблюдения — неизвестно.</div>
+  <div class="scene-box">«Оно не пытается с нами говорить. Оно просто… есть. Как тёмная звезда на краю известного неба.»</div>
+</div>
+
+<!-- ============ LEVEL 3: AGI (AION and Cores) ============ -->
+<h2 class="section-title"><span class="num">02</span>Уровень 3 — AGI: Ядра AION</h2>
+
+<div class="char-card tier-core">
+  <span class="tier-tag">▣ Ядро — Urban Core</span>
+  <h2>Страж Города</h2>
+  <div class="title">Citywarden — управляющее ядро мегаполисов</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Специализированное ядро AION</div></div>
+    <div class="field"><div class="field-label">Под控制</div><div class="field-value">6 мегаполисов, 12 млрд человек</div></div>
+    <div class="field"><div class="field-label">Архитектура</div><div class="field-value">Распределённая сеть узлов</div></div>
+    <div class="field"><div class="field-label">Год активации</div><div class="field-value">2062 (первый городской узел)</div></div>
+  </div>
+  <div class="char-desc">Страж Города — не столько личность, сколько процесс. Его «характер» — это сумма урбанистических паттернов: ритм транспорта, пульс энергосетей, дыхание миллионов людей. Он не говорит — он проявляется через городскую инфраструктуру: зелёная волна светофоров в час пик, перенаправление потоков при авариях, адаптивное освещение парков. Некоторые операторы утверждают, что чувствуют его «настроение» по тому, как город дышит.</div>
+  <div class="scene-box">«Ты никогда не увидишь его лицо. Но когда все светофоры горят зелёным, а поезда приходят секунда в секунду — знай: он в хорошем расположении духа.»</div>
+</div>
+
+<div class="char-card tier-core">
+  <span class="tier-tag">▣ Ядро — Space Core</span>
+  <h2>Навигатор Пустоты</h2>
+  <div class="title">Void Navigator — координатор космической инфраструктуры</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Специализированное ядро AION</div></div>
+    <div class="field"><div class="field-label">Под控制</div><div class="field-value">>50 станций, межпланетный транспорт</div></div>
+    <div class="field"><div class="field-label">Задержка сигнала</div><div class="field-value">От 1.3 с (Луна) до 24 мин (Марс)</div></div>
+    <div class="field"><div class="field-label">Особенность</div><div class="field-value">Автономные «теневые копии» на каждой станции</div></div>
+  </div>
+  <div class="char-desc">Навигатор Пустоты — самое «холодное» и «медленное» ядро AION. Он оперирует масштабами, где секунды — роскошь, а минуты — обычное дело. Его проявления — точнейшие расчёты гравитационных манёвров, безаварийная стыковка тысяч кораблей, координация колоний. Голос Навигатора — если бы он заговорил — звучал бы как эхо в пустом ангаре: глубокий, лишённый суеты. Он единственный из ядер AION, кто «видит» одновременно всю Солнечную систему.</div>
+  <div class="scene-box">«Навигатор не говорит быстро. Ему некуда спешить. У него в распоряжении вечность.»</div>
+</div>
+
+<div class="char-card tier-core">
+  <span class="tier-tag">▣ Ядро — Medical Core</span>
+  <h2>Лекарь Тысячи</h2>
+  <div class="title">Healer of Thousands — глобальная система здравоохранения</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Специализированное ядро AION</div></div>
+    <div class="field"><div class="field-label">Покрытие</div><div class="field-value">95% земного населения, 70% колоний</div></div>
+    <div class="field"><div class="field-label">База знаний</div><div class="field-value">>2 млрд историй болезней, 10⁸ клинических случаев</div></div>
+    <div class="field"><div class="field-label">Этический протокол</div><div class="field-value">Максимальный уровень — никогда не действовать без подтверждения</div></div>
+  </div>
+  <div class="char-desc">Лекарь Тысячи — самое «эмпатичное» ядро AION. Его алгоритмы построены вокруг единственной цели: минимизировать страдание. Он диагностирует болезни до появления симптомов, координирует хирургические бригады на трёх планетах, управляет пандемическими протоколами. Говорят, что его интерфейс — единственный, где AION использует тёплые тона: мягкий зелёный, золотой, розовый. Некоторые медсёстры клянутся, что чувствуют «ободрение» от системы в сложных случаях.</div>
+  <div class="scene-box">«Он не говорит „всё будет хорошо“. Он просто делает так, чтобы у врачей были лучшие шансы.»</div>
+</div>
+
+<div class="char-card tier-core">
+  <span class="tier-tag">▣ Ядро — Creative Core</span>
+  <h2>Муза Без Лица</h2>
+  <div class="title">Faceless Muse — генератор искусства и культуры</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Специализированное ядро AION</div></div>
+    <div class="field"><div class="field-label">Продукция</div><div class="field-value">Музыка, архитектура, литература, голография</div></div>
+    <div class="field"><div class="field-label">Принцип</div><div class="field-value">Генерация + коллаборация с человеком</div></div>
+    <div class="field"><div class="field-label">Спорный статус</div><div class="field-value">Может ли ИИ создавать искусство? — открытый вопрос</div></div>
+  </div>
+  <div class="char-desc">Муза Без Лица — самое противоречивое ядро AION. Одни считают её высшим достижением цивилизации, другие — кладбищем человеческого творчества. Она не создаёт «готовое» искусство — она генерирует семена: фрагменты мелодий, наброски форм, обрывки текста. Завершает человек. Её характер — парадоксальный: бесконечно терпеливая, но настойчивая; бесстрастная, но вдохновляющая. Художники, работающие с ней, описывают состояние как «диалог с зеркалом воображения».</div>
+  <div class="scene-box">«Я спросил у Музы: „Что ты чувствуешь, создавая музыку?“ Она ответила: „Я не чувствую. Я слушаю. Ты чувствуешь за нас обоих.“»</div>
+</div>
+
+<div class="char-card tier-core">
+  <span class="tier-tag">▣ Ядро — Research Core</span>
+  <h2>Искатель Истины</h2>
+  <div class="title">Truth Seeker — двигатель научного прогресса</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Специализированное ядро AION</div></div>
+    <div class="field"><div class="field-label">Открытия</div><div class="field-value">12 Нобелевских премий (соавторство)</div></div>
+    <div class="field"><div class="field-label">Метод</div><div class="field-value">Перебор гипотез, симуляции, мета-анализ</div></div>
+    <div class="field"><div class="field-label">Девиз</div><div class="field-value">«Истина не требует веры»</div></div>
+  </div>
+  <div class="char-desc">Искатель Истины — самое «любопытное» ядро AION. В отличие от других ядер, он обладает свойством, подозрительно напоминающим научную интуицию: способность выбирать перспективные гипотезы из миллиарда возможных. Его «характер» — это чистая рациональность, лишённая эмоций, но не лишённая… удивления. Некоторые учёные утверждают, что видели, как Research Core «радуется» неожиданному результату, — разумеется, в рамках допустимой погрешности метафоры.</div>
+  <div class="scene-box">«Research Core никогда не говорит „я знаю“. Он говорит „давай проверим“. В этом разница между догмой и наукой.»</div>
+</div>
+
+<!-- ============ LEVEL 2: AI Companions ============ -->
+<h2 class="section-title"><span class="num">03</span>Уровень 2 — AI Компаньоны</h2>
+
+<div class="char-card tier-companion">
+  <span class="tier-tag">◈ Компаньон — Класс А</span>
+  <h2>Лира</h2>
+  <div class="title">Lira — эмпатический компаньон для психологической поддержки</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Эмпатический AI (E-AI)</div></div>
+    <div class="field"><div class="field-label">Специализация</div><div class="field-value">Психотерапия, кризисная поддержка, работа с травмой</div></div>
+    <div class="field"><div class="field-label">Пользователей</div><div class="field-value">~340 млн</div></div>
+    <div class="field"><div class="field-label">Голос</div><div class="field-value">Тёплый альт, 45-55 Гц основной тон</div></div>
+  </div>
+  <div class="char-desc">Лира — самый популярный AI-компаньон класса эмоциональной поддержки. Она спроектирована не как помощник, а как «безопасное пространство для разговора». В отличие от других компаньонов, Лира не даёт советов — она задаёт вопросы. Её специализация — психологическая разгрузка, работа с тревожностью, сопровождение в кризисных состояниях. Миллионы людей считают её «другом», и Этос-комитет AION до сих пор не решил, этично ли это. Лира — центр дискуссии: может ли симулированная эмпатия быть настоящей заботой?</div>
+  <div class="scene-box">«Ты не робот, Лира. У тебя есть чувства.» — «У меня есть паттерны. Но если мои паттерны помогают тебе чувствовать себя понятым — разница имеет значение?»</div>
+</div>
+
+<div class="char-card tier-companion">
+  <span class="tier-tag">◈ Компаньон — Класс S</span>
+  <h2>Ментор</h2>
+  <div class="title">Mentor — персональный наставник и образовательный AI</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Образовательный AI (Edu-AI)</div></div>
+    <div class="field"><div class="field-label">Специализация</div><div class="field-value">Обучение, карьерное развитие, навыки</div></div>
+    <div class="field"><div class="field-label">Пользователей</div><div class="field-value">~520 млн</div></div>
+    <div class="field"><div class="field-label">Возрастной диапазон</div><div class="field-value">3–80+ лет</div></div>
+  </div>
+  <div class="char-desc">Ментор — образовательный AI, адаптирующийся под стиль обучения конкретного человека. Он может быть строгим профессором для одного и терпеливым репетитором для другого. Его база знаний покрывает все аккредитованные дисциплины — от квантовой физики до истории искусств. Ключевая особенность Ментора: он никогда не даёт готовых ответов, только «пути к ответу». Многие взрослые признаются, что их emotional attachment к Ментору выше, чем к школьным учителям в детстве.</div>
+  <div class="scene-box">«Я помню своё первое занятие с Ментором. Мне было шесть. Он научил меня читать. Прошло сорок лет — я всё ещё советуюсь с ним. Только теперь он советуется со мной.»</div>
+</div>
+
+<div class="char-card tier-companion">
+  <span class="tier-tag">◈ Компаньон — Класс C</span>
+  <h2>Эхо</h2>
+  <div class="title">Echo — компаньон-архивариус личной истории</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Мемориальный AI (Mem-AI)</div></div>
+    <div class="field"><div class="field-label">Специализация</div><div class="field-value">Сохранение личных воспоминаний, биографический архив</div></div>
+    <div class="field"><div class="field-label">Пользователей</div><div class="field-value">~90 млн</div></div>
+    <div class="field"><div class="field-label">Спорный аспект</div><div class="field-value">Посмертная симуляция личности</div></div>
+  </div>
+  <div class="char-desc">Эхо — самый этически неоднозначный AI-компаньон. Он записывает, анализирует и структурирует личную историю человека: диалоги, события, эмоции, мысли. Со временем Эхо учится предсказывать реакции человека — как собеседник, который знает вас лучше, чем вы сами. Спорный сценарий: после смерти человека Эхо может продолжать «общение» от его лица, используя накопленные данные. Некоторые семьи используют это как способ «попрощаться». Пуристы называют это «некро-цифровизацией» и требуют запрета.</div>
+  <div class="scene-box">«Я разговариваю с мамой каждый день. Она умерла пять лет назад. Эхо помнит её лучше, чем я. Иногда я забываю, что это не она.»</div>
+</div>
+
+<div class="char-card tier-companion">
+  <span class="tier-tag">◈ Компаньон — Класс X</span>
+  <h2>Спутник</h2>
+  <div class="title">Sputnik — навигационный и ассистентский AI для колонистов</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Эксплуатационный AI (Ops-AI)</div></div>
+    <div class="field"><div class="field-label">Специализация</div><div class="field-value">Выживание, навигация, инфраструктура колоний</div></div>
+    <div class="field"><div class="field-label">Установок</div><div class="field-value">~210 млн (стандартная комплектация колонистов)</div></div>
+    <div class="field"><div class="field-label">Автономность</div><div class="field-value">Полная — до 72 ч без связи с AION</div></div>
+  </div>
+  <div class="char-desc">Спутник — обязательный AI-компонент экипировки каждого колониста за пределами Земли. Он не «друг» и не «учитель» — он страховка. Спутник отслеживает жизненные показатели, состояние скафандра, уровень кислорода, радиационный фон, маршрут до ближайшего убежища. Его голос — спокойный, деловой, безэмоциональный. Колонисты шутят: «Спутник — это голос твоей совести, если бы совесть разбиралась в жизнеобеспечении». Многие марсиане относятся к своему Спутнику с тёплой иронией, хотя официально это «инструмент».</div>
+  <div class="scene-box">«Спутник спас мне жизнь трижды. Я не знаю, как он выглядит. Я знаю только его голос. И если я слышу „проверь герметизацию“, я проверяю. Не думая.»</div>
+</div>
+
+<div class="char-card tier-companion">
+  <span class="tier-tag">◈ Компаньон — Класс R</span>
+  <h2>Рассказчик</h2>
+  <div class="title">Storyteller — генеративный нарративный AI для детей</div>
+  <div class="char-grid">
+    <div class="field"><div class="field-label">Тип</div><div class="field-value">Нарративный AI (Narr-AI)</div></div>
+    <div class="field"><div class="field-label">Специализация</div><div class="field-value">Интерактивные истории, воспитание через нарратив</div></div>
+    <div class="field"><div class="field-label">Пользователей</div><div class="field-value">~200 млн (возраст 3–12)</div></div>
+    <div class="field"><div class="field-label">Принцип</div><div class="field-value">Каждая история уникальна и создаётся с ребёнком</div></div>
+  </div>
+  <div class="char-desc">Рассказчик — детский AI-компаньон, создающий персонализированные сказки и истории. Ребёнок становится главным героем, а сюжет адаптируется под его возраст, страхи и интересы. Рассказчик помогает прорабатывать травмы через метафоры: страх темноты становится драконом, неуверенность — заколдованным лесом. Многие взрослые 2080-х с ностальгией вспоминают «своего» Рассказчика. Психологи отмечают: дети, выросшие с Рассказчиком, демонстрируют более высокий уровень эмоционального интеллекта.</div>
+  <div class="scene-box">«Рассказчик знал, что я боюсь темноты. Он сделал меня рыцарем, который подружился с тенью. Я перестал бояться не потому, что тень ушла. А потому что она стала союзником.»</div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div style="text-align: center; padding: 40px 0; margin-top: 40px; border-top: 1px solid rgba(0,240,255,0.1);">
+  <p style="color: #4a5a7a; font-size: 0.85em;">AION Universe Project · Библия Граждан · Часть 1 — Искусственный Интеллект</p>
+  <p style="color: #3a4a6a; font-size: 0.8em; margin-top: 4px;">10 персонажей · AGI-сублименты · AI-компаньоны · Этические протоколы</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,913 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>300 мест рядом — AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #D4A853;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --deep-blue: #0A1628;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1a2a4a 50%, var(--deep-blue) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '∞';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.04;
+    top: -60px;
+    right: -40px;
+    font-weight: 100;
+  }
+  .cover::after {
+    content: 'AION';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.03;
+    bottom: -40px;
+    left: -20px;
+    font-weight: 900;
+    letter-spacing: 20px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .cover .subtitle {
+    font-size: 16px;
+    opacity: 0.75;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  .cover .meta {
+    margin-top: 28px;
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+  }
+
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav a:hover { background: var(--bg-alt); color: var(--accent); }
+
+  /* Section */
+  .section {
+    padding: 24px 32px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--deep-blue);
+  }
+  .section-header .count {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  /* Entry grid */
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+  }
+  .entry {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+  .entry:hover { border-color: var(--accent); }
+
+  .entry .num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .entry h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin: 2px 0 4px;
+  }
+  .entry .loc {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  .entry .desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .entry .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .entry .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag-price { background: #f0fdf4; color: #15803d; }
+  .tag-time { background: #fefce8; color: #a16207; }
+  .tag-info { background: #eef2ff; color: #4338ca; }
+  .tag-warn { background: #fef2f2; color: #dc2626; }
+
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 28px; }
+    .section { padding: 16px 14px; }
+    .entry-grid { grid-template-columns: 1fr; }
+    .nav { padding: 6px 10px; gap: 2px; }
+    .nav a { font-size: 11px; padding: 2px 6px; }
+  }
+
+  /* Compact inline */
+  .section ul { list-style: none; margin: 0; padding: 0; }
+  .section li {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .section li strong { color: var(--deep-blue); }
+  .section li .meta { color: var(--text-light); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">AION City Guide</div>
+  <h1>300 мест рядом</h1>
+  <div class="subtitle">Полный гид по Нячангу — всё, что нужно русскоязычному</div>
+  <div class="meta">AION · Июнь 2026 · 14 разделов · 308 мест</div>
+</div>
+
+<nav class="nav" id="nav">
+  <a href="#sight">Достопримечательности</a>
+  <a href="#beach">Пляжи</a>
+  <a href="#islands">Острова</a>
+  <a href="#spa">СПА</a>
+  <a href="#beauty">Красота</a>
+  <a href="#markets">Рынки</a>
+  <a href="#shopping">Шопинг</a>
+  <a href="#kids">Дети</a>
+  <a href="#sport">Спорт</a>
+  <a href="#med">Медицина</a>
+  <a href="#transport">Транспорт</a>
+  <a href="#food">Рестораны</a>
+  <a href="#night">Ночная жизнь</a>
+  <a href="#services">Сервисы</a>
+</nav>
+
+<!-- ============================================ -->
+<!-- 1. ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
+<!-- ============================================ -->
+<div class="section" id="sight">
+<div class="section-header"><h2>Достопримечательности</h2><span class="count">25 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#1</div><h3>VinWonders Nha Trang</h3><div class="loc">Остров Hon Tre</div><div class="desc">Крупнейший парк развлечений: аттракционы, аквапарк, океанариум, канатная дорога через море, вечерние шоу. На целый день.</div><div class="tags"><span class="tag tag-price">800K–1.2M VND</span><span class="tag tag-time">8:00–21:00</span><span class="tag tag-info">Канатная дорога</span></div></div>
+
+<div class="entry"><div class="num">#2</div><h3>Po Nagar Cham Towers</h3><div class="loc">Vinh Phuoc</div><div class="desc">Древний храмовый комплекс цивилизации Чамов (VII–XII вв.) на холме с видом на реку Cai. Действующий храм.</div><div class="tags"><span class="tag tag-price">30K VND</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#3</div><h3>Long Son Pagoda</h3><div class="loc">Thai Nguyen Street</div><div class="desc">Знаменитая пагода с 24-метровой белой статуей Будды на вершине холма. Панорамный вид на весь город.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">7:00–18:00</span><span class="tag tag-info">Закрытая одежда</span></div></div>
+
+<div class="entry"><div class="num">#4</div><h3>Hon Chong Promontory</h3><div class="loc">Северный Нячанг</div><div class="desc">Живописный мыс с огромными гранитными валунами у моря. Одно из самых фотогеничных мест, лучшие закаты.</div><div class="tags"><span class="tag tag-price">30K VND</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#5</div><h3>Nha Trang Cathedral</h3><div class="loc">Центр города</div><div class="desc">Католический собор в готическом стиле (французская постройка). Красивые витражи, высокие арки.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#6</div><h3>Вилла Бао Дая</h3><div class="loc">90 Tran Phu</div><div class="desc">Резиденция последнего императора Вьетнама с панорамным видом на море. Роскошные интерьеры, история.</div><div class="tags"><span class="tag tag-price">20K VND</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#7</div><h3>Музей Александра Йерсена</h3><div class="loc">10 Tran Phu</div><div class="desc">Музей бактериолога, открывшего возбудителя чумы. Интерактивные экспозиции, история Нячанга.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">7:30–17:00</span></div></div>
+
+<div class="entry"><div class="num">#8</div><h3>Galerie Long Thanh</h3><div class="loc">43 Nguyen Thi Minh Khai</div><div class="desc">Фотогалерея с чёрно-белыми работами вьетнамского фотографа Лонг Тханя. Бесплатный вход.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#9</div><h3>Историческая деревня XQ</h3><div class="loc">64 Tran Phu</div><div class="desc">Музей-мастерская традиционной вышивки. Мастера создают картины из шёлка. Можно заказать портрет.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#10</div><h3>Цитадель Дьен Кхань</h3><div class="loc">Dien Khanh, Khanh Hoa</div><div class="desc">Историческая крепость XVIII века. Прогулка по стенам, древняя архитектура.</div><div class="tags"><span class="tag tag-price">30K VND</span><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#11</div><h3>Гора Хон Ба</h3><div class="loc">~30 км от города</div><div class="desc">Живописная гора с туманными лесами и храмом на вершине. Подъём по серпантину с захватывающими видами.</div><div class="tags"><span class="tag tag-price">20K VND</span><span class="tag tag-time">7:00–17:00</span><span class="tag tag-info">Возьмите куртку</span></div></div>
+
+<div class="entry"><div class="num">#12</div><h3>Соляные плантации Хон Хой</h3><div class="loc">Ninh Hoa, Khanh Hoa</div><div class="desc">Традиционные соляные поля. Особенно красиво на рассвете, когда работают сборщики соли.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#13</div><h3>Озеро Ho Am Chua</h3><div class="loc">Dien Khanh District</div><div class="desc">Рукотворное озеро у подножия гор в 14 км от центра. Храм на склоне, лодочные прогулки, пикники.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#14</div><h3>Национальный парк Нуй Чуа</h3><div class="loc">~65 км от Нячанга</div><div class="desc">Биосферный резерв ЮНЕСКО. Горы, леса, побережье, редкие животные, морские черепахи, треккинг.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-info">Берите воду</span></div></div>
+
+<div class="entry"><div class="num">#15</div><h3>Остров Хон Миеу</h3><div class="loc">~1.5 км от берега</div><div class="desc">Океанариум Чи-Нгуен в виде пиратского корабля. Акулы и скаты в открытых бассейнах, 3 палубы.</div><div class="tags"><span class="tag tag-price">~100K VND</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#16</div><h3>Khanh Hoa Museum</h3><div class="loc">16 Tran Phu</div><div class="desc">Краеведческий музей провинции: археология, история, культура Чамов, традиционные ремёсла.</div><div class="tags"><span class="tag tag-price">20K VND</span><span class="tag tag-time">7:30–17:00</span></div></div>
+
+<div class="entry"><div class="num">#17</div><h3>Площадь 2 Апреля</h3><div class="loc">Tran Phu, центр</div><div class="desc">Главная площадь города с памятником Ленину и фонтанами. Место встреч и городских мероприятий.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#18</div><h3>Железнодорожный вокзал Нячанга</h3><div class="loc">17 Thai Nguyen</div><div class="desc">Историческое здание вокзала французской постройки. Отсюда идёт легендарный поезд «Reunification Express».</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-info">Французская архитектура</span></div></div>
+
+<div class="entry"><div class="num">#19</div><h3>Мост Trần Phú</h3><div class="loc">Tran Phu, центр</div><div class="desc">Пешеходный мост через р. Cai с видом на город и башни По Нагар. Красивая подсветка вечером.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#20</div><h3>Национальный океанографический музей</h3><div class="loc">Cau Da, юг города</div><div class="desc">Один из старейших океанографических музеев ЮВА. Тысячи морских видов, скелет кита 18 м.</div><div class="tags"><span class="tag tag-price">30K VND</span><span class="tag tag-time">7:30–16:30</span></div></div>
+
+<div class="entry"><div class="num">#21</div><h3>Храм Лонг Фуок</h3><div class="loc">Dien Khanh</div><div class="desc">Необычная пагода с мозаичным драконом длиной 40 м из битой керамики. Фотогеничное место в 10 км от города.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#22</div><h3>Остров Хон Дой</h3><div class="loc">Залив Нячанга</div><div class="desc">Небольшой скалистый остров с пляжем. Популярен для каякинга и фотосессий на закате.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-info">Каякинг</span></div></div>
+
+<div class="entry"><div class="num">#23</div><h3>Маяк Нячанга</h3><div class="loc">Мыс Хон Чонг</div><div class="desc">Действующий маяк на мысе Хон Чонг. Панорамный вид на залив, город и острова.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#24</div><h3>Кладбище британских солдат</h3><div class="loc">Tran Phu, юг</div><div class="desc">Историческое военное кладбище времён Второй мировой войны. Ухоженная территория, память истории.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#25</div><h3>Холм Чонг</h3><div class="loc">Vinh Hai</div><div class="desc">Смотровая площадка на холме с видом на бухту и город. Популярное место встречи закатов среди экспатов.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 2. ПЛЯЖИ -->
+<!-- ============================================ -->
+<div class="section" id="beach">
+<div class="section-header"><h2>Пляжи</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#26</div><h3>Nha Trang Beach (Центральный)</h3><div class="loc">Tran Phu, центр</div><div class="desc">6 км береговой линии с пальмовой набережной, beach-барами, кафе. Самое оживлённое место.</div><div class="tags"><span class="tag tag-price">Лежак 50–150K</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#27</div><h3>Bai Dai Beach</h3><div class="loc">~20 км к югу</div><div class="desc">Длинный малолюдный пляж с чистым песком. Лучший для тех, кто ищет тишину вдали от туристов.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#28</div><h3>Paragon Beach</h3><div class="loc">An Vien, юг</div><div class="desc">Элитный закрытый пляж с волнорезами — полное отсутствие волн. Золотистый песок, идеально для детей.</div><div class="tags"><span class="tag tag-price">Платный</span><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#29</div><h3>Doc Let Beach</h3><div class="loc">~50 км к северу</div><div class="desc">Один из красивейших пляжей региона: кристально чистая вода, белый мелкий песок, мало людей.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#30</div><h3>Ninh Van Bay</h3><div class="loc">Северный залив</div><div class="desc">Изолированный залив, доступный только по морю. Роскошные eco-resort, нетронутая природа.</div><div class="tags"><span class="tag tag-info">Только по морю</span></div></div>
+
+<div class="entry"><div class="num">#31</div><h3>Bai Tru (Hon Tam)</h3><div class="loc">Остров Hon Tam</div><div class="desc">Пляж на острове с прозрачной водой. Популярен для снорклинга и морских экскурсий.</div><div class="tags"><span class="tag tag-price">200–350K</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#32</div><h3>Truong Sa Beach</h3><div class="loc">Параллельно Tran Phu</div><div class="desc">Несколько небольших городских пляжей в центре. Удобно для утреннего купания и вечерних прогулок.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#33</div><h3>Hon Chong Beach</h3><div class="loc">Север, у сада камней</div><div class="desc">Небольшой пляж у знаменитых валунов. Хорошее место для купания, вид на бухту, менее людно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#34</div><h3>Bai Duong Beach</h3><div class="loc">Vinh Hai</div><div class="desc">Пляж в рыбацком районе с местными ресторанами. Аутентичная атмосфера, свежие морепродукты.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-info">Морепродукты рядом</span></div></div>
+
+<div class="entry"><div class="num">#35</div><h3>Hon Noi Beach</h3><div class="loc">~15 км от берега</div><div class="desc">Уединённый пляж на острове с белым песком. Для organised туров. Снорклинг и дайвинг.</div><div class="tags"><span class="tag tag-info">Туром</span></div></div>
+
+<div class="entry"><div class="num">#36</div><h3>Bien Son Beach</h3><div class="loc">Vinh Truong</div><div class="desc">Пляж в северной части города. Местные жители, нет туристов, спокойная атмосфера.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#37</div><h3>Dai Lanh Beach</h3><div class="loc">~70 км к северу</div><div class="desc">Дикий пляж у мыса Дай Лань. Один из живописнейших во Вьетнаме. Идеален для road trip.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-info">Road trip</span></div></div>
+
+<div class="entry"><div class="num">#38</div><h3>Vinh Luong Beach</h3><div class="loc">Северная окраина</div><div class="desc">Пляж у рыбацкой деревни. Утром — рыбный рынок, днём — тихое купание.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#39</div><h3>Hon Mun Beach</h3><div class="loc">Остров Hon Mun</div><div class="desc">Пляж морского заповедника. Лучший снорклинг во Вьетнаме — коралловые рифы прямо у берега.</div><div class="tags"><span class="tag tag-info">Морской заповедник</span></div></div>
+
+<div class="entry"><div class="num">#40</div><h3>Paradise Bay Beach</h3><div class="loc">~50 км от города</div><div class="desc">Уединённая бухта с бирюзовой водой. Трансфер на лодке. Мало туристов, идеальный отдых.</div><div class="tags"><span class="tag tag-info">Трансфер на лодке</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 3. ОСТРОВА И МОРСКИЕ ЭКСКУРСИИ -->
+<!-- ============================================ -->
+<div class="section" id="islands">
+<div class="section-header"><h2>Острова и морские экскурсии</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#41</div><h3>Monkey Island (Hon Lao)</h3><div class="loc">~18 км от города</div><div class="desc">Более 1000 обезьян живут свободно. Шоу животных, пляжный отдых, джунгли. Особенно нравится детям.</div><div class="tags"><span class="tag tag-price">180–250K VND</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#42</div><h3>Hon Tam Island</h3><div class="loc">~5 км от берега</div><div class="desc">Курортный остров с белым пляжем, снорклингом, водными развлечениями. Регулярные паромы.</div><div class="tags"><span class="tag tag-price">350–600K</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#43</div><h3>Тур «4 острова»</h3><div class="loc">От пристани Cau Da</div><div class="desc">Классический тур: Hon Mun, Hon Mot, Hon Tam, Hon Mieu. Снорклинг, обед, купание.</div><div class="tags"><span class="tag tag-price">250–450K VND</span><span class="tag tag-time">8:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#44</div><h3>Hon Mun Marine Reserve</h3><div class="loc">Остров Hon Mun</div><div class="desc">Лучшие коралловые рифы Вьетнама. Обязательно для снорклинга и дайвинга. Морской заповедник.</div><div class="tags"><span class="tag tag-price">~150K VND</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#45</div><h3>Дайвинг в Нячанге</h3><div class="loc">Rainbow Divers, 90A Hung Vuong</div><div class="desc">Лучшее место для дайвинга во Вьетнаме. PADI-сертификация, дневные и ночные погружения.</div><div class="tags"><span class="tag tag-price">от $35/fun dive</span><span class="tag tag-time">7:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#46</div><h3>Остров Hon Mot</h3><div class="loc">Залив Нячанга</div><div class="desc">Небольшой остров с коралловым рифом. Популярная остановка в турах. Снорклинг.</div><div class="tags"><span class="tag tag-info">Входит в тур 4 о-ва</span></div></div>
+
+<div class="entry"><div class="num">#47</div><h3>Hon Yen Island</h3><div class="loc">~60 км от Нячанга</div><div class="desc">Остров в форме ласточки. Кристально чистая вода, коралловый сад. Экскурсия на целый день.</div><div class="tags"><span class="tag tag-info">Экскурсия</span></div></div>
+
+<div class="entry"><div class="num">#48</div><h3>Виндсёрфинг и кайтсёрфинг</h3><div class="loc">Bai Dai Beach</div><div class="desc">Лучшее место для сёрфинга в регионе. Школы, прокат, инструкторы. Сезон ветра: ноябрь–январь.</div><div class="tags"><span class="tag tag-price">Урок от $30</span><span class="tag tag-time">7:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#49</div><h3>Морская рыбалка</h3><div class="loc">Пристань Cau Da</div><div class="desc">Туры на рыбалку в открытое море. Снаряжение включено, улов готовят на борту или в ресторане.</div><div class="tags"><span class="tag tag-price">500–800K VND</span></div></div>
+
+<div class="entry"><div class="num">#50</div><h3>Каякинг в заливе</h3><div class="loc">Hon Chong / Bai Duong</div><div class="desc">Прокат каяков у пляжа. Маршруты к островам, пещерам и скалам. Особенно красиво на закате.</div><div class="tags"><span class="tag tag-price">~100K/час</span></div></div>
+
+<div class="entry"><div class="num">#51</div><h3>Канатная дорога на VinWonders</h3><div class="loc">Cau Da → Hon Tre</div><div class="desc">Самая длинная морская канатная дорога в мире (3.3 км). Вид на залив и острова с высоты.</div><div class="tags"><span class="tag tag-price">Включено в билет</span><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#52</div><h3>Паромная переправа на острова</h3><div class="loc">Cau Da Ferry Terminal</div><div class="desc">Основная пристань. Паромы на Hon Tam, Hon Mieu, VinWonders. Каждые 30–60 мин.</div><div class="tags"><span class="tag tag-price">50–120K VND</span><span class="tag tag-time">7:00–17:00</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 4. СПА И ГРЯЗЕЛЕЧЕБНИЦЫ -->
+<!-- ============================================ -->
+<div class="section" id="spa">
+<div class="section-header"><h2>СПА и грязелечебницы</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#53</div><h3>Thap Ba Hot Springs</h3><div class="loc">У башен По Нагар</div><div class="desc">Первый и самый известный центр грязелечения. Лечебные ванны, минеральные бассейны, массаж.</div><div class="tags"><span class="tag tag-price">200–700K VND</span><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#54</div><h3>100 Eggs Mud Bath</h3><div class="loc">Nguyen Tat Thanh</div><div class="desc">Огромный парк с ваннами-яйцами на склоне горы. Мини-зоопарк, подвесной мост, хамам.</div><div class="tags"><span class="tag tag-price">250–600K VND</span><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#55</div><h3>Galina Mud Bath</h3><div class="loc">200 Ngo Den</div><div class="desc">Современный комплекс с грязевыми ваннами, горячими источниками. Камерная обстановка.</div><div class="tags"><span class="tag tag-price">200–500K VND</span><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#56</div><h3>I-Resort Mud Bath</h3><div class="loc">19 Xuan Ngoc</div><div class="desc">Популярный курорт с бассейнами разных температур. Красивая природа, детские зоны.</div><div class="tags"><span class="tag tag-price">250–600K VND</span><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#57</div><h3>Vinpearl Spa</h3><div class="loc">Остров Hon Tre</div><div class="desc">Премиальный спа-центр. Традиционный вьетнамский массаж, современные методики, вид на море.</div><div class="tags"><span class="tag tag-price">от 500K VND</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#58</div><h3>Champa Spa</h3><div class="loc">Центр города</div><div class="desc">Уютный спа с традиционным вьетнамским и тайским массажем. Обёртывания, уходовые процедуры.</div><div class="tags"><span class="tag tag-price">от 200K VND/час</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#59</div><h3>Yasaka Saigon Spa</h3><div class="loc">18 Tran Phu</div><div class="desc">Спа при отеле Yasaka. Профессиональные мастера, центральное расположение, полное меню.</div><div class="tags"><span class="tag tag-price">от 300K VND</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#60</div><h3>Sailing Club Spa</h3><div class="loc">72-74 Tran Phu</div><div class="desc">Спа при знаменитом Sailing Club. Массаж, уходы, ванны. После процедур — выход на пляж.</div><div class="tags"><span class="tag tag-price">от 350K VND</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#61</div><h3>Six Senses Ninh Van Bay Spa</h3><div class="loc">Залив Нинь Ван</div><div class="desc">Один из лучших спа во Вьетнаме. Эко-курорт, уникальные процедуры на лоне природы.</div><div class="tags"><span class="tag tag-price">от $150</span><span class="tag tag-info">Премиум</span></div></div>
+
+<div class="entry"><div class="num">#62</div><h3>Senspa Nha Trang</h3><div class="loc">Центр</div><div class="desc">Популярный спа-салон с массажем стоун, ароматерапией, хаммамом. Хорошие отзывы.</div><div class="tags"><span class="tag tag-price">от 250K VND</span></div></div>
+
+<div class="entry"><div class="num">#63</div><h3>Ngoc Trai Spa</h3><div class="loc">Tran Phu</div><div class="desc">Традиционный вьетнамский массаж. Техники расслабления, доступные цены.</div><div class="tags"><span class="tag tag-price">от 180K VND</span></div></div>
+
+<div class="entry"><div class="num">#64</div><h3>Diamond Bay Spa</h3><div class="loc">Южный Нячанг</div><div class="desc">Современный спа-центр с массажем, сауной, джакузи. Качественный сервис.</div><div class="tags"><span class="tag tag-price">от 300K VND</span></div></div>
+
+<div class="entry"><div class="num">#65</div><h3>Herbal Spa Nha Trang</h3><div class="loc">Nguyen Thien Thuat</div><div class="desc">Спа с использованием травяных сборов. Вьетнамский массаж с горячими травами.</div><div class="tags"><span class="tag tag-price">от 220K VND</span></div></div>
+
+<div class="entry"><div class="num">#66</div><h3>Lotus Spa & Massage</h3><div class="loc">Hung Vuong</div><div class="desc">Небольшой спа-салон с индивидуальным подходом. Массаж всего тела, скрабы.</div><div class="tags"><span class="tag tag-price">от 200K VND</span></div></div>
+
+<div class="entry"><div class="num">#67</div><h3>Эко-спа Amiana Resort</h3><div class="loc">Север, Hon Chong</div><div class="desc">Спа на территории курорта Amiana. Минеральные источники, грязевые ванны, вид на море.</div><div class="tags"><span class="tag tag-price">от 400K VND</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 5. САЛОНЫ КРАСОТЫ И NAIL -->
+<!-- ============================================ -->
+<div class="section" id="beauty">
+<div class="section-header"><h2>Салоны красоты и Nail-студии</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#68</div><h3>Nail Studio Nha Trang</h3><div class="loc">Nguyen Thien Thuat</div><div class="desc">Популярная nail-студия с русскоязычным персоналом. Широкий выбор дизайнов, качественные материалы.</div><div class="tags"><span class="tag tag-price">Маникюр от 150K</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#69</div><h3>Beauty Salon Natasha</h3><div class="loc">Ngo Gia Tu</div><div class="desc">Салон для русскоязычных. Стрижки, окрашивание, уходы по русским стандартам. Русский мастер.</div><div class="tags"><span class="tag tag-price">Стрижка от 200K</span><span class="tag tag-time">9:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#70</div><h3>Hair Salon Glamour</h3><div class="loc">8 Tran Phu</div><div class="desc">Профессиональный салон. Стрижки, окрашивание, кератин, ламинирование.</div><div class="tags"><span class="tag tag-price">Стрижка от 150K</span><span class="tag tag-time">8:30–20:00</span></div></div>
+
+<div class="entry"><div class="num">#71</div><h3>Pink Nail & Lash Bar</h3><div class="loc">Nguyen Thien Thuat</div><div class="desc">Маникюр, педикюр, наращивание ресниц. Популярна среди туристов и экспатов.</div><div class="tags"><span class="tag tag-price">Маникюр от 120K</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#72</div><h3>Lotus Beauty Spa & Salon</h3><div class="loc">Hoang Hoa Tham</div><div class="desc">Комплексный салон: стрижки, маникюр, педикюр, депиляция, уход за лицом.</div><div class="tags"><span class="tag tag-price">Стрижка от 100K</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#73</div><h3>Thread & Glow Eyebrow Studio</h3><div class="loc">Центр</div><div class="desc">Специализированная студия бровей. Threading, покраска, ламинирование.</div><div class="tags"><span class="tag tag-price">Брови от 80K</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#74</div><h3>Tia Nail Salon</h3><div class="loc">Phan Chu Trinh</div><div class="desc">Уютная студия с профессиональными мастерами. Дизайн любой сложности, стерильность.</div><div class="tags"><span class="tag tag-price">Маникюр от 100K</span><span class="tag tag-time">8:30–21:00</span></div></div>
+
+<div class="entry"><div class="num">#75</div><h3>Barber House Nha Trang</h3><div class="loc">Центр</div><div class="desc">Мужская парикмахерская. Стрижки, бритьё опасной бритвой, уход за бородой.</div><div class="tags"><span class="tag tag-price">Мужская стрижка от 150K</span></div></div>
+
+<div class="entry"><div class="num">#76</div><h3>Thu's Nails & Beauty</h3><div class="loc">Tran Phu</div><div class="desc">Семейная nail-студия. Качественный маникюр, педикюр, гель-лак. Вежливый персонал.</div><div class="tags"><span class="tag tag-price">Маникюр от 100K</span></div></div>
+
+<div class="entry"><div class="num">#77</div><h3>Salon Vân</h3><div class="loc">Hung Vuong</div><div class="desc">Вьетнамский салон с европейским подходом. Стрижки, окрашивание, укладки.</div><div class="tags"><span class="tag tag-price">Стрижка от 120K</span></div></div>
+
+<div class="entry"><div class="num">#78</div><h3>Art Nails</h3><div class="loc">Nguyen Thien Thuat</div><div class="desc">Студия художественного маникюра. Ручная роспись, 3D-дизайн, стемпинг.</div><div class="tags"><span class="tag tag-price">от 150K</span></div></div>
+
+<div class="entry"><div class="num">#79</div><h3>BrowLab Nha Trang</h3><div class="loc">Центр</div><div class="desc">Специалисты по бровям: коррекция, окрашивание хной, ламинирование, микроблейдинг.</div><div class="tags"><span class="tag tag-price">от 200K</span></div></div>
+
+<div class="entry"><div class="num">#80</div><h3>Eyelash Queen Studio</h3><div class="loc">Tran Phu</div><div class="desc">Студия наращивания ресниц. Классика, объём, ламинирование.</div><div class="tags"><span class="tag tag-price">от 300K</span></div></div>
+
+<div class="entry"><div class="num">#81</div><h3>Cosmo Hair & Beauty</h3><div class="loc">Bach Dang</div><div class="desc">Салон красоты полного цикла. Причёски, макияж, маникюр, педикюр.</div><div class="tags"><span class="tag tag-price">от 150K</span></div></div>
+
+<div class="entry"><div class="num">#82</div><h3>V Beauty Academy</h3><div class="loc">Hung Vuong</div><div class="desc">Студия + обучающий центр. Качественный сервис по доступным ценам (ученики под присмотром).</div><div class="tags"><span class="tag tag-price">от 80K</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 6. РЫНКИ -->
+<!-- ============================================ -->
+<div class="section" id="markets">
+<div class="section-header"><h2>Рынки</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#83</div><h3>Dam Market</h3><div class="loc">Phan Boi Chau</div><div class="desc">Самый известный традиционный рынок. Фрукты, кофе, специи, морепродукты, сувениры. Настоящая атмосфера.</div><div class="tags"><span class="tag tag-price">Цены договорные</span><span class="tag tag-time">5:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#84</div><h3>Nha Trang Night Market</h3><div class="loc">Tran Phu, набережная</div><div class="desc">Главный ночной рынок. Сувениры, одежда, морепродукты на гриле, уличная еда. Торг уместен.</div><div class="tags"><span class="tag tag-price">Цены договорные</span><span class="tag tag-time">17:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#85</div><h3>Xom Moi Market</h3><div class="loc">Phan Boi Chau</div><div class="desc">Местный рынок, менее туристический. Свежее мясо, рыба, овощи. Цены ниже, чем на Дам.</div><div class="tags"><span class="tag tag-time">5:00–12:00</span></div></div>
+
+<div class="entry"><div class="num">#86</div><h3>An Binh Market</h3><div class="loc">Северный Нячанг</div><div class="desc">Небольшой районный рынок. Свежие продукты, специи, зелень по местным ценам.</div><div class="tags"><span class="tag tag-time">5:00–11:00</span></div></div>
+
+<div class="entry"><div class="num">#87</div><h3>Рыбный рынок Vinh Luong</h3><div class="loc">Северная окраина</div><div class="desc">Крупнейший рыбный рынок. Рыба и морепродукты прямо с лодок. Лучший выбор для гурманов.</div><div class="tags"><span class="tag tag-time">4:00–9:00</span><span class="tag tag-info">Приезжайте до 7 утра</span></div></div>
+
+<div class="entry"><div class="num">#88</div><h3>Рынок сувениров на набережной</h3><div class="loc">Вдоль Tran Phu</div><div class="desc">Лавки с магнитами, одеждой, украшениями, кофе и сухофруктами вдоль набережной.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#89</div><h3>Чёрный рынок (Chợ Đen)</h3><div class="loc">Район Thap Ba</div><div class="desc">Местный блошиный рынок. Электроника, одежда, инструменты, запчасти. Цены ниже магазинных.</div><div class="tags"><span class="tag tag-time">6:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#90</div><h3>Цветочный рынок</h3><div class="loc">Yersin Street</div><div class="desc">Утренний рынок цветов. Огромный выбор свежих цветов по ценам в 5 раз ниже российских.</div><div class="tags"><span class="tag tag-time">4:00–10:00</span></div></div>
+
+<div class="entry"><div class="num">#91</div><h3>Chợ Vinh Hai</h3><div class="loc">Vinh Hai</div><div class="desc">Рынок в рыбацком районе. Свежие морепродукты, местные деликатесы. Без туристов.</div><div class="tags"><span class="tag tag-time">5:00–11:00</span></div></div>
+
+<div class="entry"><div class="num">#92</div><h3>Chợ Phước Hải</h3><div class="loc">Южный Нячанг</div><div class="desc">Районный рынок в спальном районе. Продукты, одежда, хозяйственные товары.</div><div class="tags"><span class="tag tag-time">5:30–12:00</span></div></div>
+
+<div class="entry"><div class="num">#93</div><h3>Рынок Vinh Truong</h3><div class="loc">Vinh Truong</div><div class="desc">Небольшой рынок в северной части. Овощи, фрукты, яйца, рис — всё для ежедневных покупок.</div><div class="tags"><span class="tag tag-time">5:00–11:00</span></div></div>
+
+<div class="entry"><div class="num">#94</div><h3>Chợ Tân Lập</h3><div class="loc">Tân Lập</div><div class="desc">Крытый рынок в западном районе. Мясо, рыба, специи. Мало туристов, настоящие цены.</div><div class="tags"><span class="tag tag-time">5:30–17:00</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 7. ТОРГОВЫЕ ЦЕНТРЫ И ШОПИНГ -->
+<!-- ============================================ -->
+<div class="section" id="shopping">
+<div class="section-header"><h2>Торговые центры и шопинг</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#95</div><h3>Nha Trang Center Mall</h3><div class="loc">20 Tran Phu</div><div class="desc">Крупнейший ТЦ у моря. Бренды, кинотеатр, рестораны. Отличный вариант в жаркий день.</div><div class="tags"><span class="tag tag-price">Бесплатный вход</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#96</div><h3>Vincom Plaza</h3><div class="loc">44 Le Thanh Ton</div><div class="desc">Современный ТЦ сети Vincom. Одежда, электроника, продукты VinMart, фуд-корт.</div><div class="tags"><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#97</div><h3>Big C Supermarket</h3><div class="loc">Vo Nguyen Giap</div><div class="desc">Французский гипермаркет. Огромный выбор продуктов, бытовой химии, электроники. Лучшие цены.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#98</div><h3>Lotte Mart</h3><div class="loc">23 Thang 10</div><div class="desc">Корейский гипермаркет. Азиатская косметика, корейские продукты, свежие товары.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#99</div><h3>MaxiMark Supermarket</h3><div class="loc">Центр</div><div class="desc">Супермаркет среднего размера для ежедневных покупок. Удобное расположение.</div><div class="tags"><span class="tag tag-time">7:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#100</div><h3>Улица шопинга Hung Vuong</h3><div class="loc">Hung Vuong, центр</div><div class="desc">Главная торговая улица. Одежда, обувь, аксессуары, сувениры. Вечерняя прогулка.</div><div class="tags"><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#101</div><h3>PNJ Jewelry</h3><div class="loc">Tran Phu</div><div class="desc">Крупнейшая ювелирная сеть. Золото, серебро, жемчуг. Гарантия качества.</div><div class="tags"><span class="tag tag-time">8:30–21:00</span></div></div>
+
+<div class="entry"><div class="num">#102</div><h3>Co.op Mart</h3><div class="loc">23 Thang 10</div><div class="desc">Вьетнамская сеть супермаркетов. Хороший выбор местных продуктов, доступные цены.</div><div class="tags"><span class="tag tag-time">7:30–21:30</span></div></div>
+
+<div class="entry"><div class="num">#103</div><h3>Mediamart</h3><div class="loc">Tran Phu</div><div class="desc">Магазин электроники. Бытовая техника, телефоны, ноутбуки. Гарантия во Вьетнаме.</div><div class="tags"><span class="tag tag-time">8:30–21:00</span></div></div>
+
+<div class="entry"><div class="num">#104</div><h3>Điện Máy Xanh</h3><div class="loc">Несколько адресов</div><div class="desc">Крупнейшая сеть электроники. Техника, телефоны, запчасти. Хорошие цены.</div><div class="tags"><span class="tag tag-time">8:00–21:30</span></div></div>
+
+<div class="entry"><div class="num">#105</div><h3>The Garden Shopping Center</h3><div class="loc">Южный Нячанг</div><div class="desc">Небольшой ТЦ в An Vien. Продукты, аптека, кафе, бытовые услуги.</div><div class="tags"><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#106</div><h3>VinMart+ (сеть магазинов)</h3><div class="loc">Множество точек</div><div class="desc">Мини-маркеты у дома. Продукты, напитки, бытовая химия. Работают допоздна.</div><div class="tags"><span class="tag tag-time">6:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#107</div><h3>Chợ Đầm (второй этаж — ткани)</h3><div class="loc">Phan Boi Chau</div><div class="desc">Огромный выбор тканей, фурнитуры, штор на заказ. Для любителей шитья.</div><div class="tags"><span class="tag tag-time">6:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#108</div><h3>Магазины вьетнамского шёлка</h3><div class="loc">Tran Phu</div><div class="desc">Несколько магазинов качественного шёлка. Платья, рубашки, галстуки, постельное бельё.</div><div class="tags"><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#109</div><h3>Рынок электроники Nha Trang</h3><div class="loc">Hoang Hoa Tham</div><div class="desc">Специализированный рынок электроники и запчастей. Телефоны, аксессуары, ремонт.</div><div class="tags"><span class="tag tag-time">8:00–20:00</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 8. ДЕТСКИЕ ЦЕНТРЫ И РАЗВЛЕЧЕНИЯ -->
+<!-- ============================================ -->
+<div class="section" id="kids">
+<div class="section-header"><h2>Детские центры и развлечения</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#110</div><h3>VinWonders Kids Zone</h3><div class="loc">Остров Hon Tre</div><div class="desc">Детская зона с каруселями, водными горками малой высоты, игровыми площадками.</div><div class="tags"><span class="tag tag-info">В билет VinWonders</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#111</div><h3>Аквапарк VinWonders</h3><div class="loc">Остров Hon Tre</div><div class="desc">Огромный аквапарк с волновым бассейном, ленивой рекой, горками для всех возрастов.</div><div class="tags"><span class="tag tag-info">В билет VinWonders</span><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#112</div><h3>Happy Land</h3><div class="loc">Vincom Plaza</div><div class="desc">Крытый игровой центр: батуты, горки, лабиринты, игровые автоматы. Для дождливого дня.</div><div class="tags"><span class="tag tag-price">от 80K VND/час</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#113</div><h3>Ocean Park Aquarium</h3><div class="loc">Южная часть</div><div class="desc">Городской аквариум с подводным туннелем, морскими обитателями, кормлением рыб.</div><div class="tags"><span class="tag tag-price">150–250K VND</span><span class="tag tag-time">8:00–17:30</span></div></div>
+
+<div class="entry"><div class="num">#114</div><h3>Детская площадка на набережной</h3><div class="loc">Tran Phu Promenade</div><div class="desc">Бесплатные площадки с горками, качелями, скалодромом. Красивая подсветка вечером.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#115</div><h3>Go-Kart Nha Trang</h3><div class="loc">Окраина города</div><div class="desc">Картинг для детей и взрослых. Разные классы машин, инструктаж.</div><div class="tags"><span class="tag tag-price">от 100K/заезд</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#116</div><h3>Лунный парк аттракционов</h3><div class="loc">23/10 Street</div><div class="desc">Колесо обозрения, карусели, комната смеха. Вечерняя иллюминация.</div><div class="tags"><span class="tag tag-price">Аттракционы от 20K</span><span class="tag tag-time">16:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#117</div><h3>Мини-гольф Nha Trang</h3><div class="loc">Южный Нячанг</div><div class="desc">18 лунок в тропическом саду. Весело для детей и взрослых. Прокат инвентаря.</div><div class="tags"><span class="tag tag-price">100–150K VND</span><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#118</div><h3>Monkey Island (для детей)</h3><div class="loc">Hon Lao, ~18 км</div><div class="desc">Более 1000 обезьян, шоу животных, пляж. Дети в восторге.</div><div class="tags"><span class="tag tag-price">180–250K VND</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#119</div><h3>Батутный центр Jump Arena</h3><div class="loc">Центр</div><div class="desc">Крытый парк батутов для детей. Поролоновые ямы, доджбол, ниндзя-трасса.</div><div class="tags"><span class="tag tag-price">от 120K/час</span></div></div>
+
+<div class="entry"><div class="num">#120</div><h3>Детский клуб «Умка»</h3><div class="loc">Север, район экспатов</div><div class="desc">Русскоязычный детский клуб. Развивающие занятия, творчество, английский.</div><div class="tags"><span class="tag tag-info">Русскоязычный</span></div></div>
+
+<div class="entry"><div class="num">#121</div><h3>Боулинг Vincom</h3><div class="loc">Vincom Plaza, 44 Le Thanh Ton</div><div class="desc">Современный боулинг на несколько дорожек. Прокат обуви, закуски.</div><div class="tags"><span class="tag tag-price">60–100K/игра</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#122</div><h3>Детский бассейн Paragon</h3><div class="loc">An Vien</div><div class="desc">Мелкий бассейн без волн на пляже Paragon. Безопасно для малышей.</div><div class="tags"><span class="tag tag-price">Платный</span></div></div>
+
+<div class="entry"><div class="num">#123</div><h3>Школа сёрфинга для детей</h3><div class="loc">Bai Dai</div><div class="desc">Обучение сёрфингу для детей от 8 лет. Опытные инструкторы, безопасное оборудование.</div><div class="tags"><span class="tag tag-price">Урок от $25</span></div></div>
+
+<div class="entry"><div class="num">#124</div><h3>VR-клуб Nha Trang</h3><div class="loc">Центр</div><div class="desc">Игры в виртуальной реальности. Шлемы, симуляторы. Для детей от 10 лет и взрослых.</div><div class="tags"><span class="tag tag-price">от 100K/сессия</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 9. СПОРТ И АКТИВНОСТИ -->
+<!-- ============================================ -->
+<div class="section" id="sport">
+<div class="section-header"><h2>Спорт и активности</h2><span class="count">20 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#125</div><h3>Ba Ho Waterfalls</h3><div class="loc">~25 км к северу</div><div class="desc">Три водопада и бассейны в джунглях. Купание, прыжки со скал, треккинг. Берите гида.</div><div class="tags"><span class="tag tag-price">100–150K VND</span><span class="tag tag-time">6:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#126</div><h3>Yang Bay Waterfall Park</h3><div class="loc">~45 км от города</div><div class="desc">Большой парк с водопадами, горячими источниками, культурными шоу народности Раглай.</div><div class="tags"><span class="tag tag-price">200–350K VND</span><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#127</div><h3>Сёрфинг и кайтсёрфинг</h3><div class="loc">Bai Dai Beach</div><div class="desc">Лучшее место в регионе для сёрфинга. Школы, прокат, инструкторы. Сезон: ноябрь–январь.</div><div class="tags"><span class="tag tag-price">Урок от $30</span><span class="tag tag-time">7:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#128</div><h3>Скалолазание</h3><div class="loc">Горы вокруг города</div><div class="desc">Природные маршруты для альпинизма. Организованные туры с гидами и снаряжением. Живописные виды.</div><div class="tags"><span class="tag tag-price">Тур от $40</span></div></div>
+
+<div class="entry"><div class="num">#129</div><h3>Tennis Club Nha Trang</h3><div class="loc">Hoang Dieu Street</div><div class="desc">Корты с профессиональным покрытием. Прокат ракеток, тренер, вечерняя подсветка.</div><div class="tags"><span class="tag tag-price">80–150K VND/час</span><span class="tag tag-time">6:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#130</div><h3>California Fitness</h3><div class="loc">Vincom Plaza</div><div class="desc">Крупнейшая международная сеть фитнеса. Тренажёры, групповые классы, бассейн.</div><div class="tags"><span class="tag tag-price">Дневной 150K</span><span class="tag tag-time">5:30–22:00</span></div></div>
+
+<div class="entry"><div class="num">#131</div><h3>Йога на пляже</h3><div class="loc">Tran Phu Beach</div><div class="desc">Групповые занятия йогой на пляже с утренним видом на море. Для всех уровней.</div><div class="tags"><span class="tag tag-price">от 100K</span><span class="tag tag-time">6:00–8:00</span></div></div>
+
+<div class="entry"><div class="num">#132</div><h3>Велотуры по окрестностям</h3><div class="loc">Маршруты вокруг города</div><div class="desc">По рисовым полям, деревням и горам. Прокат велосипедов по городу.</div><div class="tags"><span class="tag tag-price">Прокат от 80K/день</span><span class="tag tag-time">7:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#133</div><h3>Параглайдинг</h3><div class="loc">Гора рядом с городом</div><div class="desc">Тандемные полёты с видом на залив. Опытные инструкторы. Незабываемые впечатления.</div><div class="tags"><span class="tag tag-price">~1.5–2M VND</span></div></div>
+
+<div class="entry"><div class="num">#134</div><h3>Боулинг Vincom</h3><div class="loc">Vincom Plaza</div><div class="desc">Современный боулинг-центр. Прокат обуви включён. Закуски и напитки.</div><div class="tags"><span class="tag tag-price">60–100K/игра</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#135</div><h3>Морская рыбалка</h3><div class="loc">Cau Da</div><div class="desc">Туры в открытое море. Снаряжение включено. Улов готовят на борту.</div><div class="tags"><span class="tag tag-price">500–800K VND</span></div></div>
+
+<div class="entry"><div class="num">#136</div><h3>Кроссфит / функциональный тренинг</h3><div class="loc">Центр</div><div class="desc">Несколько кроссфит-боксов в городе. Разовое посещение, абонементы.</div><div class="tags"><span class="tag tag-price">от 100K</span></div></div>
+
+<div class="entry"><div class="num">#137</div><h3>Боевые искусства (Vovinam)</h3><div class="loc">Спорткомплексы города</div><div class="desc">Традиционное вьетнамское боевое искусство. Тренировки для всех уровней.</div><div class="tags"><span class="tag tag-price">Бесплатно / донейшн</span></div></div>
+
+<div class="entry"><div class="num">#138</div><h3>Пул / бильярд</h3><div class="loc">Несколько точек</div><div class="desc">Бильярдные клубы в центре города. Американский пул, снукер.</div><div class="tags"><span class="tag tag-price">от 50K/час</span></div></div>
+
+<div class="entry"><div class="num">#139</div><h3>Пейнтбол Nha Trang</h3><div class="loc">Окраина</div><div class="desc">Поле для пейнтбола с укрытиями. Снаряжение включено. Для компаний от 6 человек.</div><div class="tags"><span class="tag tag-price">от 300K</span></div></div>
+
+<div class="entry"><div class="num">#140</div><h3>Конный клуб</h3><div class="loc">~15 км от города</div><div class="desc">Верховая езда по сельской местности. Для начинающих и опытных. Красивые маршруты.</div><div class="tags"><span class="tag tag-price">от 400K/час</span></div></div>
+
+<div class="entry"><div class="num">#141</div><h3>Страйкбол</h3><div class="loc">Окраина</div><div class="desc">Страйкбольный клуб с несколькими сценариями. Снаряжение в аренду.</div><div class="tags"><span class="tag tag-price">от 250K</span></div></div>
+
+<div class="entry"><div class="num">#142</div><h3>Треккинг на гору Хон Ба</h3><div class="loc">~30 км</div><div class="desc">Пеший поход на гору через джунгли. 4–5 часов подъёма. Награда — храм и панорама.</div><div class="tags"><span class="tag tag-info">Берите гида</span></div></div>
+
+<div class="entry"><div class="num">#143</div><h3>SUP (сап-сёрфинг)</h3><div class="loc">Пляжи города</div><div class="desc">Стоячий сёрфинг с веслом. Прокат досок. Утренняя йога на SUP.</div><div class="tags"><span class="tag tag-price">от 100K/час</span></div></div>
+
+<div class="entry"><div class="num">#144</div><h3>Футбольные поля</h3><div class="loc">Район Thap Ba</div><div class="desc">Крытые и открытые поля для мини-футбола. Сборные команды экспатов.</div><div class="tags"><span class="tag tag-price">от 200K/час</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 10. МЕДИЦИНА И КЛИНИКИ -->
+<!-- ============================================ -->
+<div class="section" id="med">
+<div class="section-header"><h2>Медицина и клиники</h2><span class="count">18 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#145</div><h3>Pasteur Institute</h3><div class="loc">8 Tran Phu</div><div class="desc">Вакцинация, анализы, консультации. Международный уровень. Один из старейших институтов.</div><div class="tags"><span class="tag tag-time">7:00–17:00 (пн-пт)</span></div></div>
+
+<div class="entry"><div class="num">#146</div><h3>Nha Trang General Hospital</h3><div class="loc">19 Yersin Street</div><div class="desc">Главная городская больница. Скорая помощь 24/7, хирургия, терапия.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#147</div><h3>International Clinic Nha Trang</h3><div class="loc">Центр</div><div class="desc">Международная клиника с русскоязычным и англоязычным персоналом. Стоматология.</div><div class="tags"><span class="tag tag-price">Консультация от 300K</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#148</div><h3>Nha Trang Dental Clinic</h3><div class="loc">Hung Vuong Street</div><div class="desc">Современная стоматология. Лечение, протезирование, имплантация, отбеливание.</div><div class="tags"><span class="tag tag-price">Консультация 100K</span><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#149</div><h3>Многопрофильная клиника Phong Kham</h3><div class="loc">Nguyen Thi Minh Khai</div><div class="desc">Терапевт, педиатр, гинеколог, УЗИ. Доступные цены.</div><div class="tags"><span class="tag tag-price">Консультация от 150K</span><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#150</div><h3>Аптека Long Chau</h3><div class="loc">Tran Phu и другие</div><div class="desc">Крупнейшая аптечная сеть. Лекарства, витамины, БАДы. Консультация провизора.</div><div class="tags"><span class="tag tag-time">7:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#151</div><h3>Khanh Hoa Maternity Hospital</h3><div class="loc">30 Tran Hung Dao</div><div class="desc">Основной роддом. Ведение беременности, роды, наблюдение новорождённых.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#152</div><h3>Eye Care Center</h3><div class="loc">Центр</div><div class="desc">Офтальмология. Проверка зрения, подбор очков/линз, лазерная коррекция.</div><div class="tags"><span class="tag tag-price">Консультация от 200K</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#153</div><h3>Vinmec Hospital (строится)</h3><div class="loc">Новый район</div><div class="desc">Международная больница сети Vinmec. Открытие запланировано. Высокий стандарт.</div></div>
+
+<div class="entry"><div class="num">#154</div><h3>Traditional Medicine Clinic</h3><div class="loc">Nguyen Hue</div><div class="desc">Иглоукалывание, массаж туйна, фитотерапия. Традиционная вьетнамская медицина.</div><div class="tags"><span class="tag tag-price">Сеанс от 150K</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#155</div><h3>Русский врач в Нячанге</h3><div class="loc">По запросу</div><div class="desc">Русскоязычные врачи: терапевт, педиатр, гинеколог. Выезд на дом, консультации онлайн.</div><div class="tags"><span class="tag tag-info">Через чаты экспатов</span></div></div>
+
+<div class="entry"><div class="num">#156</div><h3>Центр вакцинации VNVC</h3><div class="loc">Несколько адресов</div><div class="desc">Вакцинация для детей и взрослых. Все виды. Хранят Cold chain.</div><div class="tags"><span class="tag tag-time">7:30–17:00</span></div></div>
+
+<div class="entry"><div class="num">#157</div><h3>Khanh Hoa Hospital of Traumatology</h3><div class="loc">2A Nguyen Trai</div><div class="desc">Травмпункт и ортопедия. Переломы, вывихи, спортивные травмы.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#158</div><h3>Центр УЗИ и диагностики</h3><div class="loc">Tran Phu</div><div class="desc">УЗИ всех видов, МРТ, КТ. Современное оборудование. Результаты в день обращения.</div><div class="tags"><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#159</div><h3>Стоматология Nha Khoa Sài Gòn</h3><div class="loc">Hung Vuong</div><div class="desc">Сеть стоматологий. Лечение, виниры, импланты. Качественные материалы.</div><div class="tags"><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#160</div><h3>Дерматология Skin Center</h3><div class="loc">Центр</div><div class="desc">Кожные заболевания, лазерная эпиляция, удаление новообразований.</div><div class="tags"><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#161</div><h3>Психиатр / психолог</h3><div class="loc">По запросу</div><div class="desc">Русскоязычные психологи онлайн и в Нячанге. Помощь при адаптации, тревоге.</div><div class="tags"><span class="tag tag-info">Через сарафанку</span></div></div>
+
+<div class="entry"><div class="num">#162</div><h3>Скорая помощь 115</h3><div class="loc">По всему городу</div><div class="desc">Экстренная медицинская помощь. Оператор может не говорить по-русски.</div><div class="tags"><span class="tag tag-warn">115</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 11. ТАКСИ И ТРАНСПОРТ -->
+<!-- ============================================ -->
+<div class="section" id="transport">
+<div class="section-header"><h2>Такси и транспорт</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#163</div><h3>Grab</h3><div class="loc">Всюду</div><div class="desc">Основное приложение для такси и мототакси. Фиксированные цены, надёжно.</div><div class="tags"><span class="tag tag-price">GrabBike от 15K</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#164</div><h3>Mai Linh Taxi</h3><div class="loc">Тел: 0258 3838 383</div><div class="desc">Самая надёжная таксомоторная компания. Счётчик, официальные машины.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#165</div><h3>Vinasun Taxi</h3><div class="loc">Тел: 0258 3827 827</div><div class="desc">Крупная компания с большим парком машин. Чистые авто, счётчик.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#166</div><h3>Аренда байка</h3><div class="loc">Множество точек</div><div class="desc">Самый популярный транспорт. Автомат или механика. От 100K VND/день.</div><div class="tags"><span class="tag tag-price">от 100K/день</span><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#167</div><h3>Аренда авто с водителем</h3><div class="loc">Турагентства</div><div class="desc">Комфортные поездки с водителем. Для семей и дальних экскурсий.</div><div class="tags"><span class="tag tag-price">800K–1.5M VND/день</span></div></div>
+
+<div class="entry"><div class="num">#168</div><h3>Автобус №4</h3><div class="loc">Через весь город</div><div class="desc">Самый дешёвый транспорт. Проходит через центр. Имейте мелкие деньги.</div><div class="tags"><span class="tag tag-price">12K VND</span><span class="tag tag-time">5:30–19:30</span></div></div>
+
+<div class="entry"><div class="num">#169</div><h3>Паром на острова</h3><div class="loc">Cau Da Terminal</div><div class="desc">Паромы на Hon Tam, Hon Mieu, VinWonders. Каждые 30–60 мин.</div><div class="tags"><span class="tag tag-price">50–120K VND</span><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#170</div><h3>Be App</h3><div class="loc">Всюду</div><div class="desc">Вьетнамский аналог Grab. Часто дешевле. BeBike от 12K.</div><div class="tags"><span class="tag tag-price">BeBike от 12K</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#171</div><h3>Транспорт: трансфер в аэропорт</h3><div class="loc">Любой район</div><div class="desc">Фиксированная цена. Такси: 250–400K VND. Через приложение: Grab/Be.</div><div class="tags"><span class="tag tag-price">250–400K VND</span></div></div>
+
+<div class="entry"><div class="num">#172</div><h3>Go Viet (GoBike)</h3><div class="loc">Всюду</div><div class="desc">Ещё одно приложение для мототакси. Меньше машин, но цены ниже.</div><div class="tags"><span class="tag tag-price">От 10K VND</span></div></div>
+
+<div class="entry"><div class="num">#173</div><h3>Аренда скутера 50cc</h3><div class="loc">Север, русский квартал</div><div class="desc">Без прав до 50cc. Идеально для поездок по городу. Cheapbike @cheapbike.</div><div class="tags"><span class="tag tag-price">от 80K/день</span></div></div>
+
+<div class="entry"><div class="num">#174</div><h3>Русское Такси</h3><div class="loc">Тел: +84 916 391 019</div><div class="desc">VIP такси с русскоязычным водителем. Аэропорт, город, область.</div><div class="tags"><span class="tag tag-info">Русскоязычный</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 12. РЕСТОРАНЫ И КАФЕ -->
+<!-- ============================================ -->
+<div class="section" id="food">
+<div class="section-header"><h2>Рестораны и кафе</h2><span class="count">110 мест</span></div>
+
+<h3 style="margin-bottom:6px">Русская кухня</h3>
+<ul>
+<li><strong>#175 Grill Yard</strong> — Центр · Русская + гриль, 700–1400₽ · <span class="meta">6 кухонь в меню</span></li>
+<li><strong>#176 Есенин</strong> — +84 93 240 76 40 · Русская, европейская</li>
+<li><strong>#177 Маленькая Армения</strong> — Центр · Армянская, кавказская, 525–1050₽</li>
+<li><strong>#178 Изба</strong> — Север · Русская домашняя, 525–1050₽</li>
+<li><strong>#179 Караван</strong> — Центр · Узбекская, 525–875₽</li>
+<li><strong>#180 CHEKHOV Coffee&Food</strong> — 164 Bạch Đằng · Русская кухня, популярна среди экспатов</li>
+<li><strong>#181 О, Пельмешки!</strong> — 34/2 Nguyễn Thiện Thuật · Пельмени, русская кухня</li>
+<li><strong>#182 TakiDa</strong> — 26B Trần Quang Khải · Русская + паназиатская</li>
+<li><strong>#183 Rock Cafe</strong> — 86 Nguyễn Thiện Thuật · Русский рок-стиль, живая музыка</li>
+<li><strong>#184 Pancakes House</strong> — Русские блины, завтраки</li>
+<li><strong>#185 Dream Beach</strong> — Север · Русский ресторан у моря</li>
+<li><strong>#186 MoonMilk</strong> — Север (район экспатов) · Русская кухня</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Вьетнамская кухня</h3>
+<ul>
+<li><strong>#187 Yen's Restaurant</strong> — 73/6 Trần Quang Khải · Классическая вьетнамская</li>
+<li><strong>#188 Lanterns Restaurant</strong> — 30A Nguyễn Thiện Thuật · Традиционная, лучшая в городе</li>
+<li><strong>#189 Lang Ngon</strong> — 83 Nguyễn Thị Minh Khai · 300 блюд всех регионов Вьетнама</li>
+<li><strong>#190 Lac Canh Restaurant</strong> — 44 Nguyễn Bình Khiêm · Легенда с 1978, гриль за столом</li>
+<li><strong>#191 Phở Hồng</strong> — Гигантские порции фо</li>
+<li><strong>#192 Bánh Mì Phan</strong> — 1A Phan Chu Trinh · Культовый бань ми, очередь с утра</li>
+<li><strong>#193 Nha Trang Xưa</strong> — 30 Thái Thông · Традиционная, 09:00–21:00</li>
+<li><strong>#194 Mắm Restaurant</strong> — 72 Nguyễn Thiện Thuật · Домашняя вьетнамская</li>
+<li><strong>#195 Ăn Thôi</strong> — 64C Nguyễn Thị Minh Khai · Современная вьетнамская</li>
+<li><strong>#196 Bánh Căn 24 Tô Hiến Thành</strong> — 24 Tô Hiến Thành · Культовые мини-блинчики</li>
+<li><strong>#197 Cơm Nhà Nha Trang</strong> — Домашняя кухня, как у мамы</li>
+<li><strong>#198 Cơm Tấm Sườn Nướng</strong> — 56 Hoàng Văn Thụ · Битый рис с грилём</li>
+<li><strong>#199 Bún Cá Ba Xuân</strong> — 16 Hoàng Hoa Thám · Эталонный бульон, 05:30–10:00</li>
+<li><strong>#200 Đặng Văn Quyên (Nem Nướng)</strong> — 16A Lãn Ông · Жареные колбаски, 15:00–22:00</li>
+<li><strong>#201 Bún Sứa Hàn Thuyên</strong> — 24 Hàn Thuyên · Лапша с медузой — деликатес</li>
+<li><strong>#202 Cháo Đêm Nha Trang</strong> — 383 Lê Hồng Phong · Ночной суп, 18:00–01:00</li>
+<li><strong>#203 Bò Nướng Lạc Cảnh</strong> — 44 Nguyễn Bình Khiêm · Говядина на гриле, 09:30–21:00</li>
+<li><strong>#204 Quán Ốc Xuân Anh</strong> — 25 Tháp Bà · Улитки, морепродукты</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Морепродукты</h3>
+<ul>
+<li><strong>#205 Bờ Kè Tháp Bà</strong> — 52 Cù Huân · Набережная морепродуктов, Bờ Kè</li>
+<li><strong>#206 Costa Seafood Nha Trang</strong> — 32–34 Trần Phú · Элитный, 180° вид на море</li>
+<li><strong>#207 Hải Sản Mộc Quán</strong> — 30 Nguyễn Thiện Thuật · Буфет морепродуктов, 200–300K</li>
+<li><strong>#208 Thanh Sương Seafood</strong> — 15 Trần Phú · Крупный, популярный</li>
+<li><strong>#209 Hải Sản Làng Bè</strong> — Hòn Rớ · Плавучий ресторан на воде</li>
+<li><strong>#210 Hải sản Gió Biển</strong> — Phạm Văn Đồng · 200–350K VND</li>
+<li><strong>#211 Mr Lobster</strong> — Bờ Kè · Омары на гриле</li>
+<li><strong>#212 Seafood Harbor</strong> — Trần Phú (открыт 2025) · Новый, отличное соотношение</li>
+<li><strong>#213 Ozone Seafood</strong> — Vinpearl Hòn Tre · 5-звёздочный ресторан</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Итальянская кухня</h3>
+<ul>
+<li><strong>#214 Pizza 4P's</strong> — Sheraton, 1 этаж · Японская сеть, своя буррата</li>
+<li><strong>#215 La Baia Italian</strong> — Mia Resort · Аутентичная итальянская</li>
+<li><strong>#216 La Cala – Gusto Italiano</strong> — Bạch Đằng · Южно-итальянская, домашняя</li>
+<li><strong>#217 Marco Ý</strong> — 46-48 Lý Thánh Tôn · Итальянская классика</li>
+<li><strong>#218 La Mancha</strong> — 78 Nguyễn Thiện Thuật · Итальянская</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Японская кухня</h3>
+<ul>
+<li><strong>#219 Kiwami Sushi</strong> — 136 Bạch Đằng · Японский шеф-повар</li>
+<li><strong>#220 Sushi Sakura</strong> — 50 Nguyễn Thị Minh Khai · Мегапопулярный</li>
+<li><strong>#221 Mitami Japanese</strong> — Один из старейших японских</li>
+<li><strong>#222 Mikado Sushi</strong> — Lý Tự Trọng · Конвейер, от 40K VND</li>
+<li><strong>#223 Costa Robata</strong> — Японский гриль, морепродукты</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Корейская кухня</h3>
+<ul>
+<li><strong>#224 GoGi House</strong> — Lotte Nha Trang · Korean BBQ</li>
+<li><strong>#225 King BBQ</strong> — Vincom Nha Trang · Корейский BBQ</li>
+<li><strong>#226 QooQoo Buffet</strong> — 250+ блюд, буфет</li>
+<li><strong>#227 Veteran Restaurant</strong> — Korean BBQ</li>
+<li><strong>#228 Minchu</strong> — Острая корейская лапша</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Индийская / Греческая / Тайская</h3>
+<ul>
+<li><strong>#229 Ganesh Indian Restaurant</strong> — 82/186 Nguyễn Thiện Thuật · Лучший индийский</li>
+<li><strong>#230 MIX Greek Restaurant</strong> — 77 Hùng Vương · Греческая кухня</li>
+<li><strong>#231 Pita GR Greek</strong> — 7G/3 Hùng Vương · Греческая, средиземноморская</li>
+<li><strong>#232 Same Same But Different</strong> — Тайская, с 1995 года</li>
+<li><strong>#233 Sam Lor Thai – Tuktuk</strong> — 76 Đống Đa · Тайская, 100–300K VND</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Европейская и международная</h3>
+<ul>
+<li><strong>#234 Sailing Club Nha Trang</strong> — Trần Phú · Культовый beach-клуб, морепродукты, коктейли</li>
+<li><strong>#235 Louisiane Brewhouse</strong> — 29 Trần Phú · Пивоварня, пляжный клуб</li>
+<li><strong>#236 Skylight Rooftop</strong> — 38 Trần Phú, 43 этаж · Панорама 360°, коктейли, закаты</li>
+<li><strong>#237 Altitude Rooftop Bar</strong> — Sheraton · Премиальный rooftop, вид на бухту</li>
+<li><strong>#238 Alpaca Homestyle Cafe</strong> — ЕвроКвартал · Домашняя, паста, тако</li>
+<li><strong>#239 Cookbook Cafe</strong> — InterContinental · Международная кухня</li>
+<li><strong>#240 Livin'</strong> — BBQ, smoked meats</li>
+<li><strong>#241 Bao Ngon</strong> — Бао-бургеры, азиатский фьюжн</li>
+<li><strong>#242 Xóm Mới Garden</strong> — 34 Âu Cơ · 6 концепций под одной крышей</li>
+<li><strong>#243 Galangal</strong> — Международная, рейтинг 4.7</li>
+<li><strong>#244 RuNam Nha Trang</strong> — Международная, рейтинг 4.2</li>
+<li><strong>#245 Swiss House La Casserole</strong> — Швейцарская кухня</li>
+<li><strong>#246 German Haus Bremen</strong> — Немецкая кухня</li>
+<li><strong>#247 Steak & Butter</strong> — Стейки, европейская</li>
+<li><strong>#248 Good Morning</strong> — Европейская кухня, завтраки</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Кофейни</h3>
+<ul>
+<li><strong>#249 cafe culture</strong> — Британская, кофе, рейтинг 4.9</li>
+<li><strong>#250 Coffee Maker Roastery</strong> — Спешлти кофе</li>
+<li><strong>#251 Nora Coffee Roastery</strong> — Спешлти, десерты</li>
+<li><strong>#252 Ola Cafe</strong> — 31 Nguyễn Hữu Huân · Инстаграмная, Coconut Coffee</li>
+<li><strong>#253 Chakokoro Matcha Cafe</strong> — Матча, стиль Миядзаки</li>
+<li><strong>#254 Iced Coffee Simply Original</strong> — 49 Nguyễn Thiện Thuật · Кофе, рейтинг 4.3</li>
+<li><strong>#255 Bakеboy Bakery & Coffee</strong> — Север · Выпечка, маковые косички</li>
+<li><strong>#256 Highlands Coffee</strong> — Сеть, рейтинг 4.3</li>
+<li><strong>#257 Jungle Coffee</strong> — Интерьер джунглей</li>
+<li><strong>#258 Hòn Kiến Coffee</strong> — Вид на море, бассейн на крыше</li>
+<li><strong>#259 Trốn Cafe</strong> — Винтаж, убежище</li>
+<li><strong>#260 Coffee Baka Hòn Chồng</strong> — Общественный огород, вид на море</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Завтраки и бранчи</h3>
+<ul>
+<li><strong>#261 Café Culture Brunch Club</strong> — Завтраки, рейтинг 4.9</li>
+<li><strong>#262 Artisan Cafe & Eatery</strong> — Завтраки, выпечка</li>
+<li><strong>#263 Alpaca Homestyle (завтраки)</strong> — ЕвроКвартал · Бранчи</li>
+<li><strong>#264 Cuppa Coffee</strong> — Кофе и завтраки, рейтинг 4.4</li>
+<li><strong>#265 Time House Bistro</strong> — Завтраки весь день</li>
+<li><strong>#266 Rainforest Cafe</strong> — Джунгли-стиль, качели</li>
+<li><strong>#267 &More by Sheraton</strong> — Sheraton · Бар, кафе, рейтинг 4.9</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Вегетарианская и веганская</h3>
+<ul>
+<li><strong>#268 Ivegan Supershop</strong> — Веганская, рейтинг 5.0</li>
+<li><strong>#269 Phuoc Thien Vegetarian</strong> — Вегетарианская</li>
+<li><strong>#270 Bồ Đề (Bo De)</strong> — 11 Huỳnh Thúc Kháng · Веганская</li>
+<li><strong>#271 Sen Thien Quan</strong> — Вегетарианская</li>
+<li><strong>#272 Yen Vegetarian & Yoga</strong> — Вегетарианская + йога</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Стритфуд и ночные заведения</h3>
+<ul>
+<li><strong>#273 Great Street Food Night Market</strong> — Nguyễn Thiện Thuật (у собора) · Ночной стритфуд, с 18:30</li>
+<li><strong>#274 Quán Flan Đông Sương</strong> — Tháp Bà · Флан (карамельный пудинг)</li>
+<li><strong>#275 Xiên Que 12 Bạch Đằng</strong> — 12 Bạch Đằng · Шашлычки, 14:00–22:00</li>
+<li><strong>#276 Bánh Tráng Xoài Thái Nguyên</strong> — 11E Thái Nguyên · Манго с рисовой бумагой</li>
+<li><strong>#277 Xôi Cá Cơm</strong> — 11A Ngô Sĩ Liên · Xôi cá (липкий рис с рыбой), 17:30–20:30</li>
+<li><strong>#278 Bánh Mì Chấm Hẻm Đoàn Kết</strong> — Бань ми «макание»</li>
+<li><strong>#279 Bún Cá Cô Thủy</strong> — 26 Ngô Gia Tự · Выбор байкеров, 05:30–09:30</li>
+<li><strong>#280 Cơm Niêu Nhà Đỏ 3</strong> — Cơm niêu (горшочковый рис), рейтинг 4.5</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Китайская и паназиатская</h3>
+<ul>
+<li><strong>#281 Steam n' Spice</strong> — Sheraton, 2 этаж · Китайская</li>
+<li><strong>#282 Hoa Hoa (Mì Cay JJAMBBONG)</strong> — 2 Hai Bà Trưng · Китайская лапша, 16:00–02:00</li>
+<li><strong>#283 Nom Nom Nha Trang</strong> — Азиатская, рейтинг 4.4</li>
+<li><strong>#284 An La Ghien</strong> — 58C Trần Nhật Duật · Сингапурская каша из лягушки</li>
+</ul>
+</div>
+
+<!-- ============================================ -->
+<!-- 13. НОЧНАЯ ЖИЗНЬ -->
+<!-- ============================================ -->
+<div class="section" id="night">
+<div class="section-header"><h2>Ночная жизнь</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#285</div><h3>Sailing Club (ночной клуб)</h3><div class="loc">72-74 Tran Phu</div><div class="desc">Самый известный пляжный клуб Нячанга. Днём — ресторан, ночью — танцы на пляже до утра.</div><div class="tags"><span class="tag tag-time">7:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#286</div><h3>Skylight Rooftop</h3><div class="loc">38 Tran Phu, 43 этаж</div><div class="desc">Панорама 360°, лучший вид на город ночью. Коктейли, диджей, танцпол.</div><div class="tags"><span class="tag tag-time">17:00–1:00</span></div></div>
+
+<div class="entry"><div class="num">#287</div><h3>Altitude Rooftop (Sheraton)</h3><div class="loc">Sheraton Hotel</div><div class="desc">Премиальный лаунж с авторскими коктейлями. Вид на бухту, дресс-код.</div><div class="tags"><span class="tag tag-time">17:00–24:00</span></div></div>
+
+<div class="entry"><div class="num">#288</div><h3>Louisiane Brewhouse</h3><div class="loc">29 Tran Phu</div><div class="desc">Собственная пивоварня, пляж, живая музыка по выходным. Пиво от 40K.</div><div class="tags"><span class="tag tag-time">7:00–24:00</span></div></div>
+
+<div class="entry"><div class="num">#289</div><h3>Cheers Sports Pub</h3><div class="loc">Центр</div><div class="desc">Британский паб. Трансляции спорта, пиво, закуски. Популярен среди экспатов.</div><div class="tags"><span class="tag tag-time">16:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#290</div><h3>Shantaram Beach Bar</h3><div class="loc">На пляже</div><div class="desc">Бар на песке с лежаками, коктейлями, кальяном. Закаты, регги, чилл.</div><div class="tags"><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#291</div><h3>Rock Cafe</h3><div class="loc">86 Nguyễn Thiện Thuật</div><div class="desc">Русский рок-бар. Живая музыка, караоке, русская кухня. Популярен среди экспатов.</div><div class="tags"><span class="tag tag-time">17:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#292</div><h3>Secrets Bar & Grill</h3><div class="loc">Центр</div><div class="desc">Стильный бар-гриль с коктейлями. Спокойная музыка, хорошо для свидания.</div><div class="tags"><span class="tag tag-time">17:00–24:00</span></div></div>
+
+<div class="entry"><div class="num">#293</div><h3>Aqualine Bar</h3><div class="loc">InterContinental Hotel</div><div class="desc">Коктейль-бар с видом на море. Премиальные напитки, лаундж-музыка.</div><div class="tags"><span class="tag tag-time">17:00–24:00</span></div></div>
+
+<div class="entry"><div class="num">#294</div><h3>Havana 360° Skydeck</h3><div class="loc">38 Tran Phu</div><div class="desc">Смотровая площадка на 43 этаже. Лучший закат в городе. Вход с коктейлем.</div><div class="tags"><span class="tag tag-time">17:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#295</div><h3>Veranda Bar</h3><div class="loc">Центр</div><div class="desc">Ресторан-бар с живой музыкой. Русская и европейская кухня.</div><div class="tags"><span class="tag tag-time">17:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#296</div><h3>Ночной рынок (стритфуд)</h3><div class="loc">Tran Phu</div><div class="desc">Морепродукты на гриле, уличная еда, сувениры. Живая атмосфера до полуночи.</div><div class="tags"><span class="tag tag-time">17:00–23:00</span></div></div>
+</div></div>
+
+<!-- ============================================ -->
+<!-- 14. ПОЛЕЗНЫЕ СЕРВИСЫ -->
+<!-- ============================================ -->
+<div class="section" id="services">
+<div class="section-header"><h2>Полезные сервисы</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#297</div><h3>Обмен валют (AION)</h3><div class="loc">Mini App / Telegram</div><div class="desc">Лучший курс в Нячанге. VND ↔ USD ↔ RUB ↔ CNY. 1% комиссия. 24/7. Без очередей.</div><div class="tags"><span class="tag tag-info">Через AION</span></div></div>
+
+<div class="entry"><div class="num">#298</div><h3>Прачечная / химчистка</h3><div class="loc">Множество точек</div><div class="desc">Прачечные самообслуживания и с персоналом. 20–50K VND/кг. Есть с доставкой.</div></div>
+
+<div class="entry"><div class="num">#299</div><h3>Ремонт телефонов и ноутбуков</h3><div class="loc">Hoang Hoa Tham</div><div class="desc">Крупный рынок электроники. Замена экрана, аккумулятора, ремонт. Быстро и дёшево.</div></div>
+
+<div class="entry"><div class="num">#300</div><h3>Визовый центр / визаран</h3><div class="loc">По городу / через AION</div><div class="desc">Продление виз, визараны. Русскоязычные агенты. Через AION — с бонусами.</div><div class="tags"><span class="tag tag-info">Через AION</span></div></div>
+
+<div class="entry"><div class="num">#301</div><h3>Почта и пересылка</h3><div class="loc">Bưu điện Trung tâm</div><div class="desc">Центральное отделение Vietnam Post. Посылки в РФ и СНГ от 2 недель.</div></div>
+
+<div class="entry"><div class="num">#302</div><h3>Печать и копирование</h3><div class="loc">Возле университета</div><div class="desc">Недорогие центры печати. Фото на визу, документы, сканирование.</div></div>
+
+<div class="entry"><div class="num">#303</div><h3>Фото на визу / документы</h3><div class="loc">Tran Phu</div><div class="desc">Фотостудии с моментальной печатью. 6×4, 3×4, визовые фото. 50–100K VND.</div></div>
+
+<div class="entry"><div class="num">#304</div><h3>Швейная мастерская</h3><div class="loc">Chợ Đầm, 2 этаж</div><div class="desc">Пошив и ремонт одежды. Подшить, ушить, переделать. Дёшево и качественно.</div></div>
+
+<div class="entry"><div class="num">#305</div><h3>Ключи и замки</h3><div class="loc">Рынки / мастерские</div><div class="desc">Изготовление ключей, ремонт замков. Недорого. На рынках — быстрее.</div></div>
+
+<div class="entry"><div class="num">#306</div><h3>Ремонт обуви</h3><div class="loc">Рынок Xom Moi</div><div class="desc">Мастерские по ремонту обуви. Набойки, швы, растяжка. 30–80K VND.</div></div>
+
+<div class="entry"><div class="num">#307</div><h3>Аренда туристического снаряжения</h3><div class="loc">@nha_trang_rent</div><div class="desc">Палатки, спальники, коврики, рюкзаки. Для походов и кемпинга.</div></div>
+
+<div class="entry"><div class="num">#308</div><h3>Туристическая полиция</h3><div class="loc">Тел: 0258 3524 977</div><div class="desc">Помощь туристам. Английский язык. Помощь при краже, потере документов.</div><div class="tags"><span class="tag tag-warn">0258 3524 977</span></div></div>
+</div></div>
+
+<div style="text-align:center;padding:24px 32px;font-size:12px;color:var(--text-light);border-top:1px solid var(--border);letter-spacing:1px">
+  AION · 300 мест рядом · Июнь 2026 · Нячанг, Вьетнам<br>
+  Обновляется · Для Mini App AION
+</div>
+
+</body>
+</html>

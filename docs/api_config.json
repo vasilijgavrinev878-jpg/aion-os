@@ -1,0 +1,7 @@
+{
+  "api_key": "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",
+  "model": "llama-3.3-70b-versatile",
+  "base_url": "https://api.groq.com/openai/v1",
+  "site_url": "",
+  "site_name": "AION Docs"
+}

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог — Еда и доставка | AION</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#e2e8f0;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+h1{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#f8fafc,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:28px 0 2px}
+.sub{color:#64748b;font-size:0.85rem;margin-bottom:4px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.meta span{background:#1e293b;border:1px solid #2a3344;border-radius:6px;padding:3px 10px;font-size:0.7rem;color:#94a3b8}
+.meta .p2{background:#d4a017;color:#fff;border-color:#d4a017}
+h2{font-size:1.2rem;font-weight:700;color:#f1f5f9;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #2a3344}
+.phone-wrap{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.phone{width:240px;background:#0f172a;border:2px solid #2a3344;border-radius:24px;padding:12px 10px;flex-shrink:0}
+.phone .notch{width:70px;height:5px;background:#2a3344;border-radius:10px;margin:0 auto 8px}
+.phone .screen{background:#0f172a;border-radius:12px;overflow:hidden}
+.phone .status-bar{font-size:0.55rem;color:#64748b;padding:2px 4px 6px;display:flex;justify-content:space-between}
+.app{background:#fff;color:#1a1a2e;border-radius:10px;overflow:hidden;font-family:system-ui,sans-serif}
+.app-header{background:#0A1628;color:#fff;padding:8px 10px;font-size:0.65rem;font-weight:600;display:flex;align-items:center;gap:6px}
+.app-header .back{font-size:0.8rem;opacity:0.6}
+.app-header .title{flex:1;text-align:center}
+
+.sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px}
+.sub-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 8px;text-align:center}
+.sub-item .icon{font-size:1.1rem}
+.sub-item .name{font-size:0.58rem;font-weight:600;color:#0A1628;margin-top:2px}
+.sub-item .count{font-size:0.5rem;color:#94a3b8}
+
+.cat-chips{display:flex;gap:4px;padding:6px 8px;overflow-x:auto;border-bottom:1px solid #eee}
+.cat-chips span{padding:2px 10px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569;white-space:nowrap}
+.cat-chips span.active{background:#0A1628;color:#fff}
+
+.menu-item{display:flex;gap:8px;padding:8px;border-bottom:1px solid #f1f5f9}
+.menu-item-img{width:48px;height:48px;border-radius:8px;background:#f1f5f9;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.menu-item-info{flex:1;min-width:0}
+.menu-item-title{font-size:0.6rem;font-weight:600;color:#0A1628}
+.menu-item-desc{font-size:0.48rem;color:#94a3b8;margin-top:1px}
+.menu-item-weight{font-size:0.45rem;color:#94a3b8}
+.menu-item-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
+.menu-item-price{font-size:0.62rem;font-weight:700;color:#059669}
+.menu-item-add{width:20px;height:20px;border-radius:50%;background:#059669;color:#fff;font-size:0.55rem;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+
+.cart{padding:6px 8px}
+.cart-item{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid #f1f5f9}
+.cart-item:last-child{border:none}
+.cart-item .name{flex:1;font-size:0.55rem;font-weight:600;color:#0A1628}
+.cart-item .qty{display:flex;align-items:center;gap:4px}
+.cart-item .qty button{width:18px;height:18px;border-radius:50%;border:1px solid #ddd;background:#fff;font-size:0.55rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cart-item .qty span{font-size:0.55rem;font-weight:600;min-width:14px;text-align:center}
+.cart-item .total{font-size:0.55rem;font-weight:700;color:#059669;min-width:40px;text-align:right}
+.cart-total{display:flex;justify-content:space-between;padding:6px 0;font-size:0.6rem;font-weight:700;border-top:1px solid #e2e8f0;margin-top:4px}
+.cart-btn{background:#059669;color:#fff;text-align:center;padding:6px;border-radius:8px;font-size:0.6rem;font-weight:600}
+
+.delivery{padding:6px 8px}
+.delivery .row{display:flex;gap:6px;margin-bottom:4px}
+.delivery input,.delivery select{flex:1;padding:4px 6px;font-size:0.5rem;border:1px solid #ddd;border-radius:6px;background:#fff;font-family:inherit;color:#1a1a2e}
+
+.status-bar2{display:flex;padding:8px;gap:4px;background:#f8fafc;border-radius:8px;margin:6px}
+.status-bar2 .step{flex:1;text-align:center;font-size:0.48rem;color:#94a3b8}
+.status-bar2 .step.active{color:#059669;font-weight:600}
+.status-bar2 .step .dot{width:8px;height:8px;border-radius:50%;background:#e2e8f0;margin:0 auto 2px}
+.status-bar2 .step.active .dot{background:#059669}
+
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.flow-step{flex:1;min-width:100px;background:#1e293b;border:1px solid #2a3344;border-radius:10px;padding:12px;text-align:center}
+.flow-step .num{width:24px;height:24px;border-radius:50%;background:#0a1628;color:#22c55e;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;border:1px solid #22c55e}
+.flow-step .title{font-size:0.62rem;color:#e2e8f0;font-weight:600}
+.flow-step .desc{font-size:0.58rem;color:#64748b;margin-top:2px}
+
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+@media(max-width:600px){.spec{grid-template-columns:1fr}}
+.spec-item{background:#1e293b;border:1px solid #2a3344;border-radius:10px;padding:12px 14px}
+.spec-item .label{font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.04em}
+.spec-item .value{font-size:0.82rem;color:#f1f5f9;font-weight:600;margin-top:2px}
+.card{background:linear-gradient(135deg,#1e293b,#1a1f2e);border:1px solid #2a3344;border-radius:14px;padding:16px 20px;margin:10px 0}
+.card-title{font-weight:700;font-size:0.85rem;color:#f1f5f9;margin-bottom:6px}
+.card ul{list-style:none;padding:0}
+.card li{padding:4px 0 4px 16px;position:relative;font-size:0.78rem;color:#cbd5e1}
+.card li::before{content:"→";position:absolute;left:0;color:#f59e0b}
+.footer{text-align:center;color:#334155;font-size:0.75rem;padding:24px 0;border-top:1px solid #1e293b;margin-top:20px}
+.structure{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0;padding:16px;background:#131827;border-radius:12px}
+.structure .elem{background:#1e293b;border:1px solid #2a3344;border-radius:8px;padding:8px 14px;text-align:center;font-size:0.72rem}
+.structure .elem .l{font-size:0.55rem;color:#64748b;margin-top:1px}
+.structure .arrow{color:#64748b;font-size:1rem}
+.structure .elem.active{border-color:#22c55e;background:rgba(34,197,94,0.08)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🍽️ Каталог — Еда и доставка</h1>
+<div class="sub">Рестораны · продукты · доставка · трекинг</div>
+<div class="meta">
+  <span class="p2">P2 — Регулярные</span>
+  <span>#7 из 24</span>
+  <span>Рестораны · Продукты · Вода</span>
+</div>
+
+<div class="structure">
+  <div class="elem active">
+    🍽️ Еда
+    <div class="l">категория</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Рестораны · Продукты · Вода
+    <div class="l">подкатегории</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Фо Бо<br>$5
+    <div class="l">блюдо с ценой</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Ресторан «Pho 24»<br>4.5 ★
+    <div class="l">партнёр внутри</div>
+  </div>
+</div>
+
+<h2>📱 Основные экраны</h2>
+<div class="phone-wrap">
+
+  <!-- Screen 1: Subcategories -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>12:30</span><span>🔋 72%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">🍽️ Еда</span>
+          <span style="font-size:0.55rem;color:#64748b">📍 Нячанг</span>
+        </div>
+        <div class="sub-grid">
+          <div class="sub-item">
+            <div class="icon">🍜</div>
+            <div class="name">Рестораны</div>
+            <div class="count">доставка · навынос · на месте</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">🥦</div>
+            <div class="name">Продукты</div>
+            <div class="count">ферма · магазин · наборы</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">💧</div>
+            <div class="name">Вода</div>
+            <div class="count">бутилированная · 19л</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📋 3 подкатегории</div>
+  </div>
+
+  <!-- Screen 2: Restaurant menu -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>12:30</span><span>🔋 72%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">🍜 Pho 24</span>
+          <span style="font-size:0.55rem;color:#64748b">⭐ 4.5</span>
+        </div>
+        <div class="cat-chips">
+          <span class="active">Все</span>
+          <span>Супы</span>
+          <span>Рис</span>
+          <span>Лапша</span>
+          <span>Напитки</span>
+          <span>Добавки</span>
+        </div>
+        <div>
+          <div class="menu-item">
+            <div class="menu-item-img">🍜</div>
+            <div class="menu-item-info">
+              <div class="menu-item-title">Фо Бо (говядина)</div>
+              <div class="menu-item-desc">Рисовая лапша, говядина, бульон, зелень</div>
+              <div class="menu-item-weight">~400 г</div>
+              <div class="menu-item-bottom">
+                <span class="menu-item-price">$5</span>
+                <span class="menu-item-add">+</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-img">🍜</div>
+            <div class="menu-item-info">
+              <div class="menu-item-title">Фо Га (курица)</div>
+              <div class="menu-item-desc">Куриный бульон, лапша, курица</div>
+              <div class="menu-item-weight">~380 г</div>
+              <div class="menu-item-bottom">
+                <span class="menu-item-price">$4.5</span>
+                <span class="menu-item-add">+</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-img">🍚</div>
+            <div class="menu-item-info">
+              <div class="menu-item-title">Ком Там (рис с грилем)</div>
+              <div class="menu-item-desc">Рис, свинина на гриле, яйцо, овощи</div>
+              <div class="menu-item-weight">~350 г</div>
+              <div class="menu-item-bottom">
+                <span class="menu-item-price">$4</span>
+                <span class="menu-item-add">+</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-img">🥤</div>
+            <div class="menu-item-info">
+              <div class="menu-item-title">Тропический смузи</div>
+              <div class="menu-item-desc">Манго · маракуйя · ананас</div>
+              <div class="menu-item-weight">~300 мл</div>
+              <div class="menu-item-bottom">
+                <span class="menu-item-price">$2.5</span>
+                <span class="menu-item-add">+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📄 Меню ресторана</div>
+  </div>
+
+  <!-- Screen 3: Cart -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>12:30</span><span>🔋 72%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">🛒 Корзина</span>
+          <span style="font-size:0.55rem;color:#64748b">Pho 24</span>
+        </div>
+        <div class="cart">
+          <div class="cart-item">
+            <span class="name">Фо Бо</span>
+            <div class="qty">
+              <button>−</button>
+              <span>2</span>
+              <button>+</button>
+            </div>
+            <span class="total">$10</span>
+          </div>
+          <div class="cart-item">
+            <span class="name">Ком Там</span>
+            <div class="qty">
+              <button>−</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+            <span class="total">$4</span>
+          </div>
+          <div class="cart-item">
+            <span class="name">Смузи</span>
+            <div class="qty">
+              <button>−</button>
+              <span>2</span>
+              <button>+</button>
+            </div>
+            <span class="total">$5</span>
+          </div>
+          <div class="cart-total">
+            <span>Сумма</span>
+            <span style="color:#059669">$19</span>
+          </div>
+          <div class="cart-total" style="border:none;padding:2px 0;font-size:0.5rem;color:#64748b;font-weight:400">
+            <span>Доставка</span>
+            <span>бесплатно</span>
+          </div>
+          <div class="cart-btn">✅ Оформить заказ</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">🛒 Корзина</div>
+  </div>
+
+  <!-- Screen 4: Delivery + tracking -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>12:30</span><span>🔋 72%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">📍 Оформление</span>
+          <span></span>
+        </div>
+        <div class="delivery">
+          <div class="row">
+            <input type="text" placeholder="📍 Адрес доставки" value="ул. Нгуен Тхи Минь Кай, 12">
+          </div>
+          <div class="row">
+            <select><option>Сейчас</option><option>Через 30 мин</option><option>Через 1 час</option></select>
+            <input type="text" placeholder="📞 Телефон" value="+84 90 123 45 67">
+          </div>
+          <div class="row">
+            <textarea placeholder="Комментарий" style="flex:1;padding:4px 6px;font-size:0.5rem;border:1px solid #ddd;border-radius:6px;font-family:inherit;resize:none;height:28px">Без лука, пожалуйста</textarea>
+          </div>
+          <div style="margin:6px 0">
+            <div style="font-size:0.55rem;font-weight:600;color:#0A1628">Способ оплаты:</div>
+            <div style="display:flex;gap:6px;margin-top:2px">
+              <span style="padding:2px 8px;font-size:0.5rem;border:1px solid #059669;border-radius:6px;background:#f0fdf4;color:#059669">💵 Наличные</span>
+              <span style="padding:2px 8px;font-size:0.5rem;border:1px solid #ddd;border-radius:6px;color:#475569">💳 Карта</span>
+              <span style="padding:2px 8px;font-size:0.5rem;border:1px solid #ddd;border-radius:6px;color:#475569">📱 Перевод</span>
+            </div>
+          </div>
+          <div class="cart-btn" style="margin-top:4px">📦 Заказать — $19</div>
+        </div>
+        <div style="padding:6px 8px">
+          <div style="font-size:0.55rem;font-weight:600;color:#0A1628;margin-bottom:2px">📦 Статус заказа #1247:</div>
+          <div class="status-bar2">
+            <div class="step active"><div class="dot"></div>Принят</div>
+            <div class="step"><div class="dot"></div>Готовят</div>
+            <div class="step"><div class="dot"></div>В пути</div>
+            <div class="step"><div class="dot"></div>Доставлен</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📍 Оформление + трекинг</div>
+  </div>
+
+  <!-- Screen 5: Restaurants list -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>12:30</span><span>🔋 72%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">🍜 Рестораны</span>
+          <span style="font-size:0.55rem;color:#64748b">📍 0.5 км</span>
+        </div>
+        <div style="padding:6px 8px;display:flex;gap:4px;border-bottom:1px solid #eee">
+          <span style="padding:2px 10px;font-size:0.5rem;border-radius:10px;background:#0A1628;color:#fff">рядом</span>
+          <span style="padding:2px 10px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569">вьетнамская</span>
+          <span style="padding:2px 10px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569">русская</span>
+          <span style="padding:2px 10px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569">итальянская</span>
+          <span style="padding:2px 10px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569">японская</span>
+        </div>
+        <div>
+          <div class="menu-item">
+            <div class="menu-item-img">🍜</div>
+            <div class="menu-item-info">
+              <div class="menu-item-title">Pho 24</div>
+              <div class="menu-item-desc">⭐ 4.5 · Вьетнамская · ~$5</div>
+              <div class="menu-item-bottom">
+                <span style="font-size:0.5rem;color:#94a3b8">🕐 25–35 мин</span>
+                <span style="font-size:0.5rem;color:#059669">🚚 бесплатно</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-img">🍕</div>
+            <div class="menu-item-info">
+              <div class="menu-item-title">Pizza Italia</div>
+              <div class="menu-item-desc">⭐ 4.3 · Итальянская · ~$8</div>
+              <div class="menu-item-bottom">
+                <span style="font-size:0.5rem;color:#94a3b8">🕐 35–45 мин</span>
+                <span style="font-size:0.5rem;color:#059669">🚚 от $15</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-img">🥟</div>
+            <div class="menu-item-info">
+              <div class="menu-item-title">Pelmeni Club</div>
+              <div class="menu-item-desc">⭐ 4.6 · Русская · ~$7</div>
+              <div class="menu-item-bottom">
+                <span style="font-size:0.5rem;color:#94a3b8">🕐 30–40 мин</span>
+                <span style="font-size:0.5rem;color:#059669">🚚 бесплатно</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-img">🍣</div>
+            <div class="menu-item-info">
+              <div class="menu-item-title">Sakura Sushi</div>
+              <div class="menu-item-desc">⭐ 4.7 · Японская · ~$10</div>
+              <div class="menu-item-bottom">
+                <span style="font-size:0.5rem;color:#94a3b8">🕐 40–55 мин</span>
+                <span style="font-size:0.5rem;color:#d97706">🚚 $2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">🍽️ Список ресторанов</div>
+  </div>
+
+</div>
+
+<h2>🔄 Пользовательский путь</h2>
+<div class="flow">
+  <div class="flow-step">
+    <div class="num">1</div>
+    <div class="title">Категория «Еда»</div>
+    <div class="desc">3 подкатегории: рестораны, продукты, вода</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">2</div>
+    <div class="title">Выбор ресторана</div>
+    <div class="desc">Список с рейтингом, временем доставки</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">3</div>
+    <div class="title">Меню</div>
+    <div class="desc">Категории блюд, добавление в корзину</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">4</div>
+    <div class="title">Корзина</div>
+    <div class="desc">Количество, сумма, доставка, скидка</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">5</div>
+    <div class="title">Оформление</div>
+    <div class="desc">Адрес, время, оплата → заказ</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">6</div>
+    <div class="title">Трекинг</div>
+    <div class="desc">Статус: принят → готовят → в пути → доставлен</div>
+  </div>
+</div>
+
+<h2>📋 Спецификация</h2>
+<div class="spec">
+  <div class="spec-item">
+    <div class="label">Структура</div>
+    <div class="value">Категория → 3 подкатегории → список заведений → меню → корзина → заказ</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Подкатегории</div>
+    <div class="value">Рестораны · Продукты · Вода</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Карточка заведения</div>
+    <div class="value">Название · ★ · кухня · средний чек · время доставки · стоимость доставки</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Меню</div>
+    <div class="value">Чипы-категории · блюдо: фото, описание, вес, цена · кнопка «+»</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Корзина</div>
+    <div class="value">Список · счётчик +/- · сумма · доставка · итог · кнопка «Оформить»</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Оформление</div>
+    <div class="value">Адрес · время · телефон · комментарий · способ оплаты</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Трекинг</div>
+    <div class="value">Статус-бар: 4 шага · номер заказа · расчётное время</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Фильтры</div>
+    <div class="value">По кухне · по цене · по времени · с бесплатной доставкой · рядом</div>
+  </div>
+</div>
+
+<h2>🧩 Детальная проработка</h2>
+
+<div class="card">
+  <div class="card-title">🎯 Экран подкатегорий</div>
+  <ul>
+    <li>Сетка 3 колонки: Рестораны · Продукты · Вода</li>
+    <li>Рестораны — самый частый сценарий (по умолчанию)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Список ресторанов</div>
+  <ul>
+    <li>Чипы-фильтры: рядом · по кухне (вьетнамская, русская, итальянская...)</li>
+    <li>Карточка: иконка · название · ★ · кухня · средний чек · время · стоимость доставки</li>
+    <li>Сортировка: по рейтингу · по времени · по цене</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Меню</div>
+  <ul>
+    <li>Чипы категорий блюд (супы, рис, лапша, напитки, добавки)</li>
+    <li>Карточка: фото/иконка · название · описание · вес · цена · кнопка «+»</li>
+    <li>При добавлении — краткая анимация, счётчик в углу</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Корзина</div>
+  <ul>
+    <li>Список позиций: название · +/- · итог по позиции</li>
+    <li>Сумма, доставка, итог</li>
+    <li>Минимальная сумма заказа (если есть)</li>
+    <li>Кнопка «Оформить заказ»</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Оформление + трекинг</div>
+  <ul>
+    <li>Адрес (возможность сохранить) · время · телефон · комментарий</li>
+    <li>Способ оплаты: наличные / карта / перевод</li>
+    <li>После заказа — статус-бар: принят → готовят → в пути → доставлен</li>
+    <li>Уведомление в Telegram при смене статуса</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Продукты / Вода</div>
+  <ul>
+    <li>Продукты: категории товаров (овощи, мясо, бакалея) · корзина · доставка</li>
+    <li>Вода: бутилированная 0.5л/1л/5л/19л · регулярная доставка (подписка)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Апсейл</div>
+  <ul>
+    <li>После заказа: «💐 Добавить цветы к ужину · 🧹 Заказать уборку после готовки · 💧 Заказать воду регулярно»</li>
+    <li>Крос: «🚗 Такси после ужина в ресторане»</li>
+  </ul>
+</div>
+
+<h2>⚙️ Технические заметки</h2>
+<div class="card">
+  <ul>
+    <li><strong>Ресторан:</strong> id, название, кухня, рейтинг, средний чек, время доставки, мин. сумма, стоимость доставки</li>
+    <li><strong>Блюдо:</strong> id ресторана, название, описание, вес, цена, категория, фото</li>
+    <li><strong>Корзина:</strong> массив {id блюда, количество}, сумма, доставка, итог</li>
+    <li><strong>Заказ:</strong> id, ресторан, позиции, адрес, время, статус, оплата</li>
+    <li><strong>URL:</strong> <code>/category/food</code> → <code>/category/food/restaurants</code> → <code>/category/food/restaurants/123</code></li>
+  </ul>
+</div>
+
+<div class="footer">
+AION · Референс каталога Еда и доставка · Июль 2026
+</div>
+</div>
+</body>
+</html>

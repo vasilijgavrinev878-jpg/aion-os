@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Продукт — отчёт 8–15 июля 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#060B18;color:#e0e0e0;line-height:1.6;padding:20px;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:
+    radial-gradient(ellipse at 10% 20%,rgba(99,102,241,0.05) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 80%,rgba(192,132,252,0.04) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(0,240,255,0.02) 0%,transparent 70%);
+  pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(99,102,241,0.012) 2px,rgba(99,102,241,0.012) 4px);
+  pointer-events:none;z-index:1}
+
+.wrap{max-width:980px;margin:2em auto;position:relative;z-index:2}
+
+/* header */
+.header-wrap{position:relative;margin-bottom:28px}
+h1{font-size:2.5rem;color:#818cf8;display:flex;align-items:center;gap:16px;margin-bottom:4px;
+  text-shadow:0 0 40px rgba(99,102,241,0.2),0 0 80px rgba(99,102,241,0.1);
+  letter-spacing:-0.5px;animation:flicker 4s infinite}
+@keyframes flicker{
+  0%,100%{opacity:1}
+  3%{opacity:0.92}
+  4%{opacity:1}
+  6%{opacity:0.88}
+  7%{opacity:1}
+  92%{opacity:1}
+  93%{opacity:0.9}
+  94%{opacity:1}}
+h1 small{font-size:0.85rem;color:#64748b;font-weight:400;letter-spacing:0}
+h1::after{content:'⟡';font-size:1rem;color:#a78bfa;margin-left:auto;animation:spin 6s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sub{color:#64748b;font-size:0.9rem;padding-bottom:14px;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid rgba(99,102,241,0.08)}
+.sub span{color:#334155}
+
+/* hero */
+.hero{position:relative;background:linear-gradient(135deg,rgba(10,16,40,0.95),rgba(30,20,60,0.95));
+  border:1px solid rgba(99,102,241,0.12);border-radius:24px;padding:36px 28px;text-align:center;
+  margin-bottom:28px;overflow:hidden;box-shadow:0 0 60px rgba(99,102,241,0.05),inset 0 0 60px rgba(99,102,241,0.02)}
+.hero::before{content:'';position:absolute;top:-80%;left:-80%;width:260%;height:260%;
+  background:conic-gradient(from 0deg,transparent,rgba(99,102,241,0.04),transparent,rgba(192,132,252,0.04),transparent);
+  animation:heroSpin 25s linear infinite;pointer-events:none}
+@keyframes heroSpin{to{transform:rotate(360deg)}}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#818cf8,#a78bfa,transparent);
+  animation:slide 3s ease-in-out infinite;background-size:200% 100%}
+@keyframes slide{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+.particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+.p{position:absolute;width:3px;height:3px;background:#818cf8;border-radius:50%;opacity:0;animation:float 8s infinite}
+.p:nth-child(1){left:8%;animation-delay:0s;animation-duration:9s}
+.p:nth-child(2){left:22%;animation-delay:1.5s;animation-duration:11s;width:2px;height:2px;background:#a78bfa}
+.p:nth-child(3){left:42%;animation-delay:3s;animation-duration:8s;width:4px;height:4px}
+.p:nth-child(4){left:62%;animation-delay:0.5s;animation-duration:10s;background:#a78bfa;width:2px;height:2px}
+.p:nth-child(5){left:78%;animation-delay:2.5s;animation-duration:7s}
+.p:nth-child(6){left:32%;animation-delay:4s;animation-duration:12s;background:#a78bfa;width:3px;height:3px}
+.p:nth-child(7){left:52%;animation-delay:1s;animation-duration:9s}
+.p:nth-child(8){left:88%;animation-delay:3.5s;animation-duration:8s;width:2px;height:2px}
+.p:nth-child(9){left:5%;animation-delay:2s;animation-duration:10s}
+.p:nth-child(10){left:72%;animation-delay:4.5s;animation-duration:11s;background:#a78bfa;width:4px;height:4px}
+@keyframes float{0%{transform:translateY(100px) scale(0);opacity:0}20%{opacity:0.8}80%{opacity:0.6}100%{transform:translateY(-30px) scale(1);opacity:0}}
+
+.hero .content{position:relative;z-index:1}
+.hero .big{font-size:1.2rem;color:#a78bfa;margin-bottom:20px;font-weight:600}
+.hero .big strong{color:#818cf8;font-weight:700}
+.hero .stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.hero .stat{text-align:center}
+.hero .stat .n{font-size:2.8rem;font-weight:700;color:#fff;line-height:1;
+  text-shadow:0 0 50px rgba(99,102,241,0.15);animation:countGlow 3s ease-in-out infinite}
+.hero .stat:nth-child(2) .n{animation-delay:0.5s}
+.hero .stat:nth-child(3) .n{animation-delay:1s}
+.hero .stat:nth-child(4) .n{animation-delay:1.5s}
+@keyframes countGlow{0%,100%{text-shadow:0 0 30px rgba(99,102,241,0.1)}50%{text-shadow:0 0 60px rgba(99,102,241,0.25)}}
+.hero .stat .l{font-size:0.72rem;color:#64748b;margin-top:4px;text-transform:uppercase;letter-spacing:2px}
+
+/* sections */
+h2{font-size:1.15rem;color:#a78bfa;margin-top:2.2em;margin-bottom:14px;padding-bottom:8px;
+  display:flex;align-items:center;gap:10px;letter-spacing:0.5px;text-transform:uppercase;font-weight:600;
+  border-image:linear-gradient(90deg,rgba(167,139,250,0.3),transparent) 1;
+  border-bottom:1px solid rgba(167,139,250,0.1)}
+h2 .ico{font-size:1.3rem;animation:iconPulse 3s ease-in-out infinite}
+@keyframes iconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+/* glass card */
+.glass{background:linear-gradient(135deg,rgba(17,20,39,0.8),rgba(26,22,50,0.6));
+  border:1px solid rgba(99,102,241,0.06);border-radius:16px;padding:20px;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  transition:all .3s ease;position:relative;overflow:hidden}
+.glass:hover{border-color:rgba(99,102,241,0.15);transform:translateY(-2px);
+  box-shadow:0 8px 40px rgba(99,102,241,0.06)}
+.glass::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:conic-gradient(from 0deg,transparent,rgba(99,102,241,0.02),transparent,rgba(99,102,241,0.02),transparent);
+  animation:cardSpin 10s linear infinite;pointer-events:none;opacity:0;transition:opacity .3s}
+.glass:hover::before{opacity:1}
+@keyframes cardSpin{to{transform:rotate(360deg)}}
+.glass .num{font-size:2.2rem;font-weight:700;color:#fff;line-height:1;position:relative;z-index:1}
+.glass .label{font-size:0.72rem;color:#64748b;margin-top:4px;text-transform:uppercase;letter-spacing:1.5px;position:relative;z-index:1}
+.glass .subtext{color:#94a3b8;font-size:0.82rem;margin-top:8px;position:relative;z-index:1}
+.glass .subtext strong{color:#818cf8}
+
+/* grid helpers */
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:16px 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin:16px 0}
+@media(max-width:720px){.grid-4,.grid-3{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}}
+@media(max-width:480px){.grid-4,.grid-3{grid-template-columns:1fr}}
+
+/* progress bar sections */
+.progress-section{margin:10px 0}
+.prog-row{display:flex;align-items:center;gap:12px;margin-bottom:7px;animation:pIn 0.5s ease forwards;opacity:0}
+.prog-row:nth-child(1){animation-delay:0s}
+.prog-row:nth-child(2){animation-delay:0.06s}
+.prog-row:nth-child(3){animation-delay:0.12s}
+.prog-row:nth-child(4){animation-delay:0.18s}
+.prog-row:nth-child(5){animation-delay:0.24s}
+.prog-row:nth-child(6){animation-delay:0.3s}
+.prog-row:nth-child(7){animation-delay:0.36s}
+.prog-row:nth-child(8){animation-delay:0.42s}
+@keyframes pIn{to{opacity:1}}
+.prog-row .p-label{min-width:160px;font-size:0.8rem;color:#94a3b8;text-align:right}
+.prog-row .p-track{flex:1;height:20px;background:rgba(255,255,255,0.02);border-radius:20px;overflow:hidden;position:relative}
+.prog-row .p-fill{height:100%;border-radius:20px;background-size:200% 100%;
+  box-shadow:0 0 12px rgba(99,102,241,0.05);position:relative}
+.prog-row .p-fill::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);animation:shimmer 3s infinite}
+@keyframes shimmer{0%{left:-100%}100%{left:200%}}
+.prog-row .p-pct{min-width:36px;font-size:0.72rem;color:#64748b}
+
+/* timeline */
+.timeline{position:relative;padding-left:28px;margin:14px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,rgba(99,102,241,0.5),rgba(192,132,252,0.2))}
+.tl-item{position:relative;margin-bottom:18px;padding:14px 18px;background:rgba(17,20,39,0.6);
+  border:1px solid rgba(99,102,241,0.06);border-radius:12px;transition:all .3s}
+.tl-item:hover{border-color:rgba(99,102,241,0.15);background:rgba(17,20,39,0.8)}
+.tl-item::before{content:'';position:absolute;left:-22px;top:18px;width:10px;height:10px;
+  border-radius:50%;background:#818cf8;box-shadow:0 0 16px rgba(99,102,241,0.4)}
+.tl-item .t-date{font-size:0.7rem;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.tl-item .t-title{font-size:0.95rem;font-weight:600;color:#e0e0e0;margin-bottom:4px}
+.tl-item .t-desc{font-size:0.82rem;color:#64748b}
+
+/* esports prize card */
+.prize-card{background:linear-gradient(135deg,rgba(40,15,30,0.8),rgba(20,10,40,0.6));
+  border:1px solid rgba(239,68,68,0.12);border-radius:16px;padding:20px;text-align:center;
+  position:relative;overflow:hidden;transition:all .3s}
+.prize-card::before{content:'';position:absolute;top:-80%;left:-80%;width:260%;height:260%;
+  background:conic-gradient(from 0deg,transparent,rgba(239,68,68,0.03),transparent,rgba(168,85,247,0.03),transparent);
+  animation:heroSpin 20s linear infinite;pointer-events:none}
+.prize-card:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(239,68,68,0.06)}
+.prize-card .content{position:relative;z-index:1}
+.prize-card .p-icon{font-size:2.5rem;margin-bottom:8px}
+.prize-card .p-val{font-size:2rem;font-weight:700;color:#fff}
+.prize-card .p-label{font-size:0.72rem;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+.prize-card .p-detail{font-size:0.85rem;color:#94a3b8;margin-top:8px}
+
+/* tag */
+.tag{display:inline-block;padding:3px 14px;border-radius:20px;font-size:0.7rem;font-weight:700}
+.tag-purple{background:rgba(167,139,250,0.08);color:#a78bfa;border:1px solid rgba(167,139,250,0.15)}
+.tag-green{background:rgba(34,197,94,0.08);color:#22c55e;border:1px solid rgba(34,197,94,0.15)}
+.tag-red{background:rgba(239,68,68,0.08);color:#ef4444;border:1px solid rgba(239,68,68,0.15)}
+.tag-cyan{background:rgba(0,240,255,0.08);color:#00f0ff;border:1px solid rgba(0,240,255,0.15)}
+.tag-amber{background:rgba(245,158,11,0.08);color:#f59e0b;border:1px solid rgba(245,158,11,0.15)}
+
+/* feature card */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:640px){.feat-grid{grid-template-columns:1fr}}
+.feat-card{background:linear-gradient(135deg,rgba(17,20,39,0.8),rgba(26,22,50,0.6));
+  border-radius:16px;padding:18px;border-left:3px solid;position:relative;overflow:hidden;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:all .3s}
+.feat-card:hover{transform:translateY(-2px)}
+.feat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,currentColor,transparent);opacity:0.2}
+.feat-card strong{display:block;font-size:0.85rem;margin-bottom:4px;color:#e0e0e0}
+.feat-card p{color:#64748b;font-size:0.78rem;margin:0;line-height:1.5}
+
+/* final block */
+.final{text-align:center;font-size:1rem;padding:32px;
+  background:linear-gradient(135deg,rgba(10,16,40,0.95),rgba(30,20,60,0.95));
+  border:1px solid rgba(99,102,241,0.1);border-radius:20px;color:#fff;margin:28px 0;
+  position:relative;overflow:hidden;box-shadow:0 0 60px rgba(99,102,241,0.03)}
+.final::before{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;
+  background:conic-gradient(from 0deg,transparent,rgba(99,102,241,0.02),transparent,rgba(192,132,252,0.02),transparent);
+  animation:heroSpin 30s linear infinite;pointer-events:none}
+.final::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#818cf8,#a78bfa,transparent);
+  animation:slide 3s ease-in-out infinite;background-size:200% 100%}
+.final .content{position:relative;z-index:1}
+.final .highlight{color:#a78bfa;position:relative;z-index:1}
+.final .highlight strong{color:#818cf8}
+
+.pulse-ring{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;
+  box-shadow:0 0 20px rgba(34,197,94,0.4);animation:pulse 2s infinite;margin-right:6px;vertical-align:middle}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,0.08),transparent);margin:24px 0}
+.footer{text-align:center;color:#334155;font-size:0.78rem;margin-top:28px;padding-top:14px;
+  border-top:1px solid rgba(255,255,255,0.03);letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- header -->
+<div class="header-wrap">
+<h1>⟁ Продукт <small>8 – 15 июля 2026</small></h1>
+<div class="sub">
+  <span>Влад · Куратор продукта</span>
+  <span><span class="pulse-ring"></span>Спринт завершён</span>
+</div>
+</div>
+
+<!-- hero -->
+<div class="hero">
+  <div class="particles">
+    <div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div>
+    <div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div>
+    <div class="p"></div><div class="p"></div>
+  </div>
+  <div class="content">
+    <div class="big">7 направлений · 18+ задач <span class="tag tag-green" style="margin-left:8px">Спринт 8–15 июля</span></div>
+    <div class="stats">
+      <div class="stat"><div class="n">5</div><div class="l">Направлений в работе</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Запущено</div></div>
+      <div class="stat"><div class="n">∞</div><div class="l">Багфиксов</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Турнира Dota 2</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. Invite Machine -->
+<h2><span class="ico">🤖</span> Invite Machine</h2>
+<div class="glass">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+    <div style="flex:1">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <span class="tag tag-green">Запущен</span>
+        <span class="tag tag-cyan">Парсер готов</span>
+        <span class="tag tag-cyan">Инвайтинг работает</span>
+        <span class="tag tag-amber">Прогрев</span>
+      </div>
+      <p style="color:#94a3b8;font-size:0.85rem;line-height:1.7">
+        Создан парсер Telegram-чатов. Аккаунты загружены в систему и проходят прогрев.
+        Общий функционал инвайтинга работает — тесты продолжаются.
+        30 аккаунтов в работе (10 ноутбуков × 3 аккаунта, домашние IP).
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="progress-section" style="margin-top:12px">
+  <div class="prog-row">
+    <div class="p-label" style="color:#818cf8">Парсер</div>
+    <div class="p-track"><div class="p-fill" style="width:100%;background:linear-gradient(90deg,#818cf8,#6366f1,transparent)"></div></div>
+    <div class="p-pct" style="color:#818cf8">100%</div>
+  </div>
+  <div class="prog-row">
+    <div class="p-label" style="color:#22c55e">Загрузка и прогрев аккаунтов</div>
+    <div class="p-track"><div class="p-fill" style="width:70%;background:linear-gradient(90deg,#22c55e,#16a34a,transparent)"></div></div>
+    <div class="p-pct" style="color:#22c55e">~70%</div>
+  </div>
+  <div class="prog-row">
+    <div class="p-label" style="color:#a78bfa">Инвайтинг (тесты)</div>
+    <div class="p-track"><div class="p-fill" style="width:85%;background:linear-gradient(90deg,#a78bfa,#7c3aed,transparent)"></div></div>
+    <div class="p-pct" style="color:#a78bfa">~85%</div>
+  </div>
+  <div class="prog-row">
+    <div class="p-label" style="color:#f59e0b">Готовность к деплою</div>
+    <div class="p-track"><div class="p-fill" style="width:50%;background:linear-gradient(90deg,#f59e0b,#d97706,transparent)"></div></div>
+    <div class="p-pct" style="color:#f59e0b">~50%</div>
+  </div>
+</div>
+
+<!-- 2. CRM + 3. Content Factory -->
+<h2><span class="ico">🏗️</span> CRM + Контент-завод</h2>
+<div class="grid-2">
+  <div class="glass">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+      <span class="tag tag-green">Готова</span>
+    </div>
+    <div class="num" style="font-size:1.8rem;color:#22c55e">✓</div>
+    <div class="label">CRM компании</div>
+    <div class="subtext">
+      Полностью доработана. Операционный дашборд Людмилы — управление задачами, KPI, контроль дедлайнов.
+    </div>
+  </div>
+  <div class="glass">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+      <span class="tag tag-amber">В разработке</span>
+    </div>
+    <div class="num" style="font-size:1.8rem;color:#f59e0b">~40%</div>
+    <div class="label">Workflow контент-завода</div>
+    <div class="subtext">
+      Началась разработка и постройка пайплайна. ComfyUI → Kling API → Fish AI → FFmpeg.
+      Артем + Марк на задачке.
+    </div>
+  </div>
+</div>
+
+<!-- 4. Esports + Tournaments -->
+<h2><span class="ico">🏆</span> Dota 2 — Киберспорт</h2>
+<div class="grid-2">
+  <div class="prize-card">
+    <div class="content">
+      <div class="p-icon">⚔️</div>
+      <div class="p-label">Проведённый турнир</div>
+      <div style="margin:6px 0;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
+        <span class="tag tag-green">Материалы собраны</span>
+      </div>
+      <div style="color:#94a3b8;font-size:0.8rem;margin-top:6px">
+        Первый турнир AION Dota 2 — проведён. Контент отснят, идёт подготовка к монтажу.
+      </div>
+    </div>
+  </div>
+  <div class="glass" style="background:linear-gradient(135deg,rgba(40,15,30,0.8),rgba(20,10,40,0.6));
+    border-color:rgba(239,68,68,0.08)">
+    <div class="label" style="color:#ef4444;font-size:0.65rem">СЛЕДУЮЩИЙ</div>
+    <div class="num" style="color:#ef4444;font-size:2.6rem">$400K</div>
+    <div class="label">Призовой фонд</div>
+    <div class="subtext">
+      Крупный турнир <strong style="color:#ef4444">20 июля</strong> — $400,000
+    </div>
+  </div>
+</div>
+
+<div class="timeline">
+  <div class="tl-item">
+    <div class="t-date">8 – 14 июля · Сделано</div>
+    <div class="t-title">🎮 Первый турнир AION Dota 2</div>
+    <div class="t-desc">Проведён. Материалы собраны — скриншоты, моменты, статистика. Идёт подготовка к созданию красивых видео для киберспортивной команды.</div>
+  </div>
+  <div class="tl-item" style="border-color:rgba(239,68,68,0.15)">
+    <div class="t-date" style="color:#ef4444">20 июля · Анонс</div>
+    <div class="t-title">🔥 Крупный турнир — $400,000</div>
+    <div class="t-desc">Большое событие. Максимальный призовой фонд. Полная съёмка, репортажи, контент для промо киберспортивной команды AION.</div>
+  </div>
+  <div class="tl-item" style="border-color:rgba(245,158,11,0.15)">
+    <div class="t-date" style="color:#f59e0b">28 июля · Анонс</div>
+    <div class="t-title">📺 Турнир — $20,000</div>
+    <div class="t-desc">Камерный турнир. Дополнительный контент для команды. Сбор материалов и монтажных планов.</div>
+  </div>
+</div>
+
+<!-- 5. App Development -->
+<h2><span class="ico">📱</span> Разработка приложения</h2>
+<div class="glass" style="margin-bottom:14px">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+    <span class="tag tag-amber">В разработке</span>
+    <span class="tag tag-cyan">Ближе к концу</span>
+  </div>
+  <p style="color:#94a3b8;font-size:0.85rem;line-height:1.7">
+    Началась разработка каталогов внутри приложения. <strong>24 категории</strong> — каждая получит свой интерфейс.
+    У каждой услуги — карточка с полным описанием. Пример: аренда байков — 1 услуга, а внутри каталог на 80 байков
+    с характеристиками, фото и ценой.
+  </p>
+</div>
+
+<div class="progress-section">
+  <div class="prog-row">
+    <div class="p-label" style="color:#a78bfa">Каталоги (24 категории)</div>
+    <div class="p-track"><div class="p-fill" style="width:15%;background:linear-gradient(90deg,#a78bfa,#7c3aed,transparent)"></div></div>
+    <div class="p-pct" style="color:#a78bfa">~15%</div>
+  </div>
+  <div class="prog-row">
+    <div class="p-label" style="color:#00f0ff">Тёмная тема</div>
+    <div class="p-track"><div class="p-fill" style="width:90%;background:linear-gradient(90deg,#00f0ff,#0891b2,transparent)"></div></div>
+    <div class="p-pct" style="color:#00f0ff">~90%</div>
+  </div>
+  <div class="prog-row">
+    <div class="p-label" style="color:#f59e0b">Карточки услуг</div>
+    <div class="p-track"><div class="p-fill" style="width:20%;background:linear-gradient(90deg,#f59e0b,#d97706,transparent)"></div></div>
+    <div class="p-pct" style="color:#f59e0b">~20%</div>
+  </div>
+  <div class="prog-row">
+    <div class="p-label" style="color:#22c55e">Багфиксы и правки</div>
+    <div class="p-track"><div class="p-fill" style="width:0%;background:linear-gradient(90deg,#22c55e,#16a34a,transparent);animation:infiniteBar 2s ease infinite"></div></div>
+    <div class="p-pct" style="color:#22c55e">∞</div>
+  </div>
+</div>
+
+<style>
+@keyframes infiniteBar{
+  0%{width:30%}
+  50%{width:70%}
+  100%{width:30%}
+}
+</style>
+
+<!-- 6. AI Agent -->
+<h2><span class="ico">🧠</span> AI-агент в приложении</h2>
+<div class="glass">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+    <span class="tag tag-amber">Начата разработка</span>
+    <span class="tag tag-purple">Голосовой ассистент</span>
+  </div>
+  <p style="color:#94a3b8;font-size:0.85rem;line-height:1.7">
+    Началась разработка встроенного AI-агента — голосового ассистента, который будет <strong>делать всё</strong>
+    внутри приложения: поиск карточек, помощь с выбором, проведение оплат, общение, ответы на вопросы.
+    Полный контроль голосом — от поиска до транзакции.
+  </p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
+    <div style="flex:1;min-width:120px;text-align:center;padding:12px;
+      background:rgba(99,102,241,0.04);border-radius:12px;border:1px solid rgba(99,102,241,0.06)">
+      <div style="font-size:1.5rem">🔍</div>
+      <div style="font-size:0.7rem;color:#64748b;margin-top:4px">Поиск карточек</div>
+    </div>
+    <div style="flex:1;min-width:120px;text-align:center;padding:12px;
+      background:rgba(99,102,241,0.04);border-radius:12px;border:1px solid rgba(99,102,241,0.06)">
+      <div style="font-size:1.5rem">💳</div>
+      <div style="font-size:0.7rem;color:#64748b;margin-top:4px">Проведение оплат</div>
+    </div>
+    <div style="flex:1;min-width:120px;text-align:center;padding:12px;
+      background:rgba(99,102,241,0.04);border-radius:12px;border:1px solid rgba(99,102,241,0.06)">
+      <div style="font-size:1.5rem">💬</div>
+      <div style="font-size:0.7rem;color:#64748b;margin-top:4px">Общение / поддержка</div>
+    </div>
+    <div style="flex:1;min-width:120px;text-align:center;padding:12px;
+      background:rgba(99,102,241,0.04);border-radius:12px;border:1px solid rgba(99,102,241,0.06)">
+      <div style="font-size:1.5rem">🎯</div>
+      <div style="font-size:0.7rem;color:#64748b;margin-top:4px">Помощь с услугами</div>
+    </div>
+  </div>
+</div>
+
+<!-- Summary -->
+<div class="divider"></div>
+<h2><span class="ico">📋</span> Что сделано за спринт</h2>
+<div class="feat-grid">
+  <div class="feat-card" style="border-color:#818cf8;color:#818cf8">
+    <strong>🤖 Invite Machine</strong>
+    <p>Парсер готов. Аккаунты прогреваются. Инвайтинг работает, тесты продолжаются.</p>
+  </div>
+  <div class="feat-card" style="border-color:#22c55e;color:#22c55e">
+    <strong>📊 CRM компании</strong>
+    <p>Полностью доработана. Дашборд Людмилы — задачи, KPI, контроль.</p>
+  </div>
+  <div class="feat-card" style="border-color:#f59e0b;color:#f59e0b">
+    <strong>🏗️ Контент-завод</strong>
+    <p>Workflow начат. ComfyUI + Kling + Fish AI — пайплайн строится.</p>
+  </div>
+  <div class="feat-card" style="border-color:#ef4444;color:#ef4444">
+    <strong>🎮 Dota 2 — Турниры</strong>
+    <p>1-й турнир проведён. Следующие: 20 июля ($400K) и 28 июля ($20K).</p>
+  </div>
+  <div class="feat-card" style="border-color:#a78bfa;color:#a78bfa">
+    <strong>📱 Каталоги в приложении</strong>
+    <p>24 категории → свои интерфейсы. Карточки услуг с описанием.</p>
+  </div>
+  <div class="feat-card" style="border-color:#00f0ff;color:#00f0ff">
+    <strong>🌙 Тёмная тема</strong>
+    <p>Разработка подходит к концу (~90%). Скоро в релизе.</p>
+  </div>
+  <div class="feat-card" style="border-color:#a78bfa;color:#a78bfa">
+    <strong>🧠 AI-агент</strong>
+    <p>Голосовой ассистент внутри приложения — поиск, оплаты, общение.</p>
+  </div>
+  <div class="feat-card" style="border-color:#64748b;color:#64748b">
+    <strong>🔧 Багфиксы и правки</strong>
+    <p>Внесено множество исправлений по всему приложению.</p>
+  </div>
+</div>
+
+<!-- final -->
+<div class="final">
+  <div class="content">
+    <span class="highlight">Продукт движется по 7 направлениям одновременно.</span><br>
+    <span class="highlight" style="font-size:0.85rem">Invite Machine → CRM → Контент-завод → Dota 2 → Каталоги → Тёмная тема → AI-агент</span><br>
+    <span class="highlight" style="font-size:0.75rem;color:#64748b;margin-top:6px;display:block">Следующий спринт: 15–22 июля</span>
+  </div>
+</div>
+
+<div class="footer">AION · Продукт-отчёт 8–15 июля 2026 · Влад</div>
+
+</div>
+</body>
+</html>

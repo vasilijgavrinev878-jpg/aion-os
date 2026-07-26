@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог — Визы | AION</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#e2e8f0;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+h1{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#f8fafc,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:28px 0 2px}
+.sub{color:#64748b;font-size:0.85rem;margin-bottom:4px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.meta span{background:#1e293b;border:1px solid #2a3344;border-radius:6px;padding:3px 10px;font-size:0.7rem;color:#94a3b8}
+.meta .p1{background:#1a1a2e;color:#fff;border-color:#1a1a2e}
+
+h2{font-size:1.2rem;font-weight:700;color:#f1f5f9;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #2a3344}
+h3{font-size:0.9rem;font-weight:600;color:#e2e8f0;margin:18px 0 6px}
+
+.phone-wrap{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.phone{width:240px;background:#0f172a;border:2px solid #2a3344;border-radius:24px;padding:12px 10px;flex-shrink:0}
+.phone .notch{width:70px;height:5px;background:#2a3344;border-radius:10px;margin:0 auto 8px}
+.phone .screen{background:#0f172a;border-radius:12px;overflow:hidden}
+.phone .status-bar{font-size:0.55rem;color:#64748b;padding:2px 4px 6px;display:flex;justify-content:space-between}
+
+.app{background:#fff;color:#1a1a2e;border-radius:10px;overflow:hidden;font-family:system-ui,sans-serif}
+.app-header{background:#0A1628;color:#fff;padding:8px 10px;font-size:0.65rem;font-weight:600;display:flex;align-items:center;gap:6px}
+.app-header .back{font-size:0.8rem;opacity:0.6}
+.app-header .title{flex:1;text-align:center}
+
+/* subcategory grid */
+.sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px}
+.sub-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 8px;text-align:center}
+.sub-item .icon{font-size:1.1rem}
+.sub-item .name{font-size:0.58rem;font-weight:600;color:#0A1628;margin-top:2px}
+.sub-item .count{font-size:0.5rem;color:#94a3b8}
+
+/* service list */
+.app-list{padding:6px 8px}
+.app-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #f1f5f9;align-items:center}
+.app-item:last-child{border:none}
+.app-item-info{flex:1}
+.app-item-title{font-size:0.62rem;font-weight:600;color:#0A1628}
+.app-item-price{font-size:0.68rem;font-weight:700;color:#059669;margin-top:1px}
+.app-item-price .old{font-size:0.55rem;color:#94a3b8;text-decoration:line-through;margin-left:4px;font-weight:400}
+.app-item-partner{font-size:0.5rem;color:#94a3b8;margin-top:1px}
+.app-item-tag{font-size:0.45rem;padding:1px 5px;border-radius:4px;font-weight:600;flex-shrink:0;margin-left:auto}
+.tg-green{background:#d1fae5;color:#065f46}
+.tg-blue{background:#dbeafe;color:#1e40af}
+
+/* stages */
+.app-stages{display:flex;gap:4px;padding:8px;justify-content:center}
+.app-stages .s{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;flex-shrink:0}
+.app-stages .s.done{background:#059669;color:#fff}
+.app-stages .s.cur{background:#0A1628;color:#fff;border:2px solid #059669}
+.app-stages .s.pend{background:#f1f5f9;color:#94a3b8}
+.app-stages .line{width:12px;height:2px;background:#e2e8f0;align-self:center;flex-shrink:0}
+.app-stages .line.done{background:#059669}
+
+/* detail */
+.app-detail-content{padding:8px 10px}
+.app-detail-title{font-size:0.7rem;font-weight:700;color:#0A1628}
+.app-detail-price{font-size:0.85rem;font-weight:800;color:#059669;margin-top:2px}
+.app-detail-price span{font-size:0.55rem;color:#94a3b8;font-weight:400}
+.app-detail-desc{font-size:0.55rem;color:#475569;line-height:1.5;margin:4px 0 6px}
+.app-detail-list{font-size:0.52rem;color:#475569;line-height:1.7;margin-bottom:6px;padding-left:12px}
+.app-detail-list li{margin-bottom:1px}
+.app-detail-partner{padding:6px 8px;background:#f8fafc;border-radius:6px;border:1px solid #e2e8f0;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.app-detail-partner .logo{width:24px;height:24px;border-radius:4px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:0.6rem;flex-shrink:0}
+.app-detail-partner .info{flex:1}
+.app-detail-partner .name{font-size:0.55rem;font-weight:600;color:#0A1628}
+.app-detail-partner .rating{font-size:0.48rem;color:#d97706}
+.app-detail-btn{background:#059669;color:#fff;text-align:center;padding:7px;border-radius:8px;font-size:0.6rem;font-weight:600;margin-bottom:3px}
+.app-detail-btn2{text-align:center;padding:4px;font-size:0.52rem;color:#64748b;font-weight:500;border-top:1px solid #eee;margin-top:2px;padding-top:6px}
+
+/* timing */
+.app-timing{display:flex;gap:6px;padding:6px 8px;border-bottom:1px solid #eee}
+.app-timing span{font-size:0.48rem;color:#64748b;padding:2px 6px;background:#f1f5f9;border-radius:4px}
+
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.flow-step{flex:1;min-width:100px;background:#1e293b;border:1px solid #2a3344;border-radius:10px;padding:12px;text-align:center}
+.flow-step .num{width:24px;height:24px;border-radius:50%;background:#0a1628;color:#22c55e;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;border:1px solid #22c55e}
+.flow-step .title{font-size:0.62rem;color:#e2e8f0;font-weight:600}
+.flow-step .desc{font-size:0.58rem;color:#64748b;margin-top:2px}
+
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+@media(max-width:600px){.spec{grid-template-columns:1fr}}
+.spec-item{background:#1e293b;border:1px solid #2a3344;border-radius:10px;padding:12px 14px}
+.spec-item .label{font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.04em}
+.spec-item .value{font-size:0.82rem;color:#f1f5f9;font-weight:600;margin-top:2px}
+
+.card{background:linear-gradient(135deg,#1e293b,#1a1f2e);border:1px solid #2a3344;border-radius:14px;padding:16px 20px;margin:10px 0}
+.card-title{font-weight:700;font-size:0.85rem;color:#f1f5f9;margin-bottom:6px}
+.card ul{list-style:none;padding:0}
+.card li{padding:4px 0 4px 16px;position:relative;font-size:0.78rem;color:#cbd5e1}
+.card li::before{content:"→";position:absolute;left:0;color:#f59e0b}
+
+.footer{text-align:center;color:#334155;font-size:0.75rem;padding:24px 0;border-top:1px solid #1e293b;margin-top:20px}
+
+.structure{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0;padding:16px;background:#131827;border-radius:12px}
+.structure .elem{background:#1e293b;border:1px solid #2a3344;border-radius:8px;padding:8px 14px;text-align:center;font-size:0.72rem}
+.structure .elem .l{font-size:0.55rem;color:#64748b;margin-top:1px}
+.structure .arrow{color:#64748b;font-size:1rem}
+.structure .elem.active{border-color:#22c55e;background:rgba(34,197,94,0.08)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<h1>📄 Каталог — Визы</h1>
+<div class="sub">Структура: категория → подкатегории (тип услуги) → услуга с ценой → партнёр внутри</div>
+<div class="meta">
+  <span class="p1">P1 — Ядро</span>
+  <span>#2 из 24</span>
+  <span>Виза · Визаран · Фаст трек</span>
+</div>
+
+<div class="structure">
+  <div class="elem active">
+    📄 Визы
+    <div class="l">категория</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Виза · Визаран · Фаст трек
+    <div class="l">подкатегории</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    «Визаран автобусом»<br>$45
+    <div class="l">услуга с ценой</div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="elem">
+    Агентство «Визы Вьетнама»<br>4.7 ★
+    <div class="l">внутри услуги</div>
+  </div>
+</div>
+
+<!-- ═══ ЭКРАНЫ ═══ -->
+<h2>📱 Основные экраны</h2>
+
+<div class="phone-wrap">
+
+  <!-- Screen 1: Подкатегории -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>15:30</span><span>🔋 84%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">📄 Визы</span>
+          <span style="font-size:0.55rem;color:#64748b">📍 Нячанг</span>
+        </div>
+        <div class="sub-grid">
+          <div class="sub-item">
+            <div class="icon">📄</div>
+            <div class="name">Виза</div>
+            <div class="count">новая · продление · консультация</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">🛂</div>
+            <div class="name">Визаран</div>
+            <div class="count">от $40 · выезд в Кампучию</div>
+          </div>
+          <div class="sub-item">
+            <div class="icon">⚡</div>
+            <div class="name">Фаст трек</div>
+            <div class="count">срочно · экспресс · премиум</div>
+          </div>
+        </div>
+        <div style="padding:4px 8px 8px;display:flex;gap:6px">
+          <div style="flex:1;text-align:center;font-size:0.5rem;color:#94a3b8;background:#f8fafc;padding:4px;border-radius:6px">📅 Записаться</div>
+          <div style="flex:1;text-align:center;font-size:0.5rem;color:#94a3b8;background:#f8fafc;padding:4px;border-radius:6px">⚡ Фильтры</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📋 Выбор типа услуги</div>
+  </div>
+
+  <!-- Screen 2: Варианты услуги -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>15:30</span><span>🔋 84%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">Визаран</span>
+          <span style="font-size:0.55rem;color:#64748b">города ↓</span>
+        </div>
+        <div style="padding:4px 8px;display:flex;gap:4px;border-bottom:1px solid #eee">
+          <span style="padding:2px 8px;font-size:0.5rem;border-radius:10px;background:#0A1628;color:#fff">все</span>
+          <span style="padding:2px 8px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569">Кампучия</span>
+          <span style="padding:2px 8px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569">Хошимин</span>
+          <span style="padding:2px 8px;font-size:0.5rem;border-radius:10px;background:#f1f5f9;color:#475569">с трансфером</span>
+        </div>
+        <div class="app-list">
+          <div class="app-item">
+            <div class="app-item-info">
+              <div class="app-item-title">Визаран автобусом — Кампучия</div>
+              <div class="app-item-price">$45</div>
+              <div class="app-item-partner">⭐ VizaViet · 4.7 · выезд завтра</div>
+            </div>
+            <div class="app-item-tag tg-green">🔥 Популярно</div>
+          </div>
+          <div class="app-item">
+            <div class="app-item-info">
+              <div class="app-item-title">Визаран микроавтобус — Кампучия</div>
+              <div class="app-item-price">$55</div>
+              <div class="app-item-partner">⭐ VizaViet · 4.7 · выезд ср/пт</div>
+            </div>
+          </div>
+          <div class="app-item">
+            <div class="app-item-info">
+              <div class="app-item-title">Визаран индивидуально</div>
+              <div class="app-item-price">$85</div>
+              <div class="app-item-partner">🏠 Частный гид · 4.9 · любой день</div>
+            </div>
+            <div class="app-item-tag tg-blue">🚀 Экспресс</div>
+          </div>
+          <div class="app-item">
+            <div class="app-item-info">
+              <div class="app-item-title">Визаран самолётом — Хошимин</div>
+              <div class="app-item-price">$120</div>
+              <div class="app-item-partner">⭐ TravelVis · 4.6 · вылет пн/чт</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📄 Варианты услуги</div>
+  </div>
+
+  <!-- Screen 3: Карточка услуги + партнёр -->
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="status-bar"><span>15:30</span><span>🔋 84%</span></div>
+      <div class="app">
+        <div class="app-header">
+          <span class="back">←</span>
+          <span class="title">Визаран автобусом</span>
+          <span style="font-size:0.7rem">♡</span>
+        </div>
+        <div class="app-detail-content">
+          <div class="app-detail-title">Визаран автобусом — Кампучия</div>
+          <div class="app-detail-price">$45 <span>с человека</span></div>
+
+          <div style="font-size:0.55rem;color:#64748b;margin:4px 0;display:flex;gap:4px;flex-wrap:wrap">
+            <span style="background:#f1f5f9;padding:2px 6px;border-radius:4px">⏱️ 1 день</span>
+            <span style="background:#f1f5f9;padding:2px 6px;border-radius:4px">🚌 Автобус</span>
+            <span style="background:#f1f5f9;padding:2px 6px;border-radius:4px">🌅 Выезд 6:00</span>
+            <span style="background:#f1f5f9;padding:2px 6px;border-radius:4px">🔄 Возврат 18:00</span>
+          </div>
+
+          <div class="app-detail-desc">
+            Выезд из Нячанга в 6:00. Автобус до границы Кампучии, прохождение границы (штамп + 30 дней), обед, возврат в Нячанг к 18:00. Всё включено.
+          </div>
+
+          <div style="font-size:0.55rem;font-weight:600;color:#0A1628;margin-bottom:3px">Входит в стоимость:</div>
+          <ul class="app-detail-list">
+            <li>✅ Авто с водителем до границы</li>
+            <li>✅ Сопровождение русскоязычным гидом</li>
+            <li>✅ Консульский сбор</li>
+            <li>✅ Обед</li>
+            <li>✅ Вода в автобусе</li>
+          </ul>
+
+          <div class="app-detail-partner">
+            <div class="logo">⭐</div>
+            <div class="info">
+              <div class="name">Агентство «VizaViet»</div>
+              <div class="rating">★★★★★ 4.7 · 124 отзыва · На AION с июня 2026</div>
+            </div>
+          </div>
+
+          <div class="app-detail-btn">📩 Связаться с партнёром</div>
+          <div class="app-detail-btn2">📋 Записаться на выезд</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:0.55rem;color:#64748b;margin-top:6px">📄 Услуга + партнёр</div>
+  </div>
+
+</div>
+
+<!-- ═══ ПОЛЬЗОВАТЕЛЬСКИЙ ПУТЬ ═══ -->
+<h2>🔄 Пользовательский путь</h2>
+
+<div class="flow">
+  <div class="flow-step">
+    <div class="num">1</div>
+    <div class="title">Категория «Визы»</div>
+    <div class="desc">Сетка подкатегорий: виза, визаран, фаст трек</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">2</div>
+    <div class="title">Выбор услуги</div>
+    <div class="desc">Список вариантов с ценой, деталями, тегами популярности</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">3</div>
+    <div class="title">Детали услуги</div>
+    <div class="desc">Что входит, сроки, выезды, требования. Блок партнёра</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">4</div>
+    <div class="title">Запись / Связь</div>
+    <div class="desc">Запись на дату или чат с партнёром</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">5</div>
+    <div class="title">Подтверждение</div>
+    <div class="desc">Партнёр подтверждает. Статус в профиле. Напоминание за день</div>
+  </div>
+  <div class="flow-step">
+    <div class="num">6</div>
+    <div class="title">Апсейл</div>
+    <div class="desc">После визы: страховка, трансфер, жильё</div>
+  </div>
+</div>
+
+<!-- ═══ СПЕЦИФИКАЦИЯ ═══ -->
+<h2>📋 Спецификация</h2>
+
+<div class="spec">
+  <div class="spec-item">
+    <div class="label">Структура</div>
+    <div class="value">Категория → 3 подкатегории → варианты с ценой</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Подкатегории</div>
+    <div class="value">Виза · Визаран · Фаст трек</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Карточка услуги</div>
+    <div class="value">Название · цена · длительность · что входит · дни выезда · партнёр с рейтингом</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Партнёр внутри</div>
+    <div class="value">Агентство или частный гид · ★ рейтинг · кол-во отзывов · на AION с...</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Фильтры</div>
+    <div class="value">Город выезда · Тип транспорта · Цена · Срок</div>
+  </div>
+  <div class="spec-item">
+    <div class="label">Действия</div>
+    <div class="value">Связаться · Записаться · В избранное · Поделиться</div>
+  </div>
+</div>
+
+<!-- ═══ ДЕТАЛИ ═══ -->
+<h2>🧩 Детальная проработка</h2>
+
+<div class="card">
+  <div class="card-title">🎯 Экран подкатегорий</div>
+  <ul>
+    <li>Сетка 3×1 (или 3 колонки) — иконка + название + описание</li>
+    <li>Кнопка «Записаться» — быстрый вход в календарь без выбора подкатегории</li>
+    <li>Кнопка «Фильтры» — по городу, цене, типу услуги</li>
+    <li>Строка поиска — ищет по названию услуги, стране, типу</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Список вариантов</div>
+  <ul>
+    <li>Чипы-фильтры сверху: все · Кампучия · Хошимин · с трансфером · экспресс</li>
+    <li>Каждый вариант: название + цена + партнёр (коротко) + тег популярности/экспресс</li>
+    <li>Цена может быть с зачёркнутой старой — если акция</li>
+    <li>Если услуга популярна — тег «🔥 Популярно»</li>
+    <li>Сортировка: по цене · по рейтингу партнёра · по ближайшему выезду</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Карточка услуги</div>
+  <ul>
+    <li>Название · цена · длительность · транспорт · время выезда/возврата</li>
+    <li>Блок «Входит в стоимость» — список с галочками</li>
+    <li>Блок «Требования» — паспорт, фото, срок действия</li>
+    <li>Блок партнёра: лого + название + ★ рейтинг + отзывы + дата регистрации</li>
+    <li>Кнопка «Записаться на выезд» → календарь с доступными датами</li>
+    <li>Кнопка «Связаться» → чат с партнёром</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Запись на выезд</div>
+  <ul>
+    <li>Календарь: доступные даты (отмечены), занятые (заблокированы)</li>
+    <li>Выбор количества человек</li>
+    <li>Поля: ФИО, номер паспорта, дата рождения, страна</li>
+    <li>Кнопка «Отправить заявку» → партнёр подтверждает в течение часа</li>
+    <li>После подтверждения — статус в профиле + напоминание в Telegram за 12 часов</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-title">🎯 Апсейл после записи</div>
+  <ul>
+    <li>«После визы вам может понадобиться:»</li>
+    <li>🛡️ Страховка — «Застраховать поездку на 30 дней»</li>
+    <li>🚗 Транспорт — «Трансфер из/до границы»</li>
+    <li>🏠 Жильё — «Найти квартиру по возвращении»</li>
+  </ul>
+</div>
+
+<!-- ═══ СТАТУСЫ ═══ -->
+<h2>📊 Статус заявки в профиле</h2>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0">
+  <div style="background:#1e293b;border:1px solid #2a3344;border-radius:8px;padding:10px;text-align:center">
+    <div style="font-size:0.65rem;font-weight:700;color:#fbbf24">⏳ Ожидание</div>
+    <div style="font-size:0.5rem;color:#64748b;margin-top:2px">партнёр проверяет</div>
+  </div>
+  <div style="background:#1e293b;border:1px solid #2a3344;border-radius:8px;padding:10px;text-align:center">
+    <div style="font-size:0.65rem;font-weight:700;color:#3b82f6">📄 Документы</div>
+    <div style="font-size:0.5rem;color:#64748b;margin-top:2px">требуются уточнения</div>
+  </div>
+  <div style="background:#1e293b;border:1px solid #2a3344;border-radius:8px;padding:10px;text-align:center">
+    <div style="font-size:0.65rem;font-weight:700;color:#22c55e">✅ Подтверждено</div>
+    <div style="font-size:0.5rem;color:#64748b;margin-top:2px">выезд завтра</div>
+  </div>
+  <div style="background:#1e293b;border:1px solid #2a3344;border-radius:8px;padding:10px;text-align:center">
+    <div style="font-size:0.65rem;font-weight:700;color:#64748b">✔️ Завершено</div>
+    <div style="font-size:0.5rem;color:#64748b;margin-top:2px">оставьте отзыв</div>
+  </div>
+</div>
+
+<h2>⚙️ Технические заметки</h2>
+
+<div class="card">
+  <ul>
+    <li><strong>Услуга:</strong> название, цена, длительность, транспорт, что входит (массив), требования, дни выезда, город, id партнёра</li>
+    <li><strong>Заявка:</strong> статус (ожидание / документы / подтверждено / завершено), дата выезда, кол-во человек, данные пассажиров</li>
+    <li><strong>Календарь:</strong> партнёр отмечает доступные даты. Занятые даты скрыты</li>
+    <li><strong>Апсейл:</strong> после статуса «Подтверждено» показывать блок дополнительных категорий</li>
+    <li><strong>URL:</strong> <code>/category/visa</code> → <code>/category/visa/visa-run</code> → <code>/category/visa/visa-run/123</code></li>
+  </ul>
+</div>
+
+<div class="footer">
+AION · Референс каталога Визы · Июль 2026
+</div>
+
+</div>
+</body>
+</html>

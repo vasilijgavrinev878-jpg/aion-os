@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}AION — Login{% endblock %}
+{% block head %}
+<style>
+body { background: var(--bg-primary); }
+</style>
+{% endblock %}
+{% block content %}
+<div class="login-page" style="margin:-20px">
+  <div class="login-card fade-in">
+    <div class="logo">⟁</div>
+    <h1>AION Invite Machine</h1>
+    <p>Central Server — Admin Panel</p>
+    <div id="errorBox" style="display:none;background:rgba(255,0,68,0.1);color:var(--neon-red);padding:8px 12px;border-radius:6px;font-size:0.78rem;margin-bottom:12px;border:1px solid rgba(255,0,68,0.2)"></div>
+    <div class="form-group">
+      <label>Password</label>
+      <input id="password" type="password" placeholder="Enter admin password" autofocus
+             onkeydown="if(event.key==='Enter')login()">
+    </div>
+    <button id="btnLogin" class="btn btn-primary" style="width:100%;padding:10px;justify-content:center" onclick="login()">Enter</button>
+  </div>
+</div>
+<script>
+async function login() {
+  const pw = document.getElementById('password').value;
+  if (!pw) return;
+  const btn = document.getElementById('btnLogin');
+  btn.disabled = true; btn.textContent = '⏳';
+  const err = document.getElementById('errorBox');
+  try {
+    const r = await api('/login', { method:'POST', body: JSON.stringify({password:pw}) });
+    if (r.ok) { window.location.href = '/'; }
+    else { err.style.display='block'; err.textContent = r.error || 'Wrong password'; btn.disabled=false; btn.textContent='Enter'; }
+  } catch(e) {
+    err.style.display='block'; err.textContent = 'Connection error'; btn.disabled=false; btn.textContent='Enter';
+  }
+}
+</script>
+{% endblock %}

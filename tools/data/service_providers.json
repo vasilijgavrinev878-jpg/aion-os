@@ -1,0 +1,223 @@
+{
+  "cities": [
+    {
+      "name": "Батуми (Batumi, Georgia)",
+      "slug": "batumi",
+      "categories": {
+        "beauty": [
+          {"name": "ENIGMA beauty salon", "contact": "https://t.me/Enigma_Batumi", "desc": "Студия маникюра и педикюра. Классные ногти любой сложности. Адрес: ул. Эквтиме Такаишвили, 71. Тел: +995 579 26 51 28"},
+          {"name": "HEAVEN | Beauty Studio", "contact": "https://heavennails.ge/", "desc": "Современная бьюти-студия: ногтевой сервис, макияж, брови, ресницы. Тел: +995 599 02-06-23"},
+          {"name": "Almond Batumi", "contact": "https://dikidi.net/ru/profile/almond_1771591", "desc": "Студия маникюра в центре Батуми. Чистый маникюр, идеальное покрытие. Адрес: Бараташвили 41"},
+          {"name": "Nail Sector #1", "contact": "https://new.madloba.info/batumi/beauty-salons/nail-sector-1/", "desc": "Салон красоты: маникюр, педикюр, стрижки, окрашивание, макияж. ул. Царя Парнаваза, 85"},
+          {"name": "Студия Анастасии", "contact": "https://madloba.info/batumi/parikmakherskiye/beauty-salon-studio-anastasia/", "desc": "Парикмахерская, маникюр, педикюр. ул. Вахтанга Горгасали, 130. Тел: +995 593 78 88 11"},
+          {"name": "Peri Beauty Salon", "contact": "https://madloba.info/batumi/beauty-salons/peri-beauty-salon-batumi/", "desc": "Салон красоты: мужские и женские стрижки, окрашивание, укладка. Адлиа, 1"},
+          {"name": "Батуми БЬЮТИ канал", "contact": "https://t.me/batumi_beauty", "desc": "Telegram-канал: услуги парикмахеров, барберов, косметологов, бровистов, ногтевой сервис. 2100+ подписчиков"},
+          {"name": "Бьюти БАРАХОЛКА Батуми", "contact": "https://t.me/bb_baraholka", "desc": "Бьюти барахолка: продажа и аренда, вакансии и модели. 2368 участников"},
+          {"name": "Эстетика Совершенства Батуми", "contact": "https://t.me/beautyexpert_batumi", "desc": "Профессиональный косметолог-эстетист. Уход за кожей, эстетические процедуры"},
+          {"name": "Студия красоты BEMAM", "contact": "https://bemam.ru/ge/batumi/manikyur", "desc": "Маникюр, педикюр, аппаратный маникюр. Тел: 8 (800) 175-29-73"}
+        ],
+        "fitness": [
+          {"name": "BATUMI STRETCHING PRO FITNESS", "contact": "https://t.me/Batumi_stretching", "desc": "Лучшая студия фитнеса, растяжки и танцев в Батуми. Запись через @stretchingbatumi1"},
+          {"name": "ЙОГА БАТУМИ «МЕСТО СИЛЫ»", "contact": "https://t.me/silabatumi", "desc": "Студия йоги, фитнеса и танцев. Занятия для тела и ума. Семинары, тренинги, мастер-классы. 324 участника"},
+          {"name": "Om Batumi", "contact": "https://t.me/ombatumi", "desc": "Афиша духовных мероприятий: йога, цигун, медитации, психология, саморазвитие, ретриты. 1432 подписчика"}
+        ],
+        "kids": [
+          {"name": "Чат «В Грузии с детьми»", "contact": "https://t.me/Georgia_with_kids", "desc": "Telegram-канал для родителей: досуг, образование, здоровье детей. 4300 подписчиков"},
+          {"name": "FB группа «В Грузии с детьми»", "contact": "https://www.facebook.com/groups/georgiawithkids/", "desc": "Группа 10200 участников: всё для родителей и детей в Грузии"}
+        ],
+        "psychology": [
+          {"name": "Om Batumi (психология)", "contact": "https://t.me/ombatumi", "desc": "Духовные практики, психология, саморазвитие, эзотерика. 1432 подписчика. Сайт: ombatumi.com"}
+        ],
+        "medicine": [
+          {"name": "Дом Юстиции Батуми", "contact": "https://psh.gov.ge", "desc": "Бесплатные юридические консультации, русскоязычные специалисты. Адрес: Батуми"}
+        ],
+        "photo_video": [],
+        "rental_transport": [
+          {"name": "Прокат скутеров и мотоциклов Батуми", "contact": "https://vk.com/russkievgryzii", "desc": "Прокат скутеров и мотоциклов в Батуми. Информация в группе Русские в Грузии VK"},
+          {"name": "Трансфер Тбилиси-Батуми", "contact": "https://t.me/ads_ge", "desc": "Трансфер по направлениям Тбилиси-Батуми, Батуми-Тбилиси, Ереван-Тбилиси. Контакт: @karina_amosova"}
+        ],
+        "tourism": [
+          {"name": "ЭКСКУРСИИ ИЗ БАТУМИ", "contact": "https://t.me/travel_batumi", "desc": "Telegram-канал с экскурсиями из Батуми по Грузии. Сертифицированные гиды, трансфер до дома"},
+          {"name": "Батуми: взаимопомощь туристов и экспатов", "contact": "https://t.me/Batumi_100", "desc": "Madloba Georgia. Полезная информация для русскоязычных гостей. 1363 участника"},
+          {"name": "Залечь на дно в Батуми", "contact": "https://t.me/batumi_now", "desc": "Сообщество путешественников и эмигрантов. Жизнь и быт в Батуми, интересные места, кухня. 4509 подписчиков"}
+        ],
+        "food": [],
+        "digital": [],
+        "realty": [
+          {"name": "GPI Недвижимость Грузия", "contact": "https://t.me/georgiainvestments", "desc": "Недвижимость Батуми и Тбилиси: новостройки, переуступки, готовое жильё, инвестиции. 3727 подписчиков"},
+          {"name": "НЕДВИЖИМОСТЬ ГРУЗИЯ", "contact": "https://t.me/Georgia_knrealty", "desc": "Продажа, аренда, инвестиции в недвижимость Грузии (Батуми, Тбилиси). 3589 участников. Админ: @knesvetailov"},
+          {"name": "PROfity PROperty", "contact": "https://t.me/profityproperty", "desc": "Недвижимость и переезд в Грузию (Тбилиси, Батуми). Помощь в покупке, продаже, инвестициях. Связь: @p_r_o_p_r_o"},
+          {"name": "Esteliti Недвижимость в Грузии", "contact": "https://t.me/estelitigeorgia", "desc": "Купля-продажа недвижимости. Ипотека, рассрочка, новостройки. Тел: +995 500 700 180. Сайт: esteliti.com"}
+        ],
+        "general_channels": [
+          {"name": "БАТУМИ БАРАХОЛКА | Объявления | Услуги", "contact": "https://t.me/BatumiOffer", "desc": "Купить/продать, найти/предложить услугу. 22169 участников"},
+          {"name": "УСЛУГИ В БАТУМИ", "contact": "https://t.me/barakholka_batumi_home_bot", "desc": "Каталог услуг. Любые услуги кроме риелторских. Подать заявку через бота"},
+          {"name": "БАТУМИ ЧАТ | Грузия", "contact": "https://t.me/mybatumi_chat", "desc": "Общий чат Батуми. Вопросы об отдыхе и жизни. 30354 участника"},
+          {"name": "Батуми Online | Чат", "contact": "https://t.me/batumi_my", "desc": "Русскоязычный чат Батуми. 6520 участников"},
+          {"name": "Батумчик | Новости Батуми", "contact": "https://t.me/batumchik", "desc": "Новости Батуми и Западной Грузии на русском языке"},
+          {"name": "MY BATUMI | Новости", "contact": "https://t.me/MYBATUMI_INFO", "desc": "Новости Батуми на русском языке"},
+          {"name": "Батуми | Барахолка услуги объявления", "contact": "https://t.me/batumitradehub", "desc": "Онлайн рынок: товары, услуги, объявления. 249 участников"},
+          {"name": "Свой в Батуми", "contact": "https://t.me/svojvbatumi", "desc": "Канал для русскоязычных в Батуми"},
+          {"name": "Женский чат Батуми", "contact": "https://t.me/batumi_girls", "desc": "Женский чат для обсуждения тем. 5451 участница. Ladies only"},
+          {"name": "ГРУЗИЯ ЗДЕСЬ", "contact": "https://t.me/ads_ge", "desc": "Доска объявлений Грузии: услуги, работа, трансферы, образование"},
+          {"name": "Чат «Казахи в Грузии»", "contact": "https://t.me/+JOY3AbGm-jA5ODFi", "desc": "1800 участников. Размещение услуг для русскоязычных"},
+          {"name": "Николай Левшиц — канал о Грузии", "contact": "https://t.me/nlevshitstelegram", "desc": "Самый большой телеграм-канал о Грузии на русском. 115126 подписчиков. Реклама: @Bradobrey1"},
+          {"name": "Скидки Грузия", "contact": "https://t.me/skidki_ge", "desc": "16800 подписчиков. Скидки и акции в Грузии. Размещение услуг"},
+          {"name": "Батуми: взаимопомощь туристов и экспатов", "contact": "https://t.me/Batumi_100", "desc": "Madloba Georgia. 1363 участника. Полезная информация"}
+        ]
+      }
+    },
+    {
+      "name": "Тбилиси (Tbilisi, Georgia)",
+      "slug": "tbilisi",
+      "categories": {
+        "beauty": [
+          {"name": "Косметолог Ketino Vakhania", "contact": "https://t.me/Keti_Keti_007", "desc": "Врач косметолог, биохимик, высшая категория, кандидат медицинских наук. Тбилиси"}
+        ],
+        "fitness": [],
+        "kids": [
+          {"name": "Образовательный детский центр Тбилиси", "contact": "https://t.me/ads_ge", "desc": "Ищет сотрудников: тренер по шахматам, логопед, преподаватель робототехники, кулинарии, кройки и шитья, творчества. Ставка 15 лари/занятие"},
+          {"name": "Чат «В Грузии с детьми»", "contact": "https://t.me/Georgia_with_kids", "desc": "Telegram-канал 4300 подписчиков: досуг, образование, здоровье детей в Грузии"}
+        ],
+        "psychology": [],
+        "medicine": [
+          {"name": "Стоматологическая клиника Regale", "contact": "https://t.me/s/tbilisipeople/36302", "desc": "Стоматология в Тбилиси: терапия, хирургия, имплантология, ортопедия, ортодонтия, детская стоматология. Адрес: ул. Ташкентская 14. Тел: +995544440304. Скидка 10% с промокодом Levshits. Русскоязычные врачи"}
+        ],
+        "photo_video": [],
+        "rental_transport": [
+          {"name": "Трансфер Тбилиси-Батуми-Ереван", "contact": "https://t.me/ads_ge", "desc": "Ежедневные поездки по направлениям. Заберут с адреса и доставят по адресу. Комфортные машины. Контакт: @karina_amosova"}
+        ],
+        "tourism": [
+          {"name": "Тбилиси для людей и про людей", "contact": "https://t.me/tbilisipeople", "desc": "Канал о Тбилиси на русском. 26700 подписчиков. Сайт: nlevshits.com"},
+          {"name": "Тбилиси.Еда.", "contact": "https://t.me/tbilisieda", "desc": "Всё о еде в Тбилиси: кафе, бары, рестораны. 9600 подписчиков"},
+          {"name": "Интересная Грузия", "contact": "https://t.me/interestingGeorgia", "desc": "Анонсы мероприятий, театры, концерты, мастер-классы, маршруты. 10900 участников"},
+          {"name": "Афиша. Грузия", "contact": "https://t.me/georgiaafisha", "desc": "Концерты, фестивали, мастер-классы, лекции, спорт. 11600 подписчиков"}
+        ],
+        "food": [
+          {"name": "Living Vino", "contact": "https://www.facebook.com/livingvino/", "desc": "Веганское/вегетарианское заведение в Тбилиси"},
+          {"name": "Mama Terra Veggie Corner", "contact": "https://www.facebook.com/mamaterraveggiecorner", "desc": "Вегетарианское кафе в Тбилиси"},
+          {"name": "Kiwi Cafe", "contact": "https://www.facebook.com/kiwicafe.tbilisi", "desc": "Кафе в Тбилиси"},
+          {"name": "Ska Juice bar", "contact": "https://www.facebook.com/skajuicebar", "desc": "Сок-бар в Тбилиси"},
+          {"name": "Muhudo", "contact": "https://www.facebook.com/Muhudo", "desc": "Ресторан в Тбилиси"},
+          {"name": "Fala Bar", "contact": "https://www.facebook.com/falabar.tbilisi", "desc": "Фаланфель-бар в Тбилиси"},
+          {"name": "Vegan Place", "contact": "https://instagram.com/veganplace_tbilisi", "desc": "Веганское место в Тбилиси"}
+        ],
+        "digital": [
+          {"name": "Разработка чат-ботов Telegram/WhatsApp", "contact": "https://gancxadebebi.ge/ru/Объявления/offer-_/Тбилиси-_1/Разработка-чат-бота-Telegram-WhatsApp-GEO1499271", "desc": "Разработка чат-ботов для Telegram и WhatsApp в Тбилиси"},
+          {"name": "IT В ЕРЕВАНЕ (чат)", "contact": "https://t.me/iterevan", "desc": "Чат IT специалистов. Можно размещать объявления о цифровых услугах. 2571 участник"}
+        ],
+        "realty": [
+          {"name": "Тбилиси Аренда | Продажа | Недвижимость", "contact": "https://t.me/tbilisi_apartments", "desc": "Недвижимость в Грузии. Аренда и продажа квартир. 10935 подписчиков"},
+          {"name": "Квартиры в Тбилиси — Flip Flat", "contact": "https://t.me/kvartiry_v_tbilisi", "desc": "Долгосрочная аренда без комиссии. 12618 подписчиков. Бот: @FlipFlatSearchBot"},
+          {"name": "Тбилиси — аренда от собственников", "contact": "https://t.me/owners_tbilisi", "desc": "Только объявления от собственников. Бот выгружает полезные объявления. 3152 подписчика"},
+          {"name": "Проверенная недвижимость Тбилиси", "contact": "https://t.me/vitrina_tbi", "desc": "Готовые квартиры для жизни и аренды, переуступки, дома. Связь: @itis_realtyTbi"},
+          {"name": "Недвижимость и переезд в Грузию", "contact": "https://t.me/profityproperty", "desc": "Бутик недвижимости. Тбилиси и Батуми. Связь: @p_r_o_p_r_o"},
+          {"name": "GPI Недвижимость в Грузии", "contact": "https://t.me/georgiainvestments", "desc": "Новостройки, переуступки, готовое жильё и инвестиции. 3727 подписчиков"},
+          {"name": "Аренда квартир в Тбилиси", "contact": "https://t.me/tbilisiarendakvartiry", "desc": "Flat Rent Tbilisi. 1563 подписчика"},
+          {"name": "Тбилиси — аренда квартир", "contact": "https://t.me/tbilisi_rent_finder", "desc": "Поиск квартир в Тбилиси. 816 подписчиков"},
+          {"name": "My Tbilisi Apartments", "contact": "https://t.me/mytbilisi_apartments", "desc": "Недвижимость, жильё, аренда, продажа в Тбилиси. 7213 подписчиков"}
+        ],
+        "general_channels": [
+          {"name": "УСЛУГИ ТБИЛИСИ", "contact": "https://t.me/tbilisi_service", "desc": "Группа по поиску и предложению всех видов услуг в Тбилиси. 1350 участников"},
+          {"name": "Тбилиси Работа, Услуги, Объявления", "contact": "https://t.me/tbilisi_rabota_uslugi", "desc": "Доска объявлений: поиск работы и вакансии, предоставление услуг. 7090 участников"},
+          {"name": "ТБИЛИСИ ЧАТ | Грузия", "contact": "https://t.me/mytbilisi_chat", "desc": "Общий чат Тбилиси. Вопросы об отдыхе и жизни. 25176 участников"},
+          {"name": "Специалисты Тбилиси", "contact": "https://t.me/specialist_tbilisi", "desc": "Поиск специалистов: доктора, няни, сантехники, парикмахеры и др."},
+          {"name": "Тбилиси для людей и про людей", "contact": "https://t.me/tbilisipeople", "desc": "Канал о Тбилиси. 26700 подписчиков. Полезная информация"},
+          {"name": "Русские в Тбилиси чат", "contact": "https://t.me/+4gwb980qKeE0OGJi", "desc": "Чат русских в Тбилиси. Общение, вопросы, помощь. TravelAsk"},
+          {"name": "Николай Левшиц — канал в Грузии", "contact": "https://t.me/nlevshitstelegram", "desc": "Самый большой канал о Грузии на русском. 115126 подписчиков"},
+          {"name": "Финансы и бизнес в Грузии", "contact": "https://t.me/financeingeorgia", "desc": "3700 участников. Бизнес-тематика, размещение услуг"},
+          {"name": "Строительство и ремонт Тбилиси", "contact": "https://t.me/stroitelstvotbilisi", "desc": "Строительство и ремонт квартир в Тбилиси. 1484 участника"},
+          {"name": "Чаты районов Тбилиси", "contact": "https://docs.google.com/spreadsheets/d/1J2wYMy9SDJI-Bzhg3_MwjhrmqsH2fYD4baBjm2rJgNI/edit", "desc": "11 районных чатов: Ваке, Вера, Мтацминда, Сололаки, Сабуртало, Дигоми, Глдани, Исани, Ортачала, Самгори, Чугурети. 20700 участников"},
+          {"name": "Русские в Тбилиси (кошачий чат)", "contact": "https://t.me/russians_in_tbilisi", "desc": "Русский чатик: общение, мемы, помощь, друзья в Тбилиси"}
+        ]
+      }
+    },
+    {
+      "name": "Ереван (Yerevan, Armenia)",
+      "slug": "yerevan",
+      "categories": {
+        "beauty": [
+          {"name": "СПЕЦИАЛИСТЫ АРМЕНИЯ", "contact": "https://t.me/Armeniaspecialists", "desc": "Чат поиска специалистов: доктора, няни, тренеры, фотографы, сантехники, парикмахеры. 1288 участников"}
+        ],
+        "fitness": [
+          {"name": "Спорт и активный отдых в Ереване", "contact": "https://haywiki.org/life/wellness.html", "desc": "Страница HayWiki: бассейны, йога, походы, спорт в Ереване"}
+        ],
+        "kids": [
+          {"name": "Чат для родителей Еревана", "contact": "https://t.me/erevanmoms", "desc": "Чат для родителей. Обсуждение детских вопросов, поиск услуг для детей"},
+          {"name": "Дети: родительские чаты, образование, развлечения", "contact": "https://haywiki.org/life/children.html", "desc": "Страница HayWiki с ресурсами для детей в Ереване"}
+        ],
+        "psychology": [
+          {"name": "WeUnity Практики Ереван", "contact": "https://t.me/practicearmenia", "desc": "Практики, психология, саморазвитие в Ереване. 625 участников"}
+        ],
+        "medicine": [
+          {"name": "Медицина и аптеки в Армении", "contact": "https://haywiki.org/life/healthcare.html", "desc": "Страница HayWiki: законы, скорая помощь, поликлиники, частные клиники, аптеки. Телефон скорой: 103"}
+        ],
+        "photo_video": [
+          {"name": "VIDEO PRODUCTION YEREVAN", "contact": "https://t.me/synthesisyerevan", "desc": "Видеопродакшн в Ереване"},
+          {"name": "Фотографы - Видеографы Ереван", "contact": "https://t.me/photographers_armenia_erevan", "desc": "Чат: фотографы, видеографы, визажисты, стилисты, модели, ретушеры"},
+          {"name": "Мастерская по ремонту фототехники", "contact": "tel:+37495565822", "desc": "Ремонт фото- и видеотехники. Мастер Арман. Тел: +374 95 565822"}
+        ],
+        "rental_transport": [
+          {"name": "Яндекс Такси Ереван", "contact": "https://taxi.yandex.ru", "desc": "Работает в Ереване, оплата российскими картами. Скачать приложение"},
+          {"name": "GG Taxi", "contact": "https://www.ggtaxi.com/", "desc": "Местный конкурент Яндекс Такси. Оплата международными картами или наличкой"},
+          {"name": "Ев Ев (և՛ և՛)", "contact": "https://www.instagram.com/evev_armenia/", "desc": "Недорогие междугородние перевозки на микроавтобусах"},
+          {"name": "Перевозки Ереван - Тбилиси", "contact": "https://t.me/Tbilisi_Yerevan_transfer", "desc": "Трансфер между Ереваном и Тбилиси"},
+          {"name": "Попутчики Армения, Грузия", "contact": "https://t.me/blablacararm", "desc": "Поиск попутчиков, трансферов, передача посылок"}
+        ],
+        "tourism": [
+          {"name": "Гид по Еревану | Новости-Армения", "contact": "https://t.me/guideyerevan", "desc": "Премьеры фильмов, спектакли, выставки, вечеринки, рестораны. 7293 подписчика"},
+          {"name": "В Ереване с Тиграном", "contact": "https://t.me/gid_armenia", "desc": "Туры, экскурсии, походы, джипинг в Армении. 647 подписчиков"},
+          {"name": "Ереван - Афиша, Анонсы, Travel", "contact": "https://t.me/erevanrus", "desc": "Всё для русского комьюнити в Армении. Куда сходить. 3924 подписчика"},
+          {"name": "Куда съездить в Армении?", "contact": "https://t.me/+azIZSPnLs0oxOWZi", "desc": "Поиск групповых туров на выходные, вопросы по путешествиям"},
+          {"name": "Urban ARMENIA", "contact": "https://t.me/urbanarmenia", "desc": "Нестандартные экскурсии по Армении"},
+          {"name": "Ереван life | Жизнь в Армении", "contact": "https://t.me/lifeinyerevan", "desc": "Про жизнь в Армении на русском языке"}
+        ],
+        "food": [
+          {"name": "Гастронавты Еревана", "contact": "https://t.me/gastroneersYerevan", "desc": "Чат: гастрономические открытия в Ереване, новые места"},
+          {"name": "UPTOWN: Куда пойдем в Ереване?", "contact": "https://t.me/uptown_yerevan", "desc": "Рекомендации мест в Ереване"}
+        ],
+        "digital": [
+          {"name": "IT В ЕРЕВАНЕ ЧАТ", "contact": "https://t.me/iterevan", "desc": "Общение IT специалистов в Ереване. 2571 участник. Объявления о цифровых услугах через @Armeniaspecialists"},
+          {"name": "3D-печать в Ереване", "contact": "https://detal.am", "desc": "3D-печать, сканирование, моделирование. Сайт: Detal.am"},
+          {"name": "3D Printing Armenia", "contact": "tel:+37491216211", "desc": "3D-печать в Garage Masters Mall. Тел: +37491216211"},
+          {"name": "AsyaA_3d", "contact": "https://t.me/AsyaA_3d", "desc": "Помощь с 3D-печатью и созданием моделей"}
+        ],
+        "realty": [
+          {"name": "Relocation Erevan - недвижимость", "contact": "https://t.me/Relocation_Erevan", "desc": "Аренда и покупка квартир в Ереване. Проверка через Кадастр. 9447 участников. Связь: @VikaRelocation"},
+          {"name": "АРЕНДА ЕРЕВАН | НЕДВИЖИМОСТЬ", "contact": "https://t.me/erevan_relocation", "desc": "Аренда и покупка недвижимости в Ереване. 11260 участников"},
+          {"name": "Переезд в Ереван: Релокация, Жильё", "contact": "https://t.me/peryerevan", "desc": "Услуги по аренде жилья, индивидуальные поездки, переводы, бухуслуги. 293 подписчика"},
+          {"name": "ЖИЛЬЕ ЕРЕВАН / АРМЕНИЯ", "contact": "https://t.me/mhrent_armenia", "desc": "Аренда жилья в Ереване и Армении. 86 подписчиков"},
+          {"name": "Аренда Квартир Ереван", "contact": "https://t.me/kvartiry_yerevan", "desc": "Подбор жилья, юридическое сопровождение, договор на двух языках. 1916 подписчиков. Связь: @arutyunyan7"},
+          {"name": "Аренда Ереван (риелторы)", "contact": "https://t.me/real_estate_agency_erevan", "desc": "Аренда недвижимости в Ереване. 1441 участник"},
+          {"name": "РЕЛОКАЦИЯ АРМЕНИЯ | Аренда Недвижимости", "contact": "https://t.me/relocation_armenia", "desc": "Аренда недвижимости для релокантов. 1382 участника"},
+          {"name": "Коливинг Армения Чат", "contact": "https://t.me/colivingarmenia", "desc": "Поиск соседа, коливинг, релокация. 2400 участников"},
+          {"name": "Ереван Жильё Аренда", "contact": "https://t.me/armarealty", "desc": "Поиск дома в Армении"},
+          {"name": "Аренда Жилья в Ереване (чат)", "contact": "https://t.me/jilyoerevan35", "desc": "Риелторы, аренда, покупка, продажа. Тел: +37455778822 @EmilRieltor"},
+          {"name": "list.am", "contact": "https://list.am/", "desc": "Крупнейшая площадка по жилью, продаже товаров и поиску работы (аналог Авито в Армении)"}
+        ],
+        "general_channels": [
+          {"name": "СПЕЦИАЛИСТЫ АРМЕНИЯ", "contact": "https://t.me/Armeniaspecialists", "desc": "Главный чат поиска специалистов всех профилей в Армении. 1288 участников"},
+          {"name": "Русские в Ереване | Yerevan", "contact": "https://t.me/erevan_russia", "desc": "Русскоязычный чат Еревана. 3983 участника. Основная группа: @russians_in_armenia"},
+          {"name": "ЕРЕВАН ЧАТ", "contact": "https://t.me/erevan_chat_svoi", "desc": "Чат взаимопомощи и общения. 9861 участник. Канал: @erevan_new, Барахолка: @baraholka_yerevan"},
+          {"name": "Ереван чат | Нетворкинг", "contact": "https://t.me/yerevan_network", "desc": "Чат про жизнь в Армении и Ереване. Советы, помощь, новости. 1376 участников"},
+          {"name": "АРМЕНИЯ объявления барахолка работа", "contact": "https://t.me/armeniya_avito", "desc": "Барахолка, объявления, работа в Армении"},
+          {"name": "Барахолка в Армении", "contact": "https://t.me/baraxolka_in_armenia", "desc": "Барахолка Армении"},
+          {"name": "Ереван - Афиша, Анонсы", "content": "https://t.me/ErevanRus", "desc": "Афиша мероприятий для русскоязычных в Ереване"},
+          {"name": "Yerevan community", "contact": "https://t.me/yerevancommunity", "desc": "Канал про Ереван: новости, события, проблемы, афиша"},
+          {"name": "Жизнь в Армении", "contact": "https://t.me/livinginarmenia", "desc": "Канал о жизни в Армении на русском"},
+          {"name": "Русские в Армении", "contact": "https://t.me/rusekvarmenia", "desc": "Авторский канал о жизни в Армении"},
+          {"name": "Новости-Армения", "contact": "https://t.me/novostiarmenia", "desc": "Новостной канал Армении на русском"},
+          {"name": "Переезд в Армению - Взаимопомощь", "contact": "https://t.me/+szFNNJqf1J42Zjhi", "desc": "Чат взаимопомощи для переезжающих в Армению"},
+          {"name": "Yerevan Women", "contact": "https://t.me/YerevanWow", "desc": "Женское комьюнити: спорт, красота, здоровье, развлечения"},
+          {"name": "Курс драма (МИР/Rate.am/SAS)", "contact": "https://t.me/armeniaCurrency", "desc": "Отслеживание курсов армянского драма"},
+          {"name": "Банки в Армении", "contact": "https://t.me/+s2_G3BHv0E4xNjNi", "desc": "Обсуждение банковских вопросов в Армении"},
+          {"name": "Автомобилисты в Армении", "contact": "https://t.me/am_autoclub", "desc": "Чат для переехавших в Армению автомобилистов"},
+          {"name": "RT-Cleaning", "contact": "https://t.me/erevancleaning", "desc": "Клининг в Ереване: уборка квартир и домов. Заказ через Telegram"},
+          {"name": "Чистка и ремонт кондиционеров", "contact": "https://t.me/MicsicPicsic", "desc": "Денис: мойка кондиционеров, электрика, сантехника, ремонт окон. Тел: +37441129200"},
+          {"name": "Трансфер Ереван-Тбилиси", "contact": "https://t.me/Tbilisi_Yerevan_transfer", "desc": "Перевозки между Ереваном и Тбилиси"},
+          {"name": "Полезные услуги HayWiki", "contact": "https://haywiki.org/life/contacts.html", "desc": "Большой справочник: специалисты, клининг, ремонт, 3D-печать и многое другое. Телефоны +374..."}
+        ]
+      }
+    }
+  ]
+}

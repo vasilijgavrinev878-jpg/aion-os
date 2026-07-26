@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1060" viewBox="0 0 1600 1060">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#080d15"/><stop offset="1" stop-color="#02050a"/></linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#121b29"/><stop offset="1" stop-color="#09101a"/></linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7435ff"/><stop offset="1" stop-color="#340bbb"/></linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5be6a2"/><stop offset="1" stop-color="#16ad69"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".48"/></filter>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#5b22e9" flood-opacity=".55"/></filter>
+    <radialGradient id="heroInsurance" cx="70%" cy="30%" r="90%"><stop stop-color="#182e45" stop-opacity=".82"/><stop offset=".38" stop-color="#0b1625" stop-opacity=".7"/><stop offset="1" stop-color="#04070c" stop-opacity="0"/></radialGradient>
+    <style>
+      .phone{fill:url(#bg);stroke:#665b48;stroke-width:1.1}.card{fill:url(#card);stroke:#1d2939;stroke-width:1}.selected{fill:#120c31;stroke:#6932f2;stroke-width:1.3}.button{fill:url(#purple)}.line{stroke:#202c3d;stroke-width:1}.white{fill:#f6f7fb}.muted{fill:#8d98aa}.green{fill:#55e69d}.purple{fill:#956eff}.red{fill:#ff667f}.yellow{fill:#ffcf58}.title{font:700 13px Arial,sans-serif}.body{font:500 9px Arial,sans-serif}.small{font:500 7.5px Arial,sans-serif}.tiny{font:500 6px Arial,sans-serif}.strong{font:700 9px Arial,sans-serif}.caption{font:600 11px Arial,sans-serif;fill:#e7eaf1}.center{text-anchor:middle}.right{text-anchor:end}
+    </style>
+    <g id="shell">
+      <rect class="phone" x="0" y="0" width="294" height="480" rx="19" filter="url(#shadow)"/>
+      <text class="small white" x="16" y="18">9:41</text><text class="small white right" x="278" y="18">▮▮▮  ◔  ▰</text>
+      <line class="line" x1="14" y1="35" x2="280" y2="35"/>
+    </g>
+    <g id="nav">
+      <line class="line" x1="14" y1="433" x2="280" y2="433"/>
+      <text class="tiny muted center" x="33" y="455">⌂</text><text class="tiny muted center" x="33" y="466">Главная</text>
+      <text class="tiny purple center" x="91" y="455">⊞</text><text class="tiny purple center" x="91" y="466">Категории</text>
+      <circle cx="147" cy="452" r="16" fill="url(#purple)" filter="url(#glow)"/><text class="small white center" x="147" y="455">AI</text>
+      <text class="tiny muted center" x="206" y="455">♡</text><text class="tiny muted center" x="206" y="466">Избранное</text>
+      <text class="tiny muted center" x="263" y="455">♙</text><text class="tiny muted center" x="263" y="466">Профиль</text>
+    </g>
+    <g id="back"><text class="title white" x="17" y="54">‹</text></g>
+  </defs>
+
+  <rect width="1600" height="1060" fill="#04070c"/>
+
+  <!-- 1. Home -->
+  <g transform="translate(18 14)"><use href="#shell"/>
+    <rect x="1" y="36" width="292" height="155" fill="url(#heroInsurance)"/>
+    <path d="M197 68c29 0 54 23 54 52 0 29-25 52-54 52-30 0-54-23-54-52 0-29 24-52 54-52z" fill="none" stroke="#273a55" stroke-width="1"/>
+    <path d="M153 118c25-28 63-42 101-29M149 137c30 17 68 15 103-6M179 72c-12 31-8 68 12 96M223 73c13 25 12 62-4 93" fill="none" stroke="#355171" stroke-width=".7" opacity=".8"/>
+    <path d="M211 91l18 10v22c0 15-11 28-26 34-15-6-26-19-26-34v-22l18-10 8 4z" fill="#241062" stroke="#8159ff" stroke-width="1.1"/>
+    <path d="M190 121l8 8 16-20" fill="none" stroke="#9d7aff" stroke-width="2"/>
+    <circle cx="256" cy="88" r="1.5" fill="#7a46f6"/><circle cx="270" cy="107" r="1" fill="#7a46f6"/><circle cx="247" cy="151" r="1" fill="#7a46f6"/><circle cx="159" cy="91" r="1.2" fill="#416b91"/>
+    <text class="body white" x="18" y="55" letter-spacing="5">A I O N</text><text class="body white right" x="275" y="55">♧</text>
+    <text class="title white" x="18" y="84" style="font-size:19px">Страхование</text><text class="small muted" x="18" y="101">⌖ Нячанг  ⌄</text>
+    <rect class="selected" x="18" y="117" width="258" height="57" rx="10" filter="url(#glow)"/><circle cx="42" cy="145" r="13" fill="#4920bf"/><text class="title white center" x="42" y="149">◈</text>
+    <text class="strong white" x="63" y="139">Подобрать полис</text><text class="small muted" x="63" y="153">Ответьте на 3 вопроса и сравните тарифы</text><text class="title white right" x="260" y="150">›</text>
+    <text class="strong white" x="18" y="196">Что застраховать?</text>
+    <rect class="card" x="18" y="207" width="59" height="78" rx="8"/><text class="title purple center" x="47" y="234">✚</text><text class="small white center" x="47" y="252">Медицина</text><text class="tiny muted center" x="47" y="264">врач и лечение</text>
+    <rect class="card" x="84" y="207" width="59" height="78" rx="8"/><text class="title green center" x="113" y="234">⌂</text><text class="small white center" x="113" y="252">Жильё</text><text class="tiny muted center" x="113" y="264">квартира, дом</text>
+    <rect class="card" x="150" y="207" width="59" height="78" rx="8"/><text class="title yellow center" x="179" y="234">◉</text><text class="small white center" x="179" y="252">Транспорт</text><text class="tiny muted center" x="179" y="264">байк, авто</text>
+    <rect class="card" x="216" y="207" width="59" height="78" rx="8"/><text class="title purple center" x="245" y="234">✈</text><text class="small white center" x="245" y="252">Поездки</text><text class="tiny muted center" x="245" y="264">в путешествии</text>
+    <text class="strong white" x="18" y="309">Почему через AION?</text>
+    <rect class="card" x="18" y="321" width="258" height="31" rx="8"/><text class="body green" x="30" y="341">✓</text><text class="small white" x="48" y="339">Сравнение тарифов от проверенных страховых</text>
+    <rect class="card" x="18" y="359" width="258" height="31" rx="8"/><text class="body purple" x="30" y="379">⌁</text><text class="small white" x="48" y="377">Полис и поддержка всегда в Telegram</text>
+    <rect class="card" x="18" y="397" width="258" height="25" rx="8"/><text class="small muted" x="30" y="413">Уже есть полис?</text><text class="small purple right" x="264" y="413">Добавить ›</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="165" y="513">1. Главный экран</text>
+
+  <!-- 2. Insurance Type -->
+  <g transform="translate(332 14)"><use href="#shell"/><use href="#back"/>
+    <text class="title white center" x="147" y="54">Выберите страховку</text>
+    <text class="strong white" x="18" y="83">Для чего нужен полис?</text>
+    <rect class="selected" x="18" y="95" width="258" height="65" rx="9"/><circle cx="43" cy="126" r="15" fill="#4a20bd"/><text class="title white center" x="43" y="131">✚</text><text class="strong white" x="68" y="117">Медицинская страховка</text><text class="small muted" x="68" y="131">Врач, клиника, госпитализация</text><text class="small green" x="68" y="144">от $35</text><circle cx="258" cy="126" r="9" fill="#7140ed"/><text class="small white center" x="258" y="129">✓</text>
+    <rect class="card" x="18" y="168" width="258" height="55" rx="9"/><circle cx="43" cy="195" r="15" fill="#142536"/><text class="title green center" x="43" y="200">⌂</text><text class="strong white" x="68" y="189">Страхование жилья</text><text class="small muted" x="68" y="203">Пожар, затопление, имущество</text><text class="small green" x="68" y="215">от $20 / мес</text>
+    <rect class="card" x="18" y="231" width="258" height="55" rx="9"/><circle cx="43" cy="258" r="15" fill="#1f1b36"/><text class="title yellow center" x="43" y="263">◉</text><text class="strong white" x="68" y="252">Байк или автомобиль</text><text class="small muted" x="68" y="266">ДТП, ущерб, ответственность</text><text class="small green" x="68" y="278">от $15 / мес</text>
+    <rect class="card" x="18" y="294" width="258" height="55" rx="9"/><circle cx="43" cy="321" r="15" fill="#171e31"/><text class="title purple center" x="43" y="326">✈</text><text class="strong white" x="68" y="315">Страховка в поездке</text><text class="small muted" x="68" y="329">Путешествие за пределами Вьетнама</text><text class="small green" x="68" y="341">от $12</text>
+    <rect class="button" x="18" y="383" width="258" height="32" rx="7"/><text class="body white center" x="147" y="404">Продолжить</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="479" y="513">2. Выбор типа</text>
+
+  <!-- 3. Calculator -->
+  <g transform="translate(646 14)"><use href="#shell"/><use href="#back"/>
+    <text class="title white center" x="147" y="54">Медицинская страховка</text><text class="small purple right" x="273" y="54">Изменить</text>
+    <text class="strong white" x="18" y="82">Срок страхования</text>
+    <rect class="selected" x="18" y="92" width="61" height="37" rx="7"/><text class="body white center" x="48" y="108">30 дней</text><text class="tiny purple center" x="48" y="119">выбрано</text>
+    <rect class="card" x="85" y="92" width="61" height="37" rx="7"/><text class="body white center" x="115" y="110">60 дней</text>
+    <rect class="card" x="152" y="92" width="61" height="37" rx="7"/><text class="body white center" x="182" y="110">90 дней</text>
+    <rect class="card" x="219" y="92" width="57" height="37" rx="7"/><text class="body white center" x="248" y="110">1 год</text>
+    <text class="strong white" x="18" y="153">Сумма покрытия</text>
+    <rect class="card" x="18" y="163" width="80" height="42" rx="7"/><text class="body white center" x="58" y="181">$50 000</text><text class="tiny muted center" x="58" y="193">минимум</text>
+    <rect class="selected" x="107" y="163" width="80" height="42" rx="7"/><text class="body white center" x="147" y="181">$100 000</text><text class="tiny purple center" x="147" y="193">оптимально</text>
+    <rect class="card" x="196" y="163" width="80" height="42" rx="7"/><text class="body white center" x="236" y="181">$200 000</text><text class="tiny muted center" x="236" y="193">максимум</text>
+    <text class="strong white" x="18" y="229">Возраст застрахованного</text>
+    <rect class="selected" x="18" y="240" width="57" height="31" rx="7"/><text class="small white center" x="47" y="259">до 35</text>
+    <rect class="card" x="81" y="240" width="57" height="31" rx="7"/><text class="small white center" x="110" y="259">35–55</text>
+    <rect class="card" x="144" y="240" width="57" height="31" rx="7"/><text class="small white center" x="173" y="259">55–65</text>
+    <rect class="card" x="207" y="240" width="69" height="31" rx="7"/><text class="small white center" x="242" y="259">65+</text>
+    <rect class="card" x="18" y="292" width="258" height="65" rx="9"/><text class="small muted" x="32" y="315">Ваш ориентировочный расчёт</text><text class="title green" x="32" y="340" style="font-size:20px">$45</text><text class="small muted" x="86" y="338">за 30 дней</text><text class="small purple right" x="261" y="339">Что включено? ›</text>
+    <rect class="button" x="18" y="383" width="258" height="32" rx="7"/><text class="body white center" x="147" y="404">Сравнить тарифы</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="793" y="513">3. Калькулятор</text>
+
+  <!-- 4. Comparison -->
+  <g transform="translate(960 14)"><use href="#shell"/><use href="#back"/>
+    <text class="title white center" x="147" y="54">Сравнение тарифов</text><text class="small muted center" x="147" y="69">30 дней · $100 000</text>
+    <rect class="card" x="18" y="82" width="258" height="258" rx="9"/>
+    <text class="tiny muted" x="29" y="103">Покрытие</text><text class="small white center" x="144" y="103">Базовый</text><text class="small purple center" x="205" y="103">Оптим.</text><text class="small white center" x="251" y="103">Премиум</text>
+    <line class="line" x1="28" y1="111" x2="266" y2="111"/>
+    <text class="small muted" x="29" y="129">Стоимость</text><text class="small white center" x="144" y="129">$35</text><rect x="177" y="116" width="55" height="21" rx="5" fill="#211259"/><text class="small green center" x="205" y="129">$45</text><text class="small white center" x="251" y="129">$65</text>
+    <text class="small muted" x="29" y="153">Амбулаторно</text><text class="small green center" x="144" y="153">✓</text><text class="small green center" x="205" y="153">✓</text><text class="small green center" x="251" y="153">✓</text>
+    <text class="small muted" x="29" y="177">Стационар</text><text class="small muted center" x="144" y="177">—</text><text class="small green center" x="205" y="177">✓</text><text class="small green center" x="251" y="177">✓</text>
+    <text class="small muted" x="29" y="201">Стоматология</text><text class="small muted center" x="144" y="201">—</text><text class="small green center" x="205" y="201">$500</text><text class="small green center" x="251" y="201">$1 000</text>
+    <text class="small muted" x="29" y="225">COVID-19</text><text class="small muted center" x="144" y="225">—</text><text class="small green center" x="205" y="225">✓</text><text class="small green center" x="251" y="225">✓</text>
+    <text class="small muted" x="29" y="249">Франшиза</text><text class="small white center" x="144" y="249">$100</text><text class="small green center" x="205" y="249">$50</text><text class="small green center" x="251" y="249">$0</text>
+    <text class="small muted" x="29" y="273">Активный спорт</text><text class="small muted center" x="144" y="273">—</text><text class="small muted center" x="205" y="273">—</text><text class="small green center" x="251" y="273">✓</text>
+    <rect x="178" y="295" width="55" height="15" rx="6" fill="#4420b5"/><text class="tiny white center" x="205" y="305">ПОПУЛЯРНЫЙ</text>
+    <text class="small muted" x="18" y="365">Выбрано: Оптимальный</text><text class="title green right" x="276" y="365">$45</text>
+    <rect class="button" x="18" y="383" width="258" height="32" rx="7"/><text class="body white center" x="147" y="404">Продолжить</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="1107" y="513">4. Сравнение тарифов</text>
+
+  <!-- 5. Policy Details -->
+  <g transform="translate(1274 14)"><use href="#shell"/><use href="#back"/>
+    <text class="title white center" x="147" y="54">Оптимальный тариф</text><text class="small purple right" x="273" y="54">Условия</text>
+    <rect class="selected" x="18" y="72" width="258" height="62" rx="9"/><text class="small muted" x="33" y="93">Медицинская страховка</text><text class="title white" x="33" y="116" style="font-size:19px">$45</text><text class="small muted" x="76" y="115">30 дней · покрытие $100 000</text><text class="small purple right" x="262" y="115">Liberty</text>
+    <text class="strong white" x="18" y="159">Что входит в полис</text>
+    <rect class="card" x="18" y="170" width="258" height="151" rx="9"/>
+    <text class="small green" x="32" y="193">✓</text><text class="small white" x="51" y="193">Амбулаторное лечение</text><text class="small muted right" x="260" y="193">$100 000</text>
+    <line class="line" x1="31" y1="203" x2="263" y2="203"/><text class="small green" x="32" y="221">✓</text><text class="small white" x="51" y="221">Госпитализация и операции</text><text class="small muted right" x="260" y="221">$100 000</text>
+    <line class="line" x1="31" y1="231" x2="263" y2="231"/><text class="small green" x="32" y="249">✓</text><text class="small white" x="51" y="249">Стоматология</text><text class="small muted right" x="260" y="249">до $500</text>
+    <line class="line" x1="31" y1="259" x2="263" y2="259"/><text class="small green" x="32" y="277">✓</text><text class="small white" x="51" y="277">Медицинская эвакуация</text><text class="small muted right" x="260" y="277">включено</text>
+    <line class="line" x1="31" y1="287" x2="263" y2="287"/><text class="small muted" x="32" y="306">Франшиза</text><text class="small white right" x="260" y="306">$50</text>
+    <rect class="card" x="18" y="334" width="258" height="30" rx="8"/><text class="small muted" x="31" y="353">Полные условия и исключения</text><text class="small white right" x="262" y="353">›</text>
+    <rect class="button" x="18" y="383" width="258" height="32" rx="7"/><text class="body white center" x="147" y="404">Оформить за $45</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="1421" y="513">5. Детали тарифа</text>
+
+  <!-- 6. Checkout -->
+  <g transform="translate(18 536)"><use href="#shell"/><use href="#back"/>
+    <text class="title white center" x="147" y="54">Оформление полиса</text>
+    <text class="strong white" x="18" y="82">Данные застрахованного</text>
+    <rect class="card" x="18" y="92" width="258" height="39" rx="8"/><text class="tiny muted" x="31" y="108">Имя и фамилия как в паспорте</text><text class="small white" x="31" y="121">Alexey Ivanov</text>
+    <rect class="card" x="18" y="137" width="125" height="39" rx="8"/><text class="tiny muted" x="31" y="153">Дата рождения</text><text class="small white" x="31" y="166">12.08.1992</text>
+    <rect class="card" x="151" y="137" width="125" height="39" rx="8"/><text class="tiny muted" x="164" y="153">Гражданство</text><text class="small white" x="164" y="166">Россия</text>
+    <rect class="card" x="18" y="182" width="258" height="39" rx="8"/><text class="tiny muted" x="31" y="198">Номер паспорта</text><text class="small white" x="31" y="211">75 1234567</text>
+    <text class="strong white" x="18" y="250">Способ оплаты</text>
+    <rect class="selected" x="18" y="260" width="79" height="33" rx="7"/><text class="small white center" x="57" y="280">▣ Карта</text>
+    <rect class="card" x="104" y="260" width="79" height="33" rx="7"/><text class="small white center" x="143" y="280">▤ Перевод</text>
+    <rect class="card" x="190" y="260" width="86" height="33" rx="7"/><text class="small white center" x="233" y="280">◉ Наличные</text>
+    <rect class="card" x="18" y="314" width="258" height="49" rx="8"/><text class="small muted" x="31" y="334">Оптимальный тариф · 30 дней</text><text class="small white" x="31" y="350">Страховая Liberty Insurance</text><text class="title green right" x="260" y="344">$45</text>
+    <rect class="button" x="18" y="383" width="258" height="32" rx="7"/><text class="body white center" x="147" y="404">Оплатить $45</text><text class="tiny muted center" x="147" y="428">🔒 Оплата защищена</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="165" y="1035">6. Оформление</text>
+
+  <!-- 7. Purchased -->
+  <g transform="translate(332 536)"><use href="#shell"/>
+    <text class="title white center" x="147" y="54">Полис оформлен!</text>
+    <circle cx="147" cy="116" r="31" fill="url(#green)"/><text x="147" y="125" class="title white center" style="font-size:24px">✓</text>
+    <text class="strong white center" x="147" y="169">Спасибо за оформление</text><text class="small muted center" x="147" y="185">Полис уже доступен в вашем профиле</text>
+    <rect class="card" x="18" y="208" width="258" height="74" rx="9"/><text class="small purple" x="32" y="231">▧ PDF</text><text class="strong white" x="58" y="229">Полис № AION-2384</text><text class="small muted" x="58" y="243">Медицинская страховка · 30 дней</text><text class="small green" x="58" y="257">Активен с 20 июля 2026</text><rect class="selected" x="198" y="244" width="62" height="23" rx="6"/><text class="small white center" x="229" y="259">Скачать</text>
+    <rect class="card" x="18" y="294" width="258" height="51" rx="8"/><text class="body purple" x="32" y="318">⌁</text><text class="small white" x="53" y="315">Полис и напоминание отправлены</text><text class="small muted" x="53" y="329">в Telegram</text>
+    <text class="strong white" x="18" y="373">Что дальше?</text>
+    <rect class="button" x="18" y="383" width="258" height="32" rx="7"/><text class="body white center" x="147" y="404">Открыть мои полисы</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="479" y="1035">7. Полис готов</text>
+
+  <!-- 8. My Policies -->
+  <g transform="translate(646 536)"><use href="#shell"/><use href="#back"/>
+    <text class="title white center" x="147" y="54">Мои полисы</text><text class="small white right" x="275" y="54">⚱</text>
+    <rect x="18" y="69" width="49" height="23" rx="6" fill="url(#purple)"/><text class="small white center" x="42" y="84">Все</text><rect class="card" x="73" y="69" width="59" height="23" rx="6"/><text class="tiny muted center" x="102" y="83">Активные</text><rect class="card" x="138" y="69" width="70" height="23" rx="6"/><text class="tiny muted center" x="173" y="83">Истёкшие</text><rect class="card" x="214" y="69" width="62" height="23" rx="6"/><text class="tiny muted center" x="245" y="83">Черновики</text>
+    <rect class="card" x="18" y="105" width="258" height="79" rx="9"/><circle cx="44" cy="131" r="14" fill="#2b176f"/><text class="strong white center" x="44" y="135">◈</text><text class="strong white" x="67" y="123">Оптимальный</text><text class="small muted" x="67" y="137">Медицинская · до 18 августа</text><text class="small green" x="67" y="151">✓ Активен</text><text class="title green right" x="260" y="126">$45</text><rect x="211" y="146" width="50" height="22" rx="5" fill="#331194"/><text class="tiny white center" x="236" y="160">Открыть</text>
+    <rect class="card" x="18" y="192" width="258" height="79" rx="9"/><circle cx="44" cy="218" r="14" fill="#3a2a15"/><text class="strong yellow center" x="44" y="222">!</text><text class="strong white" x="67" y="210">Базовый</text><text class="small muted" x="67" y="224">Медицинская · до 22 июля</text><text class="small yellow" x="67" y="238">⚠ Осталось 3 дня</text><text class="title green right" x="260" y="213">$35</text><rect x="211" y="233" width="50" height="22" rx="5" fill="#331194"/><text class="tiny white center" x="236" y="247">Продлить</text>
+    <rect class="card" x="18" y="279" width="258" height="64" rx="9"/><circle cx="44" cy="305" r="14" fill="#182130"/><text class="strong muted center" x="44" y="309">◈</text><text class="strong white" x="67" y="297">Страховка байка</text><text class="small muted" x="67" y="311">до 15 июня 2026</text><text class="small muted" x="67" y="325">Истёк</text><text class="small muted right" x="260" y="308">$15</text>
+    <rect class="card" x="18" y="370" width="258" height="35" rx="8"/><text class="small white" x="32" y="392">＋ Оформить новый полис</text><text class="title purple right" x="260" y="393">›</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="793" y="1035">8. Мои полисы</text>
+
+  <!-- 9. Claim -->
+  <g transform="translate(960 536)"><use href="#shell"/><use href="#back"/>
+    <text class="title white center" x="147" y="54">Страховой случай</text><text class="small white right" x="275" y="54">♧</text>
+    <rect class="selected" x="18" y="72" width="258" height="52" rx="9"/><text class="strong white" x="33" y="94">Нужна срочная помощь?</text><text class="small muted" x="33" y="108">Поддержка AION поможет 24/7</text><rect x="209" y="88" width="51" height="22" rx="6" fill="#5a25e1"/><text class="tiny white center" x="234" y="102">Написать</text>
+    <text class="strong white" x="18" y="151">Статус обращения #238</text>
+    <line x1="48" y1="181" x2="246" y2="181" stroke="#374157" stroke-width="2"/><line x1="48" y1="181" x2="179" y2="181" stroke="#5b2ce6" stroke-width="2"/>
+    <circle cx="48" cy="181" r="11" fill="#1fb66c"/><text class="small white center" x="48" y="185">✓</text><circle cx="114" cy="181" r="11" fill="#1fb66c"/><text class="small white center" x="114" y="185">✓</text><circle cx="179" cy="181" r="11" fill="#5b2ce6"/><text class="small white center" x="179" y="185">2</text><circle cx="246" cy="181" r="11" fill="#1a2330"/>
+    <text class="tiny muted center" x="48" y="205">Принято</text><text class="tiny muted center" x="114" y="205">Документы</text><text class="tiny purple center" x="179" y="205">Страховая</text><text class="tiny muted center" x="246" y="205">Решение</text>
+    <rect class="card" x="18" y="226" width="258" height="72" rx="9"/><text class="strong white" x="32" y="248">Страховая рассматривает заявку</text><text class="small muted" x="32" y="264">Ориентировочный ответ: 2–3 дня</text><text class="small green" x="32" y="281">Документы отправлены</text>
+    <text class="strong white" x="18" y="327">Действия</text>
+    <rect class="card" x="18" y="338" width="258" height="29" rx="7"/><text class="small white" x="32" y="357">▧ Скачать документы</text><text class="small white right" x="260" y="357">›</text>
+    <rect class="card" x="18" y="373" width="258" height="29" rx="7"/><text class="small white" x="32" y="392">☎ Позвонить в страховую</text><text class="small white right" x="260" y="392">›</text>
+    <text class="tiny red" x="22" y="420">Отменить обращение</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="1107" y="1035">9. Страховой случай</text>
+
+  <!-- 10. Upsell and Renewal -->
+  <g transform="translate(1274 536)"><use href="#shell"/>
+    <text class="title white center" x="147" y="54">Полис скоро истечёт</text>
+    <circle cx="147" cy="105" r="26" fill="#39240e" stroke="#d48d15"/><text class="title yellow center" x="147" y="111" style="font-size:20px">3</text><text class="small yellow center" x="147" y="130">дня</text>
+    <text class="strong white center" x="147" y="157">Продлить медицинский полис?</text><text class="small muted center" x="147" y="173">Те же условия, без повторного заполнения</text>
+    <rect class="selected" x="18" y="193" width="258" height="65" rx="9"/><text class="small muted" x="32" y="215">Оптимальный тариф · 30 дней</text><text class="strong white" x="32" y="233">Покрытие $100 000</text><text class="title green right" x="260" y="234">$45</text><text class="tiny purple" x="32" y="248">Продление без анкеты</text>
+    <rect class="button" x="18" y="270" width="258" height="32" rx="7"/><text class="body white center" x="147" y="291">Продлить полис</text>
+    <text class="strong white" x="18" y="330">Может пригодиться</text>
+    <rect class="card" x="18" y="341" width="258" height="34" rx="8"/><text class="body green" x="32" y="363">⌂</text><text class="small white" x="54" y="357">Застраховать жильё</text><text class="tiny muted" x="54" y="368">от $20 / мес</text><text class="title white right" x="260" y="362">›</text>
+    <rect class="card" x="18" y="381" width="258" height="34" rx="8"/><text class="body yellow" x="32" y="403">◉</text><text class="small white" x="54" y="397">Застраховать байк</text><text class="tiny muted" x="54" y="408">от $15 / мес</text><text class="title white right" x="260" y="402">›</text>
+    <use href="#nav"/>
+  </g><text class="caption center" x="1421" y="1035">10. Продление и апсейл</text>
+</svg>

@@ -1,0 +1,1080 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О городе — Иркутск | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #f59e0b;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    margin: 0 -16px;
+    border-radius: 0 0 24px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+
+  .quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 16px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quick-actions::-webkit-scrollbar { display: none; }
+  .quick-btn {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .quick-btn.emergency { background: var(--danger); }
+  .quick-btn.transport { background: var(--info); }
+  .quick-btn.sim { background: var(--success); }
+  .quick-btn.currency { background: var(--gold); color: #1e293b; }
+  .quick-btn.food { background: #ec4899; }
+  .quick-btn.baikal { background: #8b5cf6; }
+
+  .toc {
+    background: var(--bg-alt);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 8px 0 20px;
+    border: 1px solid var(--border);
+  }
+  .toc-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--primary);
+  }
+  .toc-item {
+    display: block;
+    padding: 6px 0;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { opacity: 0.8; }
+
+  .section {
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .emoji { font-size: 22px; }
+
+  .subsection {
+    margin: 16px 0;
+    padding: 14px;
+    background: var(--bg-alt);
+    border-radius: 12px;
+  }
+  .subsection-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .card {
+    padding: 12px;
+    margin: 8px 0;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .card-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .card-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .card .price { color: var(--accent); font-weight: 700; }
+
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-label { font-weight: 500; }
+  .contact-value { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+  .info-box {
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+  .info-box.tip { background: #f0fdf4; border-left: 3px solid var(--success); }
+  .info-box.warn { background: #fffbeb; border-left: 3px solid var(--warning); }
+  .info-box.danger { background: #fef2f2; border-left: 3px solid var(--danger); }
+  .info-box.info { background: #eff6ff; border-left: 3px solid var(--info); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 480px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag.green { background: #dcfce7; color: #166534; }
+  .tag.yellow { background: #fef3c7; color: #92400e; }
+  .tag.red { background: #fee2e2; color: #991b1b; }
+  .tag.blue { background: #dbeafe; color: #1e40af; }
+
+  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  .price-table th { text-align: left; padding: 8px; background: var(--bg-alt); font-weight: 600; }
+  .price-table td { padding: 8px; border-bottom: 1px solid var(--border); }
+
+  ul, ol { padding-left: 20px; font-size: 14px; }
+  li { margin: 4px 0; }
+
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Иркутск, Россия</h1>
+  <p>Полный гид по столице Восточной Сибири — ворота Байкала</p>
+</div>
+
+<div class="quick-actions">
+  <a href="#emergency" class="quick-btn emergency">🚨 Экстренно</a>
+  <a href="#transport" class="quick-btn transport">🚕 Транспорт</a>
+  <a href="#internet" class="quick-btn sim">📱 SIM / Связь</a>
+  <a href="#money" class="quick-btn currency">💰 Деньги</a>
+  <a href="#food" class="quick-btn food">🍜 Еда</a>
+  <a href="#baikal" class="quick-btn baikal">🏞 Байкал</a>
+</div>
+
+<div class="toc">
+  <div class="toc-title">📌 Содержание</div>
+  <a class="toc-item" href="#overview">1. Общая информация</a>
+  <a class="toc-item" href="#emergency">2. ☎️ Экстренные контакты</a>
+  <a class="toc-item" href="#weather">3. Погода и сезоны</a>
+  <a class="toc-item" href="#districts">4. Районы города</a>
+  <a class="toc-item" href="#baikal">5. 🏞 Байкал — Листвянка, Ольхон, КБЖД</a>
+  <a class="toc-item" href="#transport">6. Транспорт</a>
+  <a class="toc-item" href="#airport">7. Аэропорт и вокзалы</a>
+  <a class="toc-item" href="#internet">8. SIM и связь</a>
+  <a class="toc-item" href="#money">9. Деньги и цены</a>
+  <a class="toc-item" href="#medicine">10. Медицина</a>
+  <a class="toc-item" href="#housing">11. Жильё</a>
+  <a class="toc-item" href="#food">12. Еда и рестораны</a>
+  <a class="toc-item" href="#safety">13. Безопасность</a>
+  <a class="toc-item" href="#culture">14. Архитектура и музеи</a>
+  <a class="toc-item" href="#families">15. Семьям с детьми</a>
+  <a class="toc-item" href="#nomads">16. Digital-номадам</a>
+  <a class="toc-item" href="#faq">17. FAQ — 20 вопросов</a>
+  <a class="toc-item" href="#checklist">18. Чек-лист: Первые дни</a>
+  <a class="toc-item" href="#links">19. Быстрые ссылки</a>
+</div>
+
+<!-- ============================================================
+1. ОБЩАЯ ИНФОРМАЦИЯ
+============================================================ -->
+<div class="section" id="overview">
+  <div class="section-title"><span class="emoji">📍</span> Общая информация</div>
+  <div class="card">
+    <div class="card-text">
+      <strong>Иркутск</strong> — административный центр Иркутской области, крупнейший город
+      Восточной Сибири. Расположен на берегу реки Ангары, в 65 км от озера Байкал.
+      Основан в 1661 году как острог. Исторический центр — памятник деревянного зодчества
+      под открытым небом. Иркутск называют «Парижем Сибири» за богатое культурное наследие
+      и купеческую архитектуру.
+    </div>
+  </div>
+  <table class="price-table">
+    <tr><td><strong>Население</strong></td><td>~620 000</td></tr>
+    <tr><td><strong>Язык</strong></td><td>Русский</td></tr>
+    <tr><td><strong>Валюта</strong></td><td>Российский рубль (RUB)</td></tr>
+    <tr><td><strong>Часовой пояс</strong></td><td>UTC+8 (MSK+5)</td></tr>
+    <tr><td><strong>Телефонный код</strong></td><td>+7 3952</td></tr>
+    <tr><td><strong>Розетки</strong></td><td>Тип C, F (220V / 50Hz)</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================
+2. ЭКСТРЕННЫЕ КОНТАКТЫ
+============================================================ -->
+<div class="section" id="emergency">
+  <div class="section-title"><span class="emoji">🚨</span> Экстренные контакты</div>
+  <div class="info-box danger">
+    <strong>Важно!</strong> Единый номер экстренных служб — 112 (работает без SIM, при минусе на счету, даже без клавиатуры).
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚑 Скорая помощь</span>
+    <a href="tel:103" class="contact-value">103</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚒 Пожарная служба</span>
+    <a href="tel:101" class="contact-value">101</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚔 Полиция</span>
+    <a href="tel:102" class="contact-value">102</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">📞 Единый номер</span>
+    <a href="tel:112" class="contact-value">112</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Городская клиническая больница №1</span>
+    <a href="tel:+73952243333" class="contact-value">+7 3952 43-33-33</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Областная больница</span>
+    <a href="tel:+73952275921" class="contact-value">+7 3952 27-59-21</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Медсанчасть ИАПО</span>
+    <a href="tel:+73952268218" class="contact-value">+7 3952 26-82-18</a>
+  </div>
+</div>
+
+<!-- ============================================================
+3. ПОГОДА И СЕЗОНЫ
+============================================================ -->
+<div class="section" id="weather">
+  <div class="section-title"><span class="emoji">🌤</span> Погода и сезоны</div>
+  <p style="font-size:14px; margin-bottom:10px;">Резко континентальный климат. Зима холодная и сухая, лето тёплое и влажное.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">❄️ Зима</div>
+      <div class="card-text">
+        Ноябрь — март. −15…−30°C, возможны морозы до −40°C. Солнечно, снежно.
+        Ангара не замерзает (плотина ГЭС). Байкал замерзает к январю.
+        <span class="tag blue">Турсезон: февраль — март (лёд Байкала)</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌸 Весна</div>
+      <div class="card-text">
+        Апрель — май. 0…+15°C. Снег сходит к концу апреля. Грязь, лужи.
+        Листвянка оживает в мае. На Байкале лёд тает до июня.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">☀️ Лето</div>
+      <div class="card-text">
+        Июнь — август. +20…+28°C, возможна жара до +35°C. Дожди, грозы.
+        Лучшее время для походов и сплавов. Байкал прогревается до +18°C в августе.
+        <span class="tag green">Пиковый туристический сезон</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🍂 Осень</div>
+      <div class="card-text">
+        Сентябрь — октябрь. 0…+15°C. Яркая золотая осень в сентябре.
+        С середины октября заморозки. Ноябрь — уже зима с минусом.
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Лучшее время для визита:</strong> Июль — август (тепло, зелено, все маршруты открыты)
+    или февраль — март (лёд Байкала — прозрачный, торосы, пещеры).
+    Сентябрь — бархатный сезон: тепло, мало туристов, золотая осень.
+  </div>
+</div>
+
+<!-- ============================================================
+4. РАЙОНЫ ГОРОДА
+============================================================ -->
+<div class="section" id="districts">
+  <div class="section-title"><span class="emoji">🗺</span> Районы города</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏛 Исторический центр (Правый берег)</div>
+    <div class="card-text">
+      Главный туристический район. Улица Карла Маркса, площадь Кирова, бульвар Гагарина.
+      Деревянные дома с резными наличниками, купеческие особняки, набережная Ангары.
+      ТЦ, рестораны, музеи — всё здесь.
+      <span class="tag green">Туристический центр</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏘 Левый берег (Ново-Ленино, Первомайский)</div>
+    <div class="card-text">
+      Спальные районы на левом берегу Ангары. Панельные и кирпичные многоэтажки.
+      Развитая инфраструктура: ТЦ, школы, поликлиники. Дешевле центра на 20–30%.
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏭 Предместье Рабочее / Иркутск II</div>
+    <div class="card-text">
+      Район ж/д станции Иркутск-Сортировочный. Частный сектор, общежития,
+      промышленные предприятия. Меньше туристов, более бюджетное жильё.
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏡 Академгородок / Солнечный</div>
+    <div class="card-text">
+      Престижный район на юго-западе. Иркутский научный центр СО РАН.
+      Коттеджи, новостройки, зелень. Близость к Байкальскому тракту.
+      <span class="tag green">Премиум-район</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏘 Знаменское, Жилкино, Батарейная</div>
+    <div class="card-text">
+      Окраинные районы. Частный сектор и малоэтажная застройка.
+      Дешёвое жильё, менее развитая инфраструктура.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+5. БАЙКАЛ И ПРИРОДА
+============================================================ -->
+<div class="section" id="baikal">
+  <div class="section-title"><span class="emoji">🏞</span> Байкал — главное сокровище</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏖 Листвянка (65 км от Иркутска)</div>
+    <div class="card-text">
+      Ближайший к Иркутску посёлок на берегу Байкала. 1 час на авто или маршрутке.
+      Нерпинарий, обзорная площадка «Камень Черского», музей Байкала, Шаман-камень.
+      Рынок сувениров, кафе с омулем. <span class="tag green">Обязательно на 1 день</span>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">🏝 Ольхон (250 км)</div>
+      <div class="card-text">
+        Крупнейший остров. Скала Шаманка, Хужир, север Ольхона.
+        Ехать 5–6 часов. Паром летом, лёд зимой. Минимум 2 дня.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🚂 КБЖД (Кругобайкальская)</div>
+      <div class="card-text">
+        Легендарная ж/д дорога. Тоннели, галереи, мосты над Байкалом.
+        Поезд Иркутск — Слюдянка — Порт Байкал. 1 день.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏔 Аршан / Тунка (250 км)</div>
+      <div class="card-text">
+        Курорт с минеральными источниками, водопады, пик Черского.
+        Санатории, треккинг. 4–5 часов на авто.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏄 Малое Море</div>
+      <div class="card-text">
+        Залив между Ольхоном и материком. Самые тёплые воды Байкала.
+        Пляжи, кемпинги, кайтсёрфинг. МРС, Куркут, Сахюрта.
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🧊 Зимний Байкал (февраль — март)</div>
+    <div class="card-text">
+      Прозрачный лёд до 1.5 м толщиной. Пузырьки метана, торосы, трещины.
+      Езда на авто и хивусах по льду. Экскурсии на Ольхон по льду.
+      <strong>Осторожно:</strong> двигаться только с местными гидами!
+      <span class="tag yellow">Must-see зимой</span>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Как доехать до Листвянки:</strong> Маршрутка от автовокзала (№ 526, от 150 ₽,
+    1 час). Такси — от 1 200 ₽. На своём авто — 65 км по Байкальскому тракту.
+  </div>
+</div>
+
+<!-- ============================================================
+6. ТРАНСПОРТ
+============================================================ -->
+<div class="section" id="transport">
+  <div class="section-title"><span class="emoji">🚕</span> Транспорт</div>
+
+  <div class="card">
+    <div class="card-title">🚗 Такси</div>
+    <div class="card-text">
+      Яндекс Go, Maxim. По городу: 100–300 ₽. До Листвянки: 1 000–1 500 ₽.
+      В пик сезона цены растут.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚌 Автобусы и маршрутки</div>
+    <div class="card-text">
+      Проезд: 30 ₽. Маршрутки ходят часто, особенно № 20, 30, 37 — через центр.
+      Автобусы до Листвянки (№ 526), Большого Голоустного, Аршана.
+      Оплата: наличные, карта, перевод.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚋 Трамвай</div>
+    <div class="card-text">
+      7 маршрутов. Стоимость: 30 ₽. Удобен для поездок в центр из Предместья,
+      Ново-Ленино. Маршруты № 1, 2, 4а — по набережной.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚍 Троллейбус</div>
+    <div class="card-text">
+      10 маршрутов. 30 ₽. Маршруты № 5, 6, 7 — по центральным улицам.
+      Экологичный транспорт.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚙 Аренда авто</div>
+    <div class="card-text">
+      Яндекс Драйв (каршеринг) — в центре. Прокат: от 1 500 ₽/сут.
+      Для Байкала — берите полный привод (особенно зимой).
+      Основные конторы: Avis, Sixt, местные.
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Важно:</strong> В Иркутске часты пробки на мостах через Ангару
+    (Глазковский, плотина ГЭС). В час пик (8–10, 17–19) закладывайте +30–40 минут.
+  </div>
+</div>
+
+<!-- ============================================================
+7. АЭРОПОРТ И ВОКЗАЛЫ
+============================================================ -->
+<div class="section" id="airport">
+  <div class="section-title"><span class="emoji">✈️</span> Аэропорт и вокзалы</div>
+
+  <div class="card">
+    <div class="card-title">✈️ Аэропорт Иркутск (IKT)</div>
+    <div class="card-text">
+      Международный аэропорт в черте города (5 км от центра).
+      Прямые рейсы: Москва (5.5 ч), Санкт-Петербург, Новосибирск, Владивосток,
+      Пекин, Сеул, Бангкок, Улан-Батор.
+      Внутренние рейсы: S7, Аэрофлот, Уральские авиалинии, ИрАэро.
+    </div>
+  </div>
+
+  <table class="price-table">
+    <tr><th>Вид трансфера</th><th>Цена (₽)</th><th>Время</th></tr>
+    <tr><td>Такси (аэропорт — центр)</td><td>300–500</td><td>15 мин</td></tr>
+    <tr><td>Яндекс Go</td><td>250–400</td><td>15 мин</td></tr>
+    <tr><td>Автобус № 20, 42</td><td>30</td><td>30 мин</td></tr>
+    <tr><td>Троллейбус № 6</td><td>30</td><td>35 мин</td></tr>
+    <tr><td>Такси (аэропорт — Листвянка)</td><td>1 200–1 800</td><td>1 ч</td></tr>
+  </table>
+
+  <div class="card">
+    <div class="card-title">🚂 Ж/д вокзал «Иркутск-Пассажирский»</div>
+    <div class="card-text">
+      Главный вокзал города — остановка Транссиба. Поезда: Москва — Владивосток,
+      «Байкал» (Иркутск — Улан-Удэ, 8 ч), «Баргузин» (Москва — Иркутск).
+      Здание вокзала — памятник архитектуры (1905 г.).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚌 Автовокзал Иркутска</div>
+    <div class="card-text">
+      Ул. Култукская, 103. Рейсы: Улан-Удэ (8 ч, 700–900 ₽), Листвянка (1 ч, 150 ₽),
+      Слюдянка, Аршан, Северобайкальск. Междугородние и пригородные.
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Как добраться из Москвы:</strong> Самолёт S7 или Аэрофлот — 5.5 часов,
+    от 7 000 ₽. Поезд «Баргузин» / «Москва — Владивосток» — 3.5 дня, от 4 500 ₽ плацкарт.
+  </div>
+</div>
+
+<!-- ============================================================
+8. SIM И СВЯЗЬ
+============================================================ -->
+<div class="section" id="internet">
+  <div class="section-title"><span class="emoji">📱</span> SIM-карты и Интернет</div>
+
+  <div class="info-box tip">
+    <strong>Совет:</strong> В России SIM продают только по паспорту. На Байкале связь есть
+    не везде — скачайте карты офлайн (2ГИС, Maps.me) заранее.
+  </div>
+
+  <table class="price-table">
+    <tr><th>Оператор</th><th>Тариф (месяц)</th><th>Трафик</th></tr>
+    <tr><td><strong>МТС</strong></td><td>от 400 ₽</td><td>15–30 GB + минуты</td></tr>
+    <tr><td><strong>Билайн</strong></td><td>от 350 ₽</td><td>15–30 GB + минуты</td></tr>
+    <tr><td><strong>МегаФон</strong></td><td>от 450 ₽</td><td>20–40 GB + минуты</td></tr>
+    <tr><td><strong>Tele2</strong></td><td>от 300 ₽</td><td>10–20 GB + минуты</td></tr>
+    <tr><td><strong>Yota</strong></td><td>от 400 ₽</td><td>Безлимитный интернет</td></tr>
+  </table>
+
+  <div class="subsection">
+    <div class="subsection-title">📶 Покрытие и скорость</div>
+    <div class="card-text">
+      В городе: 4G+ стабильный, 30–80 Мбит/с у всех операторов.
+      Листвянка: 4G есть (МТС/МегаФон — лучшие). Ольхон: 4G только в Хужире, на севера нет.
+      Байкальск/Слюдянка: 4G в посёлках, на трассах — 3G/EDGE.
+      Рекомендуем МТС или МегаФон для поездок на Байкал.
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🌐 eSIM</div>
+    <div class="card-text">
+      Airalo ($5–20), МТС eSIM (в салоне). Иностранцам — Airalo удобнее всего.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+9. ДЕНЬГИ И ЦЕНЫ
+============================================================ -->
+<div class="section" id="money">
+  <div class="section-title"><span class="emoji">💰</span> Деньги и цены</div>
+
+  <div class="card">
+    <div class="card-title">💳 Карты и наличные</div>
+    <div class="card-text">
+      <strong>Российские карты</strong> (МИР, Visa/MC Сбера, Т-Банка) — работают везде.
+      <strong>Иностранные карты</strong> — не работают. UnionPay — принимают не везде.
+      Лучше иметь наличные рубли. Банкоматы: Сбер, ВТБ, Т-Банк — во всех районах.
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Важно:</strong> На Байкале (Листвянка, Ольхон) — карты принимают не везде.
+    Всегда имейте наличные. В кафе на Ольхоне может быть только кэш.
+  </div>
+
+  <div class="subsection-title" style="margin-top:12px;">💰 Примерные цены в Иркутске</div>
+  <table class="price-table">
+    <tr><th>Категория</th><th>Цена (₽)</th></tr>
+    <tr><td>Чашка кофе (кафе)</td><td>150–300</td></tr>
+    <tr><td>Обед (столовая)</td><td>300–500</td></tr>
+    <tr><td>Обед (ресторан)</td><td>800–2 000</td></tr>
+    <tr><td>Позы / буузы (5 шт)</td><td>350–500</td></tr>
+    <tr><td>Омуль копчёный (1 шт)</td><td>200–400</td></tr>
+    <tr><td>Хлеб местный</td><td>30–50</td></tr>
+    <tr><td>Бутылка воды</td><td>30–50</td></tr>
+    <tr><td>Пиво местное (0.5 л)</td><td>70–130</td></tr>
+    <tr><td>Проезд на транспорте</td><td>30</td></tr>
+    <tr><td>Такси по городу</td><td>150–300</td></tr>
+    <tr><td>Аренда 1-комн. квартиры/мес</td><td>18 000 – 30 000</td></tr>
+    <tr><td>Экскурсия на Ольхон (2 дня)</td><td>6 000 – 12 000 с чел.</td></tr>
+    <tr><td>Катер по Байкалу / час</td><td>2 000 – 5 000</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Цены vs Москва:</strong> Иркутск дешевле Москвы на 20–30% по жилью и услугам.
+    Рестораны — сопоставимо. Продукты местные (омуль, кедровые орехи) — значительно дешевле.
+  </div>
+</div>
+
+<!-- ============================================================
+10. МЕДИЦИНА
+============================================================ -->
+<div class="section" id="medicine">
+  <div class="section-title"><span class="emoji">🏥</span> Медицина</div>
+
+  <div class="card">
+    <div class="card-title">🏥 Больницы</div>
+    <div class="contact-item">
+      <span class="contact-label">ГКБ №1 (городская)</span>
+      <a href="tel:+73952243333" class="contact-value">+7 3952 43-33-33</a>
+    </div>
+    <div class="card-text">Ул. Байкальская, 118. Круглосуточный травмпункт.</div>
+    <div class="contact-item">
+      <span class="contact-label">Иркутская областная клиническая больница</span>
+      <a href="tel:+73952275921" class="contact-value">+7 3952 27-59-21</a>
+    </div>
+    <div class="card-text">М/р Юбилейный, 100. Многопрофильная.</div>
+    <div class="contact-item">
+      <span class="contact-label">Детская ГКБ</span>
+      <a href="tel:+73952245987" class="contact-value">+7 3952 24-59-87</a>
+    </div>
+    <div class="card-text">Ул. Ленская, 52.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🤒 Аптеки</div>
+    <div class="card-text">
+      Сети: «Аптека 36,6», «Ирвис», «Фармакопейка», «Здоровые люди».
+      Круглосуточная аптека «Ирвис» — ул. Карла Маркса, 40.
+      Перед поездкой на Байкал купите антигистаминные, обезболивающие, средства от клещей.
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏥 Клещи — особая опасность!</div>
+    <div class="card-text">
+      Иркутская область — эндемичный район по клещевому энцефалиту.
+      <strong>Обязательно:</strong> прививка от энцефалита (делается за 2 месяца до сезона).
+      При укусе — срочно в травмпункт (ГКБ №1).
+      Репеллент от клещей — обязателен в лесу с апреля по июнь.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+11. ЖИЛЬЁ
+============================================================ -->
+<div class="section" id="housing">
+  <div class="section-title"><span class="emoji">🏠</span> Жильё</div>
+
+  <table class="price-table">
+    <tr><th>Тип</th><th>Цена/мес (₽)</th></tr>
+    <tr><td>Комната/койко-место</td><td>8 000 – 14 000</td></tr>
+    <tr><td>1-комнатная квартира</td><td>18 000 – 30 000</td></tr>
+    <tr><td>2-комнатная квартира</td><td>25 000 – 45 000</td></tr>
+    <tr><td>Студия (центр)</td><td>22 000 – 40 000</td></tr>
+    <tr><td>Дом/коттедж</td><td>35 000 – 80 000</td></tr>
+    <tr><td>Гостиница/сутки</td><td>1 500 – 5 000</td></tr>
+    <tr><td>Хостел/сутки</td><td>600 – 1 500</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Как искать:</strong> ЦИАН, Авито, ДомКлик, N1.ru. Агентства: «Этажи», «АМИ».
+    Депозит 1 месяц. Договор аренды обязателен. Коммуналка платится отдельно (1 000–4 000 ₽/мес).
+  </div>
+
+  <div class="info-box warn">
+    В туристический сезон (июль-август) найти жильё на сутки/неделю — проблема.
+    Бронировать за 1–2 месяца. На Ольхоне и Листвянке — ещё сложнее и дороже.
+  </div>
+</div>
+
+<!-- ============================================================
+12. ЕДА И РЕСТОРАНЫ
+============================================================ -->
+<div class="section" id="food">
+  <div class="section-title"><span class="emoji">🍜</span> Еда и рестораны</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🥟 Что обязательно попробовать</div>
+    <ul>
+      <li><strong>Омуль байкальский</strong> — горячего/холодного копчения, солёный — 200–400 ₽</li>
+      <li><strong>Буузы (позы)</strong> — бурятские манты с мясом — 60–100 ₽/шт</li>
+      <li><strong>Сибирские пельмени</strong> — с омулем, медвежатиной, изюбрем — от 250 ₽</li>
+      <li><strong>Сагудай</strong> — строганина из свежего омуля с луком и маслом — 300–500 ₽</li>
+      <li><strong>Кедровые орехи местные</strong> — 200–400 ₽/100 г</li>
+      <li><strong>Папоротник Орляк</strong> — солёный или жареный, местный деликатес</li>
+      <li><strong>Чай из сибирских трав</strong> — саган-дайля, иван-чай, смородина</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🍽 Где поесть</div>
+    <div class="card">
+      <div class="card-title">🥟 «Бууза бар» — пр. Маркса, 10</div>
+      <div class="card-text">Лучшие позы в городе. Средний чек: 400–600 ₽.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🐟 «Омулёвая бочка» — ул. 5 Армии, 2</div>
+      <div class="card-text">Ресторан сибирской кухни. Омуль, строганина, дичь.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🍰 «Дело в кофе» — пр. Маркса, 48</div>
+      <div class="card-text">Отличный кофе и десерты. Wi-Fi. Работает до 23:00.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌯 «Столовая №1» — ул. Ленина, 14</div>
+      <div class="card-text">Сытный обед за 250–350 ₽. Популярна у местных.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🍻 «Маркштадт» — ул. Седова, 57</div>
+      <div class="card-text">Своя пивоварня, баварская кухня. От 1 500 ₽.</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🍉 Что привезти из Иркутска</div>
+    <ul>
+      <li><strong>Омуль копчёный</strong> — в вакуумной упаковке (везти в ручной клади)</li>
+      <li><strong>Кедровые орехи и кедровое масло</strong></li>
+      <li><strong>Сибирские травы</strong> — саган-дайля, иван-чай, чабрец</li>
+      <li><strong>Изделия из бересты</strong> — шкатулки, картины</li>
+      <li><strong>Кедровые шишки и сувениры из них</strong></li>
+      <li><strong>Открытки с видами Байкала</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================
+13. БЕЗОПАСНОСТЬ
+============================================================ -->
+<div class="section" id="safety">
+  <div class="section-title"><span class="emoji">🔒</span> Безопасность</div>
+
+  <div class="info-box info">
+    Иркутск — достаточно безопасный город. Главные риски связаны с природой:
+    клещи, морозы, лёд Байкала и дикие животные.
+  </div>
+
+  <ul>
+    <li>🧊 <strong>Морозы:</strong> Зимой −30°C и ниже. Одевайтесь слоями: термобельё, шерсть, пуховик.
+      Телефон на морозе разряжается за 10–15 мин — храните во внутреннем кармане.</li>
+    <li>🐍 <strong>Клещи:</strong> Активны апрель-июнь. Выезжая на природу — закрытая одежда,
+      репеллент, осмотр каждые 2 часа. При укусе — травмпункт немедленно.</li>
+    <li>🌊 <strong>Лёд Байкала:</strong> Никогда не выезжайте на лёд без местных гидов.
+      Трещины, промоины и нажимы смертельно опасны. Провал под лёд = 2 мин до гипотермии.</li>
+    <li>🐻 <strong>Медведи:</strong> Встречаются в лесах Прибайкалья. В поход — берите
+      фальшфейер или газовый баллончик. Не ходите по одному.</li>
+    <li>🚗 <strong>Дороги:</strong> Качество дорог среднее. Зимой гололёд. На Байкальском
+      тракте частые аварии. Будьте внимательны.</li>
+    <li>🔐 <strong>В городе:</strong> В центре безопасно. Окраины (Батарейная, Жилкино) —
+      вечером лучше не гулять одному. Карманники на рынках.</li>
+  </ul>
+
+  <div class="info-box danger">
+    <strong>Предупреждение:</strong> Не покупайте экскурсии по льду у нелегалов.
+    Используйте только лицензированных гидов — ежегодно проваливаются под лёд 5–10 человек.
+  </div>
+</div>
+
+<!-- ============================================================
+14. АРХИТЕКТУРА И МУЗЕИ
+============================================================ -->
+<div class="section" id="culture">
+  <div class="section-title"><span class="emoji">🏛</span> Архитектура и музеи</div>
+
+  <div class="card">
+    <div class="card-title">🏘 Деревянное зодчество</div>
+    <div class="card-text">
+      Иркутск славится резными деревянными домами XIX века. Улица Декабрьских Событий,
+      130-й квартал (собирательный образ старого Иркутска), ул. Фридриха Энгельса.
+      Окна с резными наличниками — визитная карточка города.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏛 Музеи</div>
+    <div class="card-text">
+      <strong>Музей истории Иркутска</strong> — ул. Франк-Каменецкого, 16а.
+      <strong>Художественный музей им. Сукачёва</strong> — ул. Ленина, 5 (отличная коллекция иконописи и живописи).
+      <strong>Музей Декабристов</strong> — дом Трубецких и Волконских (две усадьбы).
+      <strong>Музей Байкала</strong> — Листвянка, аквариум с байкальскими нерпами.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⛪ Храмы и соборы</div>
+    <div class="card-text">
+      <strong>Богоявленский собор</strong> (1718 г.) — старейшее каменное здание города.
+      <strong>Спасская церковь</strong> — на набережной, красивые фрески.
+      <strong>Знаменский монастырь</strong> — где похоронен Григорий Шелихов (основатель Русской Америки).
+      <strong>Иркутский дацан</strong> — буддийский храм на ул. Баррикад.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏭 130-й квартал</div>
+    <div class="card-text">
+      Пешеходная зона «Иркутская слобода». Воссозданные деревянные дома, рестораны,
+      сувенирные лавки. Отличное место для прогулки и фото.
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Бесплатный аудиогид:</strong> Скачайте аудиопрогулки от «Иркутск пешком»
+    или используйте приложение «izi.TRAVEL» с маршрутами по центру.
+  </div>
+</div>
+
+<!-- ============================================================
+15. СЕМЬЯМ С ДЕТЬМИ
+============================================================ -->
+<div class="section" id="families">
+  <div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Семьям с детьми</div>
+
+  <ul>
+    <li><strong>Детские сады:</strong> Много муниципальных (очередь до 1–2 лет) и частные
+      (от 15 000 ₽/мес): «Умка», «Монтессори-Иркутск», «Лучик».</li>
+    <li><strong>Школы:</strong> Гимназия №3, лицей ИГУ, лицей №1, школа-интернат №23.
+      Есть частная школа «Альтернатива».</li>
+    <li><strong>Нерпинарий:</strong> Листвянка — шоу байкальских нерп (1 000 ₽, дети до 5 лет бесплатно).</li>
+    <li><strong>Байкальский океанариум</strong> — Листвянка, самый большой пресноводный аквариум в РФ.</li>
+    <li><strong>Детские парки:</strong> Парк им. Парижской Коммуны (аттракционы, колесо обозрения),
+      остров Конный (прогулки, кафе), Парк Победы.</li>
+    <li><strong>Колесо обозрения «Иркутск-Сити»</strong> — 65 м, вид на Ангару и город.</li>
+    <li><strong>Зоопарки:</strong> «Зоопарк на ул. Байкальской» (небольшой), Иркутский зоопарк
+      (ул. Кольцевая, 91). От 300 ₽.</li>
+    <li><strong>Семейные кафе:</strong> «Тыковка» (ул. Ленина), «Курилка» (детская комната).</li>
+  </ul>
+</div>
+
+<!-- ============================================================
+16. DIGITAL-НОМАДАМ
+============================================================ -->
+<div class="section" id="nomads">
+  <div class="section-title"><span class="emoji">💻</span> Digital-номадам</div>
+
+  <div class="card">
+    <div class="card-title">☕ Кафе для работы</div>
+    <div class="card-text">
+      <strong>Traveler's Coffee</strong> — пр. Маркса, 42 и ул. Ленина, 13.
+      <strong>Шоколадница</strong> — пр. Маркса, 52, надёжный Wi-Fi.
+      <strong>Coworking Cafe ul. 42</strong> — ул. Смолина, 54.
+      <strong>Greenbox Coffee</strong> — ул. Горького, 36а (тихое, розетки).
+      <strong>«Дело в кофе»</strong> — пр. Маркса, 48.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏢 Коворкинги</div>
+    <div class="card-text">
+      <strong>Work Station</strong> — ул. Советская, 58. От 6 000 ₽/мес.
+      <strong>InCube</strong> — ул. Красных Мадьяр, 48. От 5 000 ₽/мес.
+      <strong>Библиотека им. Молчанова-Сибирского</strong> — бесплатно, Wi-Fi, есть места.
+      <strong>Антикафе «Хостел»</strong> — ул. Карла Маркса, 22 — от 2 ₽/мин.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📡 Интернет</div>
+    <div class="card-text">
+      Домашний: Ростелеком, ТТК, Иркутскэнергосвязь — от 500 ₽/мес за 100 Мбит/с.
+      4G: МТС/МегаФон — 30–80 Мбит/с в городе. Вечером просадок почти нет.
+      На Байкале: в Листвянке 4G стабильный, на Ольхоне — неустойчивый.
+    </div>
+  </div>
+
+  <div class="info-box info">
+    <strong>Почему Иркутск для номадов:</strong> Дешевле Москвы и Питера на 30%,
+    хороший интернет, отличная природа за городом. Минусы: холодная зима,
+    не очень развитая ночная жизнь, удалённость (5 часов разницы с Москвой).
+  </div>
+
+  <div class="info-box tip">
+    <strong>Лучший коворкинг с видом:</strong> В Листвянке есть антикафе и веранды
+    с прямым видом на Байкал. Поезжайте на день работать с ноутбуком у озера.
+  </div>
+</div>
+
+<!-- ============================================================
+17. FAQ — 20 ВОПРОСОВ
+============================================================ -->
+<div class="section" id="faq">
+  <div class="section-title"><span class="emoji">❓</span> FAQ — 20 вопросов</div>
+
+  <div class="subsection">
+    <div class="subsection-title">1. Нужна ли виза в Иркутск?</div>
+    <div class="card-text">Гражданам РФ — нет. Иностранцам — виза РФ. Для многих стран доступна электронная виза (eVisa Russia).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">2. Какой язык в ходу?</div>
+    <div class="card-text">Русский. Английский — в отелях/ресторанах центра. В глубинке — только русский. Учите базовые фразы.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">3. Какую валюту брать?</div>
+    <div class="card-text">Рубли. Иностранные карты не работают. Меняйте в банках или банкоматах. Снимайте крупными суммами.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">4. Когда лучше ехать на Байкал?</div>
+    <div class="card-text">Летом — июль-август (тепло, походы). Зимой — февраль-март (лёд, торосы, пещеры). Каждый сезон уникален.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">5. Безопасно ли в Иркутске?</div>
+    <div class="card-text">Да. Центр безопасен круглосуточно. Окраины — с осторожностью вечером. Главные риски: клещи, морозы, лёд.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">6. Как позвонить домой?</div>
+    <div class="card-text">WhatsApp, Telegram, Zoom. Местная международная связь — дорого.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">7. Есть ли комары и клещи?</div>
+    <div class="card-text">Клещей много в апреле-июне! Обязательна прививка от энцефалита. Комары — у воды, в лесу.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">8. Нужна ли страховка?</div>
+    <div class="card-text">Гражданам РФ — достаточно ОМС. Иностранцам — обязательна страховка (рекомендуем с покрытием $100 000+).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">9. Сколько стоит аренда жилья?</div>
+    <div class="card-text">От 18 000 ₽/мес за 1-комнатную в центре. На окраинах — от 14 000 ₽. Коммуналка зимой 1 000–4 000 ₽.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">10. Где искать жильё?</div>
+    <div class="card-text">ЦИАН, Авито, ДомКлик, N1.ru, «Этажи». В high season бронировать за месяц.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">11. Можно ли снять на сутки?</div>
+    <div class="card-text">Да. Booking.com, Ostrovok.ru, Суточно.ру. От 1 500 ₽/сут за студию.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">12. Какой транспорт лучше?</div>
+    <div class="card-text">Яндекс Go (такси), автобусы/трамваи (30 ₽). На Байкал — аренда авто или экскурсия.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">13. Нужно ли платить налоги?</div>
+    <div class="card-text">Резиденты РФ — 13% НДФЛ. Самозанятые — 4–6%. Нерезиденты — 30%.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">14. Где купить сим-карту?</div>
+    <div class="card-text">Салоны МТС, МегаФон, Билайн, Tele2. Нужен паспорт РФ. Иностранцам — доп. документы.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">15. Работает ли YouTube?</div>
+    <div class="card-text">Да. Instagram/Facebook — замедлены, нужен VPN. Telegram работает отлично.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">16. Как сэкономить на еде?</div>
+    <div class="card-text">Столовые (обед 300–400 ₽), рынок (омуль, овощи), готовить дома.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">17. Какие приложения скачать?</div>
+    <div class="card-text">Яндекс Go, 2ГИС, Сбер/Т-Банк, ЦИАН, Авито, Ostrovok.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">18. Куда сводить детей?</div>
+    <div class="card-text">Нерпинарий (Листвянка), колесо обозрения, парк Парижской Коммуны.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">19. Есть ли международные школы?</div>
+    <div class="card-text">Международная школа «Альтернатива» (частная). Лучшие гимназии: №3, лицей ИГУ.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">20. Как открыть бизнес?</div>
+    <div class="card-text">ИП (1 день, 800 ₽) или ООО. Иркутская область — льготы для турбизнеса и IT.</div>
+  </div>
+</div>
+
+<!-- ============================================================
+18. ЧЕК-ЛИСТ: ПЕРВЫЕ ДНИ
+============================================================ -->
+<div class="section" id="checklist">
+  <div class="section-title"><span class="emoji">✅</span> Чек-лист: Первые дни в Иркутске</div>
+  <ol>
+    <li>Купить SIM-карту (салон связи, паспорт)</li>
+    <li>Снять наличные (банкомат Сбера или ВТБ)</li>
+    <li>Заселиться, проверить отопление (зима!) и Wi-Fi</li>
+    <li>Купить тёплую одежду если зима</li>
+    <li>Установить Яндекс Go, 2ГИС, банковские приложения</li>
+    <li>Найти ближайший продуктовый магазин и аптеку</li>
+    <li>Прогуляться по набережной Ангары — набережная Адмирала Колчака</li>
+    <li>Сходить в столовую на обед (300–400 ₽ сытно)</li>
+    <li>Посетить 130-й квартал и пл. Кирова</li>
+    <li>Спланировать поездку на Байкал (Листвянка — 1 день)</li>
+  </ol>
+  <div class="info-box info">
+    <strong>Не забудьте:</strong> все вопросы по городу — в AION Mini App!
+    Подключайтесь к чату русскоязычных @irkutsk_chat
+  </div>
+</div>
+
+<!-- ============================================================
+19. БЫСТРЫЕ ССЫЛКИ
+============================================================ -->
+<div class="section" id="links">
+  <div class="section-title"><span class="emoji">🔗</span> Быстрые ссылки</div>
+  <div class="contact-item">
+    <span class="contact-label">📋 AION — база исполнителей Иркутск</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏠 AION — аренда жилья</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚕 AION — трансфер</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏞 AION — туры на Байкал</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🤝 Чат Иркутска</span>
+    <a class="contact-value" href="https://t.me/irkutsk_chat">@irkutsk_chat</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚆 Ж/д билеты (РЖД)</span>
+    <a class="contact-value" href="https://pass.rzd.ru">pass.rzd.ru</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏠 Авито — жильё и услуги</span>
+    <a class="contact-value" href="https://www.avito.ru/irkutsk">avito.ru</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">💬 Чат AION Иркутск</span>
+    <a class="contact-value" href="#">Telegram</a>
+  </div>
+</div>
+
+<div class="footer">
+  <p>© 2026 AION — Ваш городской помощник в Иркутске</p>
+  <p style="margin-top:8px; opacity:0.6;">Telegram Mini App</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Офлайн-размещение AION — УТП для бизнеса</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#e2e8f0;line-height:1.5}
+.wrap{max-width:800px;margin:0 auto;padding:0 20px}
+
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1a1040 50%,#0f172a 100%);padding:40px 0 30px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(34,197,94,0.06) 0%,transparent 50%),radial-gradient(circle at 70% 50%,rgba(251,191,36,0.04) 0%,transparent 50%);pointer-events:none}
+.hero h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#f8fafc 0%,#94a3b8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
+.hero .sub{color:#64748b;font-size:0.9rem;margin-top:4px;position:relative}
+.hero .badge{display:inline-block;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);color:#22c55e;padding:4px 14px;border-radius:20px;font-size:0.72rem;font-weight:600;margin-top:10px;position:relative}
+
+.glass{background:linear-gradient(135deg,rgba(30,41,59,0.7),rgba(15,23,42,0.8));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(51,65,85,0.4);border-radius:16px;padding:24px 28px;margin:20px 0}
+
+h2{font-size:1.1rem;font-weight:700;color:#f1f5f9;margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+h2 .ico{font-size:1.2rem}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:600px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+.card{background:linear-gradient(135deg,#1e293b,#1a1f2e);border:1px solid #2a3344;border-radius:14px;padding:18px 22px}
+.card.border-l{border-left:4px solid #22c55e}
+.card.border-l.blue{border-left-color:#3b82f6}
+.card.border-l.purple{border-left-color:#a78bfa}
+.card-icon{font-size:1.6rem;margin-bottom:4px}
+.card-title{font-weight:700;font-size:0.92rem;color:#f1f5f9;margin-bottom:6px}
+.card p,.card li{font-size:0.82rem;color:#cbd5e1;line-height:1.6}
+.card ul{list-style:none;padding:0}
+.card li{padding:3px 0 3px 18px;position:relative}
+.card li::before{content:"→";position:absolute;left:0;color:#f59e0b;font-weight:700}
+
+.gold{background:linear-gradient(135deg,#1c1917,#2a2010);border:1px solid #713f12;border-radius:14px;padding:22px}
+.gold .card-title{color:#fbbf24;font-size:0.95rem}
+.gold li::before{content:"✦";color:#fbbf24}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:500px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-tile{background:linear-gradient(135deg,#1e293b,#1a1f2e);border:1px solid #2a3344;border-radius:12px;padding:14px 10px;text-align:center;transition:transform .2s}
+.stat-tile:hover{transform:translateY(-2px)}
+.stat-tile .icon{font-size:1.4rem}
+.stat-tile .num{font-size:1.3rem;font-weight:800;color:#f1f5f9;margin-top:2px}
+.stat-tile .lbl{font-size:0.62rem;color:#64748b;margin-top:1px;text-transform:uppercase;letter-spacing:0.04em}
+
+.scenario{background:#1e293b;border:1px solid #2a3344;border-radius:12px;padding:14px;text-align:left}
+.scenario .title{font-size:0.82rem;font-weight:700;color:#f59e0b;margin-bottom:4px}
+.scenario .desc{font-size:0.7rem;color:#94a3b8;margin-bottom:3px}
+.scenario .stat{font-size:0.68rem;color:#64748b}
+
+.chart-wrap{background:#131827;border-radius:12px;padding:18px;text-align:center;margin:6px 0}
+
+hr{border:none;height:1px;background:linear-gradient(90deg,transparent,#334155,transparent);margin:24px 0}
+
+.footer{text-align:center;color:#334155;font-size:0.75rem;padding:24px 0 30px;border-top:1px solid #1e293b;margin-top:20px}
+
+/* emphasis block */
+.emphasis{background:linear-gradient(135deg,#1e293b,#0f172a);border-radius:14px;padding:20px 24px;border:1px solid #2a3344;border-left:4px solid #f59e0b}
+.emphasis p{font-size:0.85rem;color:#e2e8f0;line-height:1.7;margin-bottom:6px}
+.emphasis p:last-child{margin-bottom:0}
+.emphasis strong{color:#fbbf24}
+
+/* pricing table */
+.pricing{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:500px){.pricing{grid-template-columns:1fr}}
+.pricing-item{background:#1e293b;border:1px solid #2a3344;border-radius:12px;padding:18px 14px;text-align:center}
+.pricing-item .tier{font-size:0.72rem;color:#64748b;text-transform:uppercase;letter-spacing:0.04em;font-weight:600}
+.pricing-item .iconic{font-size:1.5rem;margin:4px 0}
+.pricing-item .income{font-size:1.6rem;font-weight:800;color:#f1f5f9}
+.pricing-item .income.green{color:#22c55e}
+.pricing-item .income.amber{color:#f59e0b}
+.pricing-item .income.purple{color:#a78bfa}
+.pricing-item .desc{font-size:0.65rem;color:#64748b;margin-top:2px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>📍 Офлайн-размещение AION</h1>
+    <div class="sub">Предложение для вашего бизнеса</div>
+    <div class="badge">🔥 Бесплатно · Пассивный доход · 3 минуты на размещение</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ═══ СУТЬ ═══ -->
+<div style="text-align:center;margin:24px 0 10px">
+  <div style="font-size:1.2rem;font-weight:700;color:#f1f5f9;line-height:1.5">
+    Вы клеите наклейку с QR-кодом у себя в заведении.
+  </div>
+  <div style="font-size:1.2rem;font-weight:700;color:#22c55e;line-height:1.5">
+    Каждый, кто отсканирует, приносит вам деньги — пожизненно.
+  </div>
+</div>
+
+<!-- ═══ КАК РАБОТАЕТ ═══ -->
+<div class="glass" style="margin-top:18px">
+  <div style="font-size:0.85rem;font-weight:700;color:#f1f5f9;text-align:center;margin-bottom:16px">Как это работает</div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+    <div style="text-align:center">
+      <div style="width:36px;height:36px;border-radius:50%;background:#1e293b;border:2px solid #22c55e;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:1rem;font-weight:700;color:#22c55e">1</div>
+      <div style="font-size:0.72rem;color:#94a3b8">Мы печатаем стикер с вашим QR</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:36px;height:36px;border-radius:50%;background:#1e293b;border:2px solid #f59e0b;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:1rem;font-weight:700;color:#f59e0b">2</div>
+      <div style="font-size:0.72rem;color:#94a3b8">Вы клеите на видном месте</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:36px;height:36px;border-radius:50%;background:#1e293b;border:2px solid #a78bfa;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:1rem;font-weight:700;color:#a78bfa">3</div>
+      <div style="font-size:0.72rem;color:#94a3b8">Клиент сканирует и регистрируется</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:36px;height:36px;border-radius:50%;background:#1e293b;border:2px solid #f472b6;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:1rem;font-weight:700;color:#f472b6">4</div>
+      <div style="font-size:0.72rem;color:#94a3b8">Вы получаете % с его заказов навсегда</div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid #2a3344">
+    <span style="background:rgba(34,197,94,0.1);padding:5px 12px;border-radius:6px;font-size:0.72rem;color:#22c55e">🔗 Персональный QR под ваше заведение</span>
+    <span style="background:rgba(34,197,94,0.1);padding:5px 12px;border-radius:6px;font-size:0.72rem;color:#22c55e">🖨️ Печать и доставка — за наш счёт</span>
+    <span style="background:rgba(34,197,94,0.1);padding:5px 12px;border-radius:6px;font-size:0.72rem;color:#22c55e">📊 Отчёт о сканированиях в Telegram</span>
+  </div>
+</div>
+
+<!-- ═══ ДОХОД ═══ -->
+<h2><span class="ico">💰</span> Сколько вы будете зарабатывать</h2>
+
+<div class="gold">
+  <div class="card-title">Расчёт дохода в месяц</div>
+
+  <div class="pricing">
+    <div class="pricing-item">
+      <div class="tier">Старт</div>
+      <div class="iconic">🏪</div>
+      <div class="income green">$90</div>
+      <div class="desc">50 клиентов/мес</div>
+      <div style="font-size:0.6rem;color:#475569;margin-top:4px">Небольшое кафе</div>
+    </div>
+    <div class="pricing-item">
+      <div class="tier">Оптимально</div>
+      <div class="iconic">🏨</div>
+      <div class="income amber">$360</div>
+      <div class="desc">200 клиентов/мес</div>
+      <div style="font-size:0.6rem;color:#475569;margin-top:4px">Отель / хостел</div>
+    </div>
+    <div class="pricing-item">
+      <div class="tier">Максимум</div>
+      <div class="iconic">🔥</div>
+      <div class="income purple">$1 800+</div>
+      <div class="desc">1 000 клиентов/мес</div>
+      <div style="font-size:0.6rem;color:#475569;margin-top:4px">Хостел / проходное место</div>
+    </div>
+  </div>
+
+  <div style="font-size:0.68rem;color:#475569;margin-top:10px;text-align:center;border-top:1px solid #292524;padding-top:10px">
+    Как считали: средний пользователь заказывает на ~$50/мес · комиссия AION 15% · вы получаете 30% от комиссии = ~$2.25 с клиента
+  </div>
+</div>
+
+<!-- ═══ ЧТО ТАКОЕ AION ═══ -->
+<h2><span class="ico">🤔</span> Что такое AION</h2>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-icon">🌐</div>
+    <div class="card-title">Платформа услуг для русскоязычных</div>
+    <p>Такси, клининг, визы, доставка, отели, ремонт, юридическая помощь — <strong>24 категории</strong>. Один Telegram Mini App — любые услуги в любой точке мира без языкового барьера.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">📱</div>
+    <div class="card-title">Telegram Mini App</div>
+    <p>Не нужно скачивать приложение. Открывается прямо в Telegram за секунду. Любой клиент с телефоном уже может пользоваться.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">📈</div>
+    <div class="card-title">Растём каждый день</div>
+    <p>500+ пользователей за 18 дней. 13 городов в 3 странах. 300+ услуг от подключённых бизнесов. Это только начало.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">♻️</div>
+    <div class="card-title">Реферальная программа</div>
+    <p><strong>30% комиссии AION</strong> — пользователю, который привёл клиента. <strong>20%</strong> — бизнесу, который привёл другой бизнес. 4 уровня глубины.</p>
+  </div>
+</div>
+
+<!-- ═══ B2B — БИЗНЕС ПРИВОДИТ БИЗНЕС ═══ -->
+<h2><span class="ico">🤝</span> B2B: бизнес приводит бизнес</h2>
+
+<div class="emphasis">
+  <p>По вашему QR могут регистрироваться не только клиенты, но и <strong>другие бизнесы</strong>.</p>
+  <p>Когда владелец другого заведения сканирует ваш QR и регистрирует свой бизнес на AION — вы получаете <strong>20% от комиссии AION</strong> со всех заказов этого бизнеса. Тоже пожизненно.</p>
+  <p style="margin-top:8px;font-size:0.75rem;color:#64748b">Пример: вы — кафе в Нячанге. К вам пришёл владелец хостела, отсканировал QR и зарегистрировал свой хостел как партнёра AION. Теперь вы получаете процент со всех заказов гостей его хостела. Он размещает свой стикер у себя — вы получаете и с его клиентов.</p>
+</div>
+
+<div class="card">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+    <div style="flex:1;min-width:120px;text-align:center;padding:12px;background:#1a1f2e;border-radius:10px">
+      <div style="font-size:1.2rem;font-weight:700;color:#22c55e">30%</div>
+      <div style="font-size:0.65rem;color:#64748b;margin-top:1px">С заказов клиента</div>
+    </div>
+    <div style="flex:1;min-width:120px;text-align:center;padding:12px;background:#1a1f2e;border-radius:10px">
+      <div style="font-size:1.2rem;font-weight:700;color:#f59e0b">20%</div>
+      <div style="font-size:0.65rem;color:#64748b;margin-top:1px">С заказов бизнеса</div>
+    </div>
+    <div style="flex:1;min-width:120px;text-align:center;padding:12px;background:#1a1f2e;border-radius:10px">
+      <div style="font-size:1.2rem;font-weight:700;color:#a78bfa">4 уровня</div>
+      <div style="font-size:0.65rem;color:#64748b;margin-top:1px">Глубина рефералов</div>
+    </div>
+    <div style="flex:1;min-width:120px;text-align:center;padding:12px;background:#1a1f2e;border-radius:10px">
+      <div style="font-size:1.2rem;font-weight:700;color:#f472b6">♾️</div>
+      <div style="font-size:0.65rem;color:#64748b;margin-top:1px">Пожизненно</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ДЛЯ КОГО ═══ -->
+<h2><span class="ico">🎯</span> Кому это подходит</h2>
+
+<div class="grid-3">
+  <div class="scenario">
+    <div class="title">🏪 Кафе / ресторан / бар</div>
+    <div class="desc">Наклейка на кассе + карточка на столике</div>
+    <div class="stat">📈 50–300 сканов/мес</div>
+  </div>
+  <div class="scenario">
+    <div class="title">🏨 Отель / хостел / апарты</div>
+    <div class="desc">Карточка в номере + на ресепшн</div>
+    <div class="stat">📈 100–500 сканов/мес</div>
+  </div>
+  <div class="scenario">
+    <div class="title">🛍️ Русский магазин / услуги</div>
+    <div class="desc">Наклейка у входа + на кассе</div>
+    <div class="stat">📈 30–150 сканов/мес</div>
+  </div>
+</div>
+
+<!-- ═══ ПОЧЕМУ ЭТО ВЫГОДНО ═══ -->
+<h2><span class="ico">✅</span> Почему вам это нужно</h2>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-icon">🧾</div>
+    <div class="card-title">Дополнительный доход без вложений</div>
+    <p>Ваши клиенты и так тратят деньги на услуги. Пусть они тратят их по вашей ссылке — и вы получаете процент. Стикер ничего не стоит и не мешает бизнесу.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">♻️</div>
+    <div class="card-title">Пассивный доход 24/7</div>
+    <p>QR работает круглосуточно. Клиент сканирует ночью — вы зарабатываете, пока спите. Без вашего участия.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">❤️</div>
+    <div class="card-title">Повышение лояльности</div>
+    <p>Вы даёте клиенту доступ к полезным услугам — он запоминает вашу заботу. Это работает на возврат и репутацию.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">🛡️</div>
+    <div class="card-title">Никаких рисков</div>
+    <p>Нет договоров, штрафов и обязательств. Не понравилось — убрали стикер. Мы печатаем и привозим бесплатно. Первая выплата уже через неделю.</p>
+  </div>
+</div>
+
+<!-- ═══ СТАТИСТИКА ═══ -->
+<h2><span class="ico">📊</span> AION в цифрах</h2>
+
+<div class="stat-grid">
+  <div class="stat-tile">
+    <div class="icon">👥</div>
+    <div class="num">500+</div>
+    <div class="lbl">Пользователей</div>
+  </div>
+  <div class="stat-tile">
+    <div class="icon">🏙️</div>
+    <div class="num">13</div>
+    <div class="lbl">Городов</div>
+  </div>
+  <div class="stat-tile">
+    <div class="icon">🌍</div>
+    <div class="num">3</div>
+    <div class="lbl">Страны</div>
+  </div>
+  <div class="stat-tile">
+    <div class="icon">📦</div>
+    <div class="num">24</div>
+    <div class="lbl">Категории услуг</div>
+  </div>
+</div>
+
+<!-- ═══ ГРАФИК РОСТА ═══ -->
+<div class="chart-wrap">
+  <div style="font-size:0.8rem;color:#94a3b8;margin-bottom:8px;font-weight:600">Рост пользователей AION — 18 дней</div>
+  <svg width="100%" viewBox="0 0 540 200" style="max-width:540px">
+    <defs>
+      <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22c55e" stop-opacity=".3"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></linearGradient>
+    </defs>
+    <line x1="40" y1="170" x2="520" y2="170" stroke="#2a3344" stroke-width="1"/>
+    <line x1="40" y1="132" x2="520" y2="132" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="40" y1="94" x2="520" y2="94" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="40" y1="56" x2="520" y2="56" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="40" y1="18" x2="520" y2="18" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="32" y="173" fill="#475569" font-size="9" text-anchor="end">0</text>
+    <text x="32" y="135" fill="#475569" font-size="9" text-anchor="end">150</text>
+    <text x="32" y="97" fill="#475569" font-size="9" text-anchor="end">300</text>
+    <text x="32" y="59" fill="#475569" font-size="9" text-anchor="end">450</text>
+    <text x="32" y="21" fill="#475569" font-size="9" text-anchor="end">600</text>
+    <text x="88" y="185" fill="#475569" font-size="8" text-anchor="middle">День 1</text>
+    <text x="210" y="185" fill="#475569" font-size="8" text-anchor="middle">День 7</text>
+    <text x="332" y="185" fill="#475569" font-size="8" text-anchor="middle">День 14</text>
+    <text x="454" y="185" fill="#475569" font-size="8" text-anchor="middle">День 18</text>
+    <path d="M60,166 L60,160 L150,148 L240,118 L330,86 L420,50 L500,34 L500,166 Z" fill="url(#area)"/>
+    <polyline points="60,160 150,148 240,118 330,86 420,50 500,34" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="60" cy="160" r="4" fill="#22c55e"/><text x="60" y="153" fill="#94a3b8" font-size="8" text-anchor="middle">30</text>
+    <circle cx="150" cy="148" r="4" fill="#22c55e"/><text x="150" y="141" fill="#94a3b8" font-size="8" text-anchor="middle">120</text>
+    <circle cx="240" cy="118" r="4" fill="#22c55e"/><text x="240" y="111" fill="#94a3b8" font-size="8" text-anchor="middle">210</text>
+    <circle cx="330" cy="86" r="4" fill="#22c55e"/><text x="330" y="79" fill="#94a3b8" font-size="8" text-anchor="middle">350</text>
+    <circle cx="420" cy="50" r="6" fill="#f59e0b" stroke="#0f172a" stroke-width="2"/><text x="420" y="42" fill="#fbbf24" font-size="9" font-weight="700" text-anchor="middle">500</text>
+    <circle cx="500" cy="34" r="4" fill="#22c55e"/><text x="500" y="26" fill="#22c55e" font-size="10" font-weight="700" text-anchor="middle">↑</text>
+  </svg>
+  <div style="font-size:0.68rem;color:#475569;margin-top:2px">500 пользователей за 18 дней с запуска MVP</div>
+</div>
+
+<!-- ═══ ЧТО ДАЁМ ═══ -->
+<h2><span class="ico">🎁</span> Что мы вам даём</h2>
+
+<div class="grid-2">
+  <div class="card border-l purple">
+    <div class="card-icon">🖨️</div>
+    <div class="card-title">Стикеры — бесплатно</div>
+    <p>Премиум-печать с ламинацией. Привозим сами. Замена раз в месяц — тоже мы.</p>
+  </div>
+  <div class="card border-l purple">
+    <div class="card-icon">🔗</div>
+    <div class="card-title">Ваш личный QR-код</div>
+    <p>Все регистрации по нему — ваши навсегда. И клиенты, и другие бизнесы.</p>
+  </div>
+  <div class="card border-l purple">
+    <div class="card-icon">📊</div>
+    <div class="card-title">Статистика в Telegram</div>
+    <p>Бот присылает: сканирования, регистрации, доход сегодня/неделя/месяц.</p>
+  </div>
+  <div class="card border-l purple">
+    <div class="card-icon">💸</div>
+    <div class="card-title">Выплаты без задержек</div>
+    <p>На карту, Wise, крипту. Первая выплата — через 7 дней после первых заказов.</p>
+  </div>
+</div>
+
+<!-- ═══ ЧТО ПРОСИМ ═══ -->
+<h2><span class="ico">📋</span> Что нужно от вас</h2>
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px">
+  <div style="flex:1;min-width:140px;background:#1e293b;border:1px solid #2a3344;border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:1.2rem">📍</div>
+    <div style="font-size:0.72rem;color:#cbd5e1;margin-top:4px">Наклеить стикер на видном месте</div>
+  </div>
+  <div style="flex:1;min-width:140px;background:#1e293b;border:1px solid #2a3344;border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:1.2rem">🔄</div>
+    <div style="font-size:0.72rem;color:#cbd5e1;margin-top:4px">Не заклеивать и не убирать</div>
+  </div>
+  <div style="flex:1;min-width:140px;background:#1e293b;border:1px solid #2a3344;border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:1.2rem">💬</div>
+    <div style="font-size:0.72rem;color:#cbd5e1;margin-top:4px">Говорить клиентам: «Отсканируйте, там полезно»</div>
+  </div>
+</div>
+
+<!-- ═══ КОНТАКТ ═══ -->
+<hr>
+
+<div style="background:linear-gradient(135deg,#0a1628,#161022);border:1px solid #2a3344;border-radius:16px;padding:28px 24px;text-align:center;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(34,197,94,0.04) 0%,transparent 60%);pointer-events:none"></div>
+  <div style="font-size:0.75rem;color:#64748b;text-transform:uppercase;letter-spacing:0.06em;position:relative">Хотите начать?</div>
+  <div style="font-size:1.1rem;color:#f1f5f9;margin:8px 0;font-weight:600;position:relative">Напишите Евгению — @burne131</div>
+  <div style="font-size:0.8rem;color:#64748b;position:relative">Обсудим ваш бизнес, напечатаем стикер и привезём в течение 3 дней</div>
+  <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px;position:relative">
+    <span style="background:rgba(34,197,94,0.1);padding:6px 14px;border-radius:8px;font-size:0.72rem;color:#22c55e">✅ Стикеры бесплатно</span>
+    <span style="background:rgba(34,197,94,0.1);padding:6px 14px;border-radius:8px;font-size:0.72rem;color:#22c55e">✅ Первая выплата через 7 дней</span>
+    <span style="background:rgba(34,197,94,0.1);padding:6px 14px;border-radius:8px;font-size:0.72rem;color:#22c55e">✅ Без обязательств</span>
+  </div>
+</div>
+
+<div class="footer">
+  AION · Офлайн-размещение · Июль 2026
+</div>
+
+</div>
+</body>
+</html>

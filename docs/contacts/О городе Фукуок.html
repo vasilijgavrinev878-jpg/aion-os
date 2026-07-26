@@ -1,0 +1,429 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О городе — Фукуок | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #f59e0b;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    margin: 0 -16px;
+    border-radius: 0 0 24px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+  .quick-actions { display: flex; gap: 8px; padding: 16px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .quick-actions::-webkit-scrollbar { display: none; }
+  .quick-btn { flex-shrink: 0; padding: 10px 18px; border-radius: 100px; font-size: 13px; font-weight: 600; text-decoration: none; color: white; display: inline-flex; align-items: center; gap: 6px; }
+  .quick-btn.emergency { background: var(--danger); }
+  .quick-btn.transport { background: var(--info); }
+  .quick-btn.sim { background: var(--success); }
+  .quick-btn.currency { background: var(--gold); color: #1e293b; }
+  .quick-btn.food { background: #ec4899; }
+  .toc { background: var(--bg-alt); border-radius: 16px; padding: 16px; margin: 8px 0 20px; border: 1px solid var(--border); }
+  .toc-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--primary); }
+  .toc-item { display: block; padding: 6px 0; color: var(--accent); text-decoration: none; font-size: 14px; border-bottom: 1px solid var(--border); }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { opacity: 0.8; }
+  .section { margin: 24px 0; padding: 20px; background: var(--bg); border-radius: 16px; border: 1px solid var(--border); }
+  .section-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section-title .emoji { font-size: 22px; }
+  .subsection { margin: 16px 0; padding: 14px; background: var(--bg-alt); border-radius: 12px; }
+  .subsection-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .card { padding: 12px; margin: 8px 0; background: white; border-radius: 10px; border: 1px solid var(--border); }
+  .card-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .card-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-label { font-weight: 500; }
+  .contact-value { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .info-box { padding: 12px 14px; border-radius: 10px; font-size: 13px; margin: 10px 0; line-height: 1.5; }
+  .info-box.tip { background: #f0fdf4; border-left: 3px solid var(--success); }
+  .info-box.warn { background: #fffbeb; border-left: 3px solid var(--warning); }
+  .info-box.danger { background: #fef2f2; border-left: 3px solid var(--danger); }
+  .info-box.info { background: #eff6ff; border-left: 3px solid var(--info); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media (max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 11px; font-weight: 600; margin: 2px; }
+  .tag.green { background: #dcfce7; color: #166534; }
+  .tag.yellow { background: #fef3c7; color: #92400e; }
+  .tag.red { background: #fee2e2; color: #991b1b; }
+  .tag.blue { background: #dbeafe; color: #1e40af; }
+  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  .price-table th { text-align: left; padding: 8px; background: var(--bg-alt); font-weight: 600; }
+  .price-table td { padding: 8px; border-bottom: 1px solid var(--border); }
+  ul, ol { padding-left: 20px; font-size: 14px; }
+  li { margin: 4px 0; }
+  .footer { text-align: center; padding: 32px 0 16px; font-size: 12px; color: var(--text-light); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Фукуок, Вьетнам</h1>
+  <p>Полный гид для туристов и экспатов</p>
+</div>
+
+<div class="quick-actions">
+  <a href="#emergency" class="quick-btn emergency">🚨 Экстренно</a>
+  <a href="#transport" class="quick-btn transport">🚕 Транспорт</a>
+  <a href="#internet" class="quick-btn sim">📱 SIM / Internet</a>
+  <a href="#money" class="quick-btn currency">💰 Деньги</a>
+  <a href="#food" class="quick-btn food">🍜 Еда</a>
+</div>
+
+<div class="toc">
+  <div class="toc-title">📌 Содержание</div>
+  <a class="toc-item" href="#overview">1. Общая информация</a>
+  <a class="toc-item" href="#emergency">2. ☎️ Экстренные контакты</a>
+  <a class="toc-item" href="#weather">3. Погода и сезоны</a>
+  <a class="toc-item" href="#districts">4. Районы острова</a>
+  <a class="toc-item" href="#transport">5. Транспорт</a>
+  <a class="toc-item" href="#airport">6. Аэропорт и трансфер</a>
+  <a class="toc-item" href="#internet">7. SIM-карты и Интернет</a>
+  <a class="toc-item" href="#money">8. Деньги и цены</a>
+  <a class="toc-item" href="#medicine">9. Медицина</a>
+  <a class="toc-item" href="#housing">10. Жильё</a>
+  <a class="toc-item" href="#food">11. Еда и рестораны</a>
+  <a class="toc-item" href="#safety">12. Безопасность</a>
+  <a class="toc-item" href="#visa">13. Виза и въезд</a>
+  <a class="toc-item" href="#families">14. Семьям с детьми</a>
+  <a class="toc-item" href="#nomads">15. Digital-номадам</a>
+  <a class="toc-item" href="#faq">16. FAQ — 20 вопросов</a>
+  <a class="toc-item" href="#checklist">17. Чек-лист: Первый день на Фукуоке</a>
+  <a class="toc-item" href="#links">18. Быстрые ссылки</a>
+</div>
+
+<div class="section" id="overview">
+  <div class="section-title"><span class="emoji">🏝</span> Общая информация</div>
+  <div class="card">
+    <div class="card-text">
+      <strong>Фукуок</strong> (Phu Quoc) — крупнейший остров Вьетнама, расположенный в Сиамском заливе.
+      Известен своими белоснежными пляжами, тропическими лесами, плантациями чёрного перца и производством рыбного соуса.
+      Активно развивающийся курорт с прямыми рейсами из многих стран.
+    </div>
+  </div>
+  <table class="price-table">
+    <tr><td><strong>Население</strong></td><td>~180 000</td></tr>
+    <tr><td><strong>Язык</strong></td><td>Вьетнамский (английский — в туристических зонах)</td></tr>
+    <tr><td><strong>Валюта</strong></td><td>Вьетнамский донг (VND) — 1 CNY ≈ 3 400 VND</td></tr>
+    <tr><td><strong>Часовой пояс</strong></td><td>UTC+7 (Индо­китай)</td></tr>
+    <tr><td><strong>Телефонный код</strong></td><td>+84</td></tr>
+    <tr><td><strong>Розетки</strong></td><td>Типы A, C, F (220V / 50Hz)</td></tr>
+  </table>
+</div>
+
+<div class="section" id="emergency">
+  <div class="section-title"><span class="emoji">🚨</span> Экстренные контакты</div>
+  <div class="info-box danger"><strong>Важно!</strong> Сохраните эти номера перед поездкой.</div>
+  <div class="contact-item"><span class="contact-label">🚑 Скорая помощь</span><a href="tel:115" class="contact-value">115</a></div>
+  <div class="contact-item"><span class="contact-label">🚒 Пожарная служба</span><a href="tel:114" class="contact-value">114</a></div>
+  <div class="contact-item"><span class="contact-label">🚔 Полиция</span><a href="tel:113" class="contact-value">113</a></div>
+  <div class="contact-item"><span class="contact-label">🏥 Phu Quoc International Hospital</span><a href="tel:+842977350358" class="contact-value">+84 297 735 0358</a></div>
+  <div class="contact-item"><span class="contact-label">🏥 Vinmec Phu Quoc</span><a href="tel:+842973988888" class="contact-value">+84 297 398 8888</a></div>
+  <div class="contact-item"><span class="contact-label">🕊 Консульство России (Хошимин)</span><a href="tel:+842839396336" class="contact-value">+84 28 3939 6336</a></div>
+</div>
+
+<div class="section" id="weather">
+  <div class="section-title"><span class="emoji">🌤</span> Погода и сезоны</div>
+  <p style="font-size:14px; margin-bottom:10px;">Фукуок — тропический климат. Среднегодовая температура +27°C.</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">☀️ Сухой сезон</div>
+      <div class="card-text">
+        Ноябрь — апрель. Температура +27–33°C. Солнечно, дожди редки, море спокойное.<br>
+        <span class="tag yellow">Высокий сезон: декабрь — март</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌧 Сезон дождей</div>
+      <div class="card-text">
+        Май — октябрь. Температура +25–30°C. Кратковременные ливни, волны на море.<br>
+        <span class="tag blue">Низкий сезон: июнь — сентябрь</span>
+      </div>
+    </div>
+  </div>
+  <div class="info-box tip">
+    <strong>Лучшее время для визита:</strong> декабрь — март. Море прозрачное, вода +26–28°C, идеально для пляжного отдыха.
+  </div>
+</div>
+
+<div class="section" id="districts">
+  <div class="section-title"><span class="emoji">🗺</span> Районы острова</div>
+  <div class="subsection">
+    <div class="subsection-title">🏖 Юг — Duong Dong (главный город)</div>
+    <div class="card-text">
+      Основной туристический центр. Ночной рынок, рестораны, бары, массажные салоны. Пляжи: Truong Beach, Long Beach.
+      <span class="tag green">Рекомендуется для отдыха</span>
+    </div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🌅 Север — Rach Tram, Ganh Dau</div>
+    <div class="card-text">
+      Тихие пляжи, курортные отели, канатная дорога Hon Thom. Меньше инфраструктуры, уединённый отдых.
+      <span class="tag yellow">Для любителей тишины</span>
+    </div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🏝 Южные острова — Hon Thom, Hon Roi</div>
+    <div class="card-text">
+      Острова с роскошными курортами, канатная дорога (самая длинная морская канатная дорога в мире). Снорклинг, дайвинг.
+      <span class="tag green">Must-visit</span>
+    </div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🌴 Восток — Ham Ninh</div>
+    <div class="card-text">
+      Рыбацкая деревня, мангровые леса, плантации перца. Аутентичный Вьетнам, мало туристов.
+      <span class="tag yellow">Экскурсии на полдня</span>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="transport">
+  <div class="section-title"><span class="emoji">🚕</span> Транспорт</div>
+  <div class="card">
+    <div class="card-title">🚗 Grab / Такси</div>
+    <div class="card-text">
+      Grab работает на острове. Такси: Mai Linh, Vinasun. Поездка по городу — от 40 000 VND (~145 ₽).
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🏍 Аренда мотоцикла</div>
+    <div class="card-text">
+      Цена: 150 000 – 250 000 VND/день (540–900 ₽). Остров небольшой — за день можно объехать весь.
+      <span class="tag yellow">Дороги хорошие, трафик низкий</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🚌 Такси-автобус</div>
+    <div class="card-text">
+      Маршрутные автобусы: от аэропорта до основных пляжей. 15 000 – 30 000 VND.
+    </div>
+  </div>
+</div>
+
+<div class="section" id="airport">
+  <div class="section-title"><span class="emoji">✈️</span> Аэропорт и трансфер</div>
+  <div class="card-text">
+    Международный аэропорт Фукуок (Phu Quoc International Airport, PQC) — в 10 км от города Duong Dong.
+    Время в пути до центра: ~20–25 минут.
+  </div>
+  <table class="price-table">
+    <tr><th>Вид трансфера</th><th>Цена (VND)</th><th>Время</th></tr>
+    <tr><td>Такси (аэропорт — Duong Dong)</td><td>100 000 – 200 000</td><td>20 мин</td></tr>
+    <tr><td>Grab Car</td><td>80 000 – 150 000</td><td>20 мин</td></tr>
+    <tr><td>Автобус</td><td>15 000 – 30 000</td><td>35 мин</td></tr>
+    <tr><td>Мотоцикл (Grab Bike)</td><td>40 000 – 70 000</td><td>15 мин</td></tr>
+  </table>
+</div>
+
+<div class="section" id="internet">
+  <div class="section-title"><span class="emoji">📱</span> SIM-карты и Интернет</div>
+  <div class="info-box tip">
+    <strong>Совет:</strong> Купите SIM в аэропорту по прилёте. Viettel — лучший оператор на острове.
+  </div>
+  <table class="price-table">
+    <tr><th>Оператор</th><th>Тариф (месяц)</th><th>Трафик</th></tr>
+    <tr><td><strong>Viettel</strong></td><td>100 000 VND (~360 ₽)</td><td>5 GB/день</td></tr>
+    <tr><td><strong>Mobifone</strong></td><td>120 000 VND (~430 ₽)</td><td>4 GB/день</td></tr>
+    <tr><td><strong>Vinaphone</strong></td><td>90 000 VND (~325 ₽)</td><td>3 GB/день</td></tr>
+  </table>
+</div>
+
+<div class="section" id="money">
+  <div class="section-title"><span class="emoji">💰</span> Деньги и цены</div>
+  <div class="card">
+    <div class="card-title">💳 Карты и наличные</div>
+    <div class="card-text">
+      Наличные — основной способ. Крупные отели и рестораны принимают карты. На рынках — только наличные.
+    </div>
+  </div>
+  <div class="subsection-title" style="margin-top:12px;">💰 Примерные цены</div>
+  <table class="price-table">
+    <tr><th>Категория</th><th>Цена (VND)</th><th>Цена (~₽)</th></tr>
+    <tr><td>Чашка кофе (кафе)</td><td>20 000 – 45 000</td><td>72 – 160</td></tr>
+    <tr><td>Обед (уличная еда)</td><td>30 000 – 60 000</td><td>110 – 220</td></tr>
+    <tr><td>Обед (ресторан)</td><td>100 000 – 250 000</td><td>360 – 900</td></tr>
+    <tr><td>Морепродукты (ужин)</td><td>150 000 – 400 000</td><td>540 – 1 440</td></tr>
+    <tr><td>Пиво (местное)</td><td>15 000 – 30 000</td><td>55 – 110</td></tr>
+    <tr><td>Массаж (60 мин)</td><td>250 000 – 500 000</td><td>900 – 1 800</td></tr>
+  </table>
+</div>
+
+<div class="section" id="medicine">
+  <div class="section-title"><span class="emoji">🏥</span> Медицина</div>
+  <div class="card">
+    <div class="card-title">🏥 Больницы и клиники</div>
+    <div class="contact-item"><span class="contact-label">Phu Quoc International Hospital</span><a href="tel:+842977350358" class="contact-value">+84 297 735 0358</a></div>
+    <div class="contact-item"><span class="contact-label">Vinmec Phu Quoc</span><a href="tel:+842973988888" class="contact-value">+84 297 398 8888</a></div>
+  </div>
+  <div class="info-box warn">
+    <strong>Страховка обязательна!</strong> На острове ограниченный выбор клиник. Серьёзные случаи — эвакуация в Хошимин.
+  </div>
+</div>
+
+<div class="section" id="housing">
+  <div class="section-title"><span class="emoji">🏠</span> Жильё</div>
+  <table class="price-table">
+    <tr><th>Тип</th><th>Цена/мес (VND)</th><th>Цена/мес (~₽)</th></tr>
+    <tr><td>Комната (гостевой дом)</td><td>5 – 10 млн</td><td>18 000 – 36 000</td></tr>
+    <tr><td>Студия (Duong Dong)</td><td>8 – 15 млн</td><td>29 000 – 54 000</td></tr>
+    <tr><td>Бунгало (юг)</td><td>10 – 20 млн</td><td>36 000 – 72 000</td></tr>
+    <tr><td>Вилла (север)</td><td>25 – 60 млн</td><td>90 000 – 216 000</td></tr>
+  </table>
+  <div class="info-box tip">Цены на жильё выше, чем в Нячанге. Депозит 1–2 месяца.</div>
+</div>
+
+<div class="section" id="food">
+  <div class="section-title"><span class="emoji">🍜</span> Еда и рестораны</div>
+  <div class="subsection">
+    <div class="subsection-title">🥢 Что обязательно попробовать</div>
+    <ul>
+      <li><strong>Ныок мам</strong> — рыбный соус Фукуока (главный деликатес острова)</li>
+      <li><strong>Бун куа</strong> (Bun Quay) — суп с крабом — 40 000–70 000 VND</li>
+      <li><strong>Морепродукты на гриле</strong> — ночной рынок Duong Dong — от 150 000 VND</li>
+      <li><strong>Чёрный перец Фукуок</strong> — лучший во Вьетнаме, купить в подарок</li>
+      <li><strong>Бань ми</strong> — 15 000–25 000 VND</li>
+    </ul>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🥤 Напитки</div>
+    <ul>
+      <li><strong>Свежий кокос</strong> — 20 000 VND</li>
+      <li><strong>Пиво</strong> (Bia Saigon, Bia 333) — от 10 000 VND</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="safety">
+  <div class="section-title"><span class="emoji">🔒</span> Безопасность</div>
+  <div class="info-box info">Фукуок — очень безопасный остров. Основные риски: медузы в сезон дождей и солнце.</div>
+  <ul>
+    <li>🌊 В сезон дождей — сильные волны, купайтесь только в отведённых местах</li>
+    <li>🦟 Репеллент от комаров — риск денге есть круглый год</li>
+    <li>🚰 Воду из-под крана не пить</li>
+  </ul>
+</div>
+
+<div class="section" id="visa">
+  <div class="section-title"><span class="emoji">🛂</span> Виза и правила въезда</div>
+  <div class="info-box tip">
+    <strong>Важно:</strong> Фукуок имеет особый визовый режим — для иностранцев, прибывающих напрямую на остров,
+    возможен безвизовый въезд до 30 дней (уточняйте перед поездкой).
+  </div>
+  <table class="price-table">
+    <tr><th>Гражданство</th><th>Безвизовый срок</th><th>Продление</th></tr>
+    <tr><td>Россия</td><td>45 дней</td><td>Можно продлить через агентство</td></tr>
+    <tr><td>Казахстан</td><td>45 дней</td><td>Можно продлить</td></tr>
+    <tr><td>Украина</td><td>15 дней (eVisa)</td><td>eVisa до 30 дней</td></tr>
+    <tr><td>Беларусь</td><td>45 дней</td><td>Можно продлить</td></tr>
+  </table>
+</div>
+
+<div class="section" id="families">
+  <div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Семьям с детьми</div>
+  <ul>
+    <li><strong>Пляж:</strong> Truong Beach, Long Beach — пологий вход, мелкий песок</li>
+    <li><strong>VinWonders Phu Quoc</strong> — огромный парк развлечений с аквапарком</li>
+    <li><strong>Канатная дорога Hon Thom</strong> — самая длинная морская канатная дорога в мире</li>
+    <li><strong>Зоопарк Vinpearl Safari</strong> — полудикий сафари-парк</li>
+  </ul>
+</div>
+
+<div class="section" id="nomads">
+  <div class="section-title"><span class="emoji">💻</span> Digital-номадам</div>
+  <div class="card">
+    <div class="card-text">
+      Фукуок подходит для коротких воркейшенов (1–4 недели), но уступает Данангу по качеству интернета и коворкингов.
+      <strong>Wi-Fi:</strong> 20–50 Мбит/с в отелях, стабильный в центре Duong Dong.
+      <strong>Коворкинги:</strong> есть при отелях, выделенных коворкингов мало.
+    </div>
+  </div>
+  <div class="info-box tip">
+    <strong>Для номадов:</strong> выбирайте отели с коворкинг-зонами (Vinpearl, Movenpick) или берите мотоцикл для поездок.
+  </div>
+</div>
+
+<div class="section" id="faq">
+  <div class="section-title"><span class="emoji">❓</span> FAQ — 20 вопросов</div>
+  <div class="subsection"><div class="subsection-title">1. Нужна ли виза на Фукуок?</div><div class="card-text">Россиянам — 45 дней без визы. При прямом рейсе возможен безвизовый въезд до 30 дней.</div></div>
+  <div class="subsection"><div class="subsection-title">2. Как добраться до Фукуока?</div><div class="card-text">Самолётом из Ханоя, Хошимина, Дананга. Прямые рейсы из РФ — сезонно.</div></div>
+  <div class="subsection"><div class="subsection-title">3. Когда лучший сезон?</div><div class="card-text">Декабрь — март. Солнечно, море спокойное, вода +26–28°C.</div></div>
+  <div class="subsection"><div class="subsection-title">4. Сколько стоит жильё?</div><div class="card-text">От 5 млн VND/мес. Дороже Нячанга, дешевле Хошимина.</div></div>
+  <div class="subsection"><div class="subsection-title">5. Безопасно ли?</div><div class="card-text">Очень безопасно. Главное — солнце и медузы.</div></div>
+  <div class="subsection"><div class="subsection-title">6. Что попробовать из еды?</div><div class="card-text">Морепродукты на ночном рынке, рыбный соус, чёрный перец.</div></div>
+  <div class="subsection"><div class="subsection-title">7. Есть ли ночная жизнь?</div><div class="card-text">Duong Dong — бары, ночной рынок. Не сравнить с Паттайей или Нячангом.</div></div>
+  <div class="subsection"><div class="subsection-title">8. Как передвигаться?</div><div class="card-text">Grab, аренда мотоцикла, такси. Остров компактный.</div></div>
+  <div class="subsection"><div class="subsection-title">9. Есть ли русские?</div><div class="card-text">Меньше, чем в Нячанге. Но встречаются, особенно в высокий сезон.</div></div>
+  <div class="subsection"><div class="subsection-title">10. Что посмотреть?</div><div class="card-text">VinWonders, канатная дорога, плантации перца, пляжи Sao Beach, Long Beach.</div></div>
+  <div class="subsection"><div class="subsection-title">11. Как снять жильё?</div><div class="card-text">Booking, Airbnb, Facebook-группы. Лучше заранее в сезон.</div></div>
+  <div class="subsection"><div class="subsection-title">12. Работает ли интернет?</div><div class="card-text">Да, 20–50 Мбит/с. В отелях — стабильно.</div></div>
+  <div class="subsection"><div class="subsection-title">13. Нужна ли страховка?</div><div class="card-text">Обязательно. На острове ограниченная медицина.</div></div>
+  <div class="subsection"><div class="subsection-title">14. Какие сувениры везти?</div><div class="card-text">Рыбный соус, чёрный перец, кокосовое масло.</div></div>
+  <div class="subsection"><div class="subsection-title">15. Есть ли банкоматы?</div><div class="card-text">Да, в Duong Dong. На пляжах — не всегда.</div></div>
+  <div class="subsection"><div class="subsection-title">16. Какую воду пить?</div><div class="card-text">Бутилированную. Из-под крана — нельзя.</div></div>
+  <div class="subsection"><div class="subsection-title">17. Когда сезон дождей?</div><div class="card-text">Май — октябрь. Пик в июле-августе.</div></div>
+  <div class="subsection"><div class="subsection-title">18. Куда с детьми?</div><div class="card-text">VinWonders, аквапарк, пляжи, сафари-парк.</div></div>
+  <div class="subsection"><div class="subsection-title">19. Есть ли коворкинги?</div><div class="card-text">В основном при отелях. Выделенных мало.</div></div>
+  <div class="subsection"><div class="subsection-title">20. Как продлить визу?</div><div class="card-text">Через агентства в Duong Dong. Цена ~50–80 USD.</div></div>
+</div>
+
+<div class="section" id="checklist">
+  <div class="section-title"><span class="emoji">✅</span> Чек-лист: Первый день на Фукуоке</div>
+  <ol>
+    <li>Купить SIM в аэропорту</li>
+    <li>Снять наличные (банкомат в аэропорту)</li>
+    <li>Заказать Grab до отеля</li>
+    <li>Заселиться, проверить Wi-Fi</li>
+    <li>Установить Grab, Telegram, Google Maps</li>
+    <li>Вечером — ночной рынок Duong Dong (морепродукты)</li>
+    <li>Запланировать поездку на канатную дорогу Hon Thom</li>
+  </ol>
+</div>
+
+<div class="section" id="links">
+  <div class="section-title"><span class="emoji">🔗</span> Быстрые ссылки</div>
+  <div class="contact-item"><span class="contact-label">🏠 AION — аренда жилья</span><a class="contact-value" href="#">Открыть в Mini App</a></div>
+  <div class="contact-item"><span class="contact-label">🚕 AION — трансфер</span><a class="contact-value" href="#">Открыть в Mini App</a></div>
+  <div class="contact-item"><span class="contact-label">💬 Чат AION Фукуок</span><a class="contact-value" href="#">Telegram</a></div>
+</div>
+
+<div class="footer">
+  <p>© 2026 AION — Ваш городской помощник на Фукуоке</p>
+  <p style="margin-top:8px; opacity:0.6;">Telegram Mini App</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<html><head><meta charset='utf-8'><meta name="viewport" content="width=device-width,initial-scale=1"><title>О городе — Нижний Новгород | AION</title><style>
+:root{--primary:#0A0F1E;--accent:#6366f1;--gold:#f59e0b;--text:#1e293b;--text-light:#64748b;--bg:#ffffff;--bg-alt:#f8fafc;--border:#e2e8f0;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444;--info:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.6;color:var(--text);background:var(--bg);max-width:720px;margin:0 auto;padding:0 16px 80px}
+.header{position:sticky;top:0;z-index:100;background:var(--primary);color:white;padding:16px;margin:0 -16px;border-radius:0 0 24px 24px;text-align:center}
+.header h1{font-size:22px;font-weight:700}
+.header p{font-size:13px;opacity:0.8;margin-top:4px}
+.quick-actions{display:flex;gap:8px;padding:16px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.quick-actions::-webkit-scrollbar{display:none}
+.quick-btn{flex-shrink:0;padding:10px 18px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;color:white;display:inline-flex;align-items:center;gap:6px}
+.quick-btn.emergency{background:var(--danger)}.quick-btn.transport{background:var(--info)}.quick-btn.currency{background:var(--gold);color:#1e293b}.quick-btn.food{background:#ec4899}.quick-btn.visa{background:var(--success)}
+.toc{background:var(--bg-alt);border-radius:16px;padding:16px;margin:8px 0 20px;border:1px solid var(--border)}
+.toc-title{font-size:15px;font-weight:700;margin-bottom:10px;color:var(--primary)}
+.toc-item{display:block;padding:6px 0;color:var(--accent);text-decoration:none;font-size:14px;border-bottom:1px solid var(--border)}
+.toc-item:last-child{border-bottom:none}
+.section{margin:24px 0;padding:20px;background:var(--bg);border-radius:16px;border:1px solid var(--border)}
+.section-title{font-size:18px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-title .emoji{font-size:22px}
+.subsection{margin:16px 0;padding:14px;background:var(--bg-alt);border-radius:12px}
+.subsection-title{font-size:15px;font-weight:600;margin-bottom:8px}
+.card{padding:12px;margin:8px 0;background:white;border-radius:10px;border:1px solid var(--border)}
+.card-title{font-weight:600;font-size:14px;margin-bottom:4px}
+.card-text{font-size:13px;color:var(--text-light);line-height:1.5}
+.card .price{color:var(--accent);font-weight:700}
+.contact-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.contact-item:last-child{border-bottom:none}
+.contact-label{font-weight:500}
+.contact-value{color:var(--accent);font-weight:600;text-decoration:none}
+.info-box{padding:12px 14px;border-radius:10px;font-size:13px;margin:10px 0;line-height:1.5}
+.info-box.tip{background:#f0fdf4;border-left:3px solid var(--success)}
+.info-box.warn{background:#fffbeb;border-left:3px solid var(--warning)}
+.info-box.danger{background:#fef2f2;border-left:3px solid var(--danger)}
+.info-box.info{background:#eff6ff;border-left:3px solid var(--info)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:480px){.grid-2{grid-template-columns:1fr}}
+.tag{display:inline-block;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:600;margin:2px}
+.tag.green{background:#dcfce7;color:#166534}.tag.yellow{background:#fef3c7;color:#92400e}.tag.red{background:#fee2e2;color:#991b1b}.tag.blue{background:#dbeafe;color:#1e40af}
+.price-table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+.price-table th{text-align:left;padding:8px;background:var(--bg-alt);font-weight:600}
+.price-table td{padding:8px;border-bottom:1px solid var(--border)}
+ul,ol{padding-left:20px;font-size:14px}
+li{margin:4px 0}
+.footer{text-align:center;padding:32px 0 16px;font-size:12px;color:var(--text-light)}
+</style></head><body>
+<div class="header"><h1>Нижний Новгород, Россия</h1><p>Полный гид по столице Поволжья</p></div>
+<div class="quick-actions"><a href="#emergency" class="quick-btn emergency">🚨 Экстренно</a><a href="#transport" class="quick-btn transport">🚕 Транспорт</a><a href="#money" class="quick-btn currency">💰 Деньги</a><a href="#food" class="quick-btn food">🍜 Еда</a><a href="#visa" class="quick-btn visa">📄 Документы</a></div>
+<div class="toc"><div class="toc-title">📌 Содержание</div>
+<a class="toc-item" href="#overview">1. Общая информация</a><a class="toc-item" href="#emergency">2. ☎️ Экстренные контакты</a><a class="toc-item" href="#weather">3. Погода и сезоны</a><a class="toc-item" href="#districts">4. Районы города</a><a class="toc-item" href="#transport">5. Транспорт</a><a class="toc-item" href="#airport">6. Аэропорт и трансфер</a><a class="toc-item" href="#internet">7. SIM-карты и Интернет</a><a class="toc-item" href="#money">8. Деньги и цены</a><a class="toc-item" href="#medicine">9. Медицина</a><a class="toc-item" href="#housing">10. Жильё</a><a class="toc-item" href="#food">11. Еда и рестораны</a><a class="toc-item" href="#safety">12. Безопасность</a><a class="toc-item" href="#visa">13. Документы и регистрация</a><a class="toc-item" href="#families">14. Семьям с детьми</a><a class="toc-item" href="#faq">15. FAQ</a></div>
+
+<div class="section" id="overview"><div class="section-title"><span class="emoji">🏙</span> Общая информация</div>
+<div class="card"><div class="card-text"><strong>Нижний Новгород</strong> — город-миллионник, столица Приволжского федерального округа. Расположен у слияния Волги и Оки. Крупный экономический, культурный и туристический центр России.</div></div>
+<table class="price-table"><tr><td><strong>Население</strong></td><td>~1,25 млн</td></tr><tr><td><strong>Язык</strong></td><td>Русский</td></tr><tr><td><strong>Валюта</strong></td><td>Российский рубль (RUB)</td></tr><tr><td><strong>Часовой пояс</strong></td><td>UTC+3 (MSK)</td></tr><tr><td><strong>Телефонный код</strong></td><td>+7 (831)</td></tr></table></div>
+
+<div class="section" id="emergency"><div class="section-title"><span class="emoji">🚨</span> Экстренные контакты</div>
+<div class="info-box danger"><strong>Сохраните номера:</strong> единая служба спасения — 112 (с мобильного).</div>
+<div class="contact-item"><span class="contact-label">🚑 Скорая помощь</span><a href="tel:103" class="contact-value">103</a></div>
+<div class="contact-item"><span class="contact-label">🚒 Пожарная</span><a href="tel:101" class="contact-value">101</a></div>
+<div class="contact-item"><span class="contact-label">🚔 Полиция</span><a href="tel:102" class="contact-value">102</a></div>
+<div class="contact-item"><span class="contact-label">🏥 Городская больница №5</span><a href="tel:+78314394530" class="contact-value">+7 831 439-45-30</a></div>
+<div class="contact-item"><span class="contact-label">🏥 Больница №13 (Семашко)</span><a href="tel:+78314391555" class="contact-value">+7 831 439-15-55</a></div></div>
+
+<div class="section" id="weather"><div class="section-title"><span class="emoji">🌤</span> Погода и сезоны</div>
+<div class="grid-2"><div class="card"><div class="card-title">☀️ Лето</div><div class="card-text">Июнь–август. +20–30°C. Тёпло, солнечно, бывают грозы.</div></div>
+<div class="card"><div class="card-title">❄️ Зима</div><div class="card-text">Декабрь–февраль. −10–−20°C. Снег, морозно.</div></div>
+<div class="card"><div class="card-title">🌷 Весна</div><div class="card-text">Март–май. +5–18°C. Переменчиво, бывают заморозки.</div></div>
+<div class="card"><div class="card-title">🍂 Осень</div><div class="card-text">Сентябрь–ноябрь. +5–15°C. Дождливо, сыро.</div></div></div>
+<div class="info-box tip"><strong>Лучшее время:</strong> май–сентябрь. Тепло, можно гулять по набережной и кататься на теплоходах.</div></div>
+
+<div class="section" id="districts"><div class="section-title"><span class="emoji">🗺</span> Районы города</div>
+<div class="subsection"><div class="subsection-title">🏛 Центр (Нижегородский район)</div><div class="card-text">Кремль, пешеходная Большая Покровская, набережная. Основные достопримечательности, рестораны, отели. <span class="tag green">Туристам</span></div></div>
+<div class="subsection"><div class="subsection-title">🏗 Сормовский район</div><div class="card-text">Заводская зона. Жилые кварталы, парк «Сормовский». Ниже цены. <span class="tag yellow">Для проживания</span></div></div>
+<div class="subsection"><div class="subsection-title">🌳 Советский район</div><div class="card-text">Спокойный, зелёный. Хорошие школы, рядом парк «Кузьминка-1». <span class="tag green">Семьям</span></div></div>
+<div class="subsection"><div class="subsection-title">🏘 Автозаводский район</div><div class="card-text">Крупный промышленный район. Своя инфраструктура, ТЦ, метро. Доступное жильё.</div></div></div>
+
+<div class="section" id="transport"><div class="section-title"><span class="emoji">🚕</span> Транспорт</div>
+<div class="card"><div class="card-title">🚇 Метро</div><div class="card-text">2 линии, 15 станций. Режим: 5:30–00:00. Билет: 35 ₽ по карте «Стрелка».</div></div>
+<div class="card"><div class="card-title">🚌 Автобусы / Троллейбусы / Трамваи</div><div class="card-text">Развитая сеть. Билет: 30–35 ₽. Оплата — картой «Стрелка», банковской картой, телефоном.</div></div>
+<div class="card"><div class="card-title">🚗 Такси</div><div class="card-text">Яндекс Go, Uber. Поездка по городу: 200–500 ₽. До аэропорта: 800–1200 ₽.</div></div>
+<div class="card"><div class="card-title">🏍 Аренда авто (каршеринг)</div><div class="card-text">Яндекс Драйв, Ситидрайв, Делимобиль. От 10 ₽/мин.</div></div></div>
+
+<div class="section" id="airport"><div class="section-title"><span class="emoji">✈️</span> Аэропорт и трансфер</div>
+<div class="card-text">Аэропорт Стригино (GOJ) — в 18 км от центра. Такси до центра: 800–1200 ₽ (30–40 мин). Автобус №11А до ст. метро «Московская»: 35 ₽.</div>
+<table class="price-table"><tr><th>Вид</th><th>Цена</th><th>Время</th></tr><tr><td>Такси (Яндекс Go)</td><td>800–1 200 ₽</td><td>30–40 мин</td></tr><tr><td>Автобус №11А</td><td>35 ₽</td><td>50 мин</td></tr></table></div>
+
+<div class="section" id="internet"><div class="section-title"><span class="emoji">📱</span> SIM-карты и Интернет</div>
+<div class="card-text">Операторы: МТС, Билайн, МегаФон, Tele2, Yota. Тарифы: от 400–700 ₽/мес (безлимитный интернет + звонки). Wi-Fi — в кафе, ТЦ, общественном транспорте.</div></div>
+
+<div class="section" id="money"><div class="section-title"><span class="emoji">💰</span> Деньги и цены</div>
+<div class="card-text">Российские рубли. Карты «Мир» — везде. Visa/Mastercard — не работают (выпускаются только в РФ). Наличные: банкоматы Сбербанка, ВТБ, Тинькофф.</div>
+<table class="price-table"><tr><th>Категория</th><th>Цена</th></tr><tr><td>Обед в кафе</td><td>400–800 ₽</td></tr><tr><td>Кофе навынос</td><td>150–250 ₽</td></tr><tr><td>Проезд в метро</td><td>35 ₽</td></tr><tr><td>Аренда 1-комн. кв./мес</td><td>18 000–30 000 ₽</td></tr></table></div>
+
+<div class="section" id="medicine"><div class="section-title"><span class="emoji">🏥</span> Медицина</div>
+<div class="card"><div class="card-title">🏥 Крупные больницы</div><div class="card-text">Больница им. Семашко, ГКБ №5, Детская областная больница.</div></div>
+<div class="card"><div class="card-title">💊 Аптеки</div><div class="card-text">Сеть: Апрель, Вита, Имплозия. Большинство круглосуточных.</div></div></div>
+
+<div class="section" id="housing"><div class="section-title"><span class="emoji">🏠</span> Жильё</div>
+<table class="price-table"><tr><th>Тип</th><th>Цена/мес</th></tr><tr><td>1-комнатная (центр)</td><td>25 000–35 000 ₽</td></tr><tr><td>1-комнатная (спальный район)</td><td>15 000–22 000 ₽</td></tr><tr><td>2-комнатная (центр)</td><td>35 000–50 000 ₽</td></tr><tr><td>Койко-место (комната)</td><td>8 000–15 000 ₽</td></tr></table>
+<div class="info-box tip">Сайты: Циан, Авито, Домклик. Депозит: 1 месяц. Договор обязателен.</div></div>
+
+<div class="section" id="food"><div class="section-title"><span class="emoji">🍜</span> Еда и рестораны</div>
+<ul><li><strong>Кремлёвская набережная</strong> — рестораны с видом на Волгу</li><li><strong>Большая Покровская</strong> — кафе, кофейни, бургерные, стритфуд</li><li><strong>Гастро-проект «Нижний 800»</strong> — рестораны локальной кухни</li><li><strong>Рынки:</strong> Мытный рынок, Центральный — продукты, выпечка, мясо</li></ul></div>
+
+<div class="section" id="safety"><div class="section-title"><span class="emoji">🔒</span> Безопасность</div>
+<div class="info-box info">Нижний Новгород — безопасный город. Стандартные меры предосторожности в людных местах и транспорте.</div>
+<ul><li>🚇 В метро и транспорте — следите за сумками</li><li>🌙 Ночью центр освещён, безопасен. Окраины — осторожнее</li><li>📷 В Кремле и на набережной — многолюдно, возможны карманники в туристический сезон</li></ul></div>
+
+<div class="section" id="visa"><div class="section-title"><span class="emoji">🛂</span> Документы и регистрация</div>
+<div class="card-text">Для граждан РФ: внутренний паспорт. Для иностранцев — миграционная карта, регистрация в течение 7 дней. Для СНГ — безвизовый въезд (сроки по соглашениям).</div></div>
+
+<div class="section" id="families"><div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Семьям с детьми</div>
+<ul><li><strong>Парки:</strong> Швейцария, Сормовский, Автозаводский — аттракционы, кафе, прогулки</li><li><strong>Зоопарк «Лимпопо»</strong> — один из крупнейших в России</li><li><strong>Цирк Никулина</strong> — представления круглый год</li><li><strong>Планетарий</strong> — современное цифровое оборудование</li></ul></div>
+
+<div class="section" id="faq"><div class="section-title"><span class="emoji">❓</span> FAQ</div>
+<div class="subsection"><div class="subsection-title">1. Сколько ехать до Москвы?</div><div class="card-text">На поезде «Ласточка» — 3,5–4 часа. На авто по М7 — ~400 км.</div></div>
+<div class="subsection"><div class="subsection-title">2. Работает ли Кремль вечером?</div><div class="card-text">Территория открыта до 22:00, музеи — до 18:00, понедельник выходной.</div></div>
+<div class="subsection"><div class="subsection-title">3. Как доехать до Городца/Семёнова/Арзамаса?</div><div class="card-text">На электричке с Московского вокзала или на автобусе с автовокзала «Щербинки».</div></div>
+<div class="subsection"><div class="subsection-title">4. Какие сувениры везти?</div><div class="card-text">Хохлома, городецкая роспись, матрёшки, пряники, чернослив в шоколаде.</div></div>
+<div class="subsection"><div class="subsection-title">5. Есть ли проблемы с картами?</div><div class="card-text">Карты Visa/Mastercard РФ не работают за границей, но внутри РФ — везде карта «Мир», СБП.</div></div></div>
+
+<div class="footer"><p>© 2026 AION — Нижний Новгород</p></div>
+</body></html>

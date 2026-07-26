@@ -1,0 +1,279 @@
+<html><head><meta charset='utf-8'><title>Задача на 7 дней — 1000 пользователей</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f0;color:#1a1a2e;line-height:1.6}
+.container{max-width:880px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,#1a1a2e 0%,#2d2d5e 100%);padding:60px 0 50px;text-align:center;color:#fff}
+.hero h1{font-size:2.4rem;font-weight:700;letter-spacing:-0.5px}
+.hero p{color:rgba(255,255,255,0.7);font-size:1.05rem;margin-top:6px}
+.hero .badge{display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:40px;padding:4px 16px;font-size:0.8rem;margin-top:12px;color:rgba(255,255,255,0.85)}
+.section{padding:40px 0;border-bottom:1px solid #e8e5dd}
+.section:last-child{border-bottom:none}
+.section-title{font-size:1.3rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.section-title .num{background:#d4a017;color:#fff;border-radius:50%;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.meta-item{background:#fff;border-radius:10px;padding:14px 18px;border:1px solid #e8e5dd}
+.meta-item .label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;color:#999;font-weight:600}
+.meta-item .value{font-size:1.05rem;font-weight:600;margin-top:2px;color:#1a1a2e}
+.day-card{background:#fff;border-radius:12px;margin-bottom:16px;border:1px solid #e8e5dd;overflow:hidden}
+.day-header{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:default}
+.day-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;flex-shrink:0;color:#fff}
+.day-1{background:#1a1a2e}
+.day-2{background:#2d2d5e}
+.day-3{background:#d4a017}
+.day-4{background:#c0392b}
+.day-5{background:#2e7d32}
+.day-6{background:#1565c0}
+.day-7{background:#e67e22}
+.day-info{flex:1}
+.day-info .date{font-size:0.8rem;color:#999}
+.day-info .action{font-weight:600;font-size:1rem}
+.day-norm{text-align:center;min-width:60px}
+.day-norm .num{font-size:1.3rem;font-weight:700;color:#d4a017}
+.day-norm .lbl{font-size:0.7rem;color:#999;text-transform:uppercase}
+.day-norm .day-total{font-size:0.8rem;color:#666;margin-top:2px}
+.day-body{padding:0 20px 16px;display:flex;flex-direction:column;gap:10px}
+.script{border-left:4px solid #d4a017;background:#fdfbf7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.88rem;color:#444}
+.script strong{color:#1a1a2e}
+.tip{border-left:4px solid #1565c0;background:#f4f8fe;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.88rem;color:#444}
+.tip strong{color:#1a1a2e}
+.warn{border-left:4px solid #e67e22;background:#fefaf4;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.88rem;color:#444}
+.warn strong{color:#1a1a2e}
+.source{font-size:0.85rem;color:#666;background:#f5f5f0;border-radius:6px;padding:8px 12px;display:inline-block}
+.schedule-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.schedule-item{display:flex;justify-content:space-between;padding:10px 14px;background:#fff;border-radius:8px;border:1px solid #e8e5dd;font-size:0.9rem}
+.schedule-item .time{font-weight:700;color:#1a1a2e}
+.schedule-item .desc{color:#555}
+.result-table{width:100%;border-collapse:collapse;font-size:0.9rem;margin-top:8px}
+.result-table th{padding:10px 12px;text-align:left;background:#1a1a2e;color:#fff;font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.3px}
+.result-table td{padding:10px 12px;border-bottom:1px solid #e8e5dd}
+.result-table tr:last-child td{border-bottom:none}
+.result-table .dim{color:#bbb}
+.bonus-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bonus-card{background:#fff;border-radius:10px;padding:16px;border:1px solid #e8e5dd;text-align:center}
+.bonus-card .pct{font-size:1.4rem;font-weight:700;color:#1a1a2e}
+.bonus-card .reward{font-size:0.85rem;color:#555;margin-top:4px}
+.bonus-card.gold{border-color:#d4a017;background:linear-gradient(180deg,#fdfbf7,#fff)}
+.bonus-card.gold .pct{color:#d4a017}
+.rules-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.rules-list li{background:#fff;border-radius:10px;padding:14px 18px;border:1px solid #e8e5dd;display:flex;gap:12px;align-items:flex-start;font-size:0.9rem}
+.rules-list li .r-num{background:#1a1a2e;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;margin-top:1px}
+.rules-list li .r-text{color:#444;flex:1}
+.rules-list li .r-text strong{color:#1a1a2e}
+.footer{text-align:center;padding:30px 0;color:#bbb;font-size:0.8rem}
+@media(max-width:640px){
+  .hero h1{font-size:1.6rem}
+  .meta-grid,.schedule-grid,.bonus-grid{grid-template-columns:1fr}
+}
+</style></head><body>
+
+<div class="hero">
+  <div class="container">
+    <h1>1000 пользователей за 7 дней</h1>
+    <p>План привлечения пользователей в AION Community Network</p>
+    <div class="badge">24 – 30 июня · 9 человек в поле</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- META -->
+<div class="section" style="padding-top:30px">
+  <div class="meta-grid">
+    <div class="meta-item"><div class="label">Команда</div><div class="value">9 человек</div></div>
+    <div class="meta-item"><div class="label">Инструмент</div><div class="value">Реферальная ссылка</div></div>
+    <div class="meta-item"><div class="label">Отчёт</div><div class="value">Ежедневно в 21:00</div></div>
+    <div class="meta-item"><div class="label">Канал отчёта</div><div class="value">Общий чат команды</div></div>
+  </div>
+</div>
+
+<!-- PLAN -->
+<div class="section">
+  <div class="section-title"><span class="num">1</span> План по дням</div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num day-1">1</div>
+      <div class="day-info">
+        <div class="date">24 июня, вторник</div>
+        <div class="action">Личные контакты</div>
+      </div>
+      <div class="day-norm"><div class="num">17</div><div class="lbl">норма</div><div class="day-total">150 за день</div></div>
+    </div>
+    <div class="day-body">
+      <div class="source">Где: друзья, знакомые, бывшие клиенты, соседи, чаты домов</div>
+      <div class="script"><strong>Скрипт (личное):</strong> «Привет! У нас запустился проект AION для Нячанга. Уже 200+ бизнесов: транспорт, жильё, визы, медицина, еда — всё в одном месте. Заходи, посмотри → <em>ссылка</em>»</div>
+      <div class="warn"><strong>Важно:</strong> каждому персонализированное сообщение. Не спамить. Не давить, если не ответил.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num day-2">2</div>
+      <div class="day-info">
+        <div class="date">25 июня, среда</div>
+        <div class="action">Чаты и соцсети</div>
+      </div>
+      <div class="day-norm"><div class="num">15</div><div class="lbl">норма</div><div class="day-total">280 за день</div></div>
+    </div>
+    <div class="day-body">
+      <div class="source">Где: Telegram-чаты Нячанга, WhatsApp-группы, Instagram сторис</div>
+      <div class="script"><strong>Пост:</strong> «Ребята, кто в Нячанге 👋 Запустили каталог AION — 200+ проверенных бизнесов. Удобно, что всё в одном месте. Ссылка в описании → <em>ссылка</em>»</div>
+      <div class="tip"><strong>Совет:</strong> добавь фото/скрин каталога к посту — конверсия выше в 2 раза.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num day-3">3</div>
+      <div class="day-info">
+        <div class="date">26 июня, четверг</div>
+        <div class="action">Обзвон бизнесов</div>
+      </div>
+      <div class="day-norm"><div class="num">15</div><div class="lbl">норма</div><div class="day-total">415 за день</div></div>
+    </div>
+    <div class="day-body">
+      <div class="source">Где: свои подключённые бизнесы</div>
+      <div class="script"><strong>Скрипт (звонок):</strong> «Привет! У нас 24 июня запускается чат AION, где пользователи ищут услуги. Ты уже в каталоге. Можешь кидать ссылку своим клиентам — им полезно, тебе доп. поток. Скину готовый текст»</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num day-4">4</div>
+      <div class="day-info">
+        <div class="date">27 июня, пятница</div>
+        <div class="action">Telegram-каналы и доски</div>
+      </div>
+      <div class="day-norm"><div class="num">15</div><div class="lbl">норма</div><div class="day-total">550 за день</div></div>
+    </div>
+    <div class="day-body">
+      <div class="source">Где: Nhatrang24, RusViet, телеграм-каналы, чаты вакансий</div>
+      <div class="warn"><strong>Правило:</strong> 1 пост в канал, не чаще раза в 3 дня. Согласовывать с админом.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num day-5">5</div>
+      <div class="day-info">
+        <div class="date">28 июня, суббота</div>
+        <div class="action">Конкурс «Приведи друга»</div>
+      </div>
+      <div class="day-norm"><div class="num">17</div><div class="lbl">норма</div><div class="day-total">700 за день</div></div>
+    </div>
+    <div class="day-body">
+      <div class="script"><strong>Механика:</strong> «Приведи друга в AION — получи скидку 10% на любую услугу. Топ-3 по приглашениям — подарок 🎁»</div>
+      <div class="tip">Каждый участник лично пишет 5-10 друзьям: «Зарегистрируйся по моей ссылке — нам обоим бонус»</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num day-6">6</div>
+      <div class="day-info">
+        <div class="date">29 июня, воскресенье</div>
+        <div class="action">Кросс-посты и паблики</div>
+      </div>
+      <div class="day-norm"><div class="num">17</div><div class="lbl">норма</div><div class="day-total">850 за день</div></div>
+    </div>
+    <div class="day-body">
+      <div class="source">Где: русскоязычные паблики, блогеры-микро (1-2к), рассылка</div>
+      <div class="tip"><strong>Идея:</strong> договориться с 3-5 знакомыми блогерами или админами каналов о репосте за комиссию или бартер.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num day-7">7</div>
+      <div class="day-info">
+        <div class="date">30 июня, понедельник</div>
+        <div class="action">Добивка + Финал</div>
+      </div>
+      <div class="day-norm"><div class="num">17</div><div class="lbl">норма</div><div class="day-total" style="font-weight:700;color:#1a1a2e">1005</div></div>
+    </div>
+    <div class="day-body">
+      <div class="script"><strong>Бонус дня:</strong> лучший результат 30 июня — +50% к дневному бонусу.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SCHEDULE -->
+<div class="section">
+  <div class="section-title"><span class="num">2</span> Распорядок дня</div>
+  <div class="schedule-grid">
+    <div class="schedule-item"><span class="time">09:00</span><span class="desc">Планёрка в чате</span></div>
+    <div class="schedule-item"><span class="time">09:30–12:00</span><span class="desc">Рассылка / обзвон / личные сообщения</span></div>
+    <div class="schedule-item"><span class="time">12:00–13:00</span><span class="desc">Обед</span></div>
+    <div class="schedule-item"><span class="time">13:00–17:00</span><span class="desc">Посты в чаты / сторис / новые контакты</span></div>
+    <div class="schedule-item"><span class="time">17:00–18:00</span><span class="desc">Перерыв</span></div>
+    <div class="schedule-item"><span class="time">18:00–20:00</span><span class="desc">Вечерняя волна: доставка, кто не ответил</span></div>
+    <div class="schedule-item" style="grid-column:1/-1;background:#fdfbf7;border-color:#d4a017"><span class="time">21:00</span><span class="desc"><strong>Отчёт:</strong> скрин количества → в общий чат</span></div>
+  </div>
+</div>
+
+<!-- TRACKING -->
+<div class="section">
+  <div class="section-title"><span class="num">3</span> Таблица выполнения</div>
+  <table class="result-table">
+    <tr><th>Участник</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th><th>29</th><th>30</th><th>Итого</th></tr>
+    <tr><td>1.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr><td>2.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr><td>3.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr><td>4.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr><td>5.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr><td>6.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr><td>7.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr><td>8.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr><td>9.</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    <tr style="font-weight:700;background:#f0f7f0"><td>День</td><td>150</td><td>135</td><td>135</td><td>135</td><td>150</td><td>150</td><td>150</td><td>1005</td></tr>
+  </table>
+</div>
+
+<!-- BONUSES -->
+<div class="section">
+  <div class="section-title"><span class="num">4</span> Бонусы за неделю</div>
+  <div class="bonus-grid">
+    <div class="bonus-card"><div class="pct">&lt; 80%</div><div class="reward">Без бонуса. Разбор причин.</div></div>
+    <div class="bonus-card"><div class="pct">80–99%</div><div class="reward">Только базовый реферальный доход</div></div>
+    <div class="bonus-card gold"><div class="pct">100–149%</div><div class="reward">Реферальный доход + бонус за выполнение</div></div>
+    <div class="bonus-card"><div class="pct">150–199%</div><div class="reward">Реферальный доход + бонус ×1.5</div></div>
+    <div class="bonus-card gold" style="grid-column:span 2"><div class="pct">200%+</div><div class="reward">Реферальный доход + бонус ×2 + подарок от компании</div></div>
+  </div>
+  <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+    <div class="bonus-card" style="flex:1;min-width:180px"><div class="pct" style="font-size:1rem">🏆</div><div class="reward">Лучший агент недели — отдельный приз</div></div>
+    <div class="bonus-card" style="flex:1;min-width:180px"><div class="pct" style="font-size:1rem">📈</div><div class="reward">Личный рекорд — +5% к бонусу</div></div>
+    <div class="bonus-card" style="flex:1;min-width:180px"><div class="pct" style="font-size:1rem">🎉</div><div class="reward">Все выполнили 4/7 дней — корпоратив</div></div>
+  </div>
+</div>
+
+<!-- RULES -->
+<div class="section">
+  <div class="section-title"><span class="num">5</span> Правила</div>
+  <ol class="rules-list">
+    <li><span class="r-num">1</span><span class="r-text"><strong>Личный аккаунт + реферальная ссылка.</strong> Каждый работает только под собой. Все приглашённые навсегда твои.</span></li>
+    <li><span class="r-num">2</span><span class="r-text"><strong>Запрещено</strong> спамить в чужих чатах без предупреждения, писать агрессивно, обещать то, чего нет.</span></li>
+    <li><span class="r-num">3</span><span class="r-text"><strong>Ежедневный отчёт в 21:00.</strong> Скрин количества приглашённых в общий чат. Не сдал — день не засчитан.</span></li>
+    <li><span class="r-num">4</span><span class="r-text"><strong>Переработка приветствуется.</strong> Выполнил 200% — бонус ×2. Сделал 50+ за день — +25% к недельному бонусу.</span></li>
+    <li><span class="r-num">5</span><span class="r-text"><strong>Помощь.</strong> Если у кого-то не идёт — разбираем скрипты, меняем подход, подключаем остальных.</span></li>
+  </ol>
+</div>
+
+<!-- LINKS -->
+<div class="section" style="border-bottom:none">
+  <div class="section-title"><span class="num">6</span> Материалы</div>
+  <div style="display:flex;flex-wrap:wrap;gap:10px">
+    <div class="meta-item" style="flex:1;min-width:180px"><div class="label">Ссылка на чат</div><div class="value" style="font-size:0.9rem">сюда приглашать пользователей</div></div>
+    <div class="meta-item" style="flex:1;min-width:180px"><div class="label">Каталог услуг</div><div class="value" style="font-size:0.9rem">200+ бизнесов — аргумент</div></div>
+    <div class="meta-item" style="flex:1;min-width:180px"><div class="label">Гайд по чату</div><div class="value" style="font-size:0.9rem">чтобы отвечать на вопросы</div></div>
+    <div class="meta-item" style="flex:1;min-width:180px"><div class="label">Визуалы для постов</div><div class="value" style="font-size:0.9rem">у Дарьи</div></div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">AION Community Network · Старт 24 июня 2026</div>
+
+</body></html>

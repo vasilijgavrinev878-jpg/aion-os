@@ -1,0 +1,501 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О городе — Дананг | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #f59e0b;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    margin: 0 -16px;
+    border-radius: 0 0 24px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+  .quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 16px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quick-actions::-webkit-scrollbar { display: none; }
+  .quick-btn {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .quick-btn.emergency { background: var(--danger); }
+  .quick-btn.transport { background: var(--info); }
+  .quick-btn.sim { background: var(--success); }
+  .quick-btn.currency { background: var(--gold); color: #1e293b; }
+  .quick-btn.food { background: #ec4899; }
+  .toc {
+    background: var(--bg-alt);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 8px 0 20px;
+    border: 1px solid var(--border);
+  }
+  .toc-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--primary); }
+  .toc-item { display: block; padding: 6px 0; color: var(--accent); text-decoration: none; font-size: 14px; border-bottom: 1px solid var(--border); }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { opacity: 0.8; }
+  .section { margin: 24px 0; padding: 20px; background: var(--bg); border-radius: 16px; border: 1px solid var(--border); }
+  .section-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section-title .emoji { font-size: 22px; }
+  .subsection { margin: 16px 0; padding: 14px; background: var(--bg-alt); border-radius: 12px; }
+  .subsection-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .card { padding: 12px; margin: 8px 0; background: white; border-radius: 10px; border: 1px solid var(--border); }
+  .card-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .card-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .card .price { color: var(--accent); font-weight: 700; }
+  .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-label { font-weight: 500; }
+  .contact-value { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .info-box { padding: 12px 14px; border-radius: 10px; font-size: 13px; margin: 10px 0; line-height: 1.5; }
+  .info-box.tip { background: #f0fdf4; border-left: 3px solid var(--success); }
+  .info-box.warn { background: #fffbeb; border-left: 3px solid var(--warning); }
+  .info-box.danger { background: #fef2f2; border-left: 3px solid var(--danger); }
+  .info-box.info { background: #eff6ff; border-left: 3px solid var(--info); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media (max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 11px; font-weight: 600; margin: 2px; }
+  .tag.green { background: #dcfce7; color: #166534; }
+  .tag.yellow { background: #fef3c7; color: #92400e; }
+  .tag.red { background: #fee2e2; color: #991b1b; }
+  .tag.blue { background: #dbeafe; color: #1e40af; }
+  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  .price-table th { text-align: left; padding: 8px; background: var(--bg-alt); font-weight: 600; }
+  .price-table td { padding: 8px; border-bottom: 1px solid var(--border); }
+  ul, ol { padding-left: 20px; font-size: 14px; }
+  li { margin: 4px 0; }
+  .footer { text-align: center; padding: 32px 0 16px; font-size: 12px; color: var(--text-light); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Дананг, Вьетнам</h1>
+  <p>Полный гид для туристов и экспатов</p>
+</div>
+
+<div class="quick-actions">
+  <a href="#emergency" class="quick-btn emergency">🚨 Экстренно</a>
+  <a href="#transport" class="quick-btn transport">🚕 Транспорт</a>
+  <a href="#internet" class="quick-btn sim">📱 SIM / Internet</a>
+  <a href="#money" class="quick-btn currency">💰 Деньги</a>
+  <a href="#food" class="quick-btn food">🍜 Еда</a>
+</div>
+
+<div class="toc">
+  <div class="toc-title">📌 Содержание</div>
+  <a class="toc-item" href="#overview">1. Общая информация</a>
+  <a class="toc-item" href="#emergency">2. ☎️ Экстренные контакты</a>
+  <a class="toc-item" href="#weather">3. Погода и сезоны</a>
+  <a class="toc-item" href="#districts">4. Районы города</a>
+  <a class="toc-item" href="#transport">5. Транспорт</a>
+  <a class="toc-item" href="#airport">6. Аэропорт и трансфер</a>
+  <a class="toc-item" href="#internet">7. SIM-карты и Интернет</a>
+  <a class="toc-item" href="#money">8. Деньги и цены</a>
+  <a class="toc-item" href="#medicine">9. Медицина</a>
+  <a class="toc-item" href="#housing">10. Жильё</a>
+  <a class="toc-item" href="#food">11. Еда и рестораны</a>
+  <a class="toc-item" href="#safety">12. Безопасность</a>
+  <a class="toc-item" href="#visa">13. Виза и въезд</a>
+  <a class="toc-item" href="#families">14. Семьям с детьми</a>
+  <a class="toc-item" href="#nomads">15. Digital-номадам</a>
+  <a class="toc-item" href="#faq">16. FAQ — 20 вопросов</a>
+  <a class="toc-item" href="#checklist">17. Чек-лист: Первый день в Дананге</a>
+  <a class="toc-item" href="#links">18. Быстрые ссылки</a>
+</div>
+
+<div class="section" id="overview">
+  <div class="section-title"><span class="emoji">🌴</span> Общая информация</div>
+  <div class="card">
+    <div class="card-text">
+      <strong>Дананг</strong> (Da Nang) — третий по величине город Вьетнама, крупный портовый и промышленный центр.
+      Расположен на побережье Южно-Китайского моря, между Ханоем и Хошимином.
+      Известен своими пляжами, мостом Золотой мост на Ба На Хиллс и динамично развивающейся инфраструктурой.
+    </div>
+  </div>
+  <table class="price-table">
+    <tr><td><strong>Население</strong></td><td>~1,2 млн</td></tr>
+    <tr><td><strong>Язык</strong></td><td>Вьетнамский (английский — распространён, русский — в туристических зонах)</td></tr>
+    <tr><td><strong>Валюта</strong></td><td>Вьетнамский донг (VND) — 1 CNY ≈ 3 400 VND</td></tr>
+    <tr><td><strong>Часовой пояс</strong></td><td>UTC+7 (Индо­китай)</td></tr>
+    <tr><td><strong>Телефонный код</strong></td><td>+84</td></tr>
+    <tr><td><strong>Розетки</strong></td><td>Типы A, C, F (220V / 50Hz)</td></tr>
+  </table>
+</div>
+
+<div class="section" id="emergency">
+  <div class="section-title"><span class="emoji">🚨</span> Экстренные контакты</div>
+  <div class="info-box danger">
+    <strong>Важно!</strong> Сохраните эти номера перед поездкой. При звонке с вьетнамской SIM — набирайте без кода страны.
+  </div>
+  <div class="contact-item"><span class="contact-label">🚑 Скорая помощь</span><a href="tel:115" class="contact-value">115</a></div>
+  <div class="contact-item"><span class="contact-label">🚒 Пожарная служба</span><a href="tel:114" class="contact-value">114</a></div>
+  <div class="contact-item"><span class="contact-label">🚔 Полиция</span><a href="tel:113" class="contact-value">113</a></div>
+  <div class="contact-item"><span class="contact-label">🏥 Da Nang International Hospital</span><a href="tel:+842363567711" class="contact-value">+84 236 356 7711</a></div>
+  <div class="contact-item"><span class="contact-label">🏥 Vinmec Da Nang</span><a href="tel:+842363711111" class="contact-value">+84 236 371 1111</a></div>
+  <div class="contact-item"><span class="contact-label">🏥 Family Medical Practice Da Nang</span><a href="tel:+842363584616" class="contact-value">+84 236 358 4616</a></div>
+  <div class="contact-item"><span class="contact-label">🕊 Генеральное консульство России (Дананг)</span><a href="tel:+842363817871" class="contact-value">+84 236 381 7871</a></div>
+  <div class="contact-item"><span class="contact-label">📞 Туристическая полиция</span><a href="tel:+842363888888" class="contact-value">+84 236 388 8888</a></div>
+</div>
+
+<div class="section" id="weather">
+  <div class="section-title"><span class="emoji">🌤</span> Погода и сезоны</div>
+  <p style="font-size:14px; margin-bottom:10px;">Дананг — тропический муссонный климат. Среднегодовая температура +25°C.</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">☀️ Сухой сезон</div>
+      <div class="card-text">
+        Январь — август. Температура +28–36°C. Мало дождей, солнечно.<br>
+        <span class="tag yellow">Высокий сезон: май — август</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌧 Сезон дождей</div>
+      <div class="card-text">
+        Сентябрь — декабрь. Температура +23–28°C. Тайфуны возможны в октябре-ноябре.<br>
+        <span class="tag blue">Низкий сезон: октябрь — декабрь</span>
+      </div>
+    </div>
+  </div>
+  <div class="info-box tip">
+    <strong>Лучшее время для визита:</strong> февраль — май. Море спокойное, вода +24–28°C, дождей почти нет.
+  </div>
+</div>
+
+<div class="section" id="districts">
+  <div class="section-title"><span class="emoji">🗺</span> Районы города</div>
+  <div class="subsection">
+    <div class="subsection-title">🏖 Пляжный район — My Khe, Phuoc My</div>
+    <div class="card-text">
+      Главная туристическая зона. Пляж Ми Кхе (My Khe Beach) — один из красивейших в мире. Отели, рестораны, бары.
+      <span class="tag green">Рекомендуется для отдыха</span>
+    </div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🏙 Центр — Hai Chau</div>
+    <div class="card-text">
+      Деловой и административный центр. Соборы, музеи, рынок Хан (Han Market), ночная жизнь.
+      <span class="tag green">Удобно для проживания</span>
+    </div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🌉 Son Tra (Полуостров Обезьян)</div>
+    <div class="card-text">
+      Зелёный полуостров с дикой природой, храмами и видовыми точками. Дорогие отели и виллы.
+      <span class="tag yellow">Для любителей природы</span>
+    </div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🏘 Ngu Hanh Son (Мраморные горы)</div>
+    <div class="card-text">
+      Южный район с мраморными карьерами, храмами в пещерах и живописными пляжами. Спокойная жизнь.
+      <span class="tag yellow">Хорошо для экспатов</span>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="transport">
+  <div class="section-title"><span class="emoji">🚕</span> Транспорт</div>
+  <div class="card">
+    <div class="card-title">🚗 Grab / Gojek / Be</div>
+    <div class="card-text">
+      Основной способ передвижения. Мотоцикл по городу — от 12 000 VND (~45 ₽). Авто по городу — от 35 000 VND (~125 ₽).
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🏍 Аренда мотоцикла</div>
+    <div class="card-text">
+      Цена: 100 000 – 200 000 VND/день (360–720 ₽). Нужны права (международные или с переводом).
+      <span class="tag yellow">Штраф без шлема — 500 000 VND</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🚌 Автобусы</div>
+    <div class="card-text">
+      Городские автобусы: 5 000 – 10 000 VND. Развитая маршрутная сеть.
+    </div>
+  </div>
+  <div class="info-box warn">
+    <strong>Внимание:</strong> Движение во Вьетнаме хаотичное. Дананг — более организованный, чем Хошимин, но будьте внимательны.
+  </div>
+</div>
+
+<div class="section" id="airport">
+  <div class="section-title"><span class="emoji">✈️</span> Аэропорт и трансфер</div>
+  <div class="card-text">
+    Международный аэропорт Дананг (Da Nang International Airport, DAD) — в 3 км от центра города.
+    Один из крупнейших аэропортов Вьетнама. Время в пути до центра: ~10–15 минут.
+  </div>
+  <div class="info-box tip">
+    <strong>Лучший вариант:</strong> Grab от аэропорта до центра — от 50 000 VND (~180 ₽).
+  </div>
+  <table class="price-table">
+    <tr><th>Вид трансфера</th><th>Цена (VND)</th><th>Время</th></tr>
+    <tr><td>Такси (аэропорт — центр)</td><td>60 000 – 100 000</td><td>10–15 мин</td></tr>
+    <tr><td>Grab Car</td><td>50 000 – 80 000</td><td>10–15 мин</td></tr>
+    <tr><td>Автобус (№1)</td><td>10 000</td><td>25 мин</td></tr>
+    <tr><td>Мотоцикл (Grab Bike)</td><td>20 000 – 40 000</td><td>10 мин</td></tr>
+  </table>
+</div>
+
+<div class="section" id="internet">
+  <div class="section-title"><span class="emoji">📱</span> SIM-карты и Интернет</div>
+  <div class="info-box tip">
+    <strong>Совет:</strong> Купите SIM в аэропорту или в городе (Viettel, Mobifone, Vinaphone). eSIM — Airalo, Viettel eSIM.
+  </div>
+  <table class="price-table">
+    <tr><th>Оператор</th><th>Тариф (месяц)</th><th>Трафик</th></tr>
+    <tr><td><strong>Viettel</strong></td><td>100 000 VND (~360 ₽)</td><td>5 GB/день (150 GB/мес)</td></tr>
+    <tr><td><strong>Mobifone</strong></td><td>120 000 VND (~430 ₽)</td><td>4 GB/день</td></tr>
+    <tr><td><strong>Vinaphone</strong></td><td>90 000 VND (~325 ₽)</td><td>3 GB/день</td></tr>
+  </table>
+  <div class="subsection">
+    <div class="subsection-title">📶 Wi-Fi в городе</div>
+    <div class="card-text">
+      Отличный интернет в кафе и отелях. Скорость — 50–200 Мбит/с в центре. Дананг — один из лучших городов для цифровых кочевников.
+    </div>
+  </div>
+</div>
+
+<div class="section" id="money">
+  <div class="section-title"><span class="emoji">💰</span> Деньги и цены</div>
+  <div class="card">
+    <div class="card-title">💳 Карты и наличные</div>
+    <div class="card-text">
+      Наличные — основной способ. Карты принимают в крупных ТЦ, отелях, ресторанах.
+      Банкоматы: Vietcombank, BIDV, Techcombank.
+    </div>
+  </div>
+  <div class="subsection-title" style="margin-top:12px;">💰 Примерные цены</div>
+  <table class="price-table">
+    <tr><th>Категория</th><th>Цена (VND)</th><th>Цена (~₽)</th></tr>
+    <tr><td>Чашка кофе (кафе)</td><td>15 000 – 40 000</td><td>55 – 145</td></tr>
+    <tr><td>Обед (уличная еда)</td><td>25 000 – 50 000</td><td>90 – 180</td></tr>
+    <tr><td>Обед (ресторан)</td><td>80 000 – 200 000</td><td>290 – 720</td></tr>
+    <tr><td>Бутылка воды</td><td>5 000 – 10 000</td><td>18 – 36</td></tr>
+    <tr><td>Пиво (местное, бар)</td><td>10 000 – 20 000</td><td>36 – 72</td></tr>
+    <tr><td>Массаж (60 мин)</td><td>250 000 – 400 000</td><td>900 – 1 440</td></tr>
+    <tr><td>Аренда мотоцикла/день</td><td>100 000 – 200 000</td><td>360 – 720</td></tr>
+    <tr><td>Такси по городу</td><td>30 000 – 70 000</td><td>110 – 250</td></tr>
+  </table>
+</div>
+
+<div class="section" id="medicine">
+  <div class="section-title"><span class="emoji">🏥</span> Медицина</div>
+  <div class="card">
+    <div class="card-title">🏥 Международные клиники</div>
+    <div class="contact-item"><span class="contact-label">Da Nang International Hospital</span><a href="tel:+842363567711" class="contact-value">+84 236 356 7711</a></div>
+    <div class="contact-item"><span class="contact-label">Vinmec Da Nang</span><a href="tel:+842363711111" class="contact-value">+84 236 371 1111</a></div>
+    <div class="contact-item"><span class="contact-label">Family Medical Practice</span><a href="tel:+842363584616" class="contact-value">+84 236 358 4616</a></div>
+  </div>
+  <div class="info-box warn">
+    <strong>Страховка обязательна!</strong> Медицина для иностранцев дорогая. Рекомендуем полис с покрытием не менее $50 000.
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🦷 Стоматология</div>
+    <div class="card-text">
+      Дананг — популярное направление стоматологического туризма. Качество высокое, цены ниже европейских.
+      Популярные клиники: <strong>Da Nang Dental Clinic</strong>, <strong>Aurora Dental</strong>.
+    </div>
+  </div>
+</div>
+
+<div class="section" id="housing">
+  <div class="section-title"><span class="emoji">🏠</span> Жильё</div>
+  <table class="price-table">
+    <tr><th>Тип</th><th>Цена/мес (VND)</th><th>Цена/мес (~₽)</th></tr>
+    <tr><td>Комната (гостевой дом)</td><td>5 – 8 млн</td><td>18 000 – 29 000</td></tr>
+    <tr><td>Студия (центр)</td><td>7 – 12 млн</td><td>25 000 – 43 000</td></tr>
+    <tr><td>1-комнатная (центр)</td><td>8 – 15 млн</td><td>29 000 – 54 000</td></tr>
+    <tr><td>Апартаменты (My Khe)</td><td>10 – 20 млн</td><td>36 000 – 72 000</td></tr>
+    <tr><td>Вилла (Son Tra)</td><td>20 – 50 млн</td><td>72 000 – 180 000</td></tr>
+  </table>
+  <div class="info-box tip">
+    <strong>Как искать:</strong> Facebook-группы («Экспаты в Дананге»), AION, batdongsan.vn. Депозит 1 месяц.
+  </div>
+</div>
+
+<div class="section" id="food">
+  <div class="section-title"><span class="emoji">🍜</span> Еда и рестораны</div>
+  <div class="subsection">
+    <div class="subsection-title">🥢 Что обязательно попробовать</div>
+    <ul>
+      <li><strong>Ми Куанг</strong> (Mi Quang) — знаменитое блюдо Дананга, суп с лапшой — 25 000–50 000 VND</li>
+      <li><strong>Бань сео</strong> (Banh Xeo) — хрустящие блинчики с креветками — 20 000–40 000 VND</li>
+      <li><strong>Бун ча ка</strong> (Bun Cha Ca) — суп с рыбными котлетами — 30 000–50 000 VND</li>
+      <li><strong>Морепродукты</strong> — район My Khe, ужин от 150 000 VND</li>
+      <li><strong>Баньми</strong> — вьетнамский сэндвич — 12 000–25 000 VND</li>
+    </ul>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🥤 Напитки</div>
+    <ul>
+      <li><strong>Кофе со сгущёнкой</strong> (Ca phe sua da) — 15 000–25 000 VND</li>
+      <li><strong>Пиво</strong> (Bia Da Nang, Bia Saigon) — от 8 000 VND</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="safety">
+  <div class="section-title"><span class="emoji">🔒</span> Безопасность</div>
+  <div class="info-box info">
+    Дананг — один из самых безопасных городов Вьетнама. Основные риски: мелкие кражи.
+  </div>
+  <ul>
+    <li>🔐 Не оставляйте телефон на столике уличного кафе</li>
+    <li>🏍 Сумку держите со стороны, противоположной дороге</li>
+    <li>🚰 Воду из-под крана не пить — только бутилированную</li>
+    <li>🦟 Репеллент от комаров — риск лихорадки денге</li>
+  </ul>
+</div>
+
+<div class="section" id="visa">
+  <div class="section-title"><span class="emoji">🛂</span> Виза и правила въезда</div>
+  <table class="price-table">
+    <tr><th>Гражданство</th><th>Безвизовый срок</th><th>Продление</th></tr>
+    <tr><td>Россия</td><td>45 дней</td><td>Можно продлить до 3 мес через агентство</td></tr>
+    <tr><td>Казахстан</td><td>45 дней</td><td>Можно продлить до 3 мес через агентство</td></tr>
+    <tr><td>Украина</td><td>15 дней (eVisa опционально)</td><td>eVisa до 30 дней</td></tr>
+    <tr><td>Беларусь</td><td>45 дней</td><td>Можно продлить до 3 мес через агентство</td></tr>
+    <tr><td>Евросоюз / США / UK</td><td>45 дней (с 2025)</td><td>Продление до 3 мес</td></tr>
+  </table>
+  <div class="info-box tip">
+    <strong>Продление визы:</strong> В Дананге множество визовых агентств. Цена продления на 1 месяц — ~50–80 USD.
+    Обращайтесь через AION — наши партнёры помогут.
+  </div>
+</div>
+
+<div class="section" id="families">
+  <div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Семьям с детьми</div>
+  <ul>
+    <li><strong>Пляж:</strong> My Khe — пологий вход, чистая вода. Спасатели на основных участках</li>
+    <li><strong>Ба На Хиллс</strong> (Ba Na Hills) — канатная дорога, парк развлечений, Золотой мост</li>
+    <li><strong>Детские сады и школы:</strong> Международные школы — от $500/мес</li>
+    <li><strong>Asia Park</strong> — парк аттракционов и колесо обозрения</li>
+    <li><strong>Детские врачи:</strong> Vinmec, Family Medical Practice</li>
+  </ul>
+</div>
+
+<div class="section" id="nomads">
+  <div class="section-title"><span class="emoji">💻</span> Digital-номадам</div>
+  <div class="card">
+    <div class="card-title">☕ Коворкинги и кафе для работы</div>
+    <div class="card-text">
+      <strong>Enou Coffee</strong> — тихое место с отличным Wi-Fi.<br>
+      <strong>K Coffee</strong> — вид на пляж, розетки.<br>
+      <strong>The Moose Coffee</strong> — популярное место среди номадов.
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🏢 Коворкинги</div>
+    <div class="card-text">
+      <strong>DNG Coworking</strong> — 1 500 000 VND/мес (~5 400 ₽).<br>
+      <strong>Enou Space</strong> — 2 000 000 VND/мес (~7 200 ₽).<br>
+      <strong>AION Coworking</strong> — скоро!
+    </div>
+  </div>
+  <div class="info-box tip">
+    <strong>Почему Дананг для номадов:</strong> Низкая стоимость жизни (от $600/мес), отличный интернет (до 200 Мбит/с),
+    международное комьюнити, близость к Хойану и Хюэ.
+  </div>
+</div>
+
+<div class="section" id="faq">
+  <div class="section-title"><span class="emoji">❓</span> FAQ — 20 вопросов</div>
+  <div class="subsection"><div class="subsection-title">1. Нужна ли виза в Дананг?</div><div class="card-text">Россиянам, белорусам, казахам — 45 дней без визы.</div></div>
+  <div class="subsection"><div class="subsection-title">2. Какой язык в ходу?</div><div class="card-text">В туристических зонах — английский. Русский — реже, чем в Нячанге.</div></div>
+  <div class="subsection"><div class="subsection-title">3. Какую валюту брать?</div><div class="card-text">Доллары или евро — обменять на донги. Снять с карты в банкомате.</div></div>
+  <div class="subsection"><div class="subsection-title">4. Когда лучший сезон?</div><div class="card-text">Февраль — май. Сухо, солнечно, комфортная температура.</div></div>
+  <div class="subsection"><div class="subsection-title">5. Безопасно ли в Дананге?</div><div class="card-text">Очень безопасно. Мелкие кражи — основной риск.</div></div>
+  <div class="subsection"><div class="subsection-title">6. Как позвонить в Россию?</div><div class="card-text">Через Telegram / WhatsApp. С вьетнамской SIM — +7-код-номер.</div></div>
+  <div class="subsection"><div class="subsection-title">7. Есть ли красивые пляжи?</div><div class="card-text">My Khe Beach — один из 6 красивейших пляжей мира по версии Forbes.</div></div>
+  <div class="subsection"><div class="subsection-title">8. Как легализовать права?</div><div class="card-text">Международные права или нотариальный перевод национальных.</div></div>
+  <div class="subsection"><div class="subsection-title">9. Сколько стоит аренда жилья?</div><div class="card-text">От 5 млн VND/мес (комната) до 20+ млн VND/мес (апартаменты).</div></div>
+  <div class="subsection"><div class="subsection-title">10. Где искать жильё?</div><div class="card-text">Facebook-группы, AION, batdongsan.vn.</div></div>
+  <div class="subsection"><div class="subsection-title">11. Можно ли снять квартиру на сутки?</div><div class="card-text">Да. Booking.com, Airbnb. Цена: от 300 000 VND/ночь.</div></div>
+  <div class="subsection"><div class="subsection-title">12. Какой транспорт лучше?</div><div class="card-text">Grab — удобнее всего. Аренда мотоцикла — для длительного пребывания.</div></div>
+  <div class="subsection"><div class="subsection-title">13. Нужно ли платить налоги?</div><div class="card-text">Более 183 дней — налоговый резидент. Ставка НДФЛ до 35%.</div></div>
+  <div class="subsection"><div class="subsection-title">14. Где купить сим-карту?</div><div class="card-text">В аэропорту или магазинах Viettel/Mobifone. Нужен паспорт.</div></div>
+  <div class="subsection"><div class="subsection-title">15. Работает ли YouTube?</div><div class="card-text">Да. Без блокировок.</div></div>
+  <div class="subsection"><div class="subsection-title">16. Как сэкономить на еде?</div><div class="card-text">Уличные кафе — обед от 25 000 VND. Фрукты на рынке.</div></div>
+  <div class="subsection"><div class="subsection-title">17. Какие приложения скачать?</div><div class="card-text">Grab, Google Translate, Google Maps, AION.</div></div>
+  <div class="subsection"><div class="subsection-title">18. Куда сводить детей?</div><div class="card-text">Ба На Хиллс, Asia Park, пляж, водный парк.</div></div>
+  <div class="subsection"><div class="subsection-title">19. Есть ли русские школы?</div><div class="card-text">Да, есть русскоязычные группы при международных школах.</div></div>
+  <div class="subsection"><div class="subsection-title">20. Как открыть бизнес во Вьетнаме?</div><div class="card-text">Инвестиционная лицензия (ERC), уставной капитал от $10 000. Через юриста.</div></div>
+</div>
+
+<div class="section" id="checklist">
+  <div class="section-title"><span class="emoji">✅</span> Чек-лист: Первый день в Дананге</div>
+  <ol>
+    <li>Купить SIM-карту (аэропорт или Viettel)</li>
+    <li>Снять наличные (банкомат в аэропорту)</li>
+    <li>Заказать Grab до отеля (50 000–100 000 VND)</li>
+    <li>Заселиться, проверить Wi-Fi</li>
+    <li>Прогуляться по пляжу My Khe</li>
+    <li>Установить Grab, Telegram, Google Translate</li>
+    <li>Поужинать морепродуктами на набережной</li>
+    <li>Посмотреть мост Дракона (огненное шоу в 21:00 сб-вс)</li>
+  </ol>
+</div>
+
+<div class="section" id="links">
+  <div class="section-title"><span class="emoji">🔗</span> Быстрые ссылки</div>
+  <div class="contact-item"><span class="contact-label">📋 AION — все заведения</span><a class="contact-value" href="#">Открыть в Mini App</a></div>
+  <div class="contact-item"><span class="contact-label">🏠 AION — аренда жилья</span><a class="contact-value" href="#">Открыть в Mini App</a></div>
+  <div class="contact-item"><span class="contact-label">🚕 AION — трансфер</span><a class="contact-value" href="#">Открыть в Mini App</a></div>
+  <div class="contact-item"><span class="contact-label">💱 AION — обмен валюты</span><a class="contact-value" href="#">Открыть в Mini App</a></div>
+  <div class="contact-item"><span class="contact-label">💬 Чат AION Дананг</span><a class="contact-value" href="#">Telegram</a></div>
+</div>
+
+<div class="footer">
+  <p>© 2026 AION — Ваш городской помощник в Дананге</p>
+  <p style="margin-top:8px; opacity:0.6;">Telegram Mini App</p>
+</div>
+
+</body>
+</html>

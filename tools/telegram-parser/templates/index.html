@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AION Invite Machine v2</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0f1e;color:#e2e8f0;font-size:14px;padding:16px}
+.app{max-width:1100px;margin:0 auto}
+h1{display:flex;align-items:center;gap:10px;font-size:1.4rem;color:#f59e0b;margin-bottom:2px}
+h1 small{color:#64748b;font-weight:400;font-size:0.75rem}
+.subtitle{color:#64748b;font-size:0.8rem;margin-bottom:12px}
+
+.status-bar{background:#1e293b;border-radius:10px;padding:12px 16px;margin:10px 0;font-size:0.9rem;min-height:44px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.status-bar .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dot-green{background:#22c55e}
+.dot-red{background:#ef4444}
+.dot-yellow{background:#f59e0b}
+.status-actions{margin-left:auto;display:flex;gap:6px}
+
+.btn{padding:7px 16px;border:none;border-radius:8px;font-weight:600;font-size:0.8rem;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:5px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-primary{background:#f59e0b;color:#0a0f1e}
+.btn-primary:hover:not(:disabled){background:#d97706}
+.btn-danger{background:#ef4444;color:#fff}
+.btn-danger:hover:not(:disabled){background:#dc2626}
+.btn-green{background:#22c55e;color:#0a0f1e}
+.btn-green:hover:not(:disabled){background:#16a34a}
+.btn-outline{background:transparent;border:1px solid #334155;color:#cbd5e1}
+.btn-outline:hover{background:#1e293b}
+.btn-blue{background:#3b82f6;color:#fff}
+.btn-blue:hover:not(:disabled){background:#2563eb}
+.btn-sm{padding:4px 10px;font-size:0.72rem}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+@media(max-width:700px){.grid-4,.grid-3{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.grid-2,.grid-4,.grid-3{grid-template-columns:1fr}}
+
+.stat-card{background:#1e293b;border-radius:10px;padding:14px 16px;position:relative}
+.stat-card .num{font-size:1.5rem;font-weight:700;color:#f59e0b}
+.stat-card .lbl{font-size:0.72rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.3px}
+.stat-card .sub{font-size:0.68rem;color:#64748b;margin-top:2px}
+
+.card{background:#1e293b;border-radius:10px;padding:16px;margin:10px 0}
+.card-title{font-weight:600;font-size:0.85rem;margin-bottom:12px;color:#f59e0b;display:flex;align-items:center;gap:6px}
+.card-actions{margin-left:auto;display:flex;gap:4px}
+
+.tabs{display:flex;gap:3px;margin:10px 0;flex-wrap:wrap;border-bottom:1px solid #1e293b;padding-bottom:0}
+.tab{padding:8px 16px;border-radius:8px 8px 0 0;cursor:pointer;font-size:0.8rem;font-weight:500;background:transparent;color:#94a3b8;border:none;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.active{background:#1e293b;color:#f59e0b;border-bottom-color:#f59e0b}
+.tab:hover:not(.active){background:rgba(255,255,255,.03)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+.form-group{margin-bottom:10px}
+.form-group label{display:block;font-size:0.78rem;color:#94a3b8;margin-bottom:3px;font-weight:500}
+.form-group textarea,.form-group input,.form-group select{width:100%;padding:7px 10px;border-radius:6px;border:1px solid #334155;background:#0a0f1e;color:#e2e8f0;font-size:0.85rem;font-family:inherit}
+.form-group textarea{resize:vertical;min-height:50px}
+.form-group textarea:focus,.form-group input:focus,.form-group select:focus{outline:none;border-color:#f59e0b}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}}
+
+.contacts-table{width:100%;border-collapse:collapse;font-size:0.78rem}
+.contacts-table th{text-align:left;padding:6px 8px;color:#94a3b8;font-weight:600;border-bottom:1px solid #334155;font-size:0.7rem;white-space:nowrap}
+.contacts-table td{padding:5px 8px;border-bottom:1px solid #1e293b;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis}
+.contacts-table tr:hover td{background:rgba(255,255,255,.02)}
+
+.tag{display:inline-block;padding:1px 7px;border-radius:4px;font-size:0.68rem;font-weight:600}
+.tag-ok{background:#052e16;color:#22c55e}
+.tag-fail{background:#450a0a;color:#ef4444}
+.tag-add{background:#1e3a5f;color:#60a5fa}
+.tag-warn{background:#451a03;color:#f59e0b}
+.tag-info{background:#1e1b4b;color:#a78bfa}
+.tag-bot{background:#064e3b;color:#2dd4bf}
+
+.log-box{background:#0a0f1e;border:1px solid #1e293b;border-radius:6px;padding:10px;font-family:'Cascadia Code','Consolas',monospace;font-size:0.7rem;color:#94a3b8;max-height:350px;overflow-y:auto;white-space:pre-wrap;line-height:1.5}
+
+.hint{font-size:0.68rem;color:#64748b;margin-top:2px}
+.msg-preview{background:#0a0f1e;border:1px solid #334155;border-radius:6px;padding:10px;margin-top:6px;font-size:0.78rem;color:#cbd5e1;white-space:pre-wrap;line-height:1.5}
+.empty-state{text-align:center;padding:20px;color:#64748b;font-size:0.85rem}
+
+.bar-chart{display:flex;align-items:end;gap:4px;height:80px;padding:10px 0}
+.bar{flex:1;background:#f59e0b;border-radius:3px 3px 0 0;min-width:12px;position:relative;transition:height .3s}
+.bar:hover{background:#d97706}
+.bar-label{text-align:center;font-size:0.6rem;color:#64748b;margin-top:4px}
+.bar-tip{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:0.65rem;color:#e2e8f0;white-space:nowrap;background:#0a0f1e;padding:1px 5px;border-radius:3px;display:none}
+.bar:hover .bar-tip{display:block}
+
+.acc-card{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#0a0f1e;border-radius:8px;margin-bottom:6px}
+.acc-card .acc-phone{font-weight:600;font-size:0.85rem}
+.acc-card .acc-status{font-size:0.72rem;color:#94a3b8}
+.acc-card .acc-stats{font-size:0.68rem;color:#64748b;margin-left:auto}
+.acc-level{display:inline-block;padding:1px 6px;border-radius:3px;font-size:0.65rem;background:#1e1b4b;color:#a78bfa}
+
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center}
+.modal.open{display:flex}
+.modal-body{background:#1e293b;border-radius:12px;padding:20px;width:90%;max-width:500px;max-height:80vh;overflow-y:auto}
+.modal-body h3{margin-bottom:12px;color:#f59e0b}
+.modal-actions{display:flex;gap:8px;margin-top:14px;justify-content:end}
+
+.loading{opacity:.5;pointer-events:none}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<h1>🤖 AION Invite Machine <small>v2.0</small></h1>
+<div class="subtitle">Multi-account Telegram inviting engine &mdash; парсинг, DM, добавление, расписание</div>
+
+<!-- ─── STATUS BAR ─── -->
+<div id="statusBar" class="status-bar">
+  <span id="statusDot" class="dot dot-yellow"></span>
+  <span id="statusText">Загрузка...</span>
+  <span id="statusCampaign" style="font-size:0.75rem;color:#64748b"></span>
+  <div class="status-actions">
+    <button id="btnStart" class="btn btn-primary" onclick="startParser()">🚀 Запустить</button>
+    <button id="btnStop" class="btn btn-danger" onclick="stopParser()" disabled>⏹ Остановить</button>
+    <button class="btn btn-outline btn-sm" onclick="refreshAll()">🔄</button>
+  </div>
+</div>
+
+<!-- ─── STATS GRID ─── -->
+<div id="statsGrid" class="grid-4">
+  <div class="stat-card"><div class="num" id="statTotal">—</div><div class="lbl">Контактов в БД</div></div>
+  <div class="stat-card"><div class="num" id="statDm">—</div><div class="lbl">DM отправлено</div><div class="sub" id="statTodayDm">сегодня: —</div></div>
+  <div class="stat-card"><div class="num" id="statAdded">—</div><div class="lbl">Добавлено в чаты</div><div class="sub" id="statTodayAdd">сегодня: —</div></div>
+  <div class="stat-card"><div class="num" id="statClicked">—</div><div class="lbl">Переходов в Mini App</div><div class="sub" id="statErrors">ошибок: —</div></div>
+</div>
+<div class="grid-3" style="margin-top:-2px">
+  <div class="stat-card"><div class="num" id="statChats">—</div><div class="lbl">Чатов-доноров</div></div>
+  <div class="stat-card"><div class="num" id="statAccounts">—</div><div class="lbl">Здоровых аккаунтов</div></div>
+  <div class="stat-card"><div class="num" id="statCampaignCount">—</div><div class="lbl">Кампаний</div></div>
+</div>
+
+<!-- ─── TABS ─── -->
+<div class="tabs">
+  <button class="tab active" data-tab="tabDashboard">📊 Дашборд</button>
+  <button class="tab" data-tab="tabAccounts">👤 Аккаунты</button>
+  <button class="tab" data-tab="tabCampaigns">📋 Кампании</button>
+  <button class="tab" data-tab="tabSchedule">⏰ Расписание</button>
+  <button class="tab" data-tab="tabContacts">👥 Контакты</button>
+  <button class="tab" data-tab="tabLog">📋 Лог</button>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- TAB: DASHBOARD -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="tabDashboard" class="tab-content active">
+  <div class="card">
+    <div class="card-title">📈 Активность за 7 дней</div>
+    <div id="analyticsChart">
+      <div class="empty-state">Загрузка данных...</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏙️ Активные кампании</div>
+    <div id="dashCampaigns">
+      <div class="empty-state">Загрузка...</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Сводка</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.82rem">
+      <div><span style="color:#94a3b8">Всего контактов:</span> <strong id="dashTotal">—</strong></div>
+      <div><span style="color:#94a3b8">DM отправлено:</span> <strong id="dashDm">—</strong></div>
+      <div><span style="color:#94a3b8">Добавлено в чаты:</span> <strong id="dashAdded">—</strong></div>
+      <div><span style="color:#94a3b8">Переходов в Mini App:</span> <strong id="dashClicked">—</strong></div>
+      <div><span style="color:#94a3b8">Здоровых аккаунтов:</span> <strong id="dashHealthy">—</strong></div>
+      <div><span style="color:#94a3b8">Ошибок:</span> <strong id="dashErrors">—</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- TAB: ACCOUNTS -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="tabAccounts" class="tab-content">
+  <div class="card">
+    <div class="card-title">👤 Управление аккаунтами</div>
+
+    <div style="margin-bottom:12px">
+      <button class="btn btn-green btn-sm" onclick="showAddAccount()">+ Добавить аккаунт</button>
+    </div>
+
+    <div id="accountsList">
+      <div class="empty-state">Загрузка...</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ Лимиты безопасности (глобальные)</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>DM в день на аккаунт</label>
+        <input id="cfg_dm_limit" type="number" value="40" min="1">
+      </div>
+      <div class="form-group">
+        <label>Добавлений в день</label>
+        <input id="cfg_add_limit" type="number" value="30" min="1">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Пауза между DM (сек)</label>
+        <input id="cfg_dm_delay" type="number" value="10" min="3">
+      </div>
+      <div class="form-group">
+        <label>Пауза между добавл. (сек)</label>
+        <input id="cfg_add_delay" type="number" value="15" min="5">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Кд между пачками (мин)</label>
+      <input id="cfg_cooldown" type="number" value="60" min="5">
+      <div class="hint">Пауза каждые 20 DM на один аккаунт</div>
+    </div>
+    <button class="btn btn-primary" onclick="saveLimits()">💾 Сохранить лимиты</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- TAB: CAMPAIGNS -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="tabCampaigns" class="tab-content">
+  <div class="card">
+    <div class="card-title">🎯 Кампании <span class="card-actions"><button class="btn btn-green btn-sm" onclick="showAddCampaign()">+ Новая кампания</button></span></div>
+    <div id="campaignsList">
+      <div class="empty-state">Загрузка...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- TAB: SCHEDULE -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="tabSchedule" class="tab-content">
+  <div class="card">
+    <div class="card-title">⏰ Расписание запусков</div>
+    <div style="margin-bottom:12px">
+      <button class="btn btn-green btn-sm" onclick="showAddSchedule()">+ Добавить расписание</button>
+    </div>
+    <div id="schedulesList">
+      <div class="empty-state">Загрузка...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- TAB: CONTACTS -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="tabContacts" class="tab-content">
+  <div class="card">
+    <div class="card-title">👥 База контактов</div>
+    <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
+      <input id="filterCity" placeholder="Фильтр по городу..." style="padding:5px 10px;border-radius:6px;border:1px solid #334155;background:#0a0f1e;color:#e2e8f0;font-size:0.8rem;width:180px">
+      <button class="btn btn-outline btn-sm" onclick="loadContacts()">🔍 Поиск</button>
+      <a href="/api/export" class="btn btn-blue btn-sm" download>📥 CSV</a>
+      <a href="/api/export?city=nhatrang" class="btn btn-outline btn-sm" download>📥 CSV Нячанг</a>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="contacts-table">
+        <thead><tr>
+          <th>ID</th><th>Имя</th><th>Username</th><th>Источник</th>
+          <th>DM</th><th>Добавлен</th><th>Mini App</th><th>Ошибка</th><th>Дата</th>
+        </tr></thead>
+        <tbody id="contactsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- TAB: LOG -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="tabLog" class="tab-content">
+  <div class="card">
+    <div class="card-title">📋 Лог выполнения</div>
+    <div id="logBox" class="log-box">Загрузка...</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- MODAL: Add Account -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="modalAccount" class="modal">
+  <div class="modal-body">
+    <h3>➕ Добавить Telegram аккаунт</h3>
+    <div class="form-group">
+      <label>Номер телефона <span class="hint">(+84...)</span></label>
+      <input id="m_phone" type="text" placeholder="+84900000000">
+    </div>
+    <div class="form-group">
+      <label>API ID <span class="hint">(my.telegram.org)</span></label>
+      <input id="m_api_id" type="text" placeholder="12345">
+    </div>
+    <div class="form-group">
+      <label>API Hash</label>
+      <input id="m_api_hash" type="text" placeholder="ваш api_hash">
+    </div>
+    <div class="form-group">
+      <label>Прокси (опционально)</label>
+      <input id="m_proxy" type="text" placeholder="socks5:127.0.0.1:9050">
+      <div class="hint">Формат: тип:адрес:порт или socks5:ip:port</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modalAccount')">Отмена</button>
+      <button class="btn btn-primary" onclick="addAccount()">➕ Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- MODAL: Add Campaign -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="modalCampaign" class="modal">
+  <div class="modal-body">
+    <h3>➕ Новая кампания</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Город</label>
+        <input id="mc_city" value="nhatrang" placeholder="nhatrang">
+      </div>
+      <div class="form-group">
+        <label>Название <span class="hint">внутреннее</span></label>
+        <input id="mc_name" placeholder="Нячанг — жильё">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Чаты-доноры <span class="hint">по одной ссылке на строке</span></label>
+      <textarea id="mc_source" rows="3" placeholder="https://t.me/nhatrang_chat&#10;https://t.me/russians_in_nhatrang"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Целевые чаты <span class="hint">куда добавлять</span></label>
+      <textarea id="mc_target" rows="2" placeholder="https://t.me/aion_nhatrang"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Текст DM-сообщения</label>
+      <textarea id="mc_dm" rows="5">Привет! 👋
+
+Мы — AION, городской помощник для русскоязычных в Нячанге.
+У нас есть чат города и канал с полезными объявлениями:
+👉 Чат: https://t.me/aion_nhatrang
+👉 Канал: https://t.me/aion_channel</textarea>
+    </div>
+    <div class="form-group">
+      <label>Invite-ссылка <span class="hint">на Mini App / бота</span></label>
+      <input id="mc_invite" placeholder="https://t.me/aion_bot?start=ref">
+    </div>
+    <div id="mcPreview" class="msg-preview"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modalCampaign')">Отмена</button>
+      <button class="btn btn-primary" onclick="addCampaign()">💾 Создать кампанию</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- MODAL: Add Schedule -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="modalSchedule" class="modal">
+  <div class="modal-body">
+    <h3>⏰ Добавить расписание</h3>
+    <div class="form-group">
+      <label>Кампания</label>
+      <select id="ms_campaign"></select>
+    </div>
+    <div class="form-row-3">
+      <div class="form-group">
+        <label>Час</label>
+        <select id="ms_hour">${Array.from({length:24},(_,i)=>`<option value="${i}">${String(i).padStart(2,'0')}</option>`).join('')}</select>
+      </div>
+      <div class="form-group">
+        <label>Минута</label>
+        <select id="ms_minute">${Array.from({length:12},(_,i)=>`<option value="${i*5}">${String(i*5).padStart(2,'0')}</option>`).join('')}</select>
+      </div>
+      <div class="form-group">
+        <label>Часовой пояс</label>
+        <input id="ms_tz" value="+7" disabled style="color:#64748b">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Дни недели</label>
+      <div style="display:flex;gap:4px;flex-wrap:wrap">
+        <label style="font-size:0.78rem;display:flex;align-items:center;gap:3px"><input type="checkbox" value="mon" checked> Пн</label>
+        <label style="font-size:0.78rem;display:flex;align-items:center;gap:3px"><input type="checkbox" value="tue" checked> Вт</label>
+        <label style="font-size:0.78rem;display:flex;align-items:center;gap:3px"><input type="checkbox" value="wed" checked> Ср</label>
+        <label style="font-size:0.78rem;display:flex;align-items:center;gap:3px"><input type="checkbox" value="thu" checked> Чт</label>
+        <label style="font-size:0.78rem;display:flex;align-items:center;gap:3px"><input type="checkbox" value="fri" checked> Пт</label>
+        <label style="font-size:0.78rem;display:flex;align-items:center;gap:3px"><input type="checkbox" value="sat"> Сб</label>
+        <label style="font-size:0.78rem;display:flex;align-items:center;gap:3px"><input type="checkbox" value="sun"> Вс</label>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modalSchedule')">Отмена</button>
+      <button class="btn btn-primary" onclick="addSchedule()">➕ Добавить</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<script>
+// ─── Tab switching ───
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+    // Refresh tab content
+    const tabId = tab.dataset.tab;
+    if (tabId === 'tabDashboard') loadAnalytics();
+    if (tabId === 'tabAccounts') loadAccounts();
+    if (tabId === 'tabCampaigns') loadCampaigns();
+    if (tabId === 'tabSchedule') loadSchedules();
+    if (tabId === 'tabContacts') loadContacts();
+    if (tabId === 'tabLog') loadLog();
+  });
+});
+
+// ─── Utilities ───
+async function api(url, opts = {}) {
+  const res = await fetch(url, {
+    headers: { 'Content-Type': 'application/json', ...opts.headers },
+    ...opts
+  });
+  if (opts.raw) return res;
+  return res.json();
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function escapeHtml(text) {
+  const d = document.createElement('div');
+  d.textContent = text;
+  return d.innerHTML;
+}
+
+// ─── Status ───
+async function refreshStatus() {
+  const data = await api('/api/status');
+  const dot = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
+
+  if (data.running) {
+    dot.className = 'dot dot-yellow';
+    text.textContent = '🟡 Работает: ' + (data.progress || '...');
+  } else {
+    dot.className = 'dot dot-green';
+    text.textContent = '🟢 Ожидание';
+  }
+  if (data.campaign_id) {
+    document.getElementById('statusCampaign').textContent = `Кампания #${data.campaign_id}`;
+  }
+
+  document.getElementById('btnStart').disabled = data.running;
+  document.getElementById('btnStop').disabled = !data.running;
+
+  if (data.stats) {
+    const s = data.stats;
+    document.getElementById('statTotal').textContent = s.total ?? '—';
+    document.getElementById('statDm').textContent = s.dm_sent ?? '—';
+    document.getElementById('statAdded').textContent = s.added ?? '—';
+    document.getElementById('statClicked').textContent = s.clicked ?? '—';
+    document.getElementById('statErrors').textContent = `ошибок: ${s.errors ?? 0}`;
+    document.getElementById('statTodayDm').textContent = `сегодня: ${s.today_dm ?? 0}`;
+    document.getElementById('statTodayAdd').textContent = `сегодня: ${s.today_add ?? 0}`;
+    document.getElementById('statChats').textContent = s.chats ?? '—';
+    document.getElementById('statAccounts').textContent = s.healthy_accounts ?? '—';
+    document.getElementById('statCampaignCount').textContent = (data.campaigns || []).length;
+
+    // Dashboard summary
+    document.getElementById('dashTotal').textContent = s.total;
+    document.getElementById('dashDm').textContent = s.dm_sent;
+    document.getElementById('dashAdded').textContent = s.added;
+    document.getElementById('dashClicked').textContent = s.clicked;
+    document.getElementById('dashHealthy').textContent = s.healthy_accounts;
+    document.getElementById('dashErrors').textContent = s.errors;
+  }
+}
+
+// ─── Analytics chart ───
+async function loadAnalytics() {
+  const data = await api('/api/analytics');
+  const chart = document.getElementById('analyticsChart');
+
+  if (!data.timeline || data.timeline.length === 0) {
+    chart.innerHTML = '<div class="empty-state">Нет данных за 7 дней. Запустите кампанию, чтобы увидеть статистику.</div>';
+    return;
+  }
+
+  const maxVal = Math.max(...data.timeline.map(d => Math.max(d.dm || 0, d.add || 0)), 1);
+  let html = '<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:end">';
+  data.timeline.forEach(d => {
+    const dmH = ((d.dm || 0) / maxVal) * 60;
+    const addH = ((d.add || 0) / maxVal) * 60;
+    const label = d.date.slice(5);
+    html += `<div style="text-align:center">
+      <div style="display:flex;gap:2px;height:70px;align-items:end;justify-content:center">
+        <div style="width:16px;background:#3b82f6;border-radius:3px 3px 0 0;height:${Math.max(dmH,1)}px" title="DM: ${d.dm||0}"></div>
+        <div style="width:16px;background:#22c55e;border-radius:3px 3px 0 0;height:${Math.max(addH,1)}px" title="Add: ${d.add||0}"></div>
+      </div>
+      <div style="font-size:0.6rem;color:#64748b">${label}</div>
+      <div style="font-size:0.6rem;color:#94a3b8">DM ${d.dm||0}</div>
+    </div>`;
+  });
+  html += '</div>';
+  html += '<div style="display:flex;gap:16px;margin-top:10px;font-size:0.72rem;color:#94a3b8">';
+  html += '<span><span style="display:inline-block;width:10px;height:10px;background:#3b82f6;border-radius:2px;margin-right:4px"></span> DM</span>';
+  html += '<span><span style="display:inline-block;width:10px;height:10px;background:#22c55e;border-radius:2px;margin-right:4px"></span> Add</span>';
+  html += '</div>';
+  chart.innerHTML = html;
+
+  // Campaigns
+  const campHtml = (data.campaigns || []).map(c => {
+    return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1e293b">
+      <span style="font-weight:500">${escapeHtml(c.name || c.city)}</span>
+      <span class="tag tag-info">${escapeHtml(c.city)}</span>
+      <span class="tag ${c.is_active ? 'tag-ok' : 'tag-fail'}">${c.is_active ? 'активна' : 'неактивна'}</span>
+      <span style="font-size:0.72rem;color:#64748b;margin-left:auto">создана: ${c.created_at ? c.created_at.slice(0,10) : '—'}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('dashCampaigns').innerHTML = campHtml || '<div class="empty-state">Нет кампаний. Создайте в разделе "Кампании".</div>';
+}
+
+// ─── Accounts ───
+async function loadAccounts() {
+  const data = await api('/api/config');
+  const list = document.getElementById('accountsList');
+  const accs = data.accounts || [];
+
+  if (accs.length === 0) {
+    list.innerHTML = '<div class="empty-state">Нет аккаунтов. Добавьте первый аккаунт.</div>';
+    return;
+  }
+
+  list.innerHTML = accs.map(a => {
+    const wl = a.warmup_level != null ? a.warmup_level : 4;
+    const wlLabels = ['🔰 0','🌱 1','📈 2','⚡ 3','🚀 4'];
+    const wlLabel = wlLabels[wl] || '🚀 4';
+    const status = a.status === 'active'
+      ? '<span class="tag tag-ok">✅ active</span>'
+      : '<span class="tag tag-fail">❌ banned</span>';
+    return `<div class="acc-card">
+      <div>
+        <div class="acc-phone">${escapeHtml(a.phone)}</div>
+        <div class="acc-status">${status} <span class="acc-level">${wlLabel}</span> ${a.real_name ? escapeHtml(a.real_name) : ''}</div>
+      </div>
+      <div class="acc-stats">
+        DM: ${a.total_dm || 0} | Add: ${a.total_added || 0}
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="testAccount('${escapeHtml(a.phone)}')">🔍</button>
+      <button class="btn btn-danger btn-sm" onclick="removeAccount('${escapeHtml(a.phone)}')">✕</button>
+    </div>`;
+  }).join('');
+}
+
+async function addAccount() {
+  const phone = document.getElementById('m_phone').value.trim();
+  const api_id = document.getElementById('m_api_id').value.trim();
+  const api_hash = document.getElementById('m_api_hash').value.trim();
+
+  if (!phone || !api_id || !api_hash) { alert('Заполните все поля'); return; }
+
+  const btn = document.querySelector('#modalAccount .btn-primary');
+  btn.disabled = true; btn.textContent = '⏳...';
+
+  await api('/api/config', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'add_account', phone, api_id, api_hash })
+  });
+
+  closeModal('modalAccount');
+  loadAccounts();
+  btn.disabled = false; btn.textContent = '➕ Добавить';
+  document.getElementById('m_phone').value = '';
+  document.getElementById('m_api_id').value = '';
+  document.getElementById('m_api_hash').value = '';
+}
+
+async function removeAccount(phone) {
+  if (!confirm(`Удалить аккаунт ${phone}?`)) return;
+  await api('/api/config', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'remove_account', phone })
+  });
+  loadAccounts();
+}
+
+async function testAccount(phone) {
+  const btn = event.target;
+  btn.disabled = true; btn.textContent = '⏳';
+  const data = await api(`/api/accounts/${encodeURIComponent(phone)}/test`, { method: 'POST' });
+  if (data.ok) {
+    alert(`✅ Аккаунт работает\nИмя: ${data.name}\nUsername: @${data.username}\nТелефон: ${data.phone}`);
+  } else {
+    alert(`❌ Ошибка: ${data.error}`);
+  }
+  btn.disabled = false; btn.textContent = '🔍';
+}
+
+function showAddAccount() {
+  document.getElementById('modalAccount').classList.add('open');
+}
+
+// ─── Campaigns ───
+async function loadCampaigns() {
+  const data = await api('/api/status');
+  const camps = data.campaigns || [];
+  const list = document.getElementById('campaignsList');
+
+  if (camps.length === 0) {
+    list.innerHTML = '<div class="empty-state">Нет кампаний. Создайте первую.</div>';
+    return;
+  }
+
+  // Group by city
+  const byCity = {};
+  camps.forEach(c => {
+    const city = c.city || 'global';
+    if (!byCity[city]) byCity[city] = [];
+    byCity[city].push(c);
+  });
+
+  list.innerHTML = Object.entries(byCity).map(([city, camps]) => {
+    return `<div style="margin-bottom:12px">
+      <div style="font-weight:600;font-size:0.85rem;color:#f59e0b;margin-bottom:6px">🏙️ ${escapeHtml(city)}</div>
+      ${camps.map(c => {
+        const src = c.source_chats ? JSON.parse(c.source_chats.replace(/'/g,'"')).length : 0;
+        const tgt = c.target_chats ? JSON.parse(c.target_chats.replace(/'/g,'"')).length : 0;
+        const dmPreview = c.dm_message ? c.dm_message.slice(0, 100) : '—';
+        return `<div style="background:#0a0f1e;border-radius:8px;padding:10px 14px;margin-bottom:6px">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <strong>${escapeHtml(c.name || c.city)}</strong>
+            <span class="tag ${c.is_active ? 'tag-ok' : 'tag-fail'}">${c.is_active ? 'активна' : 'неактивна'}</span>
+            <span style="font-size:0.72rem;color:#64748b">📡 ${src} доноров | 🎯 ${tgt} целей</span>
+            <span style="margin-left:auto;display:flex;gap:4px">
+              <button class="btn btn-sm btn-primary" onclick="runCampaign(${c.id})">🚀 Запустить</button>
+              <button class="btn btn-sm btn-danger" onclick="deleteCampaign(${c.id})">✕</button>
+            </span>
+          </div>
+          <div style="font-size:0.72rem;color:#94a3b8;margin-top:4px">💬 ${escapeHtml(dmPreview)}${dmPreview.length >= 100 ? '...' : ''}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }).join('');
+}
+
+function showAddCampaign() {
+  document.getElementById('modalCampaign').classList.add('open');
+  document.getElementById('mcPreview').textContent = document.getElementById('mc_dm').value;
+}
+
+// Live preview of DM in campaign modal
+document.addEventListener('input', function(e) {
+  if (e.target.id === 'mc_dm') {
+    document.getElementById('mcPreview').textContent = e.target.value;
+  }
+});
+
+async function addCampaign() {
+  const data = {
+    action: 'save_campaign',
+    city: document.getElementById('mc_city').value.trim(),
+    name: document.getElementById('mc_name').value.trim(),
+    source_chats: document.getElementById('mc_source').value,
+    target_chats: document.getElementById('mc_target').value,
+    dm_message: document.getElementById('mc_dm').value,
+    invite_link: document.getElementById('mc_invite').value,
+    is_active: true,
+  };
+  if (!data.city) { alert('Укажите город'); return; }
+
+  const btn = document.querySelector('#modalCampaign .btn-primary');
+  btn.disabled = true; btn.textContent = '⏳...';
+
+  await api('/api/config', { method: 'POST', body: JSON.stringify(data) });
+
+  closeModal('modalCampaign');
+  loadCampaigns();
+  btn.disabled = false; btn.textContent = '💾 Создать кампанию';
+}
+
+async function deleteCampaign(id) {
+  if (!confirm('Удалить кампанию?')) return;
+  await api('/api/config', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'delete_campaign', campaign_id: id })
+  });
+  loadCampaigns();
+}
+
+async function runCampaign(id) {
+  await api('/api/start', { method: 'POST', body: JSON.stringify({ campaign_id: id }) });
+  setTimeout(refreshStatus, 1000);
+}
+
+// ─── Schedule ───
+async function loadSchedules() {
+  const data = await api('/api/schedule');
+  const list = document.getElementById('schedulesList');
+  const scheds = data.schedules || [];
+
+  if (scheds.length === 0) {
+    list.innerHTML = '<div class="empty-state">Нет расписаний. Добавьте время запуска для кампаний.</div>';
+    return;
+  }
+
+  list.innerHTML = scheds.map(s => {
+    const days = (s.days || '').split(',').map(d => {
+      const names = {mon:'Пн',tue:'Вт',wed:'Ср',thu:'Чт',fri:'Пт',sat:'Сб',sun:'Вс'};
+      return names[d] || d;
+    }).join(' ');
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#0a0f1e;border-radius:8px;margin-bottom:6px">
+      <span style="font-weight:600;font-size:1.1rem">${String(s.hour||0).padStart(2,'0')}:${String(s.minute||0).padStart(2,'0')}</span>
+      <span class="tag tag-info">${escapeHtml(s.city || '')}</span>
+      <span style="font-size:0.78rem">${escapeHtml(s.campaign_name || '')}</span>
+      <span style="font-size:0.68rem;color:#64748b">${days}</span>
+      <span class="tag ${s.is_active ? 'tag-ok' : 'tag-fail'}" style="margin-left:auto">${s.is_active ? 'вкл' : 'выкл'}</span>
+      <button class="btn btn-sm btn-outline" onclick="toggleSchedule(${s.id})">${s.is_active ? '⏸' : '▶️'}</button>
+      <button class="btn btn-sm btn-danger" onclick="deleteSchedule(${s.id})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function showAddSchedule() {
+  // Populate campaigns dropdown
+  api('/api/status').then(data => {
+    const camps = data.campaigns || [];
+    const sel = document.getElementById('ms_campaign');
+    sel.innerHTML = camps.map(c =>
+      `<option value="${c.id}">${escapeHtml(c.name || c.city)}</option>`
+    ).join('');
+    document.getElementById('modalSchedule').classList.add('open');
+  });
+}
+
+async function addSchedule() {
+  const days = [...document.querySelectorAll('#modalSchedule input[type="checkbox"]:checked')]
+    .map(cb => cb.value);
+  if (days.length === 0) { alert('Выберите хотя бы один день'); return; }
+
+  const data = {
+    action: 'add',
+    campaign_id: parseInt(document.getElementById('ms_campaign').value),
+    hour: parseInt(document.getElementById('ms_hour').value),
+    minute: parseInt(document.getElementById('ms_minute').value),
+    days
+  };
+
+  await api('/api/schedule', { method: 'POST', body: JSON.stringify(data) });
+  closeModal('modalSchedule');
+  loadSchedules();
+}
+
+async function toggleSchedule(id) {
+  await api('/api/schedule', {
+    method: 'POST', body: JSON.stringify({ action: 'toggle', id })
+  });
+  loadSchedules();
+}
+
+async function deleteSchedule(id) {
+  await api('/api/schedule', {
+    method: 'POST', body: JSON.stringify({ action: 'delete', id })
+  });
+  loadSchedules();
+}
+
+// ─── Contacts ───
+async function loadContacts() {
+  const city = document.getElementById('filterCity').value.trim();
+  const url = city ? `/api/contacts?limit=100&city=${encodeURIComponent(city)}` : '/api/contacts?limit=100';
+  const data = await api(url);
+  const tbody = document.getElementById('contactsBody');
+
+  if (!data.contacts || data.contacts.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:#64748b;padding:20px">Нет контактов</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = data.contacts.map(c => {
+    const dmTag = c.dm_sent ? '<span class="tag tag-ok">✅ DM</span>' : '<span class="tag tag-warn">⏳ нет</span>';
+    const addTag = c.added_chat_id ? '<span class="tag tag-add">➕ да</span>' : '<span class="tag" style="background:#1e293b;color:#94a3b8">нет</span>';
+    const clickTag = c.clicked_bot ? '<span class="tag tag-bot">✅ да</span>' : '—';
+    const errTag = c.error ? `<span class="tag tag-fail" title="${escapeHtml(c.error)}">❌</span>` : '—';
+    const at = c.dm_at ? new Date(c.dm_at).toLocaleString() : '—';
+    return `<tr>
+      <td>${c.user_id}</td>
+      <td>${escapeHtml(c.first_name || '—')}</td>
+      <td>${c.username ? '@'+escapeHtml(c.username) : '—'}</td>
+      <td title="${escapeHtml(c.source_chat || '')}">${escapeHtml((c.source_chat || '—').slice(0,25))}</td>
+      <td>${dmTag}</td>
+      <td>${addTag}</td>
+      <td>${clickTag}</td>
+      <td>${errTag}</td>
+      <td style="font-size:0.68rem;color:#64748b">${at}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── Log ───
+async function loadLog() {
+  const res = await fetch('/api/log');
+  const text = await res.text();
+  document.getElementById('logBox').textContent = text || '(лог пуст)';
+}
+
+// ─── Limits ───
+async function saveLimits() {
+  const data = {
+    action: 'update_limits',
+    delay_dm: parseInt(document.getElementById('cfg_dm_delay').value) || 10,
+    delay_add: parseInt(document.getElementById('cfg_add_delay').value) || 15,
+    cooldown: parseInt(document.getElementById('cfg_cooldown').value) || 60,
+  };
+  await api('/api/config', { method: 'POST', body: JSON.stringify(data) });
+  const btn = document.querySelector('#tabAccounts .btn-primary');
+  btn.textContent = '✅ Сохранено';
+  setTimeout(() => { btn.textContent = '💾 Сохранить лимиты'; }, 2000);
+}
+
+// ─── Parser control ───
+async function startParser() {
+  const btn = document.getElementById('btnStart');
+  btn.textContent = '⏳ Запуск...';
+  btn.disabled = true;
+  const res = await api('/api/start', { method: 'POST' });
+  if (res.error) alert(res.error);
+  setTimeout(refreshStatus, 1000);
+}
+
+async function stopParser() {
+  await api('/api/stop', { method: 'POST' });
+  refreshStatus();
+}
+
+// ─── Auto-refresh ───
+function refreshAll() {
+  refreshStatus();
+  loadAnalytics();
+  loadAccounts();
+  loadCampaigns();
+  loadSchedules();
+  loadContacts();
+  loadLog();
+}
+
+setInterval(refreshStatus, 3000);
+setInterval(loadLog, 5000);
+
+// Initial load
+refreshStatus();
+loadAnalytics();
+loadAccounts();
+loadCampaigns();
+loadContacts();
+loadLog();
+</script>
+</body>
+</html>

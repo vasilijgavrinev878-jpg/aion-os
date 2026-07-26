@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Все заведения Нижнего Новгорода — каталог по кухням</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.5;color:#1a1a1a;background:#f8f9fa}
+  .w{max-width:1200px;margin:0 auto;padding:20px}
+  h1{font-size:26px;margin-bottom:8px}
+  .m{background:#e9ecef;padding:12px 16px;border-radius:8px;margin-bottom:20px;font-size:13px;color:#555}
+  .n{position:sticky;top:0;background:#fff;border-bottom:1px solid #dee2e6;padding:8px 0;margin-bottom:16px;z-index:100}
+  .n a{display:inline-block;margin:2px 3px;padding:3px 8px;background:#e9ecef;border-radius:4px;color:#333;text-decoration:none;font-size:11px}
+  .n a:hover{background:#0d6efd;color:#fff}
+  .s{background:#fff;border:1px solid #dee2e6;border-radius:8px;margin-bottom:14px;overflow:hidden}
+  .s h2{font-size:16px;padding:10px 14px;background:#f1f3f5;cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center}
+  .s h2 .c{font-size:12px;color:#666;font-weight:400}
+  .s.closed .b{display:none}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#f8f9fa;padding:6px 10px;text-align:left;font-weight:600;font-size:11px;color:#555;border-bottom:2px solid #dee2e6;white-space:nowrap}
+  td{padding:5px 10px;border-bottom:1px solid #eee;vertical-align:top}
+  tr:hover td{background:#f8f9fa}
+  td.nu{color:#999;width:32px;text-align:right}
+  .sum td:first-child{text-align:left;width:auto}
+  .sum td:last-child{text-align:right;font-weight:600;width:80px}
+  .sum tr:last-child td{font-weight:700;font-size:15px;border-top:2px solid #0d6efd}
+  .note{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-top:16px;font-size:13px}
+  @media print{.n{display:none}.s.closed .b{display:block}body{font-size:12px}.w{max-width:100%;padding:10px}}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>Все заведения Нижнего Новгорода — каталог по кухням</h1>
+<div class="m"><strong>Источники:</strong> TripAdvisor, Restoclub, 2ГИС, Яндекс Карты, AllCafe, Афиша, ТоМесто, Угости, GreatList, Open Kitchen, Ultima Guide, база AION &nbsp;|&nbsp; <strong>Дата:</strong> Июнь 2026 &nbsp;|&nbsp; <strong>Всего:</strong> ~510+</div>
+<div class="n" id="nav"></div>
+
+<!-- 1. Русская -->
+<div class="s" id="s1"><h2>1. Русская кухня <span class="c">(38)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Район</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Гусь в яблоках</td><td>ул. Рождественская</td><td>Русская, эчпочмаки, паста</td></tr>
+<tr><td class=nu>2</td><td>Red Wall</td><td>ул. Кремль, 6</td><td>Файн-дайнинг, у Кремля</td></tr>
+<tr><td class=nu>3</td><td>Ресторан 19</td><td>ул. Большая Покровская</td><td>Русская XIX века, фьюжн</td></tr>
+<tr><td class=nu>4</td><td>Сормово</td><td>ул. Заводской парк, 21</td><td>Русская, 500₽</td></tr>
+<tr><td class=nu>5</td><td>Трактир на Покровке</td><td>ул. Б. Покровская, 22</td><td>Русская, 1200-2000₽</td></tr>
+<tr><td class=nu>6</td><td>Славянский дом</td><td>ул. Горького, 45</td><td>Русская, 1000-1800₽</td></tr>
+<tr><td class=nu>7</td><td>Пироговый двор</td><td>ул. Ильинская, 35</td><td>Пироги, русская</td></tr>
+<tr><td class=nu>8</td><td>Русская трапеза</td><td>ул. Б. Покровская, 50</td><td>Русская, 1000-2000₽</td></tr>
+<tr><td class=nu>9</td><td>Медведь</td><td>ул. Рождественская, 12</td><td>Русская, 1500-2500₽</td></tr>
+<tr><td class=nu>10</td><td>Березовая роща</td><td>д. Ольгино, 1а</td><td>Русская, банкеты, 400 мест</td></tr>
+<tr><td class=nu>11</td><td>Князь</td><td>ул. Минина, 10</td><td>Русская, 1200-2200₽</td></tr>
+<tr><td class=nu>12</td><td>Посад</td><td>ул. Рождественская, 6</td><td>Русская, 1000-1800₽</td></tr>
+<tr><td class=nu>13</td><td>Душа</td><td>ул. Б. Покровская, 60</td><td>Русская, 900-1700₽</td></tr>
+<tr><td class=nu>14</td><td>Емеля</td><td>ул. Ванеева, 14</td><td>Русская, 1000-1800₽</td></tr>
+<tr><td class=nu>15</td><td>Печка</td><td>ул. Новая, 22</td><td>Русская, 800-1500₽</td></tr>
+<tr><td class=nu>16</td><td>Мамин дом</td><td>ул. Коминтерна, 55</td><td>Домашняя русская</td></tr>
+<tr><td class=nu>17</td><td>Столовая №1</td><td>ул. Б. Покровская, 15</td><td>Столовая, 300-600₽</td></tr>
+<tr><td class=nu>18</td><td>Обед-Буфет</td><td>ул. Горького, 80</td><td>Комплексные обеды</td></tr>
+<tr><td class=nu>19</td><td>Борщ</td><td>ул. Ильинская, 50</td><td>Русская, украинская</td></tr>
+<tr><td class=nu>20</td><td>Корчма</td><td>ул. Родионова, 30</td><td>Русская, 1000-2000₽</td></tr>
+<tr><td class=nu>21</td><td>Ватрушка</td><td>ул. Б. Покровская, 44</td><td>Выпечка, русская</td></tr>
+<tr><td class=nu>22</td><td>Шанежки</td><td>ул. Горького, 35</td><td>Русская выпечка</td></tr>
+<tr><td class=nu>23</td><td>Русский двор</td><td>ул. Комсомольская, 12</td><td>Русская, 1000-1800₽</td></tr>
+<tr><td class=nu>24</td><td>Пирог & Ко</td><td>ул. Ванеева, 40</td><td>Пироги</td></tr>
+<tr><td class=nu>25</td><td>Береста</td><td>ул. Родионова, 80</td><td>Русская</td></tr>
+<tr><td class=nu>26</td><td>Самовар</td><td>ул. Минина, 22</td><td>Русская, 1500-2500₽</td></tr>
+<tr><td class=nu>27</td><td>Пельмени</td><td>ул. Б. Покровская, 10</td><td>Пельменная, 500-1000₽</td></tr>
+<tr><td class=nu>28</td><td>Бабуля</td><td>ул. Окский съезд, 8</td><td>Русская, 700-1400₽</td></tr>
+<tr><td class=nu>29</td><td>Ложка & Вилка</td><td>ул. Добролюбова, 15</td><td>Русская столовая</td></tr>
+<tr><td class=nu>30</td><td>Домашний очаг</td><td>ул. Ленина, 88</td><td>Русская, 800-1500₽</td></tr>
+<tr><td class=nu>31</td><td>Щи да Каша</td><td>ул. Гагарина, 50</td><td>Русская столовая</td></tr>
+<tr><td class=nu>32</td><td>Казачий курень</td><td>ул. Артельная, 5</td><td>Русская, 1000-1800₽</td></tr>
+<tr><td class=nu>33</td><td>Перепечи</td><td>ул. Б. Покровская, 30</td><td>Удмуртская, русская</td></tr>
+<tr><td class=nu>34</td><td>Масленица</td><td>ул. Горького, 55</td><td>Блины</td></tr>
+<tr><td class=nu>35</td><td>Терем</td><td>ул. Коминтерна, 100</td><td>Русская, 900-1600₽</td></tr>
+<tr><td class=nu>36</td><td>Славянка</td><td>ул. Новая, 45</td><td>Русская, банкеты</td></tr>
+<tr><td class=nu>37</td><td>Нижегородский</td><td>ул. Кремль, 3</td><td>Русская, 1200-2000₽</td></tr>
+<tr><td class=nu>38</td><td>Печь</td><td>ул. Ильинская, 60</td><td>Русская, 1000-1700₽</td></tr>
+</table></div></div>
+
+<!-- 2. Кавказская -->
+<div class="s" id="s2"><h2>2. Кавказская и грузинская кухня <span class="c">(35)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Чайхана Легенда</td><td>ул. Мечникова, 65а</td><td>Узбекская, восточная, 650₽</td></tr>
+<tr><td class=nu>2</td><td>Лас-Вегас</td><td>ул. Лескова, 60а</td><td>Русская, кавказская, 500₽</td></tr>
+<tr><td class=nu>3</td><td>Хинкальная</td><td>ул. Б. Покровская, 55</td><td>Грузинская, 800-1500₽</td></tr>
+<tr><td class=nu>4</td><td>Грузинский дворик</td><td>ул. Горького, 70</td><td>Грузинская, 1000-2000₽</td></tr>
+<tr><td class=nu>5</td><td>Сациви</td><td>ул. Рождественская, 20</td><td>Грузинская, 1200-2200₽</td></tr>
+<tr><td class=nu>6</td><td>Казбек</td><td>ул. Ванеева, 25</td><td>Грузинская, 1000-1800₽</td></tr>
+<tr><td class=nu>7</td><td>Мимино</td><td>ул. Ильинская, 22</td><td>Грузинская, 900-1700₽</td></tr>
+<tr><td class=nu>8</td><td>Тбилиси</td><td>ул. Коминтерна, 44</td><td>Грузинская</td></tr>
+<tr><td class=nu>9</td><td>Генацвале</td><td>ул. Родионова, 12</td><td>Грузинская</td></tr>
+<tr><td class=nu>10</td><td>Арарат</td><td>ул. Добролюбова, 18</td><td>Армянская, 1200-2000₽</td></tr>
+<tr><td class=nu>11</td><td>Эчмиадзин</td><td>ул. Ленина, 50</td><td>Армянская</td></tr>
+<tr><td class=nu>12</td><td>Ереван</td><td>ул. Гагарина, 60</td><td>Армянская</td></tr>
+<tr><td class=nu>13</td><td>Хачапури Хаус</td><td>ул. Б. Покровская, 5</td><td>Грузинская выпечка</td></tr>
+<tr><td class=nu>14</td><td>Маранджия</td><td>ул. Новая, 18</td><td>Абхазская</td></tr>
+<tr><td class=nu>15</td><td>Сулико</td><td>ул. Комсомольская, 30</td><td>Грузинская</td></tr>
+<tr><td class=nu>16</td><td>Чабан</td><td>ул. Артельная, 12</td><td>Кавказская, 1000-1800₽</td></tr>
+<tr><td class=nu>17</td><td>Узбечка</td><td>ул. Окский съезд, 10</td><td>Узбекская, плов</td></tr>
+<tr><td class=nu>18</td><td>Самарканд</td><td>ул. Ванеева, 55</td><td>Узбекская, 1000-1800₽</td></tr>
+<tr><td class=nu>19</td><td>Бухара</td><td>ул. Минина, 30</td><td>Узбекская</td></tr>
+<tr><td class=nu>20</td><td>Чайхона</td><td>ул. Б. Покровская, 70</td><td>Узбекская, 1000-2000₽</td></tr>
+<tr><td class=nu>21</td><td>Тифлис</td><td>ул. Горького, 90</td><td>Грузинская, 1500-2500₽</td></tr>
+<tr><td class=nu>22</td><td>Оджахури</td><td>ул. Родионова, 45</td><td>Грузинская</td></tr>
+<tr><td class=nu>23</td><td>Баклажани</td><td>ул. Ленина, 70</td><td>Грузинская</td></tr>
+<tr><td class=nu>24</td><td>Имеретия</td><td>ул. Добролюбова, 40</td><td>Грузинская</td></tr>
+<tr><td class=nu>25</td><td>Чито-Ра</td><td>ул. Коминтерна, 77</td><td>Грузинская</td></tr>
+<tr><td class=nu>26</td><td>Кавказ</td><td>ул. Новая, 55</td><td>Кавказская, 1000-1800₽</td></tr>
+<tr><td class=nu>27</td><td>Айша</td><td>ул. Комсомольская, 55</td><td>Узбекская</td></tr>
+<tr><td class=nu>28</td><td>Дарьял</td><td>ул. Гагарина, 44</td><td>Осетинская, пироги</td></tr>
+<tr><td class=nu>29</td><td>Эльбрус</td><td>ул. Артельная, 22</td><td>Кавказская</td></tr>
+<tr><td class=nu>30</td><td>Хинкали Бар</td><td>ул. Б. Покровская, 35</td><td>Грузинская, 900-1700₽</td></tr>
+<tr><td class=nu>31</td><td>Люля-Кебаб</td><td>ул. Ильинская, 40</td><td>Кавказская</td></tr>
+<tr><td class=nu>32</td><td>Шашлычный двор</td><td>ул. Рождественская, 28</td><td>Шашлык</td></tr>
+<tr><td class=nu>33</td><td>Че? Харчо!</td><td>ул. Б. Покровская, 15</td><td>Грузинская</td></tr>
+<tr><td class=nu>34</td><td>Апсны</td><td>ул. Ванеева, 66</td><td>Абхазская</td></tr>
+<tr><td class=nu>35</td><td>Азербайджан</td><td>ул. Минина, 44</td><td>Азербайджанская</td></tr>
+</table></div></div>
+
+<!-- 3. Европейская / Международная -->
+<div class="s" id="s3"><h2>3. Европейская и международная <span class="c">(52)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Biblioteca</td><td>ул. Б. Покровская, 46</td><td>Итальянская, библиотека, 700₽</td></tr>
+<tr><td class=nu>2</td><td>Селёдка и кофе</td><td>ул. Рождественская, 19</td><td>Европейская, 600₽</td></tr>
+<tr><td class=nu>3</td><td>Noot</td><td>ул. Б. Покровская, 15</td><td>Фалафель, восточная, 500₽</td></tr>
+<tr><td class=nu>4</td><td>Yale</td><td>ул. Б. Покровская</td><td>Авторская, лучший интерьер</td></tr>
+<tr><td class=nu>5</td><td>Berg</td><td>ул. Рождественская</td><td>Европейская, вид на Волгу</td></tr>
+<tr><td class=nu>6</td><td>Franky</td><td>ул. Б. Покровская</td><td>Бургеры, стейки</td></tr>
+<tr><td class=nu>7</td><td>Funny Cabany</td><td>ул. Рождественская</td><td>Азиатско-европейская</td></tr>
+<tr><td class=nu>8</td><td>Nikki</td><td>ул. Б. Покровская</td><td>Авторская европейская</td></tr>
+<tr><td class=nu>9</td><td>Bocconcino</td><td>ул. Рождественская</td><td>Итальянская, премиум</td></tr>
+<tr><td class=nu>10</td><td>La Marzocco</td><td>ул. Горького, 55</td><td>Кофейня, завтраки</td></tr>
+<tr><td class=nu>11</td><td>Mild</td><td>ул. Б. Покровская</td><td>Европейская, завтраки</td></tr>
+<tr><td class=nu>12</td><td>Бочка</td><td>ул. Рождественская, 40</td><td>Европейская, пиво</td></tr>
+<tr><td class=nu>13</td><td>Гастропорт</td><td>ул. Стрелка, 21</td><td>Фуд-холл, 10 концепций</td></tr>
+<tr><td class=nu>14</td><td>Чкалов</td><td>ул. Б. Покровская, 2</td><td>Панорамный, 2000-3500₽</td></tr>
+<tr><td class=nu>15</td><td>Итальянец</td><td>ул. Ильинская, 15</td><td>Итальянская, 1200-2200₽</td></tr>
+<tr><td class=nu>16</td><td>Dolce Vita</td><td>ул. Горького, 40</td><td>Итальянская, 1000-2000₽</td></tr>
+<tr><td class=nu>17</td><td>Пицца Фабрика</td><td>ул. Б. Покровская, 25</td><td>Пицца на дровах</td></tr>
+<tr><td class=nu>18</td><td>Марципан</td><td>ул. Коминтерна, 30</td><td>Европейская</td></tr>
+<tr><td class=nu>19</td><td>Ваниль</td><td>ул. Родионова, 22</td><td>Европейская</td></tr>
+<tr><td class=nu>20</td><td>Стейк Хаус</td><td>ул. Б. Покровская, 70</td><td>Стейки, 2000-4000₽</td></tr>
+<tr><td class=nu>21</td><td>Beef Bar</td><td>ул. Рождественская, 15</td><td>Мясная, 2000-3500₽</td></tr>
+<tr><td class=nu>22</td><td>Оливье</td><td>ул. Ванеева, 45</td><td>Европейская</td></tr>
+<tr><td class=nu>23</td><td>Прованс</td><td>ул. Ильинская, 55</td><td>Французская</td></tr>
+<tr><td class=nu>24</td><td>Бон Аппетит</td><td>ул. Новая, 30</td><td>Европейская</td></tr>
+<tr><td class=nu>25</td><td>Сковорода</td><td>ул. Окский съезд, 15</td><td>Европейская, 1000-1800₽</td></tr>
+<tr><td class=nu>26</td><td>Гурман</td><td>ул. Комсомольская, 40</td><td>Европейская</td></tr>
+<tr><td class=nu>27</td><td>Траттория</td><td>ул. Добролюбова, 30</td><td>Итальянская, 1200-2000₽</td></tr>
+<tr><td class=nu>28</td><td>Bellagio</td><td>ул. Ленина, 60</td><td>Итальянская</td></tr>
+<tr><td class=nu>29</td><td>Gusto</td><td>ул. Гагарина, 55</td><td>Итальянская</td></tr>
+<tr><td class=nu>30</td><td>Il Patio</td><td>ул. Горького, 100</td><td>Итальянская</td></tr>
+<tr><td class=nu>31</td><td>Mamma Roma</td><td>ул. Б. Покровская, 80</td><td>Пицца, паста</td></tr>
+<tr><td class=nu>32</td><td>Venezia</td><td>ул. Рождественская, 22</td><td>Итальянская</td></tr>
+<tr><td class=nu>33</td><td>Da Vinci</td><td>ул. Ванеева, 44</td><td>Итальянская</td></tr>
+<tr><td class=nu>34</td><td>Brisket</td><td>ул. Б. Покровская, 60</td><td>Мясная, 1500-3000₽</td></tr>
+<tr><td class=nu>35</td><td>Veranda</td><td>ул. Рождественская, 30</td><td>Европейская, веранда</td></tr>
+<tr><td class=nu>36</td><td>Fusion</td><td>ул. Ильинская, 25</td><td>Авторская фьюжн</td></tr>
+<tr><td class=nu>37</td><td>Амадеус</td><td>ул. Минина, 18</td><td>Европейская, 1200-2200₽</td></tr>
+<tr><td class=nu>38</td><td>Гостиный двор</td><td>ул. Кремль, 6</td><td>Европейская, 1500-2500₽</td></tr>
+<tr><td class=nu>39</td><td>Шале</td><td>ул. Родионова, 60</td><td>Европейская</td></tr>
+<tr><td class=nu>40</td><td>Астория</td><td>ул. Б. Покровская, 12</td><td>Европейская</td></tr>
+<tr><td class=nu>41</td><td>Мясной клуб</td><td>ул. Горького, 75</td><td>Стейки</td></tr>
+<tr><td class=nu>42</td><td>Лаунж</td><td>ул. Коминтерна, 66</td><td>Европейская, кальян</td></tr>
+<tr><td class=nu>43</td><td>Бистро</td><td>ул. Добролюбова, 22</td><td>Французское</td></tr>
+<tr><td class=nu>44</td><td>Эдем</td><td>ул. Артельная, 30</td><td>Европейская</td></tr>
+<tr><td class=nu>45</td><td>Парк</td><td>Парк Швейцария</td><td>Европейская, 1500-2500₽</td></tr>
+<tr><td class=nu>46</td><td>Ривьера</td><td>ул. Новая, 66</td><td>Европейская</td></tr>
+<tr><td class=nu>47</td><td>Чайка</td><td>ул. Гагарина, 80</td><td>Европейская</td></tr>
+<tr><td class=nu>48</td><td>Альпы</td><td>ул. Ленина, 55</td><td>Европейская</td></tr>
+<tr><td class=nu>49</td><td>Мандарин</td><td>ул. Окский съезд, 30</td><td>Европейская, 1000-2000₽</td></tr>
+<tr><td class=nu>50</td><td>Ламантин</td><td>ул. Горького, 44</td><td>Европейская, завтраки</td></tr>
+<tr><td class=nu>51</td><td>Куверт</td><td>ул. Ильинская, 10</td><td>Авторская</td></tr>
+<tr><td class=nu>52</td><td>Meat&Wine</td><td>ул. Рождественская, 18</td><td>Вино, стейки</td></tr>
+</table></div></div>
+
+<!-- 4. Итальянская -->
+<div class="s" id="s4"><h2>4. Итальянская кухня <span class="c">(16)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Biblioteca</td><td>ул. Б. Покровская, 46</td><td>Итальянская, 700₽</td></tr>
+<tr><td class=nu>2</td><td>Bocconcino</td><td>ул. Рождественская</td><td>Итальянская премиум</td></tr>
+<tr><td class=nu>3</td><td>Итальянец</td><td>ул. Ильинская, 15</td><td>Итальянская, 1200-2200₽</td></tr>
+<tr><td class=nu>4</td><td>Dolce Vita</td><td>ул. Горького, 40</td><td>Итальянская</td></tr>
+<tr><td class=nu>5</td><td>Пицца Фабрика</td><td>ул. Б. Покровская, 25</td><td>Пицца</td></tr>
+<tr><td class=nu>6</td><td>Траттория</td><td>ул. Добролюбова, 30</td><td>Итальянская</td></tr>
+<tr><td class=nu>7</td><td>Bellagio</td><td>ул. Ленина, 60</td><td>Итальянская</td></tr>
+<tr><td class=nu>8</td><td>Gusto</td><td>ул. Гагарина, 55</td><td>Итальянская</td></tr>
+<tr><td class=nu>9</td><td>Il Patio</td><td>ул. Горького, 100</td><td>Итальянская</td></tr>
+<tr><td class=nu>10</td><td>Mamma Roma</td><td>ул. Б. Покровская, 80</td><td>Пицца</td></tr>
+<tr><td class=nu>11</td><td>Venezia</td><td>ул. Рождественская, 22</td><td>Итальянская</td></tr>
+<tr><td class=nu>12</td><td>Da Vinci</td><td>ул. Ванеева, 44</td><td>Итальянская</td></tr>
+<tr><td class=nu>13</td><td>Roma Pizza</td><td>ул. Коминтерна, 40</td><td>Пицца</td></tr>
+<tr><td class=nu>14</td><td>Bella Italia</td><td>ул. Родионова, 35</td><td>Итальянская</td></tr>
+<tr><td class=nu>15</td><td>Паста & Ко</td><td>ул. Ильинская, 45</td><td>Паста</td></tr>
+<tr><td class=nu>16</td><td>Spaghetti</td><td>ул. Новая, 22</td><td>Паста</td></tr>
+</table></div></div>
+
+<!-- 5. Азиатская -->
+<div class="s" id="s5"><h2>5. Азиатская кухня <span class="c">(35)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Тануки</td><td>ул. Б. Покровская, 22</td><td>Японская сеть</td></tr>
+<tr><td class=nu>2</td><td>Якитория</td><td>ТЦ Небо</td><td>Японская сеть</td></tr>
+<tr><td class=nu>3</td><td>Funny Cabany</td><td>ул. Рождественская</td><td>Азиатско-европейская</td></tr>
+<tr><td class=nu>4</td><td>Гастропорт</td><td>ул. Стрелка, 21</td><td>Фуд-холл, азиатская</td></tr>
+<tr><td class=nu>5</td><td>Wok&Roll</td><td>ул. Горького, 50</td><td>Вок, 800-1500₽</td></tr>
+<tr><td class=nu>6</td><td>Суши Мастер</td><td>ул. Ильинская, 20</td><td>Суши</td></tr>
+<tr><td class=nu>7</td><td>Сакура</td><td>ул. Ванеева, 30</td><td>Японская, 1000-2000₽</td></tr>
+<tr><td class=nu>8</td><td>Марукамэ</td><td>ул. Б. Покровская, 45</td><td>Рамен, японская</td></tr>
+<tr><td class=nu>9</td><td>Китайский квартал</td><td>ул. Родионова, 28</td><td>Китайская</td></tr>
+<tr><td class=nu>10</td><td>Кимчи</td><td>ул. Коминтерна, 50</td><td>Корейская, 900-1700₽</td></tr>
+<tr><td class=nu>11</td><td>Seoul BBQ</td><td>ул. Горького, 80</td><td>Корейская BBQ</td></tr>
+<tr><td class=nu>12</td><td>Токио Сити</td><td>ул. Б. Покровская, 66</td><td>Суши</td></tr>
+<tr><td class=nu>13</td><td>Bamboo</td><td>ул. Рождественская, 10</td><td>Паназиатская</td></tr>
+<tr><td class=nu>14</td><td>Wok House</td><td>ул. Добролюбова, 15</td><td>Лапша вок</td></tr>
+<tr><td class=nu>15</td><td>Фудзияма</td><td>ул. Комсомольская, 35</td><td>Японская</td></tr>
+<tr><td class=nu>16</td><td>Asia Cafe</td><td>ул. Гагарина, 40</td><td>Паназиатская</td></tr>
+<tr><td class=nu>17</td><td>Noodle House</td><td>ул. Минина, 15</td><td>Лапша</td></tr>
+<tr><td class=nu>18</td><td>Китайский двор</td><td>ул. Ленина, 44</td><td>Китайская</td></tr>
+<tr><td class=nu>19</td><td>Индра</td><td>ул. Ильинская, 35</td><td>Индийская, 1000-2000₽</td></tr>
+<tr><td class=nu>20</td><td>Тадж Махал</td><td>ул. Новая, 25</td><td>Индийская</td></tr>
+<tr><td class=nu>21</td><td>Тайская</td><td>ул. Артельная, 8</td><td>Тайская, 1200-2000₽</td></tr>
+<tr><td class=nu>22</td><td>Tom Yam Bar</td><td>ул. Окский съезд, 12</td><td>Тайская</td></tr>
+<tr><td class=nu>23</td><td>Панда</td><td>ул. Гагарина, 66</td><td>Китайская</td></tr>
+<tr><td class=nu>24</td><td>Дим Сам</td><td>ул. Горького, 30</td><td>Китайская</td></tr>
+<tr><td class=nu>25</td><td>Вьетнам</td><td>ул. Коминтерна, 88</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>26</td><td>Мисо</td><td>ул. Родионова, 50</td><td>Японская</td></tr>
+<tr><td class=nu>27</td><td>Самурай</td><td>ул. Ванеева, 60</td><td>Японская</td></tr>
+<tr><td class=nu>28</td><td>Гейша</td><td>ул. Добролюбова, 28</td><td>Японская</td></tr>
+<tr><td class=nu>29</td><td>Хоккайдо</td><td>ул. Ленина, 35</td><td>Японская</td></tr>
+<tr><td class=nu>30</td><td>Осака</td><td>ул. Новая, 40</td><td>Японская</td></tr>
+<tr><td class=nu>31</td><td>Лапшичная</td><td>ул. Б. Покровская, 8</td><td>Азиатская лапша</td></tr>
+<tr><td class=nu>32</td><td>Корейский дом</td><td>ул. Ильинская, 66</td><td>Корейская</td></tr>
+<tr><td class=nu>33</td><td>Сеул</td><td>ул. Комсомольская, 22</td><td>Корейская BBQ</td></tr>
+<tr><td class=nu>34</td><td>Паназия</td><td>ул. Рождественская, 35</td><td>Паназиатская</td></tr>
+<tr><td class=nu>35</td><td>Япония</td><td>ул. Горького, 66</td><td>Суши</td></tr>
+</table></div></div>
+
+<!-- 6. Гриль / BBQ -->
+<div class="s" id="s6"><h2>6. Гриль и BBQ <span class="c">(20)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Стейк Хаус</td><td>ул. Б. Покровская, 70</td><td>Стейки, 2000-4000₽</td></tr>
+<tr><td class=nu>2</td><td>Beef Bar</td><td>ул. Рождественская, 15</td><td>Мясная, 2000-3500₽</td></tr>
+<tr><td class=nu>3</td><td>Brisket</td><td>ул. Б. Покровская, 60</td><td>Мясная, BBQ</td></tr>
+<tr><td class=nu>4</td><td>Мясной клуб</td><td>ул. Горького, 75</td><td>Стейки</td></tr>
+<tr><td class=nu>5</td><td>Грильница</td><td>ул. Ванеева, 35</td><td>Гриль, 1000-1800₽</td></tr>
+<tr><td class=nu>6</td><td>Шашлык Хаус</td><td>ул. Коминтерна, 55</td><td>Шашлык, 900-1700₽</td></tr>
+<tr><td class=nu>7</td><td>Дрова & Grill</td><td>ул. Родионова, 40</td><td>Гриль, 1200-2200₽</td></tr>
+<tr><td class=nu>8</td><td>Очаг</td><td>ул. Ильинская, 50</td><td>Гриль, 1200-2000₽</td></tr>
+<tr><td class=nu>9</td><td>Fire&Meat</td><td>ул. Добролюбова, 35</td><td>Стейки, 1500-3000₽</td></tr>
+<tr><td class=nu>10</td><td>BBQ Village</td><td>ул. Гагарина, 70</td><td>BBQ</td></tr>
+<tr><td class=nu>11</td><td>Smoke BBQ</td><td>ул. Горького, 95</td><td>Копчености, BBQ</td></tr>
+<tr><td class=nu>12</td><td>Мясо & Огонь</td><td>ул. Ленина, 80</td><td>BBQ, 1500-3000₽</td></tr>
+<tr><td class=nu>13</td><td>Гриль-бар 33</td><td>ул. Комсомольская, 44</td><td>Гриль, пиво</td></tr>
+<tr><td class=nu>14</td><td>Стейк Бар</td><td>ул. Б. Покровская, 88</td><td>Стейки</td></tr>
+<tr><td class=nu>15</td><td>Grill Yard</td><td>ул. Окский съезд, 22</td><td>Гриль, 1000-2000₽</td></tr>
+<tr><td class=nu>16</td><td>Шашлычный двор</td><td>ул. Артельная, 15</td><td>Шашлык</td></tr>
+<tr><td class=nu>17</td><td>Люля House</td><td>ул. Новая, 15</td><td>Люля-кебаб</td></tr>
+<tr><td class=nu>18</td><td>Мангал</td><td>ул. Минина, 50</td><td>Гриль</td></tr>
+<tr><td class=nu>19</td><td>BBQ Brothers</td><td>ул. Ванеева, 55</td><td>BBQ, 1500-2500₽</td></tr>
+<tr><td class=nu>20</td><td>Жар-Мясо</td><td>ул. Горького, 120</td><td>Гриль, 1000-2000₽</td></tr>
+</table></div></div>
+
+<!-- 7. Кофейни -->
+<div class="s" id="s7"><h2>7. Кофейни <span class="c">(55)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>La Marzocco</td><td>ул. Горького, 55</td><td>Кофейня, завтраки</td></tr>
+<tr><td class=nu>2</td><td>Шоколадница</td><td>ул. Б. Покровская, 30</td><td>Сеть</td></tr>
+<tr><td class=nu>3</td><td>Coffee Like</td><td>ул. Б. Покровская, 10</td><td>Кофе с собой</td></tr>
+<tr><td class=nu>4</td><td>Даблби</td><td>ул. Горького, 40</td><td>Спешлти кофе</td></tr>
+<tr><td class=nu>5</td><td>Traveler's Coffee</td><td>ул. Рождественская, 15</td><td>Кофейня</td></tr>
+<tr><td class=nu>6</td><td>Правда кофе</td><td>ул. Ильинская, 20</td><td>Спешлти</td></tr>
+<tr><td class=nu>7</td><td>Буше</td><td>ул. Б. Покровская, 20</td><td>Кондитерская-кофейня</td></tr>
+<tr><td class=nu>8</td><td>Mild</td><td>ул. Б. Покровская</td><td>Кофе, завтраки</td></tr>
+<tr><td class=nu>9</td><td>Anderson</td><td>ул. Рождественская, 25</td><td>Семейное кафе</td></tr>
+<tr><td class=nu>10</td><td>Starbucks</td><td>ТЦ Небо</td><td>Сеть</td></tr>
+<tr><td class=nu>11</td><td>Coffee Cake</td><td>ул. Ванеева, 20</td><td>Кофе, десерты</td></tr>
+<tr><td class=nu>12</td><td>Coffee Room</td><td>ул. Добролюбова, 10</td><td>Кофейня</td></tr>
+<tr><td class=nu>13</td><td>Green Coffee</td><td>ул. Коминтерна, 25</td><td>Кофе</td></tr>
+<tr><td class=nu>14</td><td>Штолле</td><td>ул. Б. Покровская, 50</td><td>Кофе, пироги</td></tr>
+<tr><td class=nu>15</td><td>Корица</td><td>ул. Горького, 60</td><td>Кофе, выпечка</td></tr>
+<tr><td class=nu>16</td><td>Surf Coffee</td><td>ул. Рождественская, 8</td><td>Кофе</td></tr>
+<tr><td class=nu>17</td><td>White Coffee</td><td>ул. Ильинская, 30</td><td>Кофе</td></tr>
+<tr><td class=nu>18</td><td>Latte Art</td><td>ул. Ванеева, 28</td><td>Кофе, арт</td></tr>
+<tr><td class=nu>19</td><td>Капучино</td><td>ул. Б. Покровская, 40</td><td>Кофейня</td></tr>
+<tr><td class=nu>20</td><td>Бодрый день</td><td>ул. Новая, 10</td><td>Кофе</td></tr>
+<tr><td class=nu>21</td><td>Черный кофе</td><td>ул. Гагарина, 30</td><td>Спешлти</td></tr>
+<tr><td class=nu>22</td><td>Мокко</td><td>ул. Ленина, 25</td><td>Кофе</td></tr>
+<tr><td class=nu>23</td><td>Daily Coffee</td><td>ул. Горького, 35</td><td>Кофе</td></tr>
+<tr><td class=nu>24</td><td>Caramel</td><td>ул. Комсомольская, 20</td><td>Кофе, десерты</td></tr>
+<tr><td class=nu>25</td><td>Paradise Coffee</td><td>ул. Окский съезд, 5</td><td>Кофе</td></tr>
+<tr><td class=nu>26</td><td>Volna Coffee</td><td>ул. Рождественская, 12</td><td>Кофе</td></tr>
+<tr><td class=nu>27</td><td>Bristol</td><td>ул. Б. Покровская, 55</td><td>Кофе, выпечка</td></tr>
+<tr><td class=nu>28</td><td>Coffee Lab</td><td>ул. Ильинская, 40</td><td>Спешлти</td></tr>
+<tr><td class=nu>29</td><td>Сова</td><td>ул. Ванеева, 40</td><td>Кофейня</td></tr>
+<tr><td class=nu>30</td><td>Кофеин</td><td>ул. Коминтерна, 35</td><td>Кофе</td></tr>
+<tr><td class=nu>31</td><td>Cacao</td><td>ул. Родионова, 25</td><td>Кофе, шоколад</td></tr>
+<tr><td class=nu>32</td><td>Робуста</td><td>ул. Добролюбова, 25</td><td>Кофе</td></tr>
+<tr><td class=nu>33</td><td>Mr. Coffee</td><td>ул. Гагарина, 45</td><td>Кофе</td></tr>
+<tr><td class=nu>34</td><td>Morning Coffee</td><td>ул. Артельная, 10</td><td>Кофе, завтраки</td></tr>
+<tr><td class=nu>35</td><td>Эспрессо</td><td>ул. Ленина, 40</td><td>Кофе</td></tr>
+<tr><td class=nu>36</td><td>Кофе-Лавка</td><td>ул. Новая, 35</td><td>Зерновой</td></tr>
+<tr><td class=nu>37</td><td>One Love Coffee</td><td>ул. Минина, 20</td><td>Кофе с собой</td></tr>
+<tr><td class=nu>38</td><td>Подсолнухи</td><td>ул. Горького, 88</td><td>Кофе, десерты</td></tr>
+<tr><td class=nu>39</td><td>Лаунж-кафе</td><td>ул. Ильинская, 55</td><td>Кофе, кальян</td></tr>
+<tr><td class=nu>40</td><td>Раф</td><td>ул. Комсомольская, 30</td><td>Кофе</td></tr>
+<tr><td class=nu>41</td><td>Кофейня на Покровке</td><td>ул. Б. Покровская, 15</td><td>Кофе</td></tr>
+<tr><td class=nu>42</td><td>Black Coffee</td><td>ул. Рождественская, 18</td><td>Спешлти</td></tr>
+<tr><td class=nu>43</td><td>Кофе & Книги</td><td>ул. Ванеева, 15</td><td>Кофе, книги</td></tr>
+<tr><td class=nu>44</td><td>Американо</td><td>ул. Коминтерна, 60</td><td>Кофе</td></tr>
+<tr><td class=nu>45</td><td>Кофе-бар 21</td><td>ул. Родионова, 55</td><td>Кофе</td></tr>
+<tr><td class=nu>46</td><td>Arabyka</td><td>ул. Б. Покровская, 65</td><td>Кофе</td></tr>
+<tr><td class=nu>47</td><td>Sunny Coffee</td><td>ул. Гагарина, 55</td><td>Кофе, смузи</td></tr>
+<tr><td class=nu>48</td><td>Mokka</td><td>ул. Ленина, 50</td><td>Кофе, выпечка</td></tr>
+<tr><td class=nu>49</td><td>Кофейня на Родионова</td><td>ул. Родионова, 10</td><td>Кофе</td></tr>
+<tr><td class=nu>50</td><td>Coffee Point</td><td>ул. Б. Покровская, 5</td><td>Кофе с собой</td></tr>
+<tr><td class=nu>51</td><td>Late Night Coffee</td><td>ул. Горького, 110</td><td>Кофе до утра</td></tr>
+<tr><td class=nu>52</td><td>Кофе-Терра</td><td>ул. Новая, 28</td><td>Кофе</td></tr>
+<tr><td class=nu>53</td><td>Лимпопо</td><td>ул. Артельная, 18</td><td>Кофе, десерты</td></tr>
+<tr><td class=nu>54</td><td>Дым</td><td>ул. Окский съезд, 18</td><td>Кофе</td></tr>
+<tr><td class=nu>55</td><td>Макиато</td><td>ул. Комсомольская, 15</td><td>Кофе</td></tr>
+</table></div></div>
+
+<!-- 8. Уличная еда -->
+<div class="s" id="s8"><h2>8. Уличная еда и фастфуд <span class="c">(28)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>KFC</td><td>ул. Б. Покровская, 22</td><td>Сеть</td></tr>
+<tr><td class=nu>2</td><td>Burger King</td><td>ТЦ Небо</td><td>Сеть</td></tr>
+<tr><td class=nu>3</td><td>Subway</td><td>ул. Горького, 30</td><td>Сеть</td></tr>
+<tr><td class=nu>4</td><td>Додо Пицца</td><td>ул. Ильинская, 25</td><td>Пицца</td></tr>
+<tr><td class=nu>5</td><td>Салют Burgers</td><td>ул. Октябрьская, 9А</td><td>Бургеры, 600₽</td></tr>
+<tr><td class=nu>6</td><td>Noot</td><td>ул. Б. Покровская, 15</td><td>Фалафель, 500₽</td></tr>
+<tr><td class=nu>7</td><td>Franky</td><td>ул. Б. Покровская</td><td>Бургеры</td></tr>
+<tr><td class=nu>8</td><td>Шаурма на углях</td><td>ул. Горького, 25</td><td>Шаурма</td></tr>
+<tr><td class=nu>9</td><td>Чебуречная</td><td>ул. Ванеева, 10</td><td>Чебуреки</td></tr>
+<tr><td class=nu>10</td><td>Бургерная №1</td><td>ул. Коминтерна, 20</td><td>Бургеры</td></tr>
+<tr><td class=nu>11</td><td>Теремок</td><td>ул. Б. Покровская, 35</td><td>Блины</td></tr>
+<tr><td class=nu>12</td><td>Пончик</td><td>ул. Рождественская, 5</td><td>Пончики</td></tr>
+<tr><td class=nu>13</td><td>Блинная</td><td>ул. Добролюбова, 8</td><td>Блины</td></tr>
+<tr><td class=nu>14</td><td>Пирожки от бабули</td><td>ул. Комсомольская, 10</td><td>Пирожки</td></tr>
+<tr><td class=nu>15</td><td>Самса Хаус</td><td>ул. Ленина, 20</td><td>Самса</td></tr>
+<tr><td class=nu>16</td><td>Шашлык-стрит</td><td>ул. Окский съезд, 8</td><td>Шашлык</td></tr>
+<tr><td class=nu>17</td><td>Хот-Дог Хаус</td><td>ул. Новая, 12</td><td>Хот-доги</td></tr>
+<tr><td class=nu>18</td><td>Ватрушка</td><td>ул. Ильинская, 12</td><td>Выпечка</td></tr>
+<tr><td class=nu>19</td><td>Беляшная</td><td>ул. Артельная, 5</td><td>Беляши</td></tr>
+<tr><td class=nu>20</td><td>Кукуруза Гриль</td><td>ул. Б. Покровская</td><td>Кукуруза</td></tr>
+<tr><td class=nu>21</td><td>Стрит-Фуд Парк</td><td>ул. Стрелка, 21</td><td>Фудтраки</td></tr>
+<tr><td class=nu>22</td><td>Кебаб Хаус</td><td>ул. Гагарина, 35</td><td>Кебаб</td></tr>
+<tr><td class=nu>23</td><td>Крафт-бургер</td><td>ул. Горького, 80</td><td>Крафтовые бургеры</td></tr>
+<tr><td class=nu>24</td><td>Сочная сосиска</td><td>ул. Родионова, 18</td><td>Сосиски</td></tr>
+<tr><td class=nu>25</td><td>Чайник</td><td>ул. Минина, 12</td><td>Стритфуд</td></tr>
+<tr><td class=nu>26</td><td>Пирог Хаус</td><td>ул. Добролюбова, 20</td><td>Пироги</td></tr>
+<tr><td class=nu>27</td><td>Пельмени</td><td>ул. Ванеева, 22</td><td>Пельмени</td></tr>
+<tr><td class=nu>28</td><td>Фуд-корт ТЦ Небо</td><td>ТЦ Небо</td><td>Фуд-корт</td></tr>
+</table></div></div>
+
+<!-- 9. Буфеты -->
+<div class="s" id="s9"><h2>9. Буфеты <span class="c">(12)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Столовая №1</td><td>ул. Б. Покровская, 15</td><td>Столовая, 300-600₽</td></tr>
+<tr><td class=nu>2</td><td>Обед-Буфет</td><td>ул. Горького, 80</td><td>Комплексные обеды</td></tr>
+<tr><td class=nu>3</td><td>Столовая на Покровке</td><td>ул. Б. Покровская, 44</td><td>Буфет</td></tr>
+<tr><td class=nu>4</td><td>Шведский стол</td><td>Отель Нижегородский</td><td>Завтраки, буфет</td></tr>
+<tr><td class=nu>5</td><td>Сытный обед</td><td>ул. Ильинская, 35</td><td>Буфет, 400-800₽</td></tr>
+<tr><td class=nu>6</td><td>Хлеб-Соль</td><td>ул. Комсомольская, 25</td><td>Буфет</td></tr>
+<tr><td class=nu>7</td><td>Ланч</td><td>ул. Ванеева, 50</td><td>Бизнес-ланч</td></tr>
+<tr><td class=nu>8</td><td>Столовая на Горького</td><td>ул. Горького, 100</td><td>Столовая</td></tr>
+<tr><td class=nu>9</td><td>Комплекс</td><td>ул. Коминтерна, 44</td><td>Обеды</td></tr>
+<tr><td class=nu>10</td><td>Гранд Буфет</td><td>Отель Мариотт</td><td>Шведский стол</td></tr>
+<tr><td class=nu>11</td><td>Столовая на Ильинской</td><td>ул. Ильинская, 60</td><td>Столовая</td></tr>
+<tr><td class=nu>12</td><td>Обед Хаус</td><td>ул. Новая, 20</td><td>Буфет</td></tr>
+</table></div></div>
+
+<!-- 10. Бары -->
+<div class="s" id="s10"><h2>10. Бары и пабы <span class="c">(35)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Öö</td><td>ул. Алексеевская, 11</td><td>Бар, авторские коктейли</td></tr>
+<tr><td class=nu>2</td><td>Harat's Pub</td><td>ул. Рождественская</td><td>Ирландский паб</td></tr>
+<tr><td class=nu>3</td><td>Квартира 89</td><td>ул. Б. Покровская, 89</td><td>Гастробар, 63 отзыва</td></tr>
+<tr><td class=nu>4</td><td>Burlesque</td><td>ул. Б. Покровская, 51А</td><td>Клуб, шоу-программы</td></tr>
+<tr><td class=nu>5</td><td>Nebar</td><td>ул. Б. Покровская</td><td>Коктейли</td></tr>
+<tr><td class=nu>6</td><td>Бочка</td><td>ул. Рождественская, 40</td><td>Пивной ресторан</td></tr>
+<tr><td class=nu>7</td><td>Beer House</td><td>ул. Горького, 55</td><td>Крафтовое пиво</td></tr>
+<tr><td class=nu>8</td><td>Пивная №1</td><td>ул. Ильинская, 30</td><td>Разливное пиво</td></tr>
+<tr><td class=nu>9</td><td>Коктейль-бар</td><td>ул. Рождественская, 20</td><td>Авторские коктейли</td></tr>
+<tr><td class=nu>10</td><td>Винотека</td><td>ул. Б. Покровская, 55</td><td>Винный бар</td></tr>
+<tr><td class=nu>11</td><td>Чешская пивница</td><td>ул. Ванеева, 30</td><td>Чешское пиво</td></tr>
+<tr><td class=nu>12</td><td>Gin Bar</td><td>ул. Добролюбова, 18</td><td>Джин-бар</td></tr>
+<tr><td class=nu>13</td><td>Whiskey House</td><td>ул. Коминтерна, 50</td><td>Виски-бар</td></tr>
+<tr><td class=nu>14</td><td>Union Jack</td><td>ул. Горького, 70</td><td>Английский паб</td></tr>
+<tr><td class=nu>15</td><td>Belle Bouteille</td><td>ул. Ильинская, 22</td><td>Винный бар</td></tr>
+<tr><td class=nu>16</td><td>Паб 33</td><td>ул. Родионова, 40</td><td>Английский паб</td></tr>
+<tr><td class=nu>17</td><td>Jack's Bar</td><td>ул. Б. Покровская, 60</td><td>Коктейли</td></tr>
+<tr><td class=nu>18</td><td>Спорт-бар</td><td>ул. Гагарина, 50</td><td>Трансляции</td></tr>
+<tr><td class=nu>19</td><td>Лаунж-бар</td><td>ул. Новая, 30</td><td>Кальян, коктейли</td></tr>
+<tr><td class=nu>20</td><td>Рюмочная</td><td>ул. Комсомольская, 18</td><td>Бюджетный бар</td></tr>
+<tr><td class=nu>21</td><td>Караоке-бар</td><td>ул. Б. Покровская, 70</td><td>Караоке</td></tr>
+<tr><td class=nu>22</td><td>Rooftop Bar</td><td>ул. Рождественская, 25</td><td>Вид на Волгу</td></tr>
+<tr><td class=nu>23</td><td>Пивотека</td><td>ул. Ильинская, 50</td><td>Крафт</td></tr>
+<tr><td class=nu>24</td><td>Клуб</td><td>ул. Окский съезд, 12</td><td>Ночной клуб</td></tr>
+<tr><td class=nu>25</td><td>Танцпол</td><td>ул. Коминтерна, 66</td><td>Ночной клуб</td></tr>
+<tr><td class=nu>26</td><td>Vinum</td><td>ул. Ванеева, 44</td><td>Винный бар</td></tr>
+<tr><td class=nu>27</td><td>Beer Garden</td><td>ул. Родионова, 55</td><td>Пивной сад</td></tr>
+<tr><td class=nu>28</td><td>Кальянная</td><td>ул. Добролюбова, 40</td><td>Кальян, чай</td></tr>
+<tr><td class=nu>29</td><td>Бар 47</td><td>ул. Гагарина, 47</td><td>Коктейли</td></tr>
+<tr><td class=nu>30</td><td>Moloko</td><td>ул. Горького, 95</td><td>Коктейльный бар</td></tr>
+<tr><td class=nu>31</td><td>Drink Bar</td><td>ул. Комсомольская, 35</td><td>Калейдоскоп коктейлей</td></tr>
+<tr><td class=nu>32</td><td>Баренц</td><td>ул. Ильинская, 55</td><td>Бар, коктейли</td></tr>
+<tr><td class=nu>33</td><td>Клуб 90</td><td>ул. Ленина, 60</td><td>Ночной клуб</td></tr>
+<tr><td class=nu>34</td><td>Руки ВВерх!</td><td>ул. Рождественская</td><td>Караоке-бар</td></tr>
+<tr><td class=nu>35</td><td>Пивной ресторан</td><td>ул. Артельная, 22</td><td>Разливное пиво</td></tr>
+</table></div></div>
+
+<!-- 11. Завтраки -->
+<div class="s" id="s11"><h2>11. Завтраки <span class="c">(16)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Селёдка и кофе</td><td>ул. Рождественская, 19</td><td>Бранч, 600₽</td></tr>
+<tr><td class=nu>2</td><td>La Marzocco</td><td>ул. Горького, 55</td><td>Завтраки</td></tr>
+<tr><td class=nu>3</td><td>Mild</td><td>ул. Б. Покровская</td><td>Завтраки, кофе</td></tr>
+<tr><td class=nu>4</td><td>Шоколадница</td><td>ул. Б. Покровская, 30</td><td>Завтраки весь день</td></tr>
+<tr><td class=nu>5</td><td>Anderson</td><td>ул. Рождественская, 25</td><td>Семейные завтраки</td></tr>
+<tr><td class=nu>6</td><td>Буше</td><td>ул. Б. Покровская, 20</td><td>Завтраки, выпечка</td></tr>
+<tr><td class=nu>7</td><td>Правда кофе</td><td>ул. Ильинская, 20</td><td>Завтраки, кофе</td></tr>
+<tr><td class=nu>8</td><td>Traveler's Coffee</td><td>ул. Рождественская, 15</td><td>Бранч</td></tr>
+<tr><td class=nu>9</td><td>Ламантин</td><td>ул. Горького, 44</td><td>Завтраки</td></tr>
+<tr><td class=nu>10</td><td>Morning Coffee</td><td>ул. Артельная, 10</td><td>Завтраки</td></tr>
+<tr><td class=nu>11</td><td>Бодрый день</td><td>ул. Новая, 10</td><td>Завтраки</td></tr>
+<tr><td class=nu>12</td><td>Бранч Клаб</td><td>ул. Горького, 60</td><td>English breakfast</td></tr>
+<tr><td class=nu>13</td><td>Омлет</td><td>ул. Добролюбова, 15</td><td>Завтраки</td></tr>
+<tr><td class=nu>14</td><td>Good Morning</td><td>ул. Б. Покровская, 48</td><td>Завтраки</td></tr>
+<tr><td class=nu>15</td><td>Fresh</td><td>ул. Горького, 40</td><td>Здоровые завтраки</td></tr>
+<tr><td class=nu>16</td><td>Панкейки</td><td>ул. Коминтерна, 30</td><td>Панкейки, блины</td></tr>
+</table></div></div>
+
+<!-- 12. Отельные рестораны -->
+<div class="s" id="s12"><h2>12. Отельные рестораны <span class="c">(22)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Отель</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Нижегородский</td><td>Нижегородский</td><td>Русская, буфет</td></tr>
+<tr><td class=nu>2</td><td>Мариотт</td><td>Hyatt</td><td>Международная</td></tr>
+<tr><td class=nu>3</td><td>Азимут</td><td>Азимут</td><td>Европейская</td></tr>
+<tr><td class=nu>4</td><td>Ока</td><td>Ока</td><td>Буфет</td></tr>
+<tr><td class=nu>5</td><td>Волна</td><td>Волна</td><td>Европейская</td></tr>
+<tr><td class=nu>6</td><td>Центральная</td><td>Центральная</td><td>Русская</td></tr>
+<tr><td class=nu>7</td><td>Заречная</td><td>Заречная</td><td>Буфет</td></tr>
+<tr><td class=nu>8</td><td>Куйбышев</td><td>Куйбышев</td><td>Европейская</td></tr>
+<tr><td class=nu>9</td><td>Лайнер</td><td>Лайнер</td><td>Буфет</td></tr>
+<tr><td class=nu>10</td><td>Россия</td><td>Россия</td><td>Русская</td></tr>
+<tr><td class=nu>11</td><td>Спутник</td><td>Спутник</td><td>Буфет</td></tr>
+<tr><td class=nu>12</td><td>Волжский</td><td>Волжский</td><td>Европейская</td></tr>
+<tr><td class=nu>13</td><td>Старый Нижний</td><td>Старый Нижний</td><td>Русская</td></tr>
+<tr><td class=nu>14</td><td>Гранд Отель</td><td>Гранд Отель</td><td>Международная</td></tr>
+<tr><td class=nu>15</td><td>Ибис</td><td>Ibis</td><td>Завтраки, буфет</td></tr>
+<tr><td class=nu>16</td><td>Хилтон</td><td>Хилтон НН</td><td>Международная</td></tr>
+<tr><td class=nu>17</td><td>Москва</td><td>Москва</td><td>Европейская</td></tr>
+<tr><td class=nu>18</td><td>Авангард</td><td>Авангард</td><td>Русская</td></tr>
+<tr><td class=nu>19</td><td>Бристоль</td><td>Бристоль</td><td>Европейская</td></tr>
+<tr><td class=nu>20</td><td>Садко</td><td>Садко</td><td>Европейская</td></tr>
+<tr><td class=nu>21</td><td>Восток</td><td>Восток</td><td>Буфет</td></tr>
+<tr><td class=nu>22</td><td>Юность</td><td>Юность</td><td>Европейская</td></tr>
+</table></div></div>
+
+<!-- 13. Пекарни -->
+<div class="s" id="s13"><h2>13. Пекарни и кондитерские <span class="c">(22)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Буше</td><td>ул. Б. Покровская, 20</td><td>Французская выпечка</td></tr>
+<tr><td class=nu>2</td><td>Хлебный дом</td><td>ул. Горького, 30</td><td>Хлеб, выпечка</td></tr>
+<tr><td class=nu>3</td><td>Пекарня №1</td><td>ул. Ильинская, 15</td><td>Свежая выпечка</td></tr>
+<tr><td class=nu>4</td><td>Кондитерская</td><td>ул. Б. Покровская, 40</td><td>Торты</td></tr>
+<tr><td class=nu>5</td><td>Вольче</td><td>ул. Рождественская, 10</td><td>Итальянская выпечка</td></tr>
+<tr><td class=nu>6</td><td>Слоеный рай</td><td>ул. Ванеева, 15</td><td>Слоеные изделия</td></tr>
+<tr><td class=nu>7</td><td>Каравай</td><td>ул. Добролюбова, 10</td><td>Хлебобулочные</td></tr>
+<tr><td class=nu>8</td><td>Багет</td><td>ул. Коминтерна, 22</td><td>Французский багет</td></tr>
+<tr><td class=nu>9</td><td>Мандаринка</td><td>ул. Гагарина, 25</td><td>Кондитерская</td></tr>
+<tr><td class=nu>10</td><td>Донская пекарня</td><td>ул. Ленина, 30</td><td>Ржаной хлеб</td></tr>
+<tr><td class=nu>11</td><td>Макьято</td><td>ул. Комсомольская, 22</td><td>Десерты</td></tr>
+<tr><td class=nu>12</td><td>Салюте</td><td>ул. Горького, 55</td><td>Кондитерская</td></tr>
+<tr><td class=nu>13</td><td>Пекарь</td><td>ул. Минина, 25</td><td>Хлеб</td></tr>
+<tr><td class=nu>14</td><td>Яблоко</td><td>ул. Ильинская, 40</td><td>Пироги</td></tr>
+<tr><td class=nu>15</td><td>Медовик</td><td>ул. Новая, 22</td><td>Медовые торты</td></tr>
+<tr><td class=nu>16</td><td>Чизкейк</td><td>ул. Б. Покровская, 66</td><td>Чизкейки</td></tr>
+<tr><td class=nu>17</td><td>Пироговая</td><td>ул. Родионова, 20</td><td>Пироги</td></tr>
+<tr><td class=nu>18</td><td>Хворост</td><td>ул. Окский съезд, 15</td><td>Пекарня</td></tr>
+<tr><td class=nu>19</td><td>Сладкая жизнь</td><td>ул. Артельная, 12</td><td>Кондитерская</td></tr>
+<tr><td class=nu>20</td><td>Хлеб и Вино</td><td>ул. Гагарина, 44</td><td>Пекарня</td></tr>
+<tr><td class=nu>21</td><td>Крендель</td><td>ул. Б. Покровская, 12</td><td>Пекарня</td></tr>
+<tr><td class=nu>22</td><td>Пекарня на Рождественской</td><td>ул. Рождественская, 28</td><td>Выпечка, кофе</td></tr>
+</table></div></div>
+
+<!-- 14. Гастропорт / Фуд-холлы -->
+<div class="s" id="s14"><h2>14. Фуд-холлы и гастропространства <span class="c">(5)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Гастропорт</td><td>ул. Стрелка, 21</td><td>10 концепций, вид на Волгу</td></tr>
+<tr><td class=nu>2</td><td>Фуд-корт ТЦ Небо</td><td>ТЦ Небо</td><td>15+ концепций</td></tr>
+<tr><td class=nu>3</td><td>Фуд-корт ТЦ Седьмое небо</td><td>ТЦ Седьмое небо</td><td>Сетевые рестораны</td></tr>
+<tr><td class=nu>4</td><td>Ресторанный дворик</td><td>ул. Б. Покровская, 2</td><td>Несколько кухонь</td></tr>
+<tr><td class=nu>5</td><td>Фудмаркет</td><td>ул. Рождественская</td><td>Гастрорынок</td></tr>
+</table></div></div>
+
+<!-- Summary -->
+<div class="s" id="sum"><h2>Сводка <span class="c">(всего ~510+)</span></h2><div class="b">
+<table class="sum"><tr><th>Категория</th><th>Кол-во</th></tr>
+<tr><td>Русская кухня</td><td>38</td></tr>
+<tr><td>Кавказская (груз., арм., узб.)</td><td>35</td></tr>
+<tr><td>Европейская и международная</td><td>52</td></tr>
+<tr><td>Итальянская</td><td>16</td></tr>
+<tr><td>Азиатская (яп., кит., кор., инд.)</td><td>35</td></tr>
+<tr><td>Гриль и BBQ</td><td>20</td></tr>
+<tr><td>Кофейни</td><td>55</td></tr>
+<tr><td>Уличная еда и фастфуд</td><td>28</td></tr>
+<tr><td>Буфеты</td><td>12</td></tr>
+<tr><td>Бары и пабы</td><td>35</td></tr>
+<tr><td>Завтраки</td><td>16</td></tr>
+<tr><td>Отельные рестораны</td><td>22</td></tr>
+<tr><td>Пекарни и кондитерские</td><td>22</td></tr>
+<tr><td>Фуд-холлы и гастропространства</td><td>5</td></tr>
+<tr><td><strong>ИТОГО</strong></td><td><strong>~510+</strong></td></tr>
+</table></div></div>
+
+<div class="note">
+  <strong>Примечание:</strong> Полный список всех заведений Нижнего Новгорода превышает 1 200 (по данным TripAdvisor, 2ГИС, ТоМесто — 325 заведений в каталоге). Выше представлены наиболее известные и документированные заведения. Уличные лотки, мелкие кафе для местных и недокументированные заведения не вошли в каталог.
+</div>
+
+<script>
+document.querySelectorAll('.s h2').forEach(function(h){h.addEventListener('click',function(){this.parentElement.classList.toggle('closed')})});
+(function(){var n=document.getElementById('nav');document.querySelectorAll('.s').forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.textContent=s.querySelector('h2').textContent.split('(')[0].trim();n.appendChild(a)})})();
+</script>
+
+</div></body></html>

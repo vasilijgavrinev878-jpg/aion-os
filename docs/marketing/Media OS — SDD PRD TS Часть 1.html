@@ -1,0 +1,1033 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION Media OS — Software Design Document</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:30px}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0A0F1E;color:#c8d6e5;line-height:1.8;padding:0;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 20% 50%,rgba(0,240,255,0.03) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(168,85,247,0.03) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(245,158,11,0.02) 0%,transparent 50%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f0ff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.5}
+.wrap{max-width:1120px;margin:0 auto;padding:30px 40px;position:relative;z-index:1}
+@keyframes glowPulse{0%,100%{opacity:0.6}50%{opacity:1}}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes floatUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:0.6}}
+@keyframes rotateGlow{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes fadeInScale{0%{opacity:0;transform:scale(0.9)}100%{opacity:1;transform:scale(1)}}
+.hero{text-align:center;padding:50px 30px 30px;position:relative;margin-bottom:10px}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:2px;background:linear-gradient(90deg,transparent,#00f0ff,transparent);animation:glowPulse 3s ease-in-out infinite}
+.hero-badge{display:inline-block;padding:4px 18px;border-radius:20px;font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;background:linear-gradient(135deg,rgba(0,240,255,0.1),rgba(168,85,247,0.1));border:1px solid rgba(0,240,255,0.2);color:#00f0ff;margin-bottom:18px}
+h1{font-size:3.2rem;text-align:center;margin-bottom:6px;letter-spacing:-1px;font-weight:800;background:linear-gradient(135deg,#00f0ff,#a855f7,#00f0ff);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 4s ease infinite}
+.hero-sub{text-align:center;color:#64748b;font-size:0.8rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:3px}
+.doc-meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:20px;font-size:0.78rem}
+.doc-meta span{display:flex;align-items:center;gap:6px;padding:5px 14px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);color:#64748b}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:30px 0 40px}
+.metric-card{background:linear-gradient(135deg,rgba(17,24,39,0.85),rgba(26,35,50,0.7));border:1px solid rgba(0,240,255,0.1);border-radius:14px;padding:20px;text-align:center;transition:transform .3s ease,box-shadow .3s ease;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.metric-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(transparent,rgba(0,240,255,0.05),transparent 50%);animation:rotateGlow 6s linear infinite;opacity:0.3}
+.metric-card:hover{transform:translateY(-4px) perspective(800px) rotateX(2deg);box-shadow:0 10px 40px rgba(0,240,255,0.1)}
+.metric-card .inner{position:relative;z-index:1}
+.metric-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:#64748b;margin-bottom:8px}
+.metric-value{font-size:2rem;font-weight:800;color:#00f0ff;text-shadow:0 0 20px rgba(0,240,255,0.2)}
+.metric-value.gold{color:#f59e0b;text-shadow:0 0 20px rgba(245,158,11,0.2)}
+.metric-value.purple{color:#a855f7;text-shadow:0 0 20px rgba(168,85,247,0.2)}
+.metric-value.green{color:#22c55e;text-shadow:0 0 20px rgba(34,197,94,0.2)}
+.metric-sublabel{font-size:0.7rem;color:#475569;margin-top:4px}
+.toc{background:linear-gradient(135deg,rgba(17,24,39,0.92),rgba(26,35,50,0.8));border:1px solid rgba(0,240,255,0.1);border-radius:16px;padding:28px 32px;margin-bottom:36px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:floatUp .6s ease-out;box-shadow:0 0 30px rgba(0,240,255,0.03)}
+.toc h2{color:#f59e0b;font-size:0.8rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;border:none;margin-top:0;padding:0}
+.toc ol{list-style:none;counter-reset:toc;columns:2;column-gap:30px}
+.toc ol li{counter-increment:toc;padding:5px 0;font-size:0.82rem;break-inside:avoid}
+.toc ol li::before{content:counter(toc) ".";color:#00f0ff;font-weight:700;margin-right:8px}
+.toc ol li a{color:#94a3b8;text-decoration:none;transition:color .2s,text-shadow .2s}
+.toc ol li a:hover{color:#00f0ff;text-shadow:0 0 10px rgba(0,240,255,0.3)}
+h2{font-size:1.6rem;margin-top:50px;margin-bottom:20px;padding-bottom:12px;position:relative;font-weight:700}
+h2 .num{color:#00f0ff;font-weight:700;margin-right:10px}
+h2 .h-line{position:absolute;bottom:0;left:0;width:80px;height:2px;background:linear-gradient(90deg,#00f0ff,#a855f7);border-radius:2px}
+h2 .h-line-gold{position:absolute;bottom:0;left:0;width:80px;height:2px;background:linear-gradient(90deg,#f59e0b,#a855f7);border-radius:2px}
+h3{font-size:1.2rem;color:#00f0ff;margin-top:32px;margin-bottom:14px;position:relative;padding-left:14px}
+h3::before{content:'';position:absolute;left:0;top:6px;width:4px;height:calc(100% - 12px);background:linear-gradient(180deg,#00f0ff,#a855f7);border-radius:2px}
+h4{font-size:0.95rem;color:#f59e0b;margin-top:24px;margin-bottom:10px}
+h5{font-size:0.85rem;color:#94a3b8;margin-top:16px;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+p{margin-bottom:12px;font-size:0.92rem;color:#c8d6e5;animation:floatUp .5s ease-out both}
+p b,strong{color:#e2e8f0}
+ul,ol{margin:8px 0 14px 24px}
+li{margin-bottom:5px;font-size:0.92rem}
+.glass-card{background:linear-gradient(135deg,rgba(17,24,39,0.85),rgba(26,35,50,0.65));border:1px solid rgba(0,240,255,0.08);border-radius:14px;padding:24px;margin:18px 0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .4s ease,box-shadow .4s ease;position:relative;overflow:hidden}
+.glass-card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.02),transparent);transition:left .6s ease}
+.glass-card:hover::after{left:100%}
+.glass-card:hover{transform:translateY(-3px) perspective(800px) rotateX(1deg);box-shadow:0 12px 40px rgba(0,240,255,0.06);border-color:rgba(0,240,255,0.15)}
+.glass-card .title{color:#00f0ff;font-weight:600;margin-bottom:10px;font-size:0.95rem}
+.glass-card.gold-glow{border-left:4px solid #f59e0b}
+.glass-card.gold-glow .title{color:#f59e0b}
+.glass-card.cyan-glow{border-left:4px solid #00f0ff}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(0,240,255,0.06)}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+th,td{border:1px solid rgba(255,255,255,0.04);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:linear-gradient(135deg,rgba(0,240,255,0.08),rgba(168,85,247,0.05));color:#00f0ff;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;position:sticky;top:0}
+tr:nth-child(even){background:rgba(255,255,255,0.012)}
+tr:hover{background:rgba(0,240,255,0.03)}
+.tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:0.68rem;font-weight:600;margin:2px;transition:transform .2s}
+.tag:hover{transform:scale(1.05)}
+.tag-green{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2)}
+.tag-blue{background:rgba(0,240,255,0.1);color:#00f0ff;border:1px solid rgba(0,240,255,0.2)}
+.tag-gold{background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2)}
+.tag-red{background:rgba(255,82,82,0.1);color:#ff5252;border:1px solid rgba(255,82,82,0.2)}
+.tag-purple{background:rgba(168,85,247,0.1);color:#a855f7;border:1px solid rgba(168,85,247,0.2)}
+.info-box{background:linear-gradient(135deg,rgba(0,240,255,0.04),rgba(168,85,247,0.02));border:1px solid rgba(0,240,255,0.1);border-radius:12px;padding:18px;margin:16px 0}
+.info-box strong{color:#00f0ff}
+.warn-box{background:linear-gradient(135deg,rgba(245,158,11,0.04),rgba(168,85,247,0.02));border:1px solid rgba(245,158,11,0.1);border-radius:12px;padding:18px;margin:16px 0}
+.warn-box strong{color:#f59e0b}
+.diagram{background:linear-gradient(135deg,rgba(0,0,0,0.4),rgba(10,15,30,0.6));border:1px solid rgba(0,240,255,0.06);border-radius:12px;padding:20px;margin:16px 0;font-family:'Cascadia Code','Fira Code','Consolas',monospace;font-size:0.72rem;line-height:1.5;overflow-x:auto;color:#94a3b8;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.diagram .hl{color:#00f0ff} .diagram .hl2{color:#f59e0b} .diagram .hl3{color:#22c55e} .diagram .hl4{color:#a855f7}
+pre{background:linear-gradient(135deg,rgba(0,0,0,0.45),rgba(10,15,30,0.55));border:1px solid rgba(0,240,255,0.04);border-radius:12px;padding:16px;margin:12px 0;font-family:'Cascadia Code','Fira Code','Consolas',monospace;font-size:0.75rem;line-height:1.6;overflow-x:auto;color:#c8d6e5}
+code{background:rgba(0,240,255,0.06);padding:2px 6px;border-radius:4px;font-size:0.8rem;color:#00f0ff;font-family:'Cascadia Code','Fira Code','Consolas',monospace}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.progress-bar{width:100%;height:6px;background:rgba(255,255,255,0.04);border-radius:3px;margin:8px 0;overflow:hidden}
+.progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#00f0ff,#a855f7);transition:width 1s ease;position:relative}
+.progress-fill::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:shimmer 2s infinite}
+.progress-fill.gold{background:linear-gradient(90deg,#f59e0b,#a855f7)} .progress-fill.green{background:linear-gradient(90deg,#22c55e,#00f0ff)} .progress-fill.red{background:linear-gradient(90deg,#ff5252,#f59e0b)} .progress-fill.purple{background:linear-gradient(90deg,#a855f7,#00f0ff)}
+.ring-wrap{display:inline-flex;align-items:center;justify-content:center;position:relative;margin:8px;width:80px;height:90px}
+.ring-wrap svg{transform:rotate(-90deg)}
+.ring-wrap .ring-bg{fill:none;stroke:rgba(255,255,255,0.04);stroke-width:6}
+.ring-wrap .ring-fill{fill:none;stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 2s ease}
+.ring-wrap .ring-label{position:absolute;font-size:0.8rem;font-weight:700;color:#00f0ff}
+.ring-wrap .ring-sub{position:absolute;bottom:0;left:0;width:100%;text-align:center;font-size:0.6rem;color:#64748b}
+.chart-h{display:flex;align-items:flex-end;gap:8px;height:140px;padding:10px 0;margin:16px 0}
+.chart-bar-group{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end}
+.chart-bar{width:100%;max-width:40px;border-radius:4px 4px 0 0;min-height:4px;transition:height 1.5s ease;animation:fadeInScale .5s ease both}
+.chart-bar.cyan{background:linear-gradient(180deg,#00f0ff,rgba(0,240,255,0.3))} .chart-bar.gold{background:linear-gradient(180deg,#f59e0b,rgba(245,158,11,0.3))} .chart-bar.purple{background:linear-gradient(180deg,#a855f7,rgba(168,85,247,0.3))} .chart-bar.green{background:linear-gradient(180deg,#22c55e,rgba(34,197,94,0.3))} .chart-bar.red{background:linear-gradient(180deg,#ff5252,rgba(255,82,82,0.3))}
+.chart-label{font-size:0.6rem;color:#64748b;margin-top:6px;text-align:center;text-transform:uppercase;letter-spacing:0.5px}
+.chart-value{font-size:0.65rem;color:#94a3b8;margin-bottom:4px}
+.severity{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:6px;font-size:0.7rem;font-weight:600}
+.severity-critical{background:rgba(255,82,82,0.12);color:#ff5252;border:1px solid rgba(255,82,82,0.2)}
+.severity-high{background:rgba(245,158,11,0.12);color:#f59e0b;border:1px solid rgba(245,158,11,0.2)}
+.severity-medium{background:rgba(0,240,255,0.12);color:#00f0ff;border:1px solid rgba(0,240,255,0.2)}
+.severity-low{background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.2)}
+.page-break{page-break-after:always;border:none;border-top:1px dashed rgba(0,240,255,0.08);margin:50px 0;height:1px;position:relative}
+.page-break::after{content:'+';position:absolute;top:-10px;left:50%;transform:translateX(-50%);color:rgba(0,240,255,0.2);font-size:0.8rem}
+.footer{text-align:center;color:#334155;font-size:0.72rem;margin-top:50px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.03);text-transform:uppercase;letter-spacing:2px;position:relative}
+.footer::before{content:'';position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:100px;height:2px;background:linear-gradient(90deg,transparent,#00f0ff,transparent)}
+.grad-divider{height:1px;margin:16px 0;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.15),transparent)}
+.stagger>*{animation:floatUp .5s ease both}
+.stagger>*:nth-child(1){animation-delay:.05s}
+.stagger>*:nth-child(2){animation-delay:.1s}
+.stagger>*:nth-child(3){animation-delay:.15s}
+.stagger>*:nth-child(4){animation-delay:.2s}
+.stagger>*:nth-child(5){animation-delay:.25s}
+.stagger>*:nth-child(6){animation-delay:.3s}
+@media(max-width:768px){.wrap{padding:20px 16px}h1{font-size:2rem}.toc ol{columns:1}.metrics-grid{grid-template-columns:repeat(2,1fr)}.chart-h{height:100px}.doc-meta{gap:10px}.doc-meta span{font-size:0.7rem;padding:4px 10px}}
+@media print{body{background:#fff!important;color:#222!important}body::before,body::after{display:none!important}.wrap{max-width:100%;padding:0.5in}h1{-webkit-text-fill-color:#1a3a6b!important;background:none!important}h2{color:#1a3a6b!important}h3{color:#1a3a6b!important}h3::before{background:#1a3a6b!important}th{background:#1a3a6b!important;color:#fff!important}.glass-card{background:#f8f9fa!important;border:1px solid #ddd!important;backdrop-filter:none!important}.diagram{background:#f5f5f5!important;color:#333!important;border:1px solid #ddd!important}pre{background:#f5f5f5!important;color:#333!important}.metric-card{backdrop-filter:none!important}.glass-card::after,.metric-card::before{display:none!important}@page{margin:0.7in}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Внутренняя документация — AION Enterprise Architecture</div>
+  <h1>AION Media OS</h1>
+  <div class="hero-sub">Software Design Document · Product Requirements Document · Technical Specification</div>
+  <div class="doc-meta">
+    <span>Версия: 2.0 — Стратегический план 2026→2029 (Global Scale)</span>
+    <span>Дата: 26 июля 2026 — Старт разработки</span>
+    <span>Авторы: Chief Architect / VP of AI Infrastructure / Solution Architecture Team</span>
+    <span>Конфиденциально: AION Enterprise Architecture</span>
+  </div>
+</div>
+
+<!-- METRICS DASHBOARD -->
+<div class="metrics-grid stagger">
+  <div class="metric-card"><div class="inner">
+    <div class="metric-label">MVP — контента в день</div>
+    <div class="metric-value">1</div>
+    <div class="metric-sublabel">→ 10M/день к 2029 🚀</div>
+  </div></div>
+  <div class="metric-card"><div class="inner">
+    <div class="metric-label">MVP — клиентов</div>
+    <div class="metric-value gold">1</div>
+    <div class="metric-sublabel">→ 100K Enterprise к 2029</div>
+  </div></div>
+  <div class="metric-card"><div class="inner">
+    <div class="metric-label">MVP — GPU</div>
+    <div class="metric-value purple">1</div>
+    <div class="metric-sublabel">RTX 3090 → 1,700+ B200 к 2029</div>
+  </div></div>
+  <div class="metric-card"><div class="inner">
+    <div class="metric-label">MVP — Команда</div>
+    <div class="metric-value green">2</div>
+    <div class="metric-sublabel">Разработчика → Global Team к 2029</div>
+  </div></div>
+</div>
+    <div class="metric-value green">100K+</div>
+    <div class="metric-sublabel">Redpanda Event Bus</div>
+  </div></div>
+  <div class="metric-card"><div class="inner">
+    <div class="metric-label">Запросов/сек</div>
+    <div class="metric-value">150K+</div>
+    <div class="metric-sublabel">Rust API Gateway</div>
+  </div></div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+<h2>СОДЕРЖАНИЕ</h2>
+<ol>
+  <li><a href="#s1">Executive Summary &amp; Vision</a></li>
+  <li><a href="#s2">System Architecture</a></li>
+  <li><a href="#s3">Technology Stack</a></li>
+  <li><a href="#s4">Database Schema &amp; ER Diagrams</a></li>
+  <li><a href="#s5">REST API Design</a></li>
+  <li><a href="#s6">AI Agents System</a></li>
+  <li><a href="#s7">Content Pipeline</a></li>
+  <li><a href="#s8">Characters System</a></li>
+  <li><a href="#s9">World System</a></li>
+  <li><a href="#s10">Scene Library</a></li>
+  <li><a href="#s11">Frontend &amp; UI/UX</a></li>
+  <li><a href="#s12">Analytics System</a></li>
+  <li><a href="#s13">Publishing System</a></li>
+  <li><a href="#s14">DevOps &amp; Infrastructure</a></li>
+  <li><a href="#s15">12-Month Roadmap</a></li>
+  <li><a href="#s16">Scaling Strategy</a></li>
+</ol>
+</div>
+<!-- SECTION 01: EXECUTIVE SUMMARY & VISION -->
+<div class="page-break"></div>
+<h2 id="s1"><span class="num">01</span> Executive Summary &amp; Vision<span class="h-line"></span></h2>
+<div class="glass-card">
+<div class="title">Резюме</div>
+<p>AION Media OS — это операционная система для создания, управления и публикации контента на базе искусственного интеллекта, спроектированная для масштабирования до <strong>10M+ единиц контента в день</strong> и обслуживания <strong>100 000+ enterprise-клиентов</strong> в multi-tenant архитектуре с zero-trust изоляцией.</p>
+<p>Платформа объединяет <strong>AI-агентов</strong> (Creative Director, Screenwriter, Storyboarder, Prompt Engineer, Video Composer, Voice Actor, Publisher, Analyst), <strong>конвейер генерации контента</strong> на базе GPU-кластера (1,700+ NVIDIA B200 / LPU Sovereign Mesh), <strong>событийно-ориентированную архитектуру</strong> на Redpanda и <strong>cell-based multi-region развёртывание</strong> для глобальной отказоустойчивости.</p>
+</div>
+
+<h3>1.1 Видение</h3>
+<p><strong>Миссия:</strong> Стать стандартом де-факто для AI-driven производства контента в социальных сетях, обеспечивая полный цикл — от идеи до публикации — с минимальным участием человека.</p>
+
+<p><strong>Ключевые принципы:</strong></p>
+<ul>
+  <li><strong>Zero-Touch Pipeline:</strong> Контент создаётся, редактируется, озвучивается и публикуется автоматически без ручного вмешательства</li>
+  <li><strong>Agentic AI:</strong> Многоагентная система, где каждый AI-агент специализируется на своей задаче и взаимодействует через событийную шину</li>
+  <li><strong>Global Scale:</strong> Cell-based архитектура с автоматическим шардированием по регионам для <99.99% доступности</li>
+  <li><strong>Content Sovereignty:</strong> Данные контента остаются в регионе создания, соответствуя GDPR и местным регуляторам</li>
+  <li><strong>Multi-Tenant by Design:</strong> Полная изоляция tenant'ов на уровне данных, compute и networking</li>
+</ul>
+
+<h3>1.2 Core Business Metrics — План на 2029</h3>
+<table>
+<tr><th>Метрика</th><th>MVP (2026)</th><th>Growth (2027)</th><th>Scale (2028)</th><th>Global (2029)</th></tr>
+<tr><td>Контента/день</td><td>1–10</td><td>1K–10K</td><td>100K–1M</td><td>10M+</td></tr>
+<tr><td>Enterprise клиентов</td><td>0–1</td><td>10–100</td><td>1K–10K</td><td>100K+</td></tr>
+<tr><td>Латентность API (p99)</td><td>&lt;200ms</td><td>&lt;100ms</td><td>&lt;50ms</td><td>&lt;50ms</td></tr>
+<tr><td>Время генерации видео</td><td>&lt;10min</td><td>&lt;5min</td><td>&lt;2min</td><td>&lt;2min</td></tr>
+<tr><td>GPU Utilisation</td><td>&gt;60%</td><td>&gt;75%</td><td>&gt;85%</td><td>&gt;85%</td></tr>
+<tr><td>Событий/сек (Redpanda)</td><td>100</td><td>1K</td><td>10K</td><td>100K+</td></tr>
+</table>
+
+<h3>1.3 Vision 2029 — 3-летний план развития</h3>
+<p>AION Media OS проектируется сегодня с архитектурой, рассчитанной на 3 порядка роста. Мы не экстраполируем прошлое — мы строим систему, которая с самого рождения рассчитана на 10M+ контента/день.</p>
+
+<div class="glass-card gold-glow">
+<div class="title">Принцип проектирования: «Scale-First, MVP-Second»</div>
+<p>В отличие от традиционного подхода «сначала сделаем MVP, потом перепишем», мы сразу закладываем:</p>
+<ul>
+  <li><strong>Cell-based архитектуру</strong> — каждый cell независим, масштабируется горизонтально без лимитов</li>
+  <li><strong>Polyglot persistence</strong> — разные БД для разных нагрузок (CockroachDB, ScyllaDB, ClickHouse, Qdrant)</li>
+  <li><strong>Speculative Inference Mesh</strong> — собственный inference на open-source моделях, zero dependency от коммерческих API</li>
+  <li><strong>Distributed Edge Publishing</strong> — 10K+ residential proxy nodes с детектором shadowban</li>
+</ul>
+</div>
+
+<table>
+<tr><th>Этап</th><th>Период</th><th>Фокус</th><th>Контента/день</th></tr>
+<tr><td><span class="tag tag-green">MVP</span></td><td>2026 Q3-Q4</td><td>Базовый pipeline: idea→publish, 1 GPU, open-source стек</td><td>1→10</td></tr>
+<tr><td><span class="tag tag-blue">Growth</span></td><td>2027 H1</td><td>Multi-tenant, Kubernetes, Temporal.io, первые enterprise клиенты</td><td>100→1K</td></tr>
+<tr><td><span class="tag tag-gold">Scale</span></td><td>2027 H2—2028</td><td>Cell-based архитектура, ClickHouse, ScyllaDB, Residential Proxy Farm</td><td>10K→100K</td></tr>
+<tr><td><span class="tag tag-purple">Global</span></td><td>2028—2029</td><td>Multi-region cells, Speculative Inference Mesh, 1,700+ B200 GPU, RLAIF</td><td>1M→10M+</td></tr>
+</table>
+
+<!-- SECTION 02: SYSTEM ARCHITECTURE -->
+<div class="page-break"></div>
+<h2 id="s2"><span class="num">02</span> System Architecture<span class="h-line"></span></h2>
+
+<h3>2.1 Multi-Region Cell-Based Architecture</h3>
+<p>AION Media OS использует <strong>cell-based архитектуру</strong> — каждый cell представляет собой изолированную копию всей платформы, обслуживающую определённый набор tenant'ов в конкретном регионе.</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">┌─────────────────────────────────────────────────────────────┐</span>
+<span class="hl">│                   GLOBAL CONTROL PLANE                      │</span>
+<span class="hl">│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │</span>
+<span class="hl">│  │  Global   │  │   Cell    │  │   Config  │  │   Auth    │   │</span>
+<span class="hl">│  │  Router   │  │  Manager  │  │   Store   │  │  Service  │   │</span>
+<span class="hl">│  └──────────┘  └──────────┘  └──────────┘  └──────────┘   │</span>
+<span class="hl">└─────────────────────────────────────────────────────────────┘</span>
+                             │
+    ┌────────────────────────┼────────────────────────┐
+    │                        │                        │
+<span class="hl2">┌──────────────┐    ┌──────────────┐    ┌──────────────┐</span>
+<span class="hl2">│  CELL USA    │    │  CELL EUROPE │    │  CELL ASIA   │</span>
+<span class="hl2">│  (us-east-1) │    │  (eu-west-1) │    │  (ap-southeast-1)│</span>
+<span class="hl2">└──────────────┘    └──────────────┘    └──────────────┘</span>
+      │                    │                    │
+<span class="hl4">┌─────────────┐    ┌─────────────┐    ┌─────────────┐</span>
+<span class="hl4">│  Cell AZ-A  │    │  Cell AZ-B  │    │  Cell AZ-C  │</span>
+<span class="hl4">│  (primary)  │    │  (standby)  │    │  (warm)     │</span>
+<span class="hl4">└─────────────┘    └─────────────┘    └─────────────┘</span>
+</pre>
+</div>
+
+<div class="glass-card cyan-glow">
+<div class="title">Cell Architecture — Key Properties</div>
+<table>
+<tr><th>Свойство</th><th>Описание</th></tr>
+<tr><td>Изоляция</td><td>Каждый cell имеет собственные: базу данных (CockroachDB), кэш (Redis), object storage, compute pool, event bus partition</td></tr>
+<tr><td>Масштабирование</td><td>Горизонтальное — добавление cell'a увеличивает пропускную способность системы линейно</td></tr>
+<tr><td>Отказоустойчивость</td><td>Active-Active HA внутри cell'а; Cross-region DR через asynchronous replication</td></tr>
+<tr><td>Data Locality</td><td>Тенанты привязаны к cell'у; данные не покидают регион без явного разрешения</td></tr>
+<tr><td>Global Router</td><td>Anycast DNS + Global Load Balancer направляет tenant'а в ближайший cell на основе latency+load</td></tr>
+</table>
+</div>
+
+<h3>2.2 Cell Component Architecture</h3>
+<p>Каждый cell включает следующие компоненты:</p>
+
+<div class="diagram">
+<pre>
+<span class="hl2">┌───────────── CELL BOUNDARY ────────────────────────────┐</span>
+<span class="hl2">│                                                        │</span>
+<span class="hl">│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  │</span>
+<span class="hl">│  │  Rust    │  │  Go      │  │  Python  │  │  Node.js │  │</span>
+<span class="hl">│  │  Gateway │  │  Ctl-Pl. │  │  AI Inf. │  │  Events  │  │</span>
+<span class="hl">│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘  │</span>
+<span class="hl">│       │              │              │              │       │</span>
+<span class="hl">│  ┌────┴──────────────┴──────────────┴──────────────┴────┐ │</span>
+<span class="hl">│  │              Redpanda Event Bus (Internal)           │ │</span>
+<span class="hl">│  └──────────────────────────┬───────────────────────────┘ │</span>
+<span class="hl">│       │              │              │              │       │</span>
+<span class="hl">│  ┌────┴──────────┐ ┌─┴──────────┐ ┌─┴──────────┐ ┌─┴───┐  │</span>
+<span class="hl">│  │  CockroachDB  │ │  Redis      │ │  Weaviate  │ │ S3  │  │</span>
+<span class="hl">│  │  (Regional)   │ │  (Cache)    │ │  (Vector)  │ │     │  │</span>
+<span class="hl">│  └───────────────┘ └────────────┘ └────────────┘ └─────┘  │</span>
+<span class="hl2">│                                                        │</span>
+<span class="hl2">└────────────────────────────────────────────────────────┘</span>
+</pre>
+</div>
+
+<h3>2.3 Component Breakdown</h3>
+
+<div class="glass-card">
+<div class="title">🦀 Rust API Gateway</div>
+<p>Высокопроизводительный gateway на <strong>Actix-web</strong>, обрабатывающий <strong>150K+ запросов/сек</strong> с p99 латентностью &lt;50ms. Отвечает за:</p>
+<ul>
+  <li>Аутентификацию и авторизацию (JWT + mTLS)</li>
+  <li>Rate limiting на уровне tenant'а (token bucket, 10K req/s per tenant)</li>
+  <li>Запись событий в Redpanda для аудита и event sourcing</li>
+  <li>Request validation, sanitization, schema enforcement</li>
+  <li>TLS termination с автоматическим ротацией сертификатов (cert-manager)</li>
+  <li>Circuit breaker для downstream сервисов</li>
+</ul>
+</div>
+
+<div class="glass-card">
+<div class="title">🐹 Go Control Plane</div>
+<p>Сервис управления cell'ом на <strong>Gin</strong>. Отвечает за:</p>
+<ul>
+  <li>Управление lifecycle'ом tenant'ов (provisioning, deprovisioning, migration)</li>
+  <li>Orchestration AI-агентов — распределение задач по worker'ам</li>
+  <li>Мониторинг состояния cell'а и метрик (Prometheus + Grafana)</li>
+  <li>Auto-scaling правил (HPA на основе длины очереди Redpanda и GPU utilization)</li>
+  <li>Graceful degradation при частичной потере ресурсов</li>
+</ul>
+</div>
+
+<div class="glass-card">
+<div class="title">🧠 Python AI Inference</div>
+<p>Вычислительное ядро на <strong>FastAPI + Celery</strong>, управляющее GPU-кластером. Отвечает за:</p>
+<ul>
+  <li>Запуск AI-моделей (Qwen2.5 7B, FLUX.1, WAN 2.1, Hunyuan Video, Whisper, Coqui XTTS)</li>
+  <li>Управление очередями GPU-задач (priority queues, gang scheduling для multi-GPU)</li>
+  <li>Кэширование результатов генерации (semantic caching через embeddings)</li>
+  <li>Мониторинг качества генераций (A/B тестирование моделей)</li>
+</ul>
+</div>
+
+<h3>2.4 Network Topology &amp; Data Flow</h3>
+
+<div class="diagram">
+<pre>
+<span class="hl">REQUEST FLOW (Read):</span>
+  Client → CDN (CloudFront) → Global Router (Anycast DNS)
+    → Nearest Cell (Route53 latency-based)
+      → Rust Gateway (ALB → Actix-web pods)
+        → Cache hit? → Redis → Response
+        → Cache miss? → CockroachDB (regional follower read) → Response
+
+<span class="hl">REQUEST FLOW (Write):</span>
+  Client → Rust Gateway → Validate → Write to Redpanda (event)
+    → Event consumed by Go Control Plane
+      → Orchestration: dispatch to AI Agents
+        → Python Inference → GPU compute → Result written to S3/MinIO
+          → Metadata → CockroachDB
+            → Event published → Notification to client via WebSocket
+
+<span class="hl">CROSS-CELL REPLICATION:</span>
+  Cell A (primary) ──async──→ Redpanda Global Topic ──sync──→ Cell B (standby)
+    ├── CockroachDB: Regional replication (RPO &lt; 5s)
+    ├── S3: Cross-region replication (RPO &lt; 15min)
+    └── Redis: Active-Active (CRDT-based, RPO &lt; 1s)
+</pre>
+</div>
+
+<h3>2.5 High Availability &amp; Disaster Recovery</h3>
+<table>
+<tr><th>Уровень</th><th>Стратегия</th><th>RTO</th><th>RPO</th></tr>
+<tr><td>Single Cell (AZ failure)</td><td>Active-Active across 3 AZ</td><td>&lt;30s</td><td>Zero</td></tr>
+<tr><td>Single Region</td><td>Warm standby in paired region</td><td>&lt;5min</td><td>&lt;5s</td></tr>
+<tr><td>Global (multi-region)</td><td>Active-Passive with traffic shift</td><td>&lt;15min</td><td>&lt;60s</td></tr>
+<tr><td>Data corruption</td><td>Point-in-time recovery (PITR)</td><td>&lt;30min</td><td>&lt;1s</td></tr>
+</table>
+
+<!-- SECTION 03: TECHNOLOGY STACK -->
+<div class="page-break"></div>
+<h2 id="s3"><span class="num">03</span> Technology Stack<span class="h-line-gold"></span></h2>
+
+<div class="glass-card gold-glow">
+<div class="title">Polyglot Architecture — выбор языка под задачу</div>
+<p>Стекс спроектирован по принципу «правильный инструмент для правильной задачи»: Rust — для критичного к производительности gateway, Go — для надёжного control plane, Python — для AI/ML, TypeScript — для frontend и интеграций.</p>
+</div>
+
+<h3>3.1 Languages &amp; Frameworks</h3>
+<table>
+<tr><th>Язык</th><th>Фреймворк</th><th>Назначение</th><th>Производительность</th></tr>
+<tr><td><span class="tag tag-blue">Rust</span></td><td>Actix-web 4</td><td>API Gateway, авторизация, rate limiting</td><td>150K req/s на 2 vCPU, 256MB RAM</td></tr>
+<tr><td><span class="tag tag-gold">Go</span></td><td>Gin</td><td>Control Plane, orchestration агентов</td><td>50K req/s, быстрая компиляция</td></tr>
+<tr><td><span class="tag tag-blue">Python</span></td><td>FastAPI + Celery</td><td>AI Inference, GPU orchestration</td><td>Зависит от модели; FastAPI: 10K req/s</td></tr>
+<tr><td><span class="tag tag-purple">TypeScript</span></td><td>React + Next.js</td><td>Dashboard, Frontend, Analytics UI</td><td>Client-side rendering + SSR</td></tr>
+<tr><td><span class="tag tag-green">Python</span></td><td>Litestar</td><td>Background workers, ETL pipelines</td><td>Async-first, 5K tasks/s</td></tr>
+</table>
+
+<h3>3.2 Data Layer</h3>
+<table>
+<tr><th>Компонент</th><th>Технология</th><th>Назначение</th><th>Конфигурация</th></tr>
+<tr><td>Primary DB</td><td>CockroachDB</td><td>Multi-region ACID, горизонтальное масштабирование</td><td>3 node per AZ × 3 AZ = 9 nodes per cell</td></tr>
+<tr><td>Cache</td><td>Redis Enterprise</td><td>Session cache, rate limiter, pub/sub</td><td>Active-Active CRDT, 10GB per cell</td></tr>
+<tr><td>Vector DB</td><td>Weaviate</td><td>Поиск по embeddings, semantic cache</td><td>1 node per cell, GPU-ускорение</td></tr>
+<tr><td>Object Storage</td><td>MinIO (S3-compatible)</td><td>Хранение изображений, видео, аудио</td><td>Distributed mode, erasure coding 8+4</td></tr>
+<tr><td>Event Bus</td><td>Redpanda</td><td>Событийно-ориентированная архитектура</td><td>3 node per cell, tiered storage (S3)</td></tr>
+<tr><td>Search</td><td>Meilisearch</td><td>Полнотекстовый поиск по контенту</td><td>1 node per region, 100K docs/s</td></tr>
+</table>
+
+<h3>3.3 AI/ML Stack</h3>
+<table>
+<tr><th>Модель</th><th>VRAM</th><th>Производительность</th><th>Лицензия</th><th>Назначение</th></tr>
+<tr><td>Qwen2.5 7B (Q4_K_M)</td><td>6 GB</td><td>~40 tok/s (RTX 3090)</td><td>Apache 2.0</td><td>Генерация сценариев, идей, анализ трендов</td></tr>
+<tr><td>FLUX.1-schnell</td><td>12 GB</td><td>~15s на изображение</td><td>Apache 2.0</td><td>Генерация промптов-изображений character'ов</td></tr>
+<tr><td>WAN 2.1</td><td>16 GB</td><td>~60s на 5s видео</td><td>MIT</td><td>Text-to-video, image-to-video</td></tr>
+<tr><td>Hunyuan Video</td><td>16 GB</td><td>~90s на 10s видео</td><td>Apache 2.0</td><td>Высококачественная генерация видео</td></tr>
+<tr><td>CogVideoX 5B</td><td>12 GB</td><td>~45s на 4s видео</td><td>Apache 2.0</td><td>Быстрая генерация коротких клипов</td></tr>
+<tr><td>Whisper large-v3</td><td>4 GB</td><td>~5x real-time</td><td>MIT</td><td>Транскрибация аудио, субтитры</td></tr>
+<tr><td>Coqui XTTS v2</td><td>4 GB</td><td>~2x real-time</td><td>CPML</td><td>Озвучка текста, voice cloning</td></tr>
+</table>
+
+<h3>3.4 Infrastructure &amp; DevOps</h3>
+<table>
+<tr><th>Уровень</th><th>Технология</th><th>Примечание</th></tr>
+<tr><td>Orchestration</td><td>Kubernetes (K3s)</td><td>Lightweight k8s для edge-cell'ов</td></tr>
+<tr><td>Service Mesh</td><td>Linkerd</td><td>mTLS, трафик-контроль, observability</td></tr>
+<tr><td>CI/CD</td><td>GitLab CI + ArgoCD</td><td>GitOps подход, progressive delivery</td></tr>
+<tr><td>Container Runtime</td><td>Docker + containerd</td><td>Безопасные образы, minimal base images</td></tr>
+<tr><td>Monitoring</td><td>Prometheus + Grafana + Loki</td><td>Metrics, logs, traces — unified observability</td></tr>
+<tr><td>Tracing</td><td>OpenTelemetry + Jaeger</td><td>Distributed tracing, p99 tracking</td></tr>
+<tr><td>Secrets</td><td>Vault</td><td>Dynamic secrets, rotation, audit log</td></tr>
+<tr><td>Infra as Code</td><td>Terraform + Crossplane</td><td>Declarative infra management</td></tr>
+</table>
+
+<h3>3.5 GPU Cluster Layout (MVP $0)</h3>
+<div class="info-box">
+<strong>MVP GPU Стратегия:</strong> Используем существующие локальные GPU (NVIDIA RTX 3090 24GB / RTX 4090 24GB) без дополнительных капитальных затрат:
+<ul>
+  <li>Ollama (Qwen2.5 7B): ~6 GB VRAM — запускается на CPU при нехватке GPU, скорость приемлемая</li>
+  <li>ComfyUI + FLUX: ~12 GB VRAM — выделенная GPU для генерации изображений</li>
+  <li>WAN / Hunyuan: ~16 GB VRAM — требуется GPU высокого класса или split между 2 GPU</li>
+  <li>FFmpeg: CPU-only — обработка и композиция видео</li>
+  <li>Whisper: CPU-only (tiny/small модели) или 4 GB GPU (large модель)</li>
+</ul>
+<p>При масштабировании — аренда GPU через vast.ai / runpod.io ($50-200/день).</p>
+</div>
+
+<h3>3.6 Performance Benchmarks</h3>
+<div class="chart-h">
+  <div class="chart-bar-group">
+    <div class="chart-value">42ms</div>
+    <div class="chart-bar green" style="height:85%"></div>
+    <div class="chart-label">Rust</div>
+  </div>
+  <div class="chart-bar-group">
+    <div class="chart-value">68ms</div>
+    <div class="chart-bar gold" style="height:55%"></div>
+    <div class="chart-label">Go</div>
+  </div>
+  <div class="chart-bar-group">
+    <div class="chart-value">125ms</div>
+    <div class="chart-bar cyan" style="height:30%"></div>
+    <div class="chart-label">Python</div>
+  </div>
+  <div class="chart-bar-group">
+    <div class="chart-value">89ms</div>
+    <div class="chart-bar purple" style="height:45%"></div>
+    <div class="chart-label">TS/Node</div>
+  </div>
+  <div class="chart-bar-group">
+    <div class="chart-value">145ms</div>
+    <div class="chart-bar red" style="height:25%"></div>
+    <div class="chart-label">Python AI</div>
+  </div>
+</div>
+<div style="text-align:center;font-size:0.7rem;color:#475569;margin-bottom:16px">p99 latency by service tier (lower is better)</div>
+
+
+<!-- SECTION 04: DATABASE SCHEMA -->
+<div class="page-break"></div>
+<h2 id="s4"><span class="num">04</span> Database Schema &amp; ER Diagrams<span class="h-line-gold"></span></h2>
+
+<h3>4.1 Entity Relationship Diagram (Концептуальный)</h3>
+
+<div class="diagram">
+<span class="hl">Концептуальная схема связей:</span>
+
+<pre>
+users ──1:N── projects ──1:N── ideas ──1:1── scripts ──1:N── storyboards ──1:N── prompts
+              │                     
+              ├──1:N── videos ──1:N── publications ──1:N── analytics
+              ├──1:N── assets
+              ├──1:N── characters ──N:M── worlds
+              └──1:N── scenes ──N:M── effects
+
+characters ──1:N── character_assets
+worlds ──1:N── world_locations
+styles ──1:N── projects/characters/worlds
+</pre>
+</div>
+
+<h3>4.2 Детальное описание таблиц</h3>
+
+<h4>4.2.1 users</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK, DEFAULT gen_random_uuid()</td><td>Уникальный идентификатор</td></tr>
+<tr><td>email</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td><td>Email для аутентификации</td></tr>
+<tr><td>password_hash</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Argon2id хэш</td></tr>
+<tr><td>display_name</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Отображаемое имя</td></tr>
+<tr><td>role</td><td>ENUM('admin','operator','viewer')</td><td>NOT NULL, DEFAULT 'operator'</td><td>Уровень доступа</td></tr>
+<tr><td>avatar_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>MinIO URL аватара</td></tr>
+<tr><td>is_active</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT true</td><td>Статус активности</td></tr>
+<tr><td>settings</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>Персональные настройки, тема, уведомления</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td>Дата создания записи</td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td>Дата последнего обновления</td></tr>
+<tr><td>last_login_at</td><td>TIMESTAMPTZ</td><td>NULLABLE</td><td>Дата последнего входа</td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_users_email ON users(email); idx_users_role ON users(role);</div>
+
+<h4>4.2.2 projects</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td>Уникальный идентификатор</td></tr>
+<tr><td>user_id</td><td>UUID</td><td>FK на users.id, NOT NULL</td><td>Владелец</td></tr>
+<tr><td>name</td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Название-заголовок проекта</td></tr>
+<tr><td>description</td><td>TEXT</td><td>NULLABLE</td><td>Описание / идея проекта</td></tr>
+<tr><td>status</td><td>ENUM('draft','active','paused','completed','archived')</td><td>NOT NULL, DEFAULT 'draft'</td><td>Текущее состояние пайплайна</td></tr>
+<tr><td>content_type</td><td>VARCHAR(50)</td><td>NOT NULL, DEFAULT 'shorts'</td><td>tiktok, youtube_shorts, instagram_reels, generic</td></tr>
+<tr><td>target_platforms</td><td>VARCHAR[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Целевые платформы</td></tr>
+<tr><td>scheduling_config</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>Расписание публикаций, временные слоты, часовой пояс</td></tr>
+<tr><td>pipeline_config</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>Конфигурация конвейера обработки</td></tr>
+<tr><td>default_world_id</td><td>UUID</td><td>FK на worlds.id, NULLABLE</td><td>Мир по умолчанию для всех проектов</td></tr>
+<tr><td>default_style_id</td><td>UUID</td><td>FK на styles.id, NULLABLE</td><td>Стиль по умолчанию для генераций</td></tr>
+<tr><td>total_videos</td><td>INTEGER</td><td>NOT NULL, DEFAULT 0</td><td>Counter cache: количество видео</td></tr>
+<tr><td>total_published</td><td>INTEGER</td><td>NOT NULL, DEFAULT 0</td><td>Counter cache: опубликовано</td></tr>
+<tr><td>settings</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>Расширенные настройки проекта и конфигурации</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_projects_user_id ON projects(user_id); idx_projects_status ON projects(status); idx_projects_created ON projects(created_at DESC);</div>
+
+<h4>4.2.3 ideas</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>project_id</td><td>UUID</td><td>FK на projects.id, NOT NULL</td><td>Принадлежность проекту</td></tr>
+<tr><td>source</td><td>ENUM('creative_director','user','trending','scheduled','manual')</td><td>NOT NULL</td><td>Источник генерации идеи</td></tr>
+<tr><td>seed_topic</td><td>VARCHAR(300)</td><td>NOT NULL</td><td>Исходный seed / topic запроса</td></tr>
+<tr><td>title</td><td>VARCHAR(300)</td><td>NOT NULL</td><td>Заголовок идеи</td></tr>
+<tr><td>description</td><td>TEXT</td><td>NOT NULL</td><td>Описание / расшифровка идеи</td></tr>
+<tr><td>target_audience</td><td>VARCHAR(200)</td><td>NULLABLE</td><td>Описание целевой аудитории</td></tr>
+<tr><td>hook</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>Привлекающий заголовок</td></tr>
+<tr><td>emotional_appeal</td><td>VARCHAR(100)</td><td>NULLABLE</td><td>Эмоциональный призыв (curiosity, humor, fear, inspiration)</td></tr>
+<tr><td>trending_score</td><td>FLOAT</td><td>DEFAULT 0.0</td><td>AI-оценка трендовости контента</td></tr>
+<tr><td>status</td><td>ENUM('pending','approved','used','rejected')</td><td>NOT NULL, DEFAULT 'pending'</td><td>Состояние идеи</td></tr>
+<tr><td>script_id</td><td>UUID</td><td>FK на scripts.id, NULLABLE</td><td>Связанный сценарий</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_ideas_project_id ON ideas(project_id); idx_ideas_status ON ideas(status); idx_ideas_trending ON ideas(trending_score DESC) WHERE status='pending';</div>
+
+<h4>4.2.4 scripts</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>project_id</td><td>UUID</td><td>FK на projects.id, NOT NULL</td><td></td></tr>
+<tr><td>idea_id</td><td>UUID</td><td>FK на ideas.id, NULLABLE</td><td>Исходная идея</td></tr>
+<tr><td>title</td><td>VARCHAR(300)</td><td>NOT NULL</td><td>Заголовок сценария</td></tr>
+<tr><td>format</td><td>ENUM('hook_body_cta','story','educational','review','comedy','drama')</td><td>NOT NULL</td><td>Формат контента видео</td></tr>
+<tr><td>duration_target</td><td>INTEGER</td><td>NOT NULL, DEFAULT 30</td><td>Целевая длительность в секундах</td></tr>
+<tr><td>full_text</td><td>TEXT</td><td>NOT NULL</td><td>Полный текст сценария</td></tr>
+<tr><td>voiceover_text</td><td>TEXT</td><td>NULLABLE</td><td>Текст озвучки (может отличаться от full_text)</td></tr>
+<tr><td>scene_count</td><td>INTEGER</td><td>NOT NULL, DEFAULT 1</td><td>Количество сцен в сценарии</td></tr>
+<tr><td>emotional_arc</td><td>VARCHAR(100)[]</td><td>NULLABLE</td><td>Эмоциональная траектория по сценам</td></tr>
+<tr><td>key_lines</td><td>TEXT[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Ключевые запоминающиеся фразы</td></tr>
+<tr><td>cta_text</td><td>VARCHAR(300)</td><td>NULLABLE</td><td>Призыв к действию в конце</td></tr>
+<tr><td>hashtag_suggestions</td><td>VARCHAR(100)[]</td><td>NULLABLE</td><td>AI-рекомендованные хэштеги</td></tr>
+<tr><td>status</td><td>ENUM('draft','completed','in_production','used')</td><td>NOT NULL, DEFAULT 'draft'</td><td></td></tr>
+<tr><td>word_count</td><td>INTEGER</td><td>NOT NULL, DEFAULT 0</td><td>Количество слов</td></tr>
+<tr><td>complexity_score</td><td>FLOAT</td><td>DEFAULT 0.0</td><td>AI-оценка сложности постановки</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_scripts_project_id ON scripts(project_id); idx_scripts_format ON scripts(format); idx_scripts_status ON scripts(status);</div>
+
+<h4>4.2.5 storyboards</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>script_id</td><td>UUID</td><td>FK на scripts.id, NOT NULL</td><td></td></tr>
+<tr><td>scene_number</td><td>INTEGER</td><td>NOT NULL</td><td>Порядковый номер сцены (1-based)</td></tr>
+<tr><td>description</td><td>TEXT</td><td>NOT NULL</td><td>Визуальное описание сцены</td></tr>
+<tr><td>camera_angle</td><td>VARCHAR(50)</td><td>NULLABLE</td><td>wide, medium, closeup, aerial, POV, dolly</td></tr>
+<tr><td>camera_movement</td><td>VARCHAR(100)</td><td>NULLABLE</td><td>pan, tilt, zoom, tracking, handheld, steadicam</td></tr>
+<tr><td>lighting</td><td>VARCHAR(200)</td><td>NULLABLE</td><td>Описание освещения</td></tr>
+<tr><td>atmosphere</td><td>VARCHAR(200)</td><td>NULLABLE</td><td>Атмосфера, настроение, эмоция</td></tr>
+<tr><td>character_ids</td><td>UUID[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Персонажи, участвующие в этой сцене</td></tr>
+<tr><td>character_actions</td><td>JSONB</td><td>DEFAULT '{}'</td><td>Действия персонажей: {char_id: action_text}</td></tr>
+<tr><td>world_location_id</td><td>UUID</td><td>FK на world_locations.id, NULLABLE</td><td>Локация сцены</td></tr>
+<tr><td>props</td><td>VARCHAR(200)[]</td><td>NULLABLE</td><td>Необходимые объекты</td></tr>
+<tr><td>effects</td><td>VARCHAR(200)[]</td><td>NULLABLE</td><td>Спецэффекты</td></tr>
+<tr><td>duration_seconds</td><td>INTEGER</td><td>NOT NULL, DEFAULT 5</td><td>Расчётная длительность сцены</td></tr>
+<tr><td>dialogue_lines</td><td>JSONB</td><td>DEFAULT '[]'</td><td>[{speaker, text, emotion, duration}]</td></tr>
+<tr><td>transition_out</td><td>VARCHAR(50)</td><td>NULLABLE</td><td>cut, fade, dissolve, wipe, zoom_out</td></tr>
+<tr><td>reference_image_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>Референсное изображение</td></tr>
+<tr><td>prompt_id</td><td>UUID</td><td>FK на prompts.id, NULLABLE</td><td>Сгенерированный промпт для сцены</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_storyboards_script_id ON storyboards(script_id); UNIQUE idx_storyboard_scene ON storyboards(script_id, scene_number);</div>
+
+<h4>4.2.6 prompts</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>storyboard_id</td><td>UUID</td><td>FK на storyboards.id, NULLABLE</td><td></td></tr>
+<tr><td>type</td><td>ENUM('image','video','style','character','world','negative')</td><td>NOT NULL</td><td>Тип промпта</td></tr>
+<tr><td>prompt_text</td><td>TEXT</td><td>NOT NULL</td><td>Полное описание промпта</td></tr>
+<tr><td>negative_prompt</td><td>TEXT</td><td>NULLABLE</td><td>Что исключить</td></tr>
+<tr><td>model</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>Целевая модель: flux-schnell, flux-dev, sdxl, wan, hunyuan</td></tr>
+<tr><td>parameters</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>width, height, steps, guidance, seed, scheduler</td></tr>
+<tr><td>style_refs</td><td>VARCHAR(500)[]</td><td>DEFAULT '{}'</td><td>URL референсных изображений для style transfer</td></tr>
+<tr><td>controlnet_config</td><td>JSONB</td><td>NULLABLE</td><td>ControlNet параметры</td></tr>
+<tr><td>loras</td><td>VARCHAR(200)[]</td><td>DEFAULT '{}'</td><td>Подключаемые LoRA модели</td></tr>
+<tr><td>lora_weights</td><td>FLOAT[]</td><td>DEFAULT '{}'</td><td>Весовые коэффициенты LoRA</td></tr>
+<tr><td>quality_score</td><td>FLOAT</td><td>DEFAULT NULL</td><td>AI оценка качества промпта (0-1)</td></tr>
+<tr><td>usage_count</td><td>INTEGER</td><td>NOT NULL, DEFAULT 1</td><td>Сколько раз использован промпт</td></tr>
+<tr><td>avg_generation_score</td><td>FLOAT</td><td>DEFAULT NULL</td><td>Средняя оценка качества генераций</td></tr>
+<tr><td>is_template</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT false</td><td>Может быть шаблоном для переиспользования</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_prompts_storyboard_id ON prompts(storyboard_id); idx_prompts_type ON prompts(type); idx_prompts_model ON prompts(model); idx_prompts_quality ON prompts(quality_score DESC) WHERE quality_score IS NOT NULL;</div>
+
+<h4>4.2.7 generated_images</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>prompt_id</td><td>UUID</td><td>FK на prompts.id, NOT NULL</td><td></td></tr>
+<tr><td>project_id</td><td>UUID</td><td>FK на projects.id, NOT NULL</td><td></td></tr>
+<tr><td>url</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>MinIO object URL</td></tr>
+<tr><td>thumbnail_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>MinIO thumbnail URL</td></tr>
+<tr><td>width</td><td>INTEGER</td><td>NOT NULL</td><td></td></tr>
+<tr><td>height</td><td>INTEGER</td><td>NOT NULL</td><td></td></tr>
+<tr><td>file_size_bytes</td><td>BIGINT</td><td>NOT NULL</td><td></td></tr>
+<tr><td>format</td><td>VARCHAR(10)</td><td>NOT NULL, DEFAULT 'png'</td><td>png, jpeg, webp</td></tr>
+<tr><td>seed</td><td>INTEGER</td><td>NOT NULL</td><td>Сид для воспроизводимости</td></tr>
+<tr><td>generation_params</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>Полные параметры генерации</td></tr>
+<tr><td>quality_score</td><td>FLOAT</td><td>DEFAULT NULL</td><td>Автооценка качества</td></tr>
+<tr><td>is_selected</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT false</td><td>Выбрано для финального видео</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_gen_images_prompt_id ON generated_images(prompt_id); idx_gen_images_project_id ON generated_images(project_id); idx_gen_images_selected ON generated_images(project_id, is_selected) WHERE is_selected=true;</div>
+
+<h4>4.2.8 video_clips</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>prompt_id</td><td>UUID</td><td>FK на prompts.id, NOT NULL</td><td></td></tr>
+<tr><td>project_id</td><td>UUID</td><td>FK на projects.id, NOT NULL</td><td></td></tr>
+<tr><td>url</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>MinIO video URL (.mp4)</td></tr>
+<tr><td>thumbnail_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td></td></tr>
+<tr><td>duration_seconds</td><td>FLOAT</td><td>NOT NULL</td><td>Фактическая длительность</td></tr>
+<tr><td>width</td><td>INTEGER</td><td>NOT NULL</td><td></td></tr>
+<tr><td>height</td><td>INTEGER</td><td>NOT NULL</td><td></td></tr>
+<tr><td>fps</td><td>FLOAT</td><td>NOT NULL</td><td></td></tr>
+<tr><td>codec</td><td>VARCHAR(20)</td><td>NOT NULL</td><td>h264, h265, vp9</td></tr>
+<tr><td>file_size_bytes</td><td>BIGINT</td><td>NOT NULL</td><td></td></tr>
+<tr><td>generation_model</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>wan, hunyuan, cogvideox</td></tr>
+<tr><td>seed</td><td>INTEGER</td><td>NOT NULL</td><td></td></tr>
+<tr><td>quality_score</td><td>FLOAT</td><td>DEFAULT NULL</td><td>AI оценка качества</td></tr>
+<tr><td>scene_number</td><td>INTEGER</td><td>NOT NULL</td><td>Из какой сцены этот клип</td></tr>
+<tr><td>is_selected</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT false</td><td>Использован в финальном видео</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_video_clips_prompt_id ON video_clips(prompt_id); idx_video_clips_project_id ON video_clips(project_id); idx_video_clips_selected ON video_clips(project_id, is_selected) WHERE is_selected=true;</div>
+
+<h4>4.2.9 videos (Скомпонованный финальный ролик)</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>project_id</td><td>UUID</td><td>FK на projects.id, NOT NULL</td><td></td></tr>
+<tr><td>script_id</td><td>UUID</td><td>FK на scripts.id, NOT NULL</td><td></td></tr>
+<tr><td>title</td><td>VARCHAR(300)</td><td>NOT NULL</td><td>Скомпонованный заголовок ролика</td></tr>
+<tr><td>description</td><td>TEXT</td><td>NULLABLE</td><td>Описание ролика</td></tr>
+<tr><td>url</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>MinIO URL готового ролика</td></tr>
+<tr><td>thumbnail_url</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>Автосгенерированный превью</td></tr>
+<tr><td>duration_seconds</td><td>FLOAT</td><td>NOT NULL</td><td></td></tr>
+<tr><td>file_size_bytes</td><td>BIGINT</td><td>NOT NULL</td><td></td></tr>
+<tr><td>resolution</td><td>VARCHAR(20)</td><td>NOT NULL</td><td>1920x1080, 1080x1920, и т.д.</td></tr>
+<tr><td>fps</td><td>FLOAT</td><td>NOT NULL</td><td></td></tr>
+<tr><td>subtitles_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>URL SRT субтитров</td></tr>
+<tr><td>subtitles_burned</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT false</td><td>Вшиты ли субтитры</td></tr>
+<tr><td>has_voiceover</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT false</td><td></td></tr>
+<tr><td>voiceover_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>Сгенерированная озвучка</td></tr>
+<tr><td>background_music</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>URL фоновой музыки</td></tr>
+<tr><td>clip_ids</td><td>UUID[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Порядок ссылок на video_clips</td></tr>
+<tr><td>edit_params</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>Параметры монтажа: переходы, эффекты</td></tr>
+<tr><td>status</td><td>ENUM('draft','rendering','completed','failed')</td><td>NOT NULL, DEFAULT 'draft'</td><td></td></tr>
+<tr><td>quality_score</td><td>FLOAT</td><td>DEFAULT NULL</td><td>AI оценка качества готового ролика</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_videos_project_id ON videos(project_id); idx_videos_status ON videos(status); idx_videos_created ON videos(created_at DESC);</div>
+
+<h4>4.2.10 publications</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>video_id</td><td>UUID</td><td>FK на videos.id, NOT NULL</td><td></td></tr>
+<tr><td>project_id</td><td>UUID</td><td>FK на projects.id, NOT NULL</td><td></td></tr>
+<tr><td>platform</td><td>ENUM('tiktok','youtube_shorts','instagram_reels','telegram','custom')</td><td>NOT NULL</td><td></td></tr>
+<tr><td>status</td><td>ENUM('scheduled','publishing','published','failed','retrying')</td><td>NOT NULL, DEFAULT 'scheduled'</td><td>Статус публикации</td></tr>
+<tr><td>platform_post_id</td><td>VARCHAR(200)</td><td>NULLABLE</td><td>ID на платформе после публикации</td></tr>
+<tr><td>platform_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>Ссылка на опубликованный пост</td></tr>
+<tr><td>scheduled_at</td><td>TIMESTAMPTZ</td><td>NULLABLE</td><td>Запланированное время</td></tr>
+<tr><td>published_at</td><td>TIMESTAMPTZ</td><td>NULLABLE</td><td>Фактическое время публикации</td></tr>
+<tr><td>title</td><td>VARCHAR(300)</td><td>NOT NULL</td><td>Заголовок для платформы</td></tr>
+<tr><td>description</td><td>TEXT</td><td>NULLABLE</td><td>Описание для платформы</td></tr>
+<tr><td>hashtags</td><td>VARCHAR(100)[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Хэштеги для платформы</td></tr>
+<tr><td>thumbnail_url</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>Превью для публикации</td></tr>
+<tr><td>retry_count</td><td>INTEGER</td><td>NOT NULL, DEFAULT 0</td><td>Число повторных попыток</td></tr>
+<tr><td>error_message</td><td>TEXT</td><td>NULLABLE</td><td>Сообщение об ошибке</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_publications_video_id ON publications(video_id); idx_publications_status ON publications(status); idx_publications_platform ON publications(platform); idx_publications_scheduled ON publications(scheduled_at) WHERE status='scheduled'; UNIQUE idx_publications_platform_post ON publications(platform, platform_post_id) WHERE platform_post_id IS NOT NULL;</div>
+
+<h4>4.2.11 analytics_snapshots</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>publication_id</td><td>UUID</td><td>FK на publications.id, NOT NULL</td><td></td></tr>
+<tr><td>snapshot_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>Время снятия метрики</td></tr>
+<tr><td>views</td><td>BIGINT</td><td>NOT NULL, DEFAULT 0</td><td>Просмотры</td></tr>
+<tr><td>likes</td><td>BIGINT</td><td>NOT NULL, DEFAULT 0</td><td>Лайки</td></tr>
+<tr><td>comments</td><td>BIGINT</td><td>NOT NULL, DEFAULT 0</td><td>Комментарии</td></tr>
+<tr><td>shares</td><td>BIGINT</td><td>NOT NULL, DEFAULT 0</td><td>Репосты</td></tr>
+<tr><td>saves</td><td>BIGINT</td><td>NOT NULL, DEFAULT 0</td><td>Сохранения</td></tr>
+<tr><td>likes_rate</td><td>FLOAT</td><td>DEFAULT 0</td><td>likes / views * 100</td></tr>
+<tr><td>comments_rate</td><td>FLOAT</td><td>DEFAULT 0</td><td>comments / views * 100</td></tr>
+<tr><td>share_rate</td><td>FLOAT</td><td>DEFAULT 0</td><td>shares / views * 100</td></tr>
+<tr><td>engagement_rate</td><td>FLOAT</td><td>DEFAULT 0</td><td>(L+C+Sh+Sa)/V * 100</td></tr>
+<tr><td>avg_watch_seconds</td><td>FLOAT</td><td>DEFAULT 0</td><td>Среднее время просмотра</td></tr>
+<tr><td>avg_watch_percent</td><td>FLOAT</td><td>DEFAULT 0</td><td>% от длительности</td></tr>
+<tr><td>follower_gain</td><td>INTEGER</td><td>DEFAULT 0</td><td>Прирост подписчиков</td></tr>
+<tr><td>click_throughs</td><td>INTEGER</td><td>DEFAULT 0</td><td>Переходы</td></tr>
+<tr><td>revenue</td><td>DECIMAL(10,2)</td><td>DEFAULT 0</td><td>Доход от поста</td></tr>
+<tr><td>data_source</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>tiktok_api, youtube_api, estimated</td></tr>
+<tr><td>raw_data</td><td>JSONB</td><td>DEFAULT '{}'</td><td>Полные данные API ответа</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_analytics_publication_id ON analytics_snapshots(publication_id); idx_analytics_snapshot_time ON analytics_snapshots(publication_id, snapshot_at DESC); idx_analytics_engagement ON analytics_snapshots(engagement_rate DESC) WHERE views > 100;</div>
+
+<h4>4.2.12 characters (Таблица персонажей)</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>name</td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Имя персонажа</td></tr>
+<tr><td>slug</td><td>VARCHAR(200)</td><td>UNIQUE, NOT NULL</td><td>URL-уникальный идентификатор</td></tr>
+<tr><td>type</td><td>ENUM('hero','villain','sidekick','mentor','guide','narrator','extra','creature','ai')</td><td>NOT NULL</td><td>Типаж персонажа</td></tr>
+<tr><td>biography</td><td>TEXT</td><td>NULLABLE</td><td>Биография персонажа</td></tr>
+<tr><td>personality_traits</td><td>VARCHAR(100)[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Черты: смелость, харизма, мудрость, агрессия</td></tr>
+<tr><td>emotional_range</td><td>VARCHAR(100)[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Спектр эмоций, которые может отыгрывать</td></tr>
+<tr><td>color_palette</td><td>VARCHAR(20)[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Hex цвета, ассоциированные с персонажем</td></tr>
+<tr><td>voice_style</td><td>VARCHAR(100)</td><td>NULLABLE</td><td>Глубокий, весёлый, роботизированный, шепчущий</td></tr>
+<tr><td>voice_audio_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>Референсная аудиозапись голоса</td></tr>
+<tr><td>voice_cloning_ref</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>Coqui TTS speaker reference</td></tr>
+<tr><td>default_animation</td><td>VARCHAR(100)</td><td>NULLABLE</td><td>idle, walking, talking, excited</td></tr>
+<tr><td>reference_images</td><td>VARCHAR(500)[]</td><td>DEFAULT '{}'</td><td>Референсные изображения персонажа (MinIO)</td></tr>
+<tr><td>avatar_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>Основной аватар персонажа</td></tr>
+<tr><td>style_id</td><td>UUID</td><td>FK на styles.id, NULLABLE</td><td>Ассоциированный визуальный стиль</td></tr>
+<tr><td>prompt_template</td><td>TEXT</td><td>NULLABLE</td><td>Стандартный шаблон промпта для генерации</td></tr>
+<tr><td>lora_model</td><td>VARCHAR(200)</td><td>NULLABLE</td><td>Обученная LoRA, специфичная для персонажа</td></tr>
+<tr><td>is_public</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT false</td><td>Доступен ли другим проектам</td></tr>
+<tr><td>metadata</td><td>JSONB</td><td>DEFAULT '{}'</td><td>Дополнительные метаданные</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_characters_slug ON characters(slug); idx_characters_type ON characters(type); idx_characters_public ON characters(is_public) WHERE is_public=true;</div>
+
+<h4>4.2.13 worlds</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>name</td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Название мира (Vietnam, Japan, и т.д.)</td></tr>
+<tr><td>slug</td><td>VARCHAR(200)</td><td>UNIQUE, NOT NULL</td><td></td></tr>
+<tr><td>description</td><td>TEXT</td><td>NULLABLE</td><td>Описание мира</td></tr>
+<tr><td>architecture_style</td><td>VARCHAR(200)</td><td>NULLABLE</td><td>Modern, traditional, futuristic, colonial</td></tr>
+<tr><td>color_palette</td><td>VARCHAR(20)[]</td><td>NOT NULL, DEFAULT '{}'</td><td>Доминирующие цвета</td></tr>
+<tr><td>lighting_profile</td><td>VARCHAR(200)</td><td>NULLABLE</td><td>Golden hour, neon, overcast, tropical bright</td></tr>
+<tr><td>vibe</td><td>VARCHAR(100)</td><td>NULLABLE</td><td>Peaceful, chaotic, luxurious, mysterious</td></tr>
+<tr><td>ambient_sound_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>Фоновый звуковой ландшафт мира</td></tr>
+<tr><td>seasonal_effects</td><td>VARCHAR(100)[]</td><td>DEFAULT '{}'</td><td>rain, snow, fog, cherry_blossom, monsoon</td></tr>
+<tr><td>background_images</td><td>VARCHAR(500)[]</td><td>DEFAULT '{}'</td><td>Фоновые изображения мира</td></tr>
+<tr><td>style_id</td><td>UUID</td><td>FK на styles.id, NULLABLE</td><td>Ассоциированный стиль</td></tr>
+<tr><td>prompt_template</td><td>TEXT</td><td>NULLABLE</td><td>Стандартный шаблон промпта</td></tr>
+<tr><td>metadata</td><td>JSONB</td><td>DEFAULT '{}'</td><td>Дополнительные метаданные</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+<div class="diagram">Indexes: idx_worlds_slug ON worlds(slug);</div>
+
+<h4>4.2.14 world_locations</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>world_id</td><td>UUID</td><td>FK на worlds.id, NOT NULL</td><td></td></tr>
+<tr><td>name</td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Название локации</td></tr>
+<tr><td>type</td><td>ENUM('urban','nature','indoor','beach','mountain','temple','market','airport','street','cafe','club','hotel','studio')</td><td>NOT NULL</td><td></td></tr>
+<tr><td>description</td><td>TEXT</td><td>NULLABLE</td><td></td></tr>
+<tr><td>atmosphere</td><td>VARCHAR(200)</td><td>NULLABLE</td><td></td></tr>
+<tr><td>reference_images</td><td>VARCHAR(500)[]</td><td>DEFAULT '{}'</td><td></td></tr>
+<tr><td>prompt_template</td><td>TEXT</td><td>NULLABLE</td><td></td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+
+<h4>4.2.15 scene_templates</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>name</td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Название шаблона</td></tr>
+<tr><td>type</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>camera_movement, lighting, effect</td></tr>
+<tr><td>category</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>dolly_zoom, slow_motion</td></tr>
+<tr><td>description</td><td>TEXT</td><td>NULLABLE</td><td></td></tr>
+<tr><td>preview_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td>Пример превью</td></tr>
+<tr><td>parameters</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>FFmpeg/ComfyUI params</td></tr>
+<tr><td>ffmpeg_filter</td><td>TEXT</td><td>NULLABLE</td><td>FFmpeg filter команда</td></tr>
+<tr><td>comfyui_workflow</td><td>JSONB</td><td>NULLABLE</td><td>JSON workflow</td></tr>
+<tr><td>difficulty</td><td>ENUM('easy','medium','hard')</td><td>NOT NULL, DEFAULT 'easy'</td><td></td></tr>
+<tr><td>gpu_cost</td><td>FLOAT</td><td>DEFAULT 0</td><td>GPU-интенсивность</td></tr>
+<tr><td>usage_count</td><td>INTEGER</td><td>NOT NULL, DEFAULT 0</td><td></td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+
+<h4>4.2.16 styles</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>name</td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Название стиля</td></tr>
+<tr><td>type</td><td>ENUM('visual','animation','editing','overlay')</td><td>NOT NULL</td><td></td></tr>
+<tr><td>prompt_prefix</td><td>TEXT</td><td>NULLABLE</td><td>Префикс промпта</td></tr>
+<tr><td>prompt_suffix</td><td>TEXT</td><td>NULLABLE</td><td>Суффикс промпта</td></tr>
+<tr><td>negative_prompt</td><td>TEXT</td><td>NULLABLE</td><td>Отрицательный промпт</td></tr>
+<tr><td>parameters</td><td>JSONB</td><td>NOT NULL, DEFAULT '{}'</td><td>Параметры модели</td></tr>
+<tr><td>loras</td><td>VARCHAR(200)[]</td><td>DEFAULT '{}'</td><td>LoRA модели</td></tr>
+<tr><td>reference_images</td><td>VARCHAR(500)[]</td><td>DEFAULT '{}'</td><td>Референсы</td></tr>
+<tr><td>color_palette</td><td>VARCHAR(20)[]</td><td>DEFAULT '{}'</td><td>Hex цвета</td></tr>
+<tr><td>is_public</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT false</td><td></td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+
+<h4>4.2.17 api_keys</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>user_id</td><td>UUID</td><td>FK на users.id, NOT NULL</td><td></td></tr>
+<tr><td>name</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Имя ключа</td></tr>
+<tr><td>key_hash</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td><td>SHA-256 хэш</td></tr>
+<tr><td>key_prefix</td><td>VARCHAR(10)</td><td>NOT NULL</td><td>Первые 8 символов</td></tr>
+<tr><td>permissions</td><td>VARCHAR(50)[]</td><td>NOT NULL, DEFAULT '{}'</td><td>read, write, publish</td></tr>
+<tr><td>is_active</td><td>BOOLEAN</td><td>NOT NULL, DEFAULT true</td><td></td></tr>
+<tr><td>last_used_at</td><td>TIMESTAMPTZ</td><td>NULLABLE</td><td></td></tr>
+<tr><td>expires_at</td><td>TIMESTAMPTZ</td><td>NULLABLE</td><td></td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+
+<h4>4.2.18 job_queue</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>task_id</td><td>VARCHAR(200)</td><td>UNIQUE, NOT NULL</td><td>Celery UUID</td></tr>
+<tr><td>queue_name</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Имя очереди</td></tr>
+<tr><td>agent_type</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>creative_director, screenwriter</td></tr>
+<tr><td>payload_reference</td><td>JSONB</td><td>NOT NULL</td><td>Ссылка на контекст задачи</td></tr>
+<tr><td>status</td><td>ENUM('pending','enqueued','processing','completed','failed','retrying','cancelled')</td><td>NOT NULL, DEFAULT 'pending'</td><td></td></tr>
+<tr><td>priority</td><td>INTEGER</td><td>NOT NULL, DEFAULT 0</td><td>Выше = важнее</td></tr>
+<tr><td>retry_count</td><td>INTEGER</td><td>NOT NULL, DEFAULT 0</td><td></td></tr>
+<tr><td>max_retries</td><td>INTEGER</td><td>NOT NULL, DEFAULT 3</td><td></td></tr>
+<tr><td>error_message</td><td>TEXT</td><td>NULLABLE</td><td></td></tr>
+<tr><td>error_traceback</td><td>TEXT</td><td>NULLABLE</td><td></td></tr>
+<tr><td>started_at</td><td>TIMESTAMPTZ</td><td>NULLABLE</td><td></td></tr>
+<tr><td>completed_at</td><td>TIMESTAMPTZ</td><td>NULLABLE</td><td></td></tr>
+<tr><td>duration_ms</td><td>INTEGER</td><td>NULLABLE</td><td>Время выполнения</td></tr>
+<tr><td>worker_id</td><td>VARCHAR(100)</td><td>NULLABLE</td><td>Worker</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+
+<h4>4.2.19 assets</h4>
+<div class="table-wrap">
+<table>
+<tr><th>Колонка</th><th>Тип</th><th>Ограничения</th><th>Описание</th></tr>
+<tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>project_id</td><td>UUID</td><td>FK на projects.id, NULLABLE</td><td>Null = глобальный</td></tr>
+<tr><td>type</td><td>ENUM('image','video','audio','music','font','3d_model','lora','style_reference','background','overlay','template')</td><td>NOT NULL</td><td></td></tr>
+<tr><td>name</td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Имя</td></tr>
+<tr><td>url</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>MinIO URL</td></tr>
+<tr><td>thumbnail_url</td><td>VARCHAR(500)</td><td>NULLABLE</td><td></td></tr>
+<tr><td>file_size_bytes</td><td>BIGINT</td><td>NOT NULL</td><td></td></tr>
+<tr><td>mime_type</td><td>VARCHAR(100)</td><td>NOT NULL</td><td></td></tr>
+<tr><td>width</td><td>INTEGER</td><td>NULLABLE</td><td></td></tr>
+<tr><td>height</td><td>INTEGER</td><td>NULLABLE</td><td></td></tr>
+<tr><td>duration_seconds</td><td>FLOAT</td><td>NULLABLE</td><td>Для видео/аудио</td></tr>
+<tr><td>tags</td><td>VARCHAR(100)[]</td><td>DEFAULT '{}'</td><td>Теги для поиска</td></tr>
+<tr><td>metadata</td><td>JSONB</td><td>DEFAULT '{}'</td><td>Дополнительные</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL, DEFAULT NOW()</td><td></td></tr>
+</table>
+</div>
+
+<h3>4.3 Полная ER-диаграмма связей</h3>
+<div class="diagram">
+<span class="hl">FULL ER DIAGRAM (Концептуальная схема на уровне базы данных):</span>
+<pre>
+                    ┌───────────────┐
+                    │    users      │
+                    └──────┬────────┘
+                           │ 1
+                    ┌──────┴────────┐
+                    │   projects    │──1:N── styles
+                    └──────┬────────┘
+                           │ 1
+               ┌───────────┼───────────┬──────────────────┐
+               │           │           │                  │
+               ▼ 1:N       ▼ 1:N      ▼ 1:N              ▼ 1:N
+          ┌──────────┐ ┌──────────┐ ┌──────────┐    ┌──────────┐
+          │  ideas   │ │ scripts  │ │  videos  │    │  assets  │
+          └────┬─────┘ └────┬─────┘ └────┬─────┘    └──────────┘
+               │ 1:1        │ 1          │ 1
+                            │            │
+                            ▼ 1:N        ▼ 1:N
+                       ┌──────────┐ ┌──────────────┐
+                       │storyboards│ │ publications │
+                       └────┬─────┘ └──────┬───────┘
+                            │ 1:N          │ 1:N
+                            ▼              ▼
+                       ┌──────────┐ ┌──────────────────┐
+                       │ prompts  │ │analytics_snapshots│
+                       └────┬─────┘ └──────────────────┘
+                      ┌─────┴──────┐
+                      ▼ 1:N        ▼ 1:N
+                ┌──────────┐ ┌──────────┐
+                │  images  │ │video_clips│
+                └──────────┘ └──────────┘
+
+ ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐
+ │ characters   │  │   worlds     │  │ scene_templates  │
+ └──────┬───────┘  └──────┬───────┘  └──────────────────┘
+        │ N:M             │ N:M
+        └────────┬────────┘
+                 │ 1:N
+                 ▼
+          ┌──────────────┐
+          │world_locations│
+          └──────────────┘
+
+ ┌──────────┐
+ │ styles   │── connects to characters, worlds, projects
+ └──────────┘
+</pre>
+</div>
+
+<h3>4.4 Индексная стратегия</h3>
+<div class="table-wrap">
+<table>
+<tr><th>Тип индекса</th><th>Применение</th><th>Примеры</th></tr>
+<tr><td>Primary Key (UUID)</td><td>Основной ключ во всех таблицах</td><td>Преимущество: уникальная идентификация записи</td></tr>
+<tr><td>Foreign Key</td><td>Все связи: FK на parent.id</td><td>Обеспечивают эффективность JOIN</td></tr>
+<tr><td>Unique</td><td>На slugs, email, platform_post_id</td><td>Предотвращение дублирования данных</td></tr>
+<tr><td>B-tree (single)</td><td>На status, type, timestamps</td><td>Быстрая фильтрация по статусу</td></tr>
+<tr><td>Composite B-tree</td><td>(queue_name, status), (project_id, is_selected)</td><td>Сложные запросы с несколькими условиями</td></tr>
+<tr><td>Partial Index</td><td>WHERE status='enqueued'</td><td>Оптимизация очередей задач</td></tr>
+<tr><td>GIN</td><td>На tags[], массивы данных:</td><td>Поиск в массивах</td></tr>
+<tr><td>pgvector (HNSW)</td><td>На векторные embeddings</td><td>Семантический поиск</td></tr>
+</table>
+</div>
+</html>
+<!-- FOOTER -->
+<div class="page-break"></div>
+<div class="footer">
+  AION Media OS &mdash; Software Design Document &bull; Часть 1 &bull; Executive Summary &bull; Architecture &bull; Tech Stack &bull; Database Schema
+  <br>
+  Конфиденциально &mdash; AION Enterprise Architecture &bull; 2026
+</div>
+
+</div>
+</body>
+</html>

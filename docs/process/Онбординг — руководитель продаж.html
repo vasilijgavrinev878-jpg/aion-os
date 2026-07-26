@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION — Онбординг руководителя продаж</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#060B18;color:#e0e0e0;line-height:1.7;padding:20px;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:radial-gradient(ellipse at 10% 20%,rgba(0,240,255,0.04) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 80%,rgba(245,158,11,0.03) 0%,transparent 50%);
+  pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,240,255,0.008) 2px,rgba(0,240,255,0.008) 4px);
+  pointer-events:none;z-index:1}
+.wrap{max-width:1000px;margin:2em auto;position:relative;z-index:2}
+h1{font-size:2.4rem;color:#00f0ff;display:flex;align-items:center;gap:16px;margin-bottom:2px;text-shadow:0 0 40px rgba(0,240,255,0.15);animation:flicker 4s infinite}
+@keyframes flicker{0%,100%{opacity:1}3%{opacity:0.92}4%{opacity:1}6%{opacity:0.88}7%{opacity:1}92%{opacity:1}93%{opacity:0.9}94%{opacity:1}}
+h1 small{font-size:0.8rem;color:#64748b;font-weight:400}
+h1::after{content:'⟡';font-size:0.9rem;color:#f59e0b;margin-left:auto;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sub{color:#64748b;font-size:0.85rem;padding-bottom:12px;border-bottom:1px solid rgba(0,240,255,0.08);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+
+.hero{background:linear-gradient(135deg,rgba(10,22,40,0.95),rgba(26,42,74,0.95));border:1px solid rgba(0,240,255,0.12);border-radius:24px;padding:32px 28px;text-align:center;margin-bottom:24px;overflow:hidden;position:relative;box-shadow:0 0 60px rgba(0,240,255,0.04)}
+.hero::before{content:'';position:absolute;top:-80%;left:-80%;width:260%;height:260%;background:conic-gradient(from 0deg,transparent,rgba(0,240,255,0.04),transparent,rgba(245,158,11,0.04),transparent);animation:hspin 25s linear infinite;pointer-events:none}
+@keyframes hspin{to{transform:rotate(360deg)}}
+.hero .c{position:relative;z-index:1}
+.hero .greet{color:#f59e0b;font-size:1rem;font-weight:600;margin-bottom:4px}
+.hero .name{font-size:2.2rem;font-weight:700;color:#fff;margin-bottom:6px}
+.hero .role{color:#94a3b8;font-size:0.9rem;margin-bottom:16px}
+.hero .flex{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.hero .s{text-align:center}
+.hero .s .n{font-size:2rem;font-weight:700;color:#00f0ff;line-height:1;text-shadow:0 0 30px rgba(0,240,255,0.1)}
+.hero .s .l{font-size:0.62rem;color:#64748b;text-transform:uppercase;letter-spacing:2px;margin-top:2px}
+
+h2{font-size:1.1rem;color:#f59e0b;display:flex;align-items:center;gap:10px;margin-top:2em;margin-bottom:14px;padding-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;border-image:linear-gradient(90deg,rgba(245,158,11,0.3),transparent) 1;border-bottom:1px solid rgba(245,158,11,0.1)}
+h2 .ico{font-size:1.2rem;animation:pulseI 3s ease-in-out infinite}
+@keyframes pulseI{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+.glass{background:linear-gradient(135deg,rgba(17,24,39,0.8),rgba(26,35,50,0.6));border:1px solid rgba(0,240,255,0.06);border-radius:16px;padding:20px;backdrop-filter:blur(8px);margin:14px 0;transition:all .3s}
+.glass:hover{border-color:rgba(0,240,255,0.12);box-shadow:0 8px 40px rgba(0,240,255,0.04)}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.g2{grid-template-columns:1fr}}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:720px){.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.g3{grid-template-columns:1fr}}
+
+.cat{display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:600;margin:3px;border:1px solid rgba(0,240,255,0.1);background:rgba(0,240,255,0.04);color:#94a3b8}
+.city{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.7rem;font-weight:600;margin:3px;border:1px solid rgba(34,197,94,0.12);background:rgba(34,197,94,0.04);color:#22c55e}
+
+.box{background:rgba(17,24,39,0.6);border-left:3px solid;border-radius:12px;padding:16px 18px;margin:10px 0}
+.box p{font-size:0.85rem;color:#cbd5e1;margin:4px 0}
+.box strong{color:#e0e0e0}
+.box .l{color:#64748b;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+
+.tag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:0.65rem;font-weight:600;margin:1px}
+.tag-ok{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.15)}
+.tag-gold{background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.15)}
+.tag-cyan{background:rgba(0,240,255,0.1);color:#00f0ff;border:1px solid rgba(0,240,255,0.15)}
+.tag-pink{background:rgba(236,72,153,0.1);color:#ec4899;border:1px solid rgba(236,72,153,0.15)}
+.tag-purple{background:rgba(167,139,250,0.1);color:#a78bfa;border:1px solid rgba(167,139,250,0.15)}
+
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:0.82rem}
+td,th{padding:10px 14px;border:1px solid rgba(255,255,255,0.04);text-align:left;vertical-align:top}
+th{background:rgba(17,24,39,0.8);color:#a78bfa;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:1px}
+td{color:#94a3b8}
+
+.final{text-align:center;padding:28px;background:linear-gradient(135deg,rgba(10,22,40,0.95),rgba(26,42,74,0.95));border:1px solid rgba(0,240,255,0.1);border-radius:20px;color:#fff;margin:28px 0;position:relative;overflow:hidden}
+.final::before{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;background:conic-gradient(from 0deg,transparent,rgba(0,240,255,0.02),transparent,rgba(245,158,11,0.02),transparent);animation:hspin 30s linear infinite;pointer-events:none}
+.final .c{position:relative;z-index:1}
+.footer{text-align:center;color:#334155;font-size:0.72rem;margin-top:28px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.03);letter-spacing:1px;text-transform:uppercase}
+.pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 20px rgba(34,197,94,0.4);animation:pulse 2s infinite;margin-right:6px;vertical-align:middle}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>⌘ AION <small>Онбординг · Руководитель продаж</small></h1>
+<div class="sub"><span>Елена · Июль 2026</span><span><span class="pulse"></span>Добро пожаловать в команду</span></div>
+
+<!-- greet -->
+<div class="hero">
+  <div class="c">
+    <div class="greet">Добро пожаловать в AION</div>
+    <div class="name">Елена</div>
+    <div class="role">Руководитель отдела продаж</div>
+    <div class="flex">
+      <div class="s"><div class="n">12</div><div class="l">Городов</div></div>
+      <div class="s"><div class="n">24</div><div class="l">Категории</div></div>
+      <div class="s"><div class="n">288</div><div class="l">Услуг</div></div>
+      <div class="s"><div class="n">1.5K</div><div class="l">Пользователей</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. О проекте -->
+<h2><span class="ico">🚀</span> 1. О проекте</h2>
+<div class="glass">
+  <p style="color:#94a3b8;font-size:0.9rem;line-height:1.8;margin-bottom:10px">
+    <strong style="color:#00f0ff">AION</strong> — это платформа для русскоязычных релокантов и путешественников в Азии.
+    Мы помогаем людям решать любые бытовые задачи в новой стране: от аренды байка до визы, от стоматологии до жилья.
+    Запущены <strong style="color:#f59e0b">1 июля 2026</strong>. Работаем через Telegram Mini App и PWA.
+  </p>
+  <p style="color:#94a3b8;font-size:0.85rem">
+    Модель: маркетплейс услуг. Подключаем местные бизнесы → получаем комиссию со сделок.
+    Средняя комиссия AION: <strong style="color:#00f0ff">$15–25</strong> с клиента.
+  </p>
+</div>
+
+<!-- 2. Города и категории -->
+<h2><span class="ico">🏙️</span> 2. Города и категории</h2>
+<div class="glass">
+  <div class="l" style="color:#22c55e;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Города</div>
+  <div style="margin-bottom:14px">
+    <span class="city">Нячанг</span><span class="city">Дананг</span><span class="city">Хошимин</span>
+    <span class="city">Хойан</span><span class="city">Ханой</span><span class="city">Фукуок</span>
+    <span class="city">Далат</span><span class="city">Муйне</span><span class="city">Сапа</span>
+    <span class="city">Вунгтау</span><span class="city">Тбилиси</span><span class="city">Батуми</span>
+  </div>
+  <div class="l" style="color:#00f0ff;font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Категории услуг</div>
+  <div>
+    <span class="cat">🚗 Транспорт</span><span class="cat">🌴 Экскурсии</span><span class="cat">📄 Визы</span>
+    <span class="cat">🏥 Медицина</span><span class="cat">💆 Красота</span><span class="cat">🍽️ Еда</span>
+    <span class="cat">📋 Услуги бизнесу</span><span class="cat">🎓 Образование</span><span class="cat">🧹 Клининг</span>
+    <span class="cat">🐶 Животные</span><span class="cat">🔧 Ремонт</span><span class="cat">⚖️ Юристы</span>
+    <span class="cat">💳 Финансы</span><span class="cat">🛡️ Страхование</span><span class="cat">🏠 Жильё</span>
+    <span class="cat">👶 Дети</span><span class="cat">🏋️ Спорт</span><span class="cat">🧘 Душа</span>
+    <span class="cat">📷 Фото</span><span class="cat">💐 Цветы</span><span class="cat">✂️ Ателье</span>
+    <span class="cat">📦 Прокат</span><span class="cat">🆘 Экстренная</span><span class="cat">🏆 Мероприятия</span>
+  </div>
+</div>
+
+<!-- 3. Как мы зарабатываем -->
+<h2><span class="ico">💰</span> 3. Как мы зарабатываем</h2>
+<div class="g2">
+  <div class="glass">
+    <div class="l" style="color:#00f0ff">Модель</div>
+    <p style="color:#94a3b8;font-size:0.85rem">Маркетплейс. Подключаем бизнесы → клиенты покупают через AION → бизнес платит комиссию.</p>
+  </div>
+  <div class="glass">
+    <div class="l" style="color:#f59e0b">Комиссия AION</div>
+    <p style="color:#94a3b8;font-size:0.85rem"><strong style="color:#f59e0b">$15–25</strong> в среднем с клиента. С собственных услуг (дизайн, разработка) — <strong style="color:#f59e0b">50%</strong>.</p>
+  </div>
+  <div class="glass">
+    <div class="l" style="color:#22c55e">Кто платит</div>
+    <p style="color:#94a3b8;font-size:0.85rem">Клиент платит бизнесу напрямую. Бизнес перечисляет комиссию AION. Партнёр <strong style="color:#22c55e">не платит</strong> за подключение.</p>
+  </div>
+  <div class="glass">
+    <div class="l" style="color:#a78bfa">Реферальная программа</div>
+    <p style="color:#94a3b8;font-size:0.85rem">Агенты и сетевики получают <strong style="color:#a78bfa">%</strong> с комиссии AION по их рефералам. 4 уровня: 20%+5%+3%+2%.</p>
+  </div>
+</div>
+
+<!-- 4. Продукт -->
+<h2><span class="ico">📱</span> 4. Продукт</h2>
+<div class="g3">
+  <div class="glass" style="text-align:center;padding:16px">
+    <div style="font-size:2rem;color:#00f0ff">🤖</div>
+    <div class="l" style="margin-top:4px">Telegram Mini App</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">Основной интерфейс. Каталог услуг, карточки, заказ.</p>
+  </div>
+  <div class="glass" style="text-align:center;padding:16px">
+    <div style="font-size:2rem;color:#f59e0b">🌐</div>
+    <div class="l" style="margin-top:4px">PWA</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">Устанавливается на iOS/Android. Полноценное приложение.</p>
+  </div>
+  <div class="glass" style="text-align:center;padding:16px">
+    <div style="font-size:2rem;color:#a78bfa">🧠</div>
+    <div class="l" style="margin-top:4px">AI-агент</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">Голосовой ассистент. Поиск, оплата, поддержка. В разработке.</p>
+  </div>
+</div>
+
+<!-- 5. Скрипты продаж -->
+<h2><span class="ico">🎯</span> 5. Скрипты продаж</h2>
+
+<div class="box" style="border-color:#00f0ff">
+  <div class="l" style="color:#00f0ff">Скрипт 1 · Первый контакт с бизнесом (Telegram-чат)</div>
+  <p><strong>Вы:</strong> Здравствуйте! Меня зовут Елена, я из AION. Мы — платформа, которая помогает местным бизнесам находить русскоязычных клиентов во Вьетнаме. У нас уже <strong>1 500+ пользователей</strong> и <strong>280+ услуг</strong> по 12 городам. Подключаем бесплатно, комиссия — только со сделки. Вам интересно?</p>
+  <p style="color:#64748b;font-size:0.75rem;margin-top:6px">→ Если «да»: отправляю анкету. Если «нет»: выясняю причину.</p>
+</div>
+
+<div class="box" style="border-color:#f59e0b">
+  <div class="l" style="color:#f59e0b">Скрипт 2 · Обработка возражения «Дорого / большая комиссия»</div>
+  <p><strong>Вы:</strong> Понимаю. Комиссия обсуждается индивидуально — мы смотрим на специфику вашего бизнеса, маржинальность и средний чек. Вы платите <strong>только когда есть сделка</strong>. Если сделки нет — вы не платите ничего. Мы — ваш отдел маркетинга, который работает за процент с результата.</p>
+</div>
+
+<div class="box" style="border-color:#22c55e">
+  <div class="l" style="color:#22c55e">Скрипт 3 · Обработка возражения «Подумаю / не сейчас»</div>
+  <p><strong>Вы:</strong> Конечно, без давления. Давайте я оставлю вам ссылку на наш канал @aion_asia — посмотрите, как мы работаем, сколько у нас пользователей. Если надумаете — напишите мне, я заполню анкету за 3 минуты. Подключение бесплатное, вы ничего не теряете.</p>
+</div>
+
+<div class="box" style="border-color:#a78bfa">
+  <div class="l" style="color:#a78bfa">Скрипт 4 · Закрытие на анкету</div>
+  <p><strong>Вы:</strong> Отлично! Давайте я сейчас пришлю вам анкету — это займёт 3 минуты. Мне нужно: ваш бизнес, какие услуги предоставляете, город, цена, контакты. После заполнения я проверяю и добавляю вас на платформу. В течение 24 часов ваша услуга уже будет видна пользователям AION.</p>
+</div>
+
+<!-- 6. Возражения -->
+<h2><span class="ico">🛡️</span> 6. Главные возражения и ответы</h2>
+<table>
+  <tr><th style="width:30%">Возражение</th><th>Ответ</th></tr>
+  <tr><td><strong style="color:#ef4444">«Сколько это стоит?»</strong></td><td>Подключение бесплатное. Мы берём комиссию только когда есть сделка. Если сделки нет — вы не платите ничего.</td></tr>
+  <tr><td><strong style="color:#ef4444">«У меня уже есть клиенты»</strong></td><td>Отлично! AION даст вам дополнительный канал — русскоязычных туристов и релокантов, которые ищут ваши услуги прямо сейчас. Они уже платёжеспособны и мотивированы.</td></tr>
+  <tr><td><strong style="color:#ef4444">«Я не хочу заполнять анкету»</strong></td><td>Я могу заполнить её за вас по голосовому сообщению. Нужно всего 3 минуты: название бизнеса, услуги, город, цены.</td></tr>
+  <tr><td><strong style="color:#ef4444">«А вы есть в моём городе?»</strong></td><td>Работаем в 12 городах: Нячанг, Дананг, Хошимин, Хойан, Ханой, Фукуок, Далат, Муйне, Сапа, Вунгтау, Тбилиси, Батуми. Если вашего города нет — добавляем новые каждую неделю.</td></tr>
+  <tr><td><strong style="color:#ef4444">«Сколько клиентов вы дадите?»</strong></td><td>Точное количество гарантировать не можем, но платформа растёт: 1 500+ пользователей за 3 недели, +288 услуг подключено. Чем раньше подключитесь — тем больше охват.</td></tr>
+  <tr><td><strong style="color:#ef4444">«Нужен созвон?»</strong></td><td>Нет, созвон не требуется. Анкета — и вы на платформе. Всё онлайн.</td></tr>
+  <tr><td><strong style="color:#ef4444">«Кто мои конкуренты на платформе?»</strong></td><td>Мы не скрываем. В каждой категории — несколько бизнесов. Это создаёт здоровую конкуренцию и выбор для клиента. Но вы получаете прямой доступ к аудитории.</td></tr>
+</table>
+
+<!-- 7. Воронка -->
+<h2><span class="ico">📊</span> 7. Воронка продаж</h2>
+<div class="g3">
+  <div class="glass" style="text-align:center;padding:16px;border-color:rgba(0,240,255,0.15)">
+    <div style="font-size:1.5rem;color:#00f0ff">1.</div>
+    <div class="l" style="margin-top:4px">Поиск</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">Telegram-чаты городов, группы релокантов, рекомендации</p>
+  </div>
+  <div class="glass" style="text-align:center;padding:16px;border-color:rgba(245,158,11,0.15)">
+    <div style="font-size:1.5rem;color:#f59e0b">2.</div>
+    <div class="l" style="margin-top:4px">Контакт</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">Скрипт → предложение → сбор возражений</p>
+  </div>
+  <div class="glass" style="text-align:center;padding:16px;border-color:rgba(34,197,94,0.15)">
+    <div style="font-size:1.5rem;color:#22c55e">3.</div>
+    <div class="l" style="margin-top:4px">Анкета</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">3 минуты → услуга на платформе</p>
+  </div>
+</div>
+
+<!-- 8. Команда -->
+<h2><span class="ico">👥</span> 8. Ключевые контакты</h2>
+<table>
+  <tr><th>Кто</th><th>Роль</th><th>По каким вопросам</th></tr>
+  <tr><td><strong style="color:#00f0ff">Василий</strong></td><td>Партнёрства и стратегия</td><td>B2B, партнёрская программа, вопросы по стратегии</td></tr>
+  <tr><td><strong style="color:#00f0ff">Влад</strong></td><td>Куратор продукта</td><td>Функционал приложения, баги, доработки</td></tr>
+  <tr><td><strong style="color:#00f0ff">Людмила</strong></td><td>COO</td><td>Операционные вопросы, задачи, планы</td></tr>
+  <tr><td><strong style="color:#00f0ff">Дарина</strong></td><td>B2B-продажи</td><td>Подключение бизнесов, база партнёров</td></tr>
+  <tr><td><strong style="color:#00f0ff">Стас</strong></td><td>Медиа Лид</td><td>Контент, чаты, материалы для продаж</td></tr>
+  <tr><td><strong style="color:#00f0ff">Нина</strong></td><td>SMM-продюсер</td><td>Соцсети, визуалы, посты</td></tr>
+</table>
+
+<!-- 9. Инструменты -->
+<h2><span class="ico">🔧</span> 9. Инструменты в работе</h2>
+<div class="g2">
+  <div class="glass">
+    <div class="l" style="color:#00f0ff">Telegram</div>
+    <p style="color:#94a3b8;font-size:0.82rem">Городские чаты, @aion_asia, чат агентов. Основной канал поиска бизнесов.</p>
+  </div>
+  <div class="glass">
+    <div class="l" style="color:#f59e0b">CRM</div>
+    <p style="color:#94a3b8;font-size:0.82rem">Операционный дашборд Людмилы. Задачи, KPI, контроль сделок.</p>
+  </div>
+  <div class="glass">
+    <div class="l" style="color:#a78bfa">Анкета партнёра</div>
+    <p style="color:#94a3b8;font-size:0.82rem">HTML-форма для подключения бизнеса. 3 минуты заполнения.</p>
+  </div>
+  <div class="glass">
+    <div class="l" style="color:#22c55e">Инвайт-машина</div>
+    <p style="color:#94a3b8;font-size:0.82rem">Парсер + автоприглашение в чаты. Тестируется. 30 аккаунтов.</p>
+  </div>
+</div>
+
+<!-- 10. Цели -->
+<h2><span class="ico">🎯</span> 10. Цели отдела продаж</h2>
+<div class="g3">
+  <div class="glass" style="text-align:center;padding:16px">
+    <div style="font-size:1.8rem;color:#f59e0b">20</div>
+    <div class="l" style="margin-top:2px">Продаж / неделя</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">Цель спринта 15→24 июля</p>
+  </div>
+  <div class="glass" style="text-align:center;padding:16px">
+    <div style="font-size:1.8rem;color:#00f0ff">15</div>
+    <div class="l" style="margin-top:2px">Агентов</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">Подключить по реферальной программе</p>
+  </div>
+  <div class="glass" style="text-align:center;padding:16px">
+    <div style="font-size:1.8rem;color:#22c55e">60</div>
+    <div class="l" style="margin-top:2px">Услуг / неделя</div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px">План наполнения платформы</p>
+  </div>
+</div>
+
+<!-- final -->
+<div class="final">
+  <div class="c">
+    <div style="font-size:1.1rem;color:#f59e0b;font-weight:600;margin-bottom:8px">Твоя миссия</div>
+    <p style="color:#94a3b8;font-size:0.9rem;margin-bottom:4px">Сделать продажи системой. Подключить 20+ бизнесов в неделю.</p>
+    <p style="color:#94a3b8;font-size:0.9rem">Вопросы → Василий или Людмила. Мы рядом.</p>
+    <div style="color:#64748b;font-size:0.78rem;margin-top:10px">AION · Июль 2026</div>
+  </div>
+</div>
+
+<div class="footer">AION · Онбординг руководителя продаж · Июль 2026</div>
+
+</div>
+</body>
+</html>

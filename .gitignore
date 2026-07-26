@@ -1,0 +1,64 @@
+# ─── Python ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+.Python
+
+# ─── Virtual environments ─────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+aion_os/venv/
+aion_os/.venv/
+
+# ─── Environment & Secrets ───────────────────────────────
+.env
+.env.local
+*.key
+*.pem
+*.crt
+
+# ─── IDE & Editors ───────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── OS ──────────────────────────────────────────────────
+node.log
+*.log
+
+# ─── Docker ──────────────────────────────────────────────
+.docker/
+
+# ─── Test artifacts ──────────────────────────────────────
+aion_test.db
+*.db
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ─── Temp files (project root) ───────────────────────────
+temp_*.py
+temp_*.js
+temp_*.mjs
+_backup/
+
+# ─── Archives ────────────────────────────────────────────
+*.zip
+*.tar.gz
+
+# ─── Freebuff ────────────────────────────────────────────
+.freebuff/
+
+# ─── Telegram Parser ─────────────────────────────────────
+telegram-parser/__pycache__/
+telegram-parser/*.pyc

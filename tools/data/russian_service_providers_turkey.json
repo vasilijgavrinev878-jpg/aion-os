@@ -1,0 +1,244 @@
+{
+  "cities": [
+    {
+      "name": "Antalya",
+      "name_ru": "Анталия",
+      "name_tr": "Antalya",
+      "description": "Популярный курорт на юге Турции. Крупнейшая русскоязычная диаспора.",
+      "general_resources": [
+        {"type": "telegram_channel", "name": "Анталия главный канал города", "link": "https://t.me/antalyadaa", "description": "Новости, афиша, советы. Реклама услуг. Сайт antalyada.ru. 7 270+ подписчиков"},
+        {"type": "telegram_chat", "name": "Русские в Анталии (ExpatFM)", "link": "https://t.me/russiansinturkey_antalya", "description": "26 300+ участников. Сообщество русскоговорящих. Реклама @katyaoney"},
+        {"type": "telegram_chat", "name": "Общий чат по Анталии", "link": "https://t.me/antalya_online", "description": "Чат по Анталии для общения, помощи, объявлений"},
+        {"type": "telegram_chat", "name": "Чат Анталья. Русские в Анталии", "link": "https://t.me/russian_in_antalya", "description": "Общение, обсуждение, решение вопросов, взаимопомощь"},
+        {"type": "telegram_chat", "name": "Анталия: объявления, работа, барахолка", "link": "https://t.me/billboard_antalya", "description": "Доска бесплатных объявлений: недвижимость, работа, товары, услуги"},
+        {"type": "telegram_chat", "name": "Анталья чат барахолка", "link": "https://t.me/antaliya_chat", "description": "Продажа/поиск вещей. Детально с ценой и фото. Не чаще раза в 3 дня"},
+        {"type": "telegram_chat", "name": "Анталия / товары / услуги", "link": "https://t.me/baraholkaantalia1", "description": "Продажа/покупка товаров и услуг. 754 участника"},
+        {"type": "telegram_chat", "name": "АНТАЛИЯ Объявления и услуги", "link": "https://t.me/turkey_antalya_07", "description": "Размещение бесплатно. Услуги, продукты, товары. Реклама @tedchore"},
+        {"type": "telegram_chat", "name": "Анталия Работа, Услуги, Объявления", "link": "https://t.me/Antalya_Rabota_Uslugi", "description": "Поиск работы и вакансий. Предоставление услуг"},
+        {"type": "telegram_chat", "name": "Анталья Главный Чат", "link": "https://t.me/Antalya_GlavChat", "description": "Без негатива. Реклама @Dagona_PR. Общий чат для жителей"},
+        {"type": "telegram_chat", "name": "Antalya Paradise Чат", "link": "https://t.me/Antalyapara", "description": "Чатик о жителях и гостях Антальи. Вопросы @Karma_pr"},
+        {"type": "telegram_chat", "name": "Анталья | Турция - Общение Чат", "link": "https://t.me/chats_antalya", "description": "Реклама @adv_svoimedia. Список чатов по странам мира"},
+        {"type": "telegram_chat", "name": "Анталья (городской чат)", "link": "https://t.me/antalya_chat_kg", "description": "Чат о жизни в Анталии. Реклама @mary_pro64"},
+        {"type": "telegram_chat", "name": "Чат жителей Анталии (AntalyaDa)", "link": "https://t.me/Antalya_da_chat", "description": "Чат жителей от проекта antalyada.ru"},
+        {"type": "telegram_chat", "name": "Бизнес чат Турция (Анталия/Стамбул)", "link": "https://t.me/biznesdvigturkey", "description": "Крупнейший бизнес чат. Нетворкинг, общение, реклама. @vugrinchuk"},
+        {"type": "facebook_group", "name": "Услуги Русских в Анталии (FB)", "link": "https://www.facebook.com/groups/412389343635656/", "description": "Каталог русскоязычных специалистов. Добавление услуг"},
+        {"type": "vk_group", "name": "Анталья экспаты VK", "link": "https://vk.com/antaliya_forum", "description": "Русскоязычные сообщества. Ссылки на Telegram"},
+        {"type": "website", "name": "AntalyaDa.ru - портал о жизни", "link": "https://antalyada.ru", "description": "Гид по Анталии: аренда, услуги, новости, афиша"}
+      ],
+      "categories": {
+        "beauty": [
+          {"name": "Бьюти ЧАТ Анталия", "link": "https://t.me/Beauty_Chat_Antalya", "description": "Маникюр, педикюр, ресницы, брови, шугаринг, парикмахер"},
+          {"name": "Мастера маникюра в Анталии", "link": "https://t.me/nail_masters_antalya", "description": "Чат профессиональных нэйл-мастеров"},
+          {"name": "АНТАЛИЯ | Услуги красоты", "link": "https://t.me/antaliya_alaniya", "description": "Все услуги красоты: Анталия, Алания"},
+          {"name": "Мастер и клиент Анталия", "link": "https://t.me/masteriklientantalya", "description": "Поиск мастеров и клиентов"},
+          {"name": "Beauty Art Lara (Instagram)", "link": "https://www.instagram.com/beauty_art_lara/", "description": "Салон: ногти, ресницы, волосы, перманент, косметолог, лазер. 3 300+ подписчиков"},
+          {"name": "Услуги красоты | Анталия", "link": "https://t.me/krasota_antalya", "description": "Макияж, наращивание ресниц, брови, уход за лицом и телом"}
+        ],
+        "fitness": [
+          {"name": "Фитнес-тренер Анталия (Instagram)", "link": "https://www.instagram.com/anna.fitness.antalya/", "description": "Групповые и персональные тренировки Antalya Lara. 4 000+ подписчиков"},
+          {"name": "Общий чат здоровья (искать тренеров)", "link": "https://t.me/russian_in_antalya", "description": "В общем чате можно найти фитнес-тренеров"}
+        ],
+        "kids": [
+          {"name": "Сады и школы в Анталии ЧАТ", "link": "https://t.me/moms_relocants", "description": "Чат о детских садах и школах для русскоязычных"},
+          {"name": "Детские сады и школы Анталии ОТЗЫВЫ", "link": "https://t.me/anaokulu_reviews", "description": "Обзоры и отзывы о садах и школах"},
+          {"name": "Международная Русская школа", "link": "https://rusokulu.ru/", "description": "Русская школа-пансион в Анталии. Российские стандарты"},
+          {"name": "Московская Международная школа", "link": "https://moskovaokulu.info/", "description": "Частная школа в Анталии, обучение на русском"},
+          {"name": "Чат няни для детей", "link": "https://t.me/nynyadlydetei", "description": "Поиск нянь и семей. @Natalirez123"},
+          {"name": "Garden Care - центр для детей", "link": "https://www.instagram.com/gardencareantalya", "description": "Подготовка к саду/школе, группы 1-6 лет. Анталия"}
+        ],
+        "psychology": [
+          {"name": "Психологическая помощь онлайн", "link": "https://t.me/psyhelpon", "description": "Поиск психолога. Бесплатно/донейшн. Работает из Турции"},
+          {"name": "Чат психологов (профессиональный)", "link": "https://t.me/chat_psiholog", "description": "Профессиональное сообщество психологов"}
+        ],
+        "medicine": [
+          {"name": "Врачи Анталии", "link": "https://t.me/vrachi_antalya", "description": "Медицина Анталья: врачи, больницы, клиники. Реклама @ilona_energiya"},
+          {"name": "Медицина Анталья | Врачи", "link": "https://t.me/medantalya", "description": "Больницы, клиники, фельдшера"},
+          {"name": "Турция медицина (все города)", "link": "https://t.me/tyrciya_medicina", "description": "Подбор клиник. Стамбул, Анталия, Алания, Фетхие, Кемер, Мерсин. 7 000+ участников"},
+          {"name": "antalyavrach.com - русские врачи", "link": "https://www.antalyavrach.com/", "description": "Русскоязычные врачи в Анталии, Кемере, Белеке, Сиде"}
+        ],
+        "photo_video": [
+          {"name": "Мастер и клиент Анталия", "link": "https://t.me/masteriklientantalya", "description": "Поиск фотографов и видеооператоров"},
+          {"name": "Общий чат (поиск специалистов)", "link": "https://t.me/helloantalya", "description": "Поиск фотографов через рекламу в чате"}
+        ],
+        "rental_transport": [
+          {"name": "Трансфер Анталья-Аланья-Стамбул", "link": "https://t.me/antalyatransfer1", "description": "Трансфер, попутчики, поездки между городами"},
+          {"name": "Аренда машин/яхт/VIP трансфер", "link": "https://t.me/musadin20", "description": "Анталия, Кемер, Белек. +905522688989 Мусадин"},
+          {"name": "Аренда авто в Анталии", "link": "https://antalyada.ru/rentacar", "description": "Прокат авто. Контакт @nika_antalya_da"},
+          {"name": "Барахолка Анталья-Кемер-Белек", "link": "https://t.me/ant_sale", "description": "Доска объявлений: аренда, товары, услуги"},
+          {"name": "Аренда квартир/вилл Анталия Кемер", "link": "https://t.me/arenda_antalya", "description": "Посуточная и долгосрочная аренда. 7 500+ участников"},
+          {"name": "Анталия чат | Жильё Аренда", "link": "https://t.me/antaliarental", "description": "Чат по аренде и продаже недвижимости. Реклама @alexandr_auto"}
+        ],
+        "tourism": [
+          {"name": "Экскурсии в Анталье на русском", "link": "https://ekskursii-antalya.ru/", "description": "500+ экскурсий. Русскоговорящие гиды"},
+          {"name": "Easy Turkey Travel (VK)", "link": "https://vk.com/easyturkeytravel", "description": "Экскурсии: Анталия, Кемер, Белек, Сиде, Стамбул"},
+          {"name": "Easy Travel Club - экскурсии", "link": "https://easy-travel-club.com/antalya", "description": "Групповые туры с лицензированными русскими гидами"},
+          {"name": "Sputnik8 - экскурсии Анталья", "link": "https://www.sputnik8.com/ru/antalya", "description": "Экскурсии на русском языке. Гиды и трансферы"}
+        ],
+        "food": [
+          {"name": "Чат товары/услуги (еда)", "link": "https://t.me/baraholkaantalia1", "description": "Поиск доставки еды, продуктов. Размещение объявлений"}
+        ],
+        "digital": [
+          {"name": "Бизнес чат Турция (IT/цифровые)", "link": "https://t.me/biznesdvigturkey", "description": "Поиск digital-специалистов, SMM, разработка"}
+        ],
+        "realty": [
+          {"name": "Недвижимость Анталия", "link": "https://t.me/globe_nedvizhkaantalya", "description": "Аренда/продажа. Проверенные риэлторы. 7 500+ участников"},
+          {"name": "Анталия | НЕДВИЖИМОСТЬ", "link": "https://t.me/antalia_nedvijka", "description": "Аренда/продажа в Анталии и Алании"},
+          {"name": "Турция недвижимость аренда/продажа", "link": "https://t.me/Antalya_realestates", "description": "Анталия, Алания, Сиде, Кемер, Стамбул. 7 500+ участников"},
+          {"name": "Турция аренда недвижимость", "link": "https://t.me/turcia_arenda", "description": "Стамбул, Анталья, Аланья, Фетхие, Кемер. Верифицированные риелторы"},
+          {"name": "Недвижимость Анталия (@billboard)", "link": "https://t.me/billboard_antalya_realestate", "description": "Недвижимость: покупка, продажа, аренда"}
+        ]
+      }
+    },
+    {
+      "name": "Istanbul",
+      "name_ru": "Стамбул",
+      "name_tr": "İstanbul",
+      "description": "Крупнейший город Турции, мегаполис. Много русскоязычных жителей и бизнесов.",
+      "general_resources": [
+        {"type": "telegram_chat", "name": "Стамбул чат | форум Турция", "link": "https://t.me/istanbul_ru", "description": "12 400+ участников. Русскоязычный форум о жизни в Стамбуле"},
+        {"type": "telegram_chat", "name": "Русские в Стамбуле (ExpatFM)", "link": "https://t.me/russiansinturkey_stambul", "description": "25 000+ участников. Сообщество русскоговорящих. Реклама @katyaoney"},
+        {"type": "telegram_chat", "name": "Русские в Стамбуле, помощь", "link": "https://t.me/ruskievstambule", "description": "Общение, помощь, новости для русскоговорящих в Стамбуле"},
+        {"type": "telegram_chat", "name": "СТАМБУЛ - УСЛУГИ, РАБОТА", "link": "https://t.me/stambulpomosh", "description": "Работа и услуги в Стамбуле"},
+        {"type": "telegram_chat", "name": "Стамбул объявления", "link": "https://t.me/Istanbul_helps", "description": "Работа, жильё, продажа вещей. Чат Турции @turkey_helps"},
+        {"type": "telegram_chat", "name": "Стамбул: объявления, работа, барахолка", "link": "https://t.me/billboard_istanbul", "description": "Объявления: недвижимость, работа, товары, услуги"},
+        {"type": "telegram_chat", "name": "Чат Стамбул / Анталия", "link": "https://t.me/chat_stambula", "description": "Общение, помощь, барахолка, недвижимость"},
+        {"type": "telegram_chat", "name": "СТАМБУЛ ЧАТ", "link": "https://t.me/istanbul_chat_kg", "description": "Чат о жизни в Стамбуле"},
+        {"type": "telegram_chat", "name": "Помощь Русским СТАМБУЛ", "link": "https://t.me/russkiye_v_stambule", "description": "Поддержка, общение, советы"},
+        {"type": "telegram_chat", "name": "Стамбул Наши в городе!", "link": "https://t.me/StambuI_ru", "description": "Помощь, решение вопросов русскоговорящих в Турции"},
+        {"type": "telegram_chat", "name": "Барахолка Стамбул", "link": "https://t.me/istambul_avito_baraholka", "description": "Вакансии, продажа/покупка, услуги. Недвижимость @istestate"},
+        {"type": "telegram_channel", "name": "Каталог: 16 каналов и 35 чатов Стамбула", "link": "https://telegid.me/catalog/turciya/stambul", "description": "Полный каталог русскоязычных ресурсов Стамбула"},
+        {"type": "vk_group", "name": "Стамбул экспаты VK", "link": "https://vk.com/stambul_forum", "description": "Русскоязычные сообщества по Стамбулу"},
+        {"type": "telegram_channel", "name": "Турция Стамбул Анталия (tursia_ru)", "link": "https://t.me/tursia_ru", "description": "Крупнейшее русскоязычное сообщество. Список чатов внутри"}
+      ],
+      "categories": {
+        "beauty": [
+          {"name": "Стамбул Красота | Istanbul Beauty", "link": "https://t.me/beautyistanbulchat", "description": "Маникюр, педикюр, ресницы, брови, шугаринг, парикмахер, косметолог"},
+          {"name": "Стамбул | Бьюти ЧАТ", "link": "https://t.me/StambulBeauty", "description": "Красота: маникюр, педикюр, ресницы, брови, стилист, косметолог. 300+ участников"},
+          {"name": "Стамбул Istanbul health & beauty", "link": "https://t.me/stambulbeauty", "description": "Здоровье и красота в Стамбуле"}
+        ],
+        "fitness": [
+          {"name": "Йога Стамбул (русскоязычная)", "link": "https://t.me/IstanbulYoga", "description": "Хатха, Виньяса, Кундалини, Аэро, Бикрам йога на русском"},
+          {"name": "Йога с yurayoga в Стамбуле", "link": "https://t.me/yurayogas", "description": "Занятия йогой для всех уровней"},
+          {"name": "Yoga Leela Istanbul (Instagram)", "link": "https://www.instagram.com/yoga_leela_istanbul/", "description": "Хатха йога, Антигравити йога на русском"},
+          {"name": "АНЯ ЙОГА СТАМБУЛ (Instagram)", "link": "https://www.instagram.com/anyashakti/", "description": "Хатха-йога на русском. Групповые и индивидуальные"}
+        ],
+        "kids": [
+          {"name": "ЯЛОВА | Свои (р-н Стамбула)", "link": "https://t.me/yalovaru", "description": "Группа для русскоязычных жителей Ялова/Стамбул"}
+        ],
+        "psychology": [
+          {"name": "Психологическая помощь онлайн", "link": "https://t.me/psyhelpon", "description": "Поиск психолога. Работает по всему миру"}
+        ],
+        "medicine": [
+          {"name": "Медицина Стамбул ЧАТ | Врачи", "link": "https://t.me/MED_Stambul", "description": "Больницы, клиники. Медицинская помощь в Стамбуле. 1 860+ участников"},
+          {"name": "Турция медицина (включает Стамбул)", "link": "https://t.me/tyrciya_medicina", "description": "Подбор клиник. Стамбул, Анталия, Алания, Кемер. 7 000+ участников"},
+          {"name": "Медицина Турция чат", "link": "https://t.me/medicturkey", "description": "Медицина в Турции. Ссылки на чаты, реклама"}
+        ],
+        "photo_video": [
+          {"name": "Стамбул объявления (поиск специалистов)", "link": "https://t.me/Istanbul_helps", "description": "Поиск фотографов и видеооператоров через объявления"}
+        ],
+        "rental_transport": [
+          {"name": "ЖИЛЬЕ АРЕНДА СТАМБУЛ", "link": "https://t.me/arendaIstambul", "description": "Аренда квартир в Стамбуле. Краткосрочная/долгосрочная"},
+          {"name": "Турция аренда недвижимость", "link": "https://t.me/turcia_arenda", "description": "Стамбул, Анталья, Аланья, Фетхие, Кемер. Риелторы"},
+          {"name": "Стамбул | Турция - Жильё Аренда", "link": "https://t.me/stambyll_appart", "description": "Аренда и продажа жилья в Стамбуле"}
+        ],
+        "tourism": [
+          {"name": "Гид Ольга в Стамбуле", "link": "https://t.me/walkseeistanbul", "description": "Лицензированный гид. Экскурсии, гастротуры. +905455601925"},
+          {"name": "Тур 15:15 - экскурсии Стамбул", "link": "https://www.tours15-15.com/istanbul", "description": "Экскурсии на русском от €40"},
+          {"name": "Tripster - гиды Стамбула", "link": "https://experience.tripster.ru/experience/Istanbul/guides/", "description": "Русскоговорящие гиды. Индивидуальные экскурсии"},
+          {"name": "Sputnik8 - экскурсии Стамбул", "link": "https://www.sputnik8.com/ru/istanbul", "description": "5000+ отзывов. Экскурсии на русском"}
+        ],
+        "food": [
+          {"name": "Стамбул локации (еда/бары)", "link": "https://t.me/istanbul_food", "description": "Проверенные места: завтраки, еда, бары"},
+          {"name": "Время есть: Стамбул", "link": "https://t.me/food_istanbul", "description": "Правда о ресторанах, доставка еды, отзывы"}
+        ],
+        "digital": [
+          {"name": "Coffee&Code Mobile Istanbul", "link": "https://t.me/+bEB1_C_xMz02Y2Zi", "description": "Чат мобильных разработчиков Стамбула. IT-сообщество"},
+          {"name": "Бизнес чат Турция", "link": "https://t.me/biznesdvigturkey", "description": "Нетворкинг, digital-услуги, реклама"}
+        ],
+        "realty": [
+          {"name": "Недвижимость в Стамбуле", "link": "https://t.me/kvartiraistanbul", "description": "Квартиры, виллы, коммерческая недвижимость"},
+          {"name": "Недвижимость Стамбул (Globe)", "link": "https://t.me/globe_stambul_nedvizhka", "description": "Риэлторы, аренда, продажа"},
+          {"name": "Русские в Стамбуле (переезд)", "link": "https://t.me/rus_in_stambul", "description": "Чат для переезжающих. Жильё, ВНЖ, работа"},
+          {"name": "Недвижимость Турция (Стамбул)", "link": "https://t.me/realty_in_turkey", "description": "Недвижимость и аренда по всей Турции"}
+        ]
+      }
+    },
+    {
+      "name": "Kemer",
+      "name_ru": "Кемер",
+      "name_tr": "Kemer",
+      "description": "Курортный город в 42 км от Анталии. Много русских туристов и экспатов.",
+      "general_resources": [
+        {"type": "telegram_chat", "name": "КЕМЕР ONLINE", "link": "https://t.me/kemer_online", "description": "Чат для туристов и жителей: Чамьюва, Кириш, Текирова, Бельдиби, Гёйнюк"},
+        {"type": "telegram_chat", "name": "Чат Кемер Турция", "link": "https://t.me/chat_kemer", "description": "Кемер, Бельдиби, Гёйнюк, Кириш, Чамьюва, Текирова"},
+        {"type": "telegram_chat", "name": "Кемер чат | форум Турция", "link": "https://t.me/kemer_forum", "description": "2 137 участников. Чат-форум по Кемеру. 140 стран @tele_360chat"},
+        {"type": "telegram_chat", "name": "Чат Кемер | B-G", "link": "https://t.me/kemer_bg", "description": "1 376 участников. Объединяем жителей и гостей. Медиахолдинг Black Group"},
+        {"type": "telegram_chat", "name": "Кемер | Турция - Общение", "link": "https://t.me/chats_kemer", "description": "Общение русскоговорящих жителей"},
+        {"type": "telegram_chat", "name": "Русскоговорящие Кемер", "link": "https://t.me/kemer_chat_turkey", "description": "Группа для общения русскоговорящих жителей Кемера"},
+        {"type": "telegram_chat", "name": "Кемер Турция (переезд, ВНЖ)", "link": "https://t.me/goto_antalya", "description": "ВНЖ, недвижимость, отели, трансферы в Кемере"},
+        {"type": "facebook_group", "name": "Кемер экспаты (FB)", "link": "https://www.facebook.com/groups/kemer.forum/", "description": "Группа экспатов Кемера. Список Telegram сообществ"},
+        {"type": "vk_group", "name": "Кемер экспаты VK", "link": "https://vk.com/kemer_forum", "description": "Русскоязычные сообщества по Кемеру"},
+        {"type": "telegram_channel", "name": "Visit Kemer", "link": "https://t.me/visitkemer", "description": "Лучшие пляжи, события, атмосферные фото Кемера"},
+        {"type": "telegram_channel", "name": "Квартиры в аренду Кемер", "link": "https://t.me/kemerproperties", "description": "Аренда квартир в Кемере для отпуска"}
+      ],
+      "categories": {
+        "beauty": [
+          {"name": "Бьюти мастера Анталия, Кемер", "link": "https://t.me/beautyantalyakemer", "description": "Бьюти-мастера, салоны красоты в Кемере и Анталии"},
+          {"name": "Beauty Art Lara (Instagram)", "link": "https://www.instagram.com/beauty_art_lara/", "description": "Русскоязычные мастера. Работают по региону"}
+        ],
+        "fitness": [],
+        "kids": [],
+        "psychology": [],
+        "medicine": [
+          {"name": "antalyavrach.com - врачи в Кемере", "link": "https://www.antalyavrach.com/", "description": "Русскоязычные врачи в Кемере и окрестностях"},
+          {"name": "Турция медицина (Кемер включён)", "link": "https://t.me/tyrciya_medicina", "description": "Чат: Стамбул, Анталия, Алания, Фетхие, Кемер. 7 000+ участников"}
+        ],
+        "photo_video": [],
+        "rental_transport": [
+          {"name": "Аренда машин/яхт Кемер", "link": "https://t.me/musadin20", "description": "Аренда авто, яхт, VIP трансферы. +905522688989"},
+          {"name": "Аренда квартир/вилл Анталия Кемер", "link": "https://t.me/arenda_antalya", "description": "Посуточная и долгосрочная аренда. 7 500+ участников"},
+          {"name": "Барахолка Анталья-Кемер-Белек", "link": "https://t.me/ant_sale", "description": "Доска объявлений: аренда, услуги, товары"},
+          {"name": "Турция недвижимость (Кемер)", "link": "https://t.me/Antalya_realestates", "description": "Аренда/продажа. Анталия, Алания, Сиде, Кемер, Стамбул"}
+        ],
+        "tourism": [
+          {"name": "Easy Turkey Travel (VK)", "link": "https://vk.com/easyturkeytravel", "description": "Экскурсии: Кемер, Анталия, Белек, Стамбул. Русские гиды"},
+          {"name": "Visit Kemer", "link": "https://t.me/visitkemer", "description": "Пляжи, события, атмосферные фото Кемера"}
+        ],
+        "food": [],
+        "digital": [],
+        "realty": [
+          {"name": "Турция аренда недвижимость", "link": "https://t.me/turcia_arenda", "description": "Стамбул, Анталья, Кемер и др. Верифицированные риелторы"},
+          {"name": "Недвижимость Анталия (Кемер включён)", "link": "https://t.me/globe_nedvizhkaantalya", "description": "Поиск недвижимости в Кемере. 7 500+ участников"}
+        ]
+      }
+    }
+  ],
+  "cross_city_resources": {
+    "general_turkey": [
+      {"type": "telegram_chat", "name": "Чат | Турция", "link": "https://t.me/turkey_onlinechat", "description": "Общий чат по Турции для всех городов"},
+      {"type": "telegram_chat", "name": "ТУРЦИЯ | чат - форум", "link": "https://t.me/forum_turkey", "description": "Форум по Турции для русскоязычных"},
+      {"type": "telegram_chat", "name": "Турция объявления и услуги", "link": "https://t.me/turkey_obyavlenia_uslugi", "description": "Объявления и услуги по всей Турции"},
+      {"type": "telegram_chat", "name": "Турция недвижимость | Аренда", "link": "https://t.me/realty_in_turkey", "description": "Недвижимость и аренда по всей Турции"},
+      {"type": "telegram_chat", "name": "Турция Женский Чат", "link": "https://t.me/turkey_women_chat", "description": "Женский чат: общение, услуги, советы"},
+      {"type": "telegram_chat", "name": "Турция Анталья | Аланья", "link": "https://t.me/russkie_turkey", "description": "Общий чат по Турции"},
+      {"type": "telegram_chat", "name": "Чат Турция Стамбул Анталия", "link": "https://t.me/turtsiab", "description": "Для туристов и русскоязычных. 51 000+ участников"},
+      {"type": "telegram_chat", "name": "Список чатов 140 стран", "link": "https://t.me/tele_360chat", "description": "Все русскоязычные чаты по 140 странам"},
+      {"type": "telegram_channel", "name": "ExpatFM - портал для эмигрантов", "link": "https://t.me/ExpatFM", "description": "Новостной портал. Чаты по городам Турции"},
+      {"type": "telegram_channel", "name": "Список чатов ExpatFM", "link": "https://t.me/expatFM_chats/28", "description": "Все чаты сообщества ExpatFM"},
+      {"type": "github_repo", "name": "russian-chats-list (GitHub)", "link": "https://github.com/pcherednichenko/russian-chats-list", "description": "Полный список русскоязычных Telegram чатов по всем странам"},
+      {"type": "website", "name": "PavelChered - русскоязычные чаты", "link": "https://pavelchered.com/russian-chats-list/", "description": "Список русскоязычных телеграм чатов по миру"}
+    ],
+    "website_platforms": [
+      {"name": "Sputnik8 - экскурсии по всей Турции", "link": "https://www.sputnik8.com/ru/turkey", "description": "Экскурсии на русском по всей Турции"},
+      {"name": "Tripster - гиды по Турции", "link": "https://experience.tripster.ru/experience/Turkey/", "description": "Русскоговорящие гиды по Турции"},
+      {"name": "antalyavrach.com - врачи Турция", "link": "https://www.antalyavrach.com/", "description": "Русскоязычные врачи по всей Анталии"},
+      {"name": "tg-cat.com - каталог чатов Анталии", "link": "https://tg-cat.com/?search=%D0%B0%D0%BD%D1%82%D0%B0%D0%BB%D0%B8%D1%8F&type=supergroup&lang=ru", "description": "532 чата по Анталии в каталоге"}
+    ]
+  },
+  "total_entries": {
+    "antalya": {"general": 18, "categorized": 40},
+    "istanbul": {"general": 15, "categorized": 35},
+    "kemer": {"general": 11, "categorized": 16},
+    "cross_city": 16
+  }
+}

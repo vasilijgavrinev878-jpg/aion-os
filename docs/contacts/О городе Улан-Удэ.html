@@ -1,0 +1,1057 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О городе — Улан-Удэ | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #f59e0b;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    margin: 0 -16px;
+    border-radius: 0 0 24px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+
+  .quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 16px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quick-actions::-webkit-scrollbar { display: none; }
+  .quick-btn {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .quick-btn.emergency { background: var(--danger); }
+  .quick-btn.transport { background: var(--info); }
+  .quick-btn.sim { background: var(--success); }
+  .quick-btn.currency { background: var(--gold); color: #1e293b; }
+  .quick-btn.food { background: #ec4899; }
+  .quick-btn.baikal { background: #8b5cf6; }
+
+  .toc {
+    background: var(--bg-alt);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 8px 0 20px;
+    border: 1px solid var(--border);
+  }
+  .toc-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--primary);
+  }
+  .toc-item {
+    display: block;
+    padding: 6px 0;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { opacity: 0.8; }
+
+  .section {
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .emoji { font-size: 22px; }
+
+  .subsection {
+    margin: 16px 0;
+    padding: 14px;
+    background: var(--bg-alt);
+    border-radius: 12px;
+  }
+  .subsection-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .card {
+    padding: 12px;
+    margin: 8px 0;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .card-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .card-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .card .price { color: var(--accent); font-weight: 700; }
+
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-label { font-weight: 500; }
+  .contact-value { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+  .info-box {
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+  .info-box.tip { background: #f0fdf4; border-left: 3px solid var(--success); }
+  .info-box.warn { background: #fffbeb; border-left: 3px solid var(--warning); }
+  .info-box.danger { background: #fef2f2; border-left: 3px solid var(--danger); }
+  .info-box.info { background: #eff6ff; border-left: 3px solid var(--info); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 480px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag.green { background: #dcfce7; color: #166534; }
+  .tag.yellow { background: #fef3c7; color: #92400e; }
+  .tag.red { background: #fee2e2; color: #991b1b; }
+  .tag.blue { background: #dbeafe; color: #1e40af; }
+
+  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  .price-table th { text-align: left; padding: 8px; background: var(--bg-alt); font-weight: 600; }
+  .price-table td { padding: 8px; border-bottom: 1px solid var(--border); }
+
+  ul, ol { padding-left: 20px; font-size: 14px; }
+  li { margin: 4px 0; }
+
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Улан-Удэ, Россия</h1>
+  <p>Полный гид по столице Бурятии — путешествия и жизнь</p>
+</div>
+
+<div class="quick-actions">
+  <a href="#emergency" class="quick-btn emergency">🚨 Экстренно</a>
+  <a href="#transport" class="quick-btn transport">🚕 Транспорт</a>
+  <a href="#internet" class="quick-btn sim">📱 SIM / Связь</a>
+  <a href="#money" class="quick-btn currency">💰 Деньги</a>
+  <a href="#food" class="quick-btn food">🍜 Еда</a>
+  <a href="#baikal" class="quick-btn baikal">🏞 Байкал</a>
+</div>
+
+<div class="toc">
+  <div class="toc-title">📌 Содержание</div>
+  <a class="toc-item" href="#overview">1. Общая информация</a>
+  <a class="toc-item" href="#emergency">2. ☎️ Экстренные контакты</a>
+  <a class="toc-item" href="#weather">3. Погода и сезоны</a>
+  <a class="toc-item" href="#districts">4. Районы и ориентиры</a>
+  <a class="toc-item" href="#baikal">5. 🏞 Байкал и природа</a>
+  <a class="toc-item" href="#transport">6. Транспорт</a>
+  <a class="toc-item" href="#airport">7. Аэропорт и вокзалы</a>
+  <a class="toc-item" href="#internet">8. SIM и связь</a>
+  <a class="toc-item" href="#money">9. Деньги и цены</a>
+  <a class="toc-item" href="#medicine">10. Медицина</a>
+  <a class="toc-item" href="#housing">11. Жильё</a>
+  <a class="toc-item" href="#food">12. Еда и рестораны</a>
+  <a class="toc-item" href="#safety">13. Безопасность</a>
+  <a class="toc-item" href="#culture">14. Культура и достопримечательности</a>
+  <a class="toc-item" href="#families">15. Семьям с детьми</a>
+  <a class="toc-item" href="#nomads">16. Digital-номадам</a>
+  <a class="toc-item" href="#faq">17. FAQ — 20 вопросов</a>
+  <a class="toc-item" href="#checklist">18. Чек-лист: Первые дни</a>
+  <a class="toc-item" href="#links">19. Быстрые ссылки</a>
+</div>
+
+<!-- ============================================================
+1. ОБЩАЯ ИНФОРМАЦИЯ
+============================================================ -->
+<div class="section" id="overview">
+  <div class="section-title"><span class="emoji">📍</span> Общая информация</div>
+  <div class="card">
+    <div class="card-text">
+      <strong>Улан-Удэ</strong> — столица Республики Бурятия, один из крупнейших городов Восточной Сибири.
+      Расположен в 100 км к востоку от озера Байкал, на слиянии рек Селенги и Уды.
+      Крупный транспортный узел на Транссибирской магистрали. Город основан в 1666 году.
+    </div>
+  </div>
+  <table class="price-table">
+    <tr><td><strong>Население</strong></td><td>~440 000</td></tr>
+    <tr><td><strong>Язык</strong></td><td>Русский, бурятский</td></tr>
+    <tr><td><strong>Валюта</strong></td><td>Российский рубль (RUB)</td></tr>
+    <tr><td><strong>Часовой пояс</strong></td><td>UTC+8 (Иркутское время, MSK+5)</td></tr>
+    <tr><td><strong>Телефонный код</strong></td><td>+7 3012</td></tr>
+    <tr><td><strong>Розетки</strong></td><td>Тип C, F (220V / 50Hz), как в Европе</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================
+2. ЭКСТРЕННЫЕ КОНТАКТЫ
+============================================================ -->
+<div class="section" id="emergency">
+  <div class="section-title"><span class="emoji">🚨</span> Экстренные контакты</div>
+  <div class="info-box danger">
+    <strong>Важно!</strong> В России единый номер экстренных служб — 112 (работает даже без SIM и при отрицательном балансе).
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚑 Скорая помощь</span>
+    <a href="tel:103" class="contact-value">103</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚒 Пожарная служба</span>
+    <a href="tel:101" class="contact-value">101</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚔 Полиция</span>
+    <a href="tel:102" class="contact-value">102</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">📞 Единый номер</span>
+    <a href="tel:112" class="contact-value">112</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Городская больница №1</span>
+    <a href="tel:+73012411011" class="contact-value">+7 3012 41-10-11</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Республиканская больница</span>
+    <a href="tel:+73012431111" class="contact-value">+7 3012 43-11-11</a>
+  </div>
+</div>
+
+<!-- ============================================================
+3. ПОГОДА И СЕЗОНЫ
+============================================================ -->
+<div class="section" id="weather">
+  <div class="section-title"><span class="emoji">🌤</span> Погода и сезоны</div>
+  <p style="font-size:14px; margin-bottom:10px;">Резко континентальный климат. Зима морозная и сухая, лето тёплое, иногда жаркое.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">❄️ Зима</div>
+      <div class="card-text">
+        Ноябрь — март. −25…−35°C, иногда до −45°C. Сухо, солнечно, снега мало.
+        Идеально для зимнего Байкала (лёд прозрачный, можно ездить на авто).
+        <span class="tag blue">Туристический сезон: февраль — март</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌸 Весна</div>
+      <div class="card-text">
+        Апрель — май. +5…+15°C. Снег тает, грязь и лужи.
+        Байкал вскрывается ото льда в мае. Майские праздники — пик турпотока.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">☀️ Лето</div>
+      <div class="card-text">
+        Июнь — август. +20…+30°C, возможна жара до +35°C. Дожди кратковременные.
+        Байкал прогревается до +18°C в августе.
+        <span class="tag green">Лучшее время для туризма</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🍂 Осень</div>
+      <div class="card-text">
+        Сентябрь — октябрь. +5…+15°C. «Золотая осень» в сентябре — живописно.
+        В октябре начинаются заморозки. Ноябрь — уже зима.
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Лучшее время для визита:</strong> Июль — август (для походов и Байкала) или
+    февраль — март (для зимнего Байкала — самый красивый лёд). Майские праздники —
+    высокий сезон, бронируйте заранее.
+  </div>
+</div>
+
+<!-- ============================================================
+4. РАЙОНЫ И ОРИЕНТИРЫ
+============================================================ -->
+<div class="section" id="districts">
+  <div class="section-title"><span class="emoji">🗺</span> Районы и ориентиры</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏛 Центр города</div>
+    <div class="card-text">
+      Площадь Советов — главная площадь с огромной головой Ленина (самая большая в мире, 7.7 м).
+      Улица Ленина — пешеходный Арбат, кафе, сувениры. Театр оперы и балета, музеи.
+      <span class="tag green">Туристический центр</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏘 Южный / Юго-Западный</div>
+    <div class="card-text">
+      Основные жилые районы: 102-й, 103-й микрорайоны, Забайкальский. Много новостроек,
+      торговых центров. Ближе к выезду на Байкал.
+      <span class="tag yellow">Для проживания</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏭 Левый берег / Посёлки</div>
+    <div class="card-text">
+      Левобережная часть (микрорайон Дивизионный, Загорск, Поселье) — спальные районы.
+      Также частный сектор: Верхняя Берёзовка, Сосновый Бор — популярны у живущих вахтой.
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">⛩ Иволгинский дацан</div>
+    <div class="card-text">
+      В 30 км от города в селе Иволгинск — центр буддизма России. Резиденция Хамбо-ламы,
+      нетронутое тело XII Пандито Хамбо-ламы Итигэлова. Обязателен к посещению.
+      <span class="tag green">Топ-1 достопримечательность</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏞 Этнографический музей</div>
+    <div class="card-text">
+      Музей народов Забайкалья под открытым небом в Верхней Берёзовке.
+      Более 40 архитектурных памятников: бурятские юрты, старообрядческие дома, эвенкийские стойбища.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+5. БАЙКАЛ И ПРИРОДА
+============================================================ -->
+<div class="section" id="baikal">
+  <div class="section-title"><span class="emoji">🏞</span> Байкал и природа</div>
+
+  <div class="subsection">
+    <div class="subsection-title">⛰ Главные направления из Улан-Удэ</div>
+
+    <div class="card">
+      <div class="card-title">🏖 Байкальск — Горячинск (100 км)</div>
+      <div class="card-text">
+        Ближайший к Улан-Удэ участок байкальского побережья. Песчаный пляж, санатории,
+        термальные источники. Время в пути: ~1.5 часа на авто. Автобусы от автовокзала.
+        <span class="tag green">Лучший вариант на день/выходные</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏝 остров Ольхон (250 км)</div>
+      <div class="card-text">
+        Крупнейший остров Байкала. Скала Шаманка, красивейшие закаты, Хужир — столица острова.
+        Время: ~5 часов на авто, паром летом, лёд зимой.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏔 Аршан / Тункинская долина (200 км)</div>
+      <div class="card-text">
+        Курорт с минеральными источниками, водопады, пик Любви. Подъём на пик Черского (2090 м).
+        Санатории, гостевые дома.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🧊 Зимний Байкал (февраль-март)</div>
+      <div class="card-text">
+        Прозрачный лёд толщиной до 1.5 м. Езда на авто по льду, пузырьки метана,
+        торосы, пещеры изо льда. Путь от Улан-Удэ до пос. Максимиха — 2 часа.
+        <span class="tag yellow">Уникальный опыт</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Совет:</strong> Для поездки на Байкал из Улан-Удэ лучше всего арендовать авто
+    или заказать экскурсию. Общественный транспорт ходит редко. Групповые туры — от 2 000 ₽/чел.
+  </div>
+</div>
+
+<!-- ============================================================
+6. ТРАНСПОРТ
+============================================================ -->
+<div class="section" id="transport">
+  <div class="section-title"><span class="emoji">🚕</span> Транспорт</div>
+
+  <div class="card">
+    <div class="card-title">🚗 Такси</div>
+    <div class="card-text">
+      Яндекс Go (работает отлично), Maxim. Цена по городу: 100–300 ₽.
+      До Байкала (Горячинск): от 1 500 ₽. Закажите заранее.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚌 Автобусы и маршрутки</div>
+    <div class="card-text">
+      Стоимость проезда: 25–30 ₽. Основные маршруты соединяют все районы.
+      Маршрутки (№ 55, 77, 28) ходят часто, но могут быть переполнены.
+      Оплата: наличными или картой (большинство маршруток принимают переводы).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚋 Трамвай</div>
+    <div class="card-text">
+      В Улан-Удэ 4 трамвайных маршрута. Цена: 25 ₽. Удобны для поездок в центр
+      из отдалённых районов (Шишковка, Левый берег).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚆 Электрички</div>
+    <div class="card-text">
+      Пригородные поезда до Таловки, Дивизионной, Заиграево.
+      Электричка «Улан-Удэ — Иркутск» — 8 часов, от 800 ₽.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚙 Аренда авто</div>
+    <div class="card-text">
+      Яндекс Драйв (каршеринг) limited. Основной вариант — аренда в местных конторах.
+      Цена: от 1 500 ₽/сут. Для поездок на Байкал рекомендую полноприводный автомобиль.
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Важно:</strong> Зимой обязательно используйте зимнюю резину. Дороги могут быть
+    обледенелыми. На трассе «Улан-Удэ — Иркутск» часты перекрытия из-за погоды.
+  </div>
+</div>
+
+<!-- ============================================================
+7. АЭРОПОРТ И ВОКЗАЛЫ
+============================================================ -->
+<div class="section" id="airport">
+  <div class="section-title"><span class="emoji">✈️</span> Аэропорт и вокзалы</div>
+
+  <div class="card">
+    <div class="card-title">✈️ Аэропорт Байкал (UUD)</div>
+    <div class="card-text">
+      Международный аэропорт в 15 км от центра города (западное направление).
+      Рейсы: Москва (Шереметьево, 6 ч), Новосибирск, Владивосток, Хабаровск,
+      Иркутск, Красноярск. Чартеры: Пекин, Улан-Батор.
+    </div>
+  </div>
+
+  <table class="price-table">
+    <tr><th>Вид трансфера</th><th>Цена (₽)</th><th>Время</th></tr>
+    <tr><td>Такси (аэропорт — центр)</td><td>400–700</td><td>20 мин</td></tr>
+    <tr><td>Яндекс Go (аэропорт — центр)</td><td>300–500</td><td>20 мин</td></tr>
+    <tr><td>Автобус №55 (аэропорт — центр)</td><td>25</td><td>40 мин</td></tr>
+    <tr><td>Такси (аэропорт — Горячинск)</td><td>1 500–2 500</td><td>1.5 ч</td></tr>
+  </table>
+
+  <div class="card">
+    <div class="card-title">🚂 Ж/д вокзал Улан-Удэ</div>
+    <div class="card-text">
+      Станция «Улан-Удэ» на Транссибирской магистрали.
+      Основные поезда: Москва — Владивосток, «Байкал» (Иркутск — Улан-Удэ, 8 ч),
+      фирменный «Баргузин» (Улан-Удэ — Москва). Вокзал в центре города (пл. Славы).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚌 Автовокзал «Селенга»</div>
+    <div class="card-text">
+      Расположен у ж/д вокзала. Рейсы: Иркутск (8 ч, 600–800 ₽),
+      Байкальск/Горячинск (1.5 ч, 200–300 ₽), Аршан (4 ч, 400–500 ₽).
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Как добраться из Иркутска:</strong> Поезд Иркутск — Улан-Удэ (8 часов, от 1 000 ₽ плацкарт,
+    от 2 500 ₽ купе). Автобус (8 ч, 600–800 ₽). На авто — 450 км по трассе Р-258 «Байкал».
+  </div>
+</div>
+
+<!-- ============================================================
+8. SIM И СВЯЗЬ
+============================================================ -->
+<div class="section" id="internet">
+  <div class="section-title"><span class="emoji">📱</span> SIM-карты и Интернет</div>
+
+  <div class="info-box tip">
+    <strong>Совет:</strong> В России действует закон о продаже SIM только по паспорту.
+    Гражданам РФ — свободно. Иностранцам — нужен паспорт, миграционная карта, регистрация.
+  </div>
+
+  <table class="price-table">
+    <tr><th>Оператор</th><th>Тариф (месяц)</th><th>Трафик</th></tr>
+    <tr><td><strong>МТС</strong></td><td>от 400 ₽</td><td>10–30 GB + минуты</td></tr>
+    <tr><td><strong>Билайн</strong></td><td>от 350 ₽</td><td>10–30 GB + минуты</td></tr>
+    <tr><td><strong>МегаФон</strong></td><td>от 400 ₽</td><td>15–30 GB + минуты</td></tr>
+    <tr><td><strong>Tele2</strong></td><td>от 300 ₽</td><td>10–20 GB + минуты</td></tr>
+    <tr><td><strong>Yota</strong></td><td>от 400 ₽</td><td>Безлимитный интернет + минуты</td></tr>
+  </table>
+
+  <div class="subsection">
+    <div class="subsection-title">📶 Wi-Fi в городе</div>
+    <div class="card-text">
+      Wi-Fi есть в ТЦ (People's Park, Capital Mall, Forum), кафе, ресторанах.
+      Московская сеть CityWi-Fi не работает в Улан-Удэ — рассчитывайте на мобильный интернет.
+      Средняя скорость 4G: 20–50 Мбит/с в городе, 5–10 Мбит/с на Байкале.
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🌐 eSIM</div>
+    <div class="card-text">
+      Для иностранцев: Airalo ($5–20), МТС eSIM (в салоне МТС по паспорту РФ).
+      Для туристов из РФ — обычная SIM проще и дешевле.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+9. ДЕНЬГИ И ЦЕНЫ
+============================================================ -->
+<div class="section" id="money">
+  <div class="section-title"><span class="emoji">💰</span> Деньги и цены</div>
+
+  <div class="card">
+    <div class="card-title">💳 Карты и наличные</div>
+    <div class="card-text">
+      <strong>Карты МИР, Visa, Mastercard:</strong> Visa/MC российских банков работают.
+      Иностранные карты не работают в России. Лучше иметь наличные или карту МИР.
+      Банкоматы: Сбербанк, ВТБ, Т-Банк — везде.
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Важно:</strong> Иностранные туристы — карты UnionPay работают не везде.
+      Рекомендуется иметь наличные рубли. Обмен валюты — банки (Сбер, ВТБ).
+  </div>
+
+  <div class="subsection-title" style="margin-top:12px;">💰 Примерные цены в Улан-Удэ</div>
+  <table class="price-table">
+    <tr><th>Категория</th><th>Цена (₽)</th></tr>
+    <tr><td>Чашка кофе (кафе)</td><td>150–300</td></tr>
+    <tr><td>Обед (столовая)</td><td>250–400</td></tr>
+    <tr><td>Обед (ресторан)</td><td>600–1 500</td></tr>
+    <tr><td>Позы (буузы) — 5 шт</td><td>300–500</td></tr>
+    <tr><td>Хлеб местный</td><td>30–50</td></tr>
+    <tr><td>Молоко (1 л)</td><td>60–90</td></tr>
+    <tr><td>Бутылка воды</td><td>30–50</td></tr>
+    <tr><td>Пиво местное (0.5 л)</td><td>70–120</td></tr>
+    <tr><td>Проезд на автобусе</td><td>25–30</td></tr>
+    <tr><td>Такси по городу</td><td>100–300</td></tr>
+    <tr><td>Аренда 1-комн. квартиры/мес</td><td>15 000 – 25 000</td></tr>
+    <tr><td>Экскурсия на Байкал (группа)</td><td>2 000 – 5 000 с чел.</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Цены vs Москва:</strong> Улан-Удэ на 20–35% дешевле Москвы по жилью и услугам.
+    Продукты сопоставимы, местная еда (позы, бухлёр) значительно дешевле ресторанной.
+  </div>
+</div>
+
+<!-- ============================================================
+10. МЕДИЦИНА
+============================================================ -->
+<div class="section" id="medicine">
+  <div class="section-title"><span class="emoji">🏥</span> Медицина</div>
+
+  <div class="card">
+    <div class="card-title">🏥 Больницы</div>
+    <div class="contact-item">
+      <span class="contact-label">Городская больница №1</span>
+      <a href="tel:+73012411011" class="contact-value">+7 3012 41-10-11</a>
+    </div>
+    <div class="card-text">Круглосуточная. Ул. Комсомольская, 8. Принимает экстренных.</div>
+    <div class="contact-item">
+      <span class="contact-label">Республиканская клиническая больница</span>
+      <a href="tel:+73012431111" class="contact-value">+7 3012 43-11-11</a>
+    </div>
+    <div class="card-text">Ул. Павлова, 12. Многопрофильная.</div>
+    <div class="contact-item">
+      <span class="contact-label">Детская больница</span>
+      <a href="tel:+73012444142" class="contact-value">+7 3012 44-41-42</a>
+    </div>
+    <div class="card-text">Ул. Красноармейская, 36.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🤒 Аптеки</div>
+    <div class="card-text">
+      Крупные сети: «Аптека 36,6», «Планета здоровья», «Фармленд».
+      Большинство работает 8:00–22:00. Есть круглосуточные (пр. Победы, 12).
+      Многие рецептурные препараты продаются свободно.
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏥 Полис ОМС и страховка</div>
+    <div class="card-text">
+      Гражданам РФ — бесплатная помощь по полису ОМС.
+      Иностранцам — обязательна страховка. Экстренная помощь оказывается всем бесплатно,
+      но плановая — платная или по страховке.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+11. ЖИЛЬЁ
+============================================================ -->
+<div class="section" id="housing">
+  <div class="section-title"><span class="emoji">🏠</span> Жильё</div>
+
+  <table class="price-table">
+    <tr><th>Тип</th><th>Цена/мес (₽)</th></tr>
+    <tr><td>Комната/койко-место</td><td>5 000 – 10 000</td></tr>
+    <tr><td>1-комнатная квартира</td><td>15 000 – 25 000</td></tr>
+    <tr><td>2-комнатная квартира</td><td>22 000 – 35 000</td></tr>
+    <tr><td>Студия (центр)</td><td>20 000 – 35 000</td></tr>
+    <tr><td>Дом/коттедж</td><td>30 000 – 60 000</td></tr>
+    <tr><td>Гостиница/сутки</td><td>1 500 – 4 000</td></tr>
+    <tr><td>Хостел/сутки</td><td>500 – 1 200</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Как искать:</strong> ЦИАН, Авито, ДомКлик, N1.ru (региональный сайт).
+    Агентства: «Этажи», «АН Спецстрой». Депозит 1 месяц + комиссия 50–100%.
+    Заключение договора обязательно.
+  </div>
+
+  <div class="info-box warn">
+    Коммунальные платежи: зимой отопление — значительная статья расходов (2 000–5 000 ₽/мес
+    за 1-комнатную). Уточняйте включены ли КУ в стоимость аренды.
+  </div>
+</div>
+
+<!-- ============================================================
+12. ЕДА И РЕСТОРАНЫ
+============================================================ -->
+<div class="section" id="food">
+  <div class="section-title"><span class="emoji">🍜</span> Еда и рестораны</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🥟 Что обязательно попробовать</div>
+    <ul>
+      <li><strong>Буузы (позы)</strong> — бурятские манты с мясом, паром — 60–100 ₽/шт</li>
+      <li><strong>Бухлёр</strong> — суп из баранины с овощами — 200–350 ₽</li>
+      <li><strong>Хушууры</strong> — пирожки с мясом во фритюре — 50–80 ₽/шт</li>
+      <li><strong>Сагаан дали</strong> — бурятский чай с молоком и травами — 50–100 ₽</li>
+      <li><strong>Юрма</strong> — кровяная колбаса по-бурятски</li>
+      <li><strong>Байкальский омуль</strong> — копчёный, солёный, горячего копчения — 300–500 ₽</li>
+      <li><strong>Кедровые орехи</strong> — местные, 200–400 ₽/100 г</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🍽 Где поесть</div>
+    <div class="card">
+      <div class="card-title">🥟 «Бууза бар» — ул. Ленина</div>
+      <div class="card-text">Лучшие позы в городе. Средний чек: 400–600 ₽.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🍜 «Юрта» — пр. Победы, 12</div>
+      <div class="card-text">Бурятская кухня в стилизованном интерьере. Бухлёр, позы, чай.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🥘 «Кухни мира» — фудкорт ТРЦ «People's Park»</div>
+      <div class="card-text">Большой выбор: итальянская, азиатская, русская кухни.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">☕ «Кофеин» — сеть кофеен</div>
+      <div class="card-text">Кофе от 150 ₽. Вай-фай, работают до 22:00.</div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🍉 Что привезти</div>
+    <ul>
+      <li><strong>Омуль байкальский</strong> — копчёный, в вакуумной упаковке</li>
+      <li><strong>Кедровые орехи</strong> и кедровое масло</li>
+      <li><strong>Бурятский чай</strong> — травяной сбор (сагаан дали)</li>
+      <li><strong>Буддийские сувениры</strong> — из Иволгинского дацана</li>
+      <li><strong>Календари/магниты с Лениным</strong> — прикол, культовый сувенир</li>
+      <li><strong>Изделия из шерсти яка</strong> — носки, варежки, пледы</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================
+13. БЕЗОПАСНОСТЬ
+============================================================ -->
+<div class="section" id="safety">
+  <div class="section-title"><span class="emoji">🔒</span> Безопасность</div>
+
+  <div class="info-box info">
+    Улан-Удэ — достаточно безопасный город. Основные риски: ДТП, клещи (весна-лето) и морозы.
+  </div>
+
+  <ul>
+    <li>🧊 <strong>Морозы:</strong> Зимой одевайтесь максимально тепло. Шапка, шарф, варежки — обязательно.
+      −30°C не редкость. Телефон на морозе разряжается за 15-20 мин — держите в тепле (внутренний карман).</li>
+    <li>🐍 <strong>Клещи:</strong> Активны с апреля по июнь. Выезжая на природу (Байкал, лес),
+      проверяйте одежду и тело. При укусе — срочно в травмпункт (вакцина от энцефалита делается заранее).</li>
+    <li>🚗 <strong>Дороги:</strong> Качество дорог среднее. Зимой — гололёд. Водители могут быть агрессивными,
+      особенно на трассе. Пешеходам — быть внимательными на переходах.</li>
+    <li>🔐 <strong>В городе:</strong> В центре безопасно даже вечером. Окраины (Дивизионный, Загорск)
+      могут быть менее освещены. Но в целом криминогенная обстановка спокойная.</li>
+    <li>🌊 <strong>Байкал зимой:</strong> <strong>Не выезжайте на лёд без местных гидов!</strong>
+      Есть трещины, промоины, нажимы. Провалиться под лёд — смертельно опасно.</li>
+  </ul>
+
+  <div class="info-box danger">
+    <strong>Главное предупреждение:</strong> Не купайтесь в Байкале в шторм!
+    На озере резко поднимаются волны до 4 метров. Вода +12…+18°C — риск переохлаждения.
+    Используйте только оборудованные пляжи.
+  </div>
+</div>
+
+<!-- ============================================================
+14. КУЛЬТУРА И ДОСТОПРИМЕЧАТЕЛЬНОСТИ
+============================================================ -->
+<div class="section" id="culture">
+  <div class="section-title"><span class="emoji">⛩</span> Культура и достопримечательности</div>
+
+  <div class="card">
+    <div class="card-title">🗿 Памятник Ленину (Голова)</div>
+    <div class="card-text">
+      Самая большая голова Ленина в мире (7.7 м, 42 тонны), установлена в 1971 г.
+      Находится на пл. Советов. Главная фотозона города.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⛩ Иволгинский дацан</div>
+    <div class="card-text">
+      Крупнейший буддийский монастырский комплекс в России. 30 км от города.
+      Нетленное тело XII Хамбо-ламы Итигэлова (умер в 1927, сохранился нетленным).
+      Вход свободный. Фотосъёмка разрешена. Одевайте скромно.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🕌 Одигитриевский собор</div>
+    <div class="card-text">
+      Кафедральный собор Улан-Удэ (XVIII век, русско-византийский стиль).
+      Одна из старейших каменных построек города.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏛 Этнографический музей</div>
+    <div class="card-text">
+      Музей под открытым небом. Организовать поездку на целый день.
+      40+ гектаров, 7 архитектурно-этнографических зон.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎭 Театр оперы и балета</div>
+    <div class="card-text">
+      Бурятский театр оперы и балета им. Г. Цыдынжапова. Репертуар: бурятские и русские оперы,
+      балет классический. Архитектура в стиле сталинского ампира с национальными мотивами.
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Ежегодные фестивали:</strong>
+    «Байкальский рождественский марафон» (декабрь),
+    «Сурхарбан» — бурятский спортивно-культурный праздник (июнь),
+    «Байкал — жемчужина мира» (август).
+  </div>
+</div>
+
+<!-- ============================================================
+15. СЕМЬЯМ С ДЕТЬМИ
+============================================================ -->
+<div class="section" id="families">
+  <div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Семьям с детьми</div>
+
+  <ul>
+    <li><strong>Детские сады:</strong> Много муниципальных и частных. Очереди в муниципальные — до 1-2 лет.
+      Частные (от 15 000 ₽/мес): «Умка», «Солнышко», «Монтессори-центр».</li>
+    <li><strong>Школы:</strong> Лицей №1, Гимназия №3, физико-математическая школа-интернат №23.
+      Есть бурятско-русские школы.</li>
+    <li><strong>Кружки и секции:</strong> Дворец творчества (бесплатные кружки), частные секции от 2 000 ₽/мес.
+      Шахматы, танцы, бурятская борьба, стрельба из лука.</li>
+    <li><strong>Аквапарк / бассейны:</strong> Бассейн «Ильинка» (открытый), Дворец водного спорта.
+      Аквапарка нет — ближайший в Иркутске.</li>
+    <li><strong>Парки:</strong> Парк им. Орешкова — аттракционы, парк «Юбилейный», Ботанический сад.</li>
+    <li><strong>Летний отдых:</strong> Детские лагеря на Байкале: «Огонёк», «Байкальский бор».
+      Путевка от 30 000 ₽ за смену.</li>
+    <li><strong>Зимой:</strong> Горнолыжный спуск «Спорт-парк» (прокат, подъёмник).
+      Катки: центральный стадион, парки.</li>
+  </ul>
+</div>
+
+<!-- ============================================================
+16. DIGITAL-НОМАДАМ
+============================================================ -->
+<div class="section" id="nomads">
+  <div class="section-title"><span class="emoji">💻</span> Digital-номадам</div>
+
+  <div class="card">
+    <div class="card-title">☕ Кафе для работы</div>
+    <div class="card-text">
+      <strong>Кофеин</strong> (ул. Ленина, пр. Победы) — Wi-Fi 50+ Мбит, кофе от 150 ₽.
+      <strong>Шоколадница</strong> (ТРЦ People's Park) — стандартная сеть.
+      <strong>Traveler's Coffee</strong> — ул. Ленина, приятный интерьер.
+      <strong>Coworking Cafe ul. 42</strong> — ул. Смолина, 54.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏢 Коворкинги</div>
+    <div class="card-text">
+      <strong>Work Station</strong> — ул. Балтахинова, 9. От 6 000 ₽/мес.
+      <strong>Пространство</strong> — ул. Красноармейская, 27. От 5 000 ₽/мес.
+      <strong>Библиотеки</strong> — Национальная библиотека (ул. Ербанова, 4), бесплатно.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📡 Интернет</div>
+    <div class="card-text">
+      Домашний: Ростелеком, ТТК — от 500 ₽/мес за 100 Мбит/с.
+      LTE: 4G+ от МТС/МегаФона — стабильный, 20–50 Мбит.
+      Вечером скорость может падать из-за нагрузки.
+    </div>
+  </div>
+
+  <div class="info-box info">
+    <strong>Для релокантов:</strong> Улан-Удэ — один из самых доступных городов России для жизни.
+    Средняя зарплата ниже, чем в Москве, но и цены на 30% ниже.
+    Медицина, образование, инфраструктура — на уровне крупного регионального центра.
+  </div>
+
+  <div class="info-box tip">
+    <strong>Коворкинг с видом на Байкал?:</strong> Да! В пос. Горячинск (100 км) открывается
+    коворкинг на базе санатория. Работа с видом на озеро — то, ради чего вы сюда приехали.
+  </div>
+</div>
+
+<!-- ============================================================
+17. FAQ — 20 ВОПРОСОВ
+============================================================ -->
+<div class="section" id="faq">
+  <div class="section-title"><span class="emoji">❓</span> FAQ — 20 вопросов</div>
+
+  <div class="subsection">
+    <div class="subsection-title">1. Нужна ли виза в Улан-Удэ?</div>
+    <div class="card-text">Гражданам РФ — нет. Иностранцам — нужна виза РФ. Но Улан-Удэ входит в список открытых городов для электронной визы (для ряда стран).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">2. Какой язык в ходу?</div>
+    <div class="card-text">Основной — русский. Бурятский — второй государственный. Английский — редко, в основном в туристических местах.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">3. Какую валюту брать?</div>
+    <div class="card-text">Рубли. Иностранные карты не работают. Меняйте в банках или банкоматах.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">4. Когда лучше ехать?</div>
+    <div class="card-text">Июль-август (походы, Байкал) или февраль-март (зимний Байкал, прозрачный лёд).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">5. Безопасно ли в Улан-Удэ?</div>
+    <div class="card-text">В целом да. Днём — везде. Ночью — центр безопасен, окраины лучше избегать. Главная опасность — морозы зимой.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">6. Как позвонить в другие страны?</div>
+    <div class="card-text">WhatsApp, Telegram, Zoom — через интернет. Местный звонок на международный — через оператора, от 3 ₽/мин.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">7. Есть ли комары/клещи?</div>
+    <div class="card-text">Клещи — да, с апреля по июнь (лес, Байкал). Комары — около водоёмов. Репеллент обязателен.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">8. Нужна ли страховка?</div>
+    <div class="card-text">Гражданам РФ — ОМС. Иностранцам — обязательна медицинская страховка. Рекомендуем с покрытием от 100 000 $.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">9. Сколько стоит аренда жилья?</div>
+    <div class="card-text">От 5 000 ₽ (комната) до 35 000 ₽ (2-комнатная в центре). Коммуналка зимой 2 000–5 000 ₽.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">10. Где искать жильё?</div>
+    <div class="card-text">ЦИАН, Авито, ДомКлик, N1.ru. Агентства: Этажи, Спецстрой.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">11. Можно ли снять на сутки?</div>
+    <div class="card-text">Да. Booking.com, Ostrovok.ru, Суточно.ру. Цена: 1 500–4 000 ₽/сут.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">12. Какой транспорт лучше?</div>
+    <div class="card-text">Яндекс Go (такси) — по городу. Автобус — центр-окраины. Свой авто — для поездок на Байкал.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">13. Нужно ли платить налоги?</div>
+    <div class="card-text">Если работаете официально — 13% НДФЛ. Самозанятые (резиденты РФ) — 4–6%.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">14. Где купить сим-карту?</div>
+    <div class="card-text">Салон связи МТС/Билайн/МегаФон/Tele2 при предъявлении паспорта.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">15. Работает ли YouTube / соцсети?</div>
+    <div class="card-text">YouTube работает. Instagram/Facebook — замедлены (блокировка РФ), нужен VPN.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">16. Как сэкономить на еде?</div>
+    <div class="card-text">Ешьте в столовых и бурятских позных. Покупайте на рынках. Готовьте сами.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">17. Какие приложения скачать?</div>
+    <div class="card-text">Яндекс Go (такси), 2ГИС (карты), Сбер/Т-Банк, ЦИАН (жильё), Авито.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">18. Куда сводить детей?</div>
+    <div class="card-text">Парк Орешкова, Ботанический сад, Байкал (Горячинск), этнографический музей.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">19. Есть ли международные школы?</div>
+    <div class="card-text">Нет чистых международных. Лучшие: гимназия №3, лицей №1. Для иностранцев — частные школы.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">20. Как открыть бизнес?</div>
+    <div class="card-text">ИП — быстрый старт от 1 дня (госпошлина 800 ₽). ООО — для крупного бизнеса. В Бурятии есть льготы для турбизнеса.</div>
+  </div>
+</div>
+
+<!-- ============================================================
+18. ЧЕК-ЛИСТ: ПЕРВЫЕ ДНИ
+============================================================ -->
+<div class="section" id="checklist">
+  <div class="section-title"><span class="emoji">✅</span> Чек-лист: Первые дни в Улан-Удэ</div>
+  <ol>
+    <li>Купить SIM-карту (салон связи, паспорт)</li>
+    <li>Снять наличные (банкомат Сбера или ВТБ)</li>
+    <li>Заселиться, проверить отопление и Wi-Fi</li>
+    <li>Купить тёплую одежду (если зима — без шансов)</li>
+    <li>Установить Яндекс Go, 2ГИС, Сбер/Т-Банк</li>
+    <li>Найти ближайший продуктовый магазин</li>
+    <li>Проверить аптеки и больницы рядом</li>
+    <li>Сходить в столовую или позную — попробовать буузы</li>
+    <li>Доехать до пл. Советов — сфоткаться с Лениным</li>
+    <li>Спланировать поездку на Байкал на выходные</li>
+  </ol>
+  <div class="info-box info">
+    <strong>Не забудьте:</strong> все вопросы по городу — в AION Mini App!
+    Подключайтесь к чату русскоязычных @ulan_ude_chat
+  </div>
+</div>
+
+<!-- ============================================================
+19. БЫСТРЫЕ ССЫЛКИ
+============================================================ -->
+<div class="section" id="links">
+  <div class="section-title"><span class="emoji">🔗</span> Быстрые ссылки</div>
+  <div class="contact-item">
+    <span class="contact-label">📋 AION — база исполнителей Улан-Удэ</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏠 AION — аренда жилья</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚕 AION — трансфер</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏞 AION — туры на Байкал</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🤝 Чат Улан-Удэ (русскоязычные)</span>
+    <a class="contact-value" href="https://t.me/ulan_ude_chat">@ulan_ude_chat</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚆 Ж/д билеты</span>
+    <a class="contact-value" href="https://pass.rzd.ru">РЖД</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏠 Авито (жильё / услуги)</span>
+    <a class="contact-value" href="https://www.avito.ru/ulan-ude">avito.ru</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">💬 Чат AION Улан-Удэ</span>
+    <a class="contact-value" href="#">Telegram</a>
+  </div>
+</div>
+
+<div class="footer">
+  <p>© 2026 AION — Ваш городской помощник в Улан-Удэ</p>
+  <p style="margin-top:8px; opacity:0.6;">Telegram Mini App</p>
+</div>
+
+</body>
+</html>

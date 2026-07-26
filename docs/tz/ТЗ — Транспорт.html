@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТЗ — Транспорт AION</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#03070d;color:#e2e8f0;line-height:1.6;padding:30px 20px}
+.container{max-width:800px;margin:0 auto}
+h1{font-size:1.8rem;color:#fff;margin-bottom:4px}
+.sub{color:#94a3b8;font-size:0.9rem;margin-bottom:24px;border-bottom:1px solid #1e293b;padding-bottom:12px}
+h2{font-size:1.2rem;color:#7c4dff;margin-top:26px;margin-bottom:8px;border-bottom:1px solid #1e293b;padding-bottom:6px}
+h3{font-size:1rem;color:#fff;margin-top:16px;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:0.87rem}
+th{background:#0a0f1d;color:#fff;border:1px solid #1e293b;padding:7px 10px;text-align:left;font-weight:600}
+td{border:1px solid #1e293b;padding:6px 10px;vertical-align:top}
+tr:nth-child(even){background:#050912}
+td:first-child{color:#60a5fa;font-weight:600;white-space:nowrap}
+code{color:#94a3b8;font-size:0.82rem}
+.schema{border-left:3px solid #7c4dff;padding:10px 16px;margin:10px 0 20px;background:rgba(105,50,242,0.05);border-radius:0 6px 6px 0;font-size:0.9rem}
+@media(max-width:600px){td:first-child{white-space:normal}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⟁ ТЗ — Транспорт</h1>
+<p class="sub">Параметры для анкеты партнёра. Все поля индексируются для AI-поиска.</p>
+
+<div class="schema">
+<strong>Тип услуги:</strong> Аренда авто / Аренда байка / Трансфер / Подбор техники под ключ
+</div>
+
+<!-- ===== 1. ОБЩИЕ ПОЛЯ ===== -->
+<h2>1. Общие поля (все услуги)</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>id</td><td>UUID (авто)</td></tr>
+<tr><td>Название</td><td>строка, до 80 символов</td></tr>
+<tr><td>Описание</td><td>текст, до 3000 символов</td></tr>
+<tr><td>Тип услуги</td><td>Аренда авто / Аренда байка / Трансфер / Такси / Права и регистрация / Продажа транспорта</td></tr>
+<tr><td>Цена</td><td>число</td></tr>
+<tr><td>Валюта</td><td>VND / USD / RUB / EUR</td></tr>
+<tr><td>Локация</td><td>строка (город)</td></tr>
+<tr><td>Статус</td><td>Доступно / Временно недоступно</td></tr>
+<tr><td>ID партнёра</td><td>UUID</td></tr>
+</table>
+
+<!-- ===== 2. АРЕНДА АВТО ===== -->
+<h2>2. Аренда авто</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Марка / Модель</td><td>строка</td></tr>
+<tr><td>Тип кузова</td><td>Седан / Хэтчбек / Внедорожник / Минивэн / Пикап / Спорткар</td></tr>
+<tr><td>Коробка</td><td>Автомат / Механика</td></tr>
+<tr><td>Срок</td><td>Посуточно / Помесячно / На любой срок</td></tr>
+<tr><td>Страховка</td><td>Базовая / Полная / Без франшизы</td></tr>
+</table>
+
+<!-- ===== 3. АРЕНДА БАЙКА ===== -->
+<h2>3. Аренда байка</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Тип</td><td>Скутер / Мопед / Мотоцикл / Питбайк / Электрический</td></tr>
+<tr><td>Объём</td><td>50cc / 110cc / 125cc / 150cc / 200cc / 250cc+</td></tr>
+<tr><td>Срок</td><td>Посуточно / Помесячно / На любой срок</td></tr>
+<tr><td>Страховка</td><td>Есть / Нет</td></tr>
+</table>
+
+<!-- ===== 4. ТРАНСФЕР ===== -->
+<h2>4. Трансфер</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Маршрут</td><td>строка (откуда → куда)</td></tr>
+<tr><td>Тип авто</td><td>Эконом / Комфорт / Минивэн / Бизнес</td></tr>
+<tr><td>Вместимость</td><td>число человек</td></tr>
+</table>
+
+<!-- ===== 5. ПОДБОР ТЕХНИКИ ПОД КЛЮЧ ===== -->
+<h2>5. Подбор техники под ключ</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Тип техники</td><td>Авто / Байк / Мотоцикл / Электросамокат / Водный транспорт</td></tr>
+<tr><td>Бюджет</td><td>строка (диапазон)</td></tr>
+<tr><td>Срок подбора</td><td>дни</td></tr>
+</table>
+
+<div style="text-align:center;color:#475569;font-size:0.82rem;margin-top:30px;border-top:1px solid #1e293b;padding-top:16px">
+AION · ТЗ Транспорт · Июль 2026
+</div>
+
+</div>
+</body>
+</html>

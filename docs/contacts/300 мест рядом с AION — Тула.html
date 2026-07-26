@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>300 мест рядом с AION Тула</title>
+<style>
+:root{--primary:#0A0F1E;--accent:#6366f1;--gold:#D4A853;--text:#1e293b;--text-light:#64748b;--bg:#ffffff;--bg-alt:#f8fafc;--border:#e2e8f0;--deep-blue:#0A1628}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);line-height:1.6;background:var(--bg)}
+a{color:var(--accent);text-decoration:none}
+.cover{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,var(--deep-blue),#1a2744);overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(99,102,241,0.08)" d="M0,224L60,213.3C120,203,240,181,360,181.3C480,181,600,203,720,213.3C840,224,960,224,1080,208C1200,192,1320,160,1380,144L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"/></svg>')no-repeat bottom/cover;opacity:.5}
+.cover-content{position:relative;z-index:1;padding:2rem;max-width:800px}
+.cover h1{font-size:clamp(2rem,6vw,4rem);color:#fff;margin-bottom:1rem;letter-spacing:-.02em}
+.cover h1 span{color:var(--gold)}
+.cover p{font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,.7);margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto}
+.cover .badge{display:inline-block;padding:.5rem 1.5rem;background:var(--accent);color:#fff;border-radius:50px;font-weight:600;font-size:.9rem;letter-spacing:.05em}
+.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:.75rem 0;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.sticky-nav a{display:inline-block;padding:.4rem .9rem;margin:0 .15rem;font-size:.82rem;color:var(--text-light);border-radius:6px;transition:all .2s;font-weight:500}
+.sticky-nav a:hover{color:var(--accent);background:rgba(99,102,241,.08)}
+.section{padding:3rem 1.5rem;max-width:1100px;margin:0 auto}
+.section:nth-child(even){background:var(--bg-alt);border-radius:2rem;margin:2rem auto}
+.section h2{font-size:1.8rem;margin-bottom:.5rem;color:var(--deep-blue);display:flex;align-items:center;gap:.75rem}
+.section h2 .sec-num{font-size:1rem;background:var(--accent);color:#fff;width:2rem;height:2rem;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.section>.subtitle{color:var(--text-light);margin-bottom:1.5rem;font-size:.95rem}
+.entries{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem}
+.entry{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.25rem;position:relative;transition:box-shadow .2s}
+.entry:hover{box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.entry .num{position:absolute;top:.75rem;right:.75rem;font-size:.75rem;color:var(--text-light);font-weight:600;background:var(--bg-alt);padding:.15rem .5rem;border-radius:4px}
+.entry h3{font-size:1.05rem;margin-bottom:.35rem;padding-right:2.5rem;color:var(--deep-blue)}
+.entry .loc{font-size:.85rem;color:var(--text-light);margin-bottom:.4rem;display:flex;align-items:center;gap:.35rem}
+.entry .loc::before{content:'\1F4CD';font-size:.8rem}
+.entry .desc{font-size:.9rem;color:var(--text);margin-bottom:.6rem;line-height:1.5}
+.entry .tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.tag{padding:.15rem .55rem;border-radius:4px;font-size:.75rem;font-weight:500}
+.tag-time{background:#f0fdf4;color:#166534}
+.tag-price{background:#fef3c7;color:#92400e}
+.tag-cat{background:#e0e7ff;color:#3730a3}
+.tag-info{background:#f1f5f9;color:#475569}
+.food-section{background:linear-gradient(135deg,var(--bg-alt),#f1f5f9);border-radius:2rem;padding:3rem 1.5rem;margin:2rem auto;max-width:1100px}
+.food-section h2{font-size:1.8rem;margin-bottom:.5rem;color:var(--deep-blue);display:flex;align-items:center;gap:.75rem}
+.food-section h2 .sec-num{font-size:1rem;background:var(--accent);color:#fff;width:2rem;height:2rem;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.food-section>.subtitle{color:var(--text-light);margin-bottom:1.5rem;font-size:.95rem}
+.cuisine-group{margin-bottom:3rem}
+.cuisine-group:last-child{margin-bottom:0}
+.cuisine-group h3{font-size:1.2rem;color:var(--deep-blue);padding-bottom:.5rem;border-bottom:2px solid var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.cuisine-group ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:.6rem}
+.cuisine-group li{padding:.65rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:.9rem;line-height:1.5}
+.cuisine-group li strong{color:var(--deep-blue)}
+footer{background:var(--deep-blue);color:rgba(255,255,255,.7);text-align:center;padding:2rem;font-size:.85rem;margin-top:3rem}
+@media(max-width:600px){.entries{grid-template-columns:1fr}.cuisine-group ul{grid-template-columns:1fr}.section{padding:2rem 1rem}.food-section{padding:2rem 1rem}.sticky-nav a{padding:.3rem .6rem;font-size:.75rem}}
+</style>
+</head>
+<body>
+<div class="section" id="sight">
+<h2><span class="sec-num">✦</span> Достопримечательности</h2>
+<div class="entries">
+<div class="entry"><div class="num">#1</div><h3>�������� ������</h3><div class="loc">��. �������������, 8</div><div class="desc">������� �������� XVI ����. ��������� �����, �����.</div><div class="tags"><span class="tag tag-price">���������� ���������</span><span class="tag tag-time">8:00�20:00</span></div></div>
+<div class="entry"><div class="num">#2</div><h3>����� ������</h3><div class="loc">��. �����������, 2</div><div class="desc">����������� ������. ������ �� XVI ����.</div><div class="tags"><span class="tag tag-price">400?</span><span class="tag tag-time">10:00�18:00</span></div></div>
+<div class="entry"><div class="num">#3</div><h3>����� ���������</h3><div class="loc">��. �������������, 8</div><div class="desc">��������� ���������. ������� ��������.</div><div class="tags"><span class="tag tag-price">200?</span><span class="tag tag-time">10:00�18:00</span></div></div>
+<div class="entry"><div class="num">#4</div><h3>����� �����������</h3><div class="loc">�����</div><div class="desc">����������. ���������� ����, �����, ����.</div><div class="tags"><span class="tag tag-price">���������</span><span class="tag tag-time">�������������</span></div></div>
+<div class="entry"><div class="num">#5</div><h3>�������� ����</h3><div class="loc">��. ���������, 96</div><div class="desc">������������� ��� ���� �����.</div><div class="tags"><span class="tag tag-price">�� 600?</span></div></div>
+<div class="entry"><div class="num">#6</div><h3>���� ��. ���������</h3><div class="loc">��. �. ��������, 2</div><div class="desc">�����, �����������, �����, �������.</div><div class="tags"><span class="tag tag-price">���������</span><span class="tag tag-time">�������������</span></div></div>
+<div class="entry"><div class="num">#7</div><h3>����� ��������� �������</h3><div class="loc">��. ���������, 9</div><div class="desc">����������, ������-����� �� �������.</div><div class="tags"><span class="tag tag-price">250?</span></div></div>
+<div class="entry"><div class="num">#8</div><h3>��������� ����������</h3><div class="loc">��. ����������</div><div class="desc">���������� ���. ��� �� ������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#9</div><h3>����� �����</h3><div class="loc">��. ������, 34</div><div class="desc">��������� �����. �������� � �������������.</div><div class="tags"><span class="tag tag-price">�� 350?</span></div></div>
+<div class="entry"><div class="num">#10</div><h3>������� ������</h3><div class="loc">�����</div><div class="desc">������� ������� � ��������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#11</div><h3>�������������� �����</h3><div class="loc">��. �. ��������, 64</div><div class="desc">������� ���������, �����.</div><div class="tags"><span class="tag tag-price">200?</span></div></div>
+<div class="entry"><div class="num">#12</div><h3>����� ������</h3><div class="loc">~15 ��</div><div class="desc">������� �.�. ��������. ����, ���������.</div><div class="tags"><span class="tag tag-price">300�500?</span></div></div>
+<div class="entry"><div class="num">#13</div><h3>�������� ����</h3><div class="loc">~100 ��</div><div class="desc">�����-����������. ����� �����.</div><div class="tags"><span class="tag tag-price">300?</span></div></div>
+<div class="entry"><div class="num">#14</div><h3>�������� �����</h3><div class="loc">��. �����������</div><div class="desc">������������� ����� � ��������� �������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#15</div><h3>������� �� ����������</h3><div class="loc">��������� ���.</div><div class="desc">��������� �������. ��� �� ���.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#16</div><h3>�����-��������� �����</h3><div class="loc">������</div><div class="desc">������� ���� ������. �������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+</div>
+</div>
+<div class="section" id="park">
+<h2><span class="sec-num">✦</span> Парки и зоны отдыха</h2>
+<div class="entries">
+<div class="entry"><div class="num">#17</div><h3>���� ��. ���������</h3><div class="loc">��. �. ��������, 2</div><div class="desc">������� ����. �����, �����������, �����.</div><div class="tags"><span class="tag tag-price">���������</span><span class="tag tag-time">6:00�23:00</span></div></div>
+<div class="entry"><div class="num">#18</div><h3>��������� ����������</h3><div class="loc">��. ����������</div><div class="desc">������ ���� � ����. ����, �����������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#19</div><h3>���� ��������-����</h3><div class="loc">��. �. ��������, 25</div><div class="desc">������� �������, ���, ��������� ����.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#20</div><h3>���� �������������</h3><div class="loc">��. ������</div><div class="desc">����, �������, �������������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#21</div><h3>����� � ������</h3><div class="loc">���������� ���</div><div class="desc">������ � ���� ������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#22</div><h3>������� ����</h3><div class="loc">��. �����������</div><div class="desc">����������� ��� �����.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#23</div><h3>����������� ����</h3><div class="loc">��. �����������</div><div class="desc">����� ������ ����.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#24</div><h3>���� ���������� ���</h3><div class="loc">��. ���������</div><div class="desc">������������ ��� � ������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#25</div><h3>����� ���� ������</h3><div class="loc">��. ������</div><div class="desc">�������� ������, ������ �����.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#26</div><h3>���� �����������</h3><div class="loc">��. ������</div><div class="desc">�������������, �������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#27</div><h3>�������� ����</h3><div class="loc">���. ����� ����</div><div class="desc">��������� ���� ��� ��������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+</div>
+</div>
+<div class="section" id="water">
+<h2><span class="sec-num">✦</span> Водоёмы и природа</h2>
+<div class="entries">
+<div class="entry"><div class="num">#28</div><h3>���� ��� ����������</h3><div class="loc">��������� ���.</div><div class="desc">���������� � ����� �� ������.</div><div class="tags"><span class="tag tag-price">���������</span><span class="tag tag-time">�������������</span></div></div>
+<div class="entry"><div class="num">#29</div><h3>���� � ����� ���������</h3><div class="loc">���� ���������</div><div class="desc">�����, ����������, ����.</div><div class="tags"><span class="tag tag-price">����� �� 300?/���</span></div></div>
+<div class="entry"><div class="num">#30</div><h3>����� ������������� �����</h3><div class="loc">������������ ����</div><div class="desc">������ ������ � ���������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#31</div><h3>���� �������</h3><div class="loc">����� ������</div><div class="desc">���� � ������� ��������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#32</div><h3>����� � ���. �����������</h3><div class="loc">���. �����������</div><div class="desc">�������, �������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#33</div><h3>������� ����</h3><div class="loc">ٸ������� �-�</div><div class="desc">����, �������, ���� ������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#34</div><h3>�������� �� ���</h3><div class="loc">��������� ���.</div><div class="desc">��� �� ������ � ����.</div><div class="tags"><span class="tag tag-price">500�1000?</span></div></div>
+<div class="entry"><div class="num">#35</div><h3>������ �12 ������</h3><div class="loc">��������� �-�</div><div class="desc">������ ����, ������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#36</div><h3>���� ���</h3><div class="loc">~60 ��</div><div class="desc">����� �����, �������.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+</div>
+</div>
+<div class="section" id="spa">
+<h2><span class="sec-num">✦</span> СПА и грязелечебницы</h2>
+<div class="entries">
+<div class="entry"><div class="num">#37</div><h3>SPA �����������</h3><div class="loc">��. ������, 88</div><div class="desc">�����, �����, �������, ������.</div><div class="tags"><span class="tag tag-price">�� 2000?</span></div></div>
+<div class="entry"><div class="num">#38</div><h3>������� ���� ���������</h3><div class="loc">��. �����������, 45</div><div class="desc">������, ������, ������.</div><div class="tags"><span class="tag tag-price">1000�2000?</span></div></div>
+<div class="entry"><div class="num">#39</div><h3>������ ��������� ������</h3><div class="loc">��. ���������, 35</div><div class="desc">������, ������.</div><div class="tags"><span class="tag tag-price">1500�3000?</span></div></div>
+<div class="entry"><div class="num">#40</div><h3>������� ������ �����</h3><div class="loc">��. �. ��������, 25</div><div class="desc">������� �������, �����.</div><div class="tags"><span class="tag tag-price">�� 1500?/���</span></div></div>
+<div class="entry"><div class="num">#41</div><h3>������� ������ �����-����</h3><div class="loc">��. ������, 20</div><div class="desc">�����������.</div><div class="tags"><span class="tag tag-price">350�600?</span></div></div>
+<div class="entry"><div class="num">#42</div><h3>���������</h3><div class="loc">��. ���������, 50</div><div class="desc">�����������.</div><div class="tags"><span class="tag tag-price">�� 600?</span></div></div>
+<div class="entry"><div class="num">#43</div><h3>�������� �������</h3><div class="loc">��. ������, 45</div><div class="desc">��������� ����������.</div><div class="tags"><span class="tag tag-price">�� 1000?</span></div></div>
+<div class="entry"><div class="num">#44</div><h3>SPA �����</h3><div class="loc">��. �����������, 12</div><div class="desc">����������� SPA-���������.</div><div class="tags"><span class="tag tag-price">�� 1500?</span></div></div>
+<div class="entry"><div class="num">#45</div><h3>���� ������</h3><div class="loc">������������ �-�</div><div class="desc">������� ���� ��������.</div><div class="tags"><span class="tag tag-price">700�1300?</span></div></div>
+</div>
+</div>
+<div class="section" id="beauty">
+<h2><span class="sec-num">✦</span> Салоны красоты и Nail-студии</h2>
+<div class="entries">
+<div class="entry"><div class="num">#46</div><h3>Beauty Studio ��������</h3><div class="loc">��. ������, 55</div><div class="desc">�������, �����������, �������.</div><div class="tags"><span class="tag tag-price">������� �� 1000?</span></div></div>
+<div class="entry"><div class="num">#47</div><h3>Nail-������ ������</h3><div class="loc">��. ���������, 22</div><div class="desc">�������, �������, ������.</div><div class="tags"><span class="tag tag-price">������� �� 1200?</span></div></div>
+<div class="entry"><div class="num">#48</div><h3>��������� �������</h3><div class="loc">��. �����������, 5</div><div class="desc">������� �������, ������.</div><div class="tags"><span class="tag tag-price">������� �� 800?</span></div></div>
+<div class="entry"><div class="num">#49</div><h3>Lash-������</h3><div class="loc">��. �����������, 30</div><div class="desc">����������� ������.</div><div class="tags"><span class="tag tag-price">�� 1500?</span></div></div>
+<div class="entry"><div class="num">#50</div><h3>������������ ����������</h3><div class="loc">��. ������, 70</div><div class="desc">������, �������.</div><div class="tags"><span class="tag tag-price">�� 1500?</span></div></div>
+<div class="entry"><div class="num">#51</div><h3>������� ������</h3><div class="loc">��. �. ��������, 10</div><div class="desc">������������ � ��������������.</div><div class="tags"><span class="tag tag-price">�� 30?/���</span></div></div>
+<div class="entry"><div class="num">#52</div><h3>�������������� ������</h3><div class="loc">��. ���������������, 15</div><div class="desc">��������� �������.</div><div class="tags"><span class="tag tag-price">������� �� 400?</span></div></div>
+<div class="entry"><div class="num">#53</div><h3>�������� ��������</h3><div class="loc">��. ���������, 40</div><div class="desc">�������� �������� �����.</div><div class="tags"><span class="tag tag-price">�� 1200?/����</span></div></div>
+<div class="entry"><div class="num">#54</div><h3>������ ���������</h3><div class="loc">��. �������������, 5</div><div class="desc">������������ ������.</div><div class="tags"><span class="tag tag-price">�� 700?/���</span></div></div>
+</div>
+</div>
+<div class="section" id="markets">
+<h2><span class="sec-num">✦</span> Рынки</h2>
+<div class="entries">
+<div class="entry"><div class="num">#55</div><h3>����������� �����</h3><div class="loc">��. ������, 33</div><div class="desc">������� �����. ����, �������, �������.</div><div class="tags"><span class="tag tag-time">6:00�18:00</span></div></div>
+<div class="entry"><div class="num">#56</div><h3>����� ����������</h3><div class="loc">��. �����������</div><div class="desc">��������, ������, ���������.</div><div class="tags"><span class="tag tag-time">6:00�17:00</span></div></div>
+<div class="entry"><div class="num">#57</div><h3>����� ������������</h3><div class="loc">��. �����������</div><div class="desc">����������� �����.</div><div class="tags"><span class="tag tag-time">6:00�16:00</span></div></div>
+<div class="entry"><div class="num">#58</div><h3>����� �������������</h3><div class="loc">��. ������, 110</div><div class="desc">�����, ������, ����.</div><div class="tags"><span class="tag tag-time">6:00�16:00</span></div></div>
+<div class="entry"><div class="num">#59</div><h3>������� �����</h3><div class="loc">��. ���������</div><div class="desc">������, �����, ����������.</div><div class="tags"><span class="tag tag-time">7:00�16:00</span></div></div>
+<div class="entry"><div class="num">#60</div><h3>�������� ������ (���������)</h3><div class="loc">��. �����������</div><div class="desc">���������� �������, ��������.</div><div class="tags"><span class="tag tag-time">9:00�20:00</span></div></div>
+<div class="entry"><div class="num">#61</div><h3≯� � ����������</h3><div class="loc">��. �. ��������</div><div class="desc">�������� ��, �������.</div><div class="tags"><span class="tag tag-time">9:00�19:00</span></div></div>
+<div class="entry"><div class="num">#62</div><h3>�������� �����</h3><div class="loc">��. ����������</div><div class="desc">������, �����, ������.</div><div class="tags"><span class="tag tag-time">��-�� 7:00�13:00</span></div></div>
+</div>
+</div>
+<div class="section" id="shopping">
+<h2><span class="sec-num">✦</span> Торговые центры и шопинг</h2>
+<div class="entries">
+<div class="entry"><div class="num">#63</div><h3>��� ������</h3><div class="loc">��. ������������, 24</div><div class="desc">���������� ��. ����, ���-����.</div><div class="tags"><span class="tag tag-time">10:00�22:00</span></div></div>
+<div class="entry"><div class="num">#64</div><h3>��� ����</h3><div class="loc">��. ������, 77</div><div class="desc">�������� � ������, �����.</div><div class="tags"><span class="tag tag-time">10:00�22:00</span></div></div>
+<div class="entry"><div class="num">#65</div><h3>�� �Orange�</h3><div class="loc">��. ���������, 47</div><div class="desc">������, �����, ����.</div><div class="tags"><span class="tag tag-time">10:00�21:00</span></div></div>
+<div class="entry"><div class="num">#66</div><h3>�� ������ ������</h3><div class="loc">��. ������, 20</div><div class="desc">��������, ������, ������.</div><div class="tags"><span class="tag tag-time">9:00�21:00</span></div></div>
+<div class="entry"><div class="num">#67</div><h3>�� ��������� ����</h3><div class="loc">��. �����������</div><div class="desc">������������ ������, ��������.</div><div class="tags"><span class="tag tag-time">10:00�20:00</span></div></div>
+<div class="entry"><div class="num">#68</div><h3>�� �������</h3><div class="loc">��. ���������, 15</div><div class="desc">�����. ������, ���������.</div><div class="tags"><span class="tag tag-time">10:00�21:00</span></div></div>
+<div class="entry"><div class="num">#69</div><h3>�����������</h3><div class="loc">��� �����</div><div class="desc">�����������.</div><div class="tags"><span class="tag tag-time">10:00�22:00</span></div></div>
+<div class="entry"><div class="num">#70</div><h3>������ ��������</h3><div class="loc">��. ������, 50</div><div class="desc">���������, ������� �����.</div><div class="tags"><span class="tag tag-time">8:00�22:00</span></div></div>
+<div class="entry"><div class="num">#71</div><h3>DNS ����</h3><div class="loc">��. ���������, 30</div><div class="desc">�����������.</div><div class="tags"><span class="tag tag-time">9:00�21:00</span></div></div>
+<div class="entry"><div class="num">#72</div><h3>�������� ������� (�������)</h3><div class="loc">��. �����������</div><div class="desc">���������� ��������, �������.</div><div class="tags"><span class="tag tag-time">9:00�20:00</span></div></div>
+</div>
+</div>
+<div class="section" id="kids">
+<h2><span class="sec-num">✦</span> Детские центры и развлечения</h2>
+<div class="entries">
+<div class="entry"><div class="num">#73</div><h3>���� ����</h3><div class="loc">��. ���������, 96</div><div class="desc">������������� � ���������.</div><div class="tags"><span class="tag tag-price">�� 600?</span></div></div>
+<div class="entry"><div class="num">#74</div><h3>���� ��������� (�������)</h3><div class="loc">���� ���������</div><div class="desc">�����������, ������, �����.</div><div class="tags"><span class="tag tag-price">���������</span></div></div>
+<div class="entry"><div class="num">#75</div><h3>����� ������ (�����)</h3><div class="loc">��. �����������, 2</div><div class="desc">������������� ���������.</div><div class="tags"><span class="tag tag-price">400?</span></div></div>
+<div class="entry"><div class="num">#76</div><h3>������� ����</h3><div class="loc">��. �����������</div><div class="desc">��������, ������� ��������.</div><div class="tags"><span class="tag tag-price">�� 150?</span></div></div>
+<div class="entry"><div class="num">#77</div><h3>��������� ���� ��������</h3><div class="loc">��. �. ��������, 25</div><div class="desc">������ �� ��������.</div><div class="tags"><span class="tag tag-price">400�700?</span></div></div>
+<div class="entry"><div class="num">#78</div><h3>����� ��������� �������</h3><div class="loc">��. ���������, 9</div><div class="desc">������-����� �� ������� ��������.</div><div class="tags"><span class="tag tag-price">250?</span></div></div>
+<div class="entry"><div class="num">#79</div><h3>������� �����</h3><div class="loc">��. ���������</div><div class="desc">������������� � 6 ���.</div><div class="tags"><span class="tag tag-price">400?/�����</span></div></div>
+<div class="entry"><div class="num">#80</div><h3>VR-����</h3><div class="loc">��. ������, 55</div><div class="desc">����������� ����������.</div><div class="tags"><span class="tag tag-price">�� 400?</span></div></div>
+<div class="entry"><div class="num">#81</div><h3>������ ���� �����</h3><div class="loc">��������� �-�</div><div class="desc">�������� ����, ����.</div><div class="tags"><span class="tag tag-price">600?/���</span></div></div>
+<div class="entry"><div class="num">#82</div><h3>�����-����� �������</h3><div class="loc">��. ���������, 50</div><div class="desc">������, ����������� ���.</div><div class="tags"><span class="tag tag-price">500?/���</span></div></div>
+</div>
+</div>
+<div class="section" id="sport">
+<h2><span class="sec-num">✦</span> Спорт и активности</h2>
+<div class="entries">
+<div class="entry"><div class="num">#83</div><h3>������� ��������</h3><div class="loc">��. �����������, 26</div><div class="desc">���������� ������� �� ��������.</div><div class="tags"><span class="tag tag-price">�� 300?</span></div></div>
+<div class="entry"><div class="num">#84</div><h3>������ �X-Fit�</h3><div class="loc">��� �����</div><div class="desc">��������, ��������� ���������.</div><div class="tags"><span class="tag tag-price">�� 250?/������</span></div></div>
+<div class="entry"><div class="num">#85</div><h3>��������� ���� ��������</h3><div class="loc">���� ���������</div><div class="desc">������ ������ ���������.</div><div class="tags"><span class="tag tag-price">400�700?</span></div></div>
+<div class="entry"><div class="num">#86</div><h3>��������� �����������</h3><div class="loc">��. ������, 88</div><div class="desc">������ ���������.</div><div class="tags"><span class="tag tag-price">400?</span></div></div>
+<div class="entry"><div class="num">#87</div><h3>��������� �����</h3><div class="loc">��. ������</div><div class="desc">�����, ������.</div><div class="tags"><span class="tag tag-price">600�1200?/���</span></div></div>
+<div class="entry"><div class="num">#88</div><h3>������������ ���� �����</h3><div class="loc">���. ����� ����</div><div class="desc">���������� ��������.</div><div class="tags"><span class="tag tag-price">�� 1000?</span></div></div>
+<div class="entry"><div class="num">#89</div><h3>������� ��������</h3><div class="loc">��� ���</div><div class="desc">�������, ���.</div><div class="tags"><span class="tag tag-price">300�600?/����</span></div></div>
+<div class="entry"><div class="num">#90</div><h3>������� ��������</h3><div class="loc">��. ���������, 40</div><div class="desc">�������, ���.</div><div class="tags"><span class="tag tag-price">250�400?/���</span></div></div>
+<div class="entry"><div class="num">#91</div><h3>������� ������ �����</h3><div class="loc">��. ������, 99</div><div class="desc">�����, ������.</div><div class="tags"><span class="tag tag-price">300?</span></div></div>
+<div class="entry"><div class="num">#92</div><h3>������������� ����������</h3><div class="loc">��. ������</div><div class="desc">�������, ������.</div><div class="tags"><span class="tag tag-price">�� 250?</span></div></div>
+</div>
+</div>
+<div class="section" id="med">
+<h2><span class="sec-num">✦</span> Медицина и клиники</h2>
+<div class="entries">
+<div class="entry"><div class="num">#93</div><h3>����������� �1</h3><div class="loc">��. �������, 40</div><div class="desc">���������� ��������.</div><div class="tags"><span class="tag tag-time">�������������</span></div></div>
+<div class="entry"><div class="num">#94</div><h3>���� ��. ��������</h3><div class="loc">��. ���������, 56</div><div class="desc">������ ������, ��������.</div><div class="tags"><span class="tag tag-time">�������������</span></div></div>
+<div class="entry"><div class="num">#95</div><h3>�������� ������</h3><div class="loc">��. ������, 44</div><div class="desc">�������, ���, ���.</div><div class="tags"><span class="tag tag-price">������������ �� 1000?</span></div></div>
+<div class="entry"><div class="num">#96</div><h3>������������ �����-����</h3><div class="loc">��. ���������, 25</div><div class="desc">�������, �����������.</div><div class="tags"><span class="tag tag-price">������������ 400?</span></div></div>
+<div class="entry"><div class="num">#97</div><h3>����������� �1</h3><div class="loc">��. �. ��������, 20</div><div class="desc">��������, �������.</div><div class="tags"><span class="tag tag-time">8:00�20:00</span></div></div>
+<div class="entry"><div class="num">#98</div><h3>������ ��������</h3><div class="loc">��. ������, 30</div><div class="desc">���������, ������.</div><div class="tags"><span class="tag tag-time">8:00�22:00</span></div></div>
+<div class="entry"><div class="num">#99</div><h3>����������� ��������</h3><div class="loc">��. �����������, 15</div><div class="desc">������� ������.</div><div class="tags"><span class="tag tag-time">7:30�19:30</span></div></div>
+<div class="entry"><div class="num">#100</div><h3>����������</h3><div class="loc">����</div><div class="desc">������ ������, �������.</div><div class="tags"><span class="tag tag-time">�������������</span></div></div>
+<div class="entry"><div class="num">#101</div><h3>������ ������</h3><div class="loc">�� ������</div><div class="desc">103 ��� 112.</div><div class="tags"><span class="tag tag-warn">103</span></div></div>
+</div>
+</div>
+<div class="section" id="transport">
+<h2><span class="sec-num">✦</span> Такси и транспорт</h2>
+<div class="entries">
+<div class="entry"><div class="num">#102</div><h3>������ Go</h3><div class="loc">�����</div><div class="desc">����� �� 150?.</div><div class="tags"><span class="tag tag-price">�� 150?</span></div></div>
+<div class="entry"><div class="num">#103</div><h3>��������, �����������</h3><div class="loc">��������</div><div class="desc">26�30?. ����� �����-�����.</div><div class="tags"><span class="tag tag-price">26�30?</span></div></div>
+<div class="entry"><div class="num">#104</div><h3>���������</h3><div class="loc">�� ������</div><div class="desc">�� 8?/���.</div><div class="tags"><span class="tag tag-price">�� 8?/���</span></div></div>
+<div class="entry"><div class="num">#105</div><h3>�������� �� ����</h3><div class="loc">��������/�/�</div><div class="desc">����� �� ������ 150�400?.</div><div class="tags"><span class="tag tag-price">150�400?</span></div></div>
+<div class="entry"><div class="num">#106</div><h3>������ ����</h3><div class="loc">����� �������</div><div class="desc">�� 1200?/���.</div><div class="tags"><span class="tag tag-price">�� 1200?/���</span></div></div>
+<div class="entry"><div class="num">#107</div><h3>���������������</h3><div class="loc">�����</div><div class="desc">50?+5?/���.</div><div class="tags"><span class="tag tag-price">50? + 5?/���</span></div></div>
+<div class="entry"><div class="num">#108</div><h3>�������� � ������</h3><div class="loc">�/� ������</div><div class="desc">1 � 50 ���, ����� 800?.</div><div class="tags"><span class="tag tag-price">�� 500?</span></div></div>
+<div class="entry"><div class="num">#109</div><h3>����� �� ������</h3><div class="loc">�� ����� �����</div><div class="desc">������ ~3000�5000?.</div><div class="tags"><span class="tag tag-price">3000�5000?</span></div></div>
+<div class="entry"><div class="num">#110</div><h3>����������</h3><div class="loc">�����, �����</div><div class="desc">30 ��� ���������.</div><div class="tags"><span class="tag tag-price">30 ��� ���������</span></div></div>
+</div>
+</div>
+<div class="section" id="night">
+<h2><span class="sec-num">✦</span> Ночная жизнь</h2>
+<div class="entries">
+<div class="entry"><div class="num">#111</div><h3>������ ���� �MIX�</h3><div class="loc">��. ������, 88</div><div class="desc">������, �����, ��������.</div><div class="tags"><span class="tag tag-time">22:00�6:00</span></div></div>
+<div class="entry"><div class="num">#112</div><h3>��� ���������</h3><div class="loc">��. ���������, 20</div><div class="desc">����� ������, ���������.</div><div class="tags"><span class="tag tag-time">18:00�2:00</span></div></div>
+<div class="entry"><div class="num">#113</div><h3>������� �������</h3><div class="loc">��. �����������, 35</div><div class="desc">VIP-�������.</div><div class="tags"><span class="tag tag-time">19:00�5:00</span></div></div>
+<div class="entry"><div class="num">#114</div><h3>��� ��������</h3><div class="loc">��. �����������, 8</div><div class="desc">���������� ���.</div><div class="tags"><span class="tag tag-time">12:00�2:00</span></div></div>
+<div class="entry"><div class="num">#115</div><h3>��������� �Lounge�</h3><div class="loc">��. ������, 55</div><div class="desc">���, ��������, ��������.</div><div class="tags"><span class="tag tag-time">14:00�2:00</span></div></div>
+<div class="entry"><div class="num">#116</div><h3>������ ��� �����������</h3><div class="loc">��. �. ��������, 12</div><div class="desc">���������� ���.</div><div class="tags"><span class="tag tag-time">16:00�0:00</span></div></div>
+<div class="entry"><div class="num">#117</div><h3>���� �����</h3><div class="loc">��. ������������, 15</div><div class="desc">������ ���������.</div><div class="tags"><span class="tag tag-time">22:00�5:00</span></div></div>
+<div class="entry"><div class="num">#118</div><h3>��� �Beer House�</h3><div class="loc">��. ������, 60</div><div class="desc">��������� ����.</div><div class="tags"><span class="tag tag-time">12:00�1:00</span></div></div>
+</div>
+</div>
+<div class="section" id="services">
+<h2><span class="sec-num">✦</span> Полезные сервисы</h2>
+<div class="entries">
+<div class="entry"><div class="num">#119</div><h3>����� ����� (AION)</h3><div class="loc">Mini App / Telegram</div><div class="desc">������ ����. RUB - USD - EUR.</div><div class="tags"><span class="tag tag-info">����� AION</span></div></div>
+<div class="entry"><div class="num">#120</div><h3>��������� ���������</h3><div class="loc">��. �����������, 10</div><div class="desc">������, �����, ������.</div><div class="tags"><span class="tag tag-price">�� 200?/��</span></div></div>
+<div class="entry"><div class="num">#121</div><h3>������ �������</h3><div class="loc">��. ���������, 35</div><div class="desc">��������, ��������, ��������.</div><div class="tags"><span class="tag tag-price">����������� 0?</span></div></div>
+<div class="entry"><div class="num">#122</div><h3>����� ������</h3><div class="loc">��. ������, 25</div><div class="desc">�������, ������.</div><div class="tags"><span class="tag tag-time">8:00�20:00</span></div></div>
+<div class="entry"><div class="num">#123</div><h3>���������</h3><div class="loc">��. �����������, 3</div><div class="desc">������, ������������.</div><div class="tags"><span class="tag tag-time">8:00�20:00</span></div></div>
+<div class="entry"><div class="num">#124</div><h3>������� ����������</h3><div class="loc">����������� �����</div><div class="desc">������ ������.</div><div class="tags"><span class="tag tag-price">�� 200?</span></div></div>
+<div class="entry"><div class="num">#125</div><h3>��������� ���������</h3><div class="loc">��. �. ��������, 15</div><div class="desc">���������, ����� ������.</div><div class="tags"><span class="tag tag-time">8:00�20:00</span></div></div>
+<div class="entry"><div class="num">#126</div><h3>�����</h3><div class="loc">��. ����������, 10</div><div class="desc">�����, ��������.</div><div class="tags"><span class="tag tag-time">9:00�19:00</span></div></div>
+<div class="entry"><div class="num">#127</div><h3>������ �����</h3><div class="loc">��. ������������, 20</div><div class="desc">�������, ���.</div><div class="tags"><span class="tag tag-price">�� 250?</span></div></div>
+<div class="entry"><div class="num">#128</div><h3>���� �������</h3><div class="loc">��. ���������, 5</div><div class="desc">���������� ����.</div><div class="tags"><span class="tag tag-time">9:00�18:00</span></div></div>
+</div>
+</div>
+<div class="food-section" id="food">
+<h2><span class="sec-num">✦</span> Рестораны и кафе по кухням</h2>
+<p class="subtitle">Все заведения города, сгруппированные по типу кухни</p>
+<div class="cuisine-group">
+<h3>Русская кухня</h3>
+<ul>
+<li><strong>#129 Гости</strong> &mdash; пр-т Ленина, 85 · Русская премиум, 2000-4000₽</li>
+<li><strong>#130 Пушкин</strong> &mdash; ул. Советская, 47 · Русская классика, 1500-3000₽</li>
+<li><strong>#131 Левша</strong> &mdash; ул. Менделеевская, 7 · Русская, 1200-2500₽</li>
+<li><strong>#132 Тульский пряник</strong> &mdash; пр-т Ленина, 33 · Русская, пряники, 1000-2000₽</li>
+<li><strong>#133 Мамура</strong> &mdash; ул. Октябрьская, 26 · Русская, 1000-1800₽</li>
+<li><strong>#134 Купеческий двор</strong> &mdash; ул. Плеханова, 56 · Русская, 1200-2200₽</li>
+<li><strong>#135 Славянский тракт</strong> &mdash; ул. Союзная, 12 · Русская, 900-1700₽</li>
+<li><strong>#136 Берёзка</strong> &mdash; ул. Фрунзе, 18 · Русская, 800-1500₽</li>
+<li><strong>#137 Русская тройка</strong> &mdash; ул. Кирова, 22 · Русская, 1000-2000₽</li>
+<li><strong>#138 Застолье</strong> &mdash; ул. Оборонная, 112 · Русская, 900-1600₽</li>
+<li><strong>#139 У самовара</strong> &mdash; пр-т Ленина, 56 · Русская, чайная</li>
+<li><strong>#140 Деревенский</strong> &mdash; ул. Каминского, 44 · Русская, 800-1500₽</li>
+<li><strong>#141 Щи да каша</strong> &mdash; ул. Плеханова, 34 · Русская столовая</li>
+<li><strong>#142 Мед и хмель</strong> &mdash; ул. Советская, 60 · Русская, 1000-1800₽</li>
+<li><strong>#143 Бабушкин погребок</strong> &mdash; ул. Тимирязева, 22 · Домашняя русская</li>
+<li><strong>#144 Пироги &amp; Щи</strong> &mdash; ул. Галкина, 26 · Пироги, 500-1000₽</li>
+<li><strong>#145 Разгуляй</strong> &mdash; ул. Чмутова, 105 · Русская, 1000-1800₽</li>
+<li><strong>#146 Ватрушка</strong> &mdash; ул. Демонстрации, 15 · Русская, выпечка</li>
+<li><strong>#147 Пряничная</strong> &mdash; ул. Менделеевская, 12 · Тульские пряники</li>
+<li><strong>#148 Корчма</strong> &mdash; ул. Пролетарская, 30 · Русская, 700-1400₽</li>
+<li><strong>#149 Трактир</strong> &mdash; ул. Советская, 80 · Русская, 1000-2000₽</li>
+<li><strong>#150 Русский двор</strong> &mdash; ул. 9 Мая, 8 · Русская, 1200-2200₽</li>
+<li><strong>#151 Ложка</strong> &mdash; ул. Кирова, 40 · Русская, 800-1500₽</li>
+<li><strong>#152 Околица</strong> &mdash; ул. Фрунзе, 50 · Русская, 900-1600₽</li>
+<li><strong>#153 Сбитень</strong> &mdash; ул. Каминского, 66 · Русская, чайная</li>
+<li><strong>#154 На Паре</strong> &mdash; ул. Октябрьская, 44 · Русская, 1000-1700₽</li>
+<li><strong>#155 Блинная №1</strong> &mdash; ул. Плеханова, 72 · Блины, русская</li>
+<li><strong>#156 Самоварная</strong> &mdash; ул. Союзная, 44 · Русская, чай</li>
+<li><strong>#157 Тульский дворик</strong> &mdash; ул. Ликбеза, 11 · Русская, 800-1500₽</li>
+<li><strong>#158 Заречье</strong> &mdash; Зареченский р-н · Русская, 700-1400₽</li>
+<li><strong>#159 Чулково</strong> &mdash; ул. Чулково, 30 · Русская, 600-1200₽</li>
+<li><strong>#160 Уральские пельмени</strong> &mdash; ул. Бондаренко, 15 · Пельменная</li>
+<li><strong>#161 Пирожковая №5</strong> &mdash; ул. Октябрьская, 6 · Пирожки</li>
+<li><strong>#162 Сельский дворик</strong> &mdash; Привокзальный р-н · Русская, 700-1400₽</li>
+<li><strong>#163 Домашний очаг</strong> &mdash; ул. Дрейера, 18 · Русская столовая</li>
+<li><strong>#164 Кулебяка</strong> &mdash; ул. Степанова, 23 · Пироги, русская</li>
+<li><strong>#165 Печки-Лавочки</strong> &mdash; ул. Первомайская, 12 · Русская, 800-1500₽</li>
+<li><strong>#166 Русский чай</strong> &mdash; пр-т Ленина, 102 · Русская, чайная</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Кавказская кухня</h3>
+<ul>
+<li><strong>#167 КавкАзия</strong> &mdash; пр-т Ленина, 94 · Грузинская, хачапури</li>
+<li><strong>#168 Сациви</strong> &mdash; ул. Советская, 44 · Грузинская, 1200-2500₽</li>
+<li><strong>#169 Тифлис</strong> &mdash; ул. Плеханова, 25 · Грузинская, 1500-3000₽</li>
+<li><strong>#170 Мимино</strong> &mdash; ул. Каминского, 18 · Грузинская, 1000-2000₽</li>
+<li><strong>#171 Дарбази</strong> &mdash; ул. Фрунзе, 33 · Грузинская, 1200-2200₽</li>
+<li><strong>#172 Хинкальная №1</strong> &mdash; пр-т Ленина, 47 · Грузинская, 800-1500₽</li>
+<li><strong>#173 Генацвале</strong> &mdash; ул. Октябрьская, 55 · Грузинская, 1000-1800₽</li>
+<li><strong>#174 Казбек</strong> &mdash; ул. Союзная, 30 · Грузинская, 900-1700₽</li>
+<li><strong>#175 Лаваш</strong> &mdash; ул. Кирова, 12 · Армянская, 800-1500₽</li>
+<li><strong>#176 Арарат</strong> &mdash; ул. Оборонная, 88 · Армянская, 1000-2000₽</li>
+<li><strong>#177 Эребуни</strong> &mdash; ул. Менделеевская, 20 · Армянская, 900-1800₽</li>
+<li><strong>#178 Армянский двор</strong> &mdash; ул. Тимирязева, 10 · Армянская, 800-1600₽</li>
+<li><strong>#179 Эчмиадзин</strong> &mdash; ул. Галкина, 44 · Армянская, 1000-2000₽</li>
+<li><strong>#180 Севан</strong> &mdash; ул. Демонстрации, 18 · Армянская</li>
+<li><strong>#181 Че? Харчо!</strong> &mdash; ул. Фрунзе, 40 · Грузинская, 1000-2000₽</li>
+<li><strong>#182 Хачапури &amp; Ко</strong> &mdash; пр-т Ленина, 66 · Грузинская, 700-1400₽</li>
+<li><strong>#183 Тетушка Мари</strong> &mdash; ул. Советская, 15 · Грузинская, домашняя</li>
+<li><strong>#184 Кавказский пленник</strong> &mdash; ул. Плеханова, 44 · Кавказская, 1200-2500₽</li>
+<li><strong>#185 У дяди Гиви</strong> &mdash; ул. Пролетарская, 50 · Грузинская, 900-1700₽</li>
+<li><strong>#186 Мамалыга</strong> &mdash; ул. Оборонная, 50 · Кавказская, 800-1600₽</li>
+<li><strong>#187 Апсны</strong> &mdash; ул. Кирова, 33 · Абхазская</li>
+<li><strong>#188 Сухум</strong> &mdash; ул. Союзная, 14 · Абхазская, 700-1500₽</li>
+<li><strong>#189 Хинкали Хаус</strong> &mdash; ул. Каминского, 34 · Грузинская</li>
+<li><strong>#190 Тбилисо</strong> &mdash; ул. Менделеевская, 30 · Грузинская, 1000-2000₽</li>
+<li><strong>#191 Баку</strong> &mdash; ул. Советская, 55 · Азербайджанская</li>
+<li><strong>#192 Оджахури</strong> &mdash; ул. Фрунзе, 25 · Грузинская, 1200-2200₽</li>
+<li><strong>#193 Солнечный</strong> &mdash; ул. 9 Мая, 15 · Кавказская, 900-1700₽</li>
+<li><strong>#194 Эльбрус</strong> &mdash; ул. Октябрьская, 34 · Кавказская, 1000-2000₽</li>
+<li><strong>#195 Дилижан</strong> &mdash; ул. Пролетарская, 22 · Армянская</li>
+<li><strong>#196 Кинза</strong> &mdash; ул. Дрейера, 10 · Грузинская, 800-1600₽</li>
+<li><strong>#197 Гроздь</strong> &mdash; ул. Чмутова, 150 · Кавказская, 900-1700₽</li>
+<li><strong>#198 На грузинский манер</strong> &mdash; ул. Бондаренко, 33 · Грузинская</li>
+<li><strong>#199 Вина Грузии</strong> &mdash; ул. Плеханова, 30 · Грузинская, 1500-3000₽</li>
+<li><strong>#200 Кутаиси</strong> &mdash; пр-т Ленина, 72 · Грузинская, 800-1500₽</li>
+<li><strong>#201 Кавказский аул</strong> &mdash; ул. Тимирязева, 44 · Кавказская, 1000-2000₽</li>
+<li><strong>#202 Хаш</strong> &mdash; ул. Степанова, 10 · Армянская</li>
+<li><strong>#203 Шашлычная №1</strong> &mdash; ул. Галкина, 55 · Кавказская, 500-1200₽</li>
+<li><strong>#204 Мацони</strong> &mdash; ул. К. Маркса, 12 · Грузинская, 900-1700₽</li>
+<li><strong>#205 На здоровье!</strong> &mdash; ул. Ликбеза, 30 · Кавказская, 800-1500₽</li>
+<li><strong>#206 Лаваш &amp; Хинкали</strong> &mdash; ул. Первомайская, 22 · Кавказская, 700-1400₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Европейская кухня</h3>
+<ul>
+<li><strong>#207 Сицилийский дворик</strong> &mdash; пр-т Ленина, 102 · Европейская, 1500-3000₽</li>
+<li><strong>#208 Тhe Июль</strong> &mdash; ул. Советская, 70 · Европейская премиум</li>
+<li><strong>#209 Барвинок</strong> &mdash; ул. Плеханова, 60 · Европейская, 1200-2500₽</li>
+<li><strong>#210 Капри</strong> &mdash; ул. Союзная, 33 · Европейская, 1000-2000₽</li>
+<li><strong>#211 Авеню</strong> &mdash; пр-т Ленина, 55 · Европейская, 1500-3000₽</li>
+<li><strong>#212 Элегия</strong> &mdash; ул. Кирова, 28 · Европейская, 1000-2000₽</li>
+<li><strong>#213 Мадера</strong> &mdash; ул. Октябрьская, 42 · Европейская, 1200-2200₽</li>
+<li><strong>#214 Гармония</strong> &mdash; ул. Каминского, 22 · Европейская, 900-1800₽</li>
+<li><strong>#215 Франция</strong> &mdash; ул. Менделеевская, 15 · Французская, 1500-3500₽</li>
+<li><strong>#216 Маэстро</strong> &mdash; ул. Тургеневская, 8 · Европейская, 1200-2500₽</li>
+<li><strong>#217 Эдем</strong> &mdash; ул. Чмутова, 85 · Европейская, 1000-2000₽</li>
+<li><strong>#218 Вояж</strong> &mdash; ул. Оборонная, 66 · Европейская, 900-1800₽</li>
+<li><strong>#219 Глобус</strong> &mdash; ул. Демонстрации, 25 · Европейская, 800-1600₽</li>
+<li><strong>#220 Классик</strong> &mdash; ул. Советская, 35 · Европейская, 1000-2000₽</li>
+<li><strong>#221 Дежавю</strong> &mdash; ул. Фрунзе, 22 · Европейская, 1200-2500₽</li>
+<li><strong>#222 Прованс</strong> &mdash; пр-т Ленина, 82 · Французская, 1500-3500₽</li>
+<li><strong>#223 Оливка</strong> &mdash; ул. Галкина, 30 · Европейская, 1000-2000₽</li>
+<li><strong>#224 Сирена</strong> &mdash; ул. Дрейера, 22 · Европейская, 900-1700₽</li>
+<li><strong>#225 Пальма</strong> &mdash; ул. 9 Мая, 25 · Европейская, 1000-1800₽</li>
+<li><strong>#226 Монте-Карло</strong> &mdash; ул. Первомайская, 15 · Европейская, 1500-3000₽</li>
+<li><strong>#227 Гурман</strong> &mdash; ул. Степанова, 40 · Европейская, 1200-2500₽</li>
+<li><strong>#228 Бон Аппетит</strong> &mdash; ул. Ликбеза, 8 · Европейская, 800-1600₽</li>
+<li><strong>#229 Лазурный</strong> &mdash; ул. К. Маркса, 20 · Европейская, 1000-2000₽</li>
+<li><strong>#230 Грация</strong> &mdash; ул. Бондаренко, 28 · Европейская, 900-1700₽</li>
+<li><strong>#231 Аврора</strong> &mdash; ул. Каминского, 50 · Европейская, 1200-2200₽</li>
+<li><strong>#232 Фортуна</strong> &mdash; ул. Октябрьская, 18 · Европейская, 800-1500₽</li>
+<li><strong>#233 Нота</strong> &mdash; ул. Пролетарская, 44 · Европейская, 1000-2000₽</li>
+<li><strong>#234 София</strong> &mdash; ул. Плеханова, 55 · Болгарская, 900-1800₽</li>
+<li><strong>#235 Прага</strong> &mdash; ул. Союзная, 50 · Чешская, 1000-2000₽</li>
+<li><strong>#236 Вена</strong> &mdash; ул. Фрунзе, 60 · Австрийская, 1200-2500₽</li>
+<li><strong>#237 Мюнхен</strong> &mdash; ул. Тимирязева, 33 · Немецкая, 1500-3000₽</li>
+<li><strong>#238 Маринад</strong> &mdash; ул. Чмутова, 120 · Европейская, 800-1600₽</li>
+<li><strong>#239 Сковорода</strong> &mdash; ул. Демонстрации, 30 · Европейская, 900-1700₽</li>
+<li><strong>#240 Бистро</strong> &mdash; ул. Менделеевская, 40 · Европейская, 600-1200₽</li>
+<li><strong>#241 Городская столовая</strong> &mdash; ул. Советская, 25 · Европейская, 500-1000₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Итальянская кухня</h3>
+<ul>
+<li><strong>#242 Siena</strong> &mdash; пр-т Ленина, 85 · Итальянская, 1500-3500₽</li>
+<li><strong>#243 Ташир Пицца</strong> &mdash; пр-т Ленина, 17 · Пицца, 600-1200₽</li>
+<li><strong>#244 Basta</strong> &mdash; ул. Советская, 42 · Итальянская, 1000-2500₽</li>
+<li><strong>#245 Додо Пицца</strong> &mdash; ул. Плеханова, 30 · Пицца, 500-1200₽</li>
+<li><strong>#246 Папа Джонс</strong> &mdash; ул. Октябрьская, 25 · Пицца, 600-1400₽</li>
+<li><strong>#247 Пицца Бурджер</strong> &mdash; пр-т Ленина, 44 · Пицца, 700-1500₽</li>
+<li><strong>#248 Bellissimo</strong> &mdash; ул. Каминского, 15 · Итальянская, 1200-2500₽</li>
+<li><strong>#249 Ласкала</strong> &mdash; ул. Союзная, 22 · Итальянская, 1000-2200₽</li>
+<li><strong>#250 Макаронник</strong> &mdash; ул. Фрунзе, 35 · Паста, 700-1500₽</li>
+<li><strong>#251 Карбонара</strong> &mdash; ул. Менделеевская, 25 · Паста, 800-1600₽</li>
+<li><strong>#252 Ривиера</strong> &mdash; ул. Кирова, 15 · Итальянская, 1000-2000₽</li>
+<li><strong>#253 Верона</strong> &mdash; ул. Тимирязева, 15 · Итальянская, 1200-2500₽</li>
+<li><strong>#254 Неаполь</strong> &mdash; ул. Галкина, 22 · Пицца, 800-1800₽</li>
+<li><strong>#255 Милано</strong> &mdash; ул. Оборонная, 55 · Итальянская, 1000-2200₽</li>
+<li><strong>#256 Тоскана</strong> &mdash; ул. Демонстрации, 20 · Итальянская, 1500-3000₽</li>
+<li><strong>#257 Пиццерия №1</strong> &mdash; ул. Чмутова, 90 · Пицца, 500-1200₽</li>
+<li><strong>#258 Марио</strong> &mdash; пр-т Ленина, 60 · Итальянская, 1000-2000₽</li>
+<li><strong>#259 Джованни</strong> &mdash; ул. Советская, 30 · Итальянская, 1200-2500₽</li>
+<li><strong>#260 Пицца-Хаус</strong> &mdash; ул. Плеханова, 40 · Пицца, 600-1400₽</li>
+<li><strong>#261 Аль Денте</strong> &mdash; ул. Пролетарская, 35 · Паста, 800-1800₽</li>
+<li><strong>#262 Маргарита</strong> &mdash; ул. Фрунзе, 42 · Пицца, 600-1300₽</li>
+<li><strong>#263 Итальяно</strong> &mdash; ул. Октябрьская, 32 · Итальянская, 1000-2000₽</li>
+<li><strong>#264 Лазанья</strong> &mdash; ул. Дрейера, 15 · Итальянская, 900-1800₽</li>
+<li><strong>#265 Песто</strong> &mdash; ул. Союзная, 40 · Итальянская, 800-1600₽</li>
+<li><strong>#266 Тартифлато</strong> &mdash; ул. К. Маркса, 25 · Пицца, 700-1500₽</li>
+<li><strong>#267 Римские каникулы</strong> &mdash; ул. Первомайская, 30 · Итальянская, 1000-2200₽</li>
+<li><strong>#268 Рипьета</strong> &mdash; ул. Степанова, 15 · Итальянская, 1200-2500₽</li>
+<li><strong>#269 Бьянка</strong> &mdash; ул. Бондаренко, 20 · Итальянская, 900-1800₽</li>
+<li><strong>#270 Дольче Вита</strong> &mdash; ул. Ликбеза, 22 · Итальянская, 1000-2000₽</li>
+<li><strong>#271 Венеция</strong> &mdash; ул. Каминского, 40 · Итальянская, 1200-2500₽</li>
+<li><strong>#272 Сицилия</strong> &mdash; ул. 9 Мая, 20 · Итальянская, 1000-2200₽</li>
+<li><strong>#273 Спагеттерия</strong> &mdash; пр-т Ленина, 90 · Паста, 700-1500₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Азиатская кухня</h3>
+<ul>
+<li><strong>#274 Рис71</strong> &mdash; ул. Чмутова, 101А · Роллы, суши, доставка</li>
+<li><strong>#275 UMI Asian kitchen</strong> &mdash; ул. Каминского, 20 · Паназиатская, 1500-3000₽</li>
+<li><strong>#276 Акира</strong> &mdash; пр-т Ленина, 48 · Японская, 1200-2500₽</li>
+<li><strong>#277 Токио Сити</strong> &mdash; ул. Советская, 28 · Японская, 1000-2200₽</li>
+<li><strong>#278 Якитория</strong> &mdash; ул. Плеханова, 35 · Японская, 1200-2500₽</li>
+<li><strong>#279 Сакура</strong> &mdash; ул. Октябрьская, 38 · Японская, 1000-2000₽</li>
+<li><strong>#280 Нагасаки</strong> &mdash; ул. Фрунзе, 28 · Японская, 900-2000₽</li>
+<li><strong>#281 Бамбук</strong> &mdash; пр-т Ленина, 38 · Китайская, 800-1800₽</li>
+<li><strong>#282 Пекин</strong> &mdash; ул. Союзная, 18 · Китайская, 600-1500₽</li>
+<li><strong>#283 Харбин</strong> &mdash; ул. Кирова, 25 · Китайская, 700-1600₽</li>
+<li><strong>#284 Вок</strong> &mdash; ул. Менделеевская, 35 · Азиатская, 500-1200₽</li>
+<li><strong>#285 Макао</strong> &mdash; ул. Демонстрации, 12 · Азиатская фьюжн</li>
+<li><strong>#286 Сингапур</strong> &mdash; ул. Галкина, 33 · Азиатская, 1000-2000₽</li>
+<li><strong>#287 Вьет</strong> &mdash; ул. Оборонная, 44 · Вьетнамская, 700-1400₽</li>
+<li><strong>#288 Фо-Бо</strong> &mdash; ул. Каминского, 30 · Вьетнамская, 600-1300₽</li>
+<li><strong>#289 Кимчи</strong> &mdash; ул. Советская, 54 · Корейская, 800-1800₽</li>
+<li><strong>#290 Сеул</strong> &mdash; ул. Плеханова, 48 · Корейская, 900-2000₽</li>
+<li><strong>#291 Суши-Мастер</strong> &mdash; ул. Тимирязева, 28 · Суши, 600-1500₽</li>
+<li><strong>#292 Ролл-Бар</strong> &mdash; ул. Чмутова, 110 · Роллы, 500-1400₽</li>
+<li><strong>#293 Миями</strong> &mdash; ул. Октябрьская, 15 · Японская, 1000-2200₽</li>
+<li><strong>#294 Осака</strong> &mdash; ул. Пролетарская, 28 · Японская, 900-1800₽</li>
+<li><strong>#295 Тануки</strong> &mdash; ул. Фрунзе, 45 · Японская, 1000-2000₽</li>
+<li><strong>#296 Хиро</strong> &mdash; ул. Дрейера, 25 · Японская, 800-1700₽</li>
+<li><strong>#297 Китайский квартал</strong> &mdash; пр-т Ленина, 72 · Китайская, 600-1500₽</li>
+<li><strong>#298 Димсам</strong> &mdash; ул. Союзная, 35 · Китайская, 700-1400₽</li>
+<li><strong>#299 Том Ям</strong> &mdash; ул. Степанова, 30 · Тайская, 1000-2200₽</li>
+<li><strong>#300 Пад Тай</strong> &mdash; ул. Ликбеза, 18 · Тайская, 800-1700₽</li>
+<li><strong>#301 Автосуши</strong> &mdash; ул. Чмутова, 95 · Суши доставка</li>
+<li><strong>#302 Бумеранг</strong> &mdash; ул. К. Маркса, 30 · Суши, роллы</li>
+<li><strong>#303 Ниндзя</strong> &mdash; ул. Первомайская, 25 · Японская, 700-1600₽</li>
+<li><strong>#304 Филадельфия</strong> &mdash; ул. Бондаренко, 30 · Суши, 800-1800₽</li>
+<li><strong>#305 Asia Wok</strong> &mdash; ул. Каминского, 45 · Wok, 500-1200₽</li>
+<li><strong>#306 Суши-Фуд</strong> &mdash; ул. Менделеевская, 50 · Суши, 600-1500₽</li>
+<li><strong>#307 Гейша</strong> &mdash; ул. Оборонная, 72 · Японская, 1000-2000₽</li>
+<li><strong>#308 Кунг-Фу</strong> &mdash; ул. Галкина, 48 · Китайская, 600-1400₽</li>
+<li><strong>#309 Азия</strong> &mdash; пр-т Ленина, 96 · Паназиатская, 1000-2200₽</li>
+<li><strong>#310 Бангкок</strong> &mdash; ул. Плеханова, 65 · Тайская, 900-2000₽</li>
+<li><strong>#311 Дзен</strong> &mdash; ул. Тимирязева, 38 · Японская, 1200-2500₽</li>
+<li><strong>#312 Сиам</strong> &mdash; ул. Фрунзе, 55 · Тайская, 800-1800₽</li>
+<li><strong>#313 Соя</strong> &mdash; ул. Кирова, 42 · Азиатская, 700-1500₽</li>
+<li><strong>#314 Удон</strong> &mdash; ул. Союзная, 25 · Японская, 600-1400₽</li>
+<li><strong>#315 Бокс-Суши</strong> &mdash; ул. Демонстрации, 35 · Суши, 500-1200₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Восточная кухня</h3>
+<ul>
+<li><strong>#316 Самарканд</strong> &mdash; пр-т Ленина, 50 · Узбекская, 1000-2000₽</li>
+<li><strong>#317 Узбечка</strong> &mdash; ул. Советская, 34 · Узбекская, 800-1800₽</li>
+<li><strong>#318 Бухара</strong> &mdash; ул. Плеханова, 42 · Узбекская, 900-2000₽</li>
+<li><strong>#319 Ташкент</strong> &mdash; ул. Октябрьская, 48 · Узбекская, 800-1700₽</li>
+<li><strong>#320 Соломон</strong> &mdash; ул. Фрунзе, 32 · Узбекская, 1000-2200₽</li>
+<li><strong>#321 Фергана</strong> &mdash; ул. Каминского, 28 · Узбекская, 700-1600₽</li>
+<li><strong>#322 Дворик</strong> &mdash; ул. Союзная, 28 · Узбекская, 800-1500₽</li>
+<li><strong>#323 Стамбул</strong> &mdash; ул. Кирова, 18 · Турецкая, кебаб</li>
+<li><strong>#324 Турция</strong> &mdash; ул. Менделеевская, 28 · Турецкая, 800-1600₽</li>
+<li><strong>#325 Анталия</strong> &mdash; ул. Галкина, 28 · Турецкая, 700-1500₽</li>
+<li><strong>#326 Дюнер</strong> &mdash; пр-т Ленина, 42 · Кебаб, 300-700₽</li>
+<li><strong>#327 Кебаб Хаус</strong> &mdash; ул. Оборонная, 38 · Кебаб, 300-800₽</li>
+<li><strong>#328 Плов-Центр</strong> &mdash; ул. Тимирязева, 20 · Плов, 500-1000₽</li>
+<li><strong>#329 Баклажан</strong> &mdash; ул. Демонстрации, 14 · Узбекская, 800-1700₽</li>
+<li><strong>#330 Чайхана Хива</strong> &mdash; ул. Чмутова, 80 · Узбекская, 900-1800₽</li>
+<li><strong>#331 Хорезм</strong> &mdash; ул. Пролетарская, 32 · Узбекская, 800-1600₽</li>
+<li><strong>#332 Нават</strong> &mdash; ул. Дрейера, 30 · Узбекская, 700-1500₽</li>
+<li><strong>#333 Андижан</strong> &mdash; ул. 9 Мая, 30 · Узбекская, 800-1700₽</li>
+<li><strong>#334 Шашлык-Шаурма</strong> &mdash; ул. К. Маркса, 15 · Восточная, 300-800₽</li>
+<li><strong>#335 Султан</strong> &mdash; ул. Первомайская, 18 · Турецкая, 600-1400₽</li>
+<li><strong>#336 Осман</strong> &mdash; ул. Степанова, 35 · Турецкая, 700-1500₽</li>
+<li><strong>#337 Марокко</strong> &mdash; ул. Ликбеза, 25 · Марокканская</li>
+<li><strong>#338 Арабская ночь</strong> &mdash; ул. Бондаренко, 35 · Арабская, 800-1800₽</li>
+<li><strong>#339 Кисмет</strong> &mdash; ул. Каминского, 52 · Турецкая, 900-1800₽</li>
+<li><strong>#340 Самса</strong> &mdash; ул. Фрунзе, 50 · Узбекская, 300-800₽</li>
+<li><strong>#341 Лепешка</strong> &mdash; ул. Плеханова, 52 · Узбекская выпечка</li>
+<li><strong>#342 Чайхана №1</strong> &mdash; ул. Октябрьская, 28 · Чай, плов</li>
+<li><strong>#343 Караван</strong> &mdash; ул. Советская, 48 · Восточная, 1000-2000₽</li>
+<li><strong>#344 Басма</strong> &mdash; ул. Союзная, 45 · Узбекская, 900-1800₽</li>
+<li><strong>#345 Дубай</strong> &mdash; ул. Чмутова, 130 · Арабская, 1000-2200₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Стейк-хаусы и мясные рестораны</h3>
+<ul>
+<li><strong>#346 Гудман</strong> &mdash; пр-т Ленина, 78 · Стейки, 1500-4000₽</li>
+<li><strong>#347 Мясной дом</strong> &mdash; ул. Советская, 52 · Мясные блюда, 1200-3000₽</li>
+<li><strong>#348 Angus House</strong> &mdash; ул. Плеханова, 38 · Стейки премиум, 2000-5000₽</li>
+<li><strong>#349 Гриль-бар</strong> &mdash; ул. Менделеевская, 22 · Гриль, 1000-2500₽</li>
+<li><strong>#350 BBQ Place</strong> &mdash; ул. Октябрьская, 30 · BBQ, 1200-3000₽</li>
+<li><strong>#351 Прожарка</strong> &mdash; ул. Фрунзе, 38 · Стейки, 1000-2500₽</li>
+<li><strong>#352 Михаил</strong> &mdash; ул. Оборонная, 42 · Мясная, 1200-2800₽</li>
+<li><strong>#353 Мясной цех</strong> &mdash; ул. Кирова, 30 · Стейки, 1000-2500₽</li>
+<li><strong>#354 Тандыр</strong> &mdash; ул. Каминского, 35 · Мясо на углях</li>
+<li><strong>#355 Шашлычная</strong> &mdash; ул. Галкина, 38 · Шашлык, 500-1200₽</li>
+<li><strong>#356 Мангал</strong> &mdash; ул. Демонстрации, 22 · Мясо на углях</li>
+<li><strong>#357 Стейк-Хаус 71</strong> &mdash; ул. Тургеневская, 12 · Стейки, 1500-3500₽</li>
+<li><strong>#358 Beef &amp; Wine</strong> &mdash; ул. Союзная, 38 · Стейки, вино</li>
+<li><strong>#359 Мясо &amp; Рыба</strong> &mdash; пр-т Ленина, 68 · Гриль, 1200-3000₽</li>
+<li><strong>#360 Угли</strong> &mdash; ул. Чмутова, 100 · BBQ, 1000-2500₽</li>
+<li><strong>#361 Бифштекс</strong> &mdash; ул. Тимирязева, 42 · Стейки, 1000-2200₽</li>
+<li><strong>#362 Кость</strong> &mdash; ул. Пролетарская, 40 · Мясная, 900-2000₽</li>
+<li><strong>#363 Гриль-Хаус</strong> &mdash; ул. Дрейера, 28 · Гриль, 800-2000₽</li>
+<li><strong>#364 Чабан</strong> &mdash; ул. 9 Мая, 35 · Мясо, шашлык</li>
+<li><strong>#365 Прим-Стейк</strong> &mdash; ул. К. Маркса, 35 · Стейки премиум</li>
+<li><strong>#366 Рибай</strong> &mdash; ул. Степанова, 25 · Стейки, 1500-3500₽</li>
+<li><strong>#367 Мясной двор</strong> &mdash; ул. Ликбеза, 12 · Мясная, 800-2000₽</li>
+<li><strong>#368 Барашек</strong> &mdash; ул. Первомайская, 35 · Мясо, люля</li>
+<li><strong>#369 Огонь &amp; Мясо</strong> &mdash; ул. Бондаренко, 38 · BBQ, 1000-2500₽</li>
+<li><strong>#370 Халяльные стейки</strong> &mdash; ул. Плеханова, 70 · Халяль</li>
+<li><strong>#371 Грильная</strong> &mdash; ул. Советская, 62 · Гриль, 800-1800₽</li>
+<li><strong>#372 BBQ Brothers</strong> &mdash; пр-т Ленина, 110 · BBQ, 1200-3000₽</li>
+<li><strong>#373 Мясной синдикат</strong> &mdash; ул. Октябрьская, 52 · Стейки, 1500-3500₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Фастфуд и бургерные</h3>
+<ul>
+<li><strong>#374 Карл Маркс</strong> &mdash; пр-т Ленина, 30 · Бургеры, 500-1200₽</li>
+<li><strong>#375 Burger King</strong> &mdash; ул. Советская, 12 · Бургеры, 300-800₽</li>
+<li><strong>#376 Макдоналдс</strong> &mdash; ул. Плеханова, 22 · Фастфуд, 300-700₽</li>
+<li><strong>#377 KFC</strong> &mdash; пр-т Ленина, 55 · Курица, 300-800₽</li>
+<li><strong>#378 Шаурма Хаус</strong> &mdash; ул. Октябрьская, 8 · Шаурма, 200-500₽</li>
+<li><strong>#379 Хот-Дог</strong> &mdash; ул. Кирова, 10 · Хот-доги, 200-400₽</li>
+<li><strong>#380 Бургер-Бар</strong> &mdash; ул. Менделеевская, 18 · Бургеры, 400-1000₽</li>
+<li><strong>#381 Золотой бургер</strong> &mdash; ул. Каминского, 12 · Бургеры, 400-900₽</li>
+<li><strong>#382 Вкус Бургер</strong> &mdash; ул. Союзная, 15 · Бургеры, 500-1200₽</li>
+<li><strong>#383 Стрит-Фуд</strong> &mdash; ул. Фрунзе, 20 · Уличная еда</li>
+<li><strong>#384 Пицца-Бургер</strong> &mdash; ул. Галкина, 20 · Фастфуд, 400-900₽</li>
+<li><strong>#385 Такос</strong> &mdash; ул. Чмутова, 75 · Мексиканский фастфуд</li>
+<li><strong>#386 Subway</strong> &mdash; пр-т Ленина, 62 · Сэндвичи, 300-700₽</li>
+<li><strong>#387 Бургер Хаус</strong> &mdash; ул. Демонстрации, 10 · Бургеры, 400-1000₽</li>
+<li><strong>#388 Чикен Хаус</strong> &mdash; ул. Тимирязева, 18 · Курица, 300-700₽</li>
+<li><strong>#389 Блин-Блин</strong> &mdash; ул. Оборонная, 25 · Блины, 200-500₽</li>
+<li><strong>#390 Чебуречная</strong> &mdash; ул. Пролетарская, 15 · Чебуреки, 200-400₽</li>
+<li><strong>#391 Пончик</strong> &mdash; ул. 9 Мая, 12 · Пончики, 100-300₽</li>
+<li><strong>#392 Крошка-Картошка</strong> &mdash; ул. Советская, 20 · Запечёный картофель</li>
+<li><strong>#393 Сытный</strong> &mdash; ул. К. Маркса, 10 · Фастфуд, 200-600₽</li>
+<li><strong>#394 Забегаловка</strong> &mdash; ул. Дрейера, 12 · Фастфуд, 200-500₽</li>
+<li><strong>#395 Курочка</strong> &mdash; ул. Степанова, 12 · Курица-гриль</li>
+<li><strong>#396 Beer Burger</strong> &mdash; ул. Первомайская, 20 · Бургеры, 500-1200₽</li>
+<li><strong>#397 Луковый</strong> &mdash; ул. Ликбеза, 15 · Бургеры</li>
+<li><strong>#398 Денвер</strong> &mdash; пр-т Ленина, 88 · Американский фастфуд</li>
+<li><strong>#399 Фаст-Фуд №1</strong> &mdash; ул. Бондаренко, 22 · Фастфуд, 200-500₽</li>
+<li><strong>#400 Нью-Йорк</strong> &mdash; ул. Каминского, 55 · Бургеры, 500-1200₽</li>
+<li><strong>#401 Кебаб-Бар</strong> &mdash; ул. Плеханова, 58 · Кебаб, 300-700₽</li>
+<li><strong>#402 Хот-Дог Бар</strong> &mdash; ул. Фрунзе, 48 · Хот-доги</li>
+<li><strong>#403 Роллтон</strong> &mdash; ул. Октябрьская, 12 · Лапша быстрого питания</li>
+<li><strong>#404 Пит-Стоп</strong> &mdash; ул. Чмутова, 140 · Фастфуд, 200-600₽</li>
+<li><strong>#405 Вест</strong> &mdash; ул. Менделеевская, 45 · Бургеры, 400-1000₽</li>
+<li><strong>#406 Шаурма-Кебаб</strong> &mdash; ул. Союзная, 48 · Шаурма</li>
+<li><strong>#407 Гриль-Корнер</strong> &mdash; ул. Галкина, 50 · Гриль, 300-800₽</li>
+<li><strong>#408 Бургер &amp; Кофе</strong> &mdash; ул. Привокзальная пл., 5 · Бургеры, 400-1000₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Кофейни</h3>
+<ul>
+<li><strong>#409 Let's Coffee</strong> &mdash; пр-т Ленина, 60 · Кофе, десерты</li>
+<li><strong>#410 Surf Coffee</strong> &mdash; ул. Советская, 22 · Кофе specialty</li>
+<li><strong>#411 Coffee Bean</strong> &mdash; ул. Плеханова, 28 · Кофе, зерна</li>
+<li><strong>#412 Мечтатели</strong> &mdash; ул. Менделеевская, 10 · Кофейня, 300-700₽</li>
+<li><strong>#413 Шоколадница</strong> &mdash; пр-т Ленина, 44 · Кофе, десерты</li>
+<li><strong>#414 Кофеин</strong> &mdash; ул. Октябрьская, 14 · Кофе, чай</li>
+<li><strong>#415 Чай &amp; Кофе</strong> &mdash; ул. Каминского, 14 · Чай, кофе</li>
+<li><strong>#416 Эспрессо-Бар</strong> &mdash; ул. Фрунзе, 15 · Кофе, 200-500₽</li>
+<li><strong>#417 Кофейная пауза</strong> &mdash; ул. Кирова, 12 · Кофе, выпечка</li>
+<li><strong>#418 Территория кофе</strong> &mdash; ул. Союзная, 20 · Кофе specialty</li>
+<li><strong>#419 Кофейный дом</strong> &mdash; ул. Тимирязева, 12 · Кофе, 300-700₽</li>
+<li><strong>#420 Лаванда</strong> &mdash; ул. Галкина, 16 · Кофейня, десерты</li>
+<li><strong>#421 Корица</strong> &mdash; ул. Демонстрации, 8 · Кофе, выпечка</li>
+<li><strong>#422 Арабика</strong> &mdash; ул. Оборонная, 30 · Зерновой кофе</li>
+<li><strong>#423 Робуста</strong> &mdash; ул. Чмутова, 88 · Кофе, 200-500₽</li>
+<li><strong>#424 Кофе &amp; Книги</strong> &mdash; ул. Пролетарская, 18 · Кофе, коворкинг</li>
+<li><strong>#425 Travel Coffee</strong> &mdash; пр-т Ленина, 75 · Кофе с собой</li>
+<li><strong>#426 Бодрость</strong> &mdash; ул. Дрейера, 8 · Кофе, 200-400₽</li>
+<li><strong>#427 Мокка</strong> &mdash; ул. 9 Мая, 10 · Кофе, десерты</li>
+<li><strong>#428 Кофемолка</strong> &mdash; ул. К. Маркса, 8 · Зерновой кофе</li>
+<li><strong>#429 Сладкий сон</strong> &mdash; ул. Степанова, 8 · Кофе, десерты</li>
+<li><strong>#430 Бариста</strong> &mdash; ул. Первомайская, 10 · Кофе, чай</li>
+<li><strong>#431 Дрип</strong> &mdash; ул. Ликбеза, 10 · Кофе specialty</li>
+<li><strong>#432 Ваниль</strong> &mdash; ул. Бондаренко, 18 · Кофейня</li>
+<li><strong>#433 Кофейный листок</strong> &mdash; ул. Плеханова, 46 · Кофе, чай</li>
+<li><strong>#434 Бублик</strong> &mdash; ул. Советская, 38 · Кофе, бейглы</li>
+<li><strong>#435 Бодрящий</strong> &mdash; ул. Фрунзе, 30 · Кофе, 200-500₽</li>
+<li><strong>#436 Капучино-Бар</strong> &mdash; ул. Менделеевская, 32 · Капучино</li>
+<li><strong>#437 Кофейня на Советской</strong> &mdash; ул. Советская, 50 · Кофе, 300-700₽</li>
+<li><strong>#438 Латте-Арт</strong> &mdash; ул. Пролетарская, 25 · Кофе, арт</li>
+<li><strong>#439 Зерно</strong> &mdash; ул. Октябрьская, 22 · Кофе specialty</li>
+<li><strong>#440 Кофе-Тайм</strong> &mdash; ул. Каминского, 38 · Кофе, 200-500₽</li>
+<li><strong>#441 Питчер</strong> &mdash; ул. Тимирязева, 25 · Кофе, чай</li>
+<li><strong>#442 Кофейная мануфактура</strong> &mdash; пр-т Ленина, 92 · Кофе, обжарка</li>
+<li><strong>#443 Кофе &amp; Десерт</strong> &mdash; ул. Оборонная, 48 · Десерты, кофе</li>
+<li><strong>#444 Кафель</strong> &mdash; ул. Союзная, 42 · Кофе, 300-600₽</li>
+<li><strong>#445 Блэк</strong> &mdash; ул. Чмутова, 115 · Черный кофе</li>
+<li><strong>#446 Утро</strong> &mdash; ул. Демонстрации, 28 · Кофе, завтраки</li>
+<li><strong>#447 Пян-Се</strong> &mdash; ул. К. Маркса, 18 · Кофе, азиатские напитки</li>
+<li><strong>#448 Кофе &amp; Вафли</strong> &mdash; ул. Галкина, 42 · Вафли, кофе</li>
+<li><strong>#449 Чайная пауза</strong> &mdash; ул. Дрейера, 32 · Чай, кофе</li>
+<li><strong>#450 Флэт Уайт</strong> &mdash; ул. 9 Мая, 28 · Кофе, 300-600₽</li>
+<li><strong>#451 Эфиопия</strong> &mdash; ул. Степанова, 28 · Кофе specialty</li>
+<li><strong>#452 Латте</strong> &mdash; ул. Первомайская, 28 · Кофе, молочные коктейли</li>
+<li><strong>#453 Кофе-Хаус</strong> &mdash; ул. Ликбеза, 28 · Кофе, 200-500₽</li>
+<li><strong>#454 Раф</strong> &mdash; ул. Бондаренко, 40 · Раф-кофе</li>
+<li><strong>#455 Мастерская кофе</strong> &mdash; пр-т Ленина, 100 · Кофе, зерна</li>
+<li><strong>#456 Ароматный</strong> &mdash; ул. Плеханова, 62 · Кофе, 200-500₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Пекарни и кондитерские</h3>
+<ul>
+<li><strong>#457 Пекарь</strong> &mdash; пр-т Ленина, 40 · Хлеб, выпечка</li>
+<li><strong>#458 БУЛКА</strong> &mdash; ул. Советская, 18 · Свежая выпечка</li>
+<li><strong>#459 Хлеб-Соль</strong> &mdash; ул. Октябрьская, 24 · Хлебобулочные</li>
+<li><strong>#460 Кондитерская №1</strong> &mdash; ул. Плеханова, 32 · Торты, пирожные</li>
+<li><strong>#461 Ванильное небо</strong> &mdash; ул. Фрунзе, 24 · Кондитерская</li>
+<li><strong>#462 Каравай</strong> &mdash; ул. Каминского, 24 · Хлеб</li>
+<li><strong>#463 Пирожковая</strong> &mdash; ул. Союзная, 24 · Пирожки, 200-500₽</li>
+<li><strong>#464 Багет</strong> &mdash; ул. Менделеевская, 15 · Французский хлеб</li>
+<li><strong>#465 Медовик</strong> &mdash; ул. Кирова, 20 · Медовые торты</li>
+<li><strong>#466 Шарлотка</strong> &mdash; ул. Галкина, 24 · Пироги, шарлотка</li>
+<li><strong>#467 Чизкейк</strong> &mdash; ул. Тимирязева, 30 · Чизкейки</li>
+<li><strong>#468 Слоеный рай</strong> &mdash; ул. Оборонная, 35 · Слоеные изделия</li>
+<li><strong>#469 Пекарня на Советской</strong> &mdash; ул. Советская, 42 · Выпечка, кофе</li>
+<li><strong>#470 Сдоба</strong> &mdash; ул. Чмутова, 82 · Сдобная выпечка</li>
+<li><strong>#471 Сладкая жизнь</strong> &mdash; ул. Пролетарская, 20 · Кондитерская</li>
+<li><strong>#472 Донская пекарня</strong> &mdash; ул. Демонстрации, 16 · Ржаной хлеб</li>
+<li><strong>#473 Хворост</strong> &mdash; ул. Дрейера, 14 · Пекарня</li>
+<li><strong>#474 Булочная</strong> &mdash; ул. 9 Мая, 14 · Булочки, хлеб</li>
+<li><strong>#475 Кондитерский цех</strong> &mdash; ул. К. Маркса, 22 · Торты на заказ</li>
+<li><strong>#476 Тульский пряник</strong> &mdash; ул. Степанова, 18 · Пряники</li>
+<li><strong>#477 Пряниковая лавка</strong> &mdash; ул. Первомайская, 14 · Пряники ручной работы</li>
+<li><strong>#478 Хачапури Хаус</strong> &mdash; ул. Ликбеза, 20 · Хачапури</li>
+<li><strong>#479 Пекарня на Плеханова</strong> &mdash; ул. Плеханова, 50 · Выпечка</li>
+<li><strong>#480 Крендель</strong> &mdash; ул. Бондаренко, 25 · Крендели</li>
+<li><strong>#481 Хлеб-Хлеб</strong> &mdash; ул. Фрунзе, 42 · Хлеб</li>
+<li><strong>#482 Домашняя выпечка</strong> &mdash; ул. Октябрьская, 40 · Пироги</li>
+<li><strong>#483 Макарон</strong> &mdash; пр-т Ленина, 84 · Макаруны, десерты</li>
+<li><strong>#484 Эклер</strong> &mdash; ул. Каминского, 48 · Эклеры, заварные</li>
+<li><strong>#485 Безе</strong> &mdash; ул. Менделеевская, 38 · Кондитерская</li>
+<li><strong>#486 Карамель</strong> &mdash; ул. Союзная, 36 · Карамель, леденцы</li>
+<li><strong>#487 Мармелад</strong> &mdash; ул. Чмутова, 125 · Мармелад</li>
+<li><strong>#488 Пекарня &amp; Кофе</strong> &mdash; ул. Тимирязева, 35 · Выпечка, кофе</li>
+<li><strong>#489 Сушки-Баранки</strong> &mdash; ул. Оборонная, 58 · Сушки, баранки</li>
+<li><strong>#490 Пирог-Пирог</strong> &mdash; ул. Пролетарская, 38 · Пироги</li>
+<li><strong>#491 Цех десертов</strong> &mdash; ул. Плеханова, 68 · Десерты премиум</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Бары и пабы</h3>
+<ul>
+<li><strong>#492 Пинта</strong> &mdash; пр-т Ленина, 66 · Ирландский паб</li>
+<li><strong>#493 Лондон Паб</strong> &mdash; ул. Советская, 40 · Английский паб</li>
+<li><strong>#494 Гиннесс</strong> &mdash; ул. Плеханова, 36 · Паб, пиво</li>
+<li><strong>#495 Бочка</strong> &mdash; ул. Октябрьская, 28 · Разливное пиво</li>
+<li><strong>#496 Толстый Фраер</strong> &mdash; ул. Фрунзе, 34 · Паб, 1500-3000₽</li>
+<li><strong>#497 Джек Пот</strong> &mdash; ул. Менделеевская, 26 · Паб</li>
+<li><strong>#498 Пивотека</strong> &mdash; ул. Каминского, 32 · Крафтовое пиво</li>
+<li><strong>#499 Биргартен</strong> &mdash; ул. Кирова, 26 · Пивной сад</li>
+<li><strong>#500 Олд-Таун</strong> &mdash; ул. Союзная, 26 · Паб, 1000-2500₽</li>
+<li><strong>#501 Кельт</strong> &mdash; ул. Тимирязева, 24 · Ирландский паб</li>
+<li><strong>#502 Три Бочонка</strong> &mdash; ул. Галкина, 34 · Паб, спорт</li>
+<li><strong>#503 Крафт-Бар</strong> &mdash; ул. Демонстрации, 24 · Крафтовое пиво</li>
+<li><strong>#504 Бар 71</strong> &mdash; ул. Оборонная, 40 · Коктейль-бар</li>
+<li><strong>#505 Нойз</strong> &mdash; ул. Чмутова, 108 · Бар, музыка</li>
+<li><strong>#506 Пенный</strong> &mdash; ул. Пролетарская, 30 · Пиво, 500-1200₽</li>
+<li><strong>#507 Виски-Бар</strong> &mdash; ул. Дрейера, 20 · Виски, 1500-4000₽</li>
+<li><strong>#508 Ром</strong> &mdash; ул. 9 Мая, 22 · Ромовая карта</li>
+<li><strong>#509 Джин</strong> &mdash; ул. К. Маркса, 28 · Джин-бар</li>
+<li><strong>#510 Пилот</strong> &mdash; ул. Советская, 10 · Паб, 1000-2500₽</li>
+<li><strong>#511 Борода</strong> &mdash; ул. Плеханова, 54 · Бар, крафт</li>
+<li><strong>#512 Молот</strong> &mdash; ул. Степанова, 22 · Паб, спорт</li>
+<li><strong>#513 Корк</strong> &mdash; ул. Первомайская, 32 · Винный бар</li>
+<li><strong>#514 Лаунж-Бар</strong> &mdash; ул. Ликбеза, 32 · Коктейли</li>
+<li><strong>#515 Хмель</strong> &mdash; ул. Бондаренко, 32 · Паб</li>
+<li><strong>#516 Бир-Бар</strong> &mdash; пр-т Ленина, 105 · Пиво, 400-1000₽</li>
+<li><strong>#517 Бас-Бар</strong> &mdash; ул. Каминского, 58 · Паб, живая музыка</li>
+<li><strong>#518 Шале</strong> &mdash; ул. Фрунзе, 52 · Лаунж, 1500-3500₽</li>
+<li><strong>#519 Подвал</strong> &mdash; ул. Менделеевская, 44 · Крафт-бар</li>
+<li><strong>#520 Дым</strong> &mdash; ул. Советская, 68 · Кальян-бар</li>
+<li><strong>#521 Норд</strong> &mdash; ул. Октябрьская, 42 · Паб, крафт</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Отельные рестораны</h3>
+<ul>
+<li><strong>#522 Ресторан отеля «Тула»</strong> &mdash; ул. Советская, 3 · Отель 4*, международная</li>
+<li><strong>#523 Palazzo (отель «Палаццо»)</strong> &mdash; ул. Союзная, 1 · Отель 4*, 1500-3500₽</li>
+<li><strong>#524 Ресторан «Армения»</strong> &mdash; пр-т Ленина, 1 · Отель 3*</li>
+<li><strong>#525 Гранд Отель Тула</strong> &mdash; ул. Менделеевская, 2 · Премиум</li>
+<li><strong>#526 Московская застава</strong> &mdash; ул. Тургеневская, 26 · Отель 3*</li>
+<li><strong>#527 Ресторан «Империал»</strong> &mdash; ул. Октябрьская, 2 · Отель 3*</li>
+<li><strong>#528 Особняк</strong> &mdash; ул. Каминского, 3 · Бутик-отель</li>
+<li><strong>#529 Ресторан «Транзит»</strong> &mdash; Привокзальная пл. · У вокзала, 800-1800₽</li>
+<li><strong>#530 Дворянская усадьба</strong> &mdash; ул. Фрунзе, 4 · Исторический отель</li>
+<li><strong>#531 Ресторан «Купеческий»</strong> &mdash; ул. Плеханова, 5 · Отель 3*</li>
+<li><strong>#532 Отель «Центральный»</strong> &mdash; пр-т Ленина, 11 · Ресторан при отеле</li>
+<li><strong>#533 Ресторан «Вояж»</strong> &mdash; ул. Кирова, 5 · Отель</li>
+<li><strong>#534 Дом-отель</strong> &mdash; ул. Галкина, 4 · Ресторан, 1000-2500₽</li>
+<li><strong>#535 Сова</strong> &mdash; ул. Оборонная, 2 · Мини-отель</li>
+<li><strong>#536 Ресторан «Октябрьский»</strong> &mdash; ул. Октябрьская, 5 · Гостиница</li>
+<li><strong>#537 Уют (отель)</strong> &mdash; ул. Союзная, 4 · Ресторан, 800-1800₽</li>
+<li><strong>#538 Ресторан «Заречье»</strong> &mdash; Зареченский р-н · Гостиница</li>
+<li><strong>#539 Отель «71»</strong> &mdash; ул. Демонстрации, 2 · Ресторан</li>
+<li><strong>#540 Ресторан «Пролетарский»</strong> &mdash; ул. Пролетарская, 2 · Гостиница</li>
+<li><strong>#541 Хостел-кафе</strong> &mdash; ул. Чмутова, 95 · Бюджетно</li>
+<li><strong>#542 Отель «Кремлёвский»</strong> &mdash; пр-т Ленина, 25 · Премиум, 2000-5000₽</li>
+<li><strong>#543 Ресторан «Набережный»</strong> &mdash; наб. Дрейера, 4 · Вид на Упу</li>
+<li><strong>#544 Гостиный двор</strong> &mdash; ул. Советская, 5 · Ресторан, 1500-3000₽</li>
+<li><strong>#545 Отель «Ликёрка Лофт»</strong> &mdash; ул. Ликбеза, 4 · Лофт-отель, ресторан</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Столовые и кулинарии</h3>
+<ul>
+<li><strong>#546 Столовая №1</strong> &mdash; ул. Советская, 16 · Комплексные обеды, 300-600₽</li>
+<li><strong>#547 Домашняя кухня</strong> &mdash; ул. Плеханова, 24 · Столовая, 250-500₽</li>
+<li><strong>#548 Сытный обед</strong> &mdash; ул. Октябрьская, 20 · Комплекс, 300-500₽</li>
+<li><strong>#549 Обед-Буфет</strong> &mdash; ул. Каминского, 16 · Буфет, 200-400₽</li>
+<li><strong>#550 Столовая на Кирова</strong> &mdash; ул. Кирова, 8 · Столовая</li>
+<li><strong>#551 Обеденный</strong> &mdash; ул. Союзная, 16 · Комплексные обеды</li>
+<li><strong>#552 Столовая на Фрунзе</strong> &mdash; ул. Фрунзе, 12 · Столовая, 250-500₽</li>
+<li><strong>#553 Первая столовая</strong> &mdash; ул. Менделеевская, 8 · Столовая</li>
+<li><strong>#554 Бизнес-Ланч</strong> &mdash; ул. Тимирязева, 14 · Обеды, 300-600₽</li>
+<li><strong>#555 Столовая на Чмутова</strong> &mdash; ул. Чмутова, 78 · Столовая</li>
+<li><strong>#556 Кулинария</strong> &mdash; ул. Оборонная, 28 · Готовая еда</li>
+<li><strong>#557 Столовая №5</strong> &mdash; ул. Демонстрации, 6 · Столовая, 250-500₽</li>
+<li><strong>#558 Обед на дом</strong> &mdash; ул. 9 Мая, 6 · Доставка обедов</li>
+<li><strong>#559 Столовая на Советской</strong> &mdash; ул. Советская, 36 · Столовая</li>
+<li><strong>#560 Эконом-Обед</strong> &mdash; ул. К. Маркса, 6 · Обеды, 200-400₽</li>
+<li><strong>#561 Сытная столовая</strong> &mdash; ул. Степанова, 6 · Столовая, 250-500₽</li>
+<li><strong>#562 Столовая на Первомайской</strong> &mdash; ул. Первомайская, 8 · Столовая</li>
+<li><strong>#563 Бизнес-Обед</strong> &mdash; ул. Ликбеза, 6 · Деловые обеды</li>
+<li><strong>#564 Столовая на Бондаренко</strong> &mdash; ул. Бондаренко, 12 · Столовая</li>
+<li><strong>#565 Кулинарный дом</strong> &mdash; пр-т Ленина, 70 · Кулинария, 400-800₽</li>
+<li><strong>#566 Столовая на Плеханова</strong> &mdash; ул. Плеханова, 12 · Столовая</li>
+<li><strong>#567 Кушать подано</strong> &mdash; ул. Пролетарская, 12 · Обеды, 300-600₽</li>
+<li><strong>#568 Столовая на Дрейера</strong> &mdash; ул. Дрейера, 6 · Столовая</li>
+<li><strong>#569 Ланч-Тайм</strong> &mdash; ул. Галкина, 14 · Обеды, 300-500₽</li>
+<li><strong>#570 Горячий обед</strong> &mdash; ул. Октябрьская, 14 · Столовая</li>
+<li><strong>#571 Столовая №2</strong> &mdash; ул. Фрунзе, 28 · Столовая</li>
+<li><strong>#572 Завтраки и обеды</strong> &mdash; ул. Советская, 28 · Столовая</li>
+<li><strong>#573 Столовая на Каминского</strong> &mdash; ул. Каминского, 10 · Столовая, 250-500₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Пиццерии</h3>
+<ul>
+<li><strong>#574 Додо Пицца</strong> &mdash; ул. Октябрьская, 25 · Пицца, 500-1200₽</li>
+<li><strong>#575 Ташир Пицца</strong> &mdash; пр-т Ленина, 17 · Пицца, 600-1200₽</li>
+<li><strong>#576 Папа Джонс</strong> &mdash; ул. Плеханова, 30 · Пицца, 600-1400₽</li>
+<li><strong>#577 Пицца Бурджер</strong> &mdash; ул. Советская, 34 · Пицца, 500-1200₽</li>
+<li><strong>#578 Пиццерия №1</strong> &mdash; ул. Каминского, 18 · Пицца, 400-1000₽</li>
+<li><strong>#579 Пицца-Хаус</strong> &mdash; ул. Менделеевская, 12 · Пицца, 500-1200₽</li>
+<li><strong>#580 Маргарита</strong> &mdash; ул. Союзная, 22 · Пицца, 400-1000₽</li>
+<li><strong>#581 Неаполь</strong> &mdash; ул. Кирова, 16 · Пицца, 600-1400₽</li>
+<li><strong>#582 Сицилийская пицца</strong> &mdash; ул. Фрунзе, 26 · Пицца, 600-1500₽</li>
+<li><strong>#583 Пепе</strong> &mdash; ул. Галкина, 18 · Пицца, 500-1200₽</li>
+<li><strong>#584 Пицца-Бар</strong> &mdash; ул. Оборонная, 32 · Пицца, 500-1400₽</li>
+<li><strong>#585 Четыре сезона</strong> &mdash; ул. Тимирязева, 22 · Пицца, 600-1500₽</li>
+<li><strong>#586 Пицца-Мания</strong> &mdash; ул. Демонстрации, 14 · Пицца, 400-1000₽</li>
+<li><strong>#587 Пицца &amp; Роллы</strong> &mdash; ул. Чмутова, 92 · Пицца, суши</li>
+<li><strong>#588 40 см</strong> &mdash; ул. Пролетарская, 24 · Пицца, 600-1500₽</li>
+<li><strong>#589 Пицца-Тайм</strong> &mdash; ул. Дрейера, 16 · Пицца, 500-1200₽</li>
+<li><strong>#590 Пепперони</strong> &mdash; ул. 9 Мая, 18 · Пицца</li>
+<li><strong>#591 Пицца-Вок</strong> &mdash; ул. К. Маркса, 14 · Пицца, 500-1300₽</li>
+<li><strong>#592 Тонкая корочка</strong> &mdash; ул. Степанова, 14 · Пицца, 600-1400₽</li>
+<li><strong>#593 Пицца на углях</strong> &mdash; ул. Первомайская, 24 · Пицца, 700-1600₽</li>
+<li><strong>#594 Итальянская пицца</strong> &mdash; ул. Ликбеза, 16 · Пицца, 500-1200₽</li>
+<li><strong>#595 Пицца-Суши</strong> &mdash; ул. Бондаренко, 26 · Пицца, роллы</li>
+<li><strong>#596 АМ Пицца</strong> &mdash; ул. Плеханова, 44 · Пицца, 400-1000₽</li>
+<li><strong>#597 Милано Пицца</strong> &mdash; пр-т Ленина, 58 · Пицца, 500-1200₽</li>
+<li><strong>#598 Пиццерия на Советской</strong> &mdash; ул. Советская, 48 · Пицца, 400-1000₽</li>
+</ul>
+</div>
+<div class="cuisine-group">
+<h3>Авторская и гастропроекты</h3>
+<ul>
+<li><strong>#599 Гости</strong> &mdash; пр-т Ленина, 85 · Авторская русская премиум</li>
+<li><strong>#600 Сицилийский дворик</strong> &mdash; пр-т Ленина, 102 · Авторская европейская</li>
+<li><strong>#601 The Июль</strong> &mdash; ул. Советская, 70 · Авторская премиум</li>
+<li><strong>#602 UMI Asian kitchen</strong> &mdash; ул. Каминского, 20 · Азиатский фьюжн</li>
+<li><strong>#603 BBQ Brothers</strong> &mdash; пр-т Ленина, 110 · Авторский BBQ-проект</li>
+<li><strong>#604 Прованс</strong> &mdash; пр-т Ленина, 82 · Французский гастропроект</li>
+<li><strong>#605 Siena</strong> &mdash; пр-т Ленина, 85 · Итальянская авторская</li>
+<li><strong>#606 Ангус Хаус</strong> &mdash; ул. Плеханова, 38 · Мясной гастропроект</li>
+<li><strong>#607 Левша</strong> &mdash; ул. Менделеевская, 7 · Современная русская</li>
+<li><strong>#608 Франция</strong> &mdash; ул. Менделеевская, 15 · Французская авторская</li>
+<li><strong>#609 Том Ям</strong> &mdash; ул. Степанова, 30 · Азиатская авторская</li>
+<li><strong>#610 Мюнхен</strong> &mdash; ул. Тимирязева, 33 · Баварский гастропроект</li>
+<li><strong>#611 Beef &amp; Wine</strong> &mdash; ул. Союзная, 38 · Мясной гастропроект</li>
+<li><strong>#612 Карл Маркс</strong> &mdash; пр-т Ленина, 30 · Бургер-гастропроект</li>
+<li><strong>#613 Отель «Ликёрка Лофт»</strong> &mdash; ул. Ликбеза, 4 · Лофт-гастропроект</li>
+</ul>
+</div>
+</div>
+
+<footer>
+<p>&copy; 2025 AION &mdash; Тула</p>
+<p style="margin-top:.5rem;font-size:.75rem">Создано с любовью для жителей и гостей города</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION AI Department — Internal Knowledge Base Specification</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;background:#0A0F1E;color:#c8d6e5;line-height:1.8;padding:0;background-image:radial-gradient(ellipse at 20% 50%,rgba(0,240,255,0.03) 0%,transparent 50%),radial-gradient(ellipse at 80% 50%,rgba(245,158,11,0.02) 0%,transparent 50%),radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.02) 0%,transparent 50%);min-height:100vh}
+.wrap{max-width:1200px;margin:0 auto;padding:30px 40px;position:relative}
+.wrap::before{content:'';position:fixed;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00f0ff,transparent);z-index:100}
+h1{font-size:2.6rem;color:#00f0ff;text-align:center;margin-bottom:8px;text-shadow:0 0 80px rgba(0,240,255,0.12),0 0 40px rgba(0,240,255,0.06);font-weight:800;letter-spacing:-1px;position:relative;display:inline-block;left:50%;transform:translateX(-50%)}
+h1::after{content:'';display:block;width:60%;height:2px;margin:8px auto 0;background:linear-gradient(90deg,transparent,#00f0ff,transparent);border-radius:2px}
+.sub{text-align:center;color:#64748b;font-size:0.78rem;margin-bottom:30px;text-transform:uppercase;letter-spacing:3px;font-weight:500}
+.sub span{color:#00f0ff}
+h2{font-size:1.45rem;color:#f59e0b;margin-top:44px;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid rgba(245,158,11,0.1);display:flex;align-items:center;gap:12px;position:relative}
+h2::before{content:'';position:absolute;bottom:-2px;left:0;width:80px;height:2px;background:linear-gradient(90deg,#f59e0b,transparent);border-radius:2px}
+h2 .num{color:#00f0ff;font-weight:700;background:rgba(0,240,255,0.08);padding:2px 12px;border-radius:6px;font-size:1rem}
+h3{font-size:1.1rem;color:#00f0ff;margin-top:30px;margin-bottom:12px;font-weight:600;display:flex;align-items:center;gap:10px}
+h3 .badge{font-size:0.6rem;background:rgba(0,240,255,0.1);color:#00f0ff;padding:2px 10px;border-radius:20px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+h4{font-size:0.95rem;color:#f59e0b;margin-top:22px;margin-bottom:10px;font-weight:600}
+h5{font-size:0.82rem;color:#94a3b8;margin-top:14px;margin-bottom:8px;text-transform:uppercase;letter-spacing:1.2px;font-weight:500}
+p{margin-bottom:10px;font-size:0.9rem;color:#b0c4de}
+p strong{color:#e2e8f0}
+ul,ol{margin:6px 0 12px 24px}
+li{margin-bottom:4px;font-size:0.88rem;color:#b0c4de}
+li strong{color:#e2e8f0}
+table{width:100%;border-collapse:separate;border-spacing:0;margin:14px 0;font-size:0.8rem;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+th,td{border-bottom:1px solid rgba(255,255,255,0.04);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:rgba(0,240,255,0.06);color:#00f0ff;font-weight:600;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1px solid rgba(0,240,255,0.12)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even){background:rgba(255,255,255,0.01)}
+tr:hover td{background:rgba(0,240,255,0.02)}
+code{background:rgba(0,240,255,0.06);padding:2px 8px;border-radius:5px;font-size:0.8rem;color:#00f0ff;font-family:'JetBrains Mono','Cascadia Code','Fira Code','Consolas',monospace}
+
+/* Glass card */
+.glass-card{background:linear-gradient(135deg,rgba(17,24,39,0.75),rgba(26,35,50,0.5));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:20px;margin:16px 0;position:relative;overflow:hidden}
+.glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.12),transparent)}
+.glass-card .title{font-size:0.95rem;color:#00f0ff;font-weight:700;margin-bottom:10px}
+
+/* Diagram */
+.diagram{background:rgba(0,0,0,0.35);border:1px solid rgba(0,240,255,0.05);border-radius:12px;padding:20px;margin:14px 0;font-family:'JetBrains Mono','Cascadia Code','Fira Code','Consolas',monospace;font-size:0.7rem;line-height:1.6;overflow-x:auto;color:#94a3b8;position:relative}
+.diagram .hl{color:#00f0ff;font-weight:600}
+.diagram .hl2{color:#f59e0b;font-weight:600}
+.diagram .hl3{color:#22c55e;font-weight:600}
+.diagram .hl4{color:#a855f7;font-weight:600}
+
+/* Tags */
+.tag{display:inline-block;font-size:0.6rem;padding:2px 10px;border-radius:8px;font-weight:600}
+.tag-cyan{background:rgba(0,240,255,0.06);color:#00f0ff}
+.tag-gold{background:rgba(245,158,11,0.06);color:#f59e0b}
+.tag-purple{background:rgba(168,85,247,0.06);color:#a855f7}
+.tag-green{background:rgba(34,197,94,0.06);color:#22c55e}
+.tag-blue{background:rgba(59,130,246,0.06);color:#3b82f6}
+
+/* Block */
+.block{border-left:3px solid #f59e0b;padding:12px 18px;margin:12px 0;background:rgba(245,158,11,0.03);border-radius:0 10px 10px 0;position:relative}
+.block strong{color:#f59e0b}
+.info-box{background:rgba(0,240,255,0.03);border:1px solid rgba(0,240,255,0.07);border-radius:10px;padding:14px 18px;margin:14px 0;position:relative;padding-left:40px;font-size:0.85rem}
+.info-box::before{content:'ℹ';position:absolute;left:14px;top:12px;color:#00f0ff;font-size:1rem}
+
+/* Grid for doc cards */
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:14px 0}
+.doc-card{background:linear-gradient(145deg,rgba(17,24,39,0.8),rgba(26,35,50,0.5));border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:14px;transition:all .25s;position:relative;overflow:hidden}
+.doc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00f0ff,transparent);opacity:0;transition:opacity .25s}
+.doc-card:hover{transform:translateY(-2px);border-color:rgba(0,240,255,0.06);box-shadow:0 6px 20px rgba(0,240,255,0.03)}
+.doc-card:hover::before{opacity:1}
+.doc-card .dc-code{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#64748b;margin-bottom:4px}
+.doc-card .dc-name{font-size:0.78rem;color:#e2e8f0;font-weight:600;margin-bottom:4px}
+.doc-card .dc-pages{font-size:0.62rem;color:#64748b}
+
+/* Timeline */
+.timeline{position:relative;padding-left:30px;margin:16px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#00f0ff,#a855f7,#f59e0b,#22c55e);opacity:0.3;border-radius:2px}
+.tl-item{position:relative;margin-bottom:16px;padding:12px 16px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.03);border-radius:10px}
+.tl-item::before{content:'';position:absolute;left:-26px;top:16px;width:12px;height:12px;border-radius:50%;background:#00f0ff;border:2px solid #0A0F1E;box-shadow:0 0 8px rgba(0,240,255,0.2)}
+.tl-item .tl-week{font-size:0.65rem;color:#00f0ff;text-transform:uppercase;letter-spacing:0.8px;font-weight:600}
+.tl-item .tl-title{font-size:0.82rem;color:#e2e8f0;font-weight:600;margin:2px 0}
+.tl-item .tl-desc{font-size:0.72rem;color:#94a3b8}
+.tl-item .tl-dev{font-size:0.62rem;color:#64748b;margin-top:4px}
+
+.page-break{page-break-after:always;border:none;border-top:1px dashed rgba(0,240,255,0.06);margin:40px 0;height:1px;position:relative}
+.page-break::after{content:'✦ ✦ ✦';position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#0A0F1E;padding:0 16px;color:rgba(0,240,255,0.12);font-size:0.7rem;letter-spacing:4px}
+
+.footer{text-align:center;color:#1e293b;font-size:0.65rem;margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02);text-transform:uppercase;letter-spacing:2px;font-weight:500}
+.footer span{color:#334155}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>⌘ AION Knowledge Base</h1>
+<div class="sub">Спецификация внутренней базы знаний AI отдела · <span>Единый источник истины</span></div>
+
+<div class="glass-card" style="border-left:4px solid #00f0ff">
+<div class="title">⌘ О документе</div>
+<p>Данный документ — полная архитектурная спецификация внутренней базы знаний AI отдела компании AION. Он определяет структуру репозитория, спецификации каждого документа, карту зависимостей, последовательность разработки и понедельный план на 6 месяцев для команды из двух разработчиков.</p>
+<p style="color:#f59e0b;font-weight:600;margin-top:8px">Цель: создать базу знаний уровня Google/OpenAI/Apple — единый источник истины AI отдела AION на 10+ лет.</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2><span class="num">01</span> Структура репозитория /docs</h2>
+
+<div class="diagram">
+<pre>
+<span class="hl">ПОЛНАЯ СТРУКТУРА ДИРЕКТОРИИ /docs</span>
+
+/docs
+├── <span class="hl2">00_Company/</span>              # Корпоративные основы
+│   ├── 00.0_README.md          # Навигатор по разделу
+│   ├── 00.1_Vision.md          # Видение компании
+│   ├── 00.2_Mission.md          # Миссия
+│   ├── 00.3_Values.md           # Ценности
+│   ├── 00.4_AI_Constitution.md  # AI Конституция (этический фреймворк)
+│   ├── 00.5_Decision_Making.md  # Фреймворк принятия решений
+│   └── 00.6_Company_Principles.md # Принципы компании
+│
+├── <span class="hl2">01_Product/</span>               # Продуктовые документы
+│   ├── 01.0_README.md
+│   ├── 01.1_Product_Strategy.md # Продуктовая стратегия
+│   ├── 01.2_Roadmap.md          # Дорожная карта
+│   ├── 01.3_Feature_Lifecycle.md # Жизненный цикл фичи
+│   ├── 01.4_Product_Metrics.md  # Продуктовые метрики
+│   ├── 01.5_OKR.md              # OKR (Objectives & Key Results)
+│   └── 01.6_KPI.md              # KPI (Key Performance Indicators)
+│
+├── <span class="hl2">02_Architecture/</span>           # Архитектура системы
+│   ├── 02.0_README.md
+│   ├── 02.1_System_Architecture.md   # Системная архитектура (C4)
+│   ├── 02.2_Software_Architecture.md # Программная архитектура
+│   ├── 02.3_Infrastructure.md        # Инфраструктура
+│   ├── 02.4_Microservices.md         # Архитектура микросервисов
+│   ├── 02.5_Monolith.md              # Монолит (где / когда)
+│   ├── 02.6_Event_Architecture.md    # Событийная архитектура
+│   ├── 02.7_Data_Flow.md             # Потоки данных
+│   ├── 02.8_Storage.md               # Стратегия хранения
+│   ├── 02.9_Caching.md               # Кэширование
+│   ├── 02.10_Queues.md               # Очереди сообщений
+│   └── 02.11_Scalability.md          # Масштабирование
+│
+├── <span class="hl2">03_AI/</span>                     # AI и ML отдел (ядро)
+│   ├── 03.0_README.md
+│   ├── 03.1_AI_Architecture.md       # AI архитектура
+│   ├── 03.2_LLM_Strategy.md          # Стратегия LLM
+│   ├── 03.3_Model_Registry.md        # Реестр моделей
+│   ├── 03.4_Model_Evaluation.md      # Оценка моделей
+│   ├── 03.5_Prompt_Engineering_Guide.md  # Гайд по промпт-инжинирингу
+│   ├── 03.6_Prompt_Library.md        # Библиотека промптов
+│   ├── 03.7_AI_Agent_System.md       # Система AI-агентов
+│   ├── 03.8_Memory_System.md         # Система памяти
+│   ├── 03.9_Inference_Pipeline.md    # Инференс-пайплайн
+│   ├── 03.10_Training_Strategy.md    # Стратегия обучения
+│   ├── 03.11_Fine_Tuning_Strategy.md # Стратегия дообучения
+│   └── 03.12_Embedding_Strategy.md   # Стратегия эмбеддингов
+│
+├── <span class="hl2">04_Content/</span>                # Контент и креатив
+│   ├── 04.0_README.md
+│   ├── 04.1_Character_Bible.md       # Библия персонажей
+│   ├── 04.2_World_Bible.md           # Библия миров
+│   ├── 04.3_Lore_Bible.md            # Библия лора
+│   ├── 04.4_Design_DNA.md            # ДНК дизайна
+│   ├── 04.5_Visual_Language.md       # Визуальный язык
+│   ├── 04.6_Asset_Library.md         # Библиотека ассетов
+│   ├── 04.7_Story_Bible.md           # Библия историй
+│   ├── 04.8_Scene_Library.md         # Библиотека сцен
+│   ├── 04.9_Animation_Bible.md       # Библия анимации
+│   ├── 04.10_Camera_Bible.md         # Библия камеры
+│   ├── 04.11_Lighting_Bible.md       # Библия освещения
+│   └── 04.12_Sound_Bible.md          # Библия звука
+│
+├── <span class="hl2">05_Engineering/</span>            # Инженерные стандарты
+│   ├── 05.0_README.md
+│   ├── 05.1_Coding_Standards.md      # Стандарты кода
+│   ├── 05.2_Backend_Standards.md     # Бэкенд-стандарты
+│   ├── 05.3_Frontend_Standards.md    # Фронтенд-стандарты
+│   ├── 05.4_Architecture_Rules.md    # Архитектурные правила и ADR
+│   ├── 05.5_Git_Flow.md              # Git-флоу
+│   ├── 05.6_Branch_Strategy.md       # Стратегия ветвления
+│   ├── 05.7_Code_Review.md           # Процесс код-ревью
+│   ├── 05.8_Testing.md               # Стратегия тестирования
+│   └── 05.9_Documentation_Standards.md # Стандарты документации
+│
+├── <span class="hl2">06_Operations/</span>             # Эксплуатация
+│   ├── 06.0_README.md
+│   ├── 06.1_Incident_Response.md     # Реагирование на инциденты
+│   ├── 06.2_Monitoring.md            # Мониторинг
+│   ├── 06.3_Logging.md               # Логирование
+│   ├── 06.4_Deployment.md            # Деплой
+│   ├── 06.5_Release_Process.md       # Релизный процесс
+│   ├── 06.6_Rollback.md              # Откаты
+│   ├── 06.7_Backups.md               # Бекапы
+│   └── 06.8_Runbooks.md              # Ранбуки
+│
+├── <span class="hl2">07_Security/</span>               # Безопасность
+│   ├── 07.0_README.md
+│   ├── 07.1_Authentication.md        # Аутентификация
+│   ├── 07.2_Authorization.md         # Авторизация
+│   ├── 07.3_Secrets.md               # Управление секретами
+│   ├── 07.4_Encryption.md            # Шифрование
+│   ├── 07.5_Data_Privacy.md          # Приватность данных
+│   ├── 07.6_Infrastructure_Security.md # Безопасность инфраструктуры
+│   └── 07.7_Audit.md                 # Аудит
+│
+├── <span class="hl2">08_Analytics/</span>              # Аналитика
+│   ├── 08.0_README.md
+│   ├── 08.1_Dashboards.md            # Дашборды
+│   ├── 08.2_Metrics.md               # Метрики
+│   ├── 08.3_Funnels.md               # Воронки
+│   ├── 08.4_CTR.md                   # CTR
+│   ├── 08.5_Retention.md             # Ретеншен
+│   ├── 08.6_Content_Analytics.md     # Аналитика контента
+│   └── 08.7_AI_Analytics.md          # AI аналитика
+│
+├── <span class="hl2">09_Infrastructure/</span>         # Инфраструктура
+│   ├── 09.0_README.md
+│   ├── 09.1_Docker.md                # Docker
+│   ├── 09.2_Docker_Compose.md        # Docker Compose
+│   ├── 09.3_GPU_Servers.md           # GPU-серверы
+│   ├── 09.4_Storage.md               # Хранилище
+│   ├── 09.5_Redis.md                 # Redis
+│   ├── 09.6_PostgreSQL.md            # PostgreSQL
+│   ├── 09.7_Vector_Database.md       # Векторная БД
+│   ├── 09.8_MinIO.md                 # MinIO
+│   └── 09.9_CICD.md                  # CI/CD
+│
+├── <span class="hl2">10_API/</span>                     # API
+│   ├── 10.0_README.md
+│   ├── 10.1_REST.md                  # REST API
+│   ├── 10.2_WebSocket.md             # WebSocket
+│   ├── 10.3_Authentication.md        # API-аутентификация
+│   ├── 10.4_Swagger.md               # Swagger/OpenAPI
+│   ├── 10.5_Schemas.md               # Схемы данных
+│   └── 10.6_Versioning.md            # Версионирование
+│
+├── <span class="hl2">11_Development/</span>            # Процессы разработки
+│   ├── 11.0_README.md
+│   ├── 11.1_Roadmap.md               # Дорожная карта разработки
+│   ├── 11.2_Sprint_Planning.md       # Планирование спринтов
+│   ├── 11.3_Task_Templates.md        # Шаблоны задач
+│   ├── 11.4_Definition_of_Ready.md   # Definition of Ready
+│   └── 11.5_Definition_of_Done.md    # Definition of Done
+│
+├── <span class="hl2">12_Research/</span>               # Исследования
+│   ├── 12.0_README.md
+│   ├── 12.1_Future_Technologies.md   # Перспективные технологии
+│   ├── 12.2_Experiments.md           # Эксперименты
+│   ├── 12.3_AI_Research.md           # AI-исследования
+│   ├── 12.4_Benchmarks.md            # Бенчмарки
+│   └── 12.5_Ideas.md                 # Реестр идей
+│
+├── <span class="hl2">_shared/</span>                   # Общие ресурсы
+│   ├── templates/                    # Шаблоны документов
+│   │   ├── ADR_template.md
+│   │   ├── RFC_template.md
+│   │   ├── Incident_Report_template.md
+│   │   └── Design_Doc_template.md
+│   ├── diagrams/                     # Общие диаграммы (PlantUML)
+│   │   ├── system_context.puml
+│   │   └── network_topology.puml
+│   └── glossary.md                   # Глоссарий терминов
+
+<span class="hl4">Всего: 103 документа + 8 шаблонов + глоссарий</span>
+</pre>
+</div>
+
+<div class="block" style="border-left-color:#00f0ff">
+<strong>Принципы именования:</strong> Все файлы используют <code>XX.N_Short_Name.md</code> где XX — номер раздела, N — номер документа. README.md (00.0) в каждом разделе — навигатор со ссылками. Формат: Markdown (GitHub Flavored). Диаграммы: PlantUML / Mermaid. Ассеты: SVG/PNG в папке <code>_assets</code> внутри раздела.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2><span class="num">02</span> Спецификации документов</h2>
+
+<p>Для каждого из 103 документов ниже приведена полная спецификация: цель, аудитория, триггеры использования, связи, структура (оглавление), обязательные диаграммы, таблицы, схемы и приложения.</p>
+
+<!-- ................................................................. -->
+<h3>00 — Company <span class="badge">6 документов</span></h3>
+
+<h4>00.1 Vision.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Зафиксировать долгосрочное видение AION: куда мы идём как компания в следующие 10 лет</td></tr>
+<tr><td><strong>Аудитория</strong></td><td>Все сотрудники, инвесторы, стратегические партнёры</td></tr>
+<tr><td><strong>Когда используется</strong></td><td>Onboarding новых сотрудников, стратегические сессии, ежегодное планирование</td></tr>
+<tr><td><strong>Связи</strong></td><td>→ Mission, Values, AI Constitution, Product Strategy, OKR</td></tr>
+</table>
+<p><strong>Структура:</strong></p>
+<ol>
+<li>Executive Summary (1 абзац)</li>
+<li>Core Vision Statement — «AION к 2036 году»</li>
+<li>10-Year Horizon — разбивка по этапам (3 фазы)</li>
+<li>Market Context — анализ рынка AI-медиа</li>
+<li>Competitive Landscape — позиционирование vs OpenAI, Google, Meta</li>
+<li>Strategic Pillars — 5 столпов реализации видения</li>
+<li>Success Criteria — измеримые показатели достижения видения</li>
+</ol>
+<p><strong>Обязательные диаграммы:</strong> Vision-to-Execution flow (от видения к квартальным OKR), Timeline 2026–2036 с milestones.</p>
+<p><strong>Обязательные таблицы:</strong> Strategic Pillars (название, описание, owner, timeline), Success Metrics (метрика, 2027 target, 2030 target, 2036 target).</p>
+
+<h4>00.2 Mission.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Определить миссию AION — что мы делаем каждый день и для кого</td></tr>
+<tr><td><strong>Связи</strong></td><td>→ Vision, Values, Product Strategy</td></tr>
+</table>
+<p><strong>Структура:</strong> Mission Statement, Target Audience Definition, Value Delivered, Mission-to-Vision alignment diagram.</p>
+
+<h4>00.3 Values.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Определить корпоративные ценности и их применение в повседневной работе</td></tr>
+</table>
+<p><strong>Структура:</strong> Для каждой ценности: название, определение, поведенческие ожидания (что ДЕЛАЕМ / что НЕ ДЕЛАЕМ), применение в принятии решений (примеры), связь с AI Constitution.</p>
+<p><strong>Обязательные таблицы:</strong> Values Matrix (ценность, определение, behaviour, counter-behaviour, пример).</p>
+
+<h4>00.4 AI Constitution.md <span class="tag tag-purple">CRITICAL</span></h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Определить этические границы и правила для всех AI-моделей AION. Это конституция — выше любого технического решения.</td></tr>
+<tr><td><strong>Аудитория</strong></td><td>Каждый инженер, работающий с AI-моделями. Обязательна к прочтению при onboarding.</td></tr>
+<tr><td><strong>Связи</strong></td><td>→ Values, LLM Strategy, Prompt Engineering Guide, Model Evaluation, AI Agent System, Security docs</td></tr>
+</table>
+<p><strong>Структура:</strong></p>
+<ol>
+<li>Preamble — философское обоснование</li>
+<li>Core Principles (6): Transparency, Fairness, Accountability, Safety, Privacy, Human Agency</li>
+<li>Operational Rules: что модели МОГУТ / НЕ МОГУТ делать (таблица с примерами)</li>
+<li>Content Moderation Rules — политика модерации</li>
+<li>Enforcement Mechanism — как проверяется соблюдение</li>
+<li>Review Process — периодичность пересмотра конституции</li>
+<li>Exceptions Procedure — как запросить исключение</li>
+</ol>
+<p><strong>Диаграммы:</strong> Decision Tree для этической оценки промпта, Compliance Flow для approval process.</p>
+<p><strong>Таблицы:</strong> Can/Can't Matrix (действие, разрешено, условия, пример), Principle Compliance Checklist.</p>
+<p><strong>Приложения:</strong> Appendix A: Case Studies (граничные случаи), Appendix B: Consent Form Template.</p>
+
+<h4>00.5 Decision Making.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Фреймворк принятия решений в AI отделе: кто принимает, как, когда</td></tr>
+</table>
+<p><strong>Структура:</strong> RACI framework (Responsible, Accountable, Consulted, Informed), Decision types (strategic, tactical, operational), RFC process, Escalation paths, Emergency decision process.</p>
+<p><strong>Диаграммы:</strong> Decision flow diagram, Escalation path diagram.</p>
+<p><strong>Таблицы:</strong> RACI Matrix (решение × роли), Decision Authority Table (тип решения, кто принимает, консультанты, информируемые).</p>
+
+<h4>00.6 Company Principles.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Определить инженерные, продуктовые и AI-принципы — фундамент архитектурных решений</td></tr>
+</table>
+<p><strong>Структура:</strong> Engineering Principles (10+), Product Principles (10+), AI Principles (10+), Principle Conflicts Resolution — что важнее, когда принципы противоречат друг другу.</p>
+<p><strong>Таблицы:</strong> Principles Comparison Table (категория, принцип, описание, пример применения, исключения).</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>01 — Product <span class="badge">6 документов</span></h3>
+
+<h4>01.1 Product Strategy.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Определить продуктовую стратегию AION: target segments, value prop, competitive moat, GTM</td></tr>
+<tr><td><strong>Связи</strong></td><td>→ Vision, Roadmap, OKR, KPI</td></tr>
+</table>
+<p><strong>Структура:</strong> Target Customer Segments (Enterprise SMB, Enterprise Large, Creator Pro, Individual), Value Proposition per segment, Competitive Moat analysis, GTM Strategy, Pricing Strategy, Distribution Channels.</p>
+<p><strong>Диаграммы:</strong> Positioning diagram (market map), GTM motion diagram, Pricing ladder.</p>
+<p><strong>Таблицы:</strong> Competitive Matrix (competitor × feature × our advantage), Segment Analysis (segment, size, need, solution, price).</p>
+
+<h4>01.2 Roadmap.md</h4>
+<p><strong>Структура:</strong> 6-month horizon (detailed), 1-year horizon (high-level), 3-year horizon (visionary). For each: themes, epics, key deliverables, dependencies.</p>
+<p><strong>Диаграммы:</strong> Gantt chart (6-month), Dependency diagram between epics.</p>
+
+<h4>01.3 Feature Lifecycle.md</h4>
+<p><strong>Структура:</strong> Stages: Ideation → Spec → Design → Dev → Testing → Launch → Operate → Retirement. Gate criteria per stage. Templates for each stage.</p>
+<p><strong>Диаграммы:</strong> Lifecycle flow diagram, Stage-gate diagram.</p>
+<p><strong>Таблицы:</strong> Stage-Gate Table (stage, входные критерии, активности, выходные артефакты, approval).</p>
+
+<h4>01.4 Product Metrics.md</h4>
+<p><strong>Структура:</strong> North Star Metric, Metric Tree (leading/lagging), Definitions for each metric, Data sources, Calculation formulas.</p>
+<p><strong>Диаграммы:</strong> Metrics tree diagram, Dashboard mockup.</p>
+
+<h4>01.5 OKR.md</h4>
+<p><strong>Структура:</strong> Company OKRs → Department OKRs → Team OKRs. Один квартал на страницу. Scoring rubric (0.0–1.0).</p>
+<p><strong>Диаграммы:</strong> OKR cascade diagram (Company → Dept → Team).</p>
+<p><strong>Таблицы:</strong> OKR Scorecard (Objective, KR, weight, score, owner).</p>
+
+<h4>01.6 KPI.md</h4>
+<p><strong>Структура:</strong> KPI definitions with formulas, SLO/SLA table, Monitoring configuration, Alert thresholds.</p>
+<p><strong>Таблицы:</strong> KPI Definition Table (name, formula, target, warning, critical, owner), SLO/SLA Table (metric, SLO, SLA, measurement window).</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>02 — Architecture <span class="badge">11 документов</span></h3>
+
+<h4>02.1 System Architecture.md <span class="tag tag-cyan">FOUNDATION</span></h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Дать полную картину системы на уровне C4 Model Level 1–2. Главный архитектурный документ.</td></tr>
+<tr><td><strong>Аудитория</strong></td><td>Все инженеры. Обязателен к прочтению при onboarding.</td></tr>
+<tr><td><strong>Связи</strong></td><td>→ Все документы 02.*, 03.1, 05.4, SDD Part 1</td></tr>
+</table>
+<p><strong>Структура:</strong></p>
+<ol>
+<li>C4 Level 1: System Context Diagram (внешние системы, пользователи, AI-модели, платформы)</li>
+<li>C4 Level 2: Container Diagram (все сервисы, БД, очереди, job processors)</li>
+<li>Technology Stack Summary (таблица: компонент, технология, версия, обоснование)</li>
+<li>Deployment Architecture (production, staging, dev)</li>
+<li>Multi-Region Architecture (cell-based design)</li>
+<li>Disaster Recovery Architecture</li>
+<li>Key Architectural Decisions (linked ADRs)</li>
+</ol>
+<p><strong>Диаграммы:</strong> C4 Context (Level 1), C4 Containers (Level 2), Deployment diagram (AWS/GCP), Network topology.</p>
+<p><strong>Таблицы:</strong> Component Table (название, тип, технология, масштаб, ответственность), ADR Index.</p>
+
+<h4>02.2 Software Architecture.md</h4>
+<p><strong>Структура:</strong> Layer architecture (presentation, application, domain, infrastructure), Module/package structure, Interface definitions, Dependency injection pattern, Error handling pattern.</p>
+<p><strong>Диаграммы:</strong> Layer diagram, Package dependency graph, Class diagram for core domain.</p>
+
+<h4>02.3 Infrastructure.md</h4>
+<p><strong>Структура:</strong> Physical infrastructure, Network topology, Cloud provider architecture, Region/zone layout, Resource tagging strategy, Cost allocation.</p>
+<p><strong>Диаграммы:</strong> Network diagram, Server rack diagram, Cloud VPC/subnet layout, Multi-region connectivity.</p>
+
+<h4>02.4 Microservices.md</h4>
+<p><strong>Структура:</strong> Service catalog (все микросервисы), Service boundaries, Communication patterns (sync/async), Service mesh, Observability per service, SLAs per service.</p>
+<p><strong>Диаграммы:</strong> Service mesh diagram, Sequence diagrams for key flows (content creation, publishing).</p>
+<p><strong>Таблицы:</strong> Service Catalog (name, language, responsibility, upstream/downstream, SLA, owner), Endpoint Table.</p>
+
+<h4>02.5 Monolith.md</h4>
+<p><strong>Структура:</strong> When monolith is appropriate (MVP phase), Modular monolith pattern, Migration path to microservices, Strangler Fig pattern.</p>
+
+<h4>02.6 Event Architecture.md</h4>
+<p><strong>Структура:</strong> Event taxonomy (event types), Schema registry, Event bus topology (Redpanda/Kafka), Consumer groups, DLQ strategy, Exactly-once vs at-least-once, Schema evolution.</p>
+<p><strong>Диаграммы:</strong> Event flow diagram, Topic topology, Consumer group layout.</p>
+<p><strong>Таблицы:</strong> Event Catalog (event name, producer, consumers, schema, retention, criticality).</p>
+
+<h4>02.7 Data Flow.md</h4>
+<p><strong>Структура:</strong> DFD Level 0–1 for all major processes (content creation, publishing, analytics). Data lineage from ingestion to storage.</p>
+<p><strong>Диаграммы:</strong> DFD Level 0 (context), DFD Level 1 (main processes), Data lineage diagram.</p>
+
+<h4>02.8 Storage.md</h4>
+<p><strong>Структура:</strong> Storage decision matrix (SQL vs NoSQL vs Object vs Vector), Capacity planning, Sharding strategy, Migration strategy.</p>
+<p><strong>Таблицы:</strong> Storage Decision Matrix (data type, storage, access pattern, size estimate, retention).</p>
+
+<h4>02.9 Caching.md</h4>
+<p><strong>Структура:</strong> Cache layers (L1–L3), Invalidation strategy (write-through, write-behind, TTL), Cache hierarchy, Warming strategy, Failure mode.</p>
+<p><strong>Диаграммы:</strong> Cache architecture diagram, Invalidation flow.</p>
+<p><strong>Таблицы:</strong> Cache Configuration (cache name, type, TTL, max size, eviction policy, invalidation trigger).</p>
+
+<h4>02.10 Queues.md</h4>
+<p><strong>Структура:</strong> Queue topology, Message schemas, Retry policy, DLQ strategy, Monitoring.</p>
+<p><strong>Таблицы:</strong> Retry Policy Table (queue, max retries, backoff, DLQ name).</p>
+
+<h4>02.11 Scalability.md</h4>
+<p><strong>Структура:</strong> Scaling dimensions (horizontal/vertical), Auto-scaling rules, Capacity planning model, Load testing results, Bottleneck analysis.</p>
+<p><strong>Диаграммы:</strong> Scaling decision tree, Load testing results chart.</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>03 — AI <span class="badge">12 документов</span> <span class="tag tag-purple">ЯДРО ОТДЕЛА</span></h3>
+
+<h4>03.1 AI Architecture.md <span class="tag tag-cyan">FOUNDATION</span></h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Главный документ AI отдела. Полная архитектура AI-системы AION: от входа промпта до выхода контента.</td></tr>
+<tr><td><strong>Аудитория</strong></td><td>Все AI-инженеры, ML-инженеры, инфраструктурная команда</td></tr>
+<tr><td><strong>Связи</strong></td><td>→ Все 03.*, 02.1, 02.6, SDD Part 3</td></tr>
+</table>
+<p><strong>Структура:</strong></p>
+<ol>
+<li>System Context — AI subsystem in the whole AION platform</li>
+<li>Multi-Provider LLM Router Architecture (LM Studio local + OpenRouter + fallback)</li>
+<li>Speculative Inference Mesh — design for custom inference</li>
+<li>Model Serving Topology — как модели загружаются, версионируются, A/B тестируются</li>
+<li>Prompt → Inference → Response Pipeline</li>
+<li>AI Agent Orchestration (Temporal.io workflows)</li>
+<li>Memory & Context Management (short-term, long-term, episodic)</li>
+<li>RLAIF Self-Improvement Loop</li>
+<li>AI Safety Layer (guardrails, content moderation, PII detection)</li>
+<li>Cost Management & Budget Allocation</li>
+</ol>
+<p><strong>Диаграммы:</strong> AI System Context Diagram, LLM Router Flow, Agent Orchestration Diagram, Memory Pipeline, RLAIF Loop.</p>
+<p><strong>Таблицы:</strong> Model Serving Endpoints (model, provider, endpoint, max_tokens, cost/token, status), Inference Pipeline Stages (stage, service, avg latency, SLA).</p>
+
+<h4>03.2 LLM Strategy.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Определить, какие LLM мы используем, почему, с какими провайдерами, сколько это стоит</td></tr>
+</table>
+<p><strong>Структура:</strong> Model selection criteria, Provider strategy (OpenRouter, LM Studio, Anthropic, Google, OpenAI), Model-to-task mapping, Cost projection model, Latency benchmarks, Fallback chain, Model sunset policy.</p>
+<p><strong>Диаграммы:</strong> Provider topology, Cost projection chart (6 months), Latency heatmap (model × task).</p>
+<p><strong>Таблицы:</strong> Model Comparison (name, provider, task fit, cost/1M tokens, latency p50/p95, quality score, status), Cost Allocation Table.</p>
+
+<h4>03.3 Model Registry.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Единый реестр всех AI-моделей AION — их версий, статусов, метаданных</td></tr>
+</table>
+<p><strong>Структура:</strong> Registry schema, Version management, Status definitions (research, development, staging, production, deprecated, sunset), Lifecycle policy.</p>
+<p><strong>Таблицы:</strong> Model Registry (model_id, name, version, framework, task, status, owner, endpoint, training_date, eval_score).</p>
+
+<h4>03.4 Model Evaluation.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Фреймворк оценки моделей: как измеряем качество, какие бенчмарки, как проходим A/B тесты</td></tr>
+</table>
+<p><strong>Структура:</strong> Evaluation criteria per task type, Benchmark suite description, Human evaluation framework, A/B testing methodology, Automated evaluation pipeline, Regression testing, Success thresholds.</p>
+<p><strong>Диаграммы:</strong> Evaluation pipeline diagram, A/B test flow.</p>
+<p><strong>Таблицы:</strong> Evaluation Criteria Matrix (task, criteria, metric, method, target), Benchmark Results Matrix.</p>
+
+<h4>03.5 Prompt Engineering Guide.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Исчерпывающий гайд по промпт-инжинирингу для всех типов задач AION</td></tr>
+</table>
+<p><strong>Структура:</strong> Prompt anatomy (system, user, assistant), Pattern library (few-shot, chain-of-thought, role-prompting, structured output), Best practices, Anti-patterns, Context window optimization, Temperature/parameters guide, Versioning prompts, Testing prompts.</p>
+<p><strong>Диаграммы:</strong> Prompt structure diagram, Prompt optimization flow.</p>
+<p><strong>Таблицы:</strong> Pattern Catalog (pattern, when to use, example, anti-pattern), Parameter Guide (parameter, effect, range, recommendation).</p>
+
+<h4>03.6 Prompt Library.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Библиотека всех production-промптов с версиями, A/B тестами и результатами</td></tr>
+</table>
+<p><strong>Структура:</strong> Each prompt: ID, name, task, model, version_history, full_prompt_text, parameters, tests_results, performance_data, owner.</p>
+<p><strong>Приложения:</strong> All production prompts in raw format.</p>
+
+<h4>03.7 AI Agent System.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Архитектура AI-агентов: как они работают, общаются, используют инструменты</td></tr>
+</table>
+<p><strong>Структура:</strong> Agent architecture (perception, reasoning, action, memory), Tool-use paradigm, Tool catalog, Planning algorithms (ReAct, Plan-and-Execute), Multi-agent coordination, Human-in-the-loop, Agent evaluation, Safety constraints.</p>
+<p><strong>Диаграммы:</strong> Agent architecture diagram, Multi-agent coordination flow, Tool execution sequence.</p>
+<p><strong>Таблицы:</strong> Agent Catalog (agent, role, tools, triggers, owner), Tool Catalog (tool, description, input_schema, rate_limit).</p>
+
+<h4>03.8 Memory System.md</h4>
+<p><strong>Структура:</strong> Memory types (short-term, long-term, episodic, procedural), Storage architecture, Retrieval pipeline, Memory consolidation, Forgetting mechanism.</p>
+<p><strong>Диаграммы:</strong> Memory flow diagram, Retrieval pipeline, Storage schema.</p>
+
+<h4>03.9 Inference Pipeline.md</h4>
+<p><strong>Структура:</strong> Request lifecycle (parse, validate, enrich, select model, preprocess, inference, postprocess, response), Batching strategy, Request queuing, Latency optimization, Caching, Error handling.</p>
+<p><strong>Диаграммы:</strong> Pipeline flow diagram, Batching strategy diagram.</p>
+<p><strong>Таблицы:</strong> Latency Budget (stage, target p50, target p95, max p99).</p>
+
+<h4>03.10 Training Strategy.md</h4>
+<p><strong>Структура:</strong> Training decision framework (when to train vs prompt engineer), Distributed training topology, Hyperparameter search methodology, Training infrastructure requirements, Cost estimation model.</p>
+<p><strong>Диаграммы:</strong> Training decision tree, Distributed topology (fsdp/deepspeed).</p>
+<p><strong>Таблицы:</strong> Training Cost Estimate (model size, data size, hardware, time, cost).</p>
+
+<h4>03.11 Fine-Tuning Strategy.md</h4>
+<p><strong>Структура:</strong> PEFT vs full fine-tuning decision matrix, LoRA configuration guide, QLoRA quantization tradeoffs, Dataset preparation guidelines, Fine-tuning pipeline, Evaluation before/after.</p>
+<p><strong>Таблицы:</strong> Fine-Tuning Decision Matrix (use-case, PEFT, full, LoRA rank, data quantity, expected lift).</p>
+
+<h4>03.12 Embedding Strategy.md</h4>
+<p><strong>Структура:</strong> Embedding models comparison, Vector dimensions and performance tradeoffs, Retrieval strategy (dense, sparse, hybrid), HNSW/Multi-Index configuration, Chunking strategies.</p>
+<p><strong>Диаграммы:</strong> Retrieval pipeline diagram.</p>
+<p><strong>Таблицы:</strong> Embedding Model Comparison (model, dimensions, speed, quality MTEB, cost).</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>04 — Content <span class="badge">12 документов</span></h3>
+
+<p><strong>Все документы 04.* ссылаются на SDD Part 4 (Character System, World System, Scene Library).</strong> Они не переписывают SDD, а расширяют его операционными деталями.</p>
+
+<h4>04.1 Character Bible.md</h4>
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td><strong>Цель</strong></td><td>Полная спецификация Character System AION: иерархия, DNA, генерация, хранение</td></tr>
+<tr><td><strong>Связи</strong></td><td>→ SDD Part 4 Section 8, 03.5, 03.6, 03.7</td></tr>
+</table>
+<p><strong>Структура:</strong> Character tiers (Ω→E) с требованиями к генерации, Character DNA schema, Archetype system, Visual standard, Character Library API specification, Generation prompt templates per tier.</p>
+
+<h4>04.2 World Bible.md</h4>
+<p><strong>Структура:</strong> World architecture, Location hierarchy (country→city→district→building), Environment definitions, World-to-character relationships.</p>
+
+<h4>04.3 Lore Bible.md</h4>
+<p><strong>Структура:</strong> Universe timeline, Major events, Factions/organizations, Character relationships, Story arcs.</p>
+
+<h4>04.4 Design DNA.md</h4>
+<p><strong>Структура:</strong> Core design philosophy, Typography system, Color system, Spacing/grid system, Iconography, Logo usage.</p>
+
+<h4>04.5 Visual Language.md</h4>
+<p><strong>Структура:</strong> Component library, Layout patterns, Responsive behavior, Dark/light mode, Accessibility standards.</p>
+
+<h4>04.6 Asset Library.md</h4>
+<p><strong>Структура:</strong> Asset catalog structure, Metadata schema, Search taxonomy, Storage strategy, Version management.</p>
+
+<h4>04.7 Story Bible.md</h4>
+<p><strong>Структура:</strong> Narrative framework, Story types catalog, Plot structures, Character arc templates, Theme catalog.</p>
+
+<h4>04.8 Scene Library.md</h4>
+<p><strong>Структура:</strong> Scene template catalog, Camera movements, Lighting profiles, Transition types, Audio atmospheres.</p>
+
+<h4>04.9 Animation Bible.md</h4>
+<p><strong>Структура:</strong> Animation principles, Motion curves, Transition types per Tier, Performance targets.</p>
+
+<h4>04.10 Camera Bible.md</h4>
+<p><strong>Структура:</strong> Camera angle catalog, Movement types, Composition rules, Emotion-to-camera mapping.</p>
+
+<h4>04.11 Lighting Bible.md</h4>
+<p><strong>Структура:</strong> Lighting scheme catalog, Color temperature guide, Mood-to-lighting mapping, Equipment specs (virtual).</p>
+
+<h4>04.12 Sound Bible.md</h4>
+<p><strong>Структура:</strong> Audio categories, Voice profiles, Music guidelines, SFX standards, Audio processing pipeline.</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>05 — Engineering <span class="badge">9 документов</span></h3>
+
+<h4>05.1 Coding Standards.md</h4>
+<p><strong>Структура:</strong> Language-specific standards (Python, Rust, Go, TypeScript), Naming conventions, File structure, Comments/Docstrings, Linter configuration, Formatter configuration.</p>
+<p><strong>Таблицы:</strong> Lint Rules (rule, severity, auto-fix, rationale).</p>
+
+<h4>05.2 Backend Standards.md</h4>
+<p><strong>Структура:</strong> API design patterns, Service patterns (Repository, Service, Factory), Error handling standard, Logging standard, Middleware conventions.</p>
+
+<h4>05.3 Frontend Standards.md</h4>
+<p><strong>Структура:</strong> Component architecture, State management pattern, Styling conventions, Testing requirements.</p>
+
+<h4>05.4 Architecture Rules.md</h4>
+<p><strong>Структура:</strong> ADR (Architecture Decision Records) index, Approved patterns with examples, Forbidden patterns with alternatives, Dependency rules (layer boundaries), Technology radar.</p>
+
+<h4>05.5 Git Flow.md</h4>
+<p><strong>Структура:</strong> Branch model (main/develop/feature/release/hotfix), Commit message convention (Conventional Commits), Tagging strategy.</p>
+
+<h4>05.6 Branch Strategy.md</h4>
+<p><strong>Структура:</strong> Branch naming convention, Protection rules per branch, Merge strategies (merge, squash, rebase).</p>
+
+<h4>05.7 Code Review.md</h4>
+<p><strong>Структура:</strong> Review checklist per language, Expectations (turnaround time, depth), PR template, Review workflow.</p>
+
+<h4>05.8 Testing.md</h4>
+<p><strong>Структура:</strong> Test pyramid definition, Coverage targets per layer, Test type definitions (unit, integration, e2e, performance), CI integration, Test data management.</p>
+
+<h4>05.9 Documentation Standards.md</h4>
+<p><strong>Структура:</strong> This is the meta-document. Format standard, File naming, Diagram standards (PlantUML, Mermaid), Review process, Ownership, Lifecycle.</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>06 — Operations <span class="badge">8 документов</span></h3>
+
+<h4>06.1 Incident Response.md</h4>
+<p><strong>Структура:</strong> Severity levels (P0–P4), Response times, Escalation matrix, Communication template, Postmortem template, RCA process.</p>
+<p><strong>Диаграммы:</strong> Incident response flow, Escalation tree.</p>
+<p><strong>Таблицы:</strong> Severity Matrix (level, response time, SLA, examples, notification channels).</p>
+
+<h4>06.2 Monitoring.md</h4>
+<p><strong>Структура:</strong> SLO/SLI definitions for all services, Alert definitions (critical, warning, info), Dashboard catalog, Monitoring stack configuration.</p>
+
+<h4>06.3 Logging.md</h4>
+<p><strong>Структура:</strong> Structured logging schema, Log levels (DEBUG, INFO, WARN, ERROR, FATAL), Log aggregation (Loki/Datadog), Retention policy, Sensitive data redaction.</p>
+
+<h4>06.4 Deployment.md</h4>
+<p><strong>Структура:</strong> Deployment strategies (blue-green, canary, rolling), Environment mapping (dev→staging→prod), Approval gates, Deployment automation.</p>
+
+<h4>06.5 Release Process.md</h4>
+<p><strong>Структура:</strong> Release cadence, Version numbering (SemVer), Changelog standard, Release communication, Feature flags.</p>
+
+<h4>06.6 Rollback.md</h4>
+<p><strong>Структура:</strong> Rollback triggers, Procedures per service type, Database rollback strategy, Feature flag rollback.</p>
+
+<h4>06.7 Backups.md</h4>
+<p><strong>Структура:</strong> Backup schedule per data type, Retention policy, Restoration testing schedule, RPO/RTO targets.</p>
+
+<h4>06.8 Runbooks.md</h4>
+<p><strong>Структура:</strong> Operational procedures indexed by scenario. Each: trigger, steps, expected result, escalation point.</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>07 — Security <span class="badge">7 документов</span></h3>
+
+<h4>07.1 Authentication.md</h4>
+<p><strong>Структура:</strong> AuthN methods supported, OAuth/OIDC flow, MFA configuration, Session management, Token lifecycle.</p>
+<p><strong>Диаграммы:</strong> OAuth flow diagram, Token lifecycle diagram.</p>
+
+<h4>07.2 Authorization.md</h4>
+<p><strong>Структура:</strong> RBAC/ABAC model, Permission hierarchy, Policy engine, Tenant isolation model.</p>
+<p><strong>Диаграммы:</strong> Permission model diagram, API authorization flow.</p>
+
+<h4>07.3 Secrets.md</h4>
+<p><strong>Структура:</strong> Secret storage (Vault), Rotation policy, Access audit, Emergency access procedure.</p>
+
+<h4>07.4 Encryption.md</h4>
+<p><strong>Структура:</strong> At-rest encryption (per storage type), In-transit encryption (mTLS), Key management (KMS), Encryption key rotation.</p>
+
+<h4>07.5 Data Privacy.md</h4>
+<p><strong>Структура:</strong> Data classification levels, PII handling procedures, Data retention/deletion policy, GDPR/EU AI Act compliance.</p>
+
+<h4>07.6 Infrastructure Security.md</h4>
+<p><strong>Структура:</strong> Network security (firewall, VPC, WAF), Container security (image scanning, runtime), Cloud security (IAM, service accounts), Vulnerability management.</p>
+
+<h4>07.7 Audit.md</h4>
+<p><strong>Структура:</strong> Audit event types, Audit log storage, Compliance reporting, Review cycle schedule.</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>08 — Analytics <span class="badge">7 документов</span></h3>
+
+<h4>08.1 Dashboards.md</h4>
+<p><strong>Структура:</strong> Dashboard catalog per team/role, Metric definitions per dashboard, Refresh schedules, Access control.</p>
+
+<h4>08.2 Metrics.md</h4>
+<p><strong>Структура:</strong> All metric definitions with formulas, Data sources, Calculation frequency, Example values.</p>
+<p><strong>Таблицы:</strong> Metric Dictionary (name, definition, formula, source, refresh, owner).</p>
+
+<h4>08.3 Funnels.md</h4>
+<p><strong>Структура:</strong> Conversion funnels (activation, engagement, monetization), Drop-off analysis, Optimization targets.</p>
+
+<h4>08.4 CTR.md</h4>
+<p><strong>Структура:</strong> CTR tracking methodology, A/B test framework for CTR optimization, Benchmarks.</p>
+
+<h4>08.5 Retention.md</h4>
+<p><strong>Структура:</strong> Cohort analysis definition, Retention curves, Churn prediction model, Retention optimization levers.</p>
+
+<h4>08.6 Content Analytics.md</h4>
+<p><strong>Структура:</strong> Content performance metrics, Virality scoring algorithm, Content decay modeling.</p>
+
+<h4>08.7 AI Analytics.md</h4>
+<p><strong>Структура:</strong> Model performance metrics (latency, throughput, quality), Cost per inference, Token tracking, Model drift detection.</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>09 — Infrastructure <span class="badge">9 документов</span></h3>
+
+<h4>09.1 Docker.md</h4>
+<p><strong>Структура:</strong> Dockerfile standards, Multi-stage builds, Image optimization, Base images, Security scanning.</p>
+
+<h4>09.2 Docker Compose.md</h4>
+<p><strong>Структура:</strong> Local dev setup, Service dependencies, Volume mounts, Environment variables template, GPU passthrough.</p>
+
+<h4>09.3 GPU Servers.md</h4>
+<p><strong>Структура:</strong> GPU provisioning, Driver/cuda toolkit management, GPU job scheduling (Slurm/Kubernetes), GPU monitoring, Cost optimization.</p>
+<p><strong>Таблицы:</strong> GPU Config Matrix (server, GPU count, model, VRAM, driver, CUDA, job types).</p>
+
+<h4>09.4 Storage.md</h4>
+<p><strong>Структура:</strong> Storage classes, Lifecycle policies, Backup verification procedure, Capacity monitoring.</p>
+
+<h4>09.5 Redis.md</h4>
+<p><strong>Структура:</strong> Redis topology (standalone/sentinel/cluster), Key naming convention, Eviction policies per use case, Memory monitoring.</p>
+
+<h4>09.6 PostgreSQL.md</h4>
+<p><strong>Структура:</strong> Schema design conventions, Migration strategy (golang-migrate), Connection pooling (PgBouncer), Partitioning strategy, Index strategy, Vacuum/analyze schedule.</p>
+
+<h4>09.7 Vector Database.md</h4>
+<p><strong>Структура:</strong> Qdrant/Weaviate comparison, Index types (HNSW, IVF), Performance tuning, Backup/restore, Capacity planning.</p>
+
+<h4>09.8 MinIO.md</h4>
+<p><strong>Структура:</strong> Bucket structure, Access policies (IAM), Lifecycle policies, Multi-region sync, Versioning.</p>
+
+<h4>09.9 CICD.md</h4>
+<p><strong>Структура:</strong> Pipeline stages (lint, test, build, deploy), Test automation, Artifact management, Promotion process (dev→staging→prod).</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>10 — API <span class="badge">6 документов</span></h3>
+
+<h4>10.1 REST.md</h4>
+<p><strong>Структура:</strong> URL structure conventions, HTTP methods mapping, Response format (JSON:API/standard), Pagination standard, Error response schema.</p>
+
+<h4>10.2 WebSocket.md</h4>
+<p><strong>Структура:</strong> Connection lifecycle, Event types catalog, Reconnection strategy, Message format.</p>
+
+<h4>10.3 Authentication.md</h4>
+<p><strong>Структура:</strong> API key management, JWT standard, mTLS configuration, Rate limiting per plan.</p>
+
+<h4>10.4 Swagger.md</h4>
+<p><strong>Структура:</strong> OpenAPI specification conventions, Code generation from spec, Annotation standards, Doc deployment.</p>
+
+<h4>10.5 Schemas.md</h4>
+<p><strong>Структура:</strong> Schema registry, Versioning rules, Compatibility (backward/forward), Schema evolution process.</p>
+
+<h4>10.6 Versioning.md</h4>
+<p><strong>Структура:</strong> URI versioning vs header versioning, Deprecation policy, Sunset process, Migration guides.</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>11 — Development <span class="badge">5 документов</span></h3>
+
+<h4>11.1 Roadmap.md</h4>
+<p><strong>Структура:</strong> Development roadmap matching 01.2 but at operational level. Milestones with deliverables.</p>
+
+<h4>11.2 Sprint Planning.md</h4>
+<p><strong>Структура:</strong> Sprint cadence (2 weeks), Ceremony schedule, Estimation guide (story points / t-shirt sizing), Capacity planning formula.</p>
+
+<h4>11.3 Task Templates.md</h4>
+<p><strong>Структура:</strong> Templates for: Bug report, Feature request, Technical debt, Research spike, Documentation task.</p>
+
+<h4>11.4 Definition of Ready.md</h4>
+<p><strong>Структура:</strong> Criteria checklist per task type, Acceptance criteria format, Prerequisites for sprint entry.</p>
+
+<h4>11.5 Definition of Done.md</h4>
+<p><strong>Структура:</strong> Criteria checklist per task type (code complete, reviewed, tested, documented, deployed).</p>
+
+<!-- ................................................................. -->
+<div class="page-break"></div>
+<h3>12 — Research <span class="badge">5 документов</span></h3>
+
+<h4>12.1 Future Technologies.md</h4>
+<p><strong>Структура:</strong> Technology watch list, Evaluation criteria per technology, Adoption recommendations, Timeline estimates.</p>
+
+<h4>12.2 Experiments.md</h4>
+<p><strong>Структура:</strong> Experiment log (hypothesis, design, results, conclusions), Template for new experiments.</p>
+
+<h4>12.3 AI Research.md</h4>
+<p><strong>Структура:</strong> Paper reviews, Model architecture innovations tracking, Alignment research, Safety research.</p>
+
+<h4>12.4 Benchmarks.md</h4>
+<p><strong>Структура:</strong> Benchmark suite definition, Methodology, Results database, Historical trends.</p>
+
+<h4>12.5 Ideas.md</h4>
+<p><strong>Структура:</strong> Idea repository with evaluation framework, Prioritization matrix, Idea lifecycle (idea→research→proposal→roadmap).</p>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">03</span> Карта зависимостей документов</h2>
+
+<div class="glass-card">
+<div class="title">⟡ Dependency Graph — как документы связаны</div>
+<p>Документы разделены на 4 уровня (Tier 0–3). Tier 0 — фундаментальные (пишутся первыми). Tier 3 — производные (пишутся последними).</p>
+</div>
+
+<div class="diagram">
+<pre>
+<span class="hl">ДЕРЕВО ЗАВИСИМОСТЕЙ ДОКУМЕНТОВ:</span>
+
+<span class="hl2">TIER 0 — ФУНДАМЕНТ (10 docs, пишутся первыми)</span>
+┌─────────────────────────────────────────────────────────────────────┐
+│  00.1 Vision      00.2 Mission      00.3 Values   00.6 Principles  │
+│  02.1 System Arch  02.2 Software Arch  02.3 Infra  02.11 Scalability│
+│  05.9 Doc Standards                                                    │
+└─────────────────────────────────────────────────────────────────────┘
+         │
+         ▼
+<span class="hl2">TIER 1 — ПЕРВИЧНЫЕ (25 docs, пишутся вторыми)</span>
+┌─────────────────────────────────────────────────────────────────────┐
+│  00.4 AI Constitution  00.5 Dec. Making  01.1 Product Strategy     │
+│  01.2 Roadmap  01.3 Feature Lifecycle  01.4 Product Metrics        │
+│  01.5 OKR  01.6 KPI  02.4 Microservices  02.6 Event Arch          │
+│  02.7 Data Flow  02.8 Storage  03.1 AI Architecture               │
+│  03.2 LLM Strategy  03.3 Model Registry  03.4 Model Eval           │
+│  03.5 Prompt Eng. Guide  03.7 AI Agent System  04.1 Character Bible│
+│  04.2 World Bible  04.4 Design DNA  05.1 Coding Standards          │
+│  05.2 Backend Standards  05.5 Git Flow  07.1 Authentication        │
+└─────────────────────────────────────────────────────────────────────┘
+         │
+         ▼
+<span class="hl2">TIER 2 — ВТОРИЧНЫЕ (35 docs, пишутся третьими)</span>
+┌─────────────────────────────────────────────────────────────────────┐
+│  02.5 Monolith  02.9 Caching  02.10 Queues  03.6 Prompt Library   │
+│  03.8 Memory System  03.9 Inference Pipeline  03.10 Training Strat│
+│  03.11 Fine-Tuning  03.12 Embedding  04.3 Lore Bible  04.5 Vis Lang│
+│  04.6 Asset Library  04.7 Story Bible  04.8 Scene Library         │
+│  04.9 Animation Bible  04.10 Camera Bible  04.11 Lighting Bible   │
+│  04.12 Sound Bible  05.3 Frontend Std  05.4 Arch Rules            │
+│  05.6 Branch Strategy  05.7 Code Review  05.8 Testing             │
+│  06.1 Incident Response  06.2 Monitoring  06.3 Logging            │
+│  06.4 Deployment  06.7 Backups  07.2 Authorization                │
+│  07.3 Secrets  07.4 Encryption  07.5 Data Privacy                 │
+│  07.6 Infra Security  08.1 Dashboards  08.2 Metrics               │
+│  09.1 Docker  09.2 Docker Compose  09.3 GPU Servers               │
+│  09.4 Storage  09.5 Redis  09.6 PostgreSQL  09.7 Vector DB        │
+│  09.8 MinIO  09.9 CICD                                             │
+└─────────────────────────────────────────────────────────────────────┘
+         │
+         ▼
+<span class="hl2">TIER 3 — ТРЕТИЧНЫЕ (33 docs, пишутся последними)</span>
+┌─────────────────────────────────────────────────────────────────────┐
+│  06.5 Release Process  06.6 Rollback  06.8 Runbooks                │
+│  07.7 Audit  08.3 Funnels  08.4 CTR  08.5 Retention               │
+│  08.6 Content Analytics  08.7 AI Analytics  10.1 REST             │
+│  10.2 WebSocket  10.3 API Auth  10.4 Swagger  10.5 Schemas        │
+│  10.6 Versioning  11.1 Dev Roadmap  11.2 Sprint Planning          │
+│  11.3 Task Templates  11.4 Definition of Ready  11.5 Def. of Done │
+│  12.1 Future Tech  12.2 Experiments  12.3 AI Research              │
+│  12.4 Benchmarks  12.5 Ideas  05.9 (обновляется последним)        │
+└─────────────────────────────────────────────────────────────────────┘
+</pre>
+</div>
+
+<h3>Таблица зависимостей (ключевые)</h3>
+<table>
+<tr><th>Документ</th><th>Зависит от</th><th>Необходим для</th></tr>
+<tr><td>00.4 AI Constitution</td><td>00.3 Values</td><td>03.2 LLM Strategy, 03.5 Prompt Engineering, 03.7 AI Agents</td></tr>
+<tr><td>02.1 System Architecture</td><td>00.6 Principles, 02.2 Software Arch</td><td>Все 02.*, 03.1, 09.*, 10.*</td></tr>
+<tr><td>03.1 AI Architecture</td><td>02.1, 02.6, 02.7, 00.4</td><td>Все 03.*, 02.4, 08.7</td></tr>
+<tr><td>03.2 LLM Strategy</td><td>03.1, 00.4</td><td>03.3, 03.4, 03.5, 03.9, 03.10</td></tr>
+<tr><td>03.5 Prompt Engineering Guide</td><td>03.2, 03.4, 00.4</td><td>03.6 Prompt Library, 04.* Content</td></tr>
+<tr><td>04.1 Character Bible</td><td>SDD Part 4, 03.5, 03.7</td><td>04.3, 04.7, 04.9</td></tr>
+<tr><td>05.1 Coding Standards</td><td>05.9 Doc Standards</td><td>05.2, 05.3, 05.8</td></tr>
+<tr><td>06.1 Incident Response</td><td>06.2 Monitoring, 06.3 Logging</td><td>06.8 Runbooks</td></tr>
+<tr><td>09.3 GPU Servers</td><td>09.1 Docker, 03.1 AI Arch</td><td>03.9, 03.10</td></tr>
+</table>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">04</span> Граф разработки документации</h2>
+
+<div class="block" style="border-left-color:#a855f7">
+<strong>Порядок написания документов основан на карте зависимостей.</strong> Документы Tier 0 не имеют зависимостей от других — они пишутся в первую очередь. Tier 1 требует завершения Tier 0. И так далее.
+</div>
+
+<h3>Фаза 1 — Фундамент (недели 1–4)</h3>
+<div class="doc-grid">
+<div class="doc-card"><div class="dc-code">05.9</div><div class="dc-name">Documentation Standards</div><div class="dc-pages">Стандарт для всех документов → пишется первым</div></div>
+<div class="doc-card"><div class="dc-code">00.1–00.3</div><div class="dc-name">Vision, Mission, Values</div><div class="dc-pages">Корпоративная основа</div></div>
+<div class="doc-card"><div class="dc-code">00.6</div><div class="dc-name">Company Principles</div><div class="dc-pages">Инженерные принципы</div></div>
+<div class="doc-card"><div class="dc-code">02.1</div><div class="dc-name">System Architecture</div><div class="dc-pages">Главный архитектурный документ</div></div>
+<div class="doc-card"><div class="dc-code">02.2</div><div class="dc-name">Software Architecture</div><div class="dc-pages">Программная архитектура</div></div>
+<div class="doc-card"><div class="dc-code">02.3</div><div class="dc-name">Infrastructure</div><div class="dc-pages">Инфраструктура</div></div>
+<div class="doc-card"><div class="dc-code">02.11</div><div class="dc-name">Scalability</div><div class="dc-pages">Масштабирование</div></div>
+</div>
+
+<h3>Фаза 2 — Первичные (недели 5–10)</h3>
+<div class="doc-grid">
+<div class="doc-card"><div class="dc-code">00.4</div><div class="dc-name">AI Constitution</div><div class="dc-pages">Этический фреймворк</div></div>
+<div class="doc-card"><div class="dc-code">00.5</div><div class="dc-name">Decision Making</div><div class="dc-pages">RACI, RFC</div></div>
+<div class="doc-card"><div class="dc-code">01.1</div><div class="dc-name">Product Strategy</div><div class="dc-pages">Стратегия</div></div>
+<div class="doc-card"><div class="dc-code">01.2–01.6</div><div class="dc-name">Roadmap → KPI</div><div class="dc-pages">Продуктовая линия</div></div>
+<div class="doc-card"><div class="dc-code">02.4, 02.6, 02.7, 02.8</div><div class="dc-name">Microservices, Events, Data Flow, Storage</div></div>
+<div class="doc-card"><div class="dc-code">03.1</div><div class="dc-name">AI Architecture</div><div class="dc-pages">Ключевой документ AI отдела</div></div>
+<div class="doc-card"><div class="dc-code">03.2–03.5</div><div class="dc-name">LLM Strategy → Prompt Eng.</div></div>
+<div class="doc-card"><div class="dc-code">03.7</div><div class="dc-name">AI Agent System</div></div>
+<div class="doc-card"><div class="dc-code">04.1, 04.2, 04.4</div><div class="dc-name">Character, World, Design DNA</div></div>
+<div class="doc-card"><div class="dc-code">05.1, 05.2, 05.5</div><div class="dc-name">Coding, Backend, Git Flow</div></div>
+<div class="doc-card"><div class="dc-code">07.1</div><div class="dc-name">Authentication</div></div>
+</div>
+
+<h3>Фаза 3 — Вторичные (недели 11–18)</h3>
+<div class="doc-grid">
+<div class="doc-card"><div class="dc-code">02.5, 02.9, 02.10</div><div class="dc-name">Monolith, Caching, Queues</div></div>
+<div class="doc-card"><div class="dc-code">03.6, 03.8–03.12</div><div class="dc-name">Prompt Library → Embedding</div></div>
+<div class="doc-card"><div class="dc-code">04.3, 04.5–04.12</div><div class="dc-name">Lore → Sound Bible (8 docs)</div></div>
+<div class="doc-card"><div class="dc-code">05.3, 05.4, 05.6–05.8</div><div class="dc-name">Frontend → Testing</div></div>
+<div class="doc-card"><div class="dc-code">06.1–06.4, 06.7</div><div class="dc-name">Incident → Deployment, Backups</div></div>
+<div class="doc-card"><div class="dc-code">07.2–07.6</div><div class="dc-name">Authorization → Infra Security</div></div>
+<div class="doc-card"><div class="dc-code">08.1, 08.2</div><div class="dc-name">Dashboards, Metrics</div></div>
+<div class="doc-card"><div class="dc-code">09.1–09.9</div><div class="dc-name">Docker → CICD</div></div>
+</div>
+
+<h3>Фаза 4 — Третичные (недели 19–24)</h3>
+<div class="doc-grid">
+<div class="doc-card"><div class="dc-code">06.5, 06.6, 06.8</div><div class="dc-name">Release, Rollback, Runbooks</div></div>
+<div class="doc-card"><div class="dc-code">07.7</div><div class="dc-name">Audit</div></div>
+<div class="doc-card"><div class="dc-code">08.3–08.7</div><div class="dc-name">Funnels → AI Analytics</div></div>
+<div class="doc-card"><div class="dc-code">10.1–10.6</div><div class="dc-name">REST → Versioning</div></div>
+<div class="doc-card"><div class="dc-code">11.1–11.5</div><div class="dc-name">Dev Roadmap → DoD</div></div>
+<div class="doc-card"><div class="dc-code">12.1–12.5</div><div class="dc-name">Future Tech → Ideas</div></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2><span class="num">05</span> План разработки на 6 месяцев (2 разработчика)</h2>
+
+<div class="glass-card" style="border-left:4px solid #22c55e">
+<div class="title">⏱ 24 недели · 103 документа · 2 разработчика</div>
+<p><strong>Команда:</strong> Dev A (Sr. Technical Writer / System Architect) + Dev B (ML Engineer / Content Specialist).<br>
+<strong>Ритм:</strong> 5 документов в неделю в среднем (с учётом разного объёма).<br>
+<strong>Объём:</strong> Документы Tier 0–1: 10–25 страниц. Tier 2: 5–15 страниц. Tier 3: 3–10 страниц.</p>
+</div>
+
+<div class="timeline">
+
+<div class="tl-item">
+<div class="tl-week">Месяц 1 · Недели 1–4</div>
+<div class="tl-title">Фаза 1: Фундамент (10 документов)</div>
+<div class="tl-desc">
+<strong>Неделя 1:</strong> Dev A: 05.9 Documentation Standards + 00.1 Vision + 00.2 Mission. Dev B: 00.3 Values + 00.6 Principles.<br>
+<strong>Неделя 2:</strong> Dev A: 02.1 System Architecture (C4). Dev B: 02.2 Software Architecture.<br>
+<strong>Неделя 3:</strong> Dev A: 02.3 Infrastructure. Dev B: 02.11 Scalability + начало 02.1 review.<br>
+<strong>Неделя 4:</strong> REVIEW + BUFFER. Cross-review всех документов. Исправления.
+</div>
+<div class="tl-dev">🎯 Milestone: Фундаментальная архитектура зафиксирована</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-week">Месяц 2 · Недели 5–8</div>
+<div class="tl-title">Фаза 2: Первичные (начало) — 12 документов</div>
+<div class="tl-desc">
+<strong>Неделя 5:</strong> Dev A: 00.4 AI Constitution. Dev B: 00.5 Decision Making + 01.1 Product Strategy.<br>
+<strong>Неделя 6:</strong> Dev A: 02.4 Microservices + 02.6 Event Arch. Dev B: 01.2 Roadmap + 01.3 Feature Lifecycle.<br>
+<strong>Неделя 7:</strong> Dev A: 02.7 Data Flow + 02.8 Storage. Dev B: 01.4 Product Metrics + 01.5 OKR + 01.6 KPI.<br>
+<strong>Неделя 8:</strong> Dev A: 03.1 AI Architecture (главный AI документ). Dev B: 05.1 Coding Standards + 05.2 Backend Standards.
+</div>
+<div class="tl-dev">🎯 Milestone: AI Architecture утверждена, продуктовые метрики определены</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-week">Месяц 3 · Недели 9–12</div>
+<div class="tl-title">Фаза 2: Первичные (завершение) — 13 документов</div>
+<div class="tl-desc">
+<strong>Неделя 9:</strong> Dev A: 03.2 LLM Strategy + 03.3 Model Registry. Dev B: 05.5 Git Flow + 07.1 Authentication.<br>
+<strong>Неделя 10:</strong> Dev A: 03.4 Model Evaluation + 03.5 Prompt Engineering Guide. Dev B: 03.7 AI Agent System.<br>
+<strong>Неделя 11:</strong> Dev A: 04.1 Character Bible. Dev B: 04.2 World Bible + 04.4 Design DNA.<br>
+<strong>Неделя 12:</strong> REVIEW + BUFFER. Cross-review Фазы 2. Исправления. Обновление 05.9 при необходимости.
+</div>
+<div class="tl-dev">🎯 Milestone: Основные документы AI отдела написаны. Character System специфицирована.</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-week">Месяц 4 · Недели 13–16</div>
+<div class="tl-title">Фаза 3: Вторичные (начало) — 18 документов</div>
+<div class="tl-desc">
+<strong>Неделя 13:</strong> Dev A: 02.5 Monolith + 02.9 Caching + 02.10 Queues. Dev B: 03.6 Prompt Library + 03.8 Memory System.<br>
+<strong>Неделя 14:</strong> Dev A: 03.9 Inference Pipeline + 03.10 Training Strategy. Dev B: 03.11 Fine-Tuning + 03.12 Embedding.<br>
+<strong>Неделя 15:</strong> Dev A: 05.3 Frontend Standards + 05.4 Architecture Rules. Dev B: 05.6 Branch Strategy + 05.7 Code Review + 05.8 Testing.<br>
+<strong>Неделя 16:</strong> Dev A: 06.1 Incident Response + 06.2 Monitoring + 06.3 Logging. Dev B: 06.4 Deployment + 06.7 Backups.
+</div>
+<div class="tl-dev">🎯 Milestone: Все инженерные стандарты и процессы задокументированы</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-week">Месяц 5 · Недели 17–20</div>
+<div class="tl-title">Фаза 3: Вторичные (завершение) — 17 документов</div>
+<div class="tl-desc">
+<strong>Неделя 17:</strong> Dev A: 07.2 Authorization + 07.3 Secrets + 07.4 Encryption. Dev B: 07.5 Data Privacy + 07.6 Infra Security.<br>
+<strong>Неделя 18:</strong> Dev A: 09.1 Docker + 09.2 Docker Compose + 09.3 GPU Servers. Dev B: 09.4 Storage + 09.5 Redis + 09.6 PostgreSQL.<br>
+<strong>Неделя 19:</strong> Dev A: 09.7 Vector DB + 09.8 MinIO + 09.9 CICD. Dev B: 08.1 Dashboards + 08.2 Metrics + начало 04 Content Bibles.<br>
+<strong>Неделя 20:</strong> Dev A+B: Content Bibles (04.3, 04.5–04.12) — параллельная работа. Dev A: 04.3, 04.5–04.8. Dev B: 04.9–04.12.
+</div>
+<div class="tl-dev">🎯 Milestone: Инфраструктура и безопасность полностью документированы</div>
+</div>
+
+<div class="tl-item">
+<div class="tl-week">Месяц 6 · Недели 21–24</div>
+<div class="tl-title">Фаза 4: Третичные + финальный обзор — 33 документа</div>
+<div class="tl-desc">
+<strong>Неделя 21:</strong> Dev A: 06.5 Release + 06.6 Rollback + 06.8 Runbooks. Dev B: 07.7 Audit + 08.3 Funnels + 08.4 CTR.<br>
+<strong>Неделя 22:</strong> Dev A: 08.5 Retention + 08.6 Content Analytics + 08.7 AI Analytics. Dev B: 10.1 REST + 10.2 WebSocket + 10.3 API Auth.<br>
+<strong>Неделя 23:</strong> Dev A: 10.4 Swagger + 10.5 Schemas + 10.6 Versioning. Dev B: 11.1–11.5 (Dev processes) + 12.1–12.5 (Research).<br>
+<strong>Неделя 24:</strong> ФИНАЛЬНЫЙ REVIEW. Проверка всех 103 документов. Обновление README-навигаторов. Обновление 05.9. Публикация базы знаний.
+</div>
+<div class="tl-dev">🎯 ФИНАЛЬНЫЙ MILESTONE: Knowledge Base v1.0 готова</div>
+</div>
+
+</div>
+
+<div class="glass-card" style="text-align:center;padding:24px;margin-top:30px;border:1px solid rgba(0,240,255,0.1)">
+<div style="font-size:1.2rem;color:#e2e8f0;font-weight:700;margin-bottom:8px">⌘ Итог: 103 документа за 24 недели</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:14px 0">
+<div style="background:rgba(0,240,255,0.04);padding:12px 20px;border-radius:10px;text-align:center;min-width:100px">
+<div style="font-size:1.3rem;color:#00f0ff;font-weight:800">12</div>
+<div style="font-size:0.65rem;color:#64748b">Разделов</div>
+</div>
+<div style="background:rgba(245,158,11,0.04);padding:12px 20px;border-radius:10px;text-align:center;min-width:100px">
+<div style="font-size:1.3rem;color:#f59e0b;font-weight:800">103</div>
+<div style="font-size:0.65rem;color:#64748b">Документа</div>
+</div>
+<div style="background:rgba(168,85,247,0.04);padding:12px 20px;border-radius:10px;text-align:center;min-width:100px">
+<div style="font-size:1.3rem;color:#a855f7;font-weight:800">24</div>
+<div style="font-size:0.65rem;color:#64748b">Недели</div>
+</div>
+<div style="background:rgba(34,197,94,0.04);padding:12px 20px;border-radius:10px;text-align:center;min-width:100px">
+<div style="font-size:1.3rem;color:#22c55e;font-weight:800">2</div>
+<div style="font-size:0.65rem;color:#64748b">Разработчика</div>
+</div>
+</div>
+<div style="font-size:0.82rem;color:#64748b">Knowledge Base v1.0 · Единый источник истины AI отдела AION · 2026</div>
+</div>
+
+<div class="page-break"></div>
+
+<h2><span class="num">06</span> Метрики качества документации</h2>
+
+<p>Для оценки качества Knowledge Base определены следующие метрики:</p>
+
+<table>
+<tr><th>Метрика</th><th>Target</th><th>Измерение</th></tr>
+<tr><td><strong>Покрытие</strong></td><td>100% документов из спецификации</td><td>Чеклист по завершении каждой фазы</td></tr>
+<tr><td><strong>Глубина</strong></td><td>Все обязательные разделы присутствуют</td><td>Template compliance check</td></tr>
+<tr><td><strong>Связанность</strong></td><td>Каждый документ имеет ≥3 cross-references</td><td>Link checker</td></tr>
+<tr><td><strong>Актуальность</strong></td><td>&lt;30 дней с последнего review</td><td>Review schedule compliance</td></tr>
+<tr><td><strong>Время до ответа</strong></td><td>Новый senior находит ответ за &lt;15 минут</td><td>User testing каждые 3 месяца</td></tr>
+<tr><td><strong>Onboarding time</strong></td><td>Снижение с 4 недель до 1 недели</td><td>Time-to-first-PR</td></tr>
+</table>
+
+<div class="info-box">
+<strong>Процесс поддержки базы знаний:</strong> Ежеквартальный review всех документов. Владелец каждого документа назначается при создании. Pull Request на изменение документа → Code review + Doc review. Версионирование через Git tags.
+</div>
+
+<div class="footer"><span>AION AI Department</span> · Internal Knowledge Base Specification · 26 июля 2026 · <span>v1.0</span></div>
+
+</div>
+</body>
+</html>

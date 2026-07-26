@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION Service Bible — Энциклопедия Экосистемы</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #05080f; color: #c8d0e0; font-family: 'Inter', sans-serif; line-height: 1.7; min-height: 100vh; }
+  .bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; position: relative; z-index: 1; }
+  
+  .header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid rgba(0,240,255,0.15); margin-bottom: 50px; }
+  .header h1 { font-size: 3.2em; font-weight: 800; background: linear-gradient(135deg, #00f0ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -2px; }
+  .header .subtitle { color: #6b7a9a; font-size: 1.2em; margin-top: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .header .badge { display: inline-block; margin-top: 16px; padding: 8px 24px; border: 1px solid rgba(0,240,255,0.3); border-radius: 20px; font-size: 0.85em; color: #00f0ff; letter-spacing: 1px; }
+
+  .nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; padding: 16px; background: rgba(10,16,30,0.5); border-radius: 12px; border: 1px solid rgba(0,240,255,0.08); }
+  .nav a { padding: 8px 16px; border: 1px solid rgba(0,240,255,0.15); border-radius: 8px; color: #6b7a9a; text-decoration: none; font-size: 0.8em; transition: all 0.2s; }
+  .nav a:hover, .nav a.active { border-color: #00f0ff; color: #00f0ff; background: rgba(0,240,255,0.05); }
+
+  .section-title { font-size: 2.2em; font-weight: 700; color: #fff; margin: 60px 0 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(0,240,255,0.15); display: flex; align-items: center; gap: 16px; }
+  .section-title .num { color: #00f0ff; font-weight: 300; font-family: 'JetBrains Mono', monospace; }
+  .section-desc { color: #6b7a9a; font-size: 1em; margin-bottom: 32px; max-width: 800px; }
+
+  .domain-card { background: rgba(10,16,30,0.7); backdrop-filter: blur(12px); border: 1px solid rgba(0,240,255,0.1); border-radius: 16px; padding: 32px; margin-bottom: 24px; transition: border-color 0.3s; }
+  .domain-card:hover { border-color: rgba(0,240,255,0.25); }
+  .domain-card h3 { color: #00f0ff; font-size: 1.4em; font-weight: 600; margin-bottom: 8px; }
+  .domain-card .cat-count { color: #4a5a7a; font-size: 0.85em; }
+  .domain-card .cats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .domain-card .cats span { padding: 4px 12px; background: rgba(0,240,255,0.06); border: 1px solid rgba(0,240,255,0.08); border-radius: 6px; font-size: 0.85em; color: #8a9ab0; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+  .stat-card { background: rgba(10,16,30,0.5); border: 1px solid rgba(0,240,255,0.08); border-radius: 12px; padding: 24px; text-align: center; }
+  .stat-card .num { font-size: 2em; font-weight: 700; color: #00f0ff; font-family: 'JetBrains Mono', monospace; }
+  .stat-card .label { color: #6b7a9a; font-size: 0.85em; margin-top: 4px; }
+
+  .map-container { background: rgba(10,16,30,0.5); border: 1px solid rgba(0,240,255,0.08); border-radius: 16px; padding: 32px; margin: 24px 0; overflow-x: auto; }
+  .map-container pre { font-family: 'JetBrains Mono', monospace; font-size: 0.7em; line-height: 1.4; color: #6b7a9a; }
+
+  .scenario-card { background: rgba(10,16,30,0.6); border-left: 3px solid #00f0ff; border-radius: 0 12px 12px 0; padding: 20px 24px; margin-bottom: 16px; }
+  .scenario-card h4 { color: #fff; font-size: 1.1em; margin-bottom: 6px; }
+  .scenario-card p { color: #8a9ab0; font-size: 0.9em; }
+
+  .persona-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin: 16px 0; }
+  .persona-card { background: rgba(10,16,30,0.5); border: 1px solid rgba(0,240,255,0.06); border-radius: 10px; padding: 16px; }
+  .persona-card h5 { color: #f59e0b; font-size: 0.95em; }
+  .persona-card p { color: #6b7a9a; font-size: 0.8em; margin-top: 4px; }
+
+  .connection-line { display: flex; align-items: center; gap: 8px; color: #4a5a7a; font-size: 0.85em; margin: 4px 0; }
+  .connection-line .highlight { color: #00f0ff; }
+
+  .scene-box { background: rgba(10,16,30,0.5); border: 1px solid rgba(0,240,255,0.08); border-radius: 12px; padding: 20px; margin-bottom: 12px; }
+  .scene-box .meta { color: #4a5a7a; font-size: 0.8em; font-family: 'JetBrains Mono', monospace; }
+  .scene-box h4 { color: #f59e0b; font-size: 1em; margin: 4px 0 8px; }
+  .scene-box p { color: #8a9ab0; font-size: 0.9em; }
+  .scene-box .dialogue { color: #c8d0e0; font-style: italic; margin-top: 8px; padding-left: 12px; border-left: 2px solid rgba(0,240,255,0.2); }
+
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin: 16px 0; }
+  .video-card { background: rgba(10,16,30,0.4); border: 1px solid rgba(0,240,255,0.06); border-radius: 8px; padding: 12px 16px; }
+  .video-card .tag { color: #a855f7; font-size: 0.75em; font-weight: 600; text-transform: uppercase; }
+  .video-card p { color: #8a9ab0; font-size: 0.85em; margin-top: 2px; }
+
+  .future-timeline { position: relative; padding-left: 30px; margin: 20px 0; }
+  .future-timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #00f0ff, #a855f7, transparent); }
+  .future-item { position: relative; margin-bottom: 20px; padding: 16px 20px; background: rgba(10,16,30,0.5); border-radius: 10px; border: 1px solid rgba(0,240,255,0.06); }
+  .future-item::before { content: '●'; position: absolute; left: -26px; top: 16px; color: #00f0ff; font-size: 1.2em; }
+  .future-item .year { font-family: 'JetBrains Mono', monospace; color: #00f0ff; font-size: 0.9em; font-weight: 600; }
+  .future-item p { color: #8a9ab0; font-size: 0.9em; margin-top: 4px; }
+
+  @media (max-width: 700px) { .header h1 { font-size: 2em; } .stat-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="container">
+
+<div class="header">
+  <h1>✦ AION Service Bible</h1>
+  <div class="subtitle">Энциклопедия Экосистемы — Операционная Система Жизни</div>
+  <div class="badge">105 категорий · 12 доменов · Полная карта 2047–2100</div>
+</div>
+
+<div class="nav">
+  <a href="#" class="active">Главная</a>
+  <a href="#map">Полная карта</a>
+  <a href="#scenarios">Сценарии</a>
+  <a href="#personas">Персонажи</a>
+  <a href="#series">Сериал</a>
+  <a href="#video">Reels</a>
+  <a href="#future">Будущее</a>
+  <a href="#connections">Связи</a>
+</div>
+
+<!-- ============ STATS ============ -->
+<div class="stat-grid">
+  <div class="stat-card"><div class="num">105</div><div class="label">Категорий сервисов</div></div>
+  <div class="stat-card"><div class="num">12</div><div class="label">Доменов (направлений)</div></div>
+  <div class="stat-card"><div class="num">680+</div><div class="label">Подкатегорий</div></div>
+  <div class="stat-card"><div class="num">2,400+</div><div class="label">Доступных услуг</div></div>
+  <div class="stat-card"><div class="num">12</div><div class="label">Типов пользователей</div></div>
+  <div class="stat-card"><div class="num">∞</div><div class="label">Жизненных сценариев</div></div>
+</div>
+
+<!-- ============ FULL MAP ============ -->
+<h2 class="section-title" id="map"><span class="num">01</span>Полная карта экосистемы AION</h2>
+<p class="section-desc">105 сервисных категорий, разделённых по 12 доменам. Каждый сервис — самостоятельный модуль экосистемы со своим AI-движком, набором партнёров и пользовательским путём.</p>
+
+<div class="map-container">
+
+<h3 style="color:#00f0ff; margin-bottom:12px;">▣ Домен 1 — Путешествия и Транспорт</h3>
+<pre style="color:#8a9ab0;">Авиабилеты · Ж/д билеты · Отели · Аренда авто · Такси · Каршеринг · Трансфер · Навигация </pre>
+<pre style="color:#6b7a9a;">  Карты · Общественный транспорт · Аренда яхт · Путеводители · Страхование </pre>
+<pre style="color:#4a5a7a;">  поездок · Визовая поддержка · Билеты на паром · Экскурсии · Local Guide</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 2 — Недвижимость и Жильё</h3>
+<pre style="color:#8a9ab0;">Купля · Аренда · Коммерческая · Новостройки · Земля · Элитная · Посуточная </pre>
+<pre style="color:#6b7a9a;">  Управление недвижимостью · Инвестиции · Ипотека · Оценка · Юридическое </pre>
+<pre style="color:#4a5a7a;">  сопровождение · Дизайн интерьера · Риелторские услуги · Гостиницы</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 3 — Медицина и Здоровье</h3>
+<pre style="color:#8a9ab0;">Клиники · Больницы · Стоматология · Лаборатории · Аптеки · Телемедицина </pre>
+<pre style="color:#6b7a9a;">  Психология · Чекап организма · Анализы · Реабилитация · Медстраховка </pre>
+<pre style="color:#4a5a7a;">  Скорая помощь · Детская медицина · Геронтология · Спортивная медицина</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 4 — Финансы и Право</h3>
+<pre style="color:#8a9ab0;">Банки · Кредиты · Дебетовые карты · Кредитные карты · Ипотека · Страхование </pre>
+<pre style="color:#6b7a9a;">  Инвестиции · Налоги · Бухгалтерия · Юристы · Нотариус · Документы · Визы </pre>
+<pre style="color:#4a5a7a;">  Переводы · Валюта · Финпланирование · Пенсия · Наследство · Банкротство</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 5 — Образование и Карьера</h3>
+<pre style="color:#8a9ab0;">Школы · Университеты · Курсы · Репетиторы · Языки · Профессии · Стажировки </pre>
+<pre style="color:#6b7a9a;">  Вакансии · HR · Фриланс · Карьерный коучинг · Сертификация · MBA · Дети </pre>
+<pre style="color:#4a5a7a;">  Доп. образование · Skill assessment · Резюме · Переподготовка · Менторство</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 6 — Еда и Ритейл</h3>
+<pre style="color:#8a9ab0;">Рестораны · Доставка · Продукты · Рецепты · Кейтеринг · Маркетплейсы </pre>
+<pre style="color:#6b7a9a;">  Одежда · Электроника · Товары для дома · Подарки · Цветы · Вино </pre>
+<pre style="color:#4a5a7a;">  Фермерские продукты · Подписки · Скидки · Агрегатор цен · Отзывы</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 7 — Красота и Спорт</h3>
+<pre style="color:#8a9ab0;">Салоны красоты · Косметология · Парикмахеры · Маникюр · SPA · Фитнес </pre>
+<pre style="color:#6b7a9a;">  Тренажёрный зал · Йога · Персональный тренер · Бассейн · Пластическая </pre>
+<pre style="color:#4a5a7a;">  хирургия · Массаж · Эпиляция · Косметика · Нутрициология · Барбершопы</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 8 — Дом и Семья</h3>
+<pre style="color:#8a9ab0;">Строительство · Ремонт · Переезд · Уборка · Клининг · Утилиты · Безопасность </pre>
+<pre style="color:#6b7a9a;">  Мебель · Бытовые услуги · Сантехник · Электрик · Сад · Детские услуги </pre>
+<pre style="color:#4a5a7a;">  Няни · Уход за пожилыми · Зооуслуги · Страхование дома · Сервисные центры</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 9 — Развлечения и Культура</h3>
+<pre style="color:#8a9ab0;">Кино · Музыка · Игры · Концерты · Театр · Музеи · Клубы · Дайвинг · Квесты </pre>
+<pre style="color:#6b7a9a;">  Знакомства · Хобби · Творчество · VR-опыт · Парки развлечений · Мастер- </pre>
+<pre style="color:#4a5a7a;">  классы · Туры · Фестиваль · Лекции · Библиотеки · Подкасты · ТВ · Стриминг</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 10 — Бизнес и Работа</h3>
+<pre style="color:#8a9ab0;">Регистрация бизнеса · Бухгалтерия · Офис · Коворкинг · Контракты · Тендеры </pre>
+<pre style="color:#6b7a9a;">  Маркетинг · Реклама · CRM · Логистика · Поставщики · Производство </pre>
+<pre style="color:#4a5a7a;">  E-commerce · Франшиза · Консалтинг · Юридическое · Лицензии · Субсидии</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 11 — Консьерж и AI-ассистент</h3>
+<pre style="color:#8a9ab0;">AI-помощник · Чат · Голосовой ассистент · Планировщик · Напоминания </pre>
+<pre style="color:#6b7a9a;">  Управление подписками · Обработка почты · Организация жизни · Семья </pre>
+<pre style="color:#4a5a7a;">  AI-секретарь · AI-байер · AI-тревел-агент · AI-финансист · AI-адвокат</pre>
+
+<h3 style="color:#00f0ff; margin-top:24px; margin-bottom:12px;">▣ Домен 12 — Экстренные и Специальные Сервисы</h3>
+<pre style="color:#8a9ab0;">Экстренная помощь · Потеря документов · Кризисная поддержка · Переводы </pre>
+<pre style="color:#6b7a9a;">  (устный/письменный) · Служба спасения · Эвакуация · Медэкстренная </pre>
+<pre style="color:#4a5a7a;">  Консульская поддержка · 24/7 Консьерж · Safety check · Утеря багажа</pre>
+</div>
+
+<!-- ============ SCENARIOS ============ -->
+<h2 class="section-title" id="scenarios"><span class="num">02</span>Жизненные сценарии — 25</h2>
+<p class="section-desc">Естественное использование AION в реальных жизненных ситуациях. Каждый сценарий активирует цепочку сервисов.</p>
+
+<div class="scenario-card">
+  <h4>✦ 1. Прилетел ночью в чужой город</h4>
+  <p>⏱ 00:00 — AION видит посадку самолёта → автоматически активирует трансфер → бронирует отель (по предпочтениям) → проверяет наличие еды рядом → показывает маршрут. ⏱ 00:45 — Водитель встречает у выхода с табличкой в телефоне. ⏱ 01:30 — В номере: AION уже включил кондиционер, заказал завтрак на утро, напомнил о джетлаге.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 2. Потерял паспорт за границей</h4>
+  <p>Команда: «AION, я потерял паспорт». → AI блокирует документ → генерирует цифровое удостоверение → находит ближайшее консульство → записывает на приём → переводит все необходимые формы → вызывает такси → уведомляет отель. Всё — из одного сообщения.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 3. Хочу купить квартиру</h4>
+  <p>AION анализует бюджет → проверяет кредитный рейтинг → подбирает ипотеку → ищет варианты по 27 параметрам → организует просмотры → проверяет юридическую чистоту → сопровождает сделку → страхует → помогает с переездом.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 4. Ищу врача для ребёнка</h4>
+  <p>«У ребёнка температура 38.5, кашель, что делать?» → AION запускает диагностический опрос → рекомендует: запись к педиатру онлайн или вызов → проверяет страховку → записывает к лучшему доступному врачу → заказывает лекарства в аптеку → напоминает о приёме → через час проверяет самочувствие.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 5. Хочу устроить свадьбу</h4>
+  <p>AION: «Бюджет? Гости? Дата? Стиль?» → подбирает площадку → кейтеринг → фотографа → музыку → ведущего → платье → цветы → транспорт для гостей → отель для первой ночи → регистрацию → визу для молодожёнов (если в другой стране).</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 6. Нужно отправить цветы в другой город</h4>
+  <p>«Отправь розы маме в Москву на день рождения» → AION находит лучший цветочный → выбирает букет по её вкусу (из истории подарков) → оформляет открытку (голос мамы? — нет, текст) → выбирает интервал доставки → оплачивает → отправляет фотоотчёт.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 7. Нужно открыть компанию</h4>
+  <p>«Хочу открыть IT-компанию в Дубае» → AION: выбор юрисдикции → регистрация → счёт в банке → виза основателя → аренда коворкинга → бухгалтер → юрист → сайт → корпоративная карта → страховка сотрудников → лицензия.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 8. Ищу школу ребёнку</h4>
+  <p>«Ребёнку 7 лет, ищем международную школу с уклоном на науку» → AION фильтрует все школы города → сравнивает программы → проверяет рейтинги → отзывы родителей → стоимость → место в классе → организует тур → записывает на тестирование → подготавляет документы.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 9. Нужно оформить страховку</h4>
+  <p>«Страховка для поездки в Таиланд на 2 недели, с дайвингом» → AION подбирает 3 лучших варианта → сравнивает покрытие → показывает отзывы → покупает → присылает полис в Google Wallet → напоминает о продлении → автоматически регистрирует претензию при страховом случае.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 10. Переезжаю в другую страну</h4>
+  <p>«Переезжаю из Лондона в Берлин» → AION: виза → ВНЖ → перевоз вещей → продажа/аренда старой квартиры → поиск новой → школа детям → медстраховка → банковский счёт → регистрация → языковые курсы → местный sim → знакомства.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 11. Нужна машина</h4>
+  <p>«Хочу электромобиль до 50k, в лизинг» → AION подбирает модели → сравнивает страховку → лизинговые программы → проверяет историю (если б/у) → записывает на тест-драйв → проверяет кредит → оформляет сделку → страхует → ставит на учёт.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 12. Заболел зуб ночью</h4>
+  <p>«AION, зуб болит, не могу терпеть» → AI находит круглосуточную стоматологию → проверяет страховку → записывает → вызывает такси → заказывает обезболивающее в аптеку → после приёма — запись на долечивание → план лечения.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 13. Планирую отпуск с семьёй</h4>
+  <p>«Семья из 4 человек, 10 дней, море, бюджет 5000$» → AION: отель all-inclusive → авиабилеты → трансфер → страховка → детская анимация → экскурсии → рестораны (детское меню) → аренда снаряжения → список вещей → пакет документов.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 14. Хочу научиться новому</h4>
+  <p>«Научи меня Python с нуля за 3 месяца» → AION строит персональный учебный план → подбирает курсы → ментора → график занятий → практические проекты → проверка кода → сертификация → поиск стажировки.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 15. Потерял работу</h4>
+  <p>«Меня сократили» → AION: анализ рынка → пересчёт бюджета → оптимизация расходов → поиск вакансий → обновление резюме → курсы переквалификации → пособие → фриланс-проекты → план выхода на прежний доход.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 16. Нужно организовать похороны</h4>
+  <p>«Умер близкий» → AION (деликатный режим): ритуальные службы → транспорт → документы → место на кладбище → священник → поминки → цветы → извещение родственников → помощь в оформлении наследства.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 17. Снимаю квартиру, проблемы с соседями</h4>
+  <p>«Соседи шумят ночью» → AION: советы по коммуникации → шаблон жалобы арендодателю → запись шума (юридически валидная) → поиск нового жилья → консультация юриста → вызов участкового через сервис.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 18. Хочу начать инвестировать</h4>
+  <p>«У меня 10k, хочу начать инвестировать с низким риском» → AION: профиль риска → обучение основам → подбор портфеля → открытие брокерского счёта → автоматическое инвестирование → диверсификация → отчётность → налоговый вычет.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 19. Нужен ремонт</h4>
+  <p>«Хочу сделать ремонт в ванной» → AION: дизайн-проект → подбор материалов → поиск бригады → смета → график работ → закупка → контроль качества → приёмка → гарантия.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 20. Пропал домашний питомец</h4>
+  <p>«Кошка убежала» → AION: геопоиск → объявление в радиусе → уведомление соседям → база данных питомцев → проверка приютов → GPS-трекер (если был) → ветеринарные клиники рядом.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 21. Хочу завести собаку</h4>
+  <p>«Какую породу выбрать для квартиры?» → AION: тест образа жизни → подбор породы → заводчики/приюты → ветосмотр → документы → страховка → корм → дрессировщик → зоотовары → график прививок.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 22. Срочно нужен переводчик</h4>
+  <p>«На встрече с адвокатом в Китае» → AION: одновременный перевод через наушник → юридический глоссарий → запись встречи → транскрипт → перевод документов → сертификация.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 23. Нужно найти няню</h4>
+  <p>«Няня на вечер пятницы с 18:00 до 23:00» → AION проверяет базу верифицированных нянь → читает отзывы → проверка документов → собеседование через AI → бэкап (если няня опаздывает) → отчёт после вечера.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 24. Хочу открыть ресторан</h4>
+  <p>«Хочу открыть итальянский ресторан на 40 мест» → AION: бизнес-план → локация → аренда → дизайн → оборудование → поставщики → меню → шеф → персонал → лицензии → маркетинг → доставка.</p>
+</div>
+
+<div class="scenario-card">
+  <h4>✦ 25. Нужно утилизировать старую технику</h4>
+  <p>«Старый холодильник, куда выбросить?» → AION: пункты приёма → вызов грузчиков → экологическая утилитация → скидка на новую технику → кэшбек.</p>
+</div>
+
+<!-- ============ PERSONAS ============ -->
+<h2 class="section-title" id="personas"><span class="num">03</span>Персонажи — пользователи экосистемы</h2>
+<p class="section-desc">12 архетипов пользователей. Каждый использует AION по-своему.</p>
+
+<div class="persona-grid">
+  <div class="persona-card"><h5>🌍 Турист</h5><p>Часто переезжает. Нужен поиск, бронь, навигация, перевод. Платит за удобство. Использует: Travel, Hotel, Maps, Translate, Insurance.</p></div>
+  <div class="persona-card"><h5>📦 Экспат</h5><p>Переехал жить в другую страну. Нужны: виза, ВНЖ, жильё, школа, банк, страховка, налоги. Использует: Visa, Realty, Education, Banking, Tax.</p></div>
+  <div class="persona-card"><h5>🏡 Местный житель</h5><p>Живёт в своём городе. Нужны: доставка, рестораны, аптеки, такси, ремонт, развлечения. Использует: Food, Pharmacy, Taxi, Home Service.</p></div>
+  <div class="persona-card"><h5>💼 Предприниматель</h5><p>Открывает и ведёт бизнес. Нужны: регистрация, бухгалтерия, юрист, офис, банк, визы сотрудников. Использует: Business, Legal, Banking, HR.</p></div>
+  <div class="persona-card"><h5>👨‍👩‍👧‍👦 Семья</h5><p>Заботится о детях. Нужны: школа, педиатр, няня, секции, семейный отдых. Использует: Education, Medicine, Kids, Travel, Home.</p></div>
+  <div class="persona-card"><h5>👴 Пенсионер</h5><p>Простые интерфейсы, голосовое управление. Нужны: аптека, врач, соцпомощь, связь с семьёй. Использует: Medicine, Delivery, Call, Social.</p></div>
+  <div class="persona-card"><h5>🎓 Студент</h5><p>Мало денег, много потребностей. Нужны: курсы, скидки, жильё, работа. Использует: Education, Jobs, Housing, Discounts.</p></div>
+  <div class="persona-card"><h5>📱 Блогер</h5><p>Создаёт контент. Нужны: оборудование, софт, коллаборации, реклама, поездки. Использует: Tech, Studio, Travel, Ads, Collab.</p></div>
+  <div class="persona-card"><h5>🩺 Врач</h5><p>Работает в медсистеме. Нужны: медкарты, анализы, телемедицина, коллеги, аптеки. Использует: Medical Core, Labs, Telemed.</p></div>
+  <div class="persona-card"><h5>📈 Инвестор</h5><p>Управляет капиталом. Нужны: аналитика, брокер, налоги, юрист. Использует: Investments, Banking, Tax, Legal.</p></div>
+  <div class="persona-card"><h5>🐱 Пет-родитель</h5><p>Имеет питомца. Нужны: ветклиники, зоотовары, передержка, груминг. Использует: Pets, Vet, Grooming, Shop.</p></div>
+  <div class="persona-card"><h5>🏋️ Спортсмен</h5><p>Следит за формой. Нужны: тренер, зал, питание, чекапы, экипировка. Использует: Fitness, Coach, Nutrition, Sport Medicine.</p></div>
+</div>
+
+<!-- ============ SERIES SCENES ============ -->
+<h2 class="section-title" id="series"><span class="num">04</span>Как сервис показывается в сериале</h2>
+<p class="section-desc">10 сцен из жизни вселенной AION. Без рекламы — только естественное использование.</p>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 01 · Ночной перелёт · Домен: Travel + Assisnant</div>
+  <h4>Прибытие</h4>
+  <p>Анна, 34, приземляется в Сингапуре в 2 ночи. Открывает телефон — AION уже показал карточку: «Ваш рейс SIA 827 прибыл. Терминал 3, выход B. Водитель Анвар ждёт у выхода с табличкой. В отеле «Marina Mandarin» номер 1408 готов. Кондиционер включён, темп 23°C. Завтрак — зелёный чай и круасаны (как вы любите) — будет подан в номер к 9:00». Анна улыбается — когда она покупала билет месяц назад, она не заказывала ни трансфер, ни завтрак. AION сам понял, что это её первый раз в Сингапуре, нашёл стыковки, отель, трансфер — и всё утвердил в фоновом режиме.</p>
+  <div class="dialogue">— AION, ты заказал завтрак? Я даже не просила.<br>— Вы устали. В таких случаях люди ценят, когда о них думают. Круасаны — без глютена, как в прошлом месяце в Париже.</p></div>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 02 · Потеря документов · Домен: Emergency + Legal</div>
+  <h4>Паспорт</h4>
+  <p>Марк (28) на вокзале в Риме хватается за карман — паспорта нет. Паника. Открывает AION, говорит «Потерял паспорт». AI видит геолокацию, блокирует документ, генерирует цифровое удостоверение, находит посольство (открывается через 2 часа), записывает на приём, переводит формы, вызывает такси. Марк в такси через 4 минуты. Дрожащими руками смотрит на телефон — спросить нечего. AION уже всё сделал.</p>
+  <div class="dialogue">— Паспорт заблокирован. Посольство — Via di San Pietro in Montorio. Запись подтверждена. Такси № 429, тёмно-синий, подъезжает. Вдохните.<br>— Спасибо. Я чуть не умер от страха.<br>— Я знаю. Чай с мятой и два кубика сахара — заказан в кафе напротив посольства. У вас есть 25 минут.</p></div>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 03 · Здоровье · Домен: Medicine</div>
+  <h4>Температура</h4>
+  <p>Елена (41) просыпается от того, что ребёнок горячий. 39.2. Она открывает AION, направляет камеру на ребёнка — AI сканирует кожу, зрачки, считает пульс по видео. Через 10 секунд: «Вирусная инфекция. Обезвоживания нет. Рекомендую ибупрофен 5 мл. Запись к педиатру онлайн через 30 минут. Лекарство в ближайшей аптеке — 15 минут. Подтвердить?» Елена жмёт «да», у неё нет сил говорить. AION записывает, заказывает, тихо добавляет «Я буду следить за температурой. Если поднимется выше 39.5 — вызову скорую».</p>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 04 · Путешествие · Домен: Travel + Activities</div>
+  <h4>Импровизация</h4>
+  <p>Двое друзей, Дэн и Лиза, в Токио. Им скучно. «Что делать?» спрашивают AION. AI знает их бюджет (ограниченный), интересы (аниме и еда), погоду (дождь). Предлагает: «Музей студии Гибли (билеты есть на 14:30, 25$). Рамен-бар «Итиран» в 5 минутах — без очереди с бронью. После дождя —夜景 смотровая Tokyo Tower (бесплатно).» Они не планировали ничего. AION спланировал лучший день в Токио.</p>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 05 · Финансы · Домен: Finance + Realty</div>
+  <h4>Ипотека</h4>
+  <p>Олег (35) с женой смотрят квартиру. Риелтор говорит цену — 280,000. Олег смотрит в телефон — AION уже сделал предварительный расчёт: «Кредитный рейтинг 790. 4 банка готовы одобрить. Ставка от 6.2%. Первоначальный взнос 15%. Ежемесячный платёж — 1,240. Ваш бюджет позволяет (+520 свободных в месяц. Купите?).» Олег поднимает глаза на риелтора: «Мы подумаем.» Телефон уже нашёл 3 похожих варианта на 10% дешевле.</p>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 06 · Семья · Домен: Family + Education</div>
+  <h4>Школа</h4>
+  <p>Мать-одиночка, Света (29), переезжает в другой район. У неё сын, 8 лет. Она в AION: «Школа для Вани. Бюджетная. Хорошая. С английским уклоном.» AI знает зарплату, район, оценки сына, его психологический профиль. Через минуту — 3 школы. Отзывы родителей. Рейтинг. Свободные места. AI уже запросил документы для зачисления в лучшую. Света выдыхает.</p>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 07 · Кризис · Домен: Emergency + Health</div>
+  <h4>Паника</h4>
+  <p>Никита (26) в депрессии. Не выходит из дома неделю. AION замечает: нет активности, заказы stopped, пульс в покое 48. AI активирует мягкий протокол: «Никита, я заметил, что вы давно не выходили. Может, чай? Я нашёл кофейню в 200 м — «Лесной орех». Там тихо. Я заказал вам чай с бергамотом. Если не хотите идти — просто скажите.» AI не давит. Не ставит диагнозов. Просто создаёт микро-шаг. Никита молчит 5 минут. Потом надевает кроссовки.</p>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 08 · Бизнес · Домен: Business + Legal</div>
+  <h4>Стартап</h4>
+  <p>Катя (24) хочет открыть онлайн-школу английского. Она говорит AION: «Зарегистрируй ИП. Выбери налоги. Найди бухгалтера. Сделай сайт. Запусти рекламу.» AI спрашивает 10 вопросов — и через 3 часа у Кати есть: юрлицо, счёт, бухгалтер, домен, лендинг и настроенная таргетированная реклама. Она заплатила 120$ за госпошлины.</p>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 09 · Еда · Домен: Food + Social</div>
+  <h4>Ужин</h4>
+  <p>Пара, Макс и Аня, хотят куда-то пойти. «Хочется чего-то нового.» AION анализирует их историю: были в итальянском, японском, французском. AI предлагает грузинский — ни разу не пробовали. Находит с балконом и живой музыкой. Бронирует на 20:00. Макс удивлён: «Я не говорил, что хочу грузинский.» AION: «Вы попробовали 14 разных кухонь за 2 года. Грузинская — единственная из топ-20, которой вы не пробовали. Плюс, у них сегодня живая музыка, а вы оба любите джаз. Наслаждайтесь.»</p>
+</div>
+
+<div class="scene-box">
+  <div class="meta">СЦЕНА 10 · Переезд · Домен: Relocation + Realty + Education</div>
+  <h4>Новая жизнь</h4>
+  <p>Семья Петровых (4 человека) переезжает из Минска в Лиссабон. В AION один запрос: «Переезд в Португалию». AI берёт на себя: D7 виза для отца, school search для детей, аренда квартиры на 1 год, медицинская страховка, банковский счёт, NIF, регистрация в муниципалитете, курсы португальского, трансфер аэропорт→дом, местный sim, поиск русскоязычного педиатра. Всё. Через месяц Петровы сидят в кафе в Алфаме, и мать говорит: «AION сделал переезд проще, чем поход в магазин.»</p>
+</div>
+
+<!-- ============ VIDEO IDEAS ============ -->
+<h2 class="section-title" id="video"><span class="num">05</span>Короткие видео — 50 идей для Reels / Shorts / TikTok</h2>
+<p class="section-desc">Каждое видео — реальный жизненный сценарий использования AION.</p>
+
+<div class="video-grid">
+  <div class="video-card"><span class="tag">Travel</span><p>Парень прилетает ночью — AION уже ждёт с трансфером и ключами от отеля. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Emergency</span><p>Потеря паспорта — паника → AION блокирует → посольство → готово. 30 секунд</p></div>
+  <div class="video-card"><span class="tag">Food</span><p>AION знает, что ты хочешь съесть, до того как ты сам понял. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Health</span><p>Ребёнок заболел — AION сам вызывает врача и заказывает лекарства. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Finance</span><p>Ты хочешь купить айфон — AION говорит «подожди 2 недели, будет скидка». 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Dating</span><p>AI подбирает ресторан для первого свидания по вкусам обоих. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Realty</span><p>Купил квартиру — AION проверил юрчистоту, ипотеку, страховку — всё сам. 25 секунд</p></div>
+  <div class="video-card"><span class="tag">Travel</span><p>Ты говоришь «пляж» — AION показывает 3 лучших пляжа рядом с билетами. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Education</span><p>AI учит язык с тобой — исправляет произношение в реальном времени. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Pets</span><p>Кошка потерялась — AION разослал объявление + GPS-трекер нашёл. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Productivity</span><p>Планирование дня: AI сам расставил встречи, напомнил о маме, заказал обед. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Shopping</span><p>AI примеряет одежду на твоём аватаре — не надо ходить в магазин. 25 секунд</p></div>
+  <div class="video-card"><span class="tag">Business</span><p>Открыл компанию за 2 часа через AI. Ни одной бумажки. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Health</span><p>AI заметил изменение пульса — предложил проверить сердце. Спас жизнь. 25 секунд</p></div>
+  <div class="video-card"><span class="tag">Food</span><p>Ресторан сам знает твои аллергии — AI передал меню шефу. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Travel</span><p>Опоздал на рейс — AI перебронировал, заказал кофе, успокоил. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Home</span><p>Прорвало трубу — AI вызвал сантехника, отключил воду, нашёл отель на ночь. 25 секунд</p></div>
+  <div class="video-card"><span class="tag">Finance</span><p>AI заметил подозрительную транзакцию — заблокировал карту до твоего ответа. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Family</span><p>Напомнил о дне рождения мамы — заказал цветы и подарок за 2 недели. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Legal</span><p>Нужен договор — AI составил за 1 минуту. Юрист проверил — идеально. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Health</span><p>Устал? AI меняет освещение, температуру, музыку — сон через 10 минут. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Transport</span><p>Каршеринг сам подъехал к подъезду — ключи в телефоне. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Social</span><p>AI нашёл ивент, где будут твои единомышленники. Ты не одинок. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Food</span><p>В холодильнике пусто — AI собрал корзину продуктов с рецептами на неделю. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Travel</span><p>Аренда машины: AI проверил страховку, историю, бензин — ключи в автомате. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Home</span><p>Умный дом: AI знает, когда ты вернёшься — включает свет и тепло заранее. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Investment</span><p>AI управляет твоими инвестициями. Ты просто смотришь, как растёт портфель. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Career</span><p>AI нашёл работу мечты — ты даже не искал. HR пришёл сам. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Language</span><p>AI переводит разговор в реальном времени — ты говоришь на любом языке. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Emergency</span><p>Авария на дороге — AI вызвал скорую, полицию, страховую — сам. 25 секунд</p></div>
+  <div class="video-card"><span class="tag">Sports</span><p>Персональный AI-тренер: показывает ошибки в технике через камеру. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Kids</span><p>AI-няня: читает сказку ребёнку твоим голосом, пока ты на работе. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Shopping</span><p>AI ищет подарок для друга по его соцсетям и твоему бюджету. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Health</span><p>AI-диетолог: сфотографировал еду → получил КБЖУ → рекомендации. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Travel</span><p>AI собрал чемодан по погоде и планам. Ты просто закрываешь. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Music</span><p>AI создал плейлист под твоё настроение — по биению сердца. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Dating</span><p>AI подсказывает, что написать в ответ — не глупо, не пошло, идеально. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Home</span><p>Уборка: AI вызвал клининг, открыл дверь курьеру, принял работу — ты не дома. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Finance</span><p>AI торгуется за тебя на маркетплейсе — нашёл скидку, о которой ты не знал. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Productivity</span><p>AI написал письмо, ответил на 20 писем, заархивировал — ты только прочитал. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Social</span><p>AI знает, что у друга сегодня тяжелый день — предложил позвонить. 15 секунд</p></div>
+  <div class="video-card"><span class="tag">Health</span><p>Анализ кожи по фото: AI обнаружил проблему → запись к дерматологу → лечение. 25 секунд</p></div>
+  <div class="video-card"><span class="tag">Travel</span><p>AI забронировал отель с кроватью, которая подстраивается под твой сон. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Career</span><p>AI составил резюме, которое заметили 10 рекрутеров за день. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Legal</span><p>AI проверил договор за 30 секунд — нашёл скрытый пункт, опасный для тебя. 25 секунд</p></div>
+  <div class="video-card"><span class="tag">Family</span><p>AI скоординировал ужин с родителями: время, место, меню, подарки — всё. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Health</span><p>AI анализирует сон: фазы, качество, рекомендации. Просыпаешься отдохнувшим. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Transport</span><p>AI объединил твои поездки: такси → поезд → такси — один билет, одна оплата. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Shopping</span><p>AI подобрал гардероб на неделю по погоде и встречам. 20 секунд</p></div>
+  <div class="video-card"><span class="tag">Social</span><p>AI предложил тост на свадьбе друга — идеальный, личный, смешной. 20 секунд</p></div>
+</div>
+
+<!-- ============ FUTURE ============ -->
+<h2 class="section-title" id="future"><span class="num">06</span>Будущее экосистемы: 2080–2100</h2>
+<p class="section-desc">Как AION изменит сервисы в ближайшие 80 лет.</p>
+
+<div class="future-timeline">
+  <div class="future-item">
+    <div class="year">2080 — Эра предсказательных сервисов</div>
+    <p>AION不再 реагирует на запросы — он предвосхищает их. Сервисы срабатывают до того, как пользователь осознал потребность: «я замёрз» → отель уже включил обогрев; «я голоден» → еда уже в пути. Ручное управление исчезает. Все 105 категорий работают в проактивном режиме.</p>
+  </div>
+  <div class="future-item">
+    <div class="year">2085 — Полная интеграция с нейроинтерфейсом</div>
+    <p>Никаких экранов. AION взаимодействует через мысли: «хочу кофе» — ближайшая кофейня начинает готовить. Оплата — биометрическая. Поиск — интуитивный. Категории сервисов становятся «слоями восприятия»: путешествия — слой навигации, здоровье — слой тела, финансы — слой безопасности.</p>
+  </div>
+  <div class="future-item">
+    <div class="year">2090 — Эра автономных AI-агентов</div>
+    <p>У каждого пользователя — персональный AI-агент, который управляет всеми 105 категориями. Человек устанавливает цели («жить комфортно, тратить не больше 5000$ в месяц, путешествовать 4 раза в год»), агент сам выбирает сервисы, подписывается, оплачивает, оптимизирует. Ручное бронирование исчезает.</p>
+  </div>
+  <div class="future-item">
+    <div class="year">2095 — Кросс-планетарная экосистема</div>
+    <p>Категории сервисов расширяются на Марс, Луну, Пояс астероидов. «Путешествия» — межпланетные. «Недвижимость» — колонии. «Медицина» — марсианские госпитали. AION работает с задержкой сигнала. Сервисы имеют планетарные версии.</p>
+  </div>
+  <div class="future-item">
+    <div class="year">2100 — Исчезновение категорий</div>
+    <p>Сервисы больше не делятся на «категории». Есть только одно — «Жизнь». AION управляет всеми аспектами существования человека как единым процессом. Человек не «бронирует отель» — он «хочет отдохнуть». AION сам решает: отель, поезд, или прогулка в парке. Категории становятся невидимыми.</p>
+  </div>
+</div>
+
+<!-- ============ CONNECTIONS ============ -->
+<h2 class="section-title" id="connections"><span class="num">07</span>Связи между сервисами</h2>
+<p class="section-desc">Как категории связаны, какие сервисы запускают другие, какие данные передаются.</p>
+
+<div class="domain-card">
+  <h3>⚡ Цепочки сервисов (типичные)</h3>
+  <div class="connection-line"><span class="highlight">Покупка авиабилета</span> → Автоактивация: трансфер → отель → страховка → рестораны → экскурсии</div>
+  <div class="connection-line"><span class="highlight">Покупка квартиры</span> → Автоактивация: ипотека → страховка → ремонт → мебель → переезд → интернет → уборка</div>
+  <div class="connection-line"><span class="highlight">Рождение ребёнка</span> → Автоактивация: больница → детская страховка → пособие → няня → товары → школа</div>
+  <div class="connection-line"><span class="highlight">Потеря работы</span> → Автоактивация: бюджет → оптимизация → курсы → вакансии → пособие</div>
+  <div class="connection-line"><span class="highlight">Переезд в другую страну</span> → Автоактивация: виза → билеты → жильё → школа → банк → врач → язык</div>
+</div>
+
+<div class="domain-card">
+  <h3>📊 Данные, передаваемые между сервисами</h3>
+  <div class="connection-line">📍 <span class="highlight">Геолокация</span> → Travel, Food, Transport, Realty, Emergency</div>
+  <div class="connection-line">💳 <span class="highlight">Платёжные данные</span> → Все сервисы с оплатой</div>
+  <div class="connection-line">📅 <span class="highlight">Календарь</span> → Travel, Education, Health, Business, Social</div>
+  <div class="connection-line">🩺 <span class="highlight">Медицинские данные</span> → Health, Insurance, Pharmacy, Sport</div>
+  <div class="connection-line">📄 <span class="highlight">Документы</span> → Travel (визы), Realty, Legal, Education, Finance</div>
+  <div class="connection-line">⭐ <span class="highlight">Предпочтения</span> → Food, Travel, Shopping, Entertainment, Music</div>
+  <div class="connection-line">👥 <span class="highlight">Социальный граф</span> → Social, Dating, Events, Gifts</div>
+  <div class="connection-line">🏠 <span class="highlight">Данные дома</span> → Home, Security, Energy, Utilities, Delivery</div>
+</div>
+
+<div class="domain-card">
+  <h3>🔄 Сервисы, которые чаще всего используются вместе</h3>
+  <div class="connection-line">Travel + Hotel + Insurance + Map + Translate = <span class="highlight">Путешествие</span></div>
+  <div class="connection-line">Realty + Mortgage + Insurance + Moving + Interior = <span class="highlight">Покупка жилья</span></div>
+  <div class="connection-line">Health + Pharmacy + Insurance + Doctor + Lab = <span class="highlight">Медицина</span></div>
+  <div class="connection-line">Education + Tutor + Language + Exam + University = <span class="highlight">Обучение</span></div>
+  <div class="connection-line">Restaurant + Delivery + Grocery + Recipe = <span class="highlight">Еда</span></div>
+  <div class="connection-line">Bank + Investment + Tax + Insurance + Pension = <span class="highlight">Финансы</span></div>
+  <div class="connection-line">Car + Insurance + Parking + Repair + Fuel = <span class="highlight">Автомобиль</span></div>
+  <div class="connection-line">Kids + School + Doctor + Sport + Entertainment = <span class="highlight">Семья</span></div>
+  <div class="connection-line">Business + Legal + Bank + Office + HR + Marketing = <span class="highlight">Бизнес</span></div>
+</div>
+
+<div class="domain-card">
+  <h3>🤖 Автоматические триггеры: какие сервисы запускают другие</h3>
+  <div class="connection-line"><span class="highlight">Покупка билета</span> 🠖 Автоматически: Hotel + Insurance + Transfer + Local Guide</div>
+  <div class="connection-line"><span class="highlight">Диагноз врача</span> 🠖 Автоматически: Pharmacy + Lab + Rehabilitation + Diet</div>
+  <div class="connection-line"><span class="highlight">Покупка квартиры</span> 🠖 Автоматически: Insurance + Utility + Internet + Security + Moving</div>
+  <div class="connection-line"><span class="highlight">Регистрация компании</span> 🠖 Автоматически: Bank + Accounting + Office + Legal + Insurance</div>
+  <div class="connection-line"><span class="highlight">Рождение ребёнка</span> 🠖 Автоматически: Registry + Insurance + Pediatrician + Kids Shop + Nanny</div>
+  <div class="connection-line"><span class="highlight">Увольнение с работы</span> 🠖 Автоматически: Budget + Tax + Courses + Jobs + Freelance</div>
+  <div class="connection-line"><span class="highlight">День рождения друга</span> 🠖 Автоматически: Gift + Flowers + Restaurant + Card</div>
+  <div class="connection-line"><span class="highlight">Дождь в прогнозе</span> 🠖 Автоматически: Alert + Umbrella delivery + Taxi offer + Indoor activities</div>
+  <div class="connection-line"><span class="highlight">Пропущенный приём лекарства</span> 🠖 Автоматически: Reminder + Pharmacy redelivery + Doctor notification</div>
+  <div class="connection-line"><span class="highlight">Изменение кредитного рейтинга</span> 🠖 Автоматически: Alert + Refinance offer + Budget adjustment</div>
+</div>
+
+<!-- ============ NAV TO DOMAINS ============ -->
+<h2 class="section-title"><span class="num">08</span>Детальные карты доменов</h2>
+<p class="section-desc">Каждый домен — отдельный документ с полным описанием всех сервисов, AI-флоу, экранов и автоматизаций.</p>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D1_Travel.html'">
+  <h3>▣ Домен 1 — Путешествия и Транспорт</h3>
+  <div class="cat-count">12 категорий · 180+ услуг</div>
+  <div class="cats">
+    <span>Авиабилеты</span><span>Ж/д билеты</span><span>Отели</span><span>Аренда авто</span><span>Такси</span>
+    <span>Каршеринг</span><span>Трансфер</span><span>Навигация</span><span>Карты</span><span>Общественный транспорт</span>
+    <span>Визы</span><span>Страхование поездок</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D2_Realty.html'">
+  <h3>▣ Домен 2 — Недвижимость и Жильё</h3>
+  <div class="cat-count">10 категорий · 150+ услуг</div>
+  <div class="cats">
+    <span>Купля</span><span>Аренда</span><span>Коммерческая</span><span>Новостройки</span><span>Земля</span>
+    <span>Элитная</span><span>Посуточная</span><span>Управление</span><span>Инвестиции</span><span>Дизайн</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D3_Health.html'">
+  <h3>▣ Домен 3 — Медицина и Здоровье</h3>
+  <div class="cat-count">10 категорий · 200+ услуг</div>
+  <div class="cats">
+    <span>Клиники</span><span>Стоматология</span><span>Лаборатории</span><span>Аптеки</span><span>Телемедицина</span>
+    <span>Психология</span><span>Реабилитация</span><span>Чекап</span><span>Страховка</span><span>Спортмедицина</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D4_Finance.html'">
+  <h3>▣ Домен 4 — Финансы и Право</h3>
+  <div class="cat-count">10 категорий · 160+ услуг</div>
+  <div class="cats">
+    <span>Банки</span><span>Кредиты</span><span>Инвестиции</span><span>Налоги</span><span>Юристы</span>
+    <span>Нотариус</span><span>Документы</span><span>Переводы</span><span>Пенсия</span><span>Наследство</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D5_Edu.html'">
+  <h3>▣ Домен 5 — Образование и Карьера</h3>
+  <div class="cat-count">10 категорий · 170+ услуг</div>
+  <div class="cats">
+    <span>Школы</span><span>Университеты</span><span>Курсы</span><span>Репетиторы</span><span>Языки</span>
+    <span>Вакансии</span><span>HR</span><span>Фриланс</span><span>Карьера</span><span>Сертификация</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D6_Food.html'">
+  <h3>▣ Домен 6 — Еда и Ритейл</h3>
+  <div class="cat-count">10 категорий · 190+ услуг</div>
+  <div class="cats">
+    <span>Рестораны</span><span>Доставка</span><span>Продукты</span><span>Маркетплейсы</span><span>Одежда</span>
+    <span>Электроника</span><span>Подарки</span><span>Цветы</span><span>Ферма</span><span>Подписки</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D7_Beauty.html'">
+  <h3>▣ Домен 7 — Красота и Спорт</h3>
+  <div class="cat-count">8 категорий · 130+ услуг</div>
+  <div class="cats">
+    <span>Салоны</span><span>Косметология</span><span>SPA</span><span>Фитнес</span><span>Тренер</span>
+    <span>Йога</span><span>Массаж</span><span>Пластика</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D8_Home.html'">
+  <h3>▣ Домен 8 — Дом и Семья</h3>
+  <div class="cat-count">10 категорий · 160+ услуг</div>
+  <div class="cats">
+    <span>Строительство</span><span>Ремонт</span><span>Переезд</span><span>Уборка</span><span>Безопасность</span>
+    <span>Мебель</span><span>Няни</span><span>Зоо</span><span>Пожилые</span><span>Сервис</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D9_Entertainment.html'">
+  <h3>▣ Домен 9 — Развлечения и Культура</h3>
+  <div class="cat-count">10 категорий · 150+ услуг</div>
+  <div class="cats">
+    <span>Кино</span><span>Музыка</span><span>Игры</span><span>Концерты</span><span>Театр</span>
+    <span>Музеи</span><span>Клубы</span><span>Знакомства</span><span>Хобби</span><span>VR</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D10_Business.html'">
+  <h3>▣ Домен 10 — Бизнес и Работа</h3>
+  <div class="cat-count">8 категорий · 140+ услуг</div>
+  <div class="cats">
+    <span>Регистрация</span><span>Бухгалтерия</span><span>Офис</span><span>Тендеры</span><span>Маркетинг</span>
+    <span>CRM</span><span>Логистика</span><span>E-commerce</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D11_Assistant.html'">
+  <h3>▣ Домен 11 — Консьерж и AI-ассистент</h3>
+  <div class="cat-count">8 категорий · 100+ услуг</div>
+  <div class="cats">
+    <span>AI-помощник</span><span>Чат</span><span>Голос</span><span>Планировщик</span><span>Подписки</span>
+    <span>Почта</span><span>Секретарь</span><span>Умный дом</span>
+  </div>
+</div>
+
+<div class="domain-card" style="cursor:pointer;" onclick="window.location.href='AION_Service_Bible_D12_Emergency.html'">
+  <h3>▣ Домен 12 — Экстренные и Специальные Сервисы</h3>
+  <div class="cat-count">7 категорий · 100+ услуг</div>
+  <div class="cats">
+    <span>Экстренная помощь</span><span>Потеря документов</span><span>Кризис</span><span>Перевод</span>
+    <span>Эвакуация</span><span>Консул</span><span>24/7 Консьерж</span>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div style="text-align: center; padding: 40px 0; margin-top: 40px; border-top: 1px solid rgba(0,240,255,0.1);">
+  <p style="color: #4a5a7a; font-size: 0.85em;">AION Universe Project · Service Bible · Энциклопедия Экосистемы</p>
+  <p style="color: #3a4a6a; font-size: 0.8em; margin-top: 4px;">105 категорий · 12 доменов · 680+ подкатегорий · 2,400+ услуг · 2047–2100</p>
+</div>
+
+</div>
+</body>
+</html>

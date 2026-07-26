@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION — Разбор проблем контента</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#060B18;color:#e0e0e0;line-height:1.7;padding:20px;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 15% 20%,rgba(0,240,255,0.04) 0%,transparent 50%),radial-gradient(ellipse at 85% 75%,rgba(245,158,11,0.03) 0%,transparent 50%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,240,255,0.008) 2px,rgba(0,240,255,0.008) 4px);pointer-events:none;z-index:1}
+.wrap{max-width:1000px;margin:2em auto;position:relative;z-index:2}
+h1{font-size:2.4rem;color:#00f0ff;display:flex;align-items:center;gap:16px;margin-bottom:2px;text-shadow:0 0 40px rgba(0,240,255,0.15);animation:flicker 4s infinite}
+@keyframes flicker{0%,100%{opacity:1}3%{opacity:0.92}4%{opacity:1}6%{opacity:0.88}7%{opacity:1}92%{opacity:1}93%{opacity:0.9}94%{opacity:1}}
+h1 small{font-size:0.8rem;color:#64748b;font-weight:400}
+h1::after{content:'⟡';font-size:0.9rem;color:#f59e0b;margin-left:auto;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sub{color:#64748b;font-size:0.85rem;padding-bottom:12px;border-bottom:1px solid rgba(0,240,255,0.08);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+
+.hero{background:linear-gradient(135deg,rgba(10,22,40,0.95),rgba(26,42,74,0.95));border:1px solid rgba(0,240,255,0.12);border-radius:24px;padding:32px 28px;text-align:center;margin-bottom:24px;overflow:hidden;position:relative;box-shadow:0 0 60px rgba(0,240,255,0.04)}
+.hero::before{content:'';position:absolute;top:-80%;left:-80%;width:260%;height:260%;background:conic-gradient(from 0deg,transparent,rgba(0,240,255,0.04),transparent,rgba(245,158,11,0.04),transparent);animation:hspin 25s linear infinite;pointer-events:none}
+@keyframes hspin{to{transform:rotate(360deg)}}
+.hero .c{position:relative;z-index:1}
+.hero .big{font-size:1.4rem;color:#f59e0b;font-weight:600;margin-bottom:6px}
+.hero .mid{color:#94a3b8;font-size:0.9rem;margin-bottom:16px}
+.hero .flex{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.hero .s{text-align:center}
+.hero .s .n{font-size:2rem;font-weight:700;color:#00f0ff;line-height:1}
+.hero .s .l{font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:2px;margin-top:2px}
+
+h2{font-size:1.1rem;color:#f59e0b;display:flex;align-items:center;gap:10px;margin-top:2em;margin-bottom:14px;padding-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;border-image:linear-gradient(90deg,rgba(245,158,11,0.3),transparent) 1;border-bottom:1px solid rgba(245,158,11,0.1)}
+h2 .ico{font-size:1.2rem;animation:pulseI 3s ease-in-out infinite}
+@keyframes pulseI{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+h3{color:#00f0ff;font-size:0.9rem;font-weight:600;margin:18px 0 8px;display:flex;align-items:center;gap:8px}
+
+.prob{background:linear-gradient(135deg,rgba(17,24,39,0.8),rgba(26,35,50,0.6));border:1px solid rgba(239,68,68,0.08);border-radius:16px;padding:20px;margin:14px 0;transition:all .3s}
+.prob:hover{border-color:rgba(239,68,68,0.15);box-shadow:0 8px 40px rgba(239,68,68,0.04)}
+.prob .head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.prob .num{font-size:1.2rem;font-weight:700;color:#ef4444;min-width:32px}
+.prob .q{font-size:1rem;color:#e0e0e0;font-weight:600}
+.prob .table{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0}
+@media(max-width:640px){.prob .table{grid-template-columns:1fr}}
+.prob .col{background:rgba(255,255,255,0.02);border-radius:10px;padding:12px}
+.prob .col .l{font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.prob .col .v{font-size:0.85rem;color:#cbd5e1;line-height:1.5}
+.prob .col.red .l{color:#ef4444}
+.prob .col.gold .l{color:#f59e0b}
+.prob .col.green .l{color:#22c55e}
+
+.ans{background:linear-gradient(135deg,rgba(10,30,20,0.5),rgba(17,24,39,0.6));border:1px solid rgba(34,197,94,0.08);border-radius:14px;padding:16px 20px;margin:10px 0}
+.ans .l{color:#22c55e;font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.ans p{color:#94a3b8;font-size:0.85rem;margin:4px 0;line-height:1.7}
+.ans p strong{color:#e0e0e0}
+.ans .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.ans .act{background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.1);border-radius:8px;padding:6px 12px;font-size:0.72rem;color:#22c55e;font-weight:500}
+
+.glass{background:linear-gradient(135deg,rgba(17,24,39,0.8),rgba(26,35,50,0.6));border:1px solid rgba(0,240,255,0.06);border-radius:16px;padding:20px;margin:14px 0}
+.glass p{color:#94a3b8;font-size:0.85rem;line-height:1.7}
+.glass p strong{color:#e0e0e0}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:640px){.g2{grid-template-columns:1fr}}
+
+.tag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:0.65rem;font-weight:600;margin:1px}
+.tag-red{background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.15)}
+.tag-green{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.15)}
+.tag-gold{background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.15)}
+
+.final{text-align:center;padding:32px;background:linear-gradient(135deg,rgba(10,22,40,0.95),rgba(26,42,74,0.95));border:1px solid rgba(0,240,255,0.1);border-radius:20px;color:#fff;margin:28px 0;position:relative;overflow:hidden}
+.final::before{content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;background:conic-gradient(from 0deg,transparent,rgba(0,240,255,0.02),transparent,rgba(245,158,11,0.02),transparent);animation:hspin 30s linear infinite;pointer-events:none}
+.final .c{position:relative;z-index:1}
+.final .hl{color:#00f0ff;font-weight:700}
+.footer{text-align:center;color:#334155;font-size:0.72rem;margin-top:28px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.03);letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>⌘ AION <small>Аудит контента · Ответ на проблемы роста</small></h1>
+<div class="sub"><span>Разбор 6 блокеров · Решения · План действий</span><span>Июль 2026</span></div>
+
+<div class="hero">
+  <div class="c">
+    <div class="big">Что тормозит рост — и что мы делаем</div>
+    <div class="mid">6 проблем, которые подсветил аудит · По каждой — наблюдение, риск, решение и действия</div>
+    <div class="flex">
+      <div class="s"><div class="n">6</div><div class="l">Проблем</div></div>
+      <div class="s"><div class="n">6</div><div class="l">Решений</div></div>
+      <div class="s"><div class="n">18+</div><div class="l">Конкретных действий</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 1 -->
+<div class="prob">
+  <div class="head">
+    <div class="num">01</div>
+    <div class="q">Продукт не виден</div>
+  </div>
+  <div class="table">
+    <div class="col red"><div class="l">Наблюдение</div><div class="v">Нет понятной демонстрации: что пользователь вводит, что получает, сколько шагов занимает решение.</div></div>
+    <div class="col gold"><div class="l">Риск</div><div class="v">Низкое понимание и слабый переход к действию.</div></div>
+    <div class="col green"><div class="l">Решение</div><div class="v">Снять экранные записи (screen record) реального пути пользователя: открыл Mini App → выбрал категорию → нашёл услугу → заказал. Минимум текста, максимум показа.</div></div>
+  </div>
+  <div class="ans">
+    <div class="l">✅ Конкретные действия</div>
+    <p><strong>1. Видео-демо 30–40 секунд:</strong> Экран телефона. Открытие Telegram → Mini App AION → поиск аренды байка → фильтр по городу → выбор → контакт с продавцом. Голос за кадром: «3 нажатия — и ты нашёл байк в Нячанге».</p>
+    <p><strong>2. Серия Reels «Как это работает»:</strong> 3–5 роликов по разным категориям (виза, стоматология, экскурсия). Один сценарий — показать экран + итог.</p>
+    <p><strong>3. Единая визуальная схема:</strong> Карточка «3 шага» для постов: ① Выбрал категорию → ② Нашёл услугу → ③ Связался. Визуально, без текстовых простыней.</p>
+    <div class="acts"><span class="act">Снять screen record</span><span class="act">Сценарий 3 шагов</span><span class="act">5 Reels</span></div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="prob">
+  <div class="head">
+    <div class="num">02</div>
+    <div class="q">Слишком абстрактный визуал</div>
+  </div>
+  <div class="table">
+    <div class="col red"><div class="l">Наблюдение</div><div class="v">Космос, сферы, неон и устройства создают атмосферу, но почти не показывают Вьетнам и повседневную жизнь.</div></div>
+    <div class="col gold"><div class="l">Риск</div><div class="v">Красиво, но холодно и недоказательно.</div></div>
+    <div class="col green"><div class="l">Решение</div><div class="v">Добавить реальные кадры Вьетнама: улицы, кафе, байки, пляжи, рынки — в сочетании с киберпанк-эстетикой. Неон остаётся как акцент, а не основа.</div></div>
+  </div>
+  <div class="ans">
+    <div class="l">✅ Конкретные действия</div>
+    <p><strong>1. Фото-контент из городов:</strong> Дананг, Нячанг, Хошимин — реальные кадры мест, где работают наши партнёры. Еда, улицы, вывески, люди. Без постановки.</p>
+    <p><strong>2. Формула поста:</strong> 60% реальное фото/видео Вьетнама + 30% экран приложения + 10% неон/AION-стиль. Не неон ради неона, а неон как рамка для реальности.</p>
+    <p><strong>3. Серия «Один день в Нячанге»:</strong> Короткие видео — утро (кофе), день (обед через AION), вечер (экскурсия). Показываем город, а не космос.</p>
+    <div class="acts"><span class="act">Библиотека фото городов</span><span class="act">Формула 60/30/10</span><span class="act">Серия «Один день»</span></div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="prob">
+  <div class="head">
+    <div class="num">03</div>
+    <div class="q">Нет локального доверия</div>
+  </div>
+  <div class="table">
+    <div class="col red"><div class="l">Наблюдение</div><div class="v">Не показаны команда, партнёры, процесс проверки, реальные кейсы, отзывы, география и SLA.</div></div>
+    <div class="col gold"><div class="l">Риск</div><div class="v">Пользователь не понимает, почему можно доверять рекомендации.</div></div>
+    <div class="col green"><div class="l">Решение</div><div class="v">Публиковать «живые» форматы: команда в кадре, разбор партнёра, отзыв клиента, процесс проверки услуги. Люди верят людям, а не брендам.</div></div>
+  </div>
+  <div class="ans">
+    <div class="l">✅ Конкретные действия</div>
+    <p><strong>1. Рубрика «Партнёр недели»:</strong> Короткое видео/пост о конкретном бизнесе: кто, где, что предлагает, почему мы его проверили и рекомендуем. Владелец в кадре или фото его точки.</p>
+    <p><strong>2. Команда в кадре:</strong> Каждую неделю — 1 человек из команды: кто это, чем занимается, почему сам пользуется AION. Лица создают доверие.</p>
+    <p><strong>3. Отзывы и кейсы:</strong> Скриншоты реальных диалогов, где человек нашёл услугу через AION. «Нашёл стоматолога за 10 минут — спасибо». Минимум обработки.</p>
+    <p><strong>4. Процесс проверки:</strong> Пост о том, как мы проверяем бизнесы перед добавлением. Фото встречи с партнёром, документы, лицензия. Люди должны видеть, что мы не впариваем, а отбираем.</p>
+    <div class="acts"><span class="act">Рубрика партнёр недели</span><span class="act">Лица команды</span><span class="act">Отзывы клиентов</span><span class="act">Процесс проверки</span></div>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="prob">
+  <div class="head">
+    <div class="num">04</div>
+    <div class="q">Слабая воронка</div>
+  </div>
+  <div class="table">
+    <div class="col red"><div class="l">Наблюдение</div><div class="v">Подписи короткие, СТА и причина перейти в продукт неочевидны.</div></div>
+    <div class="col gold"><div class="l">Риск</div><div class="v">Контент не превращает внимание в запрос или активацию.</div></div>
+    <div class="col green"><div class="l">Решение</div><div class="v">Каждый пост должен отвечать на вопрос «что мне сделать и зачем?». Добавить чёткий CTA: ссылка, кнопка, призыв написать «Хочу» в комментариях.</div></div>
+  </div>
+  <div class="ans">
+    <div class="l">✅ Конкретные действия</div>
+    <p><strong>1. Структура подписи:</strong> Проблема → решение AION → CTA. Пример: «Нужна виза во Вьетнам? Мы собрали 5 проверенных агентов. Открывай Mini App → категрия Визы → выбирай. Ссылка в описании.»</p>
+    <p><strong>2. Единый CTA:</strong> «Открыть AION» или «Написать нам». Без вариантов. Не «узнать больше», не «переходи по ссылке», а один глагол действия.</p>
+    <p><strong>3. Лид-магнит в каждом посте:</strong> Не просто контент, а повод перейти: «Чек-лист: 10 вещей перед переездом во Вьетнам — скачай в Mini App», «Гайд по районам Нячанга — смотри в AION».</p>
+    <div class="acts"><span class="act">Шаблон подписи</span><span class="act">Один CTA</span><span class="act">Лид-магниты</span></div>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="prob">
+  <div class="head">
+    <div class="num">05</div>
+    <div class="q">Несовпадение контекста</div>
+  </div>
+  <div class="table">
+    <div class="col red"><div class="l">Наблюдение</div><div class="v">В одном из Reels подпись про Вьетнам сопровождается кадром со строкой «This is Switzerland».</div></div>
+    <div class="col gold"><div class="l">Риск</div><div class="v">Снижает ощущение аккуратности и локальной экспертизы.</div></div>
+    <div class="col green"><div class="l">Решение</div><div class="v">Ввести чек-пост для каждого поста перед публикацией: совпадает ли визуал с текстом? Есть ли в кадре что-то, что противоречит смыслу?</div></div>
+  </div>
+  <div class="ans">
+    <div class="l">✅ Конкретные действия</div>
+    <p><strong>1. Чек-лист перед публикацией:</strong> 3 вопроса: ① Визуал соответствует тексту? ② Нет ли надписей/знаков на других языках, которые противоречат смыслу? ③ Геолокация в кадре совпадает с городом в тексте?</p>
+    <p><strong>2. Один ответственный за контент:</strong> Нина — SMM-продюсер. Все посты проходят через неё перед публикацией. Вторые глаза — Василий или ответственный за контент-план.</p>
+    <p><strong>3. Библиотека проверенных кадров:</strong> Собрать папку фото/видео, которые точно сняты во Вьетнаме. Использовать только их для постов про Вьетнам. Никаких стоков со случайными локациями.</p>
+    <div class="acts"><span class="act">Чек-лист публикации</span><span class="act">Один ответственный</span><span class="act">Библиотека кадров</span></div>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="prob">
+  <div class="head">
+    <div class="num">06</div>
+    <div class="q">Поисковая конкуренция за имя</div>
+  </div>
+  <div class="table">
+    <div class="col red"><div class="l">Наблюдение</div><div class="v">AION уже широко используется автобрендом и MMORPG.</div></div>
+    <div class="col gold"><div class="l">Риск</div><div class="v">Без дескриптора бренд трудно находить и запоминать в поиске.</div></div>
+    <div class="col green"><div class="l">Решение</div><div class="v">Использовать в контенте и поиске комбинацию «AION» + ключевой дескриптор: «AION Азия», «AION Вьетнам», «AION услуги». В визуале — всегда с тегом/подписью, поясняющей суть.</div></div>
+  </div>
+  <div class="ans">
+    <div class="l">✅ Конкретные действия</div>
+    <p><strong>1. Дескриптор в каждом посте:</strong> Никогда не писать просто «AION». Всегда «AION — сервис во Вьетнаме» или «AION Азия». В описании профиля, в подписях, в хештегах.</p>
+    <p><strong>2. Хештеги:</strong> #AIONАзия #AIONВьетнам #услугиВьетнам #релокантВьетнам — не #AION в одиночку.</p>
+    <p><strong>3. Визуальная айдентика:</strong> На каждом изображении — текстовая вставка «AION · Вьетнам» или «AION · Азия». Чтобы даже без контекста было понятно, о чём речь.</p>
+    <p><strong>4. SEO в описаниях:</strong> В YouTube и Telegram описаниях — первые строки с полным названием: «AION Азия — платформа услуг для релокантов во Вьетнаме».</p>
+    <div class="acts"><span class="act">Дескриптор везде</span><span class="act">Хештеги</span><span class="act">Текстовые вставки</span><span class="act">SEO-описания</span></div>
+  </div>
+</div>
+
+<!-- Сводка -->
+<div class="glass">
+  <p style="font-weight:600;color:#f59e0b;margin-bottom:8px">📌 Суть аудита</p>
+  <p>Все 6 проблем <strong style="color:#00f0ff">решаемы</strong> и не требуют перестройки стратегии — только <strong>корректировки контента</strong>:</p>
+  <p>• Визуал должен <strong style="color:#22c55e">показывать</strong>, а не создавать атмосферу — экраны, лица, города.</p>
+  <p>• Каждый пост ведёт к <strong style="color:#22c55e">действию</strong> — не просто «посмотри», а «открой и закажи».</p>
+  <p>• Доверие строится через <strong style="color:#22c55e">конкретику</strong> — команда, партнёры, отзывы, процесс.</p>
+  <p>• AION всегда с <strong style="color:#22c55e">дескриптором</strong> — «Азия», «Вьетнам», «услуги».</p>
+</div>
+
+<div class="final">
+  <div class="c">
+    <div style="font-size:1.1rem;color:#f59e0b;font-weight:600;margin-bottom:4px">План действий</div>
+    <p style="color:#94a3b8;font-size:0.85rem">Корректировка контент-плана с учётом 6 решений</p>
+    <div style="margin-top:8px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <span style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.12);border-radius:8px;padding:4px 12px;color:#22c55e;font-size:0.72rem">screen record</span>
+      <span style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.12);border-radius:8px;padding:4px 12px;color:#22c55e;font-size:0.72rem">реальные кадры</span>
+      <span style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.12);border-radius:8px;padding:4px 12px;color:#22c55e;font-size:0.72rem">лица команды</span>
+      <span style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.12);border-radius:8px;padding:4px 12px;color:#22c55e;font-size:0.72rem">CTA каждый пост</span>
+      <span style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.12);border-radius:8px;padding:4px 12px;color:#22c55e;font-size:0.72rem">чек-лист</span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">AION · Аудит контента · Июль 2026</div>
+
+</div>
+</body>
+</html>

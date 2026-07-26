@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТЗ — Спорт и активный отдых AION</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#03070d;color:#e2e8f0;line-height:1.6;padding:30px 20px}
+.container{max-width:800px;margin:0 auto}
+h1{font-size:1.8rem;color:#fff;margin-bottom:4px}
+.sub{color:#94a3b8;font-size:0.9rem;margin-bottom:24px;border-bottom:1px solid #1e293b;padding-bottom:12px}
+h2{font-size:1.2rem;color:#7c4dff;margin-top:26px;margin-bottom:8px;border-bottom:1px solid #1e293b;padding-bottom:6px}
+h3{font-size:1rem;color:#fff;margin-top:16px;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:0.87rem}
+th{background:#0a0f1d;color:#fff;border:1px solid #1e293b;padding:7px 10px;text-align:left;font-weight:600}
+td{border:1px solid #1e293b;padding:6px 10px;vertical-align:top}
+tr:nth-child(even){background:#050912}
+td:first-child{color:#60a5fa;font-weight:600;white-space:nowrap}
+code{color:#94a3b8;font-size:0.82rem}
+.schema{border-left:3px solid #7c4dff;padding:10px 16px;margin:10px 0 20px;background:rgba(105,50,242,0.05);border-radius:0 6px 6px 0;font-size:0.9rem}
+@media(max-width:600px){td:first-child{white-space:normal}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⟁ ТЗ — Спорт и активный отдых</h1>
+<p class="sub">Параметры для анкеты партнёра. Все поля индексируются для AI-поиска.</p>
+
+<div class="schema">
+<strong>Тип услуги:</strong> Фитнес / Йога / Боевые искусства / Командный спорт / Теннис / Бассейн / Персональные тренировки
+</div>
+
+<!-- ===== 1. ОБЩИЕ ПОЛЯ ===== -->
+<h2>1. Общие поля (все услуги)</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>id</td><td>UUID (авто)</td></tr>
+<tr><td>Название</td><td>строка, до 80 символов</td></tr>
+<tr><td>Описание</td><td>текст, до 3000 символов</td></tr>
+<tr><td>Тип услуги</td><td>Фитнес / Йога / Боевые искусства / Командный спорт / Теннис / Бассейн / Персональные тренировки</td></tr>
+<tr><td>Цена</td><td>число</td></tr>
+<tr><td>Валюта</td><td>VND / USD / RUB / THB / TRY</td></tr>
+<tr><td>Локация</td><td>строка (город)</td></tr>
+<tr><td>Статус</td><td>Доступно / Временно недоступно</td></tr>
+<tr><td>ID партнёра</td><td>UUID</td></tr>
+</table>
+
+<!-- ===== 2. ФИТНЕС ===== -->
+<h2>2. Фитнес</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Тип</td><td>Тренажёрный зал / Групповые / Функциональный / Кроссфит / Аэробика / Стретчинг / Пилатес</td></tr>
+<tr><td>Формат</td><td>Абонемент / Разово / Пробный</td></tr>
+</table>
+
+<!-- ===== 3. ЙОГА ===== -->
+<h2>3. Йога</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Направление</td><td>Хатха / Виньяса / Аштанга / Кундалини / Айенгар / Горячая / Nidra</td></tr>
+<tr><td>Формат</td><td>Групповая / Индивидуальная / Онлайн</td></tr>
+</table>
+
+<!-- ===== 4. БОЕВЫЕ ИСКУССТВА ===== -->
+<h2>4. Боевые искусства</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Направление</td><td>Бокс / ММА / Джиу-джитсу / Муай-тай / Самбо / Карате / Тхэквондо / Дзюдо</td></tr>
+<tr><td>Уровень</td><td>Начинающий / Средний / Продвинутый</td></tr>
+</table>
+
+<!-- ===== 5. КОМАНДНЫЙ СПОРТ ===== -->
+<h2>5. Командный спорт</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Вид</td><td>Футбол / Волейбол / Баскетбол / Настольный теннис / Пляжный волейбол</td></tr>
+<tr><td>Формат</td><td>Игра / Тренировка / Аренда поля</td></tr>
+</table>
+
+<!-- ===== 6. ТЕННИС ===== -->
+<h2>6. Теннис</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Тип</td><td>Большой теннис / Сквош / Бадминтон</td></tr>
+<tr><td>Формат</td><td>Тренировка / Аренда корта / Соперник</td></tr>
+</table>
+
+<!-- ===== 7. ПЕРСОНАЛЬНЫЕ ТРЕНИРОВКИ ===== -->
+<h2>7. Персональные тренировки</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Направление</td><td>Силовые / Функциональные / Кардио / Реабилитация / Растяжка / Нутрициолог</td></tr>
+<tr><td>Формат</td><td>В зале / На дому / Онлайн</td></tr>
+</table>
+
+<div style="text-align:center;color:#475569;font-size:0.82rem;margin-top:30px;border-top:1px solid #1e293b;padding-top:16px">
+AION · ТЗ Спорт и активный отдых · Июль 2026
+</div>
+
+</div>
+</body>
+</html>

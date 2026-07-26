@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>База исполнителей Дананг — AION</title>
+<style>
+  :root { --primary: #0A0F1E; --accent: #6366f1; --gold: #D4A853; --text: #1e293b; --text-light: #64748b; --bg: #ffffff; --bg-alt: #f8fafc; --border: #e2e8f0; --deep-blue: #0A1628; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; line-height: 1.6; color: var(--text); background: var(--bg); max-width: 1100px; margin: 0 auto; padding: 0; }
+  .cover { background: linear-gradient(135deg, var(--deep-blue) 0%, #1a2a4a 50%, var(--deep-blue) 100%); color: white; padding: 60px 40px 50px; text-align: center; position: relative; overflow: hidden; }
+  .cover::before { content: "\221E"; position: absolute; font-size: 300px; opacity: 0.04; top: -60px; right: -40px; font-weight: 100; }
+  .cover::after { content: "AION"; position: absolute; font-size: 180px; opacity: 0.03; bottom: -40px; left: -20px; font-weight: 900; letter-spacing: 20px; }
+  .cover-label { font-size: 11px; letter-spacing: 6px; text-transform: uppercase; opacity: 0.5; margin-bottom: 16px; }
+  .cover h1 { font-size: 48px; font-weight: 800; letter-spacing: 4px; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 16px; opacity: 0.75; font-weight: 300; letter-spacing: 2px; }
+  .cover .meta { margin-top: 28px; font-size: 12px; opacity: 0.4; letter-spacing: 1px; }
+  .nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 8px 20px; display: flex; gap: 4px; flex-wrap: wrap; font-size: 12px; }
+  .nav a { color: var(--text-light); text-decoration: none; padding: 3px 10px; border-radius: 4px; transition: all 0.2s; white-space: nowrap; }
+  .nav a:hover { background: var(--bg-alt); color: var(--accent); }
+  .section { padding: 24px 32px 32px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
+  .section-header h2 { font-size: 20px; font-weight: 700; color: var(--deep-blue); }
+  .section-header .count { font-size: 13px; color: var(--text-light); font-weight: 400; }
+  .entry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+  .entry { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: var(--bg); transition: border-color 0.2s; }
+  .entry:hover { border-color: var(--accent); }
+  .entry .num { font-size: 10px; color: var(--accent); font-weight: 600; letter-spacing: 0.5px; }
+  .entry .contact { font-size: 14px; font-weight: 600; color: var(--deep-blue); margin: 1px 0 2px; }
+  .entry .contact a { color: var(--deep-blue); text-decoration: none; }
+  .entry .contact a:hover { color: var(--accent); text-decoration: underline; }
+  .entry .phone { font-size: 12px; color: var(--accent); margin: 1px 0; }
+  .entry .service { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .entry .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+  .entry .tag { display: inline-block; padding: 1px 8px; border-radius: 8px; font-size: 10px; font-weight: 500; }
+  .tag-info { background: #eef2ff; color: #4338ca; }
+  .tag-person { background: #e0f2fe; color: #0369a1; }
+  .tag-channel { background: #f0fdf4; color: #15803d; }
+  .tag-site { background: #fef3c7; color: #92400e; }
+  .tag-wa { background: #d1fae5; color: #065f46; }
+  .tag-instagram { background: #fce7f3; color: #9d174d; }
+  .tag-tg { background: #dbeafe; color: #1e40af; }
+  .tag-p1 { background: #1a1a2e; color: #fff; }
+  .tag-p2 { background: #d4a017; color: #fff; }
+  .tag-p3 { background: #64b5f6; color: #fff; }
+  .tag-p4 { background: #9e9e9e; color: #fff; }
+  @media (max-width: 640px) { .cover h1 { font-size: 28px; } .section { padding: 16px 14px; } .entry-grid { grid-template-columns: 1fr; } .nav { padding: 6px 10px; gap: 2px; } .nav a { font-size: 11px; padding: 2px 6px; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">AION Partner Base</div>
+  <h1>База исполнителей</h1>
+  <div class="subtitle">Дананг — проверенные специалисты и услуги для русскоязычных</div>
+  <div class="meta">AION · Июль 2026 · 130+ контактов · 18 категорий</div>
+</div>
+
+<nav class="nav" id="nav">
+  <a href="#visa">Визы и документы</a>
+  <a href="#finance">Финансы и обмен</a>
+  <a href="#realty">Недвижимость</a>
+  <a href="#transport">Транспорт и прокат</a>
+  <a href="#medicine">Медицина</a>
+  <a href="#insurance">Страхование</a>
+  <a href="#beauty">Красота и уход</a>
+  <a href="#fitness">Фитнес и спорт</a>
+  <a href="#kids">Дети и развитие</a>
+  <a href="#psychology">Психология</a>
+  <a href="#vet">Животные</a>
+  <a href="#photo">Фото и видео</a>
+  <a href="#tourism">Экскурсии и туры</a>
+  <a href="#food">Еда и продукты</a>
+  <a href="#flowers">Цветы и подарки</a>
+  <a href="#digital">Цифровые услуги</a>
+  <a href="#legal">Юридические</a>
+  <a href="#repair">Ремонт и ателье</a>
+  <a href="#other">Прочее</a>
+</nav>
+
+<!-- ===== ВИЗЫ И ДОКУМЕНТЫ ===== -->
+<div class="section" id="visa">
+  <div class="section-header"><h2>Визы и документы</h2><span class="count">6 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#1</div>
+      <div class="contact"><a href="https://t.me/learnx1000">@learnx1000</a></div>
+      <div class="phone">+84 927 947 684</div>
+      <div class="service">Визаран, продление визы, визовая поддержка. Работает ежедневно 9:00-22:00</div>
+      <div class="tags"><span class="tag tag-person">Визы</span><span class="tag tag-tg">Telegram</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#2</div>
+      <div class="contact"><a href="https://t.me/visabus">@visabus</a></div>
+      <div class="service">Визаран из Дананга. Автобусные туры на границу с Лаосом</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#3</div>
+      <div class="contact"><a href="https://t.me/visarunDanang">@visarunDanang</a></div>
+      <div class="service">Визаран Дананг — Лаос. Организация выездов</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#4</div>
+      <div class="contact">RuLogistic+</div>
+      <div class="phone">95 Ngô Quang Huy, Phước Mỹ, Sơn Trà</div>
+      <div class="service">Логистика, посылки РФ↔Вьетнам, визаран, оформление документов. Отделение в Дананге</div>
+      <div class="tags"><span class="tag tag-site">Офис</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#5</div>
+      <div class="contact">Генконсульство РФ в Дананге</div>
+      <div class="phone">+84 236 382 23 80 · +84 94 720 00 94</div>
+      <div class="service">Горячая линия консульства. Экстренная помощь, консульские вопросы</div>
+      <div class="tags"><span class="tag tag-site">Консульство</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#6</div>
+      <div class="contact">Иммиграционный офис Дананг</div>
+      <div class="phone">78 Lê Lợi, Hai Chau</div>
+      <div class="service">Департамент иммиграции. Продление визы, регистрация. Пн-Пт 8:00-11:30, 13:30-16:00</div>
+      <div class="tags"><span class="tag tag-site">Гос. орган</span><span class="tag tag-p1">P1</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ФИНАНСЫ И ОБМЕН ВАЛЮТЫ ===== -->
+<div class="section" id="finance">
+  <div class="section-header"><h2>Финансы и обмен валюты</h2><span class="count">10 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#7</div>
+      <div class="contact"><a href="https://t.me/tochka_obmena_vnd">Точка обмена</a></div>
+      <div class="phone">@tochka_obmena_vnd</div>
+      <div class="service">Обмен RUB/USD/USDT → VND. Бесплатная доставка по Данангу. Курс каждое утро в Telegram. Работа 24/7</div>
+      <div class="tags"><span class="tag tag-tg">Telegram</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#8</div>
+      <div class="contact">Exchange Da Nang</div>
+      <div class="phone">exchange-danang.com</div>
+      <div class="service">RUB/USD/KZT/USDT ↔ VND. Личная встреча, курьер, выдача в банкоматах без карты по всему Вьетнаму</div>
+      <div class="tags"><span class="tag tag-site">Сервис</span><span class="tag tag-wa">WhatsApp</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#9</div>
+      <div class="contact">2Change</div>
+      <div class="phone">Telegram: @2change_vn</div>
+      <div class="service">Перевод рублей/USDT → VND. Получение через QR-банкомат или на счёт. 10-15 минут. Работает в Дананге, Нячанге, Хошимине</div>
+      <div class="tags"><span class="tag tag-tg">Telegram</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#10</div>
+      <div class="contact">Senate Exchange</div>
+      <div class="service">Обмен рублей, долларов. Курьерская доставка. Принимают карты МИР и UnionPay. Telegram/WhatsApp</div>
+      <div class="tags"><span class="tag tag-tg">Telegram</span><span class="tag tag-wa">WhatsApp</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#11</div>
+      <div class="contact">BUCK Service</div>
+      <div class="phone">22 An Thượng 30 · +84 393 742 872</div>
+      <div class="service">Обмен валют, до 21:00. USD, EUR, GBP, AUD, THB. Рядом с пляжем My Khe</div>
+      <div class="tags"><span class="tag tag-site">Обменник</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#12</div>
+      <div class="contact">BUCK EXC</div>
+      <div class="phone">33 Loseby, Sơn Trà · +84 905 963 459</div>
+      <div class="service">Обмен валют, денежные переводы. 10+ валют. Также продажа SIM-карт. Лучший курс от $100</div>
+      <div class="tags"><span class="tag tag-site">Обменник</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#13</div>
+      <div class="contact">PSG Tourism Currency Exchange</div>
+      <div class="phone">218 Hồ Nghinh · +84 935 291 960</div>
+      <div class="service">Обмен валюты в районе Sơn Trà</div>
+      <div class="tags"><span class="tag tag-site">Обменник</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#14</div>
+      <div class="contact">Tiệm vàng Khải Hoàn III</div>
+      <div class="phone">63 Nguyễn Duy Hiệu · +84 236 3928 289</div>
+      <div class="service">Обмен валюты. Ювелирный магазин с функцией обмена</div>
+      <div class="tags"><span class="tag tag-site">Обменник</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#15</div>
+      <div class="contact">VPBank (банкомат)</div>
+      <div class="service">Лучший банкомат в Дананге — 0₫ комиссии, лимит 10 млн VND за транзакцию. Ищи зелёно-синие банкоматы</div>
+      <div class="tags"><span class="tag tag-site">Банк</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#16</div>
+      <div class="contact">ACB (банкомат)</div>
+      <div class="service">Банкомат без комиссии, лимит 3 млн VND. Второй бесплатный вариант</div>
+      <div class="tags"><span class="tag tag-site">Банк</span><span class="tag tag-p1">P1</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== НЕДВИЖИМОСТЬ ===== -->
+<div class="section" id="realty">
+  <div class="section-header"><h2>Недвижимость</h2><span class="count">4 контакта</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#17</div>
+      <div class="contact"><a href="https://t.me/realty_danang">Недвижимость Дананг</a></div>
+      <div class="service">Купля-продажа недвижимости, аренда</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#18</div>
+      <div class="contact"><a href="https://t.me/rent_danang">Аренда жилья Дананг</a></div>
+      <div class="service">Квартиры, дома, виллы в аренду</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#19</div>
+      <div class="contact"><a href="https://t.me/invest_danang">Инвестиции Дананг</a></div>
+      <div class="service">Инвестиции в недвижимость Дананга</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#20</div>
+      <div class="contact">XMetr Дананг</div>
+      <div class="service">Агрегатор недвижимости — 624+ объявления о продаже квартир в Дананге</div>
+      <div class="tags"><span class="tag tag-site">Сайт</span><span class="tag tag-p1">P1</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ТРАНСПОРТ И ПРОКАТ ===== -->
+<div class="section" id="transport">
+  <div class="section-header"><h2>Транспорт и прокат</h2><span class="count">10 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#21</div>
+      <div class="contact"><a href="https://t.me/bike_danang">Байки Дананг</a></div>
+      <div class="service">Прокат и продажа мотоциклов в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#22</div>
+      <div class="contact"><a href="https://t.me/car_danang">Авто Дананг</a></div>
+      <div class="service">Аренда и продажа автомобилей в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#23</div>
+      <div class="contact">Gold Motorbike Rental</div>
+      <div class="phone">01 An Cư 1, Sơn Trà · 0965 047 547</div>
+      <div class="service">Аренда мотоциклов. Доставка в отель/аэропорт. WhatsApp: +84 96 504 75 47</div>
+      <div class="tags"><span class="tag tag-site">Прокат</span><span class="tag tag-wa">WhatsApp</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#24</div>
+      <div class="contact">Danang Bikes</div>
+      <div class="phone">info@danangbikes.com</div>
+      <div class="service">Аренда скутеров и мотоциклов. Доставка в аэропорт, отель. Англоговорящий персонал</div>
+      <div class="tags"><span class="tag tag-site">Прокат</span><span class="tag tag-wa">WhatsApp</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#25</div>
+      <div class="contact">Motorbike Rental Da Nang</div>
+      <div class="phone">+84 359 140 825</div>
+      <div class="service">Прокат мотоциклов. Английский язык. Без депозита. Доставка в аэропорт</div>
+      <div class="tags"><span class="tag tag-site">Прокат</span><span class="tag tag-wa">WhatsApp</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#26</div>
+      <div class="contact">Rent-Motor Da Nang</div>
+      <div class="phone">0988 338 843</div>
+      <div class="service">Аренда электромотоциклов 50-175cc. Без прав. Доставка. Дневная/месячная/годовая аренда</div>
+      <div class="tags"><span class="tag tag-site">Прокат</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#27</div>
+      <div class="contact">E-Moto</div>
+      <div class="phone">e-moto.vn</div>
+      <div class="service">Прокат электромотоциклов Vinfast в Дананге</div>
+      <div class="tags"><span class="tag tag-site">Прокат</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#28</div>
+      <div class="contact">Danang Motorcycles</div>
+      <div class="phone">80 Ho Xuan Huong · 9:00-18:00</div>
+      <div class="service">Прокат и продажа мотоциклов, экипировка. Английский/вьетнамский</div>
+      <div class="tags"><span class="tag tag-site">Прокат</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#29</div>
+      <div class="contact"><a href="https://t.me/transport_danang">Транспорт Дананг</a></div>
+      <div class="service">Транспорт, такси, аренда авто с водителем</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#30</div>
+      <div class="contact">Sửa Xe Máy Lưu Động</div>
+      <div class="phone">0935 333 110</div>
+      <div class="service">Мобильный ремонт мотоциклов 24/7. Запчасти, выезд. WhatsApp/Telegram/Zalo</div>
+      <div class="tags"><span class="tag tag-wa">WhatsApp</span><span class="tag tag-tg">Telegram</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== МЕДИЦИНА ===== -->
+<div class="section" id="medicine">
+  <div class="section-header"><h2>Медицина</h2><span class="count">6 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#31</div>
+      <div class="contact"><a href="https://t.me/med_danang">Медицина Дананг</a></div>
+      <div class="service">Врачи и клиники в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#32</div>
+      <div class="contact"><a href="https://t.me/dentist_danang">Стоматология Дананг</a></div>
+      <div class="service">Русскоязычные стоматологи в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#33</div>
+      <div class="contact"><a href="https://t.me/vn_med">Медицина Вьетнам</a></div>
+      <div class="service">Медицинская помощь для русских во Вьетнаме</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#34</div>
+      <div class="contact">Vinmec International Hospital</div>
+      <div class="service">Международный госпиталь. Высокий уровень, англоговорящий персонал. Страховые партнёры</div>
+      <div class="tags"><span class="tag tag-site">Клиника</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#35</div>
+      <div class="contact"><a href="https://t.me/hospital_danang">Больницы Дананг</a></div>
+      <div class="service">Госпитали и медцентры в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#36</div>
+      <div class="contact">Picasso Dental</div>
+      <div class="service">Стоматология. Импланты от $800, лечение. Популярна среди русскоязычных</div>
+      <div class="tags"><span class="tag tag-site">Клиника</span><span class="tag tag-p1">P1</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== СТРАХОВАНИЕ ===== -->
+<div class="section" id="insurance">
+  <div class="section-header"><h2>Страхование</h2><span class="count">5 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#37</div>
+      <div class="contact">Vietnam Assistance (Polis812)</div>
+      <div class="service">Локальный ассистанс Best Service Group во Вьетнаме. Покрытие до $50k. От 888₽/нед. Онлайн-оформление</div>
+      <div class="tags"><span class="tag tag-site">Онлайн</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#38</div>
+      <div class="contact">Т-Страхование</div>
+      <div class="service">Лучшие отзывы для Вьетнама. 10% скидка онлайн. Работает в Дананге, Нячанге, Фукуоке</div>
+      <div class="tags"><span class="tag tag-site">Онлайн</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#39</div>
+      <div class="contact">АльфаСтрахование</div>
+      <div class="service">Работает с International SOS (лучшая ассистанс в ЮВА). Проверено годами</div>
+      <div class="tags"><span class="tag tag-site">Онлайн</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#40</div>
+      <div class="contact">Евроинс (ERGO)</div>
+      <div class="service">Туристическая страховка. Оформление в поездке. Эвакуация вертолётом. От 144₽/день</div>
+      <div class="tags"><span class="tag tag-site">Онлайн</span><span class="tag tag-p1">P1</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#41</div>
+      <div class="contact">Согласие</div>
+      <div class="service">Работает с International SOS. Хорошие отзывы во Вьетнаме</div>
+      <div class="tags"><span class="tag tag-site">Онлайн</span><span class="tag tag-p1">P1</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== КРАСОТА И УХОД ===== -->
+<div class="section" id="beauty">
+  <div class="section-header"><h2>Красота и уход</h2><span class="count">8 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#42</div>
+      <div class="contact"><a href="https://t.me/nails_danang">Nails Danang</a></div>
+      <div class="service">Маникюр, педикюр в Дананге — русские мастера</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#43</div>
+      <div class="contact"><a href="https://t.me/danang_beauty">Beauty Danang</a></div>
+      <div class="service">Бьюти-услуги: ресницы, брови, косметология</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#44</div>
+      <div class="contact"><a href="https://t.me/hair_danang">Hair Danang</a></div>
+      <div class="service">Парикмахеры и барберы в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#45</div>
+      <div class="contact"><a href="https://t.me/cosmo_danang">Косметология Дананг</a></div>
+      <div class="service">Косметологи, чистки, пилинги</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#46</div>
+      <div class="contact"><a href="https://t.me/makeup_danang">Makeup Danang</a></div>
+      <div class="service">Визажисты — макияж, прически</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#47</div>
+      <div class="contact"><a href="https://t.me/lash_danang">Lash Danang</a></div>
+      <div class="service">Наращивание ресниц</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#48</div>
+      <div class="contact"><a href="https://t.me/spa_danang">Spa Danang</a></div>
+      <div class="service">SPA-услуги, массаж</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#49</div>
+      <div class="contact"><a href="https://t.me/brows_danang">Brows Danang</a></div>
+      <div class="service">Бровисты — коррекция, окрашивание</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ФИТНЕС И СПОРТ ===== -->
+<div class="section" id="fitness">
+  <div class="section-header"><h2>Фитнес и спорт</h2><span class="count">4 контакта</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#50</div>
+      <div class="contact"><a href="https://t.me/fitness_danang">Фитнес Дананг</a></div>
+      <div class="service">Фитнес-тренеры, залы, йога</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#51</div>
+      <div class="contact"><a href="https://t.me/yoga_danang">Йога Дананг</a></div>
+      <div class="service">Занятия йогой для русскоязычных</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#52</div>
+      <div class="contact"><a href="https://t.me/swim_danang">Плавание Дананг</a></div>
+      <div class="service">Тренеры по плаванию</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#53</div>
+      <div class="contact"><a href="https://t.me/dance_danang">Танцы Дананг</a></div>
+      <div class="service">Танцевальные студии</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ДЕТИ И РАЗВИТИЕ ===== -->
+<div class="section" id="kids">
+  <div class="section-header"><h2>Дети и развитие</h2><span class="count">6 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#54</div>
+      <div class="contact"><a href="https://t.me/kids_danang">Дети Дананг</a></div>
+      <div class="service">Детские сады, школы, няни, репетиторы</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#55</div>
+      <div class="contact"><a href="https://t.me/moms_danang">Мамы Дананг</a></div>
+      <div class="service">Чат для мам в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#56</div>
+      <div class="contact"><a href="https://t.me/school_danang">Школы Дананг</a></div>
+      <div class="service">Международные школы, русские классы</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#57</div>
+      <div class="contact"><a href="https://t.me/tutors_danang">Репетиторы Дананг</a></div>
+      <div class="service">Поиск репетиторов</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#58</div>
+      <div class="contact"><a href="https://t.me/kids_activities_danang">Развитие детей Дананг</a></div>
+      <div class="service">Кружки, секции, развивашки</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#59</div>
+      <div class="contact">Школа «Горизонт»</div>
+      <div class="service">Русская школа в Дананге. 1-8 классы. Программа «Школа России» + IB система. От 5 млн VND/4 нед</div>
+      <div class="tags"><span class="tag tag-site">Школа</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ПСИХОЛОГИЯ ===== -->
+<div class="section" id="psychology">
+  <div class="section-header"><h2>Психология и здоровье</h2><span class="count">3 контакта</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#60</div>
+      <div class="contact"><a href="https://t.me/psy_danang">Психолог Дананг</a></div>
+      <div class="service">Психологическая помощь</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#61</div>
+      <div class="contact"><a href="https://t.me/psy_online_vn">Психологи онлайн Вьетнам</a></div>
+      <div class="service">Психологи для русскоязычных во Вьетнаме</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#62</div>
+      <div class="contact"><a href="https://t.me/coach_danang">Коучинг Дананг</a></div>
+      <div class="service">Коучи, лайф-коучи в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ЖИВОТНЫЕ ===== -->
+<div class="section" id="vet">
+  <div class="section-header"><h2>Услуги для животных</h2><span class="count">5 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#63</div>
+      <div class="contact">Paws International Vet Clinic</div>
+      <div class="phone">0339 325 563</div>
+      <div class="service">Первая международная ветклиника в Центральном Вьетнаме. Английский язык. Неотложка</div>
+      <div class="tags"><span class="tag tag-site">Клиника</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#64</div>
+      <div class="contact">My Pet's Animal Hospital</div>
+      <div class="phone">146 Lê Duy Đình · 0777 166 466</div>
+      <div class="service">Ветклиника 24/7. Скорая помощь животным, хирургия, стационар</div>
+      <div class="tags"><span class="tag tag-site">Клиника</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#65</div>
+      <div class="contact">Danangpet Veterinary</div>
+      <div class="phone">259 Huỳnh Ngọc Huệ · 0962 243 286</div>
+      <div class="service">Сеть ветклиник в Дананге. Спа-услуги для питомцев, передержка</div>
+      <div class="tags"><span class="tag tag-site">Клиника</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#66</div>
+      <div class="contact">VVet Phòng Khám Thú Y</div>
+      <div class="phone">0876 01 01 77</div>
+      <div class="service">Вакцинация, лечение кошек и собак</div>
+      <div class="tags"><span class="tag tag-site">Клиника</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#67</div>
+      <div class="contact"><a href="https://t.me/animals_danang">Животные Дананг</a></div>
+      <div class="service">Ветклиники, зоотовары, груминг</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ФОТО И ВИДЕО ===== -->
+<div class="section" id="photo">
+  <div class="section-header"><h2>Фото и видео</h2><span class="count">3 контакта</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#68</div>
+      <div class="contact"><a href="https://t.me/photo_danang">Фотографы Дананг</a></div>
+      <div class="service">Фотографы и видеографы</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#69</div>
+      <div class="contact"><a href="https://t.me/video_danang">Видеосъемка Дананг</a></div>
+      <div class="service">Видеографы, монтаж, аэросъемка</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#70</div>
+      <div class="contact"><a href="https://t.me/photostudio_danang">Фотостудии Дананг</a></div>
+      <div class="service">Фотостудии и аренда оборудования</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ЭКСКУРСИИ И ТУРЫ ===== -->
+<div class="section" id="tourism">
+  <div class="section-header"><h2>Экскурсии и туры</h2><span class="count">7 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#71</div>
+      <div class="contact">Eco Voyage Vietnam</div>
+      <div class="phone">+84 79 237 9555</div>
+      <div class="service">Индивидуальные туры с русским гидом по Данангу и Вьетнаму</div>
+      <div class="tags"><span class="tag tag-site">Туроператор</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#72</div>
+      <div class="contact">Дмитрий Шило (Danang Travel Club)</div>
+      <div class="service">Гид, личный водитель, фотограф, организатор. Эксклюзивные программы по всему Вьетнаму</div>
+      <div class="tags"><span class="tag tag-person">Гид</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#73</div>
+      <div class="contact">Ильяс (Tripster)</div>
+      <div class="phone">Рейтинг 4.89 · 28+ отзывов</div>
+      <div class="service">Русскоязычный гид, живёт во Вьетнаме 15 лет. Бана Хиллс, Хойан, Дананг. Съёмка на квадрокоптер</div>
+      <div class="tags"><span class="tag tag-person">Гид</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#74</div>
+      <div class="contact">Елена (Tripster)</div>
+      <div class="phone">Рейтинг 4.77 · 13+ отзывов</div>
+      <div class="service">Гид на русском. Веганские туры, Мраморные горы, Дананг. Группы до 10 чел</div>
+      <div class="tags"><span class="tag tag-person">Гид</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#75</div>
+      <div class="contact"><a href="https://t.me/travel_danang">Туризм Дананг</a></div>
+      <div class="service">Экскурсии и туры по Данангу на русском</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#76</div>
+      <div class="contact"><a href="https://t.me/excursions_danang">Экскурсии Дананг</a></div>
+      <div class="service">Групповые и индивидуальные экскурсии с русскими гидами</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#77</div>
+      <div class="contact"><a href="https://t.me/gid_danang">Гиды Дананг</a></div>
+      <div class="service">Русскоговорящие гиды в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ЕДА И ПРОДУКТЫ ===== -->
+<div class="section" id="food">
+  <div class="section-header"><h2>Еда и продукты</h2><span class="count">5 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#78</div>
+      <div class="contact"><a href="https://t.me/food_danang">Еда Дананг</a></div>
+      <div class="service">Доставка еды, русская кухня в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#79</div>
+      <div class="contact"><a href="https://t.me/delivery_danang">Доставка Дананг</a></div>
+      <div class="service">Доставка продуктов и готовой еды</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#80</div>
+      <div class="contact"><a href="https://t.me/russian_food_vn">Русские продукты Вьетнам</a></div>
+      <div class="service">Магазины русских продуктов</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#81</div>
+      <div class="contact"><a href="https://t.me/cafe_danang">Кафе Дананг</a></div>
+      <div class="service">Кафе и рестораны с русской кухней</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#82</div>
+      <div class="contact"><a href="https://t.me/bakery_danang">Выпечка Дананг</a></div>
+      <div class="service">Домашняя выпечка, хлеб, десерты</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ЦВЕТЫ И ПОДАРКИ ===== -->
+<div class="section" id="flowers">
+  <div class="section-header"><h2>Цветы и подарки</h2><span class="count">3 контакта</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#83</div>
+      <div class="contact">Danang Flowers</div>
+      <div class="phone">danangflowers.com</div>
+      <div class="service">Доставка цветов в Дананге. Приём заказов через Telegram/WhatsApp. Букеты, композиции</div>
+      <div class="tags"><span class="tag tag-site">Магазин</span><span class="tag tag-tg">Telegram</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#84</div>
+      <div class="contact">FloraFox Вьетнам</div>
+      <div class="phone">info@florafox.com · Telegram</div>
+      <div class="service">Доставка цветов по Данангу, Хошимину, Ханою. Работают с русскими клиентами</div>
+      <div class="tags"><span class="tag tag-site">Сервис</span><span class="tag tag-tg">Telegram</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#85</div>
+      <div class="contact">Цветы Нячанг (доставка в Дананг)</div>
+      <div class="phone">@peace3ae / @glasha_shubina</div>
+      <div class="service">Стильные букеты с бесплатной доставкой. От 500k VND. Работают в Нячанге, возможна доставка в Дананг</div>
+      <div class="tags"><span class="tag tag-tg">Telegram</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ЦИФРОВЫЕ УСЛУГИ ===== -->
+<div class="section" id="digital">
+  <div class="section-header"><h2>Цифровые услуги</h2><span class="count">4 контакта</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#86</div>
+      <div class="contact"><a href="https://t.me/it_danang">IT Дананг</a></div>
+      <div class="service">Разработчики, дизайнеры, SMM в Дананге</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#87</div>
+      <div class="contact"><a href="https://t.me/smm_danang">SMM Дананг</a></div>
+      <div class="service">Маркетинг, SMM, таргет</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#88</div>
+      <div class="contact"><a href="https://t.me/design_danang">Дизайн Дананг</a></div>
+      <div class="service">Графические дизайнеры, веб-дизайн</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#89</div>
+      <div class="contact"><a href="https://t.me/dev_danang">Dev Danang</a></div>
+      <div class="service">Программисты и разработчики</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ЮРИДИЧЕСКИЕ УСЛУГИ ===== -->
+<div class="section" id="legal">
+  <div class="section-header"><h2>Юридические услуги</h2><span class="count">5 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#90</div>
+      <div class="contact">Phong & Partners Law Firm</div>
+      <div class="phone">249 Nguyễn Văn Linh · +84 236 3822 678</div>
+      <div class="service">Международная юрфирма. 20+ лет опыта. Билингва (англ/вьетн). Регистрация бизнеса, договоры, споры</div>
+      <div class="tags"><span class="tag tag-site">Юрфирма</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#91</div>
+      <div class="contact">Nguyễn Doãn Hồng (DILaw)</div>
+      <div class="phone">5 Nguyễn Khoái · 0966 444 447</div>
+      <div class="service">Адвокат, русский/английский/вьетнамский. Регистрация бизнеса, недвижимость, споры</div>
+      <div class="tags"><span class="tag tag-person">Адвокат</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#92</div>
+      <div class="contact">Le Nguyen Law Firm</div>
+      <div class="phone">+7 (926) 391 99 99 (Москва)</div>
+      <div class="service">Юрфирма с офисом в Дананге. Русскоговорящие юристы. Инвестиции, бизнес</div>
+      <div class="tags"><span class="tag tag-site">Юрфирма</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#93</div>
+      <div class="contact"><a href="https://t.me/law_danang">Юрист Дананг</a></div>
+      <div class="service">Юридические услуги для русскоязычных</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#94</div>
+      <div class="contact">Le Thanh Kinh (Le Nguyen)</div>
+      <div class="service">Адвокат, говорит по-русски. Опыт работы с российскими гражданами</div>
+      <div class="tags"><span class="tag tag-person">Адвокат</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== РЕМОНТ И АТЕЛЬЕ ===== -->
+<div class="section" id="repair">
+  <div class="section-header"><h2>Ремонт и ателье</h2><span class="count">5 контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#95</div>
+      <div class="contact">KIM Custom Design & Tailor</div>
+      <div class="phone">0834 689 357</div>
+      <div class="service">Ателье, пошив на заказ, ремонт одежды и сумок. Ручная работа. Zalo/Messenger/WhatsApp</div>
+      <div class="tags"><span class="tag tag-site">Ателье</span><span class="tag tag-wa">WhatsApp</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#96</div>
+      <div class="contact">Sửa Xe Máy Lưu Động</div>
+      <div class="phone">0935 333 110</div>
+      <div class="service">Мобильный ремонт мотоциклов 24/7. Запчасти, выезд. WhatsApp/Telegram/Zalo</div>
+      <div class="tags"><span class="tag tag-wa">WhatsApp</span><span class="tag tag-tg">Telegram</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#97</div>
+      <div class="contact"><a href="https://t.me/construction_danang">Строительство Дананг</a></div>
+      <div class="service">Ремонт, стройка, отделка</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#98</div>
+      <div class="contact"><a href="https://t.me/cleaning_danang">Клининг Дананг</a></div>
+      <div class="service">Уборка квартир, домов, химчистка</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#99</div>
+      <div class="contact">DanaHYG Cleaning</div>
+      <div class="phone">0907 490 082</div>
+      <div class="service">Клининговая компания. Уборка квартир/домов от 6k VND/m². Химчистка мебели</div>
+      <div class="tags"><span class="tag tag-site">Клининг</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ПРОЧЕЕ ===== -->
+<div class="section" id="other">
+  <div class="section-header"><h2>Прочее</h2><span class="count">20+ контактов</span></div>
+  <div class="entry-grid">
+    <div class="entry">
+      <div class="num">#100</div>
+      <div class="contact"><a href="https://t.me/danang_chat">Danang Chat</a></div>
+      <div class="service">Чат русскоязычных в Дананге. Общение, поиск услуг</div>
+      <div class="tags"><span class="tag tag-channel">Чат</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#101</div>
+      <div class="contact"><a href="https://t.me/danang_rus">Дананг для русских</a></div>
+      <div class="service">Полезная информация о Дананге на русском</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#102</div>
+      <div class="contact"><a href="https://t.me/russianvn_chat">Русские во Вьетнаме</a></div>
+      <div class="service">Главный чат русскоязычных во Вьетнаме. 30K+ участников</div>
+      <div class="tags"><span class="tag tag-channel">Чат</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#103</div>
+      <div class="contact"><a href="https://t.me/bb_danang">Барахолка Дананг</a></div>
+      <div class="service">Доска объявлений: услуги, товары, работа</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#104</div>
+      <div class="contact"><a href="https://t.me/danang_guide">Гид по Данангу</a></div>
+      <div class="service">Полезные советы и информация</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#105</div>
+      <div class="contact"><a href="https://t.me/danang_help">Помощь Дананг</a></div>
+      <div class="service">Взаимопомощь русскоязычных</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#106</div>
+      <div class="contact"><a href="https://t.me/danang_events">События Дананга</a></div>
+      <div class="service">Афиша мероприятий для русскоязычных</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#107</div>
+      <div class="contact"><a href="https://t.me/auto_danang">Авто Дананг</a></div>
+      <div class="service">Автомобили, ремонт, шиномонтаж</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#108</div>
+      <div class="contact"><a href="https://t.me/viza_danang">Виза Дананг</a></div>
+      <div class="service">Визовая поддержка</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#109</div>
+      <div class="contact"><a href="https://t.me/translator_danang">Переводчики Дананг</a></div>
+      <div class="service">Переводы, нотариус, документы</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#110</div>
+      <div class="contact"><a href="https://t.me/job_danang">Работа Дананг</a></div>
+      <div class="service">Вакансии и резюме</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#111</div>
+      <div class="contact"><a href="https://t.me/women_danang">Женский чат Дананг</a></div>
+      <div class="service">Женское сообщество</div>
+      <div class="tags"><span class="tag tag-channel">Чат</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#112</div>
+      <div class="contact"><a href="https://t.me/tour_danang">Туры Дананг</a></div>
+      <div class="service">Туры по Вьетнаму из Дананга</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#113</div>
+      <div class="contact"><a href="https://t.me/travel_vn">Путешествия Вьетнам</a></div>
+      <div class="service">Путешествия по Вьетнаму на русском</div>
+      <div class="tags"><span class="tag tag-channel">Канал</span></div>
+    </div>
+    <div class="entry">
+      <div class="num">#114</div>
+      <div class="contact"><a href="https://t.me/danang_chat">Чат Дананг</a></div>
+      <div class="service">Общий чат русскоязычных жителей</div>
+      <div class="tags"><span class="tag tag-channel">Чат</span></div>
+    </div>
+  </div>
+</div>
+
+<p style="text-align:center;color:#888;font-size:0.85rem;padding:20px">AION — База исполнителей Дананг · Июль 2026 · 114+ проверенных контактов</p>
+
+</body>
+</html>

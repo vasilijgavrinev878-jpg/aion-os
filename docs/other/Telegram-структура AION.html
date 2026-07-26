@@ -1,0 +1,151 @@
+<html>
+<head><meta charset='utf-8'><title>Telegram-структура AION</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact}
+body{font-family:system-ui,-apple-system,sans-serif;max-width:960px;margin:2em auto;padding:0 1.5em;line-height:1.6;color:#1a1a2e;background:#fafafa}
+h1{font-size:2.2rem;font-weight:700;text-align:center;margin-bottom:0.1em}
+.sub{text-align:center;color:#666;font-size:0.95rem;margin-bottom:2em}
+h2{font-size:1.4rem;font-weight:700;margin-top:2em;padding-bottom:0.3em;border-bottom:3px solid #d4a017;display:flex;align-items:center;gap:10px}
+h2 .badge{font-size:0.65rem;background:#1a1a2e;color:#fff;padding:2px 10px;border-radius:10px;font-weight:600}
+h3{font-size:1.1rem;font-weight:600;margin-top:1.5em;margin-bottom:0.5em}
+table{width:100%;border-collapse:collapse;margin:1em 0;font-size:0.9rem}
+th,td{border:1px solid #ddd;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#1a1a2e;color:#fff;font-weight:600;font-size:0.82rem}
+tr:nth-child(even){background:#f9f9f9}
+blockquote{border-left:3px solid #d4a017;margin:1em 0;padding:0.8em 1.2em;background:#faf6ef;font-size:0.9rem;border-radius:0 6px 6px 0}
+hr{border:none;border-top:1px solid #e0d5c1;margin:2em 0}
+.chat-card{background:#fff;border:1px solid #e0d5c1;border-radius:8px;padding:0.8em 1.2em;margin:0.5em 0;border-left:4px solid #1a1a2e}
+.chat-card.public{border-left-color:#229ed9}
+.chat-card.private{border-left-color:#e53935}
+.chat-card.partner{border-left-color:#d4a017}
+.chat-card.media{border-left-color:#7b1fa2}
+.chat-card.team{border-left-color:#2e7d32}
+.chat-card.main{border-left-color:#1a1a2e}
+.chat-card .name{font-weight:700;font-size:1rem;display:flex;align-items:center;gap:8px}
+.chat-card .name .lock{font-size:0.8rem}
+.chat-card .desc{font-size:0.85rem;color:#555;margin-top:2px}
+.chat-card .meta{font-size:0.78rem;color:#999;margin-top:4px;display:flex;gap:12px;flex-wrap:wrap}
+.diagram{background:#fff;border:1px solid #e0d5c1;border-radius:8px;padding:1.5em;margin:1em 0;text-align:center;font-size:0.9rem;line-height:2.2;overflow-x:auto}
+.diagram .level{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:4px 0}
+.diagram .box{background:#f5f5f5;border:1px solid #ddd;border-radius:6px;padding:4px 14px;font-size:0.8rem;white-space:nowrap}
+.diagram .box.bot{background:#e3f2fd;border-color:#229ed9;font-weight:600}
+.diagram .box.channel{background:#fff3e0;border-color:#d4a017}
+.diagram .box.chat{background:#fce4ec;border-color:#e53935}
+.diagram .box.main{background:#1a1a2e;color:#fff;border-color:#1a1a2e;font-weight:700}
+.tag{display:inline-block;padding:1px 10px;border-radius:10px;font-size:0.72rem;font-weight:600}
+.tag-blue{background:#e3f2fd;color:#1565c0}
+.tag-red{background:#ffebee;color:#c62828}
+.tag-gold{background:#fff8e1;color:#e65100}
+.tag-green{background:#e8f5e9;color:#2e7d32}
+.tag-purple{background:#f3e5f5;color:#6a1b9a}
+</style>
+</head><body>
+
+<h1>Telegram-структура AION</h1>
+<p class="sub">Один канал компании + городские чаты</p>
+
+<div style="background:#fff8e1;border:1px solid #ffcc02;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.85rem">
+  <p><strong>⚠ Обновление 6 июля:</strong></p>
+  <ul>
+    <li>🗑️ Городские каналы удалены (в том числе @aion_nt)</li>
+    <li>💬 Остаётся только <strong>@aion_asia</strong> — главный канал компании</li>
+    <li>🏙️ Под каждый город — только <strong>чат</strong> (без канала)</li>
+    <li>Стас в командировке до пятницы. Медиа ведёт <strong>Василий</strong></li>
+    <li>🎥 С завтрашнего дня контент снимает <strong>Виктория</strong></li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2>1. Схема <span class="badge">OVERVIEW</span></h2>
+
+<div class="diagram">
+  <div style="font-weight:700;margin-bottom:6px;color:#1a1a2e">📡 Единственный канал компании</div>
+  <div class="level"><span class="box main">📢 @aion_asia</span></div>
+  <div style="color:#999;margin:2px 0">┃  (новости, контент, анонсы — всё здесь)</div>
+  <div style="margin:4px 0">⬇️</div>
+  <div style="font-weight:700;margin-bottom:6px;color:#e53935">🏙️ Городские чаты (без каналов)</div>
+  <div class="level">
+    <span class="box chat">💬 @aion_nt_chat</span>
+    <span class="box chat">💬 @aion_phuket_chat</span>
+  </div>
+  <div style="color:#999;font-size:0.8rem">┃ только чаты, контент из @aion_asia</div>
+  <div style="margin:4px 0">⬇️</div>
+  <div style="font-weight:700;margin-bottom:6px;color:#229ed9">🤖 Единый бот</div>
+  <div class="level"><span class="box bot">🤖 @aion_asia_bot</span></div>
+  <div style="color:#999;font-size:0.8rem">┃  определяет город пользователя</div>
+  <div style="margin:4px 0">⬇️</div>
+  <div style="font-weight:700;margin-bottom:6px;color:#e53935">🔒 Внутренние чаты</div>
+  <div class="level">
+    <span class="box chat" style="border-color:#2e7d32">👤 Команда</span>
+    <span class="box chat" style="border-color:#d4a017">🤝 Партнёры</span>
+    <span class="box chat" style="border-color:#7b1fa2">📸 Медиа</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>2. Единственный канал <span class="badge">MAIN</span></h2>
+
+<div class="chat-card main">
+  <div class="name">📡 @aion_asia — AION (головной канал)</div>
+  <div class="desc">Единственный канал компании. Новости проекта, контент по городам, партнёрства, вакансии, продуктовые обновления, история команды. Весь контент AION — здесь.</div>
+  <div class="meta">
+    <span style="color:#d4a017;font-weight:600">Контент:</span> 1–2 поста в день
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>3. Городские чаты <span class="badge">CITY</span></h2>
+
+<p>Только чаты, без отдельных каналов. Контент городских чатов — репосты из @aion_asia + локальное общение.</p>
+
+<table>
+<tr><th>Город</th><th>Чат</th></tr>
+<tr><td>🇻🇳 Нячанг</td><td>💬 @aion_nt_chat</td></tr>
+<tr><td>🇹🇭 Пхукет</td><td>💬 @aion_phuket_chat</td></tr>
+<tr style="color:#999"><td>🇹🇭 Паттайя</td><td>— (следующий)</td></tr>
+<tr style="color:#999"><td>🇻🇳 Дананг</td><td>— (следующий)</td></tr>
+</table>
+
+<h3>Единый бот</h3>
+<div class="chat-card public">
+  <div class="name">🤖 @aion_asia_bot — Бот заказа услуг</div>
+  <div class="desc">Один бот на все города. При старте диалога определяет город (по гео / выбору пользователя). Перенаправляет заказ в CRM.</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>4. Внутренние — закрытые <span class="badge">PRIVATE</span></h2>
+
+<div class="chat-card team">
+  <div class="name">👤 Команда AION <span class="lock" style="color:#2e7d32">🔒</span></div>
+  <div class="desc">Основатели + ключевые менеджеры. Оперативка, распределение, срочное.</div>
+</div>
+
+<div class="chat-card partner">
+  <div class="name">🤝 Партнёры AION — [город] <span class="lock" style="color:#d4a017">🔒</span></div>
+  <div class="desc">Отдельный чат на каждый город. Партнёры не мешаются.</div>
+</div>
+
+<div class="chat-card media">
+  <div class="name">📸 Медиа AION <span class="lock" style="color:#7b1fa2">🔒</span></div>
+  <div class="desc">Промоутеры, блогеры, создатели контента. ТЗ, контент, отчёты.</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>5. Роли и доступы <span class="badge">PERMISSIONS</span></h2>
+
+<table>
+<tr><th>Канал / Чат</th><th>Василий</th><th>Влад</th><th>Артур</th><th>Виктория</th><th>Партнёры</th></tr>
+<tr><td>📡 @aion_asia</td><td>Админ</td><td>Ред.</td><td>—</td><td>Автор</td><td>—</td></tr>
+<tr><td>💬 @aion_nt_chat</td><td>Админ</td><td>Мод.</td><td>—</td><td>—</td><td>✅</td></tr>
+<tr><td>💬 @aion_phuket_chat</td><td>Админ</td><td>—</td><td>—</td><td>—</td><td>✅</td></tr>
+<tr><td>🤖 @aion_asia_bot</td><td>Админ</td><td>Агент</td><td>Админ</td><td>—</td><td>—</td></tr>
+<tr><td>👤 Команда</td><td>✅</td><td>✅</td><td>✅</td><td>—</td><td>—</td></tr>
+<tr><td>🤝 Партнёры</td><td>✅</td><td>✅</td><td>✅</td><td>—</td><td>✅</td></tr>
+<tr><td>📸 Медиа</td><td>✅</td><td>✅</td><td>—</td><td>✅</td><td>—</td></tr>
+</table>
+
+<hr>
+<p style="text-align:center;color:#888;font-size:0.85rem">AION · Telegram-структура · 6 июля 2026</p>
+
+</body></html>

@@ -1,0 +1,955 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>300 мест рядом — Пхукет | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #D4A853;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --deep-blue: #0A1628;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .cover {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1a2a4a 50%, var(--deep-blue) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: "\221E";
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.04;
+    top: -60px;
+    right: -40px;
+    font-weight: 100;
+  }
+  .cover::after {
+    content: "AION";
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.03;
+    bottom: -40px;
+    left: -20px;
+    font-weight: 900;
+    letter-spacing: 20px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .cover .subtitle {
+    font-size: 16px;
+    opacity: 0.75;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  .cover .meta {
+    margin-top: 28px;
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav a:hover { background: var(--bg-alt); color: var(--accent); }
+  .section {
+    padding: 24px 32px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--deep-blue);
+  }
+  .section-header .count {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+  }
+  .entry {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+  .entry:hover { border-color: var(--accent); }
+  .entry .num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .entry h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin: 2px 0 4px;
+  }
+  .entry .loc {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  .entry .desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .entry .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .entry .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag-price { background: #f0fdf4; color: #15803d; }
+  .tag-time { background: #fefce8; color: #a16207; }
+  .tag-info { background: #eef2ff; color: #4338ca; }
+  .tag-warn { background: #fef2f2; color: #dc2626; }
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 28px; }
+    .section { padding: 16px 14px; }
+    .entry-grid { grid-template-columns: 1fr; }
+    .nav { padding: 6px 10px; gap: 2px; }
+    .nav a { font-size: 11px; padding: 2px 6px; }
+  }
+  .section ul { list-style: none; margin: 0; padding: 0; }
+  .section li {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .section li strong { color: var(--deep-blue); }
+  .section li .meta { color: var(--text-light); font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="cover-label">AION City Guide</div>
+  <h1>300 мест рядом</h1>
+  <div class="subtitle">Полный гид по Пхукету — всё, что нужно русскоязычному</div>
+  <div class="meta">AION · Июнь 2026 · 14 разделов · 305 мест</div>
+</div>
+<nav class="nav" id="nav">
+  <a href="#sight">Достопримечательности</a>
+  <a href="#beach">Пляжи</a>
+  <a href="#islands">Острова</a>
+  <a href="#spa">СПА</a>
+  <a href="#beauty">Красота</a>
+  <a href="#markets">Рынки</a>
+  <a href="#shopping">Шопинг</a>
+  <a href="#kids">Дети</a>
+  <a href="#sport">Спорт</a>
+  <a href="#med">Медицина</a>
+  <a href="#transport">Транспорт</a>
+  <a href="#food">Рестораны</a>
+  <a href="#night">Ночная жизнь</a>
+  <a href="#services">Сервисы</a>
+</nav>
+
+<!-- 1. ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
+<div class="section" id="sight">
+<div class="section-header"><h2>Достопримечательности</h2><span class="count">25 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#1</div><h3>Большой Будда (Big Buddha)</h3><div class="loc">Гора Накерд, Чалонг</div><div class="desc">45-метровая статуя Будды из белого мрамора на вершине холма. Панорамный вид на весь Пхукет.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–19:00</span><span class="tag tag-info">Закрытая одежда</span></div></div>
+
+<div class="entry"><div class="num">#2</div><h3>Ват Чалонг (Wat Chalong)</h3><div class="loc">Чалонг, центр</div><div class="desc">Главный буддийский храм Пхукета. Три статуи почитаемых монахов, пагода с мощами.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#3</div><h3>Старый город (Phuket Old Town)</h3><div class="loc">Пхукет-таун, Thalang Road</div><div class="desc">Китайско-португальская архитектура, красочные фасады, уютные кафе и арт-галереи. Воскресная Walking Street.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-info">Гулять пешком</span></div></div>
+
+<div class="entry"><div class="num">#4</div><h3>Мыс Промтеп (Promthep Cape)</h3><div class="loc">Южный Пхукет</div><div class="desc">Самая известная смотровая площадка на закате. Вид на Андаманское море, маяк, скалистый берег.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span><span class="tag tag-info">Лучший закат</span></div></div>
+
+<div class="entry"><div class="num">#5</div><h3>Смотровая площадка Ката (Kata Viewpoint)</h3><div class="loc">Между Ката и Ката Ной</div><div class="desc">Вид на три пляжа: Ката, Ката Ной, Карон. Одно из самых фотографируемых мест Пхукета.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#6</div><h3>Храм Пут Тай (Phut Thai)</h3><div class="loc">Пхукет-таун</div><div class="desc">Китайский храм богини Гуаньинь с богатым убранством. Яркий интерьер, ладан, статуи.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#7</div><h3>Холм Кхао Ранг (Khao Rang Hill)</h3><div class="loc">Пхукет-таун</div><div class="desc">Панорамная смотровая площадка с видом на город и море. Рестораны, статуя короля, парк.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#8</div><h3>Сад бабочек Пхукета (Butterfly Garden)</h3><div class="loc">Раваи, юг</div><div class="desc">Крупный сад с сотнями тропических бабочек, насекомыми, аквариум с пираньями.</div><div class="tags"><span class="tag tag-price">300 THB</span><span class="tag tag-time">9:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#9</div><h3>Музей Тхайхуа (Thai Hua Museum)</h3><div class="loc">Пхукет-таун</div><div class="desc">Музей китайско-пхукетской культуры в здании школы 1934 года. История иммиграции.</div><div class="tags"><span class="tag tag-price">200 THB</span><span class="tag tag-time">9:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#10</div><h3>Gibbon Rehabilitation Centre</h3><div class="loc">Банг Пэ, лес Кхао Пхра Тэо</div><div class="desc">Центр спасения гиббонов. Наблюдение за обезьянами в естественной среде. Бесплатно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">9:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#11</div><h3>Ват Пхра Тонг (Wat Phra Thong)</h3><div class="loc">Тхаланг</div><div class="desc">Храм с полузарытой в землю золотой статуей Будды. Легенда гласит, что её нельзя откопать.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#12</div><h3>Phuket Art Gallery</h3><div class="loc">Пхукет-таун</div><div class="desc">Галерея современного тайского искусства. Живопись, скульптура, инсталляции. Бесплатный вход.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#13</div><h3>Аквариум Пхукета (Phuket Aquarium)</h3><div class="loc">Мыс Панва</div><div class="desc">Морской аквариум с туннелем, акулами, скатами, черепахами. Много интерактива для детей.</div><div class="tags"><span class="tag tag-price">200 THB</span><span class="tag tag-time">8:30–16:30</span></div></div>
+
+<div class="entry"><div class="num">#14</div><h3>Танцующий фонтан (Jungceylon)</h3><div class="loc">Патонг, Jungceylon Mall</div><div class="desc">Музыкальный фонтан с подсветкой. Бесплатное шоу каждый вечер. Популярное место встреч.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">18:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#15</div><h3>Памятник героиням (Heroines Monument)</h3><div class="loc">Тхаланг, кольцевая</div><div class="desc">Памятник двум сёстрам, возглавившим оборону Пхукета в 1785 году. Знаковое место.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#16</div><h3>Статуя трёхглавого слона (Erawan)</h3><div class="loc">Тхаланг</div><div class="desc">Внушительная статуя мифического слона Айравата. Символ благополучия, место для фото.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#17</div><h3>Windmill Viewpoint</h3><div class="loc">Мыс Панва</div><div class="desc">Смотровая площадка у ветряка. Вид на пляж Най Харн и острова. Рыбацкие лодки, закаты.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#18</div><h3>Phuket Zoo</h3><div class="loc">Чалонг</div><div class="desc">Зоопарк с тиграми, слонами, обезьянами, шоу крокодилов и слонов. Спорная репутация.</div><div class="tags"><span class="tag tag-price">500 THB</span><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#19</div><h3>Kamala Viewpoint</h3><div class="loc">Камала</div><div class="desc">Живописная смотровая площадка с видом на залив Камала. Лучшее место для фото на закате.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#20</div><h3>Национальный парк Кхао Пхра Тэо</h3><div class="loc">Север Пхукета</div><div class="desc">Последний тропический лес острова. Водопад Банг Пэ, треккинг, птицы, бабочки.</div><div class="tags"><span class="tag tag-price">200 THB</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#21</div><h3>Самет Нангше (Samet Nangshe)</h3><div class="loc">~30 км, Пханг Нга</div><div class="desc">Легендарный вид на залив Пханг Нга с карстовыми островами. Лучший рассвет на планете.</div><div class="tags"><span class="tag tag-price">100 THB</span><span class="tag tag-time">5:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#22</div><h3>Laem Sing Viewpoint</h3><div class="loc">Между Камалой и Сурином</div><div class="desc">Смотровая на скалистом мысе. Дикий пляж внизу, волны, рыбацкие лодки.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#23</div><h3>Trickeye 3D Museum</h3><div class="loc">Патонг</div><div class="desc">Музей 3D-иллюзий. Оптические обманы, фотозоны, весёлые снимки. Для детей и взрослых.</div><div class="tags"><span class="tag tag-price">300 THB</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#24</div><h3>Храм Хуан Занг (Wat Khao Rang)</h3><div class="loc">Холм Кхао Ранг</div><div class="desc">Небольшой храм на вершине холма. Биение в гонг, колокольчики, спокойная атмосфера.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#25</div><h3>Phuket Shooting Range</h3><div class="loc">Чалонг</div><div class="desc">Тир с огнестрельным оружием. Пистолеты, винтовки, луки. Инструктаж на английском.</div><div class="tags"><span class="tag tag-info">Стрельба</span></div></div>
+
+</div></div>
+
+<!-- 2. ПЛЯЖИ -->
+<div class="section" id="beach">
+<div class="section-header"><h2>Пляжи</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#26</div><h3>Patong Beach</h3><div class="loc">Патонг, центр</div><div class="desc">Самый известный пляж. Длинная береговая линия, водные виды, бары, кафе, тусовки.</div><div class="tags"><span class="tag tag-price">Лежак 200 THB</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#27</div><h3>Karon Beach</h3><div class="loc">Карон, центр</div><div class="desc">Один из самых длинных пляжей. Белый песок, спокойное море. Идеален для семей.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#28</div><h3>Kata Beach</h3><div class="loc">Ката, южнее Карона</div><div class="desc">Популярный пляж с пальмами и ресторанами. Хорош для сёрфинга в сезон.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#29</div><h3>Kata Noi Beach</h3><div class="loc">К югу от Ката</div><div class="desc">Небольшой премиум-пляж с дорогими отелями. Тишина, чистый песок, бирюзовая вода.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#30</div><h3>Kamala Beach</h3><div class="loc">Камала, север Патонга</div><div class="desc">Спокойный пляж с видом на залив. Популярен среди семей и экспатов.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#31</div><h3>Surin Beach</h3><div class="loc">Сурин, северо-запад</div><div class="desc">Элитный пляж с белым песком. Дорогие отели, чистый берег. Хороший снорклинг у скал.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#32</div><h3>Bang Tao Beach</h3><div class="loc">Банг Тао, запад</div><div class="desc">Протяжённый пляж с элитными курортами. Рестораны, пляжные клубы, спорт.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#33</div><h3>Nai Harn Beach</h3><div class="loc">Най Харн, юг</div><div class="desc">Один из чистейших пляжей. Лагуна, озеро, парк. Популярен среди экспатов.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#34</div><h3>Rawai Beach</h3><div class="loc">Равай, юго-восток</div><div class="desc">Рыбацкая деревня. Пляж каменистый, рядом рынок морепродуктов. Аутентично.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-info">Морепродукты</span></div></div>
+
+<div class="entry"><div class="num">#35</div><h3>Nai Yang Beach</h3><div class="loc">Нацпарк Сиринат</div><div class="desc">Пляж в национальном парке. Пролетающие над головой самолёты. Тишина, природа.</div><div class="tags"><span class="tag tag-price">100 THB</span><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#36</div><h3>Mai Khao Beach</h3><div class="loc">Май Кхао, север</div><div class="desc">Самый длинный пляж (11 км). Дикий, без инфраструктуры. Черепахи, самолёты.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#37</div><h3>Layan Beach</h3><div class="loc">Лаян, север Банг Тао</div><div class="desc">Тихий пляж с соснами и эко-курортами. Мало туристов, спокойная вода.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#38</div><h3>Laem Singh Beach</h3><div class="loc">Камала — Сурин</div><div class="desc">Скрытый пляж в скалистой бухте. Доступ по крутой лестнице. Кристально чистая вода.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-info">Много ступенек</span></div></div>
+
+<div class="entry"><div class="num">#39</div><h3>Paradise Beach</h3><div class="loc">Патонг, за мысом</div><div class="desc">Пляжный клуб с музыкой, коктейлями, бассейном. Ежедневные вечеринки.</div><div class="tags"><span class="tag tag-price">300 THB</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#40</div><h3>Freedom Beach</h3><div class="loc">Патонг, юг</div><div class="desc">Уединённый пляж, доступный по морю или через джунгли. Белый песок, бирюза.</div><div class="tags"><span class="tag tag-info">Только по морю</span></div></div>
+
+</div></div>
+
+<!-- 3. ОСТРОВА -->
+<div class="section" id="islands">
+<div class="section-header"><h2>Острова и морские экскурсии</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#41</div><h3>Острова Пхи-Пхи (Phi Phi)</h3><div class="loc">~50 км от Пхукета</div><div class="desc">Архипелаг: Майя-Бэй, Ло Далам, снорклинг. Экскурсия на целый день. Катера из Чалонга.</div><div class="tags"><span class="tag tag-price">1500–2500 THB</span><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#42</div><h3>Залив Пханг Нга (James Bond)</h3><div class="loc">Севернее Пхукета</div><div class="desc">Карстовые скалы, остров Джеймса Бонда, каякинг по мангровым пещерам.</div><div class="tags"><span class="tag tag-price">1000–1800 THB</span><span class="tag tag-time">7:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#43</div><h3>Симиланские острова</h3><div class="loc">~100 км от Пхукета</div><div class="desc">Лучший снорклинг и дайвинг. Белый песок, прозрачная вода, черепахи. Сезон окт–май.</div><div class="tags"><span class="tag tag-price">3000–4500 THB</span><span class="tag tag-info">Сезон: окт–май</span></div></div>
+
+<div class="entry"><div class="num">#44</div><h3>Острова Рача (Raya)</h3><div class="loc">~12 км к югу</div><div class="desc">Белые песчаные пляжи и коралловые рифы. Идеальны для снорклинга и отдыха.</div><div class="tags"><span class="tag tag-price">1200–2000 THB</span><span class="tag tag-time">8:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#45</div><h3>Коралловый остров (Coral Island)</h3><div class="loc">~3 км от Равая</div><div class="desc">Ближайший остров для снорклинга. Белый пляж, кораллы, водные виды. Паром 15 мин.</div><div class="tags"><span class="tag tag-price">800–1200 THB</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#46</div><h3>Остров Май Тон (Mai Thon)</h3><div class="loc">~15 км к югу</div><div class="desc">Частный остров с эксклюзивным пляжным клубом. Спокойный отдых, кристальная вода.</div><div class="tags"><span class="tag tag-price">2000–3500 THB</span><span class="tag tag-info">Эксклюзив</span></div></div>
+
+<div class="entry"><div class="num">#47</div><h3>Остров Сурин (Surin Islands)</h3><div class="loc">~90 км от Пхукета</div><div class="desc">Нацпарк с нетронутой природой. Снорклинг с черепахами и рифовыми акулами.</div><div class="tags"><span class="tag tag-price">3000–5000 THB</span><span class="tag tag-time">Сезон: ноя–апр</span></div></div>
+
+<div class="entry"><div class="num">#48</div><h3>Каякинг в заливе Пханг Нга</h3><div class="loc">Причал Пханг Нга</div><div class="desc">Экскурсия на каяках по мангровым зарослям, пещерам и лагунам среди карстовых скал.</div><div class="tags"><span class="tag tag-info">Входит в тур</span></div></div>
+
+<div class="entry"><div class="num">#49</div><h3>Дайвинг (Симиланы)</h3><div class="loc">Liveaboard / туры</div><div class="desc">Ришелье Рок, Анита Корал. Лучшие дайв-сайты Таиланда. PADI центры.</div><div class="tags"><span class="tag tag-price">от 4000 THB</span></div></div>
+
+<div class="entry"><div class="num">#50</div><h3>Морская рыбалка</h3><div class="loc">Причалы Чалонг, Равай</div><div class="desc">Туры в открытое море. Тунец, марлин, барракуда. Снаряжение включено.</div><div class="tags"><span class="tag tag-price">2500–5000 THB</span></div></div>
+
+<div class="entry"><div class="num">#51</div><h3>Паром на Пхи-Пхи</h3><div class="loc">Причал Рассада</div><div class="desc">Регулярный паром на Пхи-Пхи Дон. 2 часа. Билеты у агентов.</div><div class="tags"><span class="tag tag-price">800–1200 THB</span><span class="tag tag-time">8:00–15:00</span></div></div>
+
+<div class="entry"><div class="num">#52</div><h3>Круиз на закате</h3><div class="loc">Причал Чалонг</div><div class="desc">Романтический круиз с ужином. Биолюминесцентный планктон, коктейли.</div><div class="tags"><span class="tag tag-price">1800–3000 THB</span></div></div>
+
+</div></div>
+
+<!-- 4. СПА -->
+<div class="section" id="spa">
+<div class="section-header"><h2>СПА</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#53</div><h3>Banyan Tree Spa</h3><div class="loc">Banyan Tree Resort, Банг Тао</div><div class="desc">Один из лучших спа в мире. Тайский массаж в домиках над прудом. Санктуарий тишины.</div><div class="tags"><span class="tag tag-price">от 4000 THB</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#54</div><h3>Oasis Spa Phuket</h3><div class="loc">Несколько филиалов</div><div class="desc">Премиальный спа с уникальным дизайном. Королевский тайский массаж, ароматерапия.</div><div class="tags"><span class="tag tag-price">от 2500 THB</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#55</div><h3>Let's Relax Spa</h3><div class="loc">Jungceylon, Патонг</div><div class="desc">Сеть профессиональных спа. Тайский и масляный массаж, скрабы. Хорошее соотношение цена/качество.</div><div class="tags"><span class="tag tag-price">от 900 THB</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#56</div><h3>Keemala Spa</h3><div class="loc">Keemala Resort, Камала</div><div class="desc">Уникальный спа в домиках-коконах среди джунглей. Кристальные ванны, травяные компрессы.</div><div class="tags"><span class="tag tag-price">от 3500 THB</span><span class="tag tag-info">Премиум</span></div></div>
+
+<div class="entry"><div class="num">#57</div><h3>Six Senses Spa</h3><div class="loc">Six Senses, мыс Яму</div><div class="desc">Эко-спа на скалах с видом на море. Йога, детокс, органические процедуры.</div><div class="tags"><span class="tag tag-price">от 5000 THB</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#58</div><h3>Blooming Spa</h3><div class="loc">Патонг</div><div class="desc">Популярный спа с традиционным тайским массажем. Вежливый персонал, приятная атмосфера.</div><div class="tags"><span class="tag tag-price">от 700 THB/час</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#59</div><h3>Sukko Cultural Spa</h3><div class="loc">Пхукет-таун</div><div class="desc">Тайский спа с культурной программой. Травяная сауна, массаж, обёртывания.</div><div class="tags"><span class="tag tag-price">от 1500 THB</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#60</div><h3>Baania Spa</h3><div class="loc">Патонг</div><div class="desc">Бюджетный массажный салон с высоким качеством. Тайский массаж от 300 THB.</div><div class="tags"><span class="tag tag-price">от 300 THB/час</span><span class="tag tag-time">9:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#61</div><h3>Tree House Spa (Trisara)</h3><div class="loc">Trisara Resort, Лаян</div><div class="desc">Спа в домиках на деревьях. Уникальные процедуры, вид на море.</div><div class="tags"><span class="tag tag-price">от 6000 THB</span><span class="tag tag-info">Эксклюзив</span></div></div>
+
+<div class="entry"><div class="num">#62</div><h3>Malee Spa</h3><div class="loc">Ката</div><div class="desc">Небольшой уютный спа. Женские процедуры, массаж, уход за лицом.</div><div class="tags"><span class="tag tag-price">от 600 THB</span></div></div>
+
+<div class="entry"><div class="num">#63</div><h3>Nara Massage & Spa</h3><div class="loc">Карон</div><div class="desc">Популярный спа-салон. Массаж стоп, тайский, масляный. Хорошие отзывы.</div><div class="tags"><span class="tag tag-price">от 500 THB</span></div></div>
+
+<div class="entry"><div class="num">#64</div><h3>The Life Wellness Center</h3><div class="loc">Чалонг</div><div class="desc">Оздоровительный центр. Йога, пилатес, массаж, остеопатия.</div><div class="tags"><span class="tag tag-price">от 1200 THB</span></div></div>
+
+<div class="entry"><div class="num">#65</div><h3>Green Leaf Spa</h3><div class="loc">Ката</div><div class="desc">Массажный салон в тропическом саду. Тайский массаж, скрабы, паровые ванны.</div><div class="tags"><span class="tag tag-price">от 800 THB</span></div></div>
+
+<div class="entry"><div class="num">#66</div><h3>Sabaijai Massage</h3><div class="loc">Равай</div><div class="desc">Традиционный тайский массаж по низким ценам. Аутентично, местные мастера.</div><div class="tags"><span class="tag tag-price">от 250 THB/час</span></div></div>
+
+<div class="entry"><div class="num">#67</div><h3>Let's Relax (Kata)</h3><div class="loc">Ката</div><div class="desc">Филиал популярной сети. Чисто, профессионально, вежливо. Рекомендуют бронировать.</div><div class="tags"><span class="tag tag-price">от 900 THB</span></div></div>
+
+</div></div>
+
+<!-- 5. КРАСОТА -->
+<div class="section" id="beauty">
+<div class="section-header"><h2>Салоны красоты и Nail-студии</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#68</div><h3>Nail Studio Phuket</h3><div class="loc">Ката</div><div class="desc">Популярная nail-студия с русскоязычным персоналом. Широкий выбор дизайнов.</div><div class="tags"><span class="tag tag-price">Маникюр от 400 THB</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#69</div><h3>Beauty Salon Natasha</h3><div class="loc">Ката</div><div class="desc">Салон для русскоязычных. Стрижки, окрашивание, уходы.</div><div class="tags"><span class="tag tag-price">Стрижка от 500 THB</span><span class="tag tag-time">9:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#70</div><h3>Glamour Hair Salon</h3><div class="loc">Патонг</div><div class="desc">Профессиональный салон. Стрижки, окрашивание, кератин, ламинирование.</div><div class="tags"><span class="tag tag-price">Стрижка от 400 THB</span><span class="tag tag-time">8:30–20:00</span></div></div>
+
+<div class="entry"><div class="num">#71</div><h3>Pink Nail & Lash Bar</h3><div class="loc">Ката</div><div class="desc">Маникюр, педикюр, наращивание ресниц. Популярна среди туристов и экспатов.</div><div class="tags"><span class="tag tag-price">Маникюр от 350 THB</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#72</div><h3>Lotus Beauty Spa & Salon</h3><div class="loc">Карон</div><div class="desc">Комплексный салон: стрижки, маникюр, педикюр, депиляция.</div><div class="tags"><span class="tag tag-price">Стрижка от 300 THB</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#73</div><h3>Thread & Glow Eyebrow Studio</h3><div class="loc">Патонг</div><div class="desc">Специализированная студия бровей. Threading, покраска, ламинирование.</div><div class="tags"><span class="tag tag-price">Брови от 200 THB</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#74</div><h3>Tia Nail Salon</h3><div class="loc">Ката</div><div class="desc">Уютная студия с профессиональными мастерами. Дизайн любой сложности.</div><div class="tags"><span class="tag tag-price">Маникюр от 300 THB</span><span class="tag tag-time">8:30–21:00</span></div></div>
+
+<div class="entry"><div class="num">#75</div><h3>Barber House Phuket</h3><div class="loc">Ката</div><div class="desc">Мужская парикмахерская. Стрижки, бритьё опасной бритвой, уход за бородой.</div><div class="tags"><span class="tag tag-price">Мужская стрижка от 400 THB</span></div></div>
+
+<div class="entry"><div class="num">#76</div><h3>Thu's Nails & Beauty</h3><div class="loc">Патонг</div><div class="desc">Семейная nail-студия. Качественный маникюр, педикюр, гель-лак.</div><div class="tags"><span class="tag tag-price">Маникюр от 250 THB</span></div></div>
+
+<div class="entry"><div class="num">#77</div><h3>Salon Vân</h3><div class="loc">Пхукет-таун</div><div class="desc">Вьетнамский салон с европейским подходом. Стрижки, окрашивание, укладки.</div><div class="tags"><span class="tag tag-price">Стрижка от 300 THB</span></div></div>
+
+<div class="entry"><div class="num">#78</div><h3>Art Nails</h3><div class="loc">Ката</div><div class="desc">Студия художественного маникюра. Ручная роспись, 3D-дизайн, стемпинг.</div><div class="tags"><span class="tag tag-price">от 400 THB</span></div></div>
+
+<div class="entry"><div class="num">#79</div><h3>BrowLab Phuket</h3><div class="loc">Патонг</div><div class="desc">Специалисты по бровям: коррекция, окрашивание хной, ламинирование.</div><div class="tags"><span class="tag tag-price">от 500 THB</span></div></div>
+
+<div class="entry"><div class="num">#80</div><h3>Eyelash Queen Studio</h3><div class="loc">Ката</div><div class="desc">Студия наращивания ресниц. Классика, объём, ламинирование.</div><div class="tags"><span class="tag tag-price">от 800 THB</span></div></div>
+
+<div class="entry"><div class="num">#81</div><h3>Cosmo Hair & Beauty</h3><div class="loc">Пхукет-таун</div><div class="desc">Салон красоты полного цикла. Причёски, макияж, маникюр, педикюр.</div><div class="tags"><span class="tag tag-price">от 400 THB</span></div></div>
+
+<div class="entry"><div class="num">#82</div><h3>V Beauty Academy</h3><div class="loc">Ката</div><div class="desc">Студия + обучающий центр. Сервис по доступным ценам (ученики под присмотром).</div><div class="tags"><span class="tag tag-price">от 200 THB</span></div></div>
+
+</div></div>
+
+<!-- 6. РЫНКИ -->
+<div class="section" id="markets">
+<div class="section-header"><h2>Рынки</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#83</div><h3>Чилва-маркет (Chillva Market)</h3><div class="loc">Пхукет-таун</div><div class="desc">Самый стильный ночной маркет. Контейнеры, лампочки, живая музыка, стритфуд.</div><div class="tags"><span class="tag tag-price">Бесплатный вход</span><span class="tag tag-time">17:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#84</div><h3>Воскресный рынок (Thalang Road)</h3><div class="loc">Старый город (Thalang Road)</div><div class="desc">Главный уикенд-маркет. Сувениры, одежда, уличная еда. Перекрывают улицу.</div><div class="tags"><span class="tag tag-price">Бесплатный вход</span><span class="tag tag-time">16:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#85</div><h3>Рынок морепродуктов Равай</h3><div class="loc">Равай, набережная</div><div class="desc">Свежие морепродукты на вес. Выбираете — готовят тут же. Крабы, креветки, рыба.</div><div class="tags"><span class="tag tag-price">Цены от 200 THB</span><span class="tag tag-time">12:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#86</div><h3>Бангла-маркет (Bangla Market)</h3><div class="loc">Патонг</div><div class="desc">Ночной рынок на улице Бангла. Одежда, сувениры, электроника. Торг уместен.</div><div class="tags"><span class="tag tag-price">Бесплатный вход</span><span class="tag tag-time">18:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#87</div><h3>Пхукетский уикенд-маркет</h3><div class="loc">Пхукет-таун</div><div class="desc">Крупный крытый рынок в центре. Одежда, техника, еда. Дешёво и колоритно.</div><div class="tags"><span class="tag tag-price">Бесплатный вход</span><span class="tag tag-time">Сб–Вс 9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#88</div><h3>Индийский рынок (Poon Phoa)</h3><div class="loc">Пхукет-таун</div><div class="desc">Ткани, сари, специи, благовония. Мало туристов, настоящая Индия в центре Пхукета.</div><div class="tags"><span class="tag tag-price">Торг уместен</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#89</div><h3>Рыбацкий рынок (Makham Bay)</h3><div class="loc">Макхам Бэй</div><div class="desc">Утренний аукцион рыбы. Свежий улов: тунец, окунь, креветки. Приезжать до 7 утра.</div><div class="tags"><span class="tag tag-price">Наличные</span><span class="tag tag-time">5:00–8:00</span></div></div>
+
+<div class="entry"><div class="num">#90</div><h3>Маркет в Чалонге</h3><div class="loc">Чалонг</div><div class="desc">Новый рынок с зоной фуд-корта. Мясо, овощи, морепродукты, одежда.</div><div class="tags"><span class="tag tag-price">Наличные</span><span class="tag tag-time">6:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#91</div><h3>Indy Market Патонг</h3><div class="loc">Патонг, Soi San Sabai</div><div class="desc">Вечерний рынок с ремесленными товарами. Handmade, украшения, сувениры.</div><div class="tags"><span class="tag tag-price">Бесплатный вход</span><span class="tag tag-time">17:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#92</div><h3>Фруктовый рынок Ката</h3><div class="loc">Ката</div><div class="desc">Лотки с тропическими фруктами круглый год. Манго, дуриан, кокосы, готовые смузи.</div><div class="tags"><span class="tag tag-price">Фрукты от 30 THB</span><span class="tag tag-time">7:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#93</div><h3>Lard Yai (Sunday Market)</h3><div class="loc">Пхукет-таун</div><div class="desc">Воскресный блошиный рынок. Винтаж, керамика, сувениры, стритфуд.</div><div class="tags"><span class="tag tag-price">Бесплатный вход</span><span class="tag tag-time">16:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#94</div><h3>Рынок Май Кхао</h3><div class="loc">Май Кхао, север</div><div class="desc">Локальный рынок для местных. Свежие продукты, недорого. Полный колорит.</div><div class="tags"><span class="tag tag-price">Дешёво</span><span class="tag tag-time">6:00–12:00</span></div></div>
+
+</div></div>
+
+<!-- 7. ШОПИНГ -->
+<div class="section" id="shopping">
+<div class="section-header"><h2>Шопинг</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#95</div><h3>Jungceylon Mall</h3><div class="loc">Патонг, центр</div><div class="desc">Крупнейший ТЦ Пхукета. 4 этажа: H&M, Bata, Big C, кино, фуд-корт.</div><div class="tags"><span class="tag tag-price">Разные</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#96</div><h3>Central Patong</h3><div class="loc">Патонг</div><div class="desc">Новый ТЦ с премиальными брендами. Kipling, Superdry, косметика, рестораны.</div><div class="tags"><span class="tag tag-price">Разные</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#97</div><h3>Central Floresta</h3><div class="loc">Пхукет-таун</div><div class="desc">Самый большой ТЦ острова. Премиум-бренды, фуд-корт, аквапарк внутри.</div><div class="tags"><span class="tag tag-price">Разные</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#98</div><h3>Big C Patong</h3><div class="loc">Патонг</div><div class="desc">Супермаркет сети Big C. Продукты, бытовая химия, одежда. Всё для жизни.</div><div class="tags"><span class="tag tag-price">Средние</span><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#99</div><h3>Tesco Lotus</h3><div class="loc">Несколько филиалов</div><div class="desc">Сетевой гипермаркет. Продукты, промтовары, недорогие сувениры.</div><div class="tags"><span class="tag tag-price">Недорого</span><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#100</div><h3>7-Eleven (везде)</h3><div class="loc">По всему Пхукету</div><div class="desc">Магазин у дома. Вода, снэки, лотерея, сим-карты, соусы. Есть в каждом районе.</div><div class="tags"><span class="tag tag-price">Дешёво</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#101</div><h3>Family Mart</h3><div class="loc">По всему Пхукету</div><div class="desc">Аналог 7-Eleven. Горячие сэндвичи, кофе, снэки, готовые блюда.</div><div class="tags"><span class="tag tag-price">Дешёво</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#102</div><h3>Outlet Village Phuket</h3><div class="loc">Пхукет-таун</div><div class="desc">Аутлет с брендовой одеждой и обувью. Nike, Adidas, Levi\'s, Lacoste.</div><div class="tags"><span class="tag tag-price">Скидки до 70%</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#103</div><h3>Robinson</h3><div class="loc">Пхукет-таун</div><div class="desc">Универмаг в центре города. Косметика, одежда, товары для дома.</div><div class="tags"><span class="tag tag-price">Средние</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#104</div><h3>Index Living Mall</h3><div class="loc">Пхукет-таун</div><div class="desc">Мебель и товары для дома. Огромный выбор, доставка, сборка.</div><div class="tags"><span class="tag tag-price">Разные</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#105</div><h3>Power Buy</h3><div class="loc">Пхукет-таун</div><div class="desc">Сеть электроники и бытовой техники. Ноутбуки, телефоны, аксессуары.</div><div class="tags"><span class="tag tag-price">Разные</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#106</div><h3>Магазины 7C</h3><div class="loc">По всему Пхукету</div><div class="desc">Русские магазины с привычными продуктами. Гречка, тушёнка, майонез.</div><div class="tags"><span class="tag tag-price">Выше среднего</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#107</div><h3>Phuket Weekender</h3><div class="loc">Пхукет-таун</div><div class="desc">Дизайнерские тайские бренды, концепт-стор. Необычные сувениры, декор.</div><div class="tags"><span class="tag tag-price">Средние</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#108</div><h3>Veggie Home Phuket</h3><div class="loc">Ката</div><div class="desc">Магазин здорового питания. Органические продукты, веганское, спортивное питание.</div><div class="tags"><span class="tag tag-price">Выше среднего</span><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#109</div><h3>Магазин Mango Paradise</h3><div class="loc">Патонг</div><div class="desc">Сувенирная лавка. Магниты, футболки, кокосовое масло, тайские сладости.</div><div class="tags"><span class="tag tag-price">Дешёво</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+</div></div>
+
+<!-- 8. ДЕТИ -->
+<div class="section" id="kids">
+<div class="section-header"><h2>Детям</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#110</div><h3>Аквапарк Splash Jungle</h3><div class="loc">Май Кхао</div><div class="desc">Крупный аквапарк с горками, волновым бассейном, детской зоной.</div><div class="tags"><span class="tag tag-price">1200 THB</span><span class="tag tag-time">10:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#111</div><h3>Blue Tree Phuket</h3><div class="loc">Чернгталай</div><div class="desc">Водный парк и активный отдых. Лагуна, горки, батуты, рестораны.</div><div class="tags"><span class="tag tag-price">800 THB</span><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#112</div><h3>Cartoon Network Amazone</h3><div class="loc">Банг Тао</div><div class="desc">Аквапарк с персонажами Cartoon Network. 25 горок, детские зоны.</div><div class="tags"><span class="tag tag-price">1500 THB</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#113</div><h3>Пляж Ката (для детей)</h3><div class="loc">Ката</div><div class="desc">Пологий вход, мелкий песок, спокойное море. Идеален для детей.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#114</div><h3>Phuket Elephant Sanctuary</h3><div class="loc">Север Пхукета</div><div class="desc">Этичный центр спасения слонов. Наблюдение, кормление, без катания.</div><div class="tags"><span class="tag tag-price">2000 THB</span><span class="tag tag-time">7:00–14:00</span></div></div>
+
+<div class="entry"><div class="num">#115</div><h3>Dolphin Bay Phuket</h3><div class="loc">Чалонг</div><div class="desc">Дельфинарий с шоу и плаванием с дельфинами. Детям очень нравится.</div><div class="tags"><span class="tag tag-price">600 THB</span><span class="tag tag-time">9:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#116</div><h3>Mini Golf Phuket</h3><div class="loc">Ката</div><div class="desc">Тематический мини-гольф. Пираты, гроты, водопады. Вечерняя подсветка.</div><div class="tags"><span class="tag tag-price">300 THB</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#117</div><h3>Kid Zania Phuket</h3><div class="loc">Central Floresta</div><div class="desc">Город профессий для детей. Ребёнок может стать врачом, пожарным, пилотом.</div><div class="tags"><span class="tag tag-price">700 THB</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#118</div><h3>Treasure Hunt Phuket</h3><div class="loc">Чернгталай</div><div class="desc">Квесты по поиску сокровищ для детей. Карты, загадки, призы.</div><div class="tags"><span class="tag tag-price">400 THB</span><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#119</div><h3>Jump Boarding Phuket</h3><div class="loc">Патонг</div><div class="desc">Батутный центр для детей и взрослых. Часы активности, доджбол.</div><div class="tags"><span class="tag tag-price">350 THB/час</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#120</div><h3>Ферма Gibbon Sanctuary</h3><div class="loc">Банг Пэ</div><div class="desc">Наблюдение за гиббонами в центре спасения. Бесплатно, донаты.</div><div class="tags"><span class="tag tag-price">Free</span><span class="tag tag-time">9:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#121</div><h3>Bubble Factory Phuket</h3><div class="loc">Ката</div><div class="desc">Детский центр с аквагримом, мыльными пузырями, мастер-классами.</div><div class="tags"><span class="tag tag-price">300 THB</span><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#122</div><h3>Phuket Trickeye Museum</h3><div class="loc">Патонг</div><div class="desc">3D-иллюзии для фото. Детям нравится позировать и фотографироваться.</div><div class="tags"><span class="tag tag-price">300 THB</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#123</div><h3>Animal Planet Phuket</h3><div class="loc">Чернгталай</div><div class="desc">Контактный зоопарк с кроликами, козами, попугаями, сурикатами.</div><div class="tags"><span class="tag tag-price">500 THB</span><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#124</div><h3>Детские площадки Ката</h3><div class="loc">Ката</div><div class="desc">Несколько площадок с качелями, горками на берегу. Бесплатно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+</div></div>
+
+<!-- 9. СПОРТ -->
+<div class="section" id="sport">
+<div class="section-header"><h2>Спорт и активный отдых</h2><span class="count">20 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#125</div><h3>Тайский бокс (Muay Thai)</h3><div class="loc">Стадионы Патонга</div><div class="desc">Настоящий тайский бокс. Бои каждый вечер. Эмоции и культура.</div><div class="tags"><span class="tag tag-price">1000–2000 THB</span><span class="tag tag-time">21:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#126</div><h3>Тренировки Muay Thai</h3><div class="loc">Tiger Muay Thai, Чалонг</div><div class="desc">Всемирно известный лагерь. Тренировки для любителей и профи.</div><div class="tags"><span class="tag tag-price">от 10000 THB/мес</span><span class="tag tag-time">6:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#127</div><h3>Сёрфинг в Ката</h3><div class="loc">Kata Beach</div><div class="desc">Лучший пляж для сёрфинга в сезон (май–окт). Аренда досок, школы.</div><div class="tags"><span class="tag tag-price">Аренда от 200 THB</span><span class="tag tag-time">Сезон: май–окт</span></div></div>
+
+<div class="entry"><div class="num">#128</div><h3>Виндсёрфинг и кайтсёрфинг</h3><div class="loc">Карон, Камала</div><div class="desc">Школы кайт- и виндсёрфинга. Снаряжение, инструкторы.</div><div class="tags"><span class="tag tag-price">от 1000 THB/урок</span></div></div>
+
+<div class="entry"><div class="num">#129</div><h3>Дайвинг-центры</h3><div class="loc">Чалонг, Ката</div><div class="desc">PADI-центры. Обучение, погружения у Симиланов, Пхи-Пхи.</div><div class="tags"><span class="tag tag-price">PADI от 15000 THB</span></div></div>
+
+<div class="entry"><div class="num">#130</div><h3>Гольф (Phuket Country Club)</h3><div class="loc">Пхукет-таун</div><div class="desc">Поле на 18 лунок в окружении холмов. Прокат клюшек, тележки.</div><div class="tags"><span class="tag tag-price">2000–3500 THB</span></div></div>
+
+<div class="entry"><div class="num">#131</div><h3>Гольф (Red Mountain)</h3><div class="loc">Пхукет-таун</div><div class="desc">Один из лучших полей Азии. Драматичный ландшафт, перепады высот.</div><div class="tags"><span class="tag tag-price">2500–4000 THB</span></div></div>
+
+<div class="entry"><div class="num">#132</div><h3>Треккинг в Кхао Пхра Тэо</h3><div class="loc">Север Пхукета</div><div class="desc">Поход через тропический лес к водопадам. Гиды, маршруты любой сложности.</div><div class="tags"><span class="tag tag-price">200 THB</span></div></div>
+
+<div class="entry"><div class="num">#133</div><h3>Зиплайн (Flying Hanuman)</h3><div class="loc">Чернгталай</div><div class="desc">Прыжки над лесом на тарзанке. До 28 платформ, адреналин.</div><div class="tags"><span class="tag tag-price">2000 THB</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#134</div><h3>Зиплайн (Hanuman World)</h3><div class="loc">Чернгталай</div><div class="desc">Скоростной полёт над джунглями. Самые длинные тросы на Пхукете.</div><div class="tags"><span class="tag tag-price">1800 THB</span></div></div>
+
+<div class="entry"><div class="num">#135</div><h3>Теннисные корты</h3><div class="loc">Thanyapura, Патонг</div><div class="desc">Корты с покрытием hard. Аренда ракеток, тренеры.</div><div class="tags"><span class="tag tag-price">400–800 THB/час</span></div></div>
+
+<div class="entry"><div class="num">#136</div><h3>Скалолазание (Rock Climbing)</h3><div class="loc">Ката, Карон</div><div class="desc">Скалы на пляжах. Снаряжение, инструкторы.</div><div class="tags"><span class="tag tag-price">от 800 THB</span></div></div>
+
+<div class="entry"><div class="num">#137</div><h3>Велосипедные туры</h3><div class="loc">По всему Пхукету</div><div class="desc">Велотуры: городские, по джунглям, вдоль побережья. Гиды.</div><div class="tags"><span class="tag tag-price">от 1000 THB</span></div></div>
+
+<div class="entry"><div class="num">#138</div><h3>Паркур и воркаут</h3><div class="loc">Парк Кхао Ранг</div><div class="desc">Площадка с турниками, брусьями. Бесплатно. Вид на город.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#139</div><h3>Пляжный волейбол</h3><div class="loc">Патонг, Ката</div><div class="desc">Игры на пляже. Сетки, компании. Можно присоединиться.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#140</div><h3>Снорклинг</h3><div class="loc">Май Кхао, Сурин</div><div class="desc">Маска и трубка у берега. Черепахи, рыбы при спокойном море.</div><div class="tags"><span class="tag tag-price">Маска от 100 THB</span></div></div>
+
+<div class="entry"><div class="num">#141</div><h3>Стрелковый тир</h3><div class="loc">Чалонг, Ката</div><div class="desc">Оружие, луки, арбалеты. Инструктаж, несколько тиров на выбор.</div><div class="tags"><span class="tag tag-price">от 500 THB</span></div></div>
+
+<div class="entry"><div class="num">#142</div><h3>Картинг (Patong Go Kart)</h3><div class="loc">Патонг</div><div class="desc">Картинг для детей и взрослых. 10-минутные заезды.</div><div class="tags"><span class="tag tag-price">400 THB/заезд</span><span class="tag tag-time">14:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#143</div><h3>Конные прогулки</h3><div class="loc">Банг Тао, Лаян</div><div class="desc">Верховая езда по пляжу и джунглям. Инструкторы, лошади.</div><div class="tags"><span class="tag tag-price">1500 THB/час</span></div></div>
+
+<div class="entry"><div class="num">#144</div><h3>Йога на пляже</h3><div class="loc">Ката, Карон, Най Харн</div><div class="desc">Утренняя йога на рассвете. Бесплатно или донат.</div><div class="tags"><span class="tag tag-price">Донат</span><span class="tag tag-time">6:00–7:30</span></div></div>
+
+</div></div>
+
+<!-- 10. МЕДИЦИНА -->
+<div class="section" id="health">
+<div class="section-header"><h2>Медицина</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#145</div><h3>Бангкок-Пхукет больница</h3><div class="loc">Пхукет-таун</div><div class="desc">Крупнейшая частная больница. Международный уровень, английский язык.</div><div class="tags"><span class="tag tag-price">Дорого</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#146</div><h3>Phuket International Hospital</h3><div class="loc">Пхукет-таун</div><div class="desc">Частная больница с русскоязычным персоналом. Все виды помощи.</div><div class="tags"><span class="tag tag-price">Дорого</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#147</div><h3>Поликлиника Воккатап</h3><div class="loc">Ката</div><div class="desc">Доступная клиника. Приём от 500 THB, базовые анализы, УЗИ.</div><div class="tags"><span class="tag tag-price">Приём от 500 THB</span></div></div>
+
+<div class="entry"><div class="num">#148</div><h3>Стоматология Phuket Dental</h3><div class="loc">Пхукет-таун</div><div class="desc">Качественная стоматология. Импланты, виниры, чистка.</div><div class="tags"><span class="tag tag-price">Чистка от 1500 THB</span></div></div>
+
+<div class="entry"><div class="num">#149</div><h3>Стоматология Patong Dental</h3><div class="loc">Патонг</div><div class="desc">Русскоязычная стоматология. Лечение, протезирование, отбеливание.</div><div class="tags"><span class="tag tag-price">От 1000 THB</span></div></div>
+
+<div class="entry"><div class="num">#150</div><h3>Аптека Бутс (Boots)</h3><div class="loc">По всему Пхукету</div><div class="desc">Сеть аптек. Лекарства, косметика, гигиена. Есть в каждом ТЦ.</div><div class="tags"><span class="tag tag-price">Средние</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#151</div><h3>Аптека Fascino</h3><div class="loc">По всему Пхукету</div><div class="desc">Круглосуточные аптеки. Рецептурные и безрецептурные препараты.</div><div class="tags"><span class="tag tag-price">Средние</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#152</div><h3>Аптека Pharmacy Kata</h3><div class="loc">Ката</div><div class="desc">Частная аптека с русскоговорящим фармацевтом.</div><div class="tags"><span class="tag tag-price">Средние</span></div></div>
+
+<div class="entry"><div class="num">#153</div><h3>Клиника Сирирадж (Siriraj)</h3><div class="loc">Пхукет-таун</div><div class="desc">Государственная больница. Дешёво, очереди. Базовые услуги.</div><div class="tags"><span class="tag tag-price">Приём 300 THB</span></div></div>
+
+<div class="entry"><div class="num">#154</div><h3>Детская клиника (PICU)</h3><div class="loc">Пхукет-таун</div><div class="desc">Детский врач, прививки, осмотры. При частных больницах.</div><div class="tags"><span class="tag tag-price">От 800 THB</span></div></div>
+
+<div class="entry"><div class="num">#155</div><h3>Центр МРТ и КТ</h3><div class="loc">Пхукет-таун</div><div class="desc">Диагностика: МРТ, КТ, рентген. Направление не нужно.</div><div class="tags"><span class="tag tag-price">МРТ от 5000 THB</span></div></div>
+
+<div class="entry"><div class="num">#156</div><h3>Косметология клиника The Wisdom</h3><div class="loc">Патонг</div><div class="desc">Эстетическая медицина. Уколы, лазер, чистки.</div><div class="tags"><span class="tag tag-price">От 2000 THB</span></div></div>
+
+<div class="entry"><div class="num">#157</div><h3>Ветклиника (Phuket Vet)</h3><div class="loc">Пхукет-таун</div><div class="desc">Ветеринарная помощь. Прививки, стерилизация, лечение.</div><div class="tags"><span class="tag tag-price">От 500 THB</span></div></div>
+
+<div class="entry"><div class="num">#158</div><h3>Массаж лечебный (Thai Physio)</h3><div class="loc">Ката</div><div class="desc">Лечебный массаж, физиотерапия. Реабилитация после травм.</div><div class="tags"><span class="tag tag-price">от 600 THB/сеанс</span></div></div>
+
+<div class="entry"><div class="num">#159</div><h3>Экстренная помощь (1669)</h3><div class="loc">По всему Пхукету</div><div class="desc">Скорая помощь, эвакуация. Туристическая страховка обязательна.</div><div class="tags"><span class="tag tag-info">Тел: 1669</span></div></div>
+
+</div></div>
+
+<!-- 11. ТРАНСПОРТ -->
+<div class="section" id="transport">
+<div class="section-header"><h2>Транспорт</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#160</div><h3>Аэропорт Пхукет (HKT)</h3><div class="loc">Май Кхао, север</div><div class="desc">Международный аэропорт. Такси в город ~600 THB. Автобус 100 THB.</div><div class="tags"><span class="tag tag-info">Smart Bus 100 THB</span></div></div>
+
+<div class="entry"><div class="num">#161</div><h3>Такси с приложениями</h3><div class="loc">Grab, Bolt, InDrive</div><div class="desc">Grab — самое распространённое. Bolt дешевле, InDrive с торгом.</div><div class="tags"><span class="tag tag-price">от 200 THB</span></div></div>
+
+<div class="entry"><div class="num">#162</div><h3>Тук-тук (Phuket)</h3><div class="loc">По всему Пхукету</div><div class="desc">Не красные, а как пикапы с козырьком. Торгуйтесь! Цена от 200 THB.</div><div class="tags"><span class="tag tag-price">от 200 THB</span></div></div>
+
+<div class="entry"><div class="num">#163</div><h3>Smart Bus</h3><div class="loc">Аэропорт — пляжи</div><div class="desc">Городской автобус вдоль побережья. Аэропорт — Патонг — Ката — Равай. 100 THB.</div><div class="tags"><span class="tag tag-price">100 THB</span></div></div>
+
+<div class="entry"><div class="num">#164</div><h3>Аренда байка</h3><div class="loc">По всему Пхукету</div><div class="desc">Мопед Honda Click — 250–350 THB/день. С правами. Штрафы за неёзду без шлема ~500 THB.</div><div class="tags"><span class="tag tag-price">250–350 THB/день</span></div></div>
+
+<div class="entry"><div class="num">#165</div><h3>Аренда авто</h3><div class="loc">Аэропорт, прокаты</div><div class="desc">Бюджетные авто от 800 THB/день. Международные: Hertz, Budget.</div><div class="tags"><span class="tag tag-price">от 800 THB/день</span></div></div>
+
+<div class="entry"><div class="num">#166</div><h3>Лодка Longtail</h3><div class="loc">Причалы Равай, Чалонг</div><div class="desc">Традиционная лодка. До островов, рыбалка, экскурсия. Торг.</div><div class="tags"><span class="tag tag-price">от 600 THB/час</span></div></div>
+
+<div class="entry"><div class="num">#167</div><h3>Скоростной катер</h3><div class="loc">Причал Чалонг, Банг Ронг</div><div class="desc">На Пхи-Пхи, Рача, Коралловый остров. Быстро, 1500–2500 THB в обе стороны.</div><div class="tags"><span class="tag tag-price">1500–2500 THB</span></div></div>
+
+<div class="entry"><div class="num">#168</div><h3>Междугородний автобус</h3><div class="loc">Автовокзал Пхукет-таун</div><div class="desc">Автобусы в Бангкок (12ч), Краби (3ч), Хуахин, Чумпхон.</div><div class="tags"><span class="tag tag-price">от 500 THB</span></div></div>
+
+<div class="entry"><div class="num">#169</div><h3>Мотоциклетный тренер</h3><div class="loc">Аэропорт</div><div class="desc">Обучение + права. Международные права на мопед за 2 дня.</div><div class="tags"><span class="tag tag-price">от 5000 THB</span></div></div>
+
+<div class="entry"><div class="num">#170</div><h3>Паром на Пхи-Пхи</h3><div class="loc">Причал Рассада</div><div class="desc">Регулярный паром. Билеты у агентов.</div><div class="tags"><span class="tag tag-price">800–1200 THB</span></div></div>
+
+<div class="entry"><div class="num">#171</div><h3>Прогулочная яхта</h3><div class="loc">Причалы Чалонг</div><div class="desc">Чартер яхты на день. От 15000 THB. С экипажем и едой.</div><div class="tags"><span class="tag tag-price">от 15000 THB</span></div></div>
+
+</div></div>
+
+<!-- 12. РЕСТОРАНЫ -->
+<div class="section" id="eat">
+<div class="section-header"><h2>Рестораны и кафе</h2><span class="count">105 мест</span></div>
+<ul class="restaurant-list">
+
+<li><span class="num">#172</span><strong>Raya Restaurant</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Традиционный пхукетский ресторан в китайском доме. Пряные супы, морепродукты.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#173</span><strong>Kan Eang@Pier</strong> — <span class="loc">Чалонг</span> — <span class="desc">Свежие морепродукты на набережной. Крабы, рыба, креветки.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#174</span><strong>Suay Restaurant</strong> — <span class="loc">Пхукет-таун / Чернгталай</span> — <span class="desc">Модная тайская кухня с авторским подходом. Шеф-повар — звезда ТВ.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#175</span><strong>Boathouse Wine & Grill</strong> — <span class="loc">Ката</span> — <span class="desc">Премиум-ресторан на пляже. Стейки, вино, тайская классика.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#176</span><strong>The Boathouse Phuket</strong> — <span class="loc">Ката</span> — <span class="desc">Пляжный ресторан с видом на Андаманское море. Итальянская и тайская кухня.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#177</span><strong>Sino House</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Китайско-пхукетская кухня в старом особняке. Димсамы, лапша.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#178</span><strong>Baan Mai Paad Pong</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Уютный ресторан во дворе. Жареный рис, том ям, местные.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#179</span><strong>Ka Jok See</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Тайская кухня с вечеринкой. 25 мест, бронь обязательно.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#180</span><strong>Sri Panwa — Baba Soul Food</strong> — <span class="loc">Мыс Панва</span> — <span class="desc">Панорамный ресторан на холме. Тайские закуски, коктейли, закат.</span> <span class="tags"><span class="tag tag-price">$$$$</span></span></li>
+
+<li><span class="num">#181</span><strong>The Sundeck</strong> — <span class="loc">Ката</span> — <span class="desc">Закаты, море, тайская кухня. Хороший бюджетный вариант.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#182</span><strong>Blue Elephant</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Ресторан высокой тайской кухни в старом особняке. Дегустационные сеты.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#183</span><strong>Mor Mu Dong</strong> — <span class="loc">Банг Тао</span> — <span class="desc">Тайский лесной ресторан в джунглях. Рыбалка, утка, крабы.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#184</span><strong>Ta Khai</strong> — <span class="loc">Раваи</span> — <span class="desc">Деревенская тайская кухня прямо на пляже. Ритуальная атмосфера.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#185</span><strong>Bangla Seafood</strong> — <span class="loc">Патонг</span> — <span class="desc">Морепродукты на гриле на улице Бангла. Дёшево и сердито.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#186</span><strong>Lemongrass Restaurant</strong> — <span class="loc">Патонг</span> — <span class="desc">Популярное место с большой порцией. Green curry, pad thai.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#187</span><strong>Bai Toey</strong> — <span class="loc">Карон</span> — <span class="desc">Ароматный тайский ресторан с семейной атмосферой.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#188</span><strong>Siam Supper Club</strong> — <span class="loc">Патонг</span> — <span class="desc">Тайская кухня с европейским сервисом. Коктейли, лаунж.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#189</span><strong>P.S. Restaurant</strong> — <span class="loc">Ката</span> — <span class="desc">Бюджетный ресторан с большими порциями. Wok, супы, рис.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#190</span><strong>A Spoonful of Sugar</strong> — <span class="loc">Ката</span> — <span class="desc">Тайско-итальянская кухня. Паста, пицца, том ям.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#191</span><strong>The Kitchen Table</strong> — <span class="loc">Патонг</span> — <span class="desc">Европейский ресторан с открытой кухней. Стейки, паста, салаты.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#192</span><strong>L\'Orfeo Restaurant</strong> — <span class="loc">Ката</span> — <span class="desc">Итальянский ресторан с настоящей пиццей и пастой.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#193</span><strong>Acqua Restaurant</strong> — <span class="loc">Камала</span> — <span class="desc">Итальянская кухня от мишленовского шефа.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#194</span><strong>La Gritta</strong> — <span class="loc">Патонг (Amari)</span> — <span class="desc">Итальянский ресторан с видом на море. Отличное вино.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#195</span><strong>Bella Trattoria</strong> — <span class="loc">Ката</span> — <span class="desc">Уютная итальянская траттория. Домашняя паста, тирамису.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#196</span><strong>Pizza Snack Boy</strong> — <span class="loc">Ката</span> — <span class="desc">Популярная пиццерия. Тонкая основа, много начинки.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#197</span><strong>Marco Polo Italian</strong> — <span class="loc">Патонг</span> — <span class="desc">Итальянский ресторан с доставкой. Паста, ризотто, морепродукты.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#198</span><strong>Fellini Italian</strong> — <span class="loc">Патонг</span> — <span class="desc">Элегантный итальянский ресторан с обширной винной картой.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#199</span><strong>Salt & Pepper</strong> — <span class="loc">Ката</span> — <span class="desc">Итальянский ресторан с тайским акцентом. Отличный тирамису.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#200</span><strong>Café de Phuket</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Французское кафе с круассанами и кофе. Завтраки.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#201</span><strong>Le Versailles</strong> — <span class="loc">Патонг</span> — <span class="desc">Французский ресторан с изысканной кухней.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#202</span><strong>L\'Auberge de la Mer</strong> — <span class="loc">Карон</span> — <span class="desc">Французская кухня с морепродуктами. Устрицы, лобстер.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#203</span><strong>88 Pancake House</strong> — <span class="loc">Ката</span> — <span class="desc">Блинчики, панкейки, вафли, смузи. Завтрак туриста.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#204</span><strong>Duke\'s Steakhouse</strong> — <span class="loc">Патонг</span> — <span class="desc">Отличные стейки в американском стиле. Коктейли, салаты.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#205</span><strong>Hard Rock Cafe</strong> — <span class="loc">Патонг</span> — <span class="desc">Американская классика с рок-н-роллом. Бургеры, ribs, коктейли.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#206</span><strong>Champions Bar & Grill</strong> — <span class="loc">Патонг</span> — <span class="desc">Спорт-бар с американской кухней. Стейки, бургеры, трансляции.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#207</span><strong>Burger House Phuket</strong> — <span class="loc">Ката</span> — <span class="desc">Сочные бургеры с большими порциями картошки. Доставка.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#208</span><strong>Ginja Taste</strong> — <span class="loc">Патонг</span> — <span class="desc">Японско-перуанская фьюжн-кухня. Креатив, вечеринки.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#209</span><strong>Sushi House Phuket</strong> — <span class="loc">Ката</span> — <span class="desc">Свежие суши и роллы. Доставка, цены ниже среднего.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#210</span><strong>Umberto\'s Sushi</strong> — <span class="loc">Патонг</span> — <span class="desc">Итало-японская концепция. Роллы, сашими, крабы.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#211</span><strong>Sakura Sushi</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Бюджетные суши, сет-ланчи.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#212</span><strong>Toy Torlai</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Китайская кухня: утка по-пекински, димсамы, лапша.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#213</span><strong>Hock Hoe Lee</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Китайская лапшичная. Вок, супы, пельмени.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#214</span><strong>China Inn</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Китайско-пхукетский ресторан. Роллы, димсамы, морепродукты.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#215</span><strong>Mee Ton Poe</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Китайская лапша с морепродуктами — визитка Пхукета.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#216</span><strong>Indian Spice</strong> — <span class="loc">Патонг</span> — <span class="desc">Индийская кухня: карри, наан, тандури. Вегетарианское меню.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#217</span><strong>Nalini\'s Indian</strong> — <span class="loc">Ката</span> — <span class="desc">Индийская кухня с большим выбором вегетарианского.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#218</span><strong>Ganesh Indian</strong> — <span class="loc">Патонг</span> — <span class="desc">Индийская классика: карри, бирьяни, чапати.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#219</span><strong>Taj Mahal Indian</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Старейший индийский ресторан Пхукета. С 1980-х.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#220</span><strong>Mumbai Masala</strong> — <span class="loc">Ката</span> — <span class="desc">Индийское кафе с доставкой. Хорошие завтраки.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#221</span><strong>Turkish Kebab House</strong> — <span class="loc">Патонг</span> — <span class="desc">Турецкая кухня: кебабы, лаваш, хумус, фалафель.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#222</span><strong>Istanbul Restaurant</strong> — <span class="loc">Ката</span> — <span class="desc">Турецкая и средиземноморская кухня. Кебабы, пиде.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#223</span><strong>Kebab House Phuket</strong> — <span class="loc">Патонг</span> — <span class="desc">Сочные кебабы с мангала. Соусы, лаваш.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#224</span><strong>Anatolia Turkish</strong> — <span class="loc">Карон</span> — <span class="desc">Анатолийская кухня: мясо на гриле, мезе, баклава.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#225</span><strong>Bosphorus Grill</strong> — <span class="loc">Патонг</span> — <span class="desc">Турецкий гриль. Адана, шиш кебаб, пиде.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#226</span><strong>Madam Saree\'s Middle East</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Ливанская и арабская кухня. Хумус, мусака, фалафель.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#227</span><strong>Yam Yam Restaurant</strong> — <span class="loc">Ката</span> — <span class="desc">Корейская кухня: кимчи, пулькоги, пибимпаб.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#228</span><strong>Seoul Grill</strong> — <span class="loc">Патонг</span> — <span class="desc">Корейское барбекю с мангалом на столе.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#229</span><strong>Jin Ju Korean</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Аутентичная корейская кухня. Банчан, супы.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#230</span><strong>Hai Dao Restaurant</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Вьетнамская кухня. Фо-бо, спринг-роллы, лапша.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#231</span><strong>Vietnam Kitchen</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Вьетнамская столовая. Дешёво, быстро, вкусно.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#232</span><strong>Pho Viet</strong> — <span class="loc">Ката</span> — <span class="desc">Вьетнамский суп фо-бо и другие блюда.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#233</span><strong>Madam Pho</strong> — <span class="loc">Патонг</span> — <span class="desc">Вьетнамский суп, спринг-роллы, салаты.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#234</span><strong>Vientiane Lao</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Лаосская и тайская кухня. Салат из папайи, лапша.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#235</span><strong>Tien Gieng Vietnamese</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Вьетнамский стритфуд. Бан-ми, фо-га.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#236</span><strong>Barcelona Tapas</strong> — <span class="loc">Патонг</span> — <span class="desc">Испанские тапас, паэлья, сандрия.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#237</span><strong>La Palma Española</strong> — <span class="loc">Ката</span> — <span class="desc">Испанский ресторан с морепродуктами. Паэлья, хамон.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#238</span><strong>Banana Pancake Café</strong> — <span class="loc">Ката</span> — <span class="desc">Завтраки: банановые панкейки, омлеты, смузи.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#239</span><strong>Guiseppe\'s Italian</strong> — <span class="loc">Ката</span> — <span class="desc">Итальянская пицца и паста от шефа-итальянца.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#240</span><strong>En Vogue Kitchen</strong> — <span class="loc">Патонг</span> — <span class="desc">Фьюжн-кухня. Тайские вкусы с европейской подачей.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#241</span><strong>One Chun</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Аутентичная пхукетская кухня. Крабовый карри, свинина.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#242</span><strong>Sri Bungalow</strong> — <span class="loc">Ката</span> — <span class="desc">Пляжный ресторан. Гриль, морепродукты, коктейли.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#243</span><strong>Kata Mama</strong> — <span class="loc">Ката</span> — <span class="desc">Бюджетный ресторан на пляже. Pad thai, фри, кокосы.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#244</span><strong>Karon Mama</strong> — <span class="loc">Карон</span> — <span class="desc">Бюджетный ресторан на Кароне. Тайская классика.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#245</span><strong>Patong Mama</strong> — <span class="loc">Патонг</span> — <span class="desc">Семейный тайский ресторан. Большие порции.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#246</span><strong>Aroi Dee</strong> — <span class="loc">Ката</span> — <span class="desc">Авторская тайская кухня. Сет-меню, сезонные блюда.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#247</span><strong>Sabai Sabai</strong> — <span class="loc">Ката</span> — <span class="desc">Бюджетная тайская столовая. Вкусно, недорого.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#248</span><strong>Mae Sai</strong> — <span class="loc">Карон</span> — <span class="desc">Лапшичная с тайской кухней. Супы, вок.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#249</span><strong>Banana Corner</strong> — <span class="loc">Ката</span> — <span class="desc">Завтраки, смузи, блинчики. Популярно у туристов.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#250</span><strong>Roti Pa Phai</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Традиционный роти с бананом и сгущёнкой. Стритфуд.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#251</span><strong>Mee Hokkien</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Локальная лапша Хоккиен. Готовят только здесь.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#252</span><strong>O Cha Roti</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Роти с различными начинками. Сладкие и солёные.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#253</span><strong>Sea Salt Lounge & Grill</strong> — <span class="loc">Патонг</span> — <span class="desc">Пляжный ресторан с лаундж-атмосферой.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#254</span><strong>Mint Bar & Restaurant</strong> — <span class="loc">Ката</span> — <span class="desc">Тайская кухня, коктейли, живая музыка.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#255</span><strong>7 Seas Restaurant</strong> — <span class="loc">Ката</span> — <span class="desc">Морепродукты, интернациональная кухня.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#256</span><strong>Jongjit Kitchen</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Тайская кухня в локальном стиле. Порции огромные.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#257</span><strong>Chino\'s Café</strong> — <span class="loc">Ката</span> — <span class="desc">Кафе с завтраками весь день. Кофе, тосты, яйца.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#258</span><strong>Dibuk Restaurant</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Международная кухня в старом городе. Вино.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#259</span><strong>Ruan Thip</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Тайская кухня в деревянном доме. Атмосфера.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#260</span><strong>Suay</strong> — <span class="loc">Чернгталай</span> — <span class="desc">Авторская тайская кухня. Инстаграмное место.</span> <span class="tags"><span class="tag tag-price">$$$</span></span></li>
+
+<li><span class="num">#261</span><strong>Pirates House</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Пиратский ресторан с тайской кухней. Караоке, супы.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#262</span><strong>Bamboo Kitchen</strong> — <span class="loc">Ката</span> — <span class="desc">Уютное кафе с тайскими завтраками.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#263</span><strong>Mali Restaurant</strong> — <span class="loc">Ката</span> — <span class="desc">Тайская классика: том ям, пад тай, салат из папайи.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#264</span><strong>Best Beef BBQ</strong> — <span class="loc">Патонг</span> — <span class="desc">Тайское барбекю с мангалом на столе. All you can eat 299 THB.</span> <span class="tags"><span class="tag tag-price">299 THB</span></span></li>
+
+<li><span class="num">#265</span><strong>Shabushi</strong> — <span class="loc">Central Floresta</span> — <span class="desc">Японский шведский стол. Хот-пот, суши. Ограничение по времени.</span> <span class="tags"><span class="tag tag-price">399 THB</span></span></li>
+
+<li><span class="num">#266</span><strong>Buffalo Grill Thai</strong> — <span class="loc">Ката</span> — <span class="desc">Тайское BBQ. Свинина, курица, рыба на гриле.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#267</span><strong>ZEN Buffet</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Китайский шведский стол. Морепродукты, суши, десерты.</span> <span class="tags"><span class="tag tag-price">599 THB</span></span></li>
+
+<li><span class="num">#268</span><strong>BBQ King Buffet</strong> — <span class="loc">Патонг</span> — <span class="desc">Недорогой шведский стол с BBQ. Мясо, морепродукты, суши.</span> <span class="tags"><span class="tag tag-price">399 THB</span></span></li>
+
+<li><span class="num">#269</span><strong>Karon Buffet BBQ</strong> — <span class="loc">Карон</span> — <span class="desc">Бюджетный BBQ буфет. Всё включено за 299 THB.</span> <span class="tags"><span class="tag tag-price">299 THB</span></span></li>
+
+<li><span class="num">#270</span><strong>Amari Buffet</strong> — <span class="loc">Патонг</span> — <span class="desc">Завтрак-буфет в отеле Amari. Вид на море.</span> <span class="tags"><span class="tag tag-price">750 THB</span></span></li>
+
+<li><span class="num">#271</span><strong>Natural Restaurant</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Ресторан в тропическом саду. Тайская и интернациональная кухня.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#272</span><strong>Dhala Seafood</strong> — <span class="loc">Равай</span> — <span class="desc">Свежие морепродукты напротив рынка. Недорого.</span> <span class="tags"><span class="tag tag-price">$$</span></span></li>
+
+<li><span class="num">#273</span><strong>Loy Katan</strong> — <span class="loc">Ката</span> — <span class="desc">Тайский ресторан с пряным меню.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#274</span><strong>Krua Baan Nork</strong> — <span class="loc">Чалонг</span> — <span class="desc">Подлинная тайская кухня. Рыбное карри, паприка.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#275</span><strong>Baan Phutorn</strong> — <span class="loc">Пхукет-таун</span> — <span class="desc">Тайский ресторан в старом доме. Меню на каждый день.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+<li><span class="num">#276</span><strong>Chalong Cafe</strong> — <span class="loc">Чалонг</span> — <span class="desc">Локальное кафе с кофе и тайскими десертами.</span> <span class="tags"><span class="tag tag-price">$</span></span></li>
+
+</ul></div>
+
+<!-- 13. НОЧНАЯ ЖИЗНЬ -->
+<div class="section" id="nightlife">
+<div class="section-header"><h2>Ночная жизнь</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#277</div><h3>Бангла-роуд (Bangla Road)</h3><div class="loc">Патонг</div><div class="desc">Главная тусовочная улица. Go-go бары, клубы, диджеи, стрит-перформансы. Стендап.</div><div class="tags"><span class="tag tag-price">Вход 0–300 THB</span><span class="tag tag-time">18:00–4:00</span></div></div>
+
+<div class="entry"><div class="num">#278</div><h3>ILLUZION Nightclub</h3><div class="loc">Патонг, Бангла-роуд</div><div class="desc">Самый крупный ночной клуб Пхукета. EDM, хаус, лазер-шоу.</div><div class="tags"><span class="tag tag-price">Вход 300 THB</span><span class="tag tag-time">22:00–4:00</span></div></div>
+
+<div class="entry"><div class="num">#279</div><h3>Seduction Nightclub</h3><div class="loc">Патонг</div><div class="desc">Популярный клуб с международными диджеями. Три танцпола.</div><div class="tags"><span class="tag tag-price">Вход 200 THB</span><span class="tag tag-time">22:00–4:00</span></div></div>
+
+<div class="entry"><div class="num">#280</div><h3>Hollywood Club</h3><div class="loc">Патонг</div><div class="desc">Клуб с живой музыкой и караоке. Популярен среди местных.</div><div class="tags"><span class="tag tag-price">Вход 100 THB</span><span class="tag tag-time">22:00–3:00</span></div></div>
+
+<div class="entry"><div class="num">#281</div><h3>Candy Club</h3><div class="loc">Патонг</div><div class="desc">Лаунж-бар с коктейлями и кальяном. Спокойная атмосфера.</div><div class="tags"><span class="tag tag-price">Коктейли от 200 THB</span><span class="tag tag-time">19:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#282</div><h3>Rock Bar Phuket</h3><div class="loc">Патонг</div><div class="desc">Рок-бар с живой музыкой. Рок, металл, альтернатива.</div><div class="tags"><span class="tag tag-price">Пиво от 80 THB</span><span class="tag tag-time">18:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#283</div><h3>Reggae Bar</h3><div class="loc">Патонг</div><div class="desc">Расслабленный бар с регги-музыкой. Коктейли, джойнты.</div><div class="tags"><span class="tag tag-price">Пиво от 60 THB</span><span class="tag tag-time">16:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#284</div><h3>Sugar Club</h3><div class="loc">Патонг</div><div class="desc">Новый клуб с R&B и хип-хопом. Танцы.</div><div class="tags"><span class="tag tag-price">Вход 200 THB</span><span class="tag tag-time">22:00–3:00</span></div></div>
+
+<div class="entry"><div class="num">#285</div><h3>PJ Talent Show Bar</h3><div class="loc">Патонг</div><div class="desc">Трансвестит-шоу, кабаре, комедия. Весёлый вечер.</div><div class="tags"><span class="tag tag-price">Вход 200 THB</span><span class="tag tag-time">20:00–0:00</span></div></div>
+
+<div class="entry"><div class="num">#286</div><h3>Simon Cabaret Show</h3><div class="loc">Патонг</div><div class="desc">Знаменитое кабаре-шоу. Яркие костюмы, музыка, трансвеститы.</div><div class="tags"><span class="tag tag-price">1000–1500 THB</span><span class="tag tag-time">18:00, 19:30, 21:00</span></div></div>
+
+<div class="entry"><div class="num">#287</div><h3>Paradise Beach Party</h3><div class="loc">Парадайз-Бич</div><div class="desc">Еженедельные пляжные вечеринки. Фаер-шоу, диджеи.</div><div class="tags"><span class="tag tag-price">300 THB</span><span class="tag tag-time">Сб 14:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#288</div><h3>Soul Bar & Restaurant</h3><div class="loc">Патонг</div><div class="desc">Бар с живым джазом. Коктейли, кальян, уют.</div><div class="tags"><span class="tag tag-price">Коктейли от 250 THB</span><span class="tag tag-time">18:00–1:00</span></div></div>
+
+</div></div>
+
+<!-- 14. СЕРВИСЫ -->
+<div class="section" id="services">
+<div class="section-header"><h2>Полезные сервисы</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#289</div><h3>Почта Таиланда (Thailand Post)</h3><div class="loc">Пхукет-таун</div><div class="desc">Отправка посылок в Россию. EMS, обычная почта, коробки.</div><div class="tags"><span class="tag tag-price">Посылка от 500 THB</span><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#290</div><h3>Транспорт: трансфер в аэропорт</h3><div class="loc">Любой район</div><div class="desc">Такси или минивэн. Бронирование на сайте или через отель.</div><div class="tags"><span class="tag tag-price">от 600 THB</span></div></div>
+
+<div class="entry"><div class="num">#291</div><h3>Прачечная (Laundry)</h3><div class="loc">По всему Пхукету</div><div class="desc">Стирка 30–50 THB/кг. Сушка, глажка. Есть в каждом районе.</div><div class="tags"><span class="tag tag-price">30–50 THB/кг</span></div></div>
+
+<div class="entry"><div class="num">#292</div><h3>Обмен валют (SuperRich)</h3><div class="loc">Патонг, Пхукет-таун</div><div class="desc">Лучший курс валюты. Доллар, евро, рубли.</div><div class="tags"><span class="tag tag-price">Курс онлайн</span><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#293</div><h3>Сиделка / уход (Nanny)</h3><div class="loc">По запросу</div><div class="desc">Присмотр за детьми. Часовая или дневная оплата.</div><div class="tags"><span class="tag tag-price">от 200 THB/час</span></div></div>
+
+<div class="entry"><div class="num">#294</div><h3>Переводчик / гид</h3><div class="loc">Любой район</div><div class="desc">Русскоязычный гид. Экскурсии, помощь в быту.</div><div class="tags"><span class="tag tag-price">от 1000 THB/день</span></div></div>
+
+<div class="entry"><div class="num">#295</div><h3>Ремонт телефонов</h3><div class="loc">Патонг, Ката</div><div class="desc">Замена стекла, аккумулятора, разъёмов. Быстро.</div><div class="tags"><span class="tag tag-price">от 500 THB</span></div></div>
+
+<div class="entry"><div class="num">#296</div><h3>Ремонт байков</h3><div class="loc">По всему Пхукету</div><div class="desc">Мотомастерские. Шины, масло, тормоза, цепь.</div><div class="tags"><span class="tag tag-price">от 200 THB</span></div></div>
+
+<div class="entry"><div class="num">#297</div><h3>Сим-карты AIS / TrueMove</h3><div class="loc">7-Eleven, салоны</div><div class="desc">Туристические симки. Интернет, звонки. 30–60 дней.</div><div class="tags"><span class="tag tag-price">от 300 THB</span></div></div>
+
+<div class="entry"><div class="num">#298</div><h3>Коворкинг (Hatch)</h3><div class="loc">Пхукет-таун</div><div class="desc">Коворкинг с интернетом. Рабочие места, переговорки.</div><div class="tags"><span class="tag tag-price">200 THB/день</span></div></div>
+
+<div class="entry"><div class="num">#299</div><h3>Коворкинг (The Village)</h3><div class="loc">Ката</div><div class="desc">Коворкинг на Кате. Спокойная атмосфера, Wi-Fi.</div><div class="tags"><span class="tag tag-price">150 THB/день</span></div></div>
+
+<div class="entry"><div class="num">#300</div><h3>Визовый ранер</h3><div class="loc">Агентства</div><div class="desc">Помощь с продлением визы. Выезд на границу, документы.</div><div class="tags"><span class="tag tag-price">от 1000 THB</span></div></div>
+
+</div></div>
+</div>
+
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add("visible");
+}
+});
+}, { threshold: 0.1 });
+
+document.querySelectorAll(".section").forEach(section => {
+observer.observe(section);
+});
+
+// Parallax cover
+window.addEventListener("scroll", function() {
+const cover = document.querySelector(".cover");
+const scrollY = window.scrollY;
+cover.style.backgroundPositionY = scrollY * 0.5 + "px";
+cover.querySelector(".cover-content").style.transform = "translateY(" + scrollY * 0.3 + "px)";
+});
+
+// Smooth scroll
+document.querySelectorAll(".nav a").forEach(anchor => {
+anchor.addEventListener("click", function(e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute("href"));
+target.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+});
+</script>
+
+</body>
+</html>

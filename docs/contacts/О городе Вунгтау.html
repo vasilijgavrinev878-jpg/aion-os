@@ -1,0 +1,349 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О городе — Вунгтау | AION</title>
+<style>
+  :root { --primary: #0A0F1E; --accent: #6366f1; --gold: #f59e0b; --text: #1e293b; --text-light: #64748b; --bg: #ffffff; --bg-alt: #f8fafc; --border: #e2e8f0; --success: #22c55e; --warning: #f59e0b; --danger: #ef4444; --info: #3b82f6; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; line-height: 1.6; color: var(--text); background: var(--bg); max-width: 720px; margin: 0 auto; padding: 0 16px 80px; }
+  .header { position: sticky; top: 0; z-index: 100; background: var(--primary); color: white; padding: 16px; margin: 0 -16px; border-radius: 0 0 24px 24px; text-align: center; }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+  .quick-actions { display: flex; gap: 8px; padding: 16px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .quick-actions::-webkit-scrollbar { display: none; }
+  .quick-btn { flex-shrink: 0; padding: 10px 18px; border-radius: 100px; font-size: 13px; font-weight: 600; text-decoration: none; color: white; display: inline-flex; align-items: center; gap: 6px; }
+  .quick-btn.emergency { background: var(--danger); }
+  .quick-btn.transport { background: var(--info); }
+  .quick-btn.sim { background: var(--success); }
+  .quick-btn.currency { background: var(--gold); color: #1e293b; }
+  .quick-btn.food { background: #ec4899; }
+  .toc { background: var(--bg-alt); border-radius: 16px; padding: 16px; margin: 8px 0 20px; border: 1px solid var(--border); }
+  .toc-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--primary); }
+  .toc-item { display: block; padding: 6px 0; color: var(--accent); text-decoration: none; font-size: 14px; border-bottom: 1px solid var(--border); }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { opacity: 0.8; }
+  .section { margin: 24px 0; padding: 20px; background: var(--bg); border-radius: 16px; border: 1px solid var(--border); }
+  .section-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section-title .emoji { font-size: 22px; }
+  .subsection { margin: 16px 0; padding: 14px; background: var(--bg-alt); border-radius: 12px; }
+  .subsection-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .card { padding: 12px; margin: 8px 0; background: white; border-radius: 10px; border: 1px solid var(--border); }
+  .card-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .card-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-label { font-weight: 500; }
+  .contact-value { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .info-box { padding: 12px 14px; border-radius: 10px; font-size: 13px; margin: 10px 0; line-height: 1.5; }
+  .info-box.tip { background: #f0fdf4; border-left: 3px solid var(--success); }
+  .info-box.warn { background: #fffbeb; border-left: 3px solid var(--warning); }
+  .info-box.danger { background: #fef2f2; border-left: 3px solid var(--danger); }
+  .info-box.info { background: #eff6ff; border-left: 3px solid var(--info); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media (max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 11px; font-weight: 600; margin: 2px; }
+  .tag.green { background: #dcfce7; color: #166534; }
+  .tag.yellow { background: #fef3c7; color: #92400e; }
+  .tag.red { background: #fee2e2; color: #991b1b; }
+  .tag.blue { background: #dbeafe; color: #1e40af; }
+  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  .price-table th { text-align: left; padding: 8px; background: var(--bg-alt); font-weight: 600; }
+  .price-table td { padding: 8px; border-bottom: 1px solid var(--border); }
+  ul, ol { padding-left: 20px; font-size: 14px; }
+  li { margin: 4px 0; }
+  .footer { text-align: center; padding: 32px 0 16px; font-size: 12px; color: var(--text-light); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Вунгтау, Вьетнам</h1>
+  <p>Полный гид для туристов и экспатов</p>
+</div>
+
+<div class="quick-actions">
+  <a href="#emergency" class="quick-btn emergency">🚨 Экстренно</a>
+  <a href="#transport" class="quick-btn transport">🚕 Транспорт</a>
+  <a href="#internet" class="quick-btn sim">📱 SIM / Internet</a>
+  <a href="#money" class="quick-btn currency">💰 Деньги</a>
+  <a href="#food" class="quick-btn food">🍜 Еда</a>
+</div>
+
+<div class="toc">
+  <div class="toc-title">📌 Содержание</div>
+  <a class="toc-item" href="#overview">1. Общая информация</a>
+  <a class="toc-item" href="#emergency">2. ☎️ Экстренные контакты</a>
+  <a class="toc-item" href="#weather">3. Погода и сезоны</a>
+  <a class="toc-item" href="#districts">4. Районы города</a>
+  <a class="toc-item" href="#transport">5. Транспорт</a>
+  <a class="toc-item" href="#airport">6. Аэропорт и трансфер</a>
+  <a class="toc-item" href="#internet">7. SIM-карты и Интернет</a>
+  <a class="toc-item" href="#money">8. Деньги и цены</a>
+  <a class="toc-item" href="#medicine">9. Медицина</a>
+  <a class="toc-item" href="#housing">10. Жильё</a>
+  <a class="toc-item" href="#food">11. Еда и рестораны</a>
+  <a class="toc-item" href="#safety">12. Безопасность</a>
+  <a class="toc-item" href="#visa">13. Виза и въезд</a>
+  <a class="toc-item" href="#families">14. Семьям с детьми</a>
+  <a class="toc-item" href="#nomads">15. Digital-номадам</a>
+  <a class="toc-item" href="#faq">16. FAQ — 20 вопросов</a>
+  <a class="toc-item" href="#checklist">17. Чек-лист: Первый день в Вунгтау</a>
+  <a class="toc-item" href="#links">18. Быстрые ссылки</a>
+</div>
+
+<div class="section" id="overview">
+  <div class="section-title"><span class="emoji">🏙</span> Общая информация</div>
+  <div class="card">
+    <div class="card-text">
+      <strong>Вунгтау</strong> (Vũng Tàu) — портовый город на юге Вьетнама, в 100 км от Хошимина.
+      Расположен на полуострове, известен своими пляжами, статуей Христа (уменьшенная копия Рио-де-Жанейро)
+      и нефтяной промышленностью. Популярное место для экспатов, работающих в нефтегазовом секторе.
+    </div>
+  </div>
+  <table class="price-table">
+    <tr><td><strong>Население</strong></td><td>~450 000</td></tr>
+    <tr><td><strong>Язык</strong></td><td>Вьетнамский (английский — в деловых кругах, русский — нефтяное комьюнити)</td></tr>
+    <tr><td><strong>Валюта</strong></td><td>Вьетнамский донг (VND) — 1 CNY ≈ 3 400 VND</td></tr>
+    <tr><td><strong>Часовой пояс</strong></td><td>UTC+7 (Индо­китай)</td></tr>
+    <tr><td><strong>Телефонный код</strong></td><td>+84</td></tr>
+    <tr><td><strong>Розетки</strong></td><td>Типы A, C, F (220V / 50Hz)</td></tr>
+  </table>
+</div>
+
+<div class="section" id="emergency">
+  <div class="section-title"><span class="emoji">🚨</span> Экстренные контакты</div>
+  <div class="info-box danger"><strong>Важно!</strong> Сохраните эти номера.</div>
+  <div class="contact-item"><span class="contact-label">🚑 Скорая помощь</span><a href="tel:115" class="contact-value">115</a></div>
+  <div class="contact-item"><span class="contact-label">🚒 Пожарная служба</span><a href="tel:114" class="contact-value">114</a></div>
+  <div class="contact-item"><span class="contact-label">🚔 Полиция</span><a href="tel:113" class="contact-value">113</a></div>
+  <div class="contact-item"><span class="contact-label">🏥 Vung Tau International Hospital</span><a href="tel:+842543625355" class="contact-value">+84 254 362 5355</a></div>
+  <div class="contact-item"><span class="contact-label">🏥 Le Loi Hospital</span><a href="tel:+842543855950" class="contact-value">+84 254 385 5950</a></div>
+  <div class="contact-item"><span class="contact-label">🏥 Family Medical Practice VT</span><a href="tel:+842543521222" class="contact-value">+84 254 352 1222</a></div>
+  <div class="contact-item"><span class="contact-label">🕊 Консульство России (Хошимин)</span><a href="tel:+842839396336" class="contact-value">+84 28 3939 6336</a></div>
+</div>
+
+<div class="section" id="weather">
+  <div class="section-title"><span class="emoji">🌤</span> Погода и сезоны</div>
+  <p style="font-size:14px; margin-bottom:10px;">Тропический. Среднегодовая температура +27°C.</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">☀️ Сухой сезон</div>
+      <div class="card-text">Ноябрь — апрель. +25–34°C. Солнечно, мало дождей.<br><span class="tag yellow">Высокий сезон</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌧 Сезон дождей</div>
+      <div class="card-text">Май — октябрь. +24–32°C. Ливни, но ветер освежает.<br><span class="tag blue">Низкий сезон</span></div>
+    </div>
+  </div>
+  <div class="info-box tip"><strong>Лучшее время:</strong> ноябрь — апрель. Комфортно для пляжа и прогулок.</div>
+</div>
+
+<div class="section" id="districts">
+  <div class="section-title"><span class="emoji">🗺</span> Районы города</div>
+  <div class="subsection">
+    <div class="subsection-title">🏖 Центр — пляжный район (Bai Truoc, Bai Sau)</div>
+    <div class="card-text">Главные пляжи. Bai Truoc — передний пляж, Bai Sau (Thuy Van) — задний пляж, более спокойный. Отели, рестораны, бары вдоль набережной. <span class="tag green">Туристический центр</span></div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">⛰ Район горы Нюн (Nui Lon / Nui Nho)</div>
+    <div class="card-text">Где находится статуя Христа (Christ the King). Видовые точки, храмы, тихие улочки. <span class="tag yellow">Для прогулок</span></div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🏘 Районы Phu My / Phuoc Tinh</div>
+    <div class="card-text">Промышленные зоны, нефтяные терминалы. Много рабочих-экспатов. <span class="tag yellow">Деловой район</span></div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🌴 Thang Tam / Nguyen An Ninh</div>
+    <div class="card-text">Район с аутентичной вьетнамской кухней, рынками и бюджетным жильём. <span class="tag yellow">Местный колорит</span></div>
+  </div>
+</div>
+
+<div class="section" id="transport">
+  <div class="section-title"><span class="emoji">🚕</span> Транспорт</div>
+  <div class="card">
+    <div class="card-title">🚗 Grab / Такси</div>
+    <div class="card-text">Grab работает. Такси — Mai Linh, Vinasun. Поездка по городу — от 30 000 VND (~110 ₽).</div>
+  </div>
+  <div class="card">
+    <div class="card-title">🏍 Аренда мотоцикла</div>
+    <div class="card-text">100 000 – 150 000 VND/день. Движение спокойнее, чем в Хошимине. <span class="tag green">Рекомендуется</span></div>
+  </div>
+  <div class="card">
+    <div class="card-title">🚢 Водный транспорт</div>
+    <div class="card-text">Скоростной катер Хошимин — Вунгтау (1,5 ч, от 200 000 VND). Отправление от Thanh Da — удобная альтернатива автобусу.</div>
+  </div>
+</div>
+
+<div class="section" id="airport">
+  <div class="section-title"><span class="emoji">✈️</span> Как добраться</div>
+  <div class="card-text">
+    Ближайший аэропорт — <strong>Таншоннят (SGN)</strong> в Хошимине. Далее:
+  </div>
+  <table class="price-table">
+    <tr><th>Вид</th><th>Цена (VND)</th><th>Время</th></tr>
+    <tr><td>Скоростной катер (Хошимин — Вунгтау)</td><td>200 000 – 350 000</td><td>1,5 ч</td></tr>
+    <tr><td>Автобус (Хошимин — Вунгтау)</td><td>100 000 – 150 000</td><td>2–3 ч</td></tr>
+    <tr><td>Такси (аэропорт — Вунгтау)</td><td>800 000 – 1 200 000</td><td>2 ч</td></tr>
+  </table>
+  <div class="info-box tip">Катер — самый удобный вариант. Прибывает прямо в центр Вунгтау.</div>
+</div>
+
+<div class="section" id="internet">
+  <div class="section-title"><span class="emoji">📱</span> SIM-карты и Интернет</div>
+  <table class="price-table">
+    <tr><th>Оператор</th><th>Тариф (месяц)</th><th>Трафик</th></tr>
+    <tr><td><strong>Viettel</strong></td><td>100 000 VND</td><td>5 GB/день</td></tr>
+    <tr><td><strong>Mobifone</strong></td><td>120 000 VND</td><td>4 GB/день</td></tr>
+    <tr><td><strong>Vinaphone</strong></td><td>90 000 VND</td><td>3 GB/день</td></tr>
+  </table>
+</div>
+
+<div class="section" id="money">
+  <div class="section-title"><span class="emoji">💰</span> Деньги и цены</div>
+  <table class="price-table">
+    <tr><th>Категория</th><th>Цена (VND)</th><th>~₽</th></tr>
+    <tr><td>Кофе</td><td>15 000 – 35 000</td><td>55 – 125</td></tr>
+    <tr><td>Обед (уличная еда)</td><td>25 000 – 50 000</td><td>90 – 180</td></tr>
+    <tr><td>Обед (ресторан)</td><td>80 000 – 200 000</td><td>290 – 720</td></tr>
+    <tr><td>Морепродукты</td><td>150 000 – 300 000</td><td>540 – 1 080</td></tr>
+    <tr><td>Пиво</td><td>10 000 – 20 000</td><td>36 – 72</td></tr>
+    <tr><td>Массаж (60 мин)</td><td>200 000 – 350 000</td><td>720 – 1 260</td></tr>
+  </table>
+</div>
+
+<div class="section" id="medicine">
+  <div class="section-title"><span class="emoji">🏥</span> Медицина</div>
+  <div class="contact-item"><span class="contact-label">Vung Tau International Hospital</span><a href="tel:+842543625355" class="contact-value">+84 254 362 5355</a></div>
+  <div class="contact-item"><span class="contact-label">Le Loi Hospital</span><a href="tel:+842543855950" class="contact-value">+84 254 385 5950</a></div>
+  <div class="contact-item"><span class="contact-label">Family Medical Practice</span><a href="tel:+842543521222" class="contact-value">+84 254 352 1222</a></div>
+  <div class="info-box warn"><strong>Страховка обязательна.</strong> Серьёзные случаи — эвакуация в Хошимин.</div>
+</div>
+
+<div class="section" id="housing">
+  <div class="section-title"><span class="emoji">🏠</span> Жильё</div>
+  <table class="price-table">
+    <tr><th>Тип</th><th>Цена/мес (VND)</th><th>~₽</th></tr>
+    <tr><td>Комната (центр)</td><td>4 – 8 млн</td><td>14 400 – 29 000</td></tr>
+    <tr><td>Студия (Bai Sau)</td><td>6 – 12 млн</td><td>21 600 – 43 200</td></tr>
+    <tr><td>1-комнатная</td><td>8 – 15 млн</td><td>29 000 – 54 000</td></tr>
+    <tr><td>Апартаменты (вид на море)</td><td>12 – 25 млн</td><td>43 000 – 90 000</td></tr>
+  </table>
+  <div class="info-box tip">Вунгтау — дешевле Хошимина. Ищите через Facebook-группы и AION.</div>
+</div>
+
+<div class="section" id="food">
+  <div class="section-title"><span class="emoji">🍜</span> Еда и рестораны</div>
+  <div class="subsection">
+    <div class="subsection-title">🥢 Что попробовать</div>
+    <ul>
+      <li><strong>Бань кхань</strong> (Banh Khan) — суп с крабом и лапшой — специалитет Вунгтау</li>
+      <li><strong>Морепродукты</strong> — рынок Xom Luoi — лучшие и дешёвые морепродукты</li>
+      <li><strong>Баньми</strong> — 15 000–25 000 VND</li>
+      <li><strong>Лобстеры</strong> — от 200 000 VND</li>
+    </ul>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">🥤 Напитки</div>
+    <ul>
+      <li><strong>Кокосовая вода</strong> — 15 000–20 000 VND</li>
+      <li><strong>Пиво</strong> — от 10 000 VND</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="safety">
+  <div class="section-title"><span class="emoji">🔒</span> Безопасность</div>
+  <div class="info-box info">Вунгтау — безопасный город для экспатов. Основные риски: солнце и вода.</div>
+  <ul>
+    <li>⚠️ На Bai Truoc — сильные волны, будьте осторожны</li>
+    <li>🦟 Репеллент от комаров</li>
+    <li>🚰 Вода из-под крана не пить</li>
+  </ul>
+</div>
+
+<div class="section" id="visa">
+  <div class="section-title"><span class="emoji">🛂</span> Виза и въезд</div>
+  <div class="info-box tip">Вунгтау — популярное место для визарана через катер в Хошимин.</div>
+  <table class="price-table">
+    <tr><th>Гражданство</th><th>Безвизовый срок</th></tr>
+    <tr><td>Россия</td><td>45 дней</td></tr>
+    <tr><td>Казахстан</td><td>45 дней</td></tr>
+    <tr><td>Украина</td><td>15 дней (eVisa)</td></tr>
+    <tr><td>Беларусь</td><td>45 дней</td></tr>
+  </table>
+</div>
+
+<div class="section" id="families">
+  <div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Семьям с детьми</div>
+  <ul>
+    <li><strong>Пляж Bai Sau</strong> — спокойный, пологий вход, подходит для детей</li>
+    <li><strong>Статуя Христа</strong> — 800 ступеней, подъём с детьми возможен</li>
+    <li><strong>Морепродукты Xom Luoi</strong> — интересно детям: живые крабы, креветки</li>
+    <li><strong>Международные школы:</strong> есть, от $400/мес</li>
+  </ul>
+</div>
+
+<div class="section" id="nomads">
+  <div class="section-title"><span class="emoji">💻</span> Digital-номадам</div>
+  <div class="card">
+    <div class="card-text">
+      Вунгтау — тихий город для работы. Подходит больше для спокойной жизни, чем активного номадства.
+      <strong>Wi-Fi:</strong> 30–80 Мбит/с.
+      <strong>Коворкинги:</strong> несколько при отелях. <strong>Стоимость жизни:</strong> от $500/мес.
+    </div>
+  </div>
+</div>
+
+<div class="section" id="faq">
+  <div class="section-title"><span class="emoji">❓</span> FAQ — 20 вопросов</div>
+  <div class="subsection"><div class="subsection-title">1. Нужна ли виза?</div><div class="card-text">Россиянам — 45 дней.</div></div>
+  <div class="subsection"><div class="subsection-title">2. Как добраться из Хошимина?</div><div class="card-text">Катер (1,5 ч) или автобус (2–3 ч).</div></div>
+  <div class="subsection"><div class="subsection-title">3. Когда лучше?</div><div class="card-text">Ноябрь — апрель.</div></div>
+  <div class="subsection"><div class="subsection-title">4. Сколько стоит жильё?</div><div class="card-text">От 4 млн VND/мес.</div></div>
+  <div class="subsection"><div class="subsection-title">5. Есть ли русские?</div><div class="card-text">Да, нефтяное комьюнити. Меньше, чем в Нячанге.</div></div>
+  <div class="subsection"><div class="subsection-title">6. Что посмотреть?</div><div class="card-text">Статуя Христа, маяк, Bai Sau, Bai Truoc.</div></div>
+  <div class="subsection"><div class="subsection-title">7. Чистые ли пляжи?</div><div class="card-text">Bai Sau — чище. Bai Truoc — ближе к порту.</div></div>
+  <div class="subsection"><div class="subsection-title">8. Есть ли ночная жизнь?</div><div class="card-text">Несколько баров на набережной. Скромно.</div></div>
+  <div class="subsection"><div class="subsection-title">9. Транспорт?</div><div class="card-text">Мотоцикл, Grab, такси.</div></div>
+  <div class="subsection"><div class="subsection-title">10. Язык?</div><div class="card-text">Английский — в туристических зонах.</div></div>
+  <div class="subsection"><div class="subsection-title">11. Море?</div><div class="card-text">Купаться можно, но бывают волны и медузы.</div></div>
+  <div class="subsection"><div class="subsection-title">12. Как продлить визу?</div><div class="card-text">Через агентства в Хошимине.</div></div>
+  <div class="subsection"><div class="subsection-title">13. Интернет?</div><div class="card-text">30–80 Мбит/с.</div></div>
+  <div class="subsection"><div class="subsection-title">14. Детям?</div><div class="card-text">Bai Sau, статуя, рынки.</div></div>
+  <div class="subsection"><div class="subsection-title">15. Аэропорт?</div><div class="card-text">Через Хошимин (SGN), далее катер/автобус.</div></div>
+  <div class="subsection"><div class="subsection-title">16. Где есть?</div><div class="card-text">Xom Luoi — морепродукты. Уличные кафе — фо.</div></div>
+  <div class="subsection"><div class="subsection-title">17. Безопасно?</div><div class="card-text">Да. Очень спокойный город.</div></div>
+  <div class="subsection"><div class="subsection-title">18. Как сэкономить?</div><div class="card-text">Есть в уличных кафе, готовить самим.</div></div>
+  <div class="subsection"><div class="subsection-title">19. Вода?</div><div class="card-text">Только бутилированная.</div></div>
+  <div class="subsection"><div class="subsection-title">20. Бизнес?</div><div class="card-text">Через юриста, ERC, от $10 000.</div></div>
+</div>
+
+<div class="section" id="checklist">
+  <div class="section-title"><span class="emoji">✅</span> Чек-лист: Первый день в Вунгтау</div>
+  <ol>
+    <li>Добраться из Хошимина на катере</li>
+    <li>Заселиться в отель (Bai Sau — лучший выбор)</li>
+    <li>Купить SIM в ближайшем магазине Viettel</li>
+    <li>Снять наличные</li>
+    <li>Прогуляться по набережной Bai Sau</li>
+    <li>Поужинать морепродуктами на Xom Luoi</li>
+    <li>Подняться к статуе Христа (утром следующего дня)</li>
+  </ol>
+</div>
+
+<div class="section" id="links">
+  <div class="section-title"><span class="emoji">🔗</span> Быстрые ссылки</div>
+  <div class="contact-item"><span class="contact-label">🏠 AION — аренда жилья</span><a class="contact-value" href="#">Открыть в Mini App</a></div>
+  <div class="contact-item"><span class="contact-label">🚕 AION — трансфер</span><a class="contact-value" href="#">Открыть в Mini App</a></div>
+  <div class="contact-item"><span class="contact-label">💬 Чат AION Вунгтау</span><a class="contact-value" href="#">Telegram</a></div>
+</div>
+
+<div class="footer">
+  <p>© 2026 AION — Ваш городской помощник в Вунгтау</p>
+  <p style="margin-top:8px; opacity:0.6;">Telegram Mini App</p>
+</div>
+
+</body>
+</html>

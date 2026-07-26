@@ -1,0 +1,513 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Визитки AION — стратегия распространения | Нячанг</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact}
+body{font-family:system-ui,-apple-system,sans-serif;max-width:960px;margin:2em auto;padding:0 1.5em;line-height:1.6;color:#1a1a2e;background:#fafafa}
+h1{font-size:2.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.15em;text-align:center}
+h1 span{color:#d4a017}
+.subtitle{text-align:center;color:#666;font-size:0.95rem;margin-bottom:2em}
+
+h2{font-size:1.5rem;font-weight:700;margin-top:2.5em;padding-bottom:0.3em;border-bottom:3px solid #d4a017;display:flex;align-items:center;gap:10px}
+h2 .badge{font-size:0.7rem;background:#1a1a2e;color:#fff;padding:2px 10px;border-radius:10px;font-weight:600;letter-spacing:0.3px}
+h3{font-size:1.15rem;font-weight:600;margin-top:1.8em;margin-bottom:0.5em}
+
+table{width:100%;border-collapse:collapse;margin:1em 0;font-size:0.9rem}
+th,td{border:1px solid #ddd;padding:8px 12px;text-align:left;vertical-align:top}
+th{background:#1a1a2e;color:#fff;font-weight:600;font-size:0.85rem}
+tr:nth-child(even){background:#f5f5f5}
+
+blockquote{border-left:3px solid #d4a017;margin:1.2em 0;padding:0.8em 1.2em;background:#faf6ef;font-size:0.9rem;border-radius:0 6px 6px 0}
+blockquote strong{color:#1a1a2e}
+
+hr{border:none;border-top:1px solid #e0d5c1;margin:2em 0}
+
+.people-bar{display:flex;justify-content:center;gap:12px;margin:1.5em 0;flex-wrap:wrap}
+.person{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;border-radius:20px;padding:6px 18px;font-size:0.9rem;font-weight:600;letter-spacing:0.5px}
+
+.loc-card{background:#fff;border:1px solid #e0d5c1;border-radius:8px;padding:1em 1.2em;margin:0.6em 0}
+.loc-card .name{font-weight:700;font-size:1rem;margin-bottom:0.15em}
+.loc-card .stats{font-size:0.85rem;color:#555;line-height:1.6}
+.loc-card .stats span{display:inline-block;min-width:90px;color:#888;font-size:0.8rem}
+.loc-card .tag{display:inline-block;font-size:0.7rem;background:#e8f5e9;color:#2e7d32;padding:1px 8px;border-radius:8px;margin-left:6px}
+
+.day-row{background:#fff;border:1px solid #e0d5c1;border-radius:6px;padding:0.5em 1em;margin:0.25em 0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 15px;font-size:0.88rem}
+.day-row .dow{font-weight:700;color:#d4a017;min-width:32px}
+.day-row .slot{color:#666;font-size:0.82rem;min-width:48px}
+.day-row .loc{font-weight:500}
+.day-row .note{color:#999;font-size:0.78rem}
+
+.mockup{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin:1.5em 0}
+.mockup .label{font-size:0.7rem;color:#888;text-align:center;margin-top:4px}
+.front-card{width:340px;height:200px;border-radius:8px;padding:18px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;position:relative;font-family:sans-serif;border:1px solid #555;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+.back-card{width:340px;height:200px;border-radius:8px;padding:18px;background:#fff;color:#333;position:relative;font-family:sans-serif;border:1px solid #d4a017;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1em;margin:1em 0}
+@media(max-width:700px){.grid-2{grid-template-columns:1fr}}
+.stat-box{background:#fff;border:1px solid #e0d5c1;border-radius:8px;padding:1em}
+.stat-box .num{font-size:1.6rem;font-weight:700;color:#1a1a2e}
+.stat-box .desc{font-size:0.82rem;color:#666;margin-top:2px}
+.stat-box .sub{font-size:0.75rem;color:#999;margin-top:4px}
+
+.toc{background:#fff;border:1px solid #e0d5c1;border-radius:8px;padding:1em 1.5em;margin:1.5em 0}
+.toc a{color:#1a1a2e;text-decoration:none;display:block;padding:2px 0;font-size:0.9rem}
+.toc a:hover{color:#d4a017}
+.toc .toc-h2{font-weight:600;margin-top:4px}
+.toc .toc-h3{padding-left:1.2em;font-size:0.82rem;color:#555}
+
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8em;margin:1em 0}
+@media(max-width:600px){.kpi-grid{grid-template-columns:1fr}}
+.kpi-card{background:#fff;border:1px solid #e0d5c1;border-radius:8px;padding:0.8em;text-align:center}
+.kpi-card .val{font-size:1.3rem;font-weight:700}
+.kpi-card .lbl{font-size:0.78rem;color:#666}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- TITLE -->
+<!-- ============================================================ -->
+<h1>Визитки <span>AION</span> — стратегия распространения</h1>
+<p class="subtitle">Нячанг · Первый месяц · Команда: Женя, Вася, Влад, Ваня</p>
+
+<div class="people-bar">
+  <span class="person">👤 Женя</span>
+  <span class="person">👤 Вася</span>
+  <span class="person">👤 Влад</span>
+  <span class="person">👤 Ваня</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- СОДЕРЖАНИЕ -->
+<!-- ============================================================ -->
+<div class="toc">
+  <div class="toc-h2"><a href="#s1">1. Тираж и этапы печати</a></div>
+  <div class="toc-h2"><a href="#s2">2. Локации и трафик</a></div>
+  <div class="toc-h3"><a href="#s2a">2.1 Карта локаций</a></div>
+  <div class="toc-h3"><a href="#s2b">2.2 Матрица времени и трафика</a></div>
+  <div class="toc-h2"><a href="#s3">3. График раздачи — первый месяц</a></div>
+  <div class="toc-h3"><a href="#s3a">3.1 Неделя 0 — предзапуск</a></div>
+  <div class="toc-h3"><a href="#s3b">3.2 Недели 1–2 — основной заход</a></div>
+  <div class="toc-h3"><a href="#s3c">3.3 Недели 3–4 — масштаб. Аэропорт и офлайн-точки</a></div>
+  <div class="toc-h3"><a href="#s3d">3.4 Со второго месяца — найм промоутеров</a></div>
+  <div class="toc-h2"><a href="#s4">4. Дизайн визитки</a></div>
+  <div class="toc-h3"><a href="#s4a">4.1 Макет</a></div>
+  <div class="toc-h3"><a href="#s4b">4.2 Спецификация печати</a></div>
+  <div class="toc-h2"><a href="#s5">5. Бюджет</a></div>
+  <div class="toc-h2"><a href="#s6">6. KPI и учёт</a></div>
+  <div class="toc-h2"><a href="#s7">7. Риски и сценарии</a></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 1. ТИРАЖ -->
+<!-- ============================================================ -->
+<h2 id="s1">1. Тираж и этапы печати</h2>
+
+<table>
+<tr><th>Этап</th><th>Шт</th><th>Стоимость</th><th>Логика</th></tr>
+<tr>
+  <td><strong>Предзапуск</strong></td>
+  <td>500</td>
+  <td>350,000₫</td>
+  <td>Тест дизайна, скрипта, реакции прохожих. 2–3 выхода (набережная, ТРЦ, рынок). После — разбор и правки.</td>
+</tr>
+<tr>
+  <td><strong>Запуск</strong> (нед 1–2)</td>
+  <td>2,000</td>
+  <td>~1,400,000₫</td>
+  <td>Основной тираж. 4 человека × 2–3 выхода в день = 200–300 визиток за смену. Хватает на 7–10 выходов.</td>
+</tr>
+<tr>
+  <td><strong>Масштаб</strong> (нед 3–4)</td>
+  <td>3,000</td>
+  <td>~2,100,000₫</td>
+  <td>Добиваем оставшиеся локации + стопки в заведениях + аэропорт. Часть уходит на пассивное распространение.</td>
+</tr>
+<tr style="background:#faf6ef">
+  <td><strong>Всего месяц</strong></td>
+  <td><strong>5,500</strong></td>
+  <td><strong>~3,850,000₫</strong></td>
+  <td>С запасом 10% на брак, потерю, повторный заход</td>
+</tr>
+</table>
+
+<blockquote>
+<strong>Принцип:</strong> 500 первыми → тест → правки → 5,000 финал. Не печатать всё сразу. Если дизайн не заходит — теряем только 350k, не 4 млн.
+</blockquote>
+
+<div class="grid-2">
+  <div class="stat-box">
+    <div class="num">700₫</div>
+    <div class="desc">Стоимость 1 визитки при тираже 500</div>
+    <div class="sub">350г/м², матовая ламинация, двусторонняя</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">~550₫</div>
+    <div class="desc">Стоимость 1 визитки при тираже 5,500</div>
+    <div class="sub">Эффект масштаба — дешевле на 20%</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 2. ЛОКАЦИИ -->
+<!-- ============================================================ -->
+<h2 id="s2">2. Локации и трафик</h2>
+
+<h3 id="s2a">2.1 Карта локаций</h3>
+<p style="margin-bottom:1em;font-size:0.9rem;color:#555">Локации отсортированы по приоритету. Все четверо работают в одной локации за раз, насыщая её полностью, затем переходят к следующей.</p>
+
+<div class="loc-card">
+  <div class="name">🏖️ Набережная Чан Фу (Tran Phu) <span class="tag">приоритет 1</span></div>
+  <div class="stats">
+    <span>Трафик:</span> 10,000+ чел/день в сезон<br>
+    <span>Пик:</span> 6:00–8:00 (зарядка, бег) · 16:00–18:30 (закат, променад)<br>
+    <span>Аудитория:</span> Туристы, экспаты, местные. Самый разнообразный поток.<br>
+    <span>Тактика:</span> Растянуться вдоль променада — каждый 300–400 м. На закате народ расслаблен, открыт к общению.
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="name">🏪 Vincom Plaza / Nha Trang Center <span class="tag">приоритет 1</span></div>
+  <div class="stats">
+    <span>Трафик:</span> 5,000–8,000 чел/день<br>
+    <span>Пик:</span> 10:00–11:30 · 17:00–20:00<br>
+    <span>Аудитория:</span> Экспаты, местные с доходом, туристы с деньгами. Самый платёжеспособный поток.<br>
+    <span>Тактика:</span> Двое у главного входа, двое у фудкорта/выхода. Вручаем при выходе — человек свободен, может прочитать.
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="name">🌙 Ночной рынок + туристическая Tran Phu <span class="tag">приоритет 1</span></div>
+  <div class="stats">
+    <span>Трафик:</span> 3,000–5,000 чел/вечер<br>
+    <span>Пик:</span> 18:30–21:30<br>
+    <span>Аудитория:</span> Туристы (русские, китайцы, корейцы), гуляющие пары, компании.<br>
+    <span>Тактика:</span> Двое работают начало рынка, двое — середину/конец. Люди в настроении, берут охотно. Пятница/суббота — максимум.
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="name">🇷🇺 Русский квартал (Nguyen Thien Thuat / район ж/д вокзала) <span class="tag">приоритет 1</span></div>
+  <div class="stats">
+    <span>Трафик:</span> 2,000–4,000 русскоговорящих/день<br>
+    <span>Пик:</span> 8:00–10:00 (рынки, завтраки) · 17:00–19:00 (ужин)<br>
+    <span>Аудитория:</span> Ядро ЦА — русские экспаты и туристы. Самые тёплые контакты.<br>
+    <span>Тактика:</span> Обходим русские кафе, магазины (Мир, У Михалыча), хостелы. Личное вручение + стопки на стойках.
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="name">☕ Кафе и коворкинги (Smart Cafe, Cộng, The Workshop) <span class="tag">приоритет 2</span></div>
+  <div class="stats">
+    <span>Трафик:</span> 500–1,000 чел/день на точку<br>
+    <span>Пик:</span> 8:00–10:00 · 15:00–17:00<br>
+    <span>Аудитория:</span> Digital-номады, фрилансеры — те, кто чаще других нуждается в услугах.<br>
+    <span>Тактика:</span> Разбиваемся по 2, за час обходим 3–4 кафе. Оставляем стопки + подставку на стойку. Договариваемся с бариста.
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="name">✈️ Аэропорт Камрань (зона прилёта) <span class="tag">приоритет 2</span></div>
+  <div class="stats">
+    <span>Трафик:</span> 10–15 рейсов из РФ/СНГ в неделю<br>
+    <span>Пик:</span> По расписанию (12:00–15:00, дневные прилёты)<br>
+    <span>Аудитория:</span> Самые «горячие» клиенты — только прилетели, нужно всё: жильё, транспорт, симка, еда.<br>
+    <span>Тактика:</span> Работаем на парковке/выходе из зоны прилёта + в автобусах-шаттлах до города.
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="name">🏖️ Пляжные клубы (Luisiane, Sunbat, Aloha) <span class="tag">приоритет 3</span></div>
+  <div class="stats">
+    <span>Трафик:</span> 1,000–2,000 чел/день на клуб<br>
+    <span>Пик:</span> 15:00–18:00<br>
+    <span>Аудитория:</span> Туристы и экспаты, отдыхающие. Расслаблены, расположены к общению.<br>
+    <span>Тактика:</span> Работаем при выходе. На входе люди торопятся отдохнуть — на выходе у них есть время.
+  </div>
+</div>
+
+<h3 id="s2b">2.2 Матрица времени и трафика</h3>
+
+<table>
+<tr><th>Время</th><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th></tr>
+<tr>
+  <td>6:00–8:00</td>
+  <td colspan="2" style="color:#999;font-size:0.8rem">—</td>
+  <td>🏖️ Набережная</td>
+  <td colspan="2" style="color:#999;font-size:0.8rem">—</td>
+  <td>🏖️ Набережная</td>
+  <td>🏖️ Набережная</td>
+</tr>
+<tr>
+  <td>10:00–12:00</td>
+  <td>🇷🇺 Русский кв</td>
+  <td>🏪 Vincom</td>
+  <td>☕ Кафе</td>
+  <td>🇷🇺 Русский кв</td>
+  <td>☕ Кафе</td>
+  <td>🏪 Vincom</td>
+  <td>🇷🇺 Кафе бранч</td>
+</tr>
+<tr>
+  <td>16:30–18:30</td>
+  <td>🏖️ Набережная</td>
+  <td>🏖️ Набережная</td>
+  <td>🏪 Vincom</td>
+  <td>🏖️ Набережная</td>
+  <td>🏖️ + пляж</td>
+  <td>🏖️ Пляж весь</td>
+  <td>🏪 Vincom</td>
+</tr>
+<tr>
+  <td>19:00–21:30</td>
+  <td style="color:#999;font-size:0.8rem">—</td>
+  <td>🌙 Ночной рынок</td>
+  <td style="color:#999;font-size:0.8rem">—</td>
+  <td>🍸 Бары</td>
+  <td>🌙 Рынок + бары</td>
+  <td>🌙 Туристическая</td>
+  <td>🏖️ Закат</td>
+</tr>
+</table>
+
+<p style="font-size:0.85rem;color:#666">В каждой ячейке — все 4 человека. Цветные дни = пиковые (максимум людей).</p>
+
+<!-- ============================================================ -->
+<!-- 3. ГРАФИК -->
+<!-- ============================================================ -->
+<h2 id="s3">3. График раздачи — первый месяц</h2>
+
+<h3 id="s3a">3.1 Неделя 0 — предзапуск (тест, 500 шт, 3 дня)</h3>
+
+<table>
+<tr><th>День</th><th>Локация</th><th>Время</th><th>Кто</th><th>Шт</th><th>Цель теста</th></tr>
+<tr>
+  <td>Ср</td>
+  <td>🏖️ Набережная (юг)</td>
+  <td>16:30–18:30</td>
+  <td>Все 4</td>
+  <td>~200</td>
+  <td>Проверить скрипт: люди берут? какие слова работают? сколько диалогов?</td>
+</tr>
+<tr>
+  <td>Чт</td>
+  <td>🏪 Vincom (вход + фудкорт)</td>
+  <td>17:00–19:00</td>
+  <td>Все 4</td>
+  <td>~200</td>
+  <td>Сравнить конверсию с набережной. Кто берёт охотнее?</td>
+</tr>
+<tr>
+  <td>Пт</td>
+  <td>🌙 Ночной рынок</td>
+  <td>19:00–21:00</td>
+  <td>Все 4</td>
+  <td>~100</td>
+  <td>Вечерний трафик. Ночная атмосфера — влияет?
+
+</td></tr></table>
+
+<p style="margin-top:0.5em;font-size:0.9rem"><strong>Суббота — разбор:</strong> Встреча команды. Обсуждаем: <br>
+① Где больше брали? ② Какие фразы работают? ③ Что говорили люди? ④ Что изменить в дизайне?<br>
+→ Выбираем 3 приоритетные локации на неделю 1. Корректируем скрипт.</p>
+
+<h3 id="s3b">3.2 Недели 1–2 — основной заход (2,000 шт)</h3>
+
+<table>
+<tr><th>День</th><th>10:00–12:00</th><th>16:30–18:30</th><th>19:00–21:30</th><th>План на день</th></tr>
+<tr><td>Пн</td><td>🇷🇺 Русский квартал</td><td>🏖️ Набережная</td><td>—</td><td>2 выхода, ~250 шт</td></tr>
+<tr><td>Вт</td><td>🏪 Vincom</td><td>🏖️ Набережная</td><td>🌙 Ночной рынок</td><td>3 выхода, ~350 шт</td></tr>
+<tr><td>Ср</td><td>☕ 3–4 кафе</td><td>🏪 Vincom</td><td>—</td><td>2 выхода, ~200 шт</td></tr>
+<tr><td>Чт</td><td>🇷🇺 Русский квартал</td><td>🏖️ Набережная</td><td>🍸 Бары (Tran Phu)</td><td>3 выхода, ~350 шт</td></tr>
+<tr><td>Пт</td><td>☕ Кафе/коворкинги</td><td>🏖️ + пляж</td><td>🌙 + бары</td><td>3 выхода, ~400 шт</td></tr>
+<tr><td>Сб</td><td>🏪 Vincom</td><td>🏖️ Пляж весь</td><td>🌙 Туристическая</td><td>3 выхода, ~400 шт</td></tr>
+<tr><td>Вс</td><td>🇷🇺 Русские кафе (бранч)</td><td>🏪 Vincom</td><td>🏖️ Закат</td><td>2 выхода, ~250 шт</td></tr>
+</table>
+
+<p style="margin-top:0.5em;font-size:0.9rem"><strong>Итого за неделю 1:</strong> ~2,200 шт. <strong>Норма:</strong> 50–70 контактов/час на человека, 200–400 визиток за смену на 4 человек.</p>
+
+<h3 id="s3c">3.3 Недели 3–4 — масштаб (3,000 шт)</h3>
+
+<ul>
+  <li>✈️ <strong>Аэропорт Камрань:</strong> 2–3 выезда по дням прилётов из РФ (узнать расписание). Вручение в зоне встречи + шаттлы.</li>
+  <li>🏖️ <strong>Пляжные клубы:</strong> Luisiane, Sunbat, Aloha — после 15:00. Работаем на выходе.</li>
+  <li>🏨 <strong>Стопки в отелях, хостелах, апарт-отелях:</strong> Договариваемся с ресепшен. Оставляем 20–50 визиток на стойке.</li>
+  <li>🇷🇺 <strong>Русские магазины и кафе:</strong> Подставки для визиток на постоянной основе.</li>
+  <li>📊 <strong>Учёт:</strong> Каждый вечер записываем: сколько роздано, сколько диалогов, сколько заинтересовавшихся.</li>
+</ul>
+
+<h3 id="s3d">3.4 Со второго месяца — найм промоутеров</h3>
+
+<p>Когда схема отработана и известна конверсия каждой локации — нанимаем промоутеров.</p>
+
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td>Кто</td><td>Русскоязычные местные / русские экспаты</td></tr>
+<tr><td>Ставка</td><td>150,000–200,000₫ за смену (3–4 часа)</td></tr>
+<tr><td>Мотивация</td><td>Сдельная + бонус 10,000₫ за лида (переход в бота с QR визитки)</td></tr>
+<tr><td>Контроль</td><td>Каждый промоутер ведёт счётчик. Раз в неделю личная встреча.</td></tr>
+<tr><td>Кол-во</td><td>2–4 человека. Работают по одному в разных локациях.</td></tr>
+<tr><td>Куратор</td><td>Один из основателей (Женя / Вася) координирует, остальные занимаются развитием</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- 4. ДИЗАЙН -->
+<!-- ============================================================ -->
+<h2 id="s4">4. Дизайн визитки</h2>
+
+<h3 id="s4a">4.1 Макет</h3>
+<p>Двусторонняя, 90 × 50 мм, вертикальная ориентация. Превью ниже.</p>
+
+<div class="mockup">
+
+<div>
+  <div class="front-card">
+    <div style="font-size:1.5rem;font-weight:800;letter-spacing:2px;margin-top:5px">AION</div>
+    <div style="font-size:0.8rem;color:#d4a017;font-weight:600;letter-spacing:3px;margin-top:−2px">NYA TRANG</div>
+    <hr style="border:none;border-top:1px solid rgba(212,160,23,0.5);margin:10px 0"/>
+    <div style="font-size:0.85rem;line-height:1.6;opacity:0.95">
+      Любая услуга в Нячанге<br/>
+      🏠 📄 🚗 💳 🏥 🍽️ 💆 🛡️<br/>
+      Быстро. Честно. По-русски.
+    </div>
+    <div style="position:absolute;bottom:15px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;opacity:0.8">
+      <span>📍 Нячанг</span>
+      <span style="font-weight:700;letter-spacing:1px;color:#d4a017">@aion_vn</span>
+      <span>⭐ 5/5</span>
+    </div>
+    <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:42px;height:42px;border:2px solid #d4a017;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.5rem;color:#d4a017;text-align:center;line-height:1.2;background:rgba(255,255,255,0.05)">
+      QR<br/>→ бот
+    </div>
+  </div>
+  <div class="label">Лицевая сторона</div>
+</div>
+
+<div>
+  <div class="back-card">
+    <div style="text-align:center;font-size:0.7rem;font-weight:600;color:#d4a017;letter-spacing:2px;margin-top:3px">~ ЧТО МЫ УМЕЕМ ~</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin-top:8px;font-size:0.72rem;line-height:1.7">
+      <span>🏠 Жильё</span><span>📄 Визы</span>
+      <span>🚗 Транспорт</span><span>💰 Обмен валют</span>
+      <span>🏥 Медицина</span><span>🛡️ Страховка</span>
+      <span>🍽️ Еда</span><span>🧹 Клининг</span>
+      <span>💆 Красота / SPA</span><span>👶 Дети</span>
+      <span>🌴 Экскурсии</span><span>🔧 Ремонт</span>
+    </div>
+    <hr style="border:none;border-top:1px solid #e0d5c1;margin:8px 0"/>
+    <div style="text-align:center;font-size:0.85rem;font-weight:700">@aion_vn</div>
+    <div style="text-align:center;font-size:0.65rem;color:#999;margin-top:3px">Telegram — пиши, решим любой вопрос</div>
+  </div>
+  <div class="label">Оборотная сторона</div>
+</div>
+
+</div>
+
+<p style="font-size:0.9rem"><strong>Лицевая сторона:</strong> бренд (крупное AION) + УТП («Любая услуга. Быстро. Честно. По-русски.») + QR на бота + @aion_vn.<br>
+<strong>Оборотная сторона:</strong> конкретный спектр из 12 категорий иконками. Показывает широту охвата.</p>
+
+<h3 id="s4b">4.2 Спецификация печати</h3>
+
+<table>
+<tr><th>Параметр</th><th>Значение</th></tr>
+<tr><td>Размер</td><td>90 × 50 мм</td></tr>
+<tr><td>Ориентация</td><td>Вертикальная (книжная)</td></tr>
+<tr><td>Бумага</td><td>Картон 350 г/м²</td></tr>
+<tr><td>Отделка</td><td>Матовая ламинация (не бликует, приятна на ощупь)</td></tr>
+<tr><td>Печать</td><td>Цветная, двусторонняя, офсет</td></tr>
+<tr><td>QR-код</td><td>Чёрный на светлом фоне, контрастный. Ведёт на Telegram-бота @aion_vn_bot с UTM-меткой локации</td></tr>
+<tr><td>Где печатать</td><td>inbaGiaRe.vn / in-nhanh.com / типографии на Tuệ Tĩnh (Нячанг)</td></tr>
+<tr><td>Срок</td><td>1–2 дня после макета</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- 5. БЮДЖЕТ -->
+<!-- ============================================================ -->
+<h2 id="s5">5. Бюджет первого месяца</h2>
+
+<table>
+<tr><th>Статья</th><th>Сумма (₫)</th><th>Примечание</th></tr>
+<tr><td>Печать 500 (тест)</td><td>350,000</td><td>Проверка дизайна и реакции</td></tr>
+<tr><td>Печать 2,000 (запуск)</td><td>1,400,000</td><td>Первые 2 недели</td></tr>
+<tr><td>Печать 3,000 (масштаб)</td><td>2,100,000</td><td>Недели 3–4</td></tr>
+<tr><td>Футболки/кепки с лого (4 чел)</td><td>600,000</td><td>150,000₫/чел. Узнаваемость + командный дух</td></tr>
+<tr><td>Подставки для визиток (10 шт)</td><td>200,000</td><td>Для кафе, магазинов, хостелов</td></tr>
+<tr><td>Пластиковые карты (премиум, 200 шт)</td><td>1,000,000</td><td>Для ключевых партнёров — плотный пластик</td></tr>
+<tr><td>Транспорт на выезды</td><td>~400,000</td><td>Такси/байк до удалённых точек (аэропорт, пляжи)</td></tr>
+<tr style="background:#faf6ef">
+  <td><strong>Итого</strong></td>
+  <td><strong>~6,050,000₫</strong></td>
+  <td><strong>~$245</strong></td>
+</tr>
+</table>
+
+<blockquote>
+<strong>Окупаемость:</strong> 5,500 визиток → 275–550 подписок в бота (5–10%) → 55–110 заказов (20% от подписок) → средний чек $150 → оборот $8,250–$16,500 → доход платформы $330–$660 (при комиссии 4%). Окупается с первой недели при хорошей конверсии.
+</blockquote>
+
+<!-- ============================================================ -->
+<!-- 6. KPI -->
+<!-- ============================================================ -->
+<h2 id="s6">6. KPI и система учёта</h2>
+
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="val">5–10%</div>
+    <div class="lbl">Конверсия визитка → подписка на бота</div>
+  </div>
+  <div class="kpi-card">
+    <div class="val">15–20%</div>
+    <div class="lbl">Конверсия подписка → первый заказ</div>
+  </div>
+  <div class="kpi-card">
+    <div class="val">~2,000</div>
+    <div class="lbl">Контактов в неделю (4 чел × 3 часа × 5 дней)</div>
+  </div>
+</div>
+
+<table>
+<tr><th>Метод учёта</th><th>Как работает</th><th>Что измеряем</th></tr>
+<tr>
+  <td><strong>QR-код с UTM</strong></td>
+  <td>Каждая партия визиток имеет свой UTM-параметр (локация). При скане бот фиксирует источник.</td>
+  <td>Какая локация даёт больше лидов. ROi на локацию.</td>
+</tr>
+<tr>
+  <td><strong>Промокод AION10</strong></td>
+  <td>Печатается на каждой визитке. Клиент вводит при первом заказе.</td>
+  <td>Сколько заказов пришло именно с визиток. Общая конверсия.</td>
+</tr>
+<tr>
+  <td><strong>Счётчик смены</strong></td>
+  <td>После каждого выхода записываем в общий чат: локация, время, роздано шт, диалогов.</td>
+  <td>Эффективность каждой смены. Какое время/локация работают лучше.</td>
+</tr>
+<tr>
+  <td><strong>Опрос при заказе</strong></td>
+  <td>Бот спрашивает: «Откуда вы узнали о нас?» — вариант «Визитка».</td>
+  <td>Прямой ROI визиток. Доля в общем потоке лидов.</td>
+</tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- 7. РИСКИ -->
+<!-- ============================================================ -->
+<h2 id="s7">7. Риски и сценарии</h2>
+
+<table>
+<tr><th>Риск</th><th>Вероятность</th><th>Влияние</th><th>Митигация</th></tr>
+<tr><td>Визитки не берут / высокий отказ</td><td>Средняя</td><td>Высокое</td><td>Тест 500 шт. Меняем скрипт, дизайн, время, локацию. Пробуем другой формат (флаеры).</td></tr>
+<tr><td>Полиция / охрана прогоняет</td><td>Низкая</td><td>Среднее</td><td>Не стоять на месте. Не мешать проходу. Улыбаться. Если просят уйти — уходим, возвращаемся через час.</td></tr>
+<tr><td>Низкая конверсия в заказы</td><td>Средняя</td><td>Среднее</td><td>Усилить призыв на визитке. Добавить «Скидка 10% по промокоду». Улучшить бота.</td></tr>
+<tr><td>Команда выгорает (каждый день раздача)</td><td>Высокая</td><td>Среднее</td><td>График 5/2. Чередовать активные и лёгкие дни. Не делать больше 3 выходов в день.</td></tr>
+<tr><td>Тираж заканчивается раньше</td><td>Средняя</td><td>Низкое</td><td>Допечатать 1,000–2,000 за 1 день. Типографии в Нячанге быстрые.</td></tr>
+<tr><td>Дождь / тайфун (сезон дождей)</td><td>Средняя</td><td>Высокое</td><td>В дождь — ТРЦ (Vincom), кафе, крытые рынки. Не работать под ливнем. Сезон дождей: сентябрь–ноябрь.</td></tr>
+</table>
+
+<hr>
+
+<p style="text-align:center;color:#888;font-size:0.85rem;margin-top:2em">AION — Стратегия распространения визиток · Нячанг, июнь 2026 · Версия 2.0</p>
+
+</body>
+</html>

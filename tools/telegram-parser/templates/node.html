@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AION Node Client</title>
+<link rel="stylesheet" href="/static/cyberpunk.css">
+<style>
+.status-bar{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.status-bar .info{font-size:0.78rem;color:var(--text-secondary)}
+.status-bar .info strong{color:var(--text-primary)}
+.status-bar .right{margin-left:auto;display:flex;gap:8px}
+.server-form{display:flex;gap:8px;flex-wrap:wrap}
+.server-form input{flex:1;min-width:200px;padding:8px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:0.82rem;outline:none;transition:var(--transition)}
+.server-form input:focus{border-color:var(--neon-cyan);box-shadow:0 0 10px var(--neon-cyan-glow)}
+.account-card{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-input);border-radius:var(--radius-sm);margin-bottom:6px;border:1px solid transparent;transition:var(--transition)}
+.account-card:hover{border-color:rgba(0,240,255,0.1)}
+.account-card .phone{font-weight:600;font-size:0.82rem;font-family:var(--font-mono)}
+.account-card .meta{font-size:0.68rem;color:var(--text-secondary)}
+.account-card .right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.wl-bar{display:flex;gap:3px;align-items:center}
+.wl-step{width:16px;height:4px;border-radius:2px;background:var(--border)}
+.wl-step.active{background:var(--neon-cyan);box-shadow:0 0 4px var(--neon-cyan-glow)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div class="logo"><span class="icon">⟁</span><span>AION Node</span></div>
+    <span class="subtitle">v2.0 — Client</span>
+    <div class="right">
+      <span id="nodeStatus" style="font-size:0.7rem;color:var(--text-muted);font-family:var(--font-mono)">—</span>
+    </div>
+  </header>
+
+  <!-- ─── Status & Server Connection ─── -->
+  <div class="status-bar">
+    <span class="status-dot working" id="statusDot"></span>
+    <div class="info">
+      <strong id="statusText">Starting...</strong><br>
+      <span id="statusDetail" style="font-size:0.68rem;color:var(--text-muted)"></span>
+    </div>
+    <div class="right">
+      <button id="btnEngine" class="btn btn-primary btn-sm" onclick="toggleEngine()">⟁ Start Engine</button>
+    </div>
+  </div>
+
+  <!-- Server Connection -->
+  <div class="card">
+    <div class="card-title">⟁ Central Server Connection <span class="badge" id="connStatus">disconnected</span></div>
+    <div class="server-form">
+      <input id="serverUrl" placeholder="http://server-ip:5000" value="">
+      <button class="btn btn-success btn-sm" onclick="connectServer()">⟁ Connect</button>
+    </div>
+  </div>
+
+  <!-- ─── Stats ─── -->
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num" id="nodeTotal">—</div><div class="lbl">Contacts</div></div>
+    <div class="stat-card"><div class="num" id="nodeDm">—</div><div class="lbl">DM Sent</div><div class="sub" id="nodeTodayDm">today: —</div></div>
+    <div class="stat-card"><div class="num" id="nodeAdded">—</div><div class="lbl">Invited</div><div class="sub" id="nodeTodayAdd">today: —</div></div>
+    <div class="stat-card"><div class="num" id="nodeAccounts">—</div><div class="lbl">Accounts</div><div class="sub" id="nodeErrors">errors: —</div></div>
+  </div>
+
+  <!-- ─── Tabs ─── -->
+  <div class="tabs">
+    <button class="tab active" data-tab="tabAccounts">👤 Accounts</button>
+    <button class="tab" data-tab="tabLogs">📋 Logs</button>
+  </div>
+
+  <!-- ════════ Accounts Tab ════════ -->
+  <div id="tabAccounts" class="tab-content active">
+    <div class="card fade-in">
+      <div class="card-title">👤 Telegram Accounts <span style="margin-left:auto;display:flex;gap:6px">
+        <button class="btn btn-primary btn-sm" onclick="showAddAccount()">+ Add</button>
+      </span></div>
+      <div id="accountsList">
+        <div class="empty-state"><div class="icon">👤</div>No accounts yet. Add your Telegram accounts.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📈 Warm-up Progress</div>
+      <div style="font-size:0.78rem;color:var(--text-secondary);line-height:1.8">
+        <div>🔰 Level 0: 5 invites/day (days 1-2)</div>
+        <div>🌱 Level 1: 10 invites/day (days 3-4)</div>
+        <div>📈 Level 2: 20 invites/day (days 5-6)</div>
+        <div>⚡ Level 3: 30 invites/day (days 7-8)</div>
+        <div>🚀 Level 4: 50 invites/day (day 9+)</div>
+        <div style="margin-top:6px;color:var(--tag-ok)">Купленные аккаунты (session) → сразу 🚀 Level 4</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ Logs Tab ════════ -->
+  <div id="tabLogs" class="tab-content">
+    <div class="card fade-in">
+      <div class="card-title">📋 Activity Log <span style="margin-left:auto"><button class="btn btn-sm" onclick="clearLogs()">Clear</button></span></div>
+      <div id="logBox" class="log-box">Waiting for activity...</div>
+    </div>
+  </div>
+
+  <!-- ─── Add Account Modal ─── -->
+  <div id="modalAccount" class="modal">
+    <div class="modal-body fade-in">
+      <h3>⟁ Add Telegram Account</h3>
+      <div class="form-group"><label>Phone <span style="color:var(--text-muted);font-weight:400">(+84...)</span></label><input id="ma_phone" placeholder="+84900000000"></div>
+      <div class="form-group"><label>API ID <span style="color:var(--text-muted);font-weight:400">(my.telegram.org)</span></label><input id="ma_api_id" placeholder="12345"></div>
+      <div class="form-group"><label>API Hash</label><input id="ma_api_hash" placeholder="your api_hash"></div>
+      <div class="form-group"><label>Session String <span style="color:var(--text-muted);font-weight:400">(для купленных, опционально)</span></label><input id="ma_session" placeholder="1AA... (base64 session string)"></div>
+      <div class="form-group"><label>Proxy <span style="color:var(--text-muted);font-weight:400">(опционально)</span></label><input id="ma_proxy" placeholder="socks5:127.0.0.1:9050"></div>
+      <div style="background:var(--bg-input);border-radius:var(--radius-sm);padding:10px;font-size:0.72rem;color:var(--text-muted);margin-bottom:12px">
+        Купленные аккаунты: вставьте session string (без кода). Новые аккаунты: просто phone + API — код придёт в Telegram, смотрите логи.
+      </div>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeModal('modalAccount')">Cancel</button>
+        <button class="btn btn-primary" onclick="addAccount()">⟁ Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── Tab switching ───
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.tab).classList.add('active');
+    if(t.dataset.tab==='tabAccounts') loadAccounts();
+    if(t.dataset.tab==='tabLogs') loadLogs();
+  });
+});
+
+async function api(url, opts={}) {
+  const r = await fetch(url, {headers:{'Content-Type':'application/json',...opts.headers},...opts});
+  if(opts.raw) return r;
+  return r.json();
+}
+function closeModal(id){document.getElementById(id)?.classList.remove('open')}
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+
+// ─── Status ───
+async function refreshStatus(){
+  const d=await api('/api/status');
+  const dot=document.getElementById('statusDot');
+  const text=document.getElementById('statusText');
+  const detail=document.getElementById('statusDetail');
+  const btn=document.getElementById('btnEngine');
+
+  if(d.registered){
+    dot.className='status-dot online';
+    text.textContent=d.running?'⟁ Engine Running — inviting...':'⟁ Connected — ready';
+    detail.textContent=`Node: ${d.node_id} · ${d.accounts} accounts · Server: ${d.server_url}`;
+    btn.textContent=d.running?'⏹ Stop Engine':'⟁ Start Engine';
+    btn.className=d.running?'btn btn-danger btn-sm':'btn btn-primary btn-sm';
+  } else {
+    dot.className='status-dot offline';
+    text.textContent='⏳ Not connected to server';
+    detail.textContent='Enter server URL and click Connect';
+    btn.textContent='⟁ Start Engine';
+    btn.className='btn btn-primary btn-sm';
+  }
+
+  document.getElementById('connStatus').textContent=d.registered?'connected':'disconnected';
+  document.getElementById('connStatus').className='badge '+(d.registered?'tag-ok':'');
+
+  const s=d.stats||{};
+  document.getElementById('nodeTotal').textContent=s.total??'—';
+  document.getElementById('nodeDm').textContent=s.dm_sent??'—';
+  document.getElementById('nodeAdded').textContent=s.added??'—';
+  document.getElementById('nodeAccounts').textContent=d.accounts??'—';
+  document.getElementById('nodeTodayDm').textContent='today: '+(s.today_dm??0);
+  document.getElementById('nodeTodayAdd').textContent='today: '+(s.today_add??0);
+  document.getElementById('nodeErrors').textContent='errors: '+(s.errors??0);
+
+  // Load saved server URL
+  if(!document.getElementById('serverUrl').value && d.server_url){
+    document.getElementById('serverUrl').value=d.server_url;
+  }
+}
+
+async function connectServer(){
+  const url=document.getElementById('serverUrl').value.trim();
+  if(!url){alert('Enter server URL');return}
+  const btn=event.target;
+  btn.disabled=true;btn.textContent='⏳';
+  const r=await api('/api/server/connect',{method:'POST',body:JSON.stringify({server_url:url})});
+  if(r.ok){
+    refreshStatus();
+    loadAccounts();
+  } else {
+    alert('Connection failed: '+(r.error||'unknown'));
+  }
+  btn.disabled=false;btn.textContent='⟁ Connect';
+}
+
+async function toggleEngine(){
+  const d=await api('/api/status');
+  if(d.running){
+    await api('/api/engine/stop',{method:'POST'});
+  } else {
+    await api('/api/engine/start',{method:'POST'});
+  }
+  setTimeout(refreshStatus,1000);
+}
+
+// ─── Accounts ───
+async function loadAccounts(){
+  const d=await api('/api/accounts');
+  const list=document.getElementById('accountsList');
+  const accs=d.accounts||[];
+  if(!accs.length){list.innerHTML='<div class="empty-state"><div class="icon">👤</div>No accounts yet.</div>';return}
+  const wlLabels=['🔰','🌱','📈','⚡','🚀'];
+  list.innerHTML=accs.map(a=>{
+    const wl=Math.min(a.warmup_level||0,4);
+    const wlSteps=Array.from({length:5},(_,i)=>`<div class="wl-step ${i<=wl?'active':''}"></div>`).join('');
+    const pct=a.daily_limit_dm>0?Math.round((a.today_dm/a.daily_limit_dm)*100):0;
+    return `<div class="account-card">
+      <div>
+        <div class="phone">${esc(a.phone)}</div>
+        <div class="meta">
+          <span class="tag ${a.status==='active'?'tag-ok':'tag-fail'}">${a.status}</span>
+          ${a.real_name?esc(a.real_name):''}
+          <span style="margin-left:6px">${wlLabels[wl]||'🚀'} Lvl ${wl}</span>
+        </div>
+      </div>
+      <div class="right">
+        <div class="wl-bar">${wlSteps}</div>
+        <span style="font-size:0.68rem;color:var(--text-secondary);min-width:50px;text-align:right">${pct}%</span>
+        <span style="font-size:0.68rem;color:var(--text-secondary)">DM ${a.today_dm}/${a.daily_limit_dm}</span>
+        <button class="btn btn-danger btn-xs" onclick="removeAccount('${esc(a.phone)}')">✕</button>
+      </div>
+    </div>`
+  }).join('');
+}
+
+function showAddAccount(){document.getElementById('modalAccount').classList.add('open')}
+
+async function addAccount(){
+  const data={
+    phone:document.getElementById('ma_phone').value.trim(),
+    api_id:document.getElementById('ma_api_id').value.trim(),
+    api_hash:document.getElementById('ma_api_hash').value.trim(),
+    session_string:document.getElementById('ma_session').value.trim(),
+    proxy:document.getElementById('ma_proxy').value.trim(),
+  };
+  if(!data.phone||!data.api_id||!data.api_hash){alert('Fill required fields');return}
+  const btn=document.querySelector('#modalAccount .btn-primary');
+  btn.disabled=true;btn.textContent='⏳';
+  const r=await api('/api/accounts/add',{method:'POST',body:JSON.stringify(data)});
+  if(r.error){alert(r.error)}
+  closeModal('modalAccount');
+  document.getElementById('ma_phone').value='';
+  document.getElementById('ma_api_id').value='';
+  document.getElementById('ma_api_hash').value='';
+  document.getElementById('ma_session').value='';
+  document.getElementById('ma_proxy').value='';
+  btn.disabled=false;btn.textContent='⟁ Add';
+  loadAccounts();
+}
+
+async function removeAccount(phone){
+  if(!confirm(`Remove ${phone}?`))return;
+  await api(`/api/accounts/${encodeURIComponent(phone)}/remove`,{method:'POST'});
+  loadAccounts();
+}
+
+// ─── Logs ───
+async function loadLogs(){
+  const r=await fetch('/api/log');
+  const text=await r.text();
+  document.getElementById('logBox').textContent=text||'(empty)';
+}
+
+async function clearLogs(){
+  await api('/api/clear-logs',{method:'POST'});
+  loadLogs();
+}
+
+// ─── Auto-refresh ───
+setInterval(refreshStatus,3000);
+setInterval(()=>{if(document.querySelector('.tab.active[data-tab="tabAccounts"]'))loadAccounts()},5000);
+setInterval(()=>{if(document.querySelector('.tab.active[data-tab="tabLogs"]'))loadLogs()},3000);
+
+refreshStatus();
+loadAccounts();
+loadLogs();
+</script>
+</body>
+</html>

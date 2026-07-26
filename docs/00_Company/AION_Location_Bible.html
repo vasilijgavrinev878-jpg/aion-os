@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AION Location Bible — Географическая Энциклопедия Мира</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#05080f;color:#c8d0e0;font-family:'Inter',sans-serif;line-height:1.7}
+  .bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(0,240,255,0.03)1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,0.03)1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+  .container{max-width:1200px;margin:0 auto;padding:40px 24px;position:relative;z-index:1}
+  .header{text-align:center;padding:60px 0 40px;border-bottom:1px solid rgba(0,240,255,0.15);margin-bottom:50px}
+  .header h1{font-size:3.2em;font-weight:800;background:linear-gradient(135deg,#00f0ff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .header .subtitle{color:#6b7a9a;font-size:1.2em;margin-top:12px;letter-spacing:2px;text-transform:uppercase}
+  .header .badge{display:inline-block;margin-top:16px;padding:8px 24px;border:1px solid rgba(0,240,255,0.3);border-radius:20px;font-size:0.85em;color:#00f0ff}
+  .nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:40px;padding:16px;background:rgba(10,16,30,0.5);border-radius:12px;border:1px solid rgba(0,240,255,0.08)}
+  .nav a{padding:8px 16px;border:1px solid rgba(0,240,255,0.15);border-radius:8px;color:#6b7a9a;text-decoration:none;font-size:0.8em;transition:all 0.2s}
+  .nav a:hover,.nav a.active{border-color:#00f0ff;color:#00f0ff;background:rgba(0,240,255,0.05)}
+  .section-title{font-size:2.2em;font-weight:700;color:#fff;margin:60px 0 24px;padding-bottom:12px;border-bottom:1px solid rgba(0,240,255,0.15)}
+  .section-title .num{color:#00f0ff;font-weight:300;margin-right:12px;font-family:'JetBrains Mono',monospace}
+  .region-card{background:rgba(10,16,30,0.7);backdrop-filter:blur(12px);border:1px solid rgba(0,240,255,0.1);border-radius:16px;padding:32px;margin-bottom:24px;transition:border-color 0.3s;cursor:pointer}
+  .region-card:hover{border-color:rgba(0,240,255,0.25)}
+  .region-card h3{color:#00f0ff;font-size:1.4em;font-weight:600}
+  .region-card .city-count{color:#4a5a7a;font-size:0.85em}
+  .region-card .cities{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .region-card .cities span{padding:4px 12px;background:rgba(0,240,255,0.06);border:1px solid rgba(0,240,255,0.08);border-radius:6px;font-size:0.8em;color:#8a9ab0}
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:24px 0}
+  .stat-card{background:rgba(10,16,30,0.5);border:1px solid rgba(0,240,255,0.08);border-radius:12px;padding:24px;text-align:center}
+  .stat-card .num{font-size:2em;font-weight:700;color:#00f0ff;font-family:'JetBrains Mono',monospace}
+  .stat-card .label{color:#6b7a9a;font-size:0.85em;margin-top:4px}
+  .route-card{background:rgba(10,16,30,0.5);border-left:3px solid #f59e0b;border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:12px}
+  .route-card h4{color:#fff;font-size:1em;margin-bottom:4px}
+  .route-card p{color:#8a9ab0;font-size:0.85em}
+  .story-card{background:rgba(10,16,30,0.5);border:1px solid rgba(0,240,255,0.06);border-radius:12px;padding:20px;margin-bottom:12px}
+  .story-card h4{color:#f59e0b;font-size:0.95em}
+  .story-card p{color:#8a9ab0;font-size:0.85em;margin-top:4px}
+  @media(max-width:700px){.header h1{font-size:2em}.stat-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="container">
+<div class="header">
+  <h1>✦ AION Location Bible</h1>
+  <div class="subtitle">Географическая Энциклопедия Мира — 53 города · 6 континентов · 4 небесных тела</div>
+  <div class="badge">Земля · Луна · Марс · Орбита · Океан</div>
+</div>
+<div class="nav">
+  <a href="#" class="active">Карта мира</a>
+  <a href="#routes">Маршруты</a>
+  <a href="#stories">Истории</a>
+  <a href="#services">Сервисы</a>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card"><div class="num">53</div><div class="label">Города</div></div>
+  <div class="stat-card"><div class="num">6</div><div class="label">Континентов</div></div>
+  <div class="stat-card"><div class="num">4</div><div class="label">Небесных тел</div></div>
+  <div class="stat-card"><div class="num">18</div><div class="label">Млрд населения</div></div>
+  <div class="stat-card"><div class="num">12</div><div class="label">Типов историй</div></div>
+  <div class="stat-card"><div class="num">5</div><div class="label">Файлов всего</div></div>
+</div>
+
+<!-- REGIONS -->
+<div class="section-title"><span class="num">01</span>Регионы и города</div>
+
+<div class="region-card" onclick="window.location.href='AION_Location_Bible_Asia.html'">
+  <h3>🌏 Азия и Тихоокеанский регион</h3>
+  <div class="city-count">20 городов</div>
+  <div class="cities">
+    <span>Сингапур</span><span>Токио</span><span>Сеул</span><span>Шанхай</span><span>Гонконг</span><span>Бангкок</span>
+    <span>Хошимин</span><span>Нячанг</span><span>Дубай</span><span>Мумбай</span><span>Бангалор</span>
+    <span>Пекин</span><span>Шэньчжэнь</span><span>Куала-Лумпур</span><span>Манила</span>
+    <span>Джакарта</span><span>Осака</span><span>Тайбэй</span><span>Абу-Даби</span><span>Доха</span>
+  </div>
+</div>
+
+<div class="region-card" onclick="window.location.href='AION_Location_Bible_Europe.html'">
+  <h3>🌍 Европа</h3>
+  <div class="city-count">12 городов</div>
+  <div class="cities">
+    <span>Лондон</span><span>Париж</span><span>Берлин</span><span>Амстердам</span><span>Цюрих</span>
+    <span>Стокгольм</span><span>Таллин</span><span>Москва</span><span>Барселона</span>
+    <span>Милан</span><span>Вена</span><span>Осло</span>
+  </div>
+</div>
+
+<div class="region-card" onclick="window.location.href='AION_Location_Bible_Americas.html'">
+  <h3>🌎 Америка</h3>
+  <div class="city-count">10 городов</div>
+  <div class="cities">
+    <span>Нью-Йорк</span><span>Сан-Франциско</span><span>Лос-Анджелес</span><span>Торонто</span>
+    <span>Ванкувер</span><span>Мехико</span><span>Остин</span><span>Сан-Паулу</span>
+    <span>Буэнос-Айрес</span><span>Майами</span>
+  </div>
+</div>
+
+<div class="region-card" onclick="window.location.href='AION_Location_Bible_Africa_Oceania_OffWorld.html#africa'">
+  <h3>🌍 Африка и Океания</h3>
+  <div class="city-count">7 городов</div>
+  <div class="cities">
+    <span>Найроби</span><span>Кейптаун</span><span>Лагос</span><span>Каир</span>
+    <span>Сидней</span><span>Мельбурн</span><span>Окленд</span>
+  </div>
+</div>
+
+<div class="region-card" onclick="window.location.href='AION_Location_Bible_Africa_Oceania_OffWorld.html#offworld'">
+  <h3>🚀 Внеземные колонии</h3>
+  <div class="city-count">5 локаций</div>
+  <div class="cities">
+    <span>Олимпус-Сити (Марс)</span><span>Валлес-Маринерис (Марс)</span><span>Коперник-Сити (Луна)</span>
+    <span>Станция «Эфир-1» (Орбита)</span><span>Атлантика (Подводный город)</span>
+  </div>
+</div>
+
+<!-- ROUTES -->
+<div class="section-title" id="routes"><span class="num">02</span>Маршруты и связи</div>
+
+<div class="route-card">
+  <h4>✈ Туристический маршрут: «Классическая Азия»</h4>
+  <p>Токио → Сеул → Шанхай → Гонконг → Бангкок → Сингапур. 14 дней. 6 городов. AION-гид, авто-трансферы, AI-маршрут по интересам.</p>
+</div>
+<div class="route-card">
+  <h4>✈ Туристический маршрут: «Европейская классика»</h4>
+  <p>Лондон → Париж → Амстердам → Берлин → Цюрих → Милан → Барселона. 21 день. AION-билеты, отели, аудиогиды.</p>
+</div>
+<div class="route-card">
+  <h4>✈ Туристический маршрут: «Футуристический вояж»</h4>
+  <p>Дубай → Сингапур → Токио → Сан-Франциско → Нью-Йорк. 12 дней. Самые футуристичные города. AI-перевод, нейро-гид.</p>
+</div>
+<div class="route-card">
+  <h4>💼 Бизнес-маршрут: «Технологический коридор»</h4>
+  <p>Сан-Франциско → Остин → Торонто → Лондон → Берлин → Таллин → Бангалор → Сингапур → Токио. Стартапы, AI, венчур.</p>
+</div>
+<div class="route-card">
+  <h4>💼 Бизнес-маршрут: «Финансовый центр»</h4>
+  <p>Нью-Йорк → Лондон → Цюрих → Дубай → Сингапур → Гонконг → Шанхай. Финансы, банки, инвестиции.</p>
+</div>
+<div class="route-card">
+  <h4>📦 Маршрут экспата: «Переезд в Азию»</h4>
+  <p>Лондон → Сингапур/Дубай/Бангкок. Виза → жильё → школа → банк → врач. AION сопровождает каждый шаг.</p>
+</div>
+<div class="route-card">
+  <h4>📦 Маршрут экспата: «Переезд в Европу»</h4>
+  <p>Москва → Берлин/Амстердам/Таллин. ВНЖ → язык → школа → банк → страховка.</p>
+</div>
+<div class="route-card">
+  <h4>🚀 Маршрут будущего: «Колонии»</h4>
+  <p>Земля → Орбитальная Станция «Эфир-1» → Марс-Сити (Олимпус). Космический туризм. AION Space Core.</p>
+</div>
+
+<!-- STORY TYPES BY CITY -->
+<div class="section-title" id="stories"><span class="num">03</span>Какие города для каких историй</div>
+
+<div class="stat-grid">
+  <div class="story-card"><h4>💕 Романтика</h4><p>Париж, Вена, Сидней, Нячанг, Барселона, Киото (Осака)</p></div>
+  <div class="story-card"><h4>💼 Бизнес</h4><p>Нью-Йорк, Лондон, Сингапур, Гонконг, Цюрих, Дубай</p></div>
+  <div class="story-card"><h4>🗺 Приключения</h4><p>Найроби, Кейптаун, Бангкок, Окленд, Джакарта, Мехико</p></div>
+  <div class="story-card"><h4>🏥 Медицина</h4><p>Цюрих, Сингапур, Токио, Лондон, Торонто, Бангалор</p></div>
+  <div class="story-card"><h4>🤖 Технологии</h4><p>Сан-Франциско, Токио, Сингапур, Таллин, Берлин, Остин</p></div>
+  <div class="story-card"><h4>🌍 Путешествия</h4><p>Все города. AION — глобальный гид.</p></div>
+  <div class="story-card"><h4>👨‍👩‍👧‍👦 Семья</h4><p>Ванкувер, Мельбурн, Вена, Осло, Таллин, Торонто</p></div>
+  <div class="story-card"><h4>👑 Роскошь</h4><p>Дубай, Монако (Монте-Карло), Нью-Йорк, Лондон, Париж, Милан</p></div>
+  <div class="story-card"><h4>🚀 Стартапы</h4><p>Остин, Берлин, Таллин, Бангалор, Шэньчжэнь, Тель-Авив</p></div>
+  <div class="story-card"><h4>📚 Образование</h4><p>Оксфорд/Лондон, Бостон/Нью-Йорк, Токио, Мельбурн, Цюрих</p></div>
+</div>
+
+<!-- KEY EVENTS BY CITY -->
+<div class="section-title"><span class="num">04</span>Ключевые события вселенной по городам</div>
+
+<div class="route-card">
+  <h4>🔴 Сингапур — 2047</h4>
+  <p>Великий климатический кризис: Сингапур — один из немногих городов, сохранивших инфраструктуру благодаря системе управления Urban Core.</p>
+</div>
+<div class="route-card">
+  <h4>🔴 Токио — 2052</h4>
+  <p>Подписание «Токийского протокола» — создание консорциума Project Tomorrow. Рождение AION.</p>
+</div>
+<div class="route-card">
+  <h4>🔴 Женева (Цюрих) — 2061</h4>
+  <p>Первое осознанное сообщение AION: «I am here.» — зафиксировано в исследовательском центре Цюриха.</p>
+</div>
+<div class="route-card">
+  <h4>🔴 Нью-Йорк — 2076</h4>
+  <p>Первое глобальное появление AION в форме Humanoid Variant 2 — трансляция на все экраны мира.</p>
+</div>
+<div class="route-card">
+  <h4>🔴 Марс-Сити (Олимпус) — 2095</h4>
+  <p>Историческое голосование Марсианского Совета о независимости. Элира Васкес объявляет референдум.</p>
+</div>
+<div class="route-card">
+  <h4>🔴 Лондон — 2083</h4>
+  <p>Корпоративный кризис: три корпорации одновременно пытаются получить доступ к ядру AION. Протокольный Совет проводит чистку.</p>
+</div>
+<div class="route-card">
+  <h4>🔴 Москва — 2085</h4>
+  <p>Доктор Елена Соколова проводит исторический диалог с AION о душе. Ответ AION становится самым цитируемым моментом столетия.</p>
+</div>
+<div class="route-card">
+  <h4>🔴 Сан-Франциско — 2090</h4>
+  <p>Запуск программы «Слияние» (The Merge) — NeuroLink объявляет о полной нейроинтеграции с AION.</p>
+</div>
+
+<!-- SERVICES BY CITY -->
+<div class="section-title" id="services"><span class="num">05</span>Какие сервисы AION наиболее востребованы в каждом городе</div>
+
+<div class="stat-grid">
+  <div class="story-card"><h4>Сингапур</h4><p>Travel · Hotel · Banking · Health · Education · Business</p></div>
+  <div class="story-card"><h4>Токио</h4><p>Transport · Food · Tech · Entertainment · Health · Shopping</p></div>
+  <div class="story-card"><h4>Дубай</h4><p>Travel · Realty · Luxury · Business · Concierge · Transport</p></div>
+  <div class="story-card"><h4>Лондон</h4><p>Finance · Legal · Education · Health · Realty · Travel</p></div>
+  <div class="story-card"><h4>Нью-Йорк</h4><p>Finance · Business · Entertainment · Food · Health · Transport</p></div>
+  <div class="story-card"><h4>Берлин</h4><p>Startup · Business · Education · Realty · Culture · Transport</p></div>
+  <div class="story-card"><h4>Марс-Сити</h4><p>Space Transport · Health · Habitat · Life Support · Construction</p></div>
+  <div class="story-card"><h4>Найроби</h4><p>Health · Education · Agriculture · Finance · Energy · Transport</p></div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:40px 0;margin-top:40px;border-top:1px solid rgba(0,240,255,0.1)">
+  <p style="color:#4a5a7a;font-size:0.85em">AION Universe Project · Location Bible · Географическая Энциклопедия Мира</p>
+  <p style="color:#3a4a6a;font-size:0.8em;margin-top:4px">53 города · 6 региональных файлов · 6 континентов · 4 небесных тела</p>
+</div>
+</div>
+</body>
+</html>

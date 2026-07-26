@@ -1,0 +1,888 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>300 мест рядом — Тбилиси | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #D4A853;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --deep-blue: #0A1628;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .cover {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1a2a4a 50%, var(--deep-blue) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '∞';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.04;
+    top: -60px;
+    right: -40px;
+    font-weight: 100;
+  }
+  .cover::after {
+    content: 'AION';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.03;
+    bottom: -40px;
+    left: -20px;
+    font-weight: 900;
+    letter-spacing: 20px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .cover .subtitle {
+    font-size: 16px;
+    opacity: 0.75;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  .cover .meta {
+    margin-top: 28px;
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav a:hover { background: var(--bg-alt); color: var(--accent); }
+  .section {
+    padding: 24px 32px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--deep-blue);
+  }
+  .section-header .count {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+  }
+  .entry {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+  .entry:hover { border-color: var(--accent); }
+  .entry .num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .entry h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin: 2px 0 4px;
+  }
+  .entry .loc {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  .entry .desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .entry .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .entry .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag-price { background: #f0fdf4; color: #15803d; }
+  .tag-time { background: #fefce8; color: #a16207; }
+  .tag-info { background: #eef2ff; color: #4338ca; }
+  .tag-warn { background: #fef2f2; color: #dc2626; }
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 28px; }
+    .section { padding: 16px 14px; }
+    .entry-grid { grid-template-columns: 1fr; }
+    .nav { padding: 6px 10px; gap: 2px; }
+    .nav a { font-size: 11px; padding: 2px 6px; }
+  }
+  .section ul { list-style: none; margin: 0; padding: 0; }
+  .section li {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .section li strong { color: var(--deep-blue); }
+  .section li .meta { color: var(--text-light); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">AION City Guide</div>
+  <h1>300 мест рядом</h1>
+  <div class="subtitle">Полный гид по Тбилиси — всё, что нужно русскоязычному</div>
+  <div class="meta">AION · Июнь 2026 · 14 разделов · 303 места</div>
+</div>
+
+<nav class="nav" id="nav">
+  <a href="#sight">Достопримечательности</a>
+  <a href="#parks">Парки и зоны отдыха</a>
+  <a href="#water">Водоёмы</a>
+  <a href="#spa">СПА</a>
+  <a href="#beauty">Красота</a>
+  <a href="#markets">Рынки</a>
+  <a href="#shopping">Шопинг</a>
+  <a href="#kids">Дети</a>
+  <a href="#sport">Спорт</a>
+  <a href="#med">Медицина</a>
+  <a href="#transport">Транспорт</a>
+  <a href="#food">Рестораны</a>
+  <a href="#night">Ночная жизнь</a>
+  <a href="#services">Сервисы</a>
+</nav>
+
+<div class="section" id="sight">
+<div class="section-header"><h2>Достопримечательности</h2><span class="count">25 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#1</div><h3>Крепость Нарикала</h3><div class="loc">Холм над Старым городом</div><div class="desc">Древняя крепость IV века, символ Тбилиси. Панорамный вид на город, Куру и Старый город. Подъём на канатной дороге.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#2</div><h3>Мост Мира</h3><div class="loc">Над Курой, центр</div><div class="desc">Стеклянный мост-пешеходник со светодиодной подсветкой. Символ нового Тбилиси. Вечером — световое шоу.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#3</div><h3>Площадь Свободы</h3><div class="loc">Центр, пр. Руставели</div><div class="desc">Главная площадь с памятником Свободы. Вокруг — здание мэрии, отель Marriott, банки.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#4</div><h3>Проспект Руставели</h3><div class="loc">Центр, 1.5 км</div><div class="desc">Главный проспект Тбилиси. Театры, музеи, магазины, кафе. Центральная артерия города.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#5</div><h3>Старый город (Старый Тбилиси)</h3><div class="loc">Район Мейдан</div><div class="desc">Узкие улочки с резными балконами, старинные дома, винные погреба. Главная туристическая зона.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#6</div><h3>Серные бани Абанотубани</h3><div class="loc">Район серных бань, Старый город</div><div class="desc">Знаменитые тбилисские серные бани под землёй. Купола на уровне земли. Легендарное место.</div><div class="tags"><span class="tag tag-price">от 50₾</span><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#7</div><h3>Канатная дорога на Нарикалу</h3><div class="loc">От площади Европы</div><div class="desc">Подъём на крепость Нарикала с панорамным видом. Кабинки с прозрачным полом.</div><div class="tags"><span class="tag tag-price">2.5₾</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#8</div><h3>Ботанический сад Тбилиси</h3><div class="loc">У подножия Нарикалы</div><div class="desc">Старый ботанический сад с водопадом, мостами, редкими растениями. Оазис в центре города.</div><div class="tags"><span class="tag tag-price">5₾</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#9</div><h3>Парк Мтацминда</h3><div class="loc">Холм Мтацминда</div><div class="desc">Парк развлечений на вершине горы с колесом обозрения. Фуникулёр, панорама города.</div><div class="tags"><span class="tag tag-info">Фуникулёр 2₾</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#10</div><h3>Фуникулёр Мтацминда</h3><div class="loc">От пр. Руставели</div><div class="desc">Исторический фуникулёр 1905 года. Подъём на холм Мтацминда с видом на весь город.</div><div class="tags"><span class="tag tag-price">2₾</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#11</div><h3>Церковь Кашвети</h3><div class="loc">Пр. Руставели</div><div class="desc">Красивая православная церковь на проспекте Руставели. Действующая, с уникальными фресками.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#12</div><h3>Собор Самеба (Троицы)</h3><div class="loc">Холм св. Ильи</div><div class="desc">Главный кафедральный собор Грузии. Огромный золотой купол, панорамная площадка.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">7:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#13</div><h3>Монумент «Мать Картли»</h3><div class="loc">Холм Сололаки</div><div class="desc">20-метровая статуя женщины с мечом в одной руке и чашей вина в другой. Символ грузинского гостеприимства.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#14</div><h3>Парк Рике</h3><div class="loc">У моста Мира</div><div class="desc">Современный парк на берегу Куры. Необычные скульптуры, два стеклянных павильона (концертный зал).</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#15</div><h3>Улица Шардени</h3><div class="loc">Старый город</div><div class="desc">Главная туристическая улица с ресторанами, барами и сувенирами. Мощёная, с каменными зданиями.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#16</div><h3>Музей Грузии (Simona Janashia)</h3><div class="loc">Пр. Руставели, 3</div><div class="desc">Главный исторический музей. Золото Колхиды, древние артефакты, сокровища.</div><div class="tags"><span class="tag tag-price">20₾</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#17</div><h3>Национальная галерея</h3><div class="loc">Пр. Руставели, 11</div><div class="desc">Работы Пиросмани, грузинских и европейских художников. Временные выставки.</div><div class="tags"><span class="tag tag-price">15₾</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#18</div><h3>Пантеон Мтацминда</h3><div class="loc">Холм Мтацминда</div><div class="desc">Кладбище великих грузинских писателей и общественных деятелей. Вид на город.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">9:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#19</div><h3>Мост Сухого (Блошиный рынок)</h3><div class="loc">Ул. Джамбакура-Орбелиани</div><div class="desc">Знаменитый блошиный рынок под открытым небом. Советские вещи, антиквариат, картины.</div><div class="tags"><span class="tag tag-time">10:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#20</div><h3>Театр оперы и балета</h3><div class="loc">Пр. Руставели, 25</div><div class="desc">Красивейшее здание театра с восточной архитектурой. Регулярные постановки.</div><div class="tags"><span class="tag tag-price">от 20₾</span><span class="tag tag-time">Касса 10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#21</div><h3>Дом правительства Грузии</h3><div class="loc">Пр. Руставели, 8</div><div class="desc">Величественное здание на проспекте. Стеклянный купол, строгая охрана.</div><div class="tags"><span class="tag tag-time">Только снаружи</span></div></div>
+
+<div class="entry"><div class="num">#22</div><h3>Квартал Сололаки</h3><div class="loc">Сололаки, центр</div><div class="desc">Модный квартал с дизайнерскими магазинами, арт-кафе, винтажными лавками.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#23</div><h3>Улица Абано (Банная)</h3><div class="loc">Абанотубани</div><div class="desc">Улица серных бань с характерными куполами. Одна из самых фотогеничных в городе.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#24</div><h3>Церковь Метехи</h3><div class="loc">Скала над Курой</div><div class="desc">Древняя церковь XIII века на скале. Вид на Старый город и мост Мира.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#25</div><h3>Городской музей истории Тбилиси</h3><div class="loc">Ул. Ираклия II, 8</div><div class="desc">Музей в старинном караван-сарае. Макеты города, история быта, артефакты.</div><div class="tags"><span class="tag tag-price">5₾</span><span class="tag tag-time">10:00–17:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="parks">
+<div class="section-header"><h2>Парки и зоны отдыха</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#26</div><h3>Парк Мтацминда</h3><div class="loc">Холм Мтацминда</div><div class="desc">Парк аттракционов на горе. Колесо обозрения, карусели, кафе. Панорамный вид на Тбилиси.</div><div class="tags"><span class="tag tag-price">Вход бесплатно</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#27</div><h3>Парк Ваке</h3><div class="loc">Район Ваке</div><div class="desc">Большой парк с прудом, спортивными площадками, кафе. Популярен для пробежек и прогулок.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#28</div><h3>Парк Рике</h3><div class="loc">У моста Мира</div><div class="desc">Современный парк с арт-объектами, концертным залом, фонтанами. Сцена для мероприятий.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#29</div><h3>Парк на горе Мтацминда (фуникулёр)</h3><div class="loc">Верхняя станция фуникулёра</div><div class="desc">Ландшафтный парк с аллеями, видом на город. Рестораны, аттракционы.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#30</div><h3>Парк 9 Апреля</h3><div class="loc">Центр, у пр. Руставели</div><div class="desc">Небольшой парк с фонтаном и памятником. Место отдыха в центре.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#31</div><h3>Спортивный парк Вера</h3><div class="loc">Вера</div><div class="desc">Парк с беговыми дорожками, турниками, детскими площадками. Отлично для утренней зарядки.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#32</div><h3>Бульвар проспекта Агмашенебели</h3><div class="loc">Пр. Агмашенебели</div><div class="desc">Широкий бульвар с фонтанами и скамейками. Пешеходная зона, много кафе.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#33</div><h3>Парк Европы</h3><div class="loc">Под Нарикалой</div><div class="desc">Небольшой парк у моста Мира. Вид на крепость, реку, метехский храм.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#34</div><h3>Набережная Куры</h3><div class="loc">Вдоль реки Куры</div><div class="desc">Прогулочная зона вдоль реки. Велосипедные дорожки, кафе, скамейки. Протяжённость 3 км.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#35</div><h3>Сабурталинский парк</h3><div class="loc">Сабуртало</div><div class="desc">Парк в спальном районе. Пруды, утки, аттракционы. Спокойное место для семей.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#36</div><h3>Парк Чавчавадзе</h3><div class="loc">Ул. Чавчавадзе</div><div class="desc">Зелёная зона с фонтаном, аллеями. Рядом — университет и театр.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#37</div><h3>Сквер имени Пиросмани</h3><div class="loc">Сололаки</div><div class="desc">Маленький уютный сквер с лавочками и скульптурами. В память о художнике.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#38</div><h3>Парк Деда Эна (Родной язык)</h3><div class="loc">Мтацминда</div><div class="desc">Парк с памятником грузинскому языку и алфавиту. Тихий и ухоженный.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#39</div><h3>Летний парк на Черепашьем озере</h3><div class="loc">Черепашье озеро</div><div class="desc">Парковая зона вокруг озера. Прогулки, аренда катамаранов, кафе.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#40</div><h3>Двор Фабрики</h3><div class="loc">Ул. Ниношвили, 8</div><div class="desc">Креативное пространство во дворе бывшей швейной фабрики. Кафе, бары, хостел, тусовка.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+</div></div>
+
+<div class="section" id="water">
+<div class="section-header"><h2>Водоёмы</h2><span class="count">10 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#41</div><h3>Тбилисское море</h3><div class="loc">Северная окраина</div><div class="desc">Большое водохранилище с пляжной зоной. Пляжи, прокат катамаранов, кафе. Популярно летом.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#42</div><h3>Черепашье озеро</h3><div class="loc">Холм Мтацминда</div><div class="desc">Небольшое озеро в парковой зоне. Аренда лодок, катамаранов. Кафе, вид на город.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#43</div><h3>Озеро Лиси</h3><div class="loc">Район Лиси</div><div class="desc">Живописное озеро у подножия гор. Популярно для пикников, бега, купания.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#44</div><h3>Кура — сплавы и рафтинг</h3><div class="loc">В черте города</div><div class="desc">Сплавы на байдарках по Куре. Городские маршруты через Тбилиси, видовые.</div><div class="tags"><span class="tag tag-price">от 40₾</span><span class="tag tag-time">По записи</span></div></div>
+
+<div class="entry"><div class="num">#45</div><h3>Катамараны на Тбилисском море</h3><div class="loc">Тбилисское море</div><div class="desc">Прокат катамаранов и лодок. Хорошо для отдыха с семьёй.</div><div class="tags"><span class="tag tag-price">15–30₾/час</span></div></div>
+
+<div class="entry"><div class="num">#46</div><h3>Водопад в Ботаническом саду</h3><div class="loc">Ботанический сад</div><div class="desc">Красивый каскадный водопад в глубине сада. Прохлада в жару, живописные виды.</div><div class="tags"><span class="tag tag-price">Входит в билет 5₾</span></div></div>
+
+<div class="entry"><div class="num">#47</div><h3>Пруд в парке Ваке</h3><div class="loc">Парк Ваке</div><div class="desc">Искусственный пруд с фонтаном и утками. Прогулочные мостики.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#48</div><h3>Пляж «Тбилисское море»</h3><div class="loc">Тбилисское море</div><div class="desc">Городской пляж с песком. Шезлонги, зонты, водные горки. Сезон июнь–сентябрь.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#49</div><h3>Озеро Куса</h3><div class="loc">Пригород Тбилиси</div><div class="desc">Маленькое озеро в лесу. Место для пикников, рыбалки, шашлыков.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#50</div><h3>Река Вера</h3><div class="loc">Ущелье Веры</div><div class="desc">Горная речка в черте города. Прогулки вдоль воды, кафе на берегу.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+</div></div>
+
+<div class="section" id="spa">
+<div class="section-header"><h2>СПА и бани</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#51</div><h3>Серные бани Абанотубани (исторические)</h3><div class="loc">Абанотубани, Старый город</div><div class="desc">Легендарные серные бани под землёй. Разные купальни: Орбелиановская, Царская, Ираклия.</div><div class="tags"><span class="tag tag-price">от 50₾</span><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#52</div><h3>Bania №5 (Царская)</h3><div class="loc">Ул. Абано, 5</div><div class="desc">Историческая баня с царскими интерьерами. Серная, с массажем и скрабом.</div><div class="tags"><span class="tag tag-price">от 80₾</span><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#53</div><h3>Орбелиановская серная баня</h3><div class="loc">Ул. Абано, 8</div><div class="desc">Самая красивая баня. Мозаика, восточный стиль. Раздельные залы для мужчин и женщин.</div><div class="tags"><span class="tag tag-price">от 60₾</span></div></div>
+
+<div class="entry"><div class="num">#54</div><h3>SPA hotel Tbilisi (Crowne Plaza)</h3><div class="loc">Центр</div><div class="desc">СПА-центр с бассейном, сауной, массажем. Дневной доступ, качественный сервис.</div><div class="tags"><span class="tag tag-price">от 80₾</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#55</div><h3>SPA Radisson Blu Iveria</h3><div class="loc">Пр. Руставели</div><div class="desc">Премиальный спа-центр с панорамным видом. Бассейн, хаммам, джакузи.</div><div class="tags"><span class="tag tag-price">от 100₾</span><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#56</div><h3>SPA Rooms Hotel Tbilisi</h3><div class="loc">Центр</div><div class="desc">Стильный спа при отеле Rooms. Массаж, уходовые процедуры, сауна.</div><div class="tags"><span class="tag tag-price">от 70₾</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#57</div><h3>SPA Sheraton Tbilisi</h3><div class="loc">Центр</div><div class="desc">СПА с бассейном, тренажёрным залом, саунами, массажным кабинетом.</div><div class="tags"><span class="tag tag-price">от 90₾</span><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#58</div><h3>SPA Biltmore Tbilisi</h3><div class="loc">Центр</div><div class="desc">Роскошный спа-центр в 5-звёздочном отеле. Индийские и европейские процедуры.</div><div class="tags"><span class="tag tag-price">от 120₾</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#59</div><h3>Hilton Tbilisi Spa</h3><div class="loc">Центр</div><div class="desc">СПА-центр отеля Hilton. Бассейн, сауна, парная, массажи.</div><div class="tags"><span class="tag tag-price">от 70₾</span><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#60</div><h3>Ambassadori Spa</h3><div class="loc">Центр</div><div class="desc">СПА-центр отеля Ambassadori. Хамам, джакузи, крытый бассейн.</div><div class="tags"><span class="tag tag-price">от 50₾</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#61</div><h3>Golden Spa Tbilisi</h3><div class="loc">Центр</div><div class="desc">Массажный СПА с русскоязычными мастерами. Тайский, классический массаж.</div><div class="tags"><span class="tag tag-price">от 40₾</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#62</div><h3>Hawaii Spa Tbilisi</h3><div class="loc">Центр</div><div class="desc">СПА-салон с массажем, обёртываниями. Доступные цены, хорошие отзывы.</div><div class="tags"><span class="tag tag-price">от 35₾</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#63</div><h3>Tbilisi Spa & Beauty Center</h3><div class="loc">Центр</div><div class="desc">Комплексный центр с массажем, уходом за лицом, кедровой бочкой.</div><div class="tags"><span class="tag tag-price">от 45₾</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#64</div><h3>Chveni Spa (Наш спа)</h3><div class="loc">Центр</div><div class="desc">СПА с грузинским гостеприимством. Массаж, скрабы, хаммам.</div><div class="tags"><span class="tag tag-price">от 40₾</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#65</div><h3>Mandarin Spa Tbilisi</h3><div class="loc">Центр</div><div class="desc">Стильный спа-салон с авторскими программами. Китайский и тайский массаж.</div><div class="tags"><span class="tag tag-price">от 60₾</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="beauty">
+<div class="section-header"><h2>Салоны красоты и Nail-студии</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#66</div><h3>Beauty Studio Tbilisi</h3><div class="loc">Центр</div><div class="desc">Салон красоты с русскоязычными мастерами. Стрижки, окрашивание, укладка.</div><div class="tags"><span class="tag tag-price">Стрижка от 35₾</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#67</div><h3>Nail Art Tbilisi</h3><div class="loc">Центр</div><div class="desc">Профессиональная nail-студия. Маникюр, педикюр, гель-лак, дизайн.</div><div class="tags"><span class="tag tag-price">Маникюр от 30₾</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#68</div><h3>Glamour Hair Studio</h3><div class="loc">Центр</div><div class="desc">Салон для мужчин и женщин. Модные стрижки, окрашивание, уход.</div><div class="tags"><span class="tag tag-price">Стрижка от 30₾</span><span class="tag tag-time">9:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#69</div><h3>Pink Nail Tbilisi</h3><div class="loc">Центр</div><div class="desc">Маникюр, педикюр, наращивание ногтей. Дизайн любой сложности.</div><div class="tags"><span class="tag tag-price">Маникюр от 25₾</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#70</div><h3>Brow & Lash Bar Tbilisi</h3><div class="loc">Центр</div><div class="desc">Студия бровей и ресниц. Коррекция, окрашивание, ламинирование, наращивание.</div><div class="tags"><span class="tag tag-price">Брови от 25₾</span><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#71</div><h3>Barber Shop Tbilisi</h3><div class="loc">Центр</div><div class="desc">Мужская парикмахерская. Стрижки, бритьё, уход за бородой.</div><div class="tags"><span class="tag tag-price">Стрижка от 35₾</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#72</div><h3>Elegance Nail Salon</h3><div class="loc">Центр</div><div class="desc">Премиальная nail-студия. Долговечное покрытие, большой выбор.</div><div class="tags"><span class="tag tag-price">от 40₾</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#73</div><h3>Lotus Beauty Tbilisi</h3><div class="loc">Центр</div><div class="desc">Комплексный салон: стрижки, маникюр, массаж, уход за лицом.</div><div class="tags"><span class="tag tag-price">от 30₾</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#74</div><h3>Cosmo Hair Studio</h3><div class="loc">Центр</div><div class="desc">Салон-парикмахерская. Стрижки, окрашивание, мелирование, кератин.</div><div class="tags"><span class="tag tag-price">Стрижка от 25₾</span><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#75</div><h3>Beauty Spot Tbilisi</h3><div class="loc">Центр</div><div class="desc">Салон красоты с русскоязычным персоналом. Все виды услуг.</div><div class="tags"><span class="tag tag-price">от 30₾</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#76</div><h3>Nail Bar Tbilisi</h3><div class="loc">Центр</div><div class="desc">Сеть маникюрных студий. Быстро, качественно, демократично.</div><div class="tags"><span class="tag tag-price">Маникюр от 25₾</span><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#77</div><h3>Depilation Studio Tbilisi</h3><div class="loc">Центр</div><div class="desc">Студия депиляции и шугаринга. Все зоны, стерильно, профессионально.</div><div class="tags"><span class="tag tag-price">от 20₾</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#78</div><h3>Hair & Makeup Studio</h3><div class="loc">Центр</div><div class="desc">Визаж, причёски, свадебные укладки. Профессиональная косметика.</div><div class="tags"><span class="tag tag-price">от 50₾</span><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#79</div><h3>Tattoo & Beauty Tbilisi</h3><div class="loc">Центр</div><div class="desc">Студия тату и перманентного макияжа. Брови, губы, стрелки.</div><div class="tags"><span class="tag tag-price">от 80₾</span><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#80</div><h3>Nail Studio Rustaveli</h3><div class="loc">Пр. Руставели</div><div class="desc">Студия маникюра в центре. Быстрое обслуживание, качественное покрытие.</div><div class="tags"><span class="tag tag-price">Маникюр от 30₾</span></div></div>
+
+</div></div>
+
+<div class="section" id="markets">
+<div class="section-header"><h2>Рынки</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#81</div><h3>Дезиртер (Центральный рынок)</h3><div class="loc">Ул. Церетели, центр</div><div class="desc">Главный продовольственный рынок. Сыры, вино, фрукты, орехи, чурчхела. Лабиринт рядов.</div><div class="tags"><span class="tag tag-time">7:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#82</div><h3>Блошиный рынок Сухого моста</h3><div class="loc">Ул. Джамбакура-Орбелиани</div><div class="desc">Самый известный блошиный рынок. Винтаж, советские вещи, значки, открытки.</div><div class="tags"><span class="tag tag-time">10:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#83</div><h3>Фруктовый рынок Надзаладеви</h3><div class="loc">Надзаладеви</div><div class="desc">Крупный рынок фруктов и овощей. Цены ниже центра. Сезонные фрукты.</div><div class="tags"><span class="tag tag-time">6:00–15:00</span></div></div>
+
+<div class="entry"><div class="num">#84</div><h3>Рынок Дидубе</h3><div class="loc">Дидубе</div><div class="desc">Большой рынок, где торгуют оптом и в розницу. Всё для дома, продукты.</div><div class="tags"><span class="tag tag-time">6:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#85</div><h3>Сабурталинский рынок</h3><div class="loc">Сабуртало</div><div class="desc">Рынок спального района. Продукты, одежда, хозтовары. Демократичные цены.</div><div class="tags"><span class="tag tag-time">7:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#86</div><h3>Винный рынок (Дегустация)</h3><div class="loc">Центр</div><div class="desc">Рынок грузинских вин. Дегустация, продажа домашних вин, чачи. Можно попробовать.</div><div class="tags"><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#87</div><h3>Рынок Глдани</h3><div class="loc">Глдани</div><div class="desc">Районный рынок на окраине. Цены минимальные, выбор овощей, зелени, сыров.</div><div class="tags"><span class="tag tag-time">7:00–15:00</span></div></div>
+
+<div class="entry"><div class="num">#88</div><h3>Сырный ряд Дезиртер</h3><div class="loc">Центральный рынок</div><div class="desc">Десятки видов грузинского сыра: сулугуни, имеретинский, кобийский, чанах, гуда.</div><div class="tags"><span class="tag tag-time">7:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#89</div><h3>Цветочный рынок</h3><div class="loc">Пр. Руставели</div><div class="desc">Цветочные ряды с огромным выбором. Цены в разы ниже, чем в Москве.</div><div class="tags"><span class="tag tag-time">7:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#90</div><h3>Ночной рынок в Старом городе</h3><div class="loc">Ул. Шардени</div><div class="desc">Вечером — сувениры, украшения, магниты. Работает в туристический сезон.</div><div class="tags"><span class="tag tag-time">18:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#91</div><h3>Книжный рынок</h3><div class="loc">Ул. Петриашвили</div><div class="desc">Подержанные книги на грузинском и русском. Букинистика, редкие издания.</div><div class="tags"><span class="tag tag-time">10:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#92</div><h3>Медовый базар</h3><div class="loc">Центральный рынок</div><div class="desc">Разные сорта грузинского мёда. Аджика, варенье, соусы.</div><div class="tags"><span class="tag tag-time">8:00–17:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="shopping">
+<div class="section-header"><h2>Торговые центры и шопинг</h2><span class="count">18 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#93</div><h3>Tbilisi Mall (Тбилиси Молл)</h3><div class="loc">Пр. Аршакуняц</div><div class="desc">Крупнейший ТЦ города. Бренды, гипермаркет, кинотеатр, фуд-корт.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#94</div><h3>East Point</h3><div class="loc">Кавтарадзе, 1</div><div class="desc">Гипермаркет, магазины одежды, кафе, детская зона. Огромная парковка.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#95</div><h3>Galeria Tbilisi</h3><div class="loc">Пр. Руставели</div><div class="desc">ТЦ в центре города. Модные бренды, фуд-корт, кино.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#96</div><h3>Carrefour (гипермаркет)</h3><div class="loc">Несколько адресов</div><div class="desc">Французский гипермаркет. Продукты, бытовая химия, косметика. Лучшие цены.</div><div class="tags"><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#97</div><h3>Goodwill (сеть супермаркетов)</h3><div class="loc">Несколько адресов</div><div class="desc">Крупная сеть супермаркетов. Продукты, выпечка, акции.</div><div class="tags"><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#98</div><h3>Nikora (продукты)</h3><div class="loc">Несколько адресов</div><div class="desc">Грузинская сеть супермаркетов. Местные продукты, своя выпечка.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#99</div><h3>Sulpak (электроника)</h3><div class="loc">Тбилиси Молл и др.</div><div class="desc">Сеть магазинов электроники. Техника, телефоны, ноутбуки.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#100</div><h3>Универмаг «Тбилиси»</h3><div class="loc">Пл. Свободы</div><div class="desc">Исторический универмаг с одеждой, обувью, аксессуарами.</div><div class="tags"><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#101</div><h3>Северный проспект (шопинг)</h3><div class="loc">Пл. Свободы — ул. Саят-Новы</div><div class="desc">Торговая улица с брендами, бутиками, ресторанами. Пешеходная.</div><div class="tags"><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#102</div><h3>Проспект Руставели (магазины)</h3><div class="loc">Пр. Руставели</div><div class="desc">Главная торговая артерия. Магазины, сувениры, винные бутики.</div><div class="tags"><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#103</div><h3>Магазин грузинского вина (винотека)</h3><div class="loc">Центр</div><div class="desc">Дегустация и продажа грузинских вин. Коньяк, чача. Более 100 сортов.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#104</div><h3>Шоурум грузинских ковров</h3><div class="loc">Старый город</div><div class="desc">Традиционные грузинские ковры, паласы. Ручная работа.</div><div class="tags"><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#105</div><h3>Аутлет Центр</h3><div class="loc">Дидубе</div><div class="desc">Дисконт-центр. Скидки на брендовую одежду, обувь.</div><div class="tags"><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#106</div><h3>Косметика и парфюмерия</h3><div class="loc">Центр</div><div class="desc">Магазины грузинской натуральной косметики. Мыло, масла, кремы.</div><div class="tags"><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#107</div><h3>Магазин грузинского шёлка</h3><div class="loc">Старый город</div><div class="desc">Шёлковые платки, палантины. Натуральные красители.</div><div class="tags"><span class="tag tag-time">10:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#108</div><h3>Ювелирный квартал</h3><div class="loc">Центр</div><div class="desc">Ювелирные магазины. Золото, серебро, грузинская финифть.</div><div class="tags"><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#109</div><h3>ЦУМ Тбилиси</h3><div class="loc">Центр</div><div class="desc">Торговый дом с товарами повседневного спроса.</div><div class="tags"><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#110</div><h3>Smart Supermarket</h3><div class="loc">Несколько точек</div><div class="desc">Супермаркет для ежедневных покупок. Удобно, есть всё необходимое.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="kids">
+<div class="section-header"><h2>Детские центры и развлечения</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#111</div><h3>Парк Мтацминда (аттракционы)</h3><div class="loc">Холм Мтацминда</div><div class="desc">Колесо обозрения, карусели, автодром. Детский городок.</div><div class="tags"><span class="tag tag-price">от 5₾</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#112</div><h3>Детский парк Ваке</h3><div class="loc">Парк Ваке</div><div class="desc">Детские площадки, батуты, электромобили. Бесплатный вход.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#113</div><h3>Игровой центр в Tbilisi Mall</h3><div class="loc">Tbilisi Mall</div><div class="desc">Лабиринты, батуты, сухой бассейн. Дети под присмотром.</div><div class="tags"><span class="tag tag-price">15₾/час</span><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#114</div><h3>Детский клуб Kids Club</h3><div class="loc">Центр</div><div class="desc">Развивающие занятия, творчество, мастер-классы. Русскоязычные педагоги.</div><div class="tags"><span class="tag tag-price">от 15₾</span></div></div>
+
+<div class="entry"><div class="num">#115</div><h3>Зоопарк Тбилиси</h3><div class="loc">Центр</div><div class="desc">Городской зоопарк с животными со всего мира. Детям интересно.</div><div class="tags"><span class="tag tag-price">10₾</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#116</div><h3>Кинотеатр «Кавеа Ист-Пойнт»</h3><div class="loc">East Point</div><div class="desc">Современный кинотеатр. Детские сеансы на русском и грузинском.</div><div class="tags"><span class="tag tag-price">15–25₾</span></div></div>
+
+<div class="entry"><div class="num">#117</div><h3>Боулинг в East Point</h3><div class="loc">East Point</div><div class="desc">Детские дорожки с бортами. Весело и активно.</div><div class="tags"><span class="tag tag-price">15–20₾/игра</span></div></div>
+
+<div class="entry"><div class="num">#118</div><h3>Центр раннего развития «Умка»</h3><div class="loc">Ваке</div><div class="desc">Русскоязычный детский сад и занятия для детей от 1 года.</div><div class="tags"><span class="tag tag-info">Русскоязычный</span></div></div>
+
+<div class="entry"><div class="num">#119</div><h3>Детский бассейн</h3><div class="loc">СПА-центры города</div><div class="desc">Несколько бассейнов с подогревом для детей. Аквааэробика.</div><div class="tags"><span class="tag tag-price">от 15₾</span></div></div>
+
+<div class="entry"><div class="num">#120</div><h3>Веревочный парк</h3><div class="loc">Парк Мтацминда</div><div class="desc">Трассы на деревьях. Для детей от 4 лет и взрослых.</div><div class="tags"><span class="tag tag-price">20–30₾</span></div></div>
+
+<div class="entry"><div class="num">#121</div><h3>Каток (крытый)</h3><div class="loc">Ледовый дворец</div><div class="desc">Круглогодичный каток. Прокат коньков, обучение.</div><div class="tags"><span class="tag tag-price">15–25₾</span></div></div>
+
+<div class="entry"><div class="num">#122</div><h3>Студия детского творчества</h3><div class="loc">Центр</div><div class="desc">Рисование, лепка, керамика. Мастер-классы для всех возрастов.</div><div class="tags"><span class="tag tag-price">от 10₾</span></div></div>
+
+<div class="entry"><div class="num">#123</div><h3>Аквапарк Gino Paradise</h3><div class="loc">Пригород</div><div class="desc">Большой аквапарк с горками, бассейнами. Семейный отдых.</div><div class="tags"><span class="tag tag-price">30–50₾</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#124</div><h3>Кукольный театр</h3><div class="loc">Центр</div><div class="desc">Тбилисский театр кукол. Спектакли на русском и грузинском.</div><div class="tags"><span class="tag tag-price">от 10₾</span></div></div>
+
+<div class="entry"><div class="num">#125</div><h3>Прокат детских электромобилей</h3><div class="loc">Парк Ваке</div><div class="desc">Машинки на прокат. Управление самостоятельно. Дети в восторге.</div><div class="tags"><span class="tag tag-price">10₾/15 мин</span></div></div>
+
+</div></div>
+
+<div class="section" id="sport">
+<div class="section-header"><h2>Спорт и активности</h2><span class="count">18 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#126</div><h3>Фитнес-клуб World Class Tbilisi</h3><div class="loc">Центр</div><div class="desc">Международная сеть. Тренажёры, групповые занятия, сауна.</div><div class="tags"><span class="tag tag-price">Разовый 35₾</span><span class="tag tag-time">7:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#127</div><h3>Бассейн «Лагуна Вере»</h3><div class="loc">Вере</div><div class="desc">Крытый бассейн с дорожками. Сауна, джакузи.</div><div class="tags"><span class="tag tag-price">20₾</span><span class="tag tag-time">7:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#128</div><h3>Футбольное поле</h3><div class="loc">Спорткомплекс</div><div class="desc">Поле для мини-футбола. Искусственное покрытие. Сборные.</div><div class="tags"><span class="tag tag-price">30–50₾/час</span></div></div>
+
+<div class="entry"><div class="num">#129</div><h3>Теннисные корты</h3><div class="loc">Ваке, Сабуртало</div><div class="desc">Корты с hard-покрытием. Прокат ракеток, тренер.</div><div class="tags"><span class="tag tag-price">20–40₾/час</span></div></div>
+
+<div class="entry"><div class="num">#130</div><h3>Бег в парке Ваке</h3><div class="loc">Парк Ваке</div><div class="desc">Беговые дорожки 2 км. Открытая воркаут-площадка.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#131</div><h3>Спортзал CrossFit</h3><div class="loc">Центр</div><div class="desc">Кроссфит-бокс. Профессиональное оборудование, разовые.</div><div class="tags"><span class="tag tag-price">25₾</span></div></div>
+
+<div class="entry"><div class="num">#132</div><h3>Боевые искусства (MMA, дзюдо)</h3><div class="loc">Центр</div><div class="desc">Залы единоборств с тренерами для взрослых и детей.</div><div class="tags"><span class="tag tag-price">от 20₾</span></div></div>
+
+<div class="entry"><div class="num">#133</div><h3>Бильярдные клубы</h3><div class="loc">Центр, несколько точек</div><div class="desc">Русский бильярд, американский пул. Прокат кия.</div><div class="tags"><span class="tag tag-price">10–20₾/час</span></div></div>
+
+<div class="entry"><div class="num">#134</div><h3>Велопрокат на Тбилисском море</h3><div class="loc">Тбилисское море</div><div class="desc">Прокат велосипедов, самокатов. Набережная 5 км.</div><div class="tags"><span class="tag tag-price">10–20₾/час</span></div></div>
+
+<div class="entry"><div class="num">#135</div><h3>Скалодром</h3><div class="loc">Центр</div><div class="desc">Крытый скалодром. Разные уровни сложности.</div><div class="tags"><span class="tag tag-price">20₾</span></div></div>
+
+<div class="entry"><div class="num">#136</div><h3>Пейнтбол</h3><div class="loc">Пригород</div><div class="desc">Поле с укрытиями. Снаряжение включено.</div><div class="tags"><span class="tag tag-price">от 40₾</span></div></div>
+
+<div class="entry"><div class="num">#137</div><h3>Конный клуб</h3><div class="loc">Пригород Тбилиси</div><div class="desc">Верховая езда по живописным холмам.</div><div class="tags"><span class="tag tag-price">40–70₾/час</span></div></div>
+
+<div class="entry"><div class="num">#138</div><h3>Настольный теннис</h3><div class="loc">Парк Ваке</div><div class="desc">Столы для тенниса в парке. Прокат ракеток.</div><div class="tags"><span class="tag tag-price">5₾</span></div></div>
+
+<div class="entry"><div class="num">#139</div><h3>Йога в парке</h3><div class="loc">Парк Рике</div><div class="desc">Утренняя йога группами. Для всех уровней.</div><div class="tags"><span class="tag tag-price">15₾</span></div></div>
+
+<div class="entry"><div class="num">#140</div><h3>Баскетбольная площадка</h3><div class="loc">Парк Ваке</div><div class="desc">Открытая баскетбольная площадка. Вечером освещается.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#141</div><h3>Ледовый дворец</h3><div class="loc">Центр</div><div class="desc">Крытый каток. Массовое катание, хоккей.</div><div class="tags"><span class="tag tag-price">15₾</span></div></div>
+
+<div class="entry"><div class="num">#142</div><h3>Тир / стрельбище</h3><div class="loc">Пригород</div><div class="desc">Стрелковый тир. Пневматика, лук, арбалет.</div><div class="tags"><span class="tag tag-price">от 30₾</span></div></div>
+
+<div class="entry"><div class="num">#143</div><h3>Воркаут-площадки</h3><div class="loc">Парки города</div><div class="desc">Турники и брусья в парках. Бесплатно, 10+ площадок.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+</div></div>
+
+<div class="section" id="med">
+<div class="section-header"><h2>Медицина и клиники</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#144</div><h3>Медицинский центр «Новый Тбилиси»</h3><div class="loc">Центр</div><div class="desc">Многопрофильная клиника. Терапия, хирургия, диагностика.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#145</div><h3>Республиканская больница</h3><div class="loc">Центр</div><div class="desc">Главная государственная больница. Скорая, стационар.</div><div class="tags"><span class="tag tag-warn">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#146</div><h3>Клиника «Медплюс»</h3><div class="loc">Центр</div><div class="desc">Частная клиника. Международные стандарты, русский язык.</div><div class="tags"><span class="tag tag-price">Консультация от 50₾</span></div></div>
+
+<div class="entry"><div class="num">#147</div><h3>Стоматология «Dental Life»</h3><div class="loc">Центр</div><div class="desc">Лечение, импланты, отбеливание. Русскоязычный персонал.</div><div class="tags"><span class="tag tag-price">Консультация 20₾</span></div></div>
+
+<div class="entry"><div class="num">#148</div><h3>Аптека PSP</h3><div class="loc">Несколько адресов</div><div class="desc">Крупная сеть аптек. Лекарства, витамины.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#149</div><h3>Женская консультация</h3><div class="loc">Центр</div><div class="desc">Гинекология, ведение беременности. Русскоязычные врачи.</div><div class="tags"><span class="tag tag-price">от 40₾</span></div></div>
+
+<div class="entry"><div class="num">#150</div><h3>Диагностический центр Invitro</h3><div class="loc">Центр</div><div class="desc">Анализы, УЗИ, МРТ. Быстро, русскоязычный персонал.</div><div class="tags"><span class="tag tag-time">7:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#151</div><h3>Детская клиника «Малыш»</h3><div class="loc">Центр</div><div class="desc">Педиатрия, прививки, массаж. Русскоязычные врачи.</div><div class="tags"><span class="tag tag-price">от 30₾</span></div></div>
+
+<div class="entry"><div class="num">#152</div><h3>Офтальмологическая клиника</h3><div class="loc">Центр</div><div class="desc">Проверка зрения, подбор очков, коррекция.</div><div class="tags"><span class="tag tag-price">Консультация от 30₾</span></div></div>
+
+<div class="entry"><div class="num">#153</div><h3>Травмпункт</h3><div class="loc">Центр</div><div class="desc">Круглосуточная помощь при травмах. Рентген.</div><div class="tags"><span class="tag tag-warn">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#154</div><h3>Центр вакцинации</h3><div class="loc">Центр</div><div class="desc">Вакцинация по календарю. Импортные вакцины.</div><div class="tags"><span class="tag tag-time">9:00–16:00</span></div></div>
+
+<div class="entry"><div class="num">#155</div><h3>Массажная клиника</h3><div class="loc">Центр</div><div class="desc">Лечебный массаж, физиотерапия.</div><div class="tags"><span class="tag tag-price">от 25₾</span></div></div>
+
+<div class="entry"><div class="num">#156</div><h3>Психолог / психотерапевт</h3><div class="loc">По запросу</div><div class="desc">Русскоязычные специалисты. Индивидуальная терапия.</div></div>
+
+<div class="entry"><div class="num">#157</div><h3>Скорая помощь 112</h3><div class="loc">По всему городу</div><div class="desc">Единый номер 112. Операторы знают русский.</div><div class="tags"><span class="tag tag-warn">112</span></div></div>
+
+<div class="entry"><div class="num">#158</div><h3>Клиника «Центральная»</h3><div class="loc">Центр</div><div class="desc">Многопрофильный центр. Педиатрия, терапия.</div><div class="tags"><span class="tag tag-time">8:00–20:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="transport">
+<div class="section-header"><h2>Такси и транспорт</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#159</div><h3>Bolt</h3><div class="loc">По всему городу</div><div class="desc">Основное приложение такси. Фиксированные цены, разные классы.</div><div class="tags"><span class="tag tag-price">от 5₾</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#160</div><h3>Yandex Go</h3><div class="loc">По всему городу</div><div class="desc">Яндекс такси. Русскоязычный интерфейс.</div><div class="tags"><span class="tag tag-price">от 5₾</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#161</div><h3>Метро Тбилиси</h3><div class="loc">2 линии, 23 станции</div><div class="desc">Скоростной транспорт. Станции красиво оформлены.</div><div class="tags"><span class="tag tag-price">1₾</span><span class="tag tag-time">6:00–0:00</span></div></div>
+
+<div class="entry"><div class="num">#162</div><h3>Городские автобусы</h3><div class="loc">По всему городу</div><div class="desc">Развитая сеть автобусов. Единый билет.</div><div class="tags"><span class="tag tag-price">1₾</span></div></div>
+
+<div class="entry"><div class="num">#163</div><h3>Маршрутки</h3><div class="loc">По всему городу</div><div class="desc">Быстрый транспорт, ходят часто.</div><div class="tags"><span class="tag tag-price">0.5–1₾</span></div></div>
+
+<div class="entry"><div class="num">#164</div><h3>Аренда авто</h3><div class="loc">Прокатные конторы</div><div class="desc">Прокат машин по городу. С водителем или без.</div><div class="tags"><span class="tag tag-price">от 80₾/день</span></div></div>
+
+<div class="entry"><div class="num">#165</div><h3>Такси до аэропорта</h3><div class="loc">Аэропорт Тбилиси</div><div class="desc">Трансфер через Bolt/Yandex. Фикс цена.</div><div class="tags"><span class="tag tag-price">25–35₾</span></div></div>
+
+<div class="entry"><div class="num">#166</div><h3>Поезд Тбилиси — Батуми</h3><div class="loc">Ж/д вокзал</div><div class="desc">Комфортабельный поезд, 5 часов. Горные пейзажи.</div><div class="tags"><span class="tag tag-price">15–40₾</span></div></div>
+
+<div class="entry"><div class="num">#167</div><h3>Фуникулёр на Мтацминду</h3><div class="loc">Пр. Руставели</div><div class="desc">Исторический фуникулёр. Вид на город.</div><div class="tags"><span class="tag tag-price">2₾</span><span class="tag tag-time">10:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#168</div><h3>Канатная дорога на Нарикалу</h3><div class="loc">От парка Рике</div><div class="desc">Короткий подъём на крепость. Вид сверху.</div><div class="tags"><span class="tag tag-price">2.5₾</span></div></div>
+
+<div class="entry"><div class="num">#169</div><h3>Электросамокаты</h3><div class="loc">Шеринг по городу</div><div class="desc">Аренда самокатов. Несколько операторов.</div><div class="tags"><span class="tag tag-price">от 1₾/мин</span></div></div>
+
+<div class="entry"><div class="num">#170</div><h3>VIP трансфер</h3><div class="loc">По запросу</div><div class="desc">Автомобиль с русскоязычным водителем.</div><div class="tags"><span class="tag tag-info">Русскоязычный</span></div></div>
+
+</div></div>
+
+<div class="section" id="food">
+<div class="section-header"><h2>Рестораны и кафе</h2><span class="count">100 мест</span></div>
+
+<h3 style="margin-bottom:6px">Грузинская кухня</h3>
+<ul>
+<li><strong>#171 Barbarestan</strong> — Старый Тбилиси, ул. Бакрадзе · Историческая грузинская, рецепты 1914, 30–60₾ · <span class="meta">145 заведений в каталоге</span></li>
+<li><strong>#172 Pasanauri</strong> — Несколько локаций · Хинкали, традиционная, сеть</li>
+<li><strong>#173 Old City Wall</strong> — Старый город · Средневековый стиль, грузинская</li>
+<li><strong>#174 Rigi</strong> — Центр · Современная грузинская, авторская</li>
+<li><strong>#175 Shavi Lomi</strong> — Центр · Традиционная, летняя веранда</li>
+<li><strong>#176 Ninia's Garden</strong> — Жилой район · Стеклянная крыша, пианино, сад</li>
+<li><strong>#177 Cafe Daphna</strong> — Центр · Хинкали, современный интерьер</li>
+<li><strong>#178 Fabrika</strong> — Ул. Ниношвили · Креативное пространство, кафе, двор</li>
+<li><strong>#179 Klike's Khinkali</strong> — Центр · Культовые хинкали</li>
+<li><strong>#180 Sakhli №11</strong> — Старый город · Дом №11, уютная грузинская</li>
+<li><strong>#181 Tsarskaya Kukhnya</strong> — Центр · Царская кухня</li>
+<li><strong>#182 Iasamani</strong> — Центр · Классная, чача-коктейли</li>
+<li><strong>#183 Zala Restaurant & Cellar</strong> — Центр · Фьюжн, восточноевропейская</li>
+<li><strong>#184 Ati Rooftop Restaurant</strong> — Центр, крыша · Международная, панорама</li>
+<li><strong>#185 See360 Restaurant</strong> — Центр · Европейская, фьюжн, 360 вид</li>
+<li><strong>#186 Machakhela</strong> — Старый город · Грузинская, традиции</li>
+<li><strong>#187 Kinto</strong> — Старый город · Традиционная грузинская</li>
+<li><strong>#188 Mukhrantubani</strong> — Старый город · Банкетный зал</li>
+<li><strong>#189 Bazari Orbeliani</strong> — Центр · Грузинская, вино, рынок</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Хинкальные и хачапурные</h3>
+<ul>
+<li><strong>#190 Khinkali Point</strong> — Несколько локаций · Хинкали, бюджетно</li>
+<li><strong>#191 Khinkali House</strong> — Центр · Хинкали, хачапури</li>
+<li><strong>#192 Puri Gulia</strong> — Центр · Выпечка, хачапури</li>
+<li><strong>#193 Imeruli Khachapuri</strong> — Центр · Хачапури по-имеретински</li>
+<li><strong>#194 Adjaruli Khachapuri</strong> — Центр · Хачапури по-аджарски</li>
+<li><strong>#195 Mravaljamie</strong> — Центр · Традиционная грузинская</li>
+<li><strong>#196 Shemoikhede</strong> — Центр · Грузинская, модерн</li>
+<li><strong>#197 Alubali</strong> — Центр · Вишнёвый сад, грузинская</li>
+<li><strong>#198 Dzveli Tbilisi</strong> — Старый город · Старый Тбилиси, традиции</li>
+<li><strong>#199 Meidan Restaurant</strong> — Площадь Мейдан · Грузинская, исторический центр</li>
+<li><strong>#200 Abesadze 33</strong> — Ул. Абесадзе, 33 · Грузинская, историческое здание</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Русская кухня</h3>
+<ul>
+<li><strong>#201 Pushkin Restaurant</strong> — Центр · Русская, европейская, элегантно</li>
+<li><strong>#202 Pelmeni Club Tbilisi</strong> — Центр · Пельмени, русская</li>
+<li><strong>#203 Borscht & More</strong> — Центр · Борщ, русская</li>
+<li><strong>#204 Blini House Tbilisi</strong> — Центр · Блины, русская</li>
+<li><strong>#205 Soviet Restaurant</strong> — Центр · СССР, ностальгия</li>
+<li><strong>#206 Kompot Cafe Tbilisi</strong> — Центр · Компот, русская</li>
+<li><strong>#207 Vareniki Club</strong> — Центр · Вареники</li>
+<li><strong>#208 Stolovaya Tbilisi</strong> — Центр · Столовая, бюджетно</li>
+<li><strong>#209 Pelmenya Tbilisi</strong> — Центр · Пельменная</li>
+<li><strong>#210 Syrniki Club</strong> — Центр · Сырники, завтраки</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Европейская и международная</h3>
+<ul>
+<li><strong>#211 Stamba Cafe</strong> — Отель Stamba · Европейская, дизайн</li>
+<li><strong>#212 Rooms Hotel Restaurant</strong> — Rooms Hotel · Международная, стиль</li>
+<li><strong>#213 Biltmore Restaurant</strong> — Biltmore Hotel · Международная, 5 звёзд</li>
+<li><strong>#214 Funicular Restaurant</strong> — Мтацминда · Европейская, фуникулёр, вид</li>
+<li><strong>#215 Asado Steakhouse</strong> — Центр · Стейки, гриль</li>
+<li><strong>#216 RadioCafe</strong> — Центр · Европейская, кофе</li>
+<li><strong>#217 Olives Restaurant</strong> — Центр · Средиземноморская</li>
+<li><strong>#218 Brasserie Buvette</strong> — Центр · Французская, бистро</li>
+<li><strong>#219 Iveria Cafe</strong> — Центр · Интернациональная, завтраки</li>
+<li><strong>#220 Tabla Restaurant</strong> — Центр · Средиземноморская</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Итальянская кухня</h3>
+<ul>
+<li><strong>#221 Maski</strong> — Центр · Итальянская, рейтинг 4.9</li>
+<li><strong>#222 Papavero</strong> — Центр · Итальянская, паста</li>
+<li><strong>#223 Italiano Vero</strong> — Центр · Подлинная итальянская</li>
+<li><strong>#224 Pasta Mia Tbilisi</strong> — Центр · Паста</li>
+<li><strong>#225 La Bruschetta Tbilisi</strong> — Центр · Брускетта</li>
+<li><strong>#226 Mamma Mia Tbilisi</strong> — Центр · Итальянская</li>
+<li><strong>#227 La Dolce Vita Tbilisi</strong> — Центр · Итальянская, десерты</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Азиатская кухня</h3>
+<ul>
+<li><strong>#228 Izakaya Tbilisi</strong> — Центр · Японская, рамен, 5.0</li>
+<li><strong>#229 Atmosphere Restaurant & Bar</strong> — Центр · Японская, фьюжн, 4.9</li>
+<li><strong>#230 Wok & Roll Tbilisi</strong> — Центр · Вок, азиатская</li>
+<li><strong>#231 Kimchi Korean</strong> — Центр · Корейская</li>
+<li><strong>#232 Pho House Tbilisi</strong> — Центр · Вьетнамская, фо</li>
+<li><strong>#233 Thai Orchid Tbilisi</strong> — Центр · Тайская</li>
+<li><strong>#234 Indian Mehak Tbilisi</strong> — Центр · Индийская, 4.9</li>
+<li><strong>#235 Uzbek Plov Tbilisi</strong> — Центр · Узбекская, плов</li>
+<li><strong>#236 Turkish Kebab Tbilisi</strong> — Центр · Турецкая</li>
+<li><strong>#237 Baku Restaurant</strong> — Центр · Азербайджанская</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Морепродукты и рыбная кухня</h3>
+<ul>
+<li><strong>#238 Fish House Tbilisi</strong> — Центр · Рыбный ресторан</li>
+<li><strong>#239 Seafood Station Tbilisi</strong> — Центр · Морепродукты</li>
+<li><strong>#240 Trout House Tbilisi</strong> — Центр · Форель</li>
+<li><strong>#241 Oyster Bar Tbilisi</strong> — Центр · Устрицы</li>
+<li><strong>#242 River Fish Tbilisi</strong> — На Куре · Речная рыба</li>
+<li><strong>#243 Ocean Basket Tbilisi</strong> — Центр · Морепродукты</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Гриль и BBQ</h3>
+<ul>
+<li><strong>#244 Asado Steakhouse</strong> — Центр · Аргентинский гриль, стейки</li>
+<li><strong>#245 BBQ House Tbilisi</strong> — Центр · BBQ</li>
+<li><strong>#246 Meat Point Tbilisi</strong> — Центр · Мясо, гриль</li>
+<li><strong>#247 Shashlik House Tbilisi</strong> — Центр · Шашлычная</li>
+<li><strong>#248 Texas BBQ Tbilisi</strong> — Центр · Техасский BBQ</li>
+<li><strong>#249 Steak & Lobster Tbilisi</strong> — Центр · Стейки и лобстеры</li>
+<li><strong>#250 Fire & Meat Tbilisi</strong> — Центр · Огонь и мясо</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Кофейни и десертные</h3>
+<ul>
+<li><strong>#251 Coffee Lab Tbilisi</strong> — Центр · Спешелти кофе</li>
+<li><strong>#252 Brew Lab Tbilisi</strong> — Центр · Кофе, коворкинг</li>
+<li><strong>#253 Entree Cafe</strong> — Центр · Кофе, завтраки</li>
+<li><strong>#254 Book Corner Cafe</strong> — Центр · Книги, кофе</li>
+<li><strong>#255 Tbilisi Bakery</strong> — Центр · Пекарня, кофе</li>
+<li><strong>#256 Croissant House Tbilisi</strong> — Центр · Круассаны</li>
+<li><strong>#257 Gelato Tbilisi</strong> — Центр · Джелато</li>
+<li><strong>#258 ChocoCafe Tbilisi</strong> — Центр · Шоколад, кофе</li>
+<li><strong>#259 Churchkhela Tbilisi</strong> — Центр · Чурчхела, 20+ точек</li>
+<li><strong>#260 Honey House Tbilisi</strong> — Центр · Мёд, сладости</li>
+<li><strong>#261 Sweet House Tbilisi</strong> — Центр · Десерты</li>
+<li><strong>#262 Macaron Tbilisi</strong> — Центр · Макаронс</li>
+<li><strong>#263 Cupcake Tbilisi</strong> — Центр · Капкейки</li>
+<li><strong>#264 Tiramisu Tbilisi</strong> — Центр · Тирамису</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Уличная еда и фастфуд</h3>
+<ul>
+<li><strong>#265 Dezerter Bazaar</strong> — Центральный рынок · Уличная еда, 50+ лотков</li>
+<li><strong>#266 Khachapuri Street</strong> — Весь город · Хачапури с собой, 30+ точек</li>
+<li><strong>#267 Khinkali Street</strong> — Весь город · Хинкали, 20+ точек</li>
+<li><strong>#268 Mtsvadi Street</strong> — Весь город · Шашлык, 15+ точек</li>
+<li><strong>#269 Shawarma Tbilisi</strong> — Весь город · Шаурма, 30+ точек</li>
+<li><strong>#270 Churchkhela Stalls</strong> — Весь город · Чурчхела, 30+ точек</li>
+<li><strong>#271 Cheburek Tbilisi</strong> — Центр · Чебуреки</li>
+<li><strong>#272 Corn Stalls Tbilisi</strong> — Весь город · Кукуруза, 20+ точек</li>
+<li><strong>#273 Dried Fruit Stalls</strong> · Сухофрукты, 15+ точек</li>
+<li><strong>#274 Lemonade Stalls</strong> · Лимонад, тархун, 30+ точек</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Завтраки и бранчи</h3>
+<ul>
+<li><strong>#275 Entree Cafe (завтраки)</strong> — Центр · Бранч, кофе</li>
+<li><strong>#276 Stamba Cafe</strong> — Stamba Hotel · Завтраки, дизайн</li>
+<li><strong>#277 Fabrika Cafe</strong> — Фабрика · Завтраки, двор</li>
+<li><strong>#278 Pancake House Tbilisi</strong> — Центр · Блины, панкейки</li>
+<li><strong>#279 Tbilisi Brunch Club</strong> — Центр · Бранч-клуб</li>
+<li><strong>#280 Avocado Toast Tbilisi</strong> — Центр · Авокадо-тост</li>
+<li><strong>#281 Smoothie Bowl Tbilisi</strong> — Центр · Смузи-боул</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Вегетарианская и веганская</h3>
+<ul>
+<li><strong>#282 Green Cafe Tbilisi</strong> — Центр · Вегетарианская, органическая</li>
+<li><strong>#283 Vegan House Tbilisi</strong> — Центр · Веганская</li>
+<li><strong>#284 Falafel House Tbilisi</strong> — Центр · Фалафель, веган</li>
+<li><strong>#285 Salad Bar Tbilisi</strong> — Центр · Салаты</li>
+<li><strong>#286 Buddha Bowl Tbilisi</strong> — Центр · Боулы</li>
+<li><strong>#287 Health Food Tbilisi</strong> — Центр · Здоровое питание</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Отельные рестораны и буфеты</h3>
+<ul>
+<li><strong>#288 Biltmore Buffet</strong> — Biltmore Hotel · Шведский стол, 5*</li>
+<li><strong>#289 Radisson Blu Iveria Buffet</strong> — Radisson Blu · Буфет, вид</li>
+<li><strong>#290 Marriott Tbilisi Buffet</strong> — Marriott · Международный буфет</li>
+<li><strong>#291 Sheraton Tbilisi Buffet</strong> — Sheraton · Завтраки, обеды</li>
+<li><strong>#292 Hilton Tbilisi Buffet</strong> — Hilton · Буфет</li>
+<li><strong>#293 Rooms Hotel Buffet</strong> — Rooms Hotel · Буфет, стиль</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Бары и пабы</h3>
+<ul>
+<li><strong>#294 Sami Ludi Tbilisi</strong> — Центр · Крафтовое пиво</li>
+<li><strong>#295 Chacha Bar</strong> — Центр · Чача, коктейли</li>
+<li><strong>#296 ProspecT</strong> — Центр · Рюмочная, советский стиль</li>
+<li><strong>#297 Fabrika Courtyard Bars</strong> — Фабрика · 10+ баров во дворе</li>
+<li><strong>#298 Irish Pub Tbilisi</strong> — Центр · Ирландский паб</li>
+<li><strong>#299 Craft Beer Tbilisi</strong> — Центр · Крафт, 10+ баров</li>
+<li><strong>#300 Meoba Bar</strong> — Центр · Коктейли</li>
+</ul>
+
+</div>
+
+<div class="section" id="night">
+<div class="section-header"><h2>Ночная жизнь</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#301</div><h3>Fabrika Courtyard</h3><div class="loc">Ул. Ниношвили, 8</div><div class="desc">Культовое место с барами во дворе бывшей фабрики. Молодёжь, музыканты, вечеринки.</div><div class="tags"><span class="tag tag-time">18:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#302</div><h3>Ati Rooftop Bar</h3><div class="loc">Центр, крыша</div><div class="desc">Панорамный бар с коктейлями и видом на город. Диджей по выходным.</div><div class="tags"><span class="tag tag-time">18:00–1:00</span></div></div>
+
+<div class="entry"><div class="num">#303</div><h3>Dive In Tbilisi</h3><div class="loc">Центр</div><div class="desc">Модный бар с кальяном, коктейлями. Популярен среди молодёжи.</div><div class="tags"><span class="tag tag-time">18:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#304</div><h3>See360 Roof Lounge</h3><div class="loc">Центр, крыша</div><div class="desc">Лаунж с 360-градусным видом. Авторские коктейли.</div><div class="tags"><span class="tag tag-time">18:00–1:00</span></div></div>
+
+<div class="entry"><div class="num">#305</div><h3>Sami Ludi Pub</h3><div class="loc">Центр</div><div class="desc">Популярный паб с крафтовым пивом. Живая атмосфера.</div><div class="tags"><span class="tag tag-time">16:00–0:00</span></div></div>
+
+<div class="entry"><div class="num">#306</div><h3>Night Club Tbilisi</h3><div class="loc">Центр</div><div class="desc">Ночной клуб с диджеями, танцполом. Вечеринки до утра.</div><div class="tags"><span class="tag tag-time">22:00–5:00</span></div></div>
+
+<div class="entry"><div class="num">#307</div><h3>Wine Bar (8000 Vintages)</h3><div class="loc">Центр</div><div class="desc">Винный бар с огромной коллекцией. Дегустации.</div><div class="tags"><span class="tag tag-time">17:00–0:00</span></div></div>
+
+<div class="entry"><div class="num">#308</div><h3>Shavi Lomi Bar</h3><div class="loc">Центр</div><div class="desc">Грузинский бар с чачей и вином. Живая музыка.</div><div class="tags"><span class="tag tag-time">18:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#309</div><h3>Live Music Bar Tbilisi</h3><div class="loc">Центр</div><div class="desc">Бар с живой музыкой каждый вечер. Джаз, блюз, рок.</div><div class="tags"><span class="tag tag-time">19:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#310</div><h3>Karaoke Bar Tbilisi</h3><div class="loc">Центр</div><div class="desc">Караоке-бар. Русские и грузинские песни.</div><div class="tags"><span class="tag tag-time">19:00–4:00</span></div></div>
+
+<div class="entry"><div class="num">#311</div><h3>Hookah Lounge Tbilisi</h3><div class="loc">Центр</div><div class="desc">Кальянная с лаунж-атмосферой. Коктейли.</div><div class="tags"><span class="tag tag-time">18:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#312</div><h3>Whiskey Bar Tbilisi</h3><div class="loc">Центр</div><div class="desc">Бар с 100+ сортами виски. Уютно, по-мужски.</div><div class="tags"><span class="tag tag-time">17:00–1:00</span></div></div>
+
+</div></div>
+
+<div class="section" id="services">
+<div class="section-header"><h2>Полезные сервисы</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#313</div><h3>Обмен валют (AION)</h3><div class="loc">Mini App / Telegram</div><div class="desc">Лучший курс в Тбилиси. USD ↔ RUB ↔ GEL. 24/7. Без очередей.</div><div class="tags"><span class="tag tag-info">Через AION</span></div></div>
+
+<div class="entry"><div class="num">#314</div><h3>Прачечная / химчистка</h3><div class="loc">Множество точек</div><div class="desc">Прачечные самообслуживания. 10–15₾/кг. Есть с доставкой.</div></div>
+
+<div class="entry"><div class="num">#315</div><h3>Ремонт телефонов и ноутбуков</h3><div class="loc">Рынки, центр</div><div class="desc">Ремонт цифровой техники. Быстро, недорого.</div></div>
+
+<div class="entry"><div class="num">#316</div><h3>Визовый центр / продление</h3><div class="loc">Центр / через AION</div><div class="desc">Продление виз, визаран. Через AION с бонусами.</div></div>
+
+<div class="entry"><div class="num">#317</div><h3>Почта и пересылка</h3><div class="loc">Главпочтамт</div><div class="desc">Международные посылки, письма. Почта Грузии.</div></div>
+
+<div class="entry"><div class="num">#318</div><h3>Печать и копирование</h3><div class="loc">Возле метро</div><div class="desc">Центры печати. Фото на документы, сканирование.</div></div>
+
+<div class="entry"><div class="num">#319</div><h3>Фото на документы</h3><div class="loc">Центр</div><div class="desc">Фотостудии с моментальной печатью.</div></div>
+
+<div class="entry"><div class="num">#320</div><h3>Швейная мастерская</h3><div class="loc">Рынки</div><div class="desc">Пошив и ремонт одежды. Недорого.</div></div>
+
+<div class="entry"><div class="num">#321</div><h3>Изготовление ключей</h3><div class="loc">Рынки</div><div class="desc">Мастерские по изготовлению ключей.</div></div>
+
+<div class="entry"><div class="num">#322</div><h3>Ремонт обуви</h3><div class="loc">Центр, рынки</div><div class="desc">Мастерские по ремонту обуви.</div></div>
+
+<div class="entry"><div class="num">#323</div><h3>Аренда турснаряжения</h3><div class="loc">По запросу</div><div class="desc">Палатки, спальники, коврики для походов.</div></div>
+
+<div class="entry"><div class="num">#324</div><h3>Туристическая полиция</h3><div class="loc">Центр</div><div class="desc">Помощь туристам. Английский, русский язык.</div></div>
+
+</div></div>
+
+<div style="text-align:center;padding:24px 32px;font-size:12px;color:var(--text-light);border-top:1px solid var(--border);letter-spacing:1px">
+  AION · 300 мест рядом · Июнь 2026 · Тбилиси, Грузия<br>
+  Обновляется · Для Mini App AION
+</div>
+
+</body>
+</html>

@@ -1,0 +1,977 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О городе — Районг | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #f59e0b;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    margin: 0 -16px;
+    border-radius: 0 0 24px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header p { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+
+  .quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 16px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quick-actions::-webkit-scrollbar { display: none; }
+  .quick-btn {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .quick-btn.emergency { background: var(--danger); }
+  .quick-btn.transport { background: var(--info); }
+  .quick-btn.sim { background: var(--success); }
+  .quick-btn.currency { background: var(--gold); color: #1e293b; }
+  .quick-btn.food { background: #ec4899; }
+  .quick-btn.island { background: #8b5cf6; }
+
+  .toc {
+    background: var(--bg-alt);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 8px 0 20px;
+    border: 1px solid var(--border);
+  }
+  .toc-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--primary);
+  }
+  .toc-item {
+    display: block;
+    padding: 6px 0;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { opacity: 0.8; }
+
+  .section {
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .emoji { font-size: 22px; }
+
+  .subsection {
+    margin: 16px 0;
+    padding: 14px;
+    background: var(--bg-alt);
+    border-radius: 12px;
+  }
+  .subsection-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .card {
+    padding: 12px;
+    margin: 8px 0;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .card-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .card-text { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .card .price { color: var(--accent); font-weight: 700; }
+
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-label { font-weight: 500; }
+  .contact-value { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+  .info-box {
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+  .info-box.tip { background: #f0fdf4; border-left: 3px solid var(--success); }
+  .info-box.warn { background: #fffbeb; border-left: 3px solid var(--warning); }
+  .info-box.danger { background: #fef2f2; border-left: 3px solid var(--danger); }
+  .info-box.info { background: #eff6ff; border-left: 3px solid var(--info); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 480px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag.green { background: #dcfce7; color: #166534; }
+  .tag.yellow { background: #fef3c7; color: #92400e; }
+  .tag.red { background: #fee2e2; color: #991b1b; }
+  .tag.blue { background: #dbeafe; color: #1e40af; }
+
+  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  .price-table th { text-align: left; padding: 8px; background: var(--bg-alt); font-weight: 600; }
+  .price-table td { padding: 8px; border-bottom: 1px solid var(--border); }
+
+  ul, ol { padding-left: 20px; font-size: 14px; }
+  li { margin: 4px 0; }
+
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Районг, Таиланд</h1>
+  <p>Полный гид для туристов и экспатов</p>
+</div>
+
+<div class="quick-actions">
+  <a href="#emergency" class="quick-btn emergency">🚨 Экстренно</a>
+  <a href="#transport" class="quick-btn transport">🚕 Транспорт</a>
+  <a href="#internet" class="quick-btn sim">📱 SIM / Internet</a>
+  <a href="#money" class="quick-btn currency">💰 Деньги</a>
+  <a href="#food" class="quick-btn food">🍜 Еда</a>
+  <a href="#samet" class="quick-btn island">🏝 Самет</a>
+</div>
+
+<div class="toc">
+  <div class="toc-title">📌 Содержание</div>
+  <a class="toc-item" href="#overview">1. Общая информация</a>
+  <a class="toc-item" href="#emergency">2. ☎️ Экстренные контакты</a>
+  <a class="toc-item" href="#weather">3. Погода и сезоны</a>
+  <a class="toc-item" href="#districts">4. Районы города</a>
+  <a class="toc-item" href="#samet">5. 🏝 Пляжи и острова (Ко Самет)</a>
+  <a class="toc-item" href="#transport">6. Транспорт</a>
+  <a class="toc-item" href="#airport">7. Аэропорт и трансфер</a>
+  <a class="toc-item" href="#internet">8. SIM-карты и Интернет</a>
+  <a class="toc-item" href="#money">9. Деньги и цены</a>
+  <a class="toc-item" href="#medicine">10. Медицина</a>
+  <a class="toc-item" href="#housing">11. Жильё</a>
+  <a class="toc-item" href="#food">12. Еда и рестораны</a>
+  <a class="toc-item" href="#safety">13. Безопасность</a>
+  <a class="toc-item" href="#visa">14. Виза и въезд</a>
+  <a class="toc-item" href="#families">15. Семьям с детьми</a>
+  <a class="toc-item" href="#nomads">16. Digital-номадам</a>
+  <a class="toc-item" href="#faq">17. FAQ — 20 вопросов</a>
+  <a class="toc-item" href="#checklist">18. Чек-лист: Первые дни в Районге</a>
+  <a class="toc-item" href="#links">19. Быстрые ссылки</a>
+</div>
+
+<!-- ============================================================
+1. ОБЩАЯ ИНФОРМАЦИЯ
+============================================================ -->
+<div class="section" id="overview">
+  <div class="section-title"><span class="emoji">🌴</span> Общая информация</div>
+  <div class="card">
+    <div class="card-text">
+      <strong>Районг</strong> (Rayong) — прибрежная провинция на востоке Таиланда,
+      примерно в 100 км от Паттайи. Важный промышленный центр (нефтехимия) и популярное
+      туристическое направление благодаря пляжам Мае Пим, Прае, Суан Сон и острову Ко Самет.
+    </div>
+  </div>
+  <table class="price-table">
+    <tr><td><strong>Население</strong></td><td>~720 000 (провинция)</td></tr>
+    <tr><td><strong>Язык</strong></td><td>Тайский (английский — в туристических зонах, русский — встречается)</td></tr>
+    <tr><td><strong>Валюта</strong></td><td>Тайский бат (THB) — 1 CNY ≈ 5 THB</td></tr>
+    <tr><td><strong>Часовой пояс</strong></td><td>UTC+7 (Индокитай)</td></tr>
+    <tr><td><strong>Телефонный код</strong></td><td>+66</td></tr>
+    <tr><td><strong>Розетки</strong></td><td>Типы A, B, C (220V / 50Hz)</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================
+2. ЭКСТРЕННЫЕ КОНТАКТЫ
+============================================================ -->
+<div class="section" id="emergency">
+  <div class="section-title"><span class="emoji">🚨</span> Экстренные контакты</div>
+  <div class="info-box danger">
+    <strong>Важно!</strong> Сохраните эти номера перед поездкой. При звонке с тайской SIM — набирайте без кода страны.
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚑 Скорая помощь</span>
+    <a href="tel:1669" class="contact-value">1669</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚒 Пожарная служба</span>
+    <a href="tel:199" class="contact-value">199</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚔 Полиция</span>
+    <a href="tel:191" class="contact-value">191</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚔 Туристическая полиция</span>
+    <a href="tel:1155" class="contact-value">1155 (англ./рус.)</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Rayong Hospital</span>
+    <a href="tel:+6638611126" class="contact-value">+66 38 611 126</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏥 Bangkok Hospital Rayong</span>
+    <a href="tel:+6633807000" class="contact-value">+66 33 807 000</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🕊 Посольство РФ (Бангкок)</span>
+    <a href="tel:+6622349824" class="contact-value">+66 2 234 9824</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">📞 Аварийный номер AION</span>
+    <a class="contact-value" href="#">Чат поддержки</a>
+  </div>
+</div>
+
+<!-- ============================================================
+3. ПОГОДА И СЕЗОНЫ
+============================================================ -->
+<div class="section" id="weather">
+  <div class="section-title"><span class="emoji">🌤</span> Погода и сезоны</div>
+  <p style="font-size:14px; margin-bottom:10px;">Тропический муссонный климат. Среднегодовая температура +28°C.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">☀️ Сухой сезон</div>
+      <div class="card-text">
+        Ноябрь — апрель. Температура +28–34°C. Солнечно, дожди редки.<br>
+        <span class="tag yellow">Высокий сезон: декабрь — февраль</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌧 Сезон дождей</div>
+      <div class="card-text">
+        Май — октябрь. Температура +26–32°C. Кратковременные ливни, море может быть неспокойным.<br>
+        <span class="tag blue">Низкий сезон: июнь — сентябрь</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Лучшее время для визита:</strong> декабрь — март. Море спокойное, вода +27–29°C, дождей почти нет.
+    Пляжи Мае Пим и Самет особенно хороши в этот период.
+  </div>
+</div>
+
+<!-- ============================================================
+4. РАЙОНЫ ГОРОДА
+============================================================ -->
+<div class="section" id="districts">
+  <div class="section-title"><span class="emoji">🗺</span> Районы города</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏖 Центр Районга — Downtown</div>
+    <div class="card-text">
+      Городской центр с рынками, магазинами, банками, автовокзалом. Здесь сосредоточены основные
+      правительственные учреждения и больницы. Меньше туристов, больше местного колорита.
+      <span class="tag yellow">Удобно для жизни</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🌊 Mae Phim Beach (Мае Пим)</div>
+    <div class="card-text">
+      Главный пляжный район в 25 км от центра. Длинная песчаная полоса, много отелей, ресторанов,
+      баров. Самое популярное место среди туристов и экспатов в Районге.
+      <span class="tag green">Рекомендуется для отдыха</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏝 Laem Mae Phim (Лам Мае Пим)</div>
+    <div class="card-text">
+      Южная оконечность пляжа Мае Пим — тихий район с дорогими отелями, виллами и отличными видами.
+      Идеально для спокойного ретрита.
+      <span class="tag green">Премиум-сегмент</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🌴 Suan Son Beach (Суан Сон)</div>
+    <div class="card-text">
+      Пляж в сосновом парке, популярный у местных. Мелкий песок, тенистые зоны. Отлично для семей с
+      детьми — пологий вход и спокойное море.
+      <span class="tag green">Семьям</span>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🏭 Промышленная зона</div>
+    <div class="card-text">
+      Крупные нефтехимические заводы (Map Ta Phut Industrial Estate). Много иностранных специалистов,
+      включая россиян. Развитая инфраструктура для экспатов: жилые комплексы, международные школы.
+      <span class="tag yellow">Работа и долгосрочное проживание</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+5. ПЛЯЖИ И ОСТРОВА
+============================================================ -->
+<div class="section" id="samet">
+  <div class="section-title"><span class="emoji">🏝</span> Пляжи и острова</div>
+
+  <div class="subsection">
+    <div class="subsection-title">⛴ Ко Самет (Koh Samet)</div>
+    <div class="card-text">
+      Жемчужина Районга — остров в 15 км от побережья. Белый песок, прозрачная вода, пальмы.
+      Входит в состав морского национального парка (вход 200 THB).
+      <span class="tag green">Must-visit</span>
+    </div>
+    <div class="card-text" style="margin-top:8px;">
+      <strong>Как добраться:</strong> Паром от пирса Ban Phe (30 мин, 50–100 THB).
+      На острове — кемпинг, бунгало, кафе. Лучшие пляжи: <strong>Sai Kaew, Ao Wong Duean, Ao Thian</strong>.
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">🏖 Mae Phim Beach</div>
+      <div class="card-text">
+        7 км песчаного пляжа. Рестораны, бары, водные виды спорта.
+        От центра Районга ~25 км.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌲 Suan Son Beach</div>
+      <div class="card-text">
+        Пляж в сосновой роще. Пологий вход, спокойное море.
+        От центра Районга ~20 км.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🦀 Прае / Prae Beach</div>
+    <div class="card-text">
+      Ещё один живописный пляж с ресторанами морепродуктов. Меньше туристов.
+      Популярен для дайвинга и снорклинга.
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Местный лайфхак:</strong> На пляже Мае Пим есть утренний рыбный рынок — покупайте свежие
+    морепродукты прямо с лодок в 6:00–8:00. Креветки, крабы, рыба — в 2–3 раза дешевле ресторанов.
+  </div>
+</div>
+
+<!-- ============================================================
+6. ТРАНСПОРТ
+============================================================ -->
+<div class="section" id="transport">
+  <div class="section-title"><span class="emoji">🚕</span> Транспорт</div>
+
+  <div class="card">
+    <div class="card-title">🚗 Grab / Bolt</div>
+    <div class="card-text">
+      Основной способ передвижения. Скачайте Grab заранее. В Районге такси дешевле, чем на Самуи или Пхукете.
+      Мотоцикл по городу — от 40 THB (~80 ₽). Авто по городу — от 100 THB (~200 ₽).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🛵 Аренда мотоцикла</div>
+    <div class="card-text">
+      Цена: 200–300 THB/день (~400–600 ₽). Нужны права (международные или национальные с переводом).
+      <span class="tag yellow">Обязательно надевайте шлем — штраф 500 THB</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚐 Songthaew (такси-пикап)</div>
+    <div class="card-text">
+      Местный общественный транспорт — пикапы с двумя скамейками в кузове. Стоимость: 10–30 THB по городу.
+      Маршруты: центр — Mae Phim, центр — Ban Phe (пирс на Самет).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚌 Автобусы междугородние</div>
+    <div class="card-text">
+      Автовокзал Rayong (Talat Kao). Рейсы: Бангкок (2.5 часа, 150–200 THB),
+      Паттайя (1.5 часа, 80–120 THB), Чантхабури, Трат.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🛵 Аренда автомобиля</div>
+    <div class="card-text">
+      Цена: от 800 THB/день. Лучшие компании: Budget, Hertz (аэропорт Паттайи/Бангкока).
+      В Районге локальные конторы — проверяйте состояние авто перед арендой.
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Внимание:</strong> Движение левостороннее! Будьте особенно внимательны в первые дни.
+    Местные водят хаотично, но к туристам терпимы.
+  </div>
+</div>
+
+<!-- ============================================================
+7. АЭРОПОРТ И ТРАНСФЕР
+============================================================ -->
+<div class="section" id="airport">
+  <div class="section-title"><span class="emoji">✈️</span> Аэропорт и трансфер</div>
+  <div class="card-text">
+    Ближайший крупный аэропорт — <strong>Утапао (U-Tapao, UTP)</strong> в 40 км от Районга (время в пути ~40 мин).
+    Международные рейсы: <strong>Бангкок Суварнабхуми (BKK)</strong> — 2.5 часа (~150 км).
+  </div>
+
+  <table class="price-table">
+    <tr><th>Вид трансфера</th><th>Цена (THB)</th><th>Время</th></tr>
+    <tr><td>Такси (аэропорт Утапао — Районг)</td><td>600–1 000</td><td>40 мин</td></tr>
+    <tr><td>Grab Car (Утапао — Районг)</td><td>500–800</td><td>40 мин</td></tr>
+    <tr><td>Такси (Бангкок — Районг)</td><td>1 500–2 500</td><td>2.5 часа</td></tr>
+    <tr><td>Автобус (Бангкок — Районг)</td><td>150–250</td><td>3 часа</td></tr>
+    <tr><td>Маршрутка (микроавтобус)</td><td>300–500</td><td>2.5 часа</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Лучший вариант:</strong> Заранее заказать трансфер через AION или Grab.
+    Из Бангкока — автобус с автовокзала Экамай (BTS Ekkamai), первый рейс в 5:00.
+  </div>
+</div>
+
+<!-- ============================================================
+8. SIM-КАРТЫ И ИНТЕРНЕТ
+============================================================ -->
+<div class="section" id="internet">
+  <div class="section-title"><span class="emoji">📱</span> SIM-карты и Интернет</div>
+
+  <div class="info-box tip">
+    <strong>Совет:</strong> Купите SIM в аэропорту или 7-Eleven. Закажите eSIM заранее (Airalo, AIS eSIM).
+    В Районге — магазины AIS, TrueMove, DTAC.
+  </div>
+
+  <table class="price-table">
+    <tr><th>Оператор</th><th>Тариф (месяц)</th><th>Трафик</th></tr>
+    <tr><td><strong>AIS</strong></td><td>300 THB (~600 ₽)</td><td>6 GB/день (неогранич.)</td></tr>
+    <tr><td><strong>TrueMove</strong></td><td>250 THB (~500 ₽)</td><td>4 GB/день</td></tr>
+    <tr><td><strong>DTAC</strong></td><td>200 THB (~400 ₽)</td><td>3 GB/день</td></tr>
+  </table>
+
+  <div class="subsection">
+    <div class="subsection-title">📶 Wi-Fi в городе</div>
+    <div class="card-text">
+      Кафе, рестораны и отели предлагают бесплатный Wi-Fi. Скорость — 20–100 Мбит/с в городе и на пляжах.
+      7-Eleven имеет бесплатный Wi-Fi (TrueMove, 30 мин/сессия).
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🌐 eSIM</div>
+    <div class="card-text">
+      Airalo: $5–20 за 7–30 дней. AIS eSIM: в магазинах AIS при предъявлении паспорта.
+      TrueMove eSIM: доступна онлайн.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+9. ДЕНЬГИ И ЦЕНЫ
+============================================================ -->
+<div class="section" id="money">
+  <div class="section-title"><span class="emoji">💰</span> Деньги и цены</div>
+
+  <div class="card">
+    <div class="card-title">💳 Карты и наличные</div>
+    <div class="card-text">
+      <strong>Наличные</strong> — основной способ. Карты принимают в крупных отелях, ТЦ, некоторых ресторанах.
+      Снимите баты в банкомате по прилёте (лучше Bangkok Bank, Kasikorn — низкая комиссия 220 THB за снятие).
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Важно:</strong> Всегда имейте наличные. Рынки, местные кафе, такси и маленькие магазины — только кэш.
+    Менять деньги лучше в банках (Superrich) — курс выгоднее, чем в обменниках на улице.
+  </div>
+
+  <div class="subsection-title" style="margin-top:12px;">💰 Примерные цены в Районге</div>
+  <table class="price-table">
+    <tr><th>Категория</th><th>Цена (THB)</th><th>Цена (~₽)</th></tr>
+    <tr><td>Чашка кофе (кафе)</td><td>40–80</td><td>80–160</td></tr>
+    <tr><td>Обед (уличная еда)</td><td>40–80</td><td>80–160</td></tr>
+    <tr><td>Обед (ресторан)</td><td>150–400</td><td>300–800</td></tr>
+    <tr><td>Пад Тай (улица)</td><td>40–60</td><td>80–120</td></tr>
+    <tr><td>Бутылка воды</td><td>7–15</td><td>14–30</td></tr>
+    <tr><td>Пиво Chang (бар)</td><td>60–100</td><td>120–200</td></tr>
+    <tr><td>Тайский массаж (60 мин)</td><td>200–350</td><td>400–700</td></tr>
+    <tr><td>Аренда мотоцикла/день</td><td>200–300</td><td>400–600</td></tr>
+    <tr><td>Свежие креветки (рынок)</td><td>150–250/кг</td><td>300–500</td></tr>
+    <tr><td>Фрукты (мангостин, кг)</td><td>30–60</td><td>60–120</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Цены vs Паттайя:</strong> В Районге всё на 10–30% дешевле, чем в Паттайе.
+    Особенно жильё и еда на местных рынках.
+  </div>
+</div>
+
+<!-- ============================================================
+10. МЕДИЦИНА
+============================================================ -->
+<div class="section" id="medicine">
+  <div class="section-title"><span class="emoji">🏥</span> Медицина</div>
+
+  <div class="card">
+    <div class="card-title">🏥 Больницы</div>
+    <div class="contact-item">
+      <span class="contact-label">Bangkok Hospital Rayong</span>
+      <a href="tel:+6633807000" class="contact-value">+66 33 807 000</a>
+    </div>
+    <div class="card-text">Международный госпиталь, принимают по страховке, English. Адрес: 555/36 Sukhumvit Rd.</div>
+    <div class="contact-item">
+      <span class="contact-label">Rayong Hospital</span>
+      <a href="tel:+6638611126" class="contact-value">+66 38 611 126</a>
+    </div>
+    <div class="card-text">Государственная больница, дешевле, но с очередями. Тайский + базовый английский.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🤒 Аптеки</div>
+    <div class="card-text">
+      Аптеки (ร้านขายยา) открыты 8:00–21:00. В Mae Phim есть круглосуточные (Pharmacy 24h).
+      Многие лекарства без рецепта. Фармацевты говорят на базовом английском.
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <strong>Страховка обязательна!</strong> Госпитализация в Bangkok Hospital может стоить $1 000+.
+    Рекомендуем полис с покрытием не менее $50 000, желательно с прямой оплатой (Direct Billing).
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🦷 Стоматология</div>
+    <div class="card-text">
+      Районг не так популярен для стомат-туризма, как Паттайя, но есть хорошие клиники:
+      <strong>Rayong Dental Clinic</strong>, <strong>BIDC Rayong</strong>. Цены на 20–30% ниже паттайских.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+11. ЖИЛЬЁ
+============================================================ -->
+<div class="section" id="housing">
+  <div class="section-title"><span class="emoji">🏠</span> Жильё</div>
+
+  <table class="price-table">
+    <tr><th>Тип</th><th>Цена/мес (THB)</th><th>Цена/мес (~₽)</th></tr>
+    <tr><td>Комната (гостевой дом)</td><td>5 000 – 8 000</td><td>10 000 – 16 000</td></tr>
+    <tr><td>Студия (Mae Phim)</td><td>8 000 – 15 000</td><td>16 000 – 30 000</td></tr>
+    <tr><td>Кондо 1 комн. (центр)</td><td>6 000 – 12 000</td><td>12 000 – 24 000</td></tr>
+    <tr><td>Дом/вилла (Mae Phim)</td><td>12 000 – 25 000</td><td>24 000 – 50 000</td></tr>
+    <tr><td>Дом (промзона, для экспатов)</td><td>15 000 – 35 000</td><td>30 000 – 70 000</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Как искать:</strong> Facebook-группы («Rayong Property», «Русские в Районге»), AION (скоро),
+    сайты: DDproperty, Hipflat. Депозит 2 месяца + 1 месяц вперёд. Договор от 6 месяцев.
+  </div>
+
+  <div class="info-box warn">
+    Районг сильно дешевле Паттайи по жилью — разница до 40% при сопоставимом качестве.
+    Но выбор меньше — бронировать лучше заранее (особенно в высокий сезон).
+  </div>
+</div>
+
+<!-- ============================================================
+12. ЕДА И РЕСТОРАНЫ
+============================================================ -->
+<div class="section" id="food">
+  <div class="section-title"><span class="emoji">🍜</span> Еда и рестораны</div>
+
+  <div class="subsection">
+    <div class="subsection-title">🥢 Что обязательно попробовать</div>
+    <ul>
+      <li><strong>Том Ям Гунг</strong> (Tom Yum Goong) — острый суп с креветками — 80–150 THB</li>
+      <li><strong>Пад Тай</strong> (Pad Thai) — жареная лапша — 40–80 THB</li>
+      <li><strong>Сом Там</strong> (Som Tam) — салат из папайи — 30–60 THB</li>
+      <li><strong>Морепродукты на гриле</strong> — рынок Mae Phim — 200–400 THB/ужин</li>
+      <li><strong>Кхао Пат</strong> (Khao Pad) — жареный рис — 40–60 THB</li>
+      <li><strong>Ям Тхалей</strong> (Yum Talay) — салат из морепродуктов — 80–120 THB</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🍉 Фрукты Районга</div>
+    <div class="card-text">
+      <strong>Районг — фруктовая столица восточного Таиланда.</strong> Главный производитель дуриана и рамбутана.
+      Сезон дуриана: май–июнь. Цена на рынке: 80–150 THB/кг (в 2–3 раза дешевле, чем в Бангкоке).
+    </div>
+    <ul style="margin-top:8px;">
+      <li><strong>Дуриан</strong> — сезон май–август, 80–200 THB/кг</li>
+      <li><strong>Мангостин</strong> — май–сентябрь, 30–60 THB/кг</li>
+      <li><strong>Рамбутан</strong> — май–август, 20–40 THB/кг</li>
+      <li><strong>Салак (змеиный фрукт)</strong> — круглый год, 40–80 THB/кг</li>
+      <li><strong>Кокосы молодые</strong> — 15–25 THB/шт</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">🥤 Напитки</div>
+    <ul>
+      <li><strong>Чай тайский</strong> (Cha Yen) — со сгущёнкой и льдом — 20–40 THB</li>
+      <li><strong>Кафе</strong> — Khao Kho Coffee, местный сорт — 40–80 THB</li>
+      <li><strong>Пиво Singha / Chang / Leo</strong> — 60–100 THB в баре, 30–40 THB в 7-Eleven</li>
+      <li><strong>Кокосовое молоко</strong> — свежее, 20–30 THB</li>
+      <li><strong>Фруктовые смузи</strong> — 30–60 THB</li>
+    </ul>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Где поесть:</strong> Ищите лотки с фотографиями и толпой местных — лучший показатель.
+    На пляжах дешевые бунгало-рестораны с морепродуктами. В центре — уличные кафе до 22:00.
+  </div>
+</div>
+
+<!-- ============================================================
+13. БЕЗОПАСНОСТЬ
+============================================================ -->
+<div class="section" id="safety">
+  <div class="section-title"><span class="emoji">🔒</span> Безопасность</div>
+
+  <div class="info-box info">
+    Районг — безопасный город. Основные риски: движение, обезьяны (на Самете) и медузы в сезон.
+  </div>
+
+  <ul>
+    <li>🔐 Не оставляйте телефон и сумку на столике уличного кафе — могут выхватить на мотоцикле</li>
+    <li>🏍 Сумку через плечо держите со стороны, противоположной дороге</li>
+    <li>🐒 На Ко Самете не кормите обезьян и не оставляйте еду открытой</li>
+    <li>🌙 Ночью центр и пляжи безопасны, но пустынные участки лучше избегать</li>
+    <li>🚰 Воду из-под крана не пить — покупайте бутилированную (7–15 THB)</li>
+    <li>🦟 Используйте репеллент от комаров — риск лихорадки денге (особенно в сезон дождей)</li>
+    <li>🪸 Купайтесь в спокойную погоду — в сезон дождей сильные обратные течения</li>
+  </ul>
+
+  <div class="info-box danger">
+    <strong>Не оставляйте паспорт в залог!</strong> При аренде мотоцикла делайте копию или оставляйте депозит.
+    Паспорт нужен для продления визы и регистрации по месту пребывания.
+  </div>
+</div>
+
+<!-- ============================================================
+14. ВИЗА И ВЪЕЗД
+============================================================ -->
+<div class="section" id="visa">
+  <div class="section-title"><span class="emoji">🛂</span> Виза и правила въезда</div>
+
+  <table class="price-table">
+    <tr><th>Гражданство</th><th>Безвизовый срок</th><th>Продление</th></tr>
+    <tr><td>Россия</td><td>60 дней (с 2024)</td><td>Продление до 90 дней, далее выезд или виза</td></tr>
+    <tr><td>Казахстан</td><td>30 дней</td><td>Можно продлить до 60 дней</td></tr>
+    <tr><td>Украина</td><td>30 дней</td><td>eVisa опционально</td></tr>
+    <tr><td>Беларусь</td><td>30 дней</td><td>Можно продлить до 60 дней</td></tr>
+    <tr><td>Китай</td><td>30 дней (соглашение)</td><td>Продление через иммиграционное бюро</td></tr>
+    <tr><td>Евросоюз / США / UK</td><td>30 дней</td><td>Продление до 60 дней</td></tr>
+  </table>
+
+  <div class="info-box tip">
+    <strong>Продление визы:</strong> Иммиграционное бюро Районга (Rayong Immigration) находится в центре города.
+    Продление на 30 дней — 1 900 THB. Нужны: фото 4×6, копия паспорта, ТМ.30 (регистрация адреса).
+  </div>
+
+  <div class="info-box warn">
+    <strong>Регистрация адреса (ТМ.30):</strong> В течение 24 часов после прибытия владелец жилья обязан
+    зарегистрировать вас в иммиграционной службе. Если этого не сделали — проследите сами.
+    Штраф — до 2 000 THB.
+  </div>
+
+  <ul style="margin-top:10px;">
+    <li>Паспорт должен быть действителен минимум 6 месяцев</li>
+    <li>При въезде могут попросить обратный билет и подтверждение жилья</li>
+    <li>Штраф за просрочку визы: 500 THB/день</li>
+    <li>При просрочке более 90 дней — чёрный список на 1–5 лет</li>
+    <li>Паттайя (Chonburi Immigration) в 1.5 часа — можно делать продление там</li>
+  </ul>
+</div>
+
+<!-- ============================================================
+15. СЕМЬЯМ С ДЕТЬМИ
+============================================================ -->
+<div class="section" id="families">
+  <div class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Семьям с детьми</div>
+
+  <ul>
+    <li><strong>Пляж Suan Son:</strong> Пологий вход, спокойное море, сосновый парк с тенью — идеально для детей</li>
+    <li><strong>Mae Phim:</strong> Чистый песок, волны небольшие, есть кафе с детскими стульями</li>
+    <li><strong>Ко Самет:</strong> Пляж Sai Kaew — красивый, но многолюдно. Ao Thian — тихий, уединённый</li>
+    <li><strong>Детские сады и школы:</strong> Международная школа St. Andrews Rayong, Garden International School</li>
+    <li><strong>Детские врачи:</strong> Bangkok Hospital Rayong принимает детей, есть педиатры</li>
+    <li><strong>Детские товары:</strong> Tesco Lotus, Big C, 7-Eleven (подгузники, смеси, детское питание)</li>
+    <li><strong>Аквапарк:</strong> Rayong Water Park (небольшой, недалеко от Saeng Chan Beach)</li>
+  </ul>
+</div>
+
+<!-- ============================================================
+16. DIGITAL-НОМАДАМ
+============================================================ -->
+<div class="section" id="nomads">
+  <div class="section-title"><span class="emoji">💻</span> Digital-номадам</div>
+
+  <div class="card">
+    <div class="card-title">☕ Кафе для работы на Mae Phim</div>
+    <div class="card-text">
+      <strong>Baan Kun Ya</strong> — уютное кафе с видом на море, Wi-Fi 30+ Мбит.
+      <strong>Rim Tap Cafe</strong> — прямо на пляже, кофе от 50 THB.
+      <strong>Blue Lagoon Coffee</strong> — тихое место с кондиционером.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏢 Коворкинги</div>
+    <div class="card-text">
+      В Районге коворкингов меньше, чем в Паттайе. Основные:
+      <strong>Co-Working Space Rayong</strong> — центр города, от 3 000 THB/мес.
+      <strong>Regus Rayong</strong> — бизнес-центр.
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <strong>Почему Районг для номадов:</strong> Низкая стоимость жизни (от $500/мес),
+    отличный интернет в центре, тихие пляжи, дешевле Паттайи на 30%, меньше туристов.
+    Единственный минус — меньше ночной жизни и комьюнити.
+  </div>
+
+  <div class="info-box info">
+    <strong>До Паттайи (кафе, коворкинги, комьюнити):</strong> 1–1.5 часа на автобусе или мотоцикле.
+    Можно совмещать жизнь в Районге с рабочими встречами в Паттайе.
+  </div>
+</div>
+
+<!-- ============================================================
+17. FAQ — 20 ВОПРОСОВ
+============================================================ -->
+<div class="section" id="faq">
+  <div class="section-title"><span class="emoji">❓</span> FAQ — 20 вопросов</div>
+
+  <div class="subsection">
+    <div class="subsection-title">1. Нужна ли виза в Таиланд?</div>
+    <div class="card-text">Россиянам — 60 дней без визы, остальным — 30 дней. Продление до 90 дней через иммиграцию.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">2. Какой язык в ходу?</div>
+    <div class="card-text">Тайский. В туристической зоне (Mae Phim, Самет) — базовый английский. Русский редко.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">3. Какую валюту брать?</div>
+    <div class="card-text">Доллары или евро — менять в Superrich. Лучше снимать с карты в банкомате (комиссия 220 THB).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">4. Когда лучший сезон?</div>
+    <div class="card-text">Декабрь — март. Сухо, солнечно, море спокойное.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">5. Безопасно ли в Районге?</div>
+    <div class="card-text">Да. Но соблюдайте базовые меры: не носите ценности в задних карманах, шлем обязателен.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">6. Как позвонить домой?</div>
+    <div class="card-text">Через Telegram / WhatsApp / Zoom. С тайской SIM — +7-код-номер (~5 THB/мин).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">7. Есть ли медузы?</div>
+    <div class="card-text">Бывают в сезон дождей (июнь–октябрь). В основном мелкие, неопасные. На Самете — чище.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">8. Как легализовать права?</div>
+    <div class="card-text">Нужны международные права (IDP) или заверенный перевод национальных прав. Без прав — штраф.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">9. Сколько стоит аренда жилья?</div>
+    <div class="card-text">От 5 000 THB/мес (комната) до 25 000+ THB/мес (дом на Mae Phim).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">10. Где искать жильё?</div>
+    <div class="card-text">Facebook-группы, DDproperty, Hipflat, AION (скоро). Лучше осматривать лично.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">11. Можно ли снять на сутки?</div>
+    <div class="card-text">Да. Booking.com, Agoda. Mae Phim — от 600 THB/ночь.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">12. Какой транспорт лучше?</div>
+    <div class="card-text">Свой мотоцикл для жизни. Grab — для поездок по городу. Автобус — в Паттайю/Бангкок.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">13. Нужно ли платить налоги?</div>
+    <div class="card-text">Если находитесь более 180 дней — налоговый резидент. Но туристы не платят.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">14. Где купить сим-карту?</div>
+    <div class="card-text">В аэропорту, 7-Eleven, магазинах AIS/TrueMove. Нужен паспорт.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">15. Работает ли YouTube?</div>
+    <div class="card-text">Да. В Таиланде нет цензуры, всё открыто.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">16. Как сэкономить на еде?</div>
+    <div class="card-text">Ешьте на уличных рынках (Pad Thai от 40 THB). Фрукты — на рынке.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">17. Какие приложения скачать?</div>
+    <div class="card-text">Grab, Google Translate, Google Maps, AION (скоро), 12Go (билеты).</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">18. Куда сводить детей?</div>
+    <div class="card-text">Пляж Suan Son, Rayong Water Park, Ко Самет.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">19. Есть ли русские школы?</div>
+    <div class="card-text">В самом Районге нет. Ближайшая — в Паттайе (1 час). Международные школы есть.</div>
+  </div>
+  <div class="subsection">
+    <div class="subsection-title">20. Как открыть бизнес?</div>
+    <div class="card-text">Через Thai-компанию с долей местного партнёра (51%). Нужна лицензия FDI.
+    Лучше через юридическую компанию. Свяжитесь с партнёрами AION.</div>
+  </div>
+</div>
+
+<!-- ============================================================
+18. ЧЕК-ЛИСТ: ПЕРВЫЕ ДНИ
+============================================================ -->
+<div class="section" id="checklist">
+  <div class="section-title"><span class="emoji">✅</span> Чек-лист: Первые дни в Районге</div>
+  <ol>
+    <li>Купить SIM-карту (аэропорт или 7-Eleven)</li>
+    <li>Снять наличные (банкомат Bangkok Bank — низкая комиссия)</li>
+    <li>Заселиться, проверить Wi-Fi</li>
+    <li>Купить воду, зарегистрировать ТМ.30 у владельца жилья</li>
+    <li>Найти ближайший 7-Eleven, купить базовые продукты</li>
+    <li>Установить Grab, Google Translate, Google Maps</li>
+    <li>Проверить аптеки и больницы рядом</li>
+    <li>Съездить на Mae Phim Beach, встретить закат</li>
+    <li>Купить фрукты на рынке (попробовать дуриан Районга)</li>
+    <li>Запланировать поездку на Ко Самет на выходные</li>
+  </ol>
+  <div class="info-box info">
+    <strong>Не забудьте:</strong> все вопросы по городу — в AION Mini App!
+    Подключайтесь к чату русскоязычных @rayong_chat
+  </div>
+</div>
+
+<!-- ============================================================
+19. БЫСТРЫЕ ССЫЛКИ
+============================================================ -->
+<div class="section" id="links">
+  <div class="section-title"><span class="emoji">🔗</span> Быстрые ссылки</div>
+  <div class="contact-item">
+    <span class="contact-label">📋 AION — база исполнителей Районг</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏠 AION — аренда жилья</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🚕 AION — трансфер</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">💱 AION — обмен валюты</span>
+    <a class="contact-value" href="#">Открыть в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🏝 Паром на Ко Самет</span>
+    <a class="contact-value" href="#">Расписание в Mini App</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">🤝 Чат Rayong (русскоязычные)</span>
+    <a class="contact-value" href="https://t.me/rayong_chat">@rayong_chat</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">✈️ Визовое агентство</span>
+    <a class="contact-value" href="#">Через AION</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">💬 Чат AION Районг</span>
+    <a class="contact-value" href="#">Telegram</a>
+  </div>
+</div>
+
+<div class="footer">
+  <p>© 2026 AION — Ваш городской помощник в Районге</p>
+  <p style="margin-top:8px; opacity:0.6;">Telegram Mini App</p>
+</div>
+
+</body>
+</html>

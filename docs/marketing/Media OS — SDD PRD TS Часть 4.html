@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AION Media OS — SDD Часть 4: Pipeline + Персонажи + Миры + Сцены</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;background:#0A0F1E;color:#c8d6e5;line-height:1.8;padding:0;background-image:radial-gradient(ellipse at 20% 50%,rgba(0,240,255,0.03) 0%,transparent 50%),radial-gradient(ellipse at 80% 50%,rgba(245,158,11,0.02) 0%,transparent 50%),radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.02) 0%,transparent 50%);min-height:100vh}
+.wrap{max-width:1160px;margin:0 auto;padding:30px 40px;position:relative}
+.wrap::before{content:'';position:fixed;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00f0ff,transparent);z-index:100}
+h1{font-size:2.6rem;color:#00f0ff;text-align:center;margin-bottom:8px;text-shadow:0 0 80px rgba(0,240,255,0.12),0 0 40px rgba(0,240,255,0.06);font-weight:800;letter-spacing:-1px;position:relative;display:inline-block;left:50%;transform:translateX(-50%)}
+h1::after{content:'';display:block;width:60%;height:2px;margin:8px auto 0;background:linear-gradient(90deg,transparent,#00f0ff,transparent);border-radius:2px}
+.sub{text-align:center;color:#64748b;font-size:0.78rem;margin-bottom:30px;text-transform:uppercase;letter-spacing:3px;font-weight:500}
+.sub span{color:#00f0ff}
+h2{font-size:1.55rem;color:#f59e0b;margin-top:48px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid rgba(245,158,11,0.1);display:flex;align-items:center;gap:12px;position:relative}
+h2::before{content:'';position:absolute;bottom:-2px;left:0;width:80px;height:2px;background:linear-gradient(90deg,#f59e0b,transparent);border-radius:2px}
+h2 .num{color:#00f0ff;font-weight:700;background:rgba(0,240,255,0.08);padding:2px 12px;border-radius:6px;font-size:1.1rem}
+h3{font-size:1.2rem;color:#00f0ff;margin-top:32px;margin-bottom:14px;font-weight:600;display:flex;align-items:center;gap:10px}
+h3 .badge{font-size:0.65rem;background:rgba(0,240,255,0.1);color:#00f0ff;padding:2px 10px;border-radius:20px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+h4{font-size:0.98rem;color:#f59e0b;margin-top:26px;margin-bottom:12px;font-weight:600}
+h5{font-size:0.85rem;color:#94a3b8;margin-top:16px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:500}
+p{margin-bottom:12px;font-size:0.92rem;color:#b0c4de}
+p strong{color:#e2e8f0}
+ul,ol{margin:8px 0 14px 26px}
+li{margin-bottom:5px;font-size:0.92rem;color:#b0c4de}
+li strong{color:#e2e8f0}
+table{width:100%;border-collapse:separate;border-spacing:0;margin:16px 0;font-size:0.82rem;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+th,td{border-bottom:1px solid rgba(255,255,255,0.04);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:rgba(0,240,255,0.06);color:#00f0ff;font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1px solid rgba(0,240,255,0.12)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even){background:rgba(255,255,255,0.01)}
+tr:hover td{background:rgba(0,240,255,0.02)}
+td code{font-size:0.72rem}
+pre{background:rgba(0,0,0,0.45);border:1px solid rgba(0,240,255,0.05);border-radius:12px;padding:18px;margin:14px 0;font-family:'JetBrains Mono','Cascadia Code','Fira Code','Consolas',monospace;font-size:0.76rem;line-height:1.6;overflow-x:auto;color:#94a3b8;position:relative}
+pre::before{content:'</>';position:absolute;top:8px;right:12px;font-size:0.6rem;color:rgba(0,240,255,0.15);text-transform:uppercase;letter-spacing:1px;font-family:'Inter',sans-serif}
+code{background:rgba(0,240,255,0.06);padding:2px 8px;border-radius:5px;font-size:0.82rem;color:#00f0ff;font-family:'JetBrains Mono','Cascadia Code','Fira Code','Consolas',monospace}
+pre code{background:none;padding:0;color:inherit}
+
+/* Glass card */
+.glass{background:linear-gradient(135deg,rgba(17,24,39,0.75),rgba(26,35,50,0.5));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:20px;margin:16px 0;position:relative;overflow:hidden}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.15),transparent)}
+.info-box{background:rgba(0,240,255,0.03);border:1px solid rgba(0,240,255,0.07);border-radius:10px;padding:16px 20px;margin:16px 0;position:relative;padding-left:44px}
+.info-box::before{content:'ℹ';position:absolute;left:14px;top:14px;color:#00f0ff;font-size:1rem}
+.block{border-left:3px solid #f59e0b;padding:12px 18px;margin:14px 0;background:rgba(245,158,11,0.03);border-radius:0 10px 10px 0;position:relative}
+.block strong{color:#f59e0b}
+
+/* Pipeline Progress */
+.pipeline{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 22px;padding:0;list-style:none}
+.pipeline li{flex:1 0 calc(20% - 6px);min-width:130px;display:flex;align-items:center;gap:6px;font-size:0.68rem;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);color:#64748b;font-weight:500;transition:all .2s}
+.pipeline li .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pipeline li.complete{background:rgba(34,197,94,0.06);border-color:rgba(34,197,94,0.12);color:#22c55e}
+.pipeline li.complete .dot{background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,0.3)}
+.pipeline li.active{background:rgba(0,240,255,0.06);border-color:rgba(0,240,255,0.12);color:#00f0ff}
+.pipeline li.active .dot{background:#00f0ff;box-shadow:0 0 8px rgba(0,240,255,0.3);animation:pulse-dot 1.5s infinite}
+.pipeline li.pending{background:rgba(245,158,11,0.05);border-color:rgba(245,158,11,0.08);color:#f59e0b}
+.pipeline li.pending .dot{background:#f59e0b;box-shadow:0 0 8px rgba(245,158,11,0.2)}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.2)}}
+
+/* Pipeline Flow Diagram */
+.pipeline-flow{background:rgba(0,0,0,0.35);border:1px solid rgba(0,240,255,0.05);border-radius:14px;padding:24px;margin:18px 0;position:relative;overflow:hidden}
+.pipeline-flow::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.12),transparent)}
+.flow-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;justify-content:center}
+.flow-node{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px;font-size:0.62rem;color:#94a3b8;text-align:center;flex:1;min-width:65px;max-width:90px;transition:all .2s}
+.flow-node:hover{background:rgba(0,240,255,0.04);border-color:rgba(0,240,255,0.1);transform:translateY(-1px)}
+.flow-node .fn-icon{display:block;font-size:0.9rem;margin-bottom:2px}
+.flow-node .fn-label{display:block;font-weight:500;line-height:1.2}
+.flow-node.gpu{border-color:rgba(168,85,247,0.15)}.flow-node.gpu .fn-icon{color:#a855f7}
+.flow-node.llm{border-color:rgba(0,240,255,0.15)}.flow-node.llm .fn-icon{color:#00f0ff}
+.flow-node.media{border-color:rgba(245,158,11,0.15)}.flow-node.media .fn-icon{color:#f59e0b}
+.flow-node.pub{border-color:rgba(34,197,94,0.15)}.flow-node.pub .fn-icon{color:#22c55e}
+.flow-arrow{color:#334155;font-size:0.7rem;display:flex;align-items:center;padding:0 2px}
+
+/* Character Cards */
+.char-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:16px 0}
+.char-card{background:linear-gradient(145deg,rgba(17,24,39,0.8),rgba(26,35,50,0.5));border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:16px;text-align:center;transition:all .25s;position:relative;overflow:hidden}
+.char-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00f0ff,transparent);opacity:0;transition:opacity .25s}
+.char-card:hover{transform:translateY(-3px);border-color:rgba(0,240,255,0.08);box-shadow:0 8px 30px rgba(0,240,255,0.04)}
+.char-card:hover::before{opacity:1}
+.char-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,rgba(0,240,255,0.08),rgba(168,85,247,0.08));border:2px solid rgba(0,240,255,0.06);display:flex;align-items:center;justify-content:center;font-size:1.6rem;position:relative}
+.char-avatar .status{position:absolute;bottom:2px;right:2px;width:10px;height:10px;border-radius:50%;border:2px solid #0A0F1E}
+.char-card h4{color:#e2e8f0;font-size:0.9rem;margin:6px 0 2px}
+.char-card .role{font-size:0.68rem;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px}
+.char-card .world-tag{display:inline-block;font-size:0.6rem;background:rgba(245,158,11,0.08);color:#f59e0b;padding:2px 8px;border-radius:10px;margin-bottom:8px}
+.traits{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:6px}
+.traits span{font-size:0.6rem;background:rgba(0,240,255,0.04);color:#00f0ff;padding:2px 8px;border-radius:8px;border:1px solid rgba(0,240,255,0.05)}
+.char-type{position:absolute;top:10px;right:10px;font-size:0.6rem;background:rgba(168,85,247,0.08);color:#a855f7;padding:2px 8px;border-radius:8px;text-transform:uppercase;letter-spacing:0.5px}
+
+/* World / Location Cards */
+.world-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:16px 0}
+.world-card{background:linear-gradient(145deg,rgba(17,24,39,0.8),rgba(26,35,50,0.5));border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:16px;transition:all .25s;position:relative;overflow:hidden}
+.world-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#f59e0b,transparent);opacity:0;transition:opacity .25s}
+.world-card:hover{transform:translateY(-3px);border-color:rgba(245,158,11,0.08);box-shadow:0 8px 30px rgba(245,158,11,0.04)}
+.world-card:hover::before{opacity:1}
+.world-card .wc-icon{font-size:1.4rem;margin-bottom:6px}
+.world-card h4{color:#e2e8f0;font-size:0.88rem;margin-bottom:4px}
+.world-card .wc-desc{font-size:0.75rem;color:#94a3b8;line-height:1.5;margin-bottom:8px}
+.world-card .wc-meta{display:flex;flex-wrap:wrap;gap:6px}
+.world-card .wc-meta span{font-size:0.6rem;background:rgba(255,255,255,0.03);color:#64748b;padding:3px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;gap:4px}
+.world-card .wc-meta span em{font-style:normal;color:#c8d6e5}
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:14px 0}
+.loc-card{background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.03);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;transition:all .2s}
+.loc-card:hover{background:rgba(0,240,255,0.02);border-color:rgba(0,240,255,0.06)}
+.loc-card .lc-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0}
+.loc-card .lc-info{flex:1}
+.loc-card .lc-info strong{display:block;font-size:0.78rem;color:#e2e8f0;font-weight:600}
+.loc-card .lc-info span{font-size:0.68rem;color:#64748b}
+.loc-card .lc-type{font-size:0.55rem;background:rgba(0,240,255,0.04);color:#00f0ff;padding:2px 7px;border-radius:6px;text-transform:uppercase;letter-spacing:0.5px;flex-shrink:0}
+
+/* Scene Template Cards */
+.tmpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:16px 0}
+.tmpl-card{background:linear-gradient(145deg,rgba(17,24,39,0.8),rgba(26,35,50,0.5));border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:14px;transition:all .25s;position:relative}
+.tmpl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#a855f7,transparent);opacity:0;transition:opacity .25s}
+.tmpl-card:hover{transform:translateY(-2px);border-color:rgba(168,85,247,0.08)}
+.tmpl-card:hover::before{opacity:1}
+.tmpl-card .tc-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.tmpl-card .tc-header .tc-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0}
+.tmpl-card .tc-header h4{font-size:0.82rem;color:#e2e8f0;margin:0}
+.tmpl-card .tc-cat{font-size:0.58rem;background:rgba(168,85,247,0.06);color:#a855f7;padding:2px 8px;border-radius:6px;display:inline-block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+.tmpl-card .tc-code{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#64748b;background:rgba(0,0,0,0.2);border-radius:6px;padding:6px 8px;word-break:break-all;line-height:1.4;margin-top:6px;max-height:48px;overflow:hidden;position:relative}
+.tmpl-card .tc-code::after{content:'';position:absolute;bottom:0;left:0;right:0;height:16px;background:linear-gradient(transparent,rgba(0,0,0,0.2))}
+.tmpl-card .tc-diff{font-size:0.6rem;color:#64748b;margin-top:6px;display:flex;align-items:center;gap:4px}
+.tmpl-card .tc-use{font-size:0.65rem;color:#94a3b8;margin-top:4px}
+
+/* Status Badges */
+.badge-cyan{background:rgba(0,240,255,0.06);color:#00f0ff;padding:2px 8px;border-radius:6px;font-size:0.7rem}
+.badge-gold{background:rgba(245,158,11,0.06);color:#f59e0b;padding:2px 8px;border-radius:6px;font-size:0.7rem}
+.badge-purple{background:rgba(168,85,247,0.06);color:#a855f7;padding:2px 8px;border-radius:6px;font-size:0.7rem}
+.badge-green{background:rgba(34,197,94,0.06);color:#22c55e;padding:2px 8px;border-radius:6px;font-size:0.7rem}
+
+/* Glass card */
+.glass-card{background:linear-gradient(135deg,rgba(17,24,39,0.8),rgba(26,35,50,0.5));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:20px;margin:16px 0;position:relative;overflow:hidden}
+.glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.12),transparent)}
+.glass-card .title{font-size:0.95rem;color:#00f0ff;font-weight:700;margin-bottom:10px}
+
+/* Table scroll */
+.table-scroll{overflow-x:auto;margin:16px 0;border-radius:10px;border:1px solid rgba(255,255,255,0.04)}
+.table-scroll table{margin:0;border:none}
+
+/* Badge */
+.badge{display:inline-block;padding:2px 10px;border-radius:8px;font-size:0.65rem;font-weight:600}
+
+/* Warn box */
+.warn-box{background:rgba(245,158,11,0.04);border:1px solid rgba(245,158,11,0.08);border-radius:10px;padding:14px 18px;margin:14px 0;position:relative;padding-left:40px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f59e0b' stroke-width='2'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px 12px;background-size:16px}
+.warn-box strong{color:#f59e0b}
+
+.diagram{background:rgba(0,0,0,0.35);border:1px solid rgba(0,240,255,0.05);border-radius:12px;padding:20px;margin:16px 0;font-family:'JetBrains Mono','Cascadia Code','Fira Code','Consolas',monospace;font-size:0.72rem;line-height:1.5;overflow-x:auto;color:#94a3b8;position:relative}
+.diagram .hl{color:#00f0ff;font-weight:600}
+.diagram .hl2{color:#f59e0b;font-weight:600}
+.diagram .hl3{color:#22c55e;font-weight:600}
+.diagram .hl4{color:#a855f7;font-weight:600}
+.page-break{page-break-after:always;border:none;border-top:1px dashed rgba(0,240,255,0.06);margin:48px 0;height:1px;position:relative}
+.page-break::after{content:'✦ ✦ ✦';position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#0A0F1E;padding:0 16px;color:rgba(0,240,255,0.12);font-size:0.7rem;letter-spacing:4px}
+.footer{text-align:center;color:#1e293b;font-size:0.68rem;margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.02);text-transform:uppercase;letter-spacing:2px;font-weight:500}
+.footer span{color:#334155}
+
+/* Animated particles */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.pulse-glow{animation:pulse-dot 2s infinite}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>⌘ AION Media OS</h1>
+<div class="sub">Часть 4 · <span>Content Pipeline</span> + <span>Персонажи</span> + <span>Миры</span> + <span>Библиотека сцен</span></div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2 id="s7"><span class="num">07</span> Контентный пайплайн — сквозной поток</h2>
+
+<h3>7.1 Обзор пайплайна</h3>
+
+<p>Контентный пайплайн — это сердце AION Media OS. В v2 он расширяется до <strong>15-этапного отказоустойчивого пайплайна</strong>, оркестрируемого детерминированно через <strong>Temporal.io</strong> и <strong>Redpanda</strong>. Он преобразует <strong>стартовую тему</strong> в <strong>глобально-соответствующее, локализованное, опубликованное видео</strong> без участия человека.</p>
+
+<!-- Pipeline Progress Visualization -->
+<ul class="pipeline">
+<li class="complete"><span class="dot"></span>01 Идея</li>
+<li class="complete"><span class="dot"></span>02 Сценарий</li>
+<li class="complete"><span class="dot"></span>03 Раскадровка</li>
+<li class="active"><span class="dot"></span>04 Локализация</li>
+<li class="pending"><span class="dot"></span>05 Промпты</li>
+<li class="pending"><span class="dot"></span>06 Изображения</li>
+<li class="pending"><span class="dot"></span>07 Видео</li>
+<li class="pending"><span class="dot"></span>08 Аудио</li>
+<li class="pending"><span class="dot"></span>09 Монетизация</li>
+<li class="pending"><span class="dot"></span>10 Сборка</li>
+<li class="pending"><span class="dot"></span>11 Комплаенс</li>
+<li class="pending"><span class="dot"></span>12 SEO</li>
+<li class="pending"><span class="dot"></span>13 Публикация</li>
+<li class="pending"><span class="dot"></span>14 Аналитика</li>
+<li class="pending"><span class="dot"></span>15 Оптимизация</li>
+</ul>
+
+<div class="diagram">
+<pre>
+<span class="hl">ПОЛНЫЙ V2 ПАЙПЛАЙН: 15 РАСПРЕДЕЛЁННЫХ ЭТАПОВ</span>
+
+<span class="hl3">ЭТАП  1: ГЕНЕРАЦИЯ ИДЕЙ</span>
+  Агент: Креативный директор → Вывод: 5–10 структурированных концепт-карточек
+<span class="hl3">ЭТАП  2: НАПИСАНИЕ СЦЕНАРИЯ</span>
+  Агент: Сценарист → Вывод: полный сценарий с диалогами, нарративом, разбивкой сцен
+<span class="hl3">ЭТАП  3: РАСКАДРОВКА И РАЗБИВКА СЦЕН</span>
+  Агент: Агент раскадровки → Вывод: по камере, освещению, действиям, реквизиту на сцену
+<span class="hl3">ЭТАП  4: КУЛЬТУРНАЯ ЛОКАЛИЗАЦИЯ (v2)</span>
+  Агент: Культурный локализатор → Вывод: адаптированные варианты сценария для 120+ регионов
+<span class="hl3">ЭТАП  5: ПРОМПТ-ИНЖИНИРИНГ И 3D НЕЙРОСЕТКА</span>
+  Агент: Промпт-инженер → Вывод: промпты изображений/видео + параметры Gaussian Splat
+<span class="hl3">ЭТАП  6: ГЕНЕРАЦИЯ КЛЮЧЕВЫХ КАДРОВ</span>
+  Агент: Генератор изображений (ComfyUI / FLUX) → Вывод: рендеры ключевых кадров
+<span class="hl3">ЭТАП  7: ДИФФУЗИЯ ВИДЕОКЛИПОВ</span>
+  Агент: Генератор видео (WAN 2.1 / Hunyuan) → Вывод: 3D-темпоральные видеоклипы
+<span class="hl3">ЭТАП  8: РЕЖИССУРА ГОЛОСА И АУДИО (v2)</span>
+  Агент: Режиссёр голоса и аудио → Вывод: многоголосые дорожки, эмбиент, SRT
+<span class="hl3">ЭТАП  9: МОНЕТИЗАЦИЯ И ВСТРАИВАНИЕ РЕКЛАМЫ (v2)</span>
+  Агент: Агент монетизации → Вывод: 3D-нативная product placement + промокоды
+<span class="hl3">ЭТАП 10: СБОРКА ВИДЕО И РЕДАКТИРОВАНИЕ WEBCODECS (v2)</span>
+  Агент: Видеоредактор (Rust WebCodecs + Распред. FFmpeg) → Вывод: мастер-видео
+<span class="hl3">ЭТАП 11: КОМПЛАЕНС И C2PA-ВОДЯНКА (v2)</span>
+  Агент: Юридический страж → Вывод: C2PA-подписанные метаданные, проверка регионов
+<span class="hl3">ЭТАП 12: SEO, МЕТАДАННЫЕ И МАТРИЦА ПРЕВЬЮ</span>
+  Агент: SEO-агент → Вывод: A/B-варианты заголовков, описаний, хэштегов
+<span class="hl3">ЭТАП 13: ПУБЛИКАЦИЯ ЧЕРЕЗ РЕЗИДЕНТНЫЕ ПРОКСИ</span>
+  Агент: Агент публикации → Вывод: мультиплатформенный постинг через резидентные прокси
+<span class="hl3">ЭТАП 14: ПОТОКОВАЯ АНАЛИТИКА В РЕАЛЬНОМ ВРЕМЕНИ</span>
+  Агент: Агент аналитики → Вывод: снепшоты ClickHouse (100k событий/сек)
+<span class="hl3">ЭТАП 15: ЗАМКНУТЫЙ ЦИКЛ RLAIF-САМООПТИМИЗАЦИИ</span>
+  Агент: Агент оптимизации → Вывод: нейронные обновления весов промптов и дообучение моделей
+</pre>
+</div>
+
+<!-- Animated Pipeline Flow Diagram -->
+<div class="pipeline-flow">
+<div style="text-align:center;margin-bottom:14px;font-size:0.72rem;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;font-weight:500"><span style="color:#00f0ff;">⚡</span> Анимированная диаграмма потока пайплайна</div>
+<div class="flow-row">
+<div class="flow-node llm"><span class="fn-icon">💡</span><span class="fn-label">Идея</span></div>
+<div class="flow-node llm"><span class="fn-icon">✍️</span><span class="fn-label">Сценарий</span></div>
+<div class="flow-node llm"><span class="fn-icon">🎬</span><span class="fn-label">Раскадровка</span></div>
+<div class="flow-node llm"><span class="fn-icon">🌍</span><span class="fn-label">Локализация</span></div>
+<div class="flow-node llm"><span class="fn-icon">🧠</span><span class="fn-label">Промпты</span></div>
+</div>
+<div class="flow-row">
+<div class="flow-node media"><span class="fn-icon">🖼️</span><span class="fn-label">Изображ.</span></div>
+<div class="flow-node gpu"><span class="fn-icon">🎥</span><span class="fn-label">Видео</span></div>
+<div class="flow-node gpu"><span class="fn-icon">🎙️</span><span class="fn-label">Аудио</span></div>
+<div class="flow-node media"><span class="fn-icon">💰</span><span class="fn-label">Монетиз.</span></div>
+<div class="flow-node media"><span class="fn-icon">⚙️</span><span class="fn-label">Сборка</span></div>
+</div>
+<div class="flow-row">
+<div class="flow-node llm"><span class="fn-icon">🛡️</span><span class="fn-label">Комплаенс</span></div>
+<div class="flow-node llm"><span class="fn-icon">🔍</span><span class="fn-label">SEO</span></div>
+<div class="flow-node pub"><span class="fn-icon">🚀</span><span class="fn-label">Публик.</span></div>
+<div class="flow-node pub"><span class="fn-icon">📊</span><span class="fn-label">Аналит.</span></div>
+<div class="flow-node llm"><span class="fn-icon">🔄</span><span class="fn-label">Оптимиз.</span></div>
+</div>
+<div style="text-align:center;margin-top:10px;font-size:0.6rem;color:#334155">
+<span style="color:#00f0ff;">⬤</span> LLM/AI <span style="color:#a855f7;margin-left:10px;">⬤</span> GPU-интенсивные <span style="color:#f59e0b;margin-left:10px;">⬤</span> Медиа/Сборка <span style="color:#22c55e;margin-left:10px;">⬤</span> Публикация
+</div>
+</div>
+
+<h3>7.2 Детальный разбор каждого этапа</h3>
+
+<h4>7.2.1 Этап 1: Генерация идей</h4>
+<div class="block">
+<strong>Назначение:</strong> Генерация разнообразных, высокопотенциальных контентных идей, оптимизированных для вирусного распространения в соцсетях.
+</div>
+
+<p><strong>Входные параметры:</strong></p>
+<table>
+<tr><th>Параметр</th><th>Тип</th><th>Пример</th><th>Описание</th></tr>
+<tr><td>seed_topic</td><td>string</td><td>"Вьетнамский стритфуд"</td><td>Основная тема для генерации идей</td></tr>
+<tr><td>target_audience</td><td>string</td><td>"Путешественники 25–40"</td><td>Целевая аудитория контента</td></tr>
+<tr><td>count</td><td>int</td><td>5</td><td>Количество идей для генерации</td></tr>
+<tr><td>format_type</td><td>string</td><td>"educational"</td><td>hook_body_cta, story, educational, review, comedy</td></tr>
+<tr><td>trending_signals</td><td>string[]</td><td>["night market", "cheap eats"]</td><td>Трендовые подтемы из аналитики</td></tr>
+<tr><td>exclude_ideas</td><td>string[]</td><td>["Pho challenge"]</td><td>Уже освещённые темы</td></tr>
+</table>
+
+<p><strong>Шаблон промпта креативного директора:</strong></p>
+<pre>
+System: Вы — креативный директор AION Media OS.
+Сгенерируйте {count} вирусных идей для коротких видео
+для {target_audience} на тему "{seed_topic}".
+
+Каждая идея должна содержать:
+1. Сильный ХУК (первые 2 секунды, захватывающие внимание)
+2. Чёткий эмоциональный призыв (любопытство, удивление, юмор, вдохновение)
+3. Оптимизированный под платформу формат
+
+Трендовые сигналы: {trending_signals}
+Уже освещено: {exclude_ideas}
+
+Формат: JSON-массив с полями:
+- title (макс 60 символов)
+- description (макс 200 символов)
+- hook (макс 100 символов)
+- emotional_appeal
+- format_suggestion
+- trending_score (0.0–1.0)
+- target_audience_refinement
+</pre>
+
+<p><strong>Пример вывода:</strong></p>
+<pre>
+{
+  "ideas": [
+    {
+      "title": "Почему вьетнамский кофе — ЛУЧШИЙ в мире",
+      "description": "Узнайте секрет знаменитого яичного кофе Вьетнама и почему каждый путешественник должен его попробовать",
+      "hook": "Вы ещё НЕ пили ТАКОЙ кофе!",
+      "emotional_appeal": "curiosity",
+      "format_suggestion": "educational",
+      "trending_score": 0.85,
+      "target_audience_refinement": "кофеманы, путешественники"
+    },
+    {
+      "title": "Я съел стритфуда на $100 во Вьетнаме",
+      "description": "Челлендж: сможете ли вы съесть лучший стритфуд в Сайгоне на $100?",
+      "hook": "$100 стритфуда во Вьетнаме — смотрите до конца!",
+      "emotional_appeal": "surprise + humor",
+      "format_suggestion": "challenge",
+      "trending_score": 0.92,
+      "target_audience_refinement": "фуди, любители челленджей"
+    }
+  ]
+}
+</pre>
+
+<h4>7.2.2 Этап 2: Написание сценария</h4>
+<div class="block">
+<strong>Назначение:</strong> Превращение концепции в полностью структурированный сценарий видео с точным хронометражем, диалогами и переходами между сценами.
+</div>
+
+<p><strong>Шаблон промпта сценариста:</strong></p>
+<pre>
+System: Вы — профессиональный сценарист коротких видео.
+Напишите сценарий в формате {format_type} для видео длительностью {target_duration} секунд
+на тему "{idea_title}".
+
+ПРАВИЛА:
+- Длительность: {target_duration}с → {word_count} слов
+- Формат: хук (первые 5с) → тело (основной контент) → CTA (последние 5с)
+- Минимум {scene_count} сцен
+- Включите текст диалогов И текст озвучки
+- Завершите чётким призывом к действию
+
+Контекст персонажа:
+- Рассказчик: {character_name} ({character_personality})
+- Мир: {world_name} ({world_description})
+
+Вывод JSON:
+{ "title", "format", "full_text", "voiceover_text",
+  "scene_count", "key_lines": [], "cta_text",
+  "hashtag_suggestions": [], "emotional_arc": [] }
+</pre>
+
+<p><strong>Пример сценария (30с, educational):</strong></p>
+<pre>
+{
+  "title": "Почему вьетнамский кофе — ЛУЧШИЙ в мире",
+  "format": "educational",
+  "full_text": "[ОТКРЫТИЕ: Крупный план кофе, капающего через фильтр phin]\nЗнали ли вы, что Вьетнам — второй по величине экспортёр кофе в мире?\n\n[СЦЕНА 1: Широкий план кафе в Сайгоне]\nНо настоящее волшебство не в количестве — а в том, как они его пьют.\n\n[СЦЕНА 2: Крупный план приготовления яичного кофе]\nЭто яичный кофе. Да, яйца в кофе. И это НЕВЕРОЯТНО.\n\n[СЦЕНА 3: Разделённый экран: обычный кофе vs яичный кофе]\nСгущёнка вместо сахара. Яичный желток вместо сливок. Гениально.\n\n[ЗАКРЫТИЕ: Ведущий улыбается, держа чашку]\nКогда будете во Вьетнаме, пропустите Starbucks. Попробуйте это. Спасибо скажете.\n\n[CTA: Текст на экране]\nСохраните это для поездки во Вьетнам!",
+  "voiceover_text": "Знали ли вы, что Вьетнам — второй по величине экспортёр кофе в мире? Но настоящее волшебство не в количестве — а в том, как они его пьют. Это яичный кофе. Да, яйца в кофе. И это НЕВЕРОЯТНО. Сгущёнка вместо сахара. Яичный желток вместо сливок. Гениально. Когда будете во Вьетнаме, пропустите Starbucks. Попробуйте это. Спасибо скажете.",
+  "scene_count": 4,
+  "key_lines": ["Вы ещё НЕ пили ТАКОЙ кофе!", "Яйца в кофе. И это НЕВЕРОЯТНО."],
+  "cta_text": "Сохраните это для поездки во Вьетнам!",
+  "hashtag_suggestions": ["ВьетнамскийКофе", "ЯичныйКофе", "Сайгон", "СоветыПутешественникам", "Кофеман"],
+  "emotional_arc": ["curiosity", "surprise", "amazement", "inspiration"]
+}
+</pre>
+
+<h4>7.2.3 Этап 3: Раскадровка</h4>
+<p>Агент раскадровки парсит сценарий и генерирует визуальную раскадровку для каждой сцены:</p>
+
+<pre>
+{
+  "scenes": [
+    {
+      "scene_number": 1,
+      "description": "Крупный план вьетнамского кофе, капающего через традиционный фильтр phin, золотисто-коричневая жидкость медленно наполняет стакан",
+      "camera_angle": "closeup",
+      "camera_movement": "static",
+      "lighting": "тёплый утренний свет из окна, боковое освещение",
+      "atmosphere": "уютно, интимно, медленное утро",
+      "character_ids": [],
+      "character_actions": {},
+      "world_location_id": "vietnam_coffee_shop",
+      "props": ["phin_filter", "glass_cup", "coffee_beans"],
+      "effects": ["steam_particles"],
+      "duration_seconds": 6,
+      "dialogue_lines": [
+        {"speaker": "narrator", "text": "Знали ли вы, что Вьетнам — второй по величине экспортёр кофе в мире?", "emotion": "curious", "start_sec": 0, "end_sec": 5}
+      ],
+      "transition_out": "cut"
+    },
+    {
+      "scene_number": 2,
+      "description": "Широкий план оживлённого кафе в Сайгоне, люди сидят на пластиковых стульях, вид на улицу",
+      "camera_angle": "wide",
+      "camera_movement": "slow push-in",
+      "lighting": "яркий естественный свет, слегка передержано для тропического ощущения",
+      "atmosphere": "энергично, аутентично",
+      "character_ids": ["guide_character"],
+      "character_actions": {"guide_character": "жестикулирует в сторону кафе"},
+      "world_location_id": "saigon_street_cafe",
+      "props": ["plastic_stools", "menu_board"],
+      "effects": ["traffic_blur_background"],
+      "duration_seconds": 7,
+      "dialogue_lines": [
+        {"speaker": "narrator", "text": "Но настоящее волшебство не в количестве — а в том, как они его пьют.", "emotion": "engaging", "start_sec": 5, "end_sec": 11}
+      ],
+      "transition_out": "dissolve"
+    }
+  ]
+}
+</pre>
+
+<h4>7.2.4 Этап 4: Промпт-инжиниринг</h4>
+<p>Каждая сцена раскадровки генерирует ДВА промпта — один для генерации ключевого кадра, другой для генерации видеоклипа:</p>
+
+<pre>
+{
+  "prompts": [
+    {
+      "type": "image",
+      "storyboard_id": "uuid",
+      "scene_number": 1,
+      "prompt_text": "Экстремальный крупный план вьетнамского кофе, капающего через традиционный металлический фильтр phin в стеклянную чашку. Золотисто-коричневая жидкость медленно наполняет стакан. Тёплый утренний солнечный свет из окна слева. Поднимается пар. Кинематографичная фотография, малая глубина резкости, тёплые тона, 8K, фотореализм, снято на Leica M11, золотой час",
+      "negative_prompt": "размыто, перенасыщено, мультяшно, аниме, низкое качество, водяной знак, текст, подпись",
+      "model": "flux-schnell",
+      "parameters": {"width": 1920, "height": 1080, "steps": 4, "guidance": 3.5, "seed": 421187},
+      "loras": [],
+      "lora_weights": []
+    },
+    {
+      "type": "video",
+      "storyboard_id": "uuid",
+      "scene_number": 1,
+      "prompt_text": "Замедленная съёмка крупным планом вьетнамского кофе, капающего через phin-фильтр в стакан. Золотисто-коричневая жидкость наполняет стакан. Поднимается пар. Тёплый утренний свет из окна. Кинематографично, замедленная съёмка 24fps, реалистично, мягкий размытый фон",
+      "negative_prompt": "размыто, дёргано, низкое качество, водяной знак, текст",
+      "model": "wan",
+      "parameters": {"width": 1080, "height": 1920, "fps": 24, "motion_bucket": 120, "seed": 421188},
+      "loras": [],
+      "lora_weights": []
+    }
+  ]
+}
+</pre>
+
+<h4>7.2.5 Этап 5: Генерация изображений (ComfyUI)</h4>
+<p>Генератор изображений отправляет промпты в API ComfyUI. Стандартный воркфлоу:</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">ComfyUI Workflow: image_generation.json</span>
+
+                    ┌────────────────────────┐
+                    │   Загрузка чекпоинта    │
+                    │   FLUX.1-schnell        │
+                    └───────────┬────────────┘
+                                │
+           ┌────────────────────┼────────────────────┐
+           │                    │                    │
+           ▼                    ▼                    ▼
+  ┌────────────────┐  ┌────────────────┐  ┌────────────────┐
+  │ CLIP Text      │  │ CLIP Text      │  │ Empty Latent   │
+  │ Encode (pos)   │  │ Encode (neg)   │  │ Image          │
+  └────────┬───────┘  └────────┬───────┘  │ 1920x1080      │
+           │                    │          └────────┬───────┘
+           └──────────┬─────────┘                   │
+                      ▼                             │
+             ┌──────────────────┐                   │
+             │  Dual CLIP       │                   │
+             │  Conditioning    │                   │
+             └────────┬─────────┘                   │
+                      │                             │
+                      ▼                             ▼
+             ┌─────────────────────────────────────────┐
+             │  SamplerCustom                          │
+             │  steps=4, cfg=3.5, seed={seed}          │
+             │  scheduler=DDIMUniPCMultistep           │
+             └──────────────────┬──────────────────────┘
+                                │
+                                ▼
+                        ┌──────────────┐
+                        │  VAE Decode  │
+                        └──────┬───────┘
+                               │
+                               ▼
+                       ┌──────────────┐
+                       │  Save Image  │
+                       │  (to output) │
+                       └──────────────┘
+
+<span class="hl2">Опциональные ноды (добавляются на основе входа):</span>
+- IP-Adapter (если предоставлены style_refs)
+- LoRA Loader (если доступна LoRA персонажа)
+- ControlNet (если предоставлена поза/сегментация)
+- Detailer (если режим высокого качества)
+</pre>
+</div>
+
+<h4>7.2.6 Этап 6: Генерация видеоклипов</h4>
+<p>Генерация видео использует WAN 2.1 text-to-video или image-to-video. Агент управляет памятью GPU, планируя по одному клипу за раз:</p>
+
+<pre>
+<span class="hl">Планирование генерации видео</span>
+
+1. Проверить доступную память GPU
+2. Если < 20 ГБ: использовать CogVideoX (более лёгкая модель)
+3. Если 20–24 ГБ: использовать WAN 2.1 (оптимально)
+4. Если > 24 ГБ: использовать WAN + более высокое разрешение
+
+Для 30-секундного видео с 4 сценами:
+- Клип 1 (6с): WAN, text-to-video, 1080×1920, 36 кадров
+- Клип 2 (7с): WAN, image-to-video, 1080×1920, 42 кадра
+- Клип 3 (8с): WAN, text-to-video, 1080×1920, 48 кадров
+- Клип 4 (7с): WAN, image-to-video, 1080×1920, 42 кадра
+
+Общее время генерации: ~4 мин (в среднем 60с на клип)
+</pre>
+
+<h4>7.2.7 Этап 7: Генерация озвучки</h4>
+<pre>
+1. Текст: voiceover_text из сценария
+2. Голос: конфигурация голоса персонажа (высота, скорость, стиль)
+3. Модель: Coqui XTTS v2
+4. Если у персонажа есть voice_cloning_ref: использовать клонированный голос
+5. Иначе: использовать профиль по умолчанию (например, "cheerful_male_v1")
+6. Сгенерировать WAV-файл
+7. FFmpeg: нормализовать громкость до -14dB LUFS
+8. Конвертировать в AAC 128kbps
+9. Загрузить в MinIO
+10. Вернуть URL
+</pre>
+
+<h4>7.2.8 Этап 8: Сборка видео (FFmpeg)</h4>
+<p>Самый сложный этап. Граф фильтров FFmpeg для типичного 30-секундного шорта:</p>
+
+<pre>
+<span class="hl">FFmpeg Filter Complex для сборки видео:</span>
+
+# Входы:
+# [0] clip1.mp4 — Сцена 1
+# [1] clip2.mp4 — Сцена 2
+# [2] clip3.mp4 — Сцена 3
+# [3] clip4.mp4 — Сцена 4
+# [4] voiceover.m4a — Озвучка
+# [5] bg_music.mp3 — Фоновая музыка
+
+ffmpeg -i clip1.mp4 -i clip2.mp4 -i clip3.mp4 -i clip4.mp4 \
+       -i voiceover.m4a -i bg_music.mp3 \
+       -filter_complex "
+  [0][1]xfade=transition=fade:duration=0.5:offset=5.5[scene12];
+  [scene12][2]xfade=transition=fade:duration=0.5:offset=12.5[scene123];
+  [scene123][3]xfade=transition=fade:duration=0.5:offset=20.5[video];
+
+  [5]volume=0.3[music_low];
+  [4][music_low]amix=inputs=2:duration=first[audio];
+
+  [video]drawtext=fontfile=/fonts/bold.ttf:text='Сохрани для Вьетнама 💛':
+    x=(w-text_w)/2:y=h-200:fontsize=48:fontcolor=white:
+    box=1:boxcolor=black@0.5:boxborderw=10:enable='between(t,25,30)':
+    line_spacing=10[out_video]
+" -map "[out_video]" -map "[audio]" \
+  -c:v libx264 -preset medium -crf 18 \
+  -c:a aac -b:a 128k \
+  -pix_fmt yuv420p -movflags +faststart \
+  final_video.mp4
+
+Расчёт длительности:
+  Сцена 1: 6.0с → fade на 5.5с (0.5с crossfade)
+  Сцена 2: 7.0с → fade на 12.5с
+  Сцена 3: 8.0с → fade на 20.5с
+  Сцена 4: 7.0с → конец на 28.0с
+  Затухание: 0.5с в конце
+  Всего: ~29.0с
+</pre>
+
+<h4>7.2.9 Этап 9: Генерация SEO-метаданных</h4>
+<pre>
+<span class="hl">Вывод SEO-агента:</span>
+
+{
+  "titles": {
+    "tiktok": "Почему вьетнамский кофе ЛУЧШИЙ ☕",
+    "youtube": "Почему вьетнамский кофе — лучший в мире (вы обязаны это попробовать)",
+    "instagram": "Кофе, который всё меняет ☕✨"
+  },
+  "descriptions": {
+    "tiktok": "Вьетнам — второй по величине экспортёр кофе в мире! Узнайте, почему их кофе легендарен. 🇻🇳☕ #ВьетнамскийКофе #ЯичныйКофе",
+    "youtube": "В этом видео мы исследуем уникальную кофейную культуру Вьетнама. От традиционного фильтра phin до знаменитого яичного кофе — узнайте, почему вьетнамский кофе считается одним из лучших в мире.\n\n📍 Место: Сайгон, Вьетнам\n☕ В ролике: Яичный кофе в Cafe Giang\n\n#Вьетнам #Кофе #Путешествия #Сайгон #Фуди",
+    "instagram": "Секрет в фильтре phin ☕✨ Сохрани это для поездки во Вьетнам!"
+  },
+  "hashtags": {
+    "tiktok": ["ВьетнамскийКофе", "ЯичныйКофе", "Кофеман", "Сайгон", "ВьетнамTravel", "КофеТайм"],
+    "youtube": ["ВьетнамскийКофе", "ЯичныйКофе", "ВьетнамскийКофеРецепт", "КофеТуториал", "TravelВьетнам"],
+    "instagram": ["ВьетнамскийКофе", "ЯичныйКофе", "СайгонЕда", "Кофеман", "TravelReels"]
+  },
+  "thumbnail_text": "Лучший кофе во Вьетнаме?"
+}
+</pre>
+
+<h4>7.2.10 Этап 10: Публикация</h4>
+<p>Агент публикации использует n8n-воркфлоу для загрузки на каждую платформу:</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">ВОРКФЛОУ ПУБЛИКАЦИИ (n8n):</span>
+
+┌──────────┐
+│  Триггер │
+└────┬─────┘
+     │
+     ▼
+┌─────────────────────┐
+│ Проверить расписание │
+│ (сейчас vs запланир.)│
+└──────┬──────┬───────┘
+       │      │
+  вовремя    │
+       │     ▼
+       ▼  Ждать расписания
+┌──────────────┐
+│ Для каждой   │
+│ платформы    │
+└──────┬───────┘
+       │
+       ├────────┬────────┬────────┐
+       ▼        ▼        ▼        ▼
+   ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐
+   │TikTok│ │YouTube│ │  IG  │ │Telega│
+   │ API  │ │  API  │ │ API  │ │m API │
+   └──┬───┘ └──┬───┘ └──┬───┘ └──┬───┘
+      │        │        │        │
+      ▼        ▼        ▼        ▼
+   ┌───────────────────────────────────┐
+   │  Загрузить видео → Установить     │
+   │  превью → Название/описание →     │
+   │  Опубликовать                     │
+   └──────────┬────────────────────────┘
+              │
+              ▼
+   ┌─────────────────────┐
+   │ Сохранить ID платф. │
+   └──────┬──────────────┘
+          │
+          ▼
+   ┌─────────────────────┐
+   │ Поставить в аналит. │
+   └─────────────────────┘
+</pre>
+</div>
+
+<h3>7.3 Бюджет времени выполнения пайплайна</h3>
+
+<table>
+<tr><th>Этап</th><th>Требуется GPU</th><th>Время</th><th>% от всего</th><th>Примечания</th></tr>
+<tr><td>1. Генерация идей</td><td>Нет (CPU)</td><td>~30с</td><td>2%</td><td>LLM-инференс на CPU подходит для 7B модели</td></tr>
+<tr><td>2. Сценарий</td><td>Нет (CPU)</td><td>~45с</td><td>3%</td><td>Больше контекста, больше токенов</td></tr>
+<tr><td>3. Раскадровка</td><td>Нет (CPU)</td><td>~30с</td><td>2%</td><td>Парсинг структурированного вывода</td></tr>
+<tr><td>4. Промпт-инжиниринг</td><td>Нет (CPU)</td><td>~20с</td><td>1%</td><td>Меньше токенов, на основе шаблонов</td></tr>
+<tr><td>5. Генерация изображений</td><td><span class="hl">Да</span></td><td>~60с</td><td>15%</td><td>4–5 изображений по 15с каждое (последовательно на одном GPU)</td></tr>
+<tr><td>6. Генерация видео</td><td><span class="hl">Да</span></td><td>~240с</td><td>60%</td><td>4 клипа по 60с — это узкое место</td></tr>
+<tr><td>7. Озвучка</td><td>Опционально (GPU для XTTS)</td><td>~20с</td><td>1%</td><td>Может работать на CPU с меньшей моделью</td></tr>
+<tr><td>8. Сборка видео</td><td>Нет (CPU)</td><td>~45с</td><td>11%</td><td>Рендеринг FFmpeg, в основном I/O-bound</td></tr>
+<tr><td>9. SEO</td><td>Нет (CPU)</td><td>~15с</td><td>1%</td><td>Параллельно с Этапом 8</td></tr>
+<tr><td>10. Публикация</td><td>Нет (CPU)</td><td>~60с</td><td>4%</td><td>Время загрузки зависит от размера видео и скорости интернета</td></tr>
+<tr><td><strong>Итого</strong></td><td></td><td><strong>~565с (9.4 мин)</strong></td><td>100%</td><td>На одно видео в MVP</td></tr>
+</table>
+
+<div class="info-box">
+<strong>Пропускная способность MVP:</strong> С 1 GPU (RTX 3090) генерация 1 видео занимает ~10 минут. При 1 видео/день GPU простаивает 99% дня. Это намеренно — MVP фокусируется на качестве и стабильности пайплайна, а не на пропускной способности. При масштабировании до 10+ видео/день — добавляем GPU-воркеры.
+</div>
+
+<h3>7.4 Восстановление после ошибок пайплайна</h3>
+
+<table>
+<tr><th>Точка отказа</th><th>Поведение</th><th>Влияние</th><th>Восстановление</th></tr>
+<tr><td>LLM не может распарсить JSON</td><td>Повтор со строгим промптом (макс 2x)</td><td>Задержка генерации сценария ~1 мин</td><td>Запасной: генерация идей на основе шаблонов</td></tr>
+<tr><td>Ошибка воркфлоу ComfyUI</td><td>Повтор с другим seed (макс 2x)</td><td>Нет изображения для этой сцены</td><td>Запасной: изображение предыдущей сцены с текстовым оверлеем</td></tr>
+<tr><td>OOM при генерации видео</td><td>Повтор с меньшим разрешением (720p)</td><td>Клип ниже качеством</td><td>Запасной: слайд-шоу с эффектом Ken Burns</td></tr>
+<tr><td>Ошибка рендера FFmpeg</td><td>Повтор с более простыми переходами</td><td>Резкие переходы вместо crossfade</td><td>Запасной: линейная конкатенация</td></tr>
+<tr><td>API платформы отклоняет публикацию</td><td>Проверка ошибки, повтор с backoff (3x)</td><td>Публикация отложена</td><td>Запасной: сохранить в черновик, уведомить оператора</td></tr>
+<tr><td>MinIO недоступен</td><td>Повтор через 5с (3x)</td><td>Пайплайн останавливается</td><td>Запасной: запись в локальный tmp, синхронизация при восстановлении MinIO</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8. CHARACTER SYSTEM — ПОЛНАЯ АРХИТЕКТУРА -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2 id="s8"><span class="num">08</span> Character System — Архитектура вселенной персонажей</h2>
+
+<div class="glass-card" style="border-left:4px solid #00f0ff;border-radius:14px;padding:24px;margin:16px 0;background:linear-gradient(135deg,rgba(0,240,255,0.03),rgba(168,85,247,0.03));border:1px solid rgba(0,240,255,0.06)">
+<div class="title" style="font-size:1.1rem;color:#00f0ff;font-weight:700;margin-bottom:10px">⌘ Character System — Единый стандарт вселенной AION</div>
+<p style="font-size:0.9rem;color:#b0c4de">Персонажи AION — это долгоживущие цифровые ассеты с постоянной личностью, историей, внешностью и визуальным ДНК. Они используются во всех точках контакта с брендом: видео, сериалы, реклама, приложение, сайт, презентации, обучение, соцсети, маркетинг. Данный раздел — официальный стандарт создания, хранения, использования и развития всех персонажей во вселенной AION. Разработчики, дизайнеры, AI-инженеры и маркетинговая команда используют его как единый источник истины.</p>
+</div>
+
+<h3>8.1 Концепция Character System</h3>
+
+<p>Вселенная AION строится вокруг персонажей. Каждый персонаж — это не просто набор промптов, а полная идентичность со своим архетипом, историей, визуальным стилем, голосом, анимацией и ролью в экосистеме. Персонажи являются сквозными сущностями, проходящими через все типы контента.</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">ПЕРСОНАЖИ КАК СКВОЗНЫЕ АССЕТЫ:</span>
+
+                    ┌─────────────────────────────┐
+                    │      CHARACTER SYSTEM       │
+                    │   Единый источник истины     │
+                    └─────────────┬───────────────┘
+                                  │
+         ┌───────────┬────────────┼────────────┬──────────────┐
+         ▼           ▼            ▼            ▼              ▼
+   ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────┐
+   │ Видео    │ │ Сериалы  │ │ Реклама  │ │ Сайт /   │ │ Социальные   │
+   │ Shorts   │ │ Episodes │ │ Spots    │ │ App      │ │ Сети         │
+   └──────────┘ └──────────┘ └──────────┘ └──────────┘ └──────────────┘
+         │            │            │            │              │
+         └────────────┴────────────┴────────────┴──────────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    │   Все используют один и тот    │
+                    │   же Character DNA: ID, LoRA,  │
+                    │   голос, анимации, архетип     │
+                    └───────────────────────────────┘
+</pre>
+</div>
+
+<div class="block" style="border-left-color:#f59e0b">
+<strong>Принципы Character System:</strong>
+<ul>
+<li><strong>Единственность:</strong> Каждый персонаж имеет один уникальный ID. Никаких дубликатов. Никаких вариаций одного персонажа под разными именами.</li>
+<li><strong>Неизменяемость ДНК:</strong> Базовая идентичность (архетип, ключевые черты, визуальный стандарт) не меняется. Развитие — только через добавление новых анимаций, выражений, костюмов.</li>
+<li><strong>Сквозное использование:</strong> Персонаж, созданный для видео, может быть использован в рекламе, приложении и на сайте без изменения идентичности.</li>
+<li><strong>Иерархия важности:</strong> Tier Ω → S → A → B → C → D → E определяет приоритеты при генерации, хранении и оптимизации.</li>
+</ul>
+</div>
+
+<h3>8.2 Tier Hierarchy — Иерархия вселенной AION</h3>
+
+<p>Все персонажи AION распределены по 7 уровням иерархии. Уровень определяет глубину проработки, частоту использования, правила создания и бюджет на LoRA/анимации.</p>
+
+<!-- Tier Hierarchy Table -->
+<div class="table-scroll">
+<table>
+<tr><th>Tier</th><th>Название</th><th>Количество</th><th>Глубина проработки</th><th>LoRA</th><th>Частота использования</th><th>Влияние на бренд</th></tr>
+<tr><td><span class="badge" style="background:rgba(168,85,247,0.2);color:#a855f7">Ω</span></td><td>Высшие сущности</td><td>3</td><td>Максимальная (философия, графика, анимация)</td><td>Full checkpoint</td><td>Всегда в фоне/брендинге</td><td>Фундаментальное</td></tr>
+<tr><td><span class="badge" style="background:rgba(245,158,11,0.2);color:#f59e0b">S</span></td><td>Символы бренда</td><td>3+</td><td>Максимальная (студийный уровень)</td><td>Full checkpoint</td><td>Ежедневно</td><td>Лицо компании</td></tr>
+<tr><td><span class="badge" style="background:rgba(0,240,255,0.2);color:#00f0ff">A</span></td><td>Профессиональные</td><td>24+</td><td>Высокая (LoRA + голос + анимации)</td><td>LoRA v2+</td><td>По расписанию контента</td><td>Высокое</td></tr>
+<tr><td><span class="badge" style="background:rgba(34,197,94,0.2);color:#22c55e">B</span></td><td>Жители мира</td><td>50+</td><td>Средняя (LoRA + шаблон)</td><td>LoRA v1</td><td>Регулярно</td><td>Среднее</td></tr>
+<tr><td><span class="badge" style="background:rgba(148,163,184,0.2);color:#94a3b8">C</span></td><td>Рабочие профессии</td><td>200+</td><td>Базовая + вариации</td><td>IP-Adapter</td><td>По сценарию</td><td>Низкое</td></tr>
+<tr><td><span class="badge" style="background:rgba(100,116,139,0.2);color:#64748b">D</span></td><td>Массовка</td><td>∞</td><td>Автоматическая генерация</td><td>Нет</td><td>Процедурно</td><td>Минимальное</td></tr>
+<tr><td><span class="badge" style="background:rgba(71,85,105,0.2);color:#475569">E</span></td><td>Не-люди</td><td>30+ типов</td><td>Функциональная</td><td>По необходимости</td><td>Ежедневно</td><td>Функциональное</td></tr>
+</table>
+</div>
+
+<div class="info-box" style="border-left-color:#a855f7">
+<strong>Правило распределения ресурсов:</strong> 60% бюджета GPU на Tier S + A, 25% на Tier B + Ω, 10% на Tier C + E, 5% на Tier D. Tier Ω и S требуют отдельных fine-tuned checkpoints. Tier A — выделенные LoRA. Tier B — общие LoRA с IP-Adapter.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.3 TIER Ω — ВЫСШИЕ СУЩНОСТИ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.3 Tier Ω — Высшие сущности вселенной</h3>
+
+<div class="glass-card" style="border-left:4px solid #a855f7;border-radius:14px;padding:20px;margin:16px 0;background:linear-gradient(135deg,rgba(168,85,247,0.03),rgba(0,240,255,0.02));border:1px solid rgba(168,85,247,0.08)">
+<div class="title" style="font-size:0.95rem;color:#a855f7;font-weight:700;margin-bottom:8px">⟁ Tier Ω — Философия</div>
+<p style="font-size:0.85rem;color:#b0c4de">Tier Ω — это не персонажи в традиционном понимании. Это фундаментальные сущности вселенной AION, представляющие собой абстрактные концепции, обретшие визуальную форму. Они не имеют возраста, пола, биографии. Они — воплощение идей: сознания, порядка и связности. Они присутствуют везде и нигде конкретно. Их визуальный язык — чистый премиальный минимализм: матовый чёрный, белая энергия, частицы, свет.</p>
+</div>
+
+<div class="tier-omega-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin:16px 0">
+
+<div class="entity-card" style="background:linear-gradient(145deg,rgba(17,24,39,0.9),rgba(26,35,50,0.6));border:1px solid rgba(168,85,247,0.1);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all .3s">
+<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#a855f7,transparent)"></div>
+<div style="font-size:0.6rem;color:#a855f7;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px">Tier Ω · Высшая сущность</div>
+<div style="font-size:1.6rem;color:#e2e8f0;font-weight:800;margin-bottom:6px">⟁ AION</div>
+<div style="font-size:0.7rem;color:#a855f7;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">СУЩНОСТЬ СОЗНАНИЯ</div>
+<p style="font-size:0.82rem;color:#b0c4de;line-height:1.7"><strong>Философия:</strong> AION — это первичное сознание вселенной. Не бог, не ИИ, а сам акт осознания. AION — это то, что смотрит на мир и делает его реальным. Визуально: пульсирующая белая энергия в центре, мягкое свечение, белые частицы, расходящиеся в бесконечность. Никаких глаз, лиц, конечностей. Только чистая энергия сознания.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0">
+<span style="font-size:0.6rem;background:rgba(168,85,247,0.08);color:#a855f7;padding:3px 10px;border-radius:10px">Архетип: Visionary</span>
+<span style="font-size:0.6rem;background:rgba(0,240,255,0.06);color:#00f0ff;padding:3px 10px;border-radius:10px">Энергия: Белая</span>
+<span style="font-size:0.6rem;background:rgba(255,255,255,0.03);color:#94a3b8;padding:3px 10px;border-radius:10px">Форма: Чистый свет</span>
+</div>
+<div style="font-size:0.75rem;color:#64748b;margin-top:8px"><strong>Взаимодействие:</strong> AION не говорит. AION не действует. AION просто есть. Все другие сущности ощущают присутствие AION как фоновое осознание. В контенте AION появляется только как эффект — белая вспышка, поток частиц, свечение.</div>
+</div>
+
+<div class="entity-card" style="background:linear-gradient(145deg,rgba(17,24,39,0.9),rgba(26,35,50,0.6));border:1px solid rgba(0,240,255,0.1);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all .3s">
+<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00f0ff,transparent)"></div>
+<div style="font-size:0.6rem;color:#00f0ff;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px">Tier Ω · Высшая сущность</div>
+<div style="font-size:1.6rem;color:#e2e8f0;font-weight:800;margin-bottom:6px">⬡ Core</div>
+<div style="font-size:0.7rem;color:#00f0ff;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">СУЩНОСТЬ ПОРЯДКА</div>
+<p style="font-size:0.82rem;color:#b0c4de;line-height:1.7"><strong>Философия:</strong> Core — это структура вселенной. Законы, правила, архитектура, иерархия. Core — это то, что превращает хаос в систему. Визуально: геометрическая фигура — куб или икосаэдр — из матового чёрного стекла с белыми линиями энергии, текущими по рёбрам. Медленное вращение. Никаких лиц. Только чистая геометрия.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0">
+<span style="font-size:0.6rem;background:rgba(0,240,255,0.08);color:#00f0ff;padding:3px 10px;border-radius:10px">Архетип: Architect</span>
+<span style="font-size:0.6rem;background:rgba(0,240,255,0.06);color:#00f0ff;padding:3px 10px;border-radius:10px">Форма: Икосаэдр</span>
+<span style="font-size:0.6rem;background:rgba(255,255,255,0.03);color:#94a3b8;padding:3px 10px;border-radius:10px">Материал: Чёрное стекло</span>
+</div>
+<div style="font-size:0.75rem;color:#64748b;margin-top:8px"><strong>Взаимодействие:</strong> Core устанавливает правила взаимодействия между всеми сущностями. Когда персонаж нарушает свой архетип — Core восстанавливает порядок. В контенте Core появляется как интерфейс, рамка, сетка или структурный элемент.</div>
+</div>
+
+<div class="entity-card" style="background:linear-gradient(145deg,rgba(17,24,39,0.9),rgba(26,35,50,0.6));border:1px solid rgba(34,197,94,0.1);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all .3s">
+<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#22c55e,transparent)"></div>
+<div style="font-size:0.6rem;color:#22c55e;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px">Tier Ω · Высшая сущность</div>
+<div style="font-size:1.6rem;color:#e2e8f0;font-weight:800;margin-bottom:6px">⌘ Network</div>
+<div style="font-size:0.7rem;color:#22c55e;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">СУЩНОСТЬ СВЯЗНОСТИ</div>
+<p style="font-size:0.82rem;color:#b0c4de;line-height:1.7"><strong>Философия:</strong> Network — это связь между всем. Не интернет, а сама идея взаимосвязи. Network — это то, что соединяет AION (сознание) и Core (порядок) с мирами и персонажами. Визуально: белые энергетические нити, расходящиеся от невидимого центра. Пульсирующие узлы на пересечениях. Никакой центральной точки — сеть везде.</p>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0">
+<span style="font-size:0.6rem;background:rgba(34,197,94,0.08);color:#22c55e;padding:3px 10px;border-radius:10px">Архетип: Connector</span>
+<span style="font-size:0.6rem;background:rgba(0,240,255,0.06);color:#00f0ff;padding:3px 10px;border-radius:10px">Форма: Сеть нитей</span>
+<span style="font-size:0.6rem;background:rgba(255,255,255,0.03);color:#94a3b8;padding:3px 10px;border-radius:10px">Цвет: Белый</span>
+</div>
+<div style="font-size:0.75rem;color:#64748b;margin-top:8px"><strong>Взаимодействие:</strong> Network — это канал. Через Network персонажи получают знания, общаются, передают эмоции. Network — причина, по которой персонажи в разных видео помнят друг друга. В контенте Network появляется как визуализация данных, линии связи, пульсирующие точки.</div>
+</div>
+
+</div>
+
+<div class="block" style="border-left-color:#a855f7">
+<strong>Правила для Tier Ω:</strong>
+<ul>
+<li>Никогда не изображать в виде человека, животного или антропоморфной формы</li>
+<li>Только абстрактные геометрические/энергетические формы</li>
+<li>Цветовая палитра: только чёрный (#0A0F1E), белый (#F8FAFC), тени текущего акцента</li>
+<li>Никаких диалогов. Никакой озвучки. Только визуальное присутствие</li>
+<li>Появляются только в moments of significance — открытие/закрытие вселенной, переходы между major arcs, критические моменты сюжета</li>
+<li>Один fine-tuned checkpoint на всю вселенную для всех трёх сущностей</li>
+</ul>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.4 TIER S — ГЛАВНЫЕ СИМВОЛЫ БРЕНДА -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.4 Tier S — Главные символы бренда</h3>
+
+<div class="glass-card" style="border-left:4px solid #f59e0b;border-radius:14px;padding:20px;margin:16px 0;background:linear-gradient(135deg,rgba(245,158,11,0.03),rgba(0,0,0,0.2));border:1px solid rgba(245,158,11,0.08)">
+<div class="title" style="font-size:0.95rem;color:#f59e0b;font-weight:700;margin-bottom:8px">✦ Tier S — Лицо компании AION</div>
+<p style="font-size:0.85rem;color:#b0c4de">Tier S — это персонажи, которые становятся лицом компании. Они появляются в каждом втором видео, в рекламе, на сайте, в приложении. Они — главные узнаваемые символы вселенной AION. Каждый имеет полный цикл проработки: checkpoint, LoRA, голос, анимации, эмоции, историю развития.</p>
+</div>
+
+<div class="tier-s-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;margin:16px 0">
+
+<div class="s-card" style="background:linear-gradient(145deg,rgba(17,24,39,0.9),rgba(26,35,50,0.6));border:1px solid rgba(245,158,11,0.08);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all .3s">
+<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#f59e0b,transparent)"></div>
+<div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:10px">
+<div><span style="font-size:0.55rem;background:rgba(245,158,11,0.1);color:#f59e0b;padding:2px 10px;border-radius:8px;text-transform:uppercase;letter-spacing:1px">Tier S · Символ бренда</span></div>
+<div style="font-size:0.65rem;color:#64748b">Архетип: <strong style="color:#f59e0b">Explorer</strong></div>
+</div>
+<div style="font-size:1.8rem;color:#e2e8f0;font-weight:800;margin-bottom:2px">✦ Spark</div>
+<div style="font-size:0.7rem;color:#f59e0b;margin-bottom:12px;text-transform:uppercase;letter-spacing:1.2px">Первопроходец · Энергия · Открытие</div>
+<div style="display:flex;gap:8px;margin-bottom:12px">
+<div style="flex:1;background:rgba(255,255,255,0.02);border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03)">
+<div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px">Миссия</div>
+<div style="font-size:0.78rem;color:#e2e8f0;margin-top:2px">Показывать новое. Вдохновлять на открытия. Быть первым, кто пробует, исследует, рассказывает.</div>
+</div>
+<div style="flex:1;background:rgba(255,255,255,0.02);border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03)">
+<div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px">Характер</div>
+<div style="font-size:0.78rem;color:#e2e8f0;margin-top:2px">Энергичный, любопытный, импульсивный, оптимистичный. Всегда в движении. Заражает энтузиазмом</div>
+</div>
+</div>
+<div style="font-size:0.75rem;color:#94a3b8;line-height:1.7;margin-bottom:10px"><strong>Визуальный стиль:</strong> Молодой мужчина 28–32, короткие светлые волосы, спортивное телосложение. Одежда: techwear — чёрная куртка из карбона с белыми светоотражающими вставками, белые кроссовки. Цветовая палитра: тёмно-серый, белый, акцент золотой. Всегда носит небольшую камерю-очки (AION Glass).</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+<span style="font-size:0.6rem;background:rgba(0,240,255,0.06);color:#00f0ff;padding:2px 8px;border-radius:8px">🔥 Типичный сценарий: Обзор нового места</span>
+<span style="font-size:0.6rem;background:rgba(245,158,11,0.06);color:#f59e0b;padding:2px 8px;border-radius:8px">Визуал: Динамичный, ручная камера</span>
+</div>
+<div style="font-size:0.7rem;color:#64748b;padding:10px;background:rgba(0,0,0,0.15);border-radius:8px"><strong>Коронная фраза:</strong> «Вы этого ещё не видели. Пойдёмте, покажу.»</div>
+</div>
+
+<div class="s-card" style="background:linear-gradient(145deg,rgba(17,24,39,0.9),rgba(26,35,50,0.6));border:1px solid rgba(0,240,255,0.08);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all .3s">
+<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00f0ff,transparent)"></div>
+<div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:10px">
+<div><span style="font-size:0.55rem;background:rgba(0,240,255,0.1);color:#00f0ff;padding:2px 10px;border-radius:8px;text-transform:uppercase;letter-spacing:1px">Tier S · Символ бренда</span></div>
+<div style="font-size:0.65rem;color:#64748b">Архетип: <strong style="color:#00f0ff">Guardian</strong></div>
+</div>
+<div style="font-size:1.8rem;color:#e2e8f0;font-weight:800;margin-bottom:2px">⬡ Guardian</div>
+<div style="font-size:0.7rem;color:#00f0ff;margin-bottom:12px;text-transform:uppercase;letter-spacing:1.2px">Защитник · Стабильность · Доверие</div>
+<div style="display:flex;gap:8px;margin-bottom:12px">
+<div style="flex:1;background:rgba(255,255,255,0.02);border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03)">
+<div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px">Миссия</div>
+<div style="font-size:0.78rem;color:#e2e8f0;margin-top:2px">Обеспечивать безопасность, надежность, доверие. Быть тем, на кого можно положиться в любой ситуации.</div>
+</div>
+<div style="flex:1;background:rgba(255,255,255,0.02);border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03)">
+<div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px">Характер</div>
+<div style="font-size:0.78rem;color:#e2e8f0;margin-top:2px">Спокойный, уверенный, немногословный, надёжный. Говорит только когда есть что сказать. Никогда не паникует.</div>
+</div>
+</div>
+<div style="font-size:0.75rem;color:#94a3b8;line-height:1.7;margin-bottom:10px"><strong>Визуальный стиль:</strong> Мужчина 40–45, седые виски, короткая стрижка, атлетическое телосложение. Очки AR с тонкой оправой. Одежда: чёрное пальто из матовой технической ткани, белая рубашка, чёрные брюки. Минимализм. Никаких логотипов. Часы — чёрный керамический корпус.</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+<span style="font-size:0.6rem;background:rgba(0,240,255,0.06);color:#00f0ff;padding:2px 8px;border-radius:8px">🛡️ Типичный сценарий: Экспертный обзор</span>
+<span style="font-size:0.6rem;background:rgba(34,197,94,0.06);color:#22c55e;padding:2px 8px;border-radius:8px">Визуал: Статичная камера, чёткий свет</span>
+</div>
+<div style="font-size:0.7rem;color:#64748b;padding:10px;background:rgba(0,0,0,0.15);border-radius:8px"><strong>Коронная фраза:</strong> «Я проверил. Это безопасно. Можете доверять.»</div>
+</div>
+
+<div class="s-card" style="background:linear-gradient(145deg,rgba(17,24,39,0.9),rgba(26,35,50,0.6));border:1px solid rgba(168,85,247,0.08);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all .3s">
+<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#a855f7,transparent)"></div>
+<div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:10px">
+<div><span style="font-size:0.55rem;background:rgba(168,85,247,0.1);color:#a855f7;padding:2px 10px;border-radius:8px;text-transform:uppercase;letter-spacing:1px">Tier S · Символ бренда</span></div>
+<div style="font-size:0.65rem;color:#64748b">Архетип: <strong style="color:#a855f7">Observer</strong></div>
+</div>
+<div style="font-size:1.8rem;color:#e2e8f0;font-weight:800;margin-bottom:2px">⟐ Oracle</div>
+<div style="font-size:0.7rem;color:#a855f7;margin-bottom:12px;text-transform:uppercase;letter-spacing:1.2px">Мудрость · Понимание · Перспектива</div>
+<div style="display:flex;gap:8px;margin-bottom:12px">
+<div style="flex:1;background:rgba(255,255,255,0.02);border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03)">
+<div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px">Миссия</div>
+<div style="font-size:0.78rem;color:#e2e8f0;margin-top:2px">Давать глубину. Показывать контекст. Объяснять сложное простыми словами. Быть голосом мудрости.</div>
+</div>
+<div style="flex:1;background:rgba(255,255,255,0.02);border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,0.03)">
+<div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px">Характер</div>
+<div style="font-size:0.78rem;color:#e2e8f0;margin-top:2px">Созерцательный, спокойный, глубокий, немного загадочный. Говорит медленно, с паузами. Каждое слово имеет вес.</div>
+</div>
+</div>
+<div style="font-size:0.75rem;color:#94a3b8;line-height:1.7;margin-bottom:10px"><strong>Визуальный стиль:</strong> Женщина 35–40, тёмные волосы собраны в пучок, тонкие черты лица, спокойный взгляд. Чёрное платье-футляр из матового шёлка. Единственное украшение — тонкая белая линия-подвеска (символ Network). Минимальный макияж, только акцент на глаза.</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+<span style="font-size:0.6rem;background:rgba(168,85,247,0.06);color:#a855f7;padding:2px 8px;border-radius:8px">📖 Типичный сценарий: Глубокий анализ</span>
+<span style="font-size:0.6rem;background:rgba(255,255,255,0.03);color:#94a3b8;padding:2px 8px;border-radius:8px">Визуал: Мягкий свет, крупные планы</span>
+</div>
+<div style="font-size:0.7rem;color:#64748b;padding:10px;background:rgba(0,0,0,0.15);border-radius:8px"><strong>Коронная фраза:</strong> «Посмотрите на это иначе. Видите то, что скрыто?»</div>
+</div>
+
+</div>
+
+<div class="block" style="border-left-color:#f59e0b">
+<strong>Правила для Tier S:</strong>
+<ul>
+<li>Каждый персонаж имеет отдельный fine-tuned checkpoint + LoRA v2+</li>
+<li>Утверждение нового дизайна — только через Art Director AION</li>
+<li>Никаких изменений внешности без одобрения бренд-команды</li>
+<li>Появляются минимум в 40% контента</li>
+<li>Могут иметь временные костюмы (сезонные/рекламные), но базовая идентичность неизменна</li>
+<li>Каждый Tier S персонаж имеет страницу на сайте aion.ai/characters/[name]</li>
+</ul>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.5 TIER A — ПРОФЕССИОНАЛЬНЫЕ ПЕРСОНАЖИ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.5 Tier A — Библиотека профессиональных персонажей</h3>
+
+<p>Tier A — это 24+ профессиональных персонажа, покрывающих ключевые бизнес-домены и сферы жизни. Каждый — эксперт в своей области с полной проработкой: внешность, голос, манера общения, типовые сценарии.</p>
+
+<table>
+<tr><th>Персонаж</th><th>Архетип</th><th>Роль</th><th>Миссия</th><th>Сценарии использования</th></tr>
+<tr><td><strong>Doctor</strong></td><td>Healer</td><td>Медицинский эксперт</td><td>Объяснять здоровье доступно, без страха</td><td>Обзоры симптомов, профилактика, мифы о здоровье</td></tr>
+<tr><td><strong>Engineer</strong></td><td>Builder</td><td>Технический специалист</td><td>Показывать, как работают технологии</td><td>Разбор устройств, DIY, технические обзоры</td></tr>
+<tr><td><strong>Architect</strong></td><td>Architect</td><td>Проектировщик пространств</td><td>Вдохновлять на красивые и функциональные пространства</td><td>Обзоры зданий, дизайн интерьеров, градостроительство</td></tr>
+<tr><td><strong>Pilot</strong></td><td>Explorer</td><td>Профессиональный пилот</td><td>Открывать мир с высоты</td><td>Авиаобзоры, travel-лайфхаки, безопасность полётов</td></tr>
+<tr><td><strong>Concierge</strong></td><td>Connector</td><td>Персональный ассистент</td><td>Решать проблемы быстро</td><td>Сервисные обзоры, лайфхаки для путешествий</td></tr>
+<tr><td><strong>Business Advisor</strong></td><td>Strategist</td><td>Бизнес-консультант</td><td>Помогать предпринимателям расти</td><td>Разбор кейсов, стратегии, анализ рынков</td></tr>
+<tr><td><strong>Lawyer</strong></td><td>Guardian</td><td>Юридический эксперт</td><td>Защищать права и объяснять законы</td><td>Юридические лайфхаки, разбор законов</td></tr>
+<tr><td><strong>Teacher</strong></td><td>Teacher</td><td>Педагог</td><td>Делать сложное понятным</td><td>Образовательные видео, объяснение концепций</td></tr>
+<tr><td><strong>Scientist</strong></td><td>Researcher</td><td>Учёный-исследователь</td><td>Показывать науку интересной</td><td>Научные открытия, эксперименты, объяснения</td></tr>
+<tr><td><strong>Chef</strong></td><td>Creator</td><td>Шеф-повар</td><td>Вдохновлять на кулинарные эксперименты</td><td>Рецепты, обзоры ресторанов, кулинарные техники</td></tr>
+<tr><td><strong>Courier</strong></td><td>Observer</td><td>Курьер-путешественник</td><td>Показывать город глазами курьера</td><td>Городские маршруты, скрытые места, лайфхаки</td></tr>
+<tr><td><strong>Banker</strong></td><td>Strategist</td><td>Финансовый консультант</td><td>Учить управлять деньгами</td><td>Инвестиции, накопления, финансовое планирование</td></tr>
+<tr><td><strong>Insurance Advisor</strong></td><td>Guardian</td><td>Страховой эксперт</td><td>Защищать от непредвиденного</td><td>Страховые продукты, защита имущества, риски</td></tr>
+<tr><td><strong>Mechanic</strong></td><td>Builder</td><td>Автомеханик</td><td>Учить понимать и обслуживать технику</td><td>Ремонт авто, обзоры запчастей, советы</td></tr>
+<tr><td><strong>Fitness Coach</strong></td><td>Protector</td><td>Тренер по фитнесу</td><td>Мотивировать на здоровый образ жизни</td><td>Тренировки, питание, мотивация</td></tr>
+<tr><td><strong>Travel Expert</strong></td><td>Explorer</td><td>Эксперт по путешествиям</td><td>Открывать мир безопасно и выгодно</td><td>Путеводители, лайфхаки, обзоры стран</td></tr>
+<tr><td><strong>Property Expert</strong></td><td>Visionary</td><td>Эксперт по недвижимости</td><td>Помогать находить идеальное жильё</td><td>Обзоры районов, инвестиции в недвижимость</td></tr>
+<tr><td><strong>Investment Advisor</strong></td><td>Strategist</td><td>Инвестиционный советник</td><td>Учить умным инвестициям</td><td>Портфели, акции, крипто, диверсификация</td></tr>
+<tr><td><strong>Event Manager</strong></td><td>Connector</td><td>Организатор событий</td><td>Создавать незабываемые события</td><td>Обзоры мероприятий, советы по организации</td></tr>
+<tr><td><strong>Florist</strong></td><td>Creator</td><td>Флорист-дизайнер</td><td>Привносить красоту через растения</td><td>Аранжировка, уход за растениями, цветочный дизайн</td></tr>
+<tr><td><strong>Designer</strong></td><td>Creator</td><td>Дизайнер</td><td>Учить видеть и создавать прекрасное</td><td>UI/UX, графический дизайн, тренды</td></tr>
+<tr><td><strong>Developer</strong></td><td>Builder</td><td>Программист</td><td>Демистифицировать программирование</td><td>Код-ревью, обзоры инструментов, туториалы</td></tr>
+<tr><td><strong>AI Researcher</strong></td><td>Innovator</td><td>Исследователь ИИ</td><td>Объяснять будущее ИИ доступно</td><td>Новости ИИ, разбор моделей, этика ИИ</td></tr>
+</table>
+
+<div class="info-box" style="border-left-color:#f59e0b">
+<strong>Правила Tier A:</strong> Каждый персонаж имеет выделенную LoRA (обучение на 30+ изображениях), голосовой профиль TTS с клонированием, библиотеку анимаций (6+ эмоций), 3+ типовых сценария использования. Генерация нового Tier A персонажа — через Character Pipeline с одобрения контент-директора.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.6 TIER B — ЖИТЕЛИ МИРА -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.6 Tier B — Жители мира</h3>
+
+<p>Tier B — это жители вселенной AION. Они не являются экспертами, но создают атмосферу живого, дышащего мира. Tier B персонажи имеют имена, биографии и постоянную роль, но меньшую глубину проработки.</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">TIER B — АРХИТЕКТУРА ЖИТЕЛЕЙ:</span>
+
+Тип жителя    | Роль в экосистеме          | Примеры сценариев
+──────────────┼────────────────────────────┼─────────────────────────
+Предприниматель | Создаёт бизнес-контекст  | Встречи в коворкинге
+Семья          | Создаёт эмоциональный фон | Путешествия, покупки
+Экспат         | Межкультурный контекст    | Адаптация к новой стране
+Студент        | Динамика, обучение        | Кампус, библиотека
+Турист         | Открытие нового           | Достопримечательности
+Ребёнок        | Чистота восприятия        | Семейный контент
+Пенсионер      | Мудрость, опыт            | Сады, парки, кафе
+Фрилансер      | Свобода, гибкость         | Коворкинги, кафе
+Инвестор       | Деловой контекст          | Переговоры, сделки
+Digital Nomad  | Глобальный контекст       | Коворкинги по всему миру
+
+Каждый Tier B имеет:
+- Имя, возраст, краткая биография (2-3 предложения)
+- IP-Adapter референс (не LoRA)
+- 3 базовых эмоции (нейтральная, радость, удивление)
+- Голос по умолчанию (без клонирования)
+- Связь с 1-2 мирами/локациями
+</pre>
+</div>
+
+<div class="block" style="border-left-color:#22c55e">
+<strong>Правила Tier B:</strong> Не более 50 активных Tier B персонажей в базе. Старые неиспользуемые (90+ дней без появления) архивируются. Генерация нового — через Character Generator с выбором из 10 шаблонов.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.7 TIER C — РАБОЧИЕ ПРОФЕССИИ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.7 Tier C — Библиотека сервисных профессий</h3>
+
+<p>Tier C — это массовые профессии, необходимые для реалистичных сцен: бариста, курьер, полицейский, официант, медсестра, таксист, оператор, кассир, работник аэропорта, работник отеля и другие. Они не имеют имён (нумерованные: barista_001) и появляются по необходимости.</p>
+
+<table>
+<tr><th>Профессия</th><th>Архетип</th><th>Роль в сцене</th><th>Вариации</th></tr>
+<tr><td>Бариста</td><td>Creator</td><td>Создаёт атмосферу кафе</td><td>4 (муж/жен, возраст)</td></tr>
+<tr><td>Курьер (доставка)</td><td>Observer</td><td>Динамика города</td><td>3</td></tr>
+<tr><td>Полицейский</td><td>Guardian</td><td>Безопасность, порядок</td><td>4 (форма, страна)</td></tr>
+<tr><td>Официант</td><td>Connector</td><td>Сервис в ресторане</td><td>6</td></tr>
+<tr><td>Медсестра</td><td>Healer</td><td>Медицинский фон</td><td>3</td></tr>
+<tr><td>Таксист</td><td>Observer</td><td>Городские поездки</td><td>5 (тип авто, страна)</td></tr>
+<tr><td>Оператор ЦОД</td><td>Builder</td><td>Технический фон</td><td>2</td></tr>
+<tr><td>Кассир</td><td>Observer</td><td>Транзакции</td><td>4</td></tr>
+<tr><td>Работник аэропорта</td><td>Connector</td><td>Travel-контекст</td><td>6 (стойка, багаж, лаунж)</td></tr>
+<tr><td>Работник отеля</td><td>Connector</td><td>Гостеприимство</td><td>5 (ресепшн, консьерж)</td></tr>
+<tr><td>Гид</td><td>Teacher</td><td>Экскурсии</td><td>8 (по странам)</td></tr>
+<tr><td>Продавец на рынке</td><td>Creator</td><td>Локальный колорит</td><td>10+ (по типу рынка)</td></tr>
+<tr><td>Водитель автобуса</td><td>Observer</td><td>Городской транспорт</td><td>2</td></tr>
+<tr><td>Уборщик</td><td>Observer</td><td>Фоновый персонаж</td><td>3</td></tr>
+</table>
+
+<div class="block" style="border-left-color:#94a3b8">
+<strong>Правила Tier C:</strong> Все Tier C персонажи генерируются через единый шаблон профессии с вариациями. Не имеют индивидуальной биографии. При появлении в кадре — только в фокусе действий (не главный герой сцены). Голос — синтезированный TTS базового качества.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.8 TIER D — МАССОВКА -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.8 Tier D — Система массовки (Crowd System)</h3>
+
+<p>Tier D — это процедурно генерируемые фоновые персонажи, создающие ощущение живого города/мира. Они не имеют идентичности, появляются на один кадр и никогда не повторяются.</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">СИСТЕМА ГЕНЕРАЦИИ МАССОВКИ:</span>
+
+Сцена определяет:
+  ├── Локацию (городской центр, парк, пляж, аэропорт...)
+  ├── Время суток (утро, день, вечер, ночь)
+  ├── Погоду (солнечно, дождь, туман)
+  └── Плотность (пусто, средне, людно, толпа)
+
+Crowd Generator:
+  1. Берёт шаблон персонажа (10 базовых типов: мужчина, женщина,
+     пара, семья, подросток, пожилой, турист, бегун, офисный)
+  2. Применяет случайные вариации:
+     - Одежда: 20 шаблонов × 5 цветовых схем = 100 комбинаций
+     - Причёска: 10 шаблонов
+     - Аксессуары: очки, сумка, зонт, наушники (random)
+  3. Распределяет по сцене (алгоритм случайного размещения)
+  4. Генерирует анимации: ходьба, стояние, разговор, телефон
+  5. Рендерит batch-запросом (все фигуры в одном запросе)
+
+Ограничения:
+  - Массовка всегда размыта (глубина резкости)
+  - Массовка никогда не смотрит в камеру
+  - Массовка не имеет голоса
+  - Максимум 1 кадр на появление
+</pre>
+</div>
+
+<div class="info-box" style="border-left-color:#64748b">
+<strong>Правила Tier D:</strong> Массовка не сохраняется в базу. Генерируется on-the-fly. Не требует одобрения. 100% автоматическая генерация. Экономия: занимает 5% GPU-времени от Tier A персонажа.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.9 TIER E — НЕ-ЛЮДСКИЕ СУЩНОСТИ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.9 Tier E — Роботы, дроны, животные, ИИ-ассистенты</h3>
+
+<p>Tier E — все не-людские обитатели вселенной AION. Функциональные сущности, обслуживающие мир и взаимодействующие с персонажами.</p>
+
+<div class="tier-e-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:16px 0">
+
+<div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:16px">
+<div style="font-size:0.7rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Роботы</div>
+<div style="font-size:0.8rem;color:#e2e8f0;line-height:1.7">Сервисные роботы (уборка, доставка), промышленные роботы, роботы-консьержи. Дизайн: матовый чёрный пластик, белые светодиодные индикаторы, минимум деталей. Без антропоморфных черт.</div>
+</div>
+
+<div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:16px">
+<div style="font-size:0.7rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Дроны</div>
+<div style="font-size:0.8rem;color:#e2e8f0;line-height:1.7">Летающие камеры (AION Drones), дроны-курьеры, дроны-наблюдатели. Все с белым энергетическим кольцом — маркер AION. Бесшумные, плавные движения.</div>
+</div>
+
+<div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:16px">
+<div style="font-size:0.7rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Животные</div>
+<div style="font-size:0.8rem;color:#e2e8f0;line-height:1.7">Домашние питомцы (собаки, кошки), городские животные (птицы, белки). Фотореалистичные, AAA-качество. Без мультяшности. Животные не имеют архетипов.</div>
+</div>
+
+<div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:16px">
+<div style="font-size:0.7rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Домашние помощники</div>
+<div style="font-size:0.8rem;color:#e2e8f0;line-height:1.7">Голосовые ассистенты, умные колонки, хаб-дисплеи. Визуализируются как голографический интерфейс, а не физический объект. Белые частицы.</div>
+</div>
+
+<div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:16px">
+<div style="font-size:0.7rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Автономные устройства</div>
+<div style="font-size:0.8rem;color:#e2e8f0;line-height:1.7">Роботы-газонокосилки, автоматические уборочные машины, зарядные роботы для электромобилей. Функциональный дизайн.</div>
+</div>
+
+<div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:16px">
+<div style="font-size:0.7rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">ИИ-ассистенты</div>
+<div style="font-size:0.8rem;color:#e2e8f0;line-height:1.7">Виртуальные помощники без физического тела. Появляются как голос + световая индикация (белое кольцо). Не имеют лица, только голос и контекст.</div>
+</div>
+
+</div>
+
+<div class="block" style="border-left-color:#475569">
+<strong>Правила Tier E:</strong> Tier E сущности не имеют пола, возраста, биографии. Их дизайн утверждается один раз и не меняется. Не могут быть главными героями видео (только функциональные роли). Роботы и дроны — носители визуального кода AION: чёрный + белое свечение.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.10 ARCHETYPE SYSTEM -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.10 Archetype System — Система архетипов</h3>
+
+<p>Каждый персонаж AION обязательно принадлежит одному архетипу. Архетип определяет миссию, поведение, ценности, манеру общения и роль в сюжетах. Архетип — неизменяем.</p>
+
+<div class="archetype-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:16px 0">
+
+<div style="background:linear-gradient(135deg,rgba(0,240,255,0.03),rgba(0,0,0,0.15));border:1px solid rgba(0,240,255,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#00f0ff;font-weight:700;margin-bottom:4px">Explorer</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Открывать новое, расширять границы. <strong>Ценности:</strong> Любопытство, смелость, свобода. <strong>Общение:</strong> Энергичное, воодушевлённое. <strong>Роль:</strong> Запуск сюжета, открытие мест.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(0,240,255,0.03),rgba(0,0,0,0.15));border:1px solid rgba(0,240,255,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#00f0ff;font-weight:700;margin-bottom:4px">Guardian</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Защищать, обеспечивать безопасность. <strong>Ценности:</strong> Ответственность, надёжность, порядок. <strong>Общение:</strong> Спокойное, уверенное. <strong>Роль:</strong> Предотвращение кризисов, экспертиза.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(0,240,255,0.03),rgba(0,0,0,0.15));border:1px solid rgba(0,240,255,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#00f0ff;font-weight:700;margin-bottom:4px">Creator</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Создавать, творить, вдохновлять. <strong>Ценности:</strong> Красота, мастерство, оригинальность. <strong>Общение:</strong> Страстное, детальное. <strong>Роль:</strong> Демонстрация процесса, обучение.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(245,158,11,0.03),rgba(0,0,0,0.15));border:1px solid rgba(245,158,11,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#f59e0b;font-weight:700;margin-bottom:4px">Builder</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Строить, конструировать, чинить. <strong>Ценности:</strong> Функциональность, качество, эффективность. <strong>Общение:</strong> Конкретное, техническое. <strong>Роль:</strong> Разбор механики, DIY.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(245,158,11,0.03),rgba(0,0,0,0.15));border:1px solid rgba(245,158,11,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#f59e0b;font-weight:700;margin-bottom:4px">Teacher</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Объяснять, просвещать. <strong>Ценности:</strong> Ясность, терпение, точность. <strong>Общение:</strong> Структурированное, понятное. <strong>Роль:</strong> Объяснение концепций, обучение.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(245,158,11,0.03),rgba(0,0,0,0.15));border:1px solid rgba(245,158,11,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#f59e0b;font-weight:700;margin-bottom:4px">Leader</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Вести, вдохновлять, объединять. <strong>Ценности:</strong> Видение, ответственность, харизма. <strong>Общение:</strong> Уверенное, мотивирующее. <strong>Роль:</strong> Принятие решений, направление.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(168,85,247,0.03),rgba(0,0,0,0.15));border:1px solid rgba(168,85,247,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#a855f7;font-weight:700;margin-bottom:4px">Innovator</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Изобретать, менять правила. <strong>Ценности:</strong> Прогресс, смелость, vision. <strong>Общение:</strong> Дерзкое, провокационное. <strong>Роль:</strong> Презентация новых идей, технологий.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(168,85,247,0.03),rgba(0,0,0,0.15));border:1px solid rgba(168,85,247,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#a855f7;font-weight:700;margin-bottom:4px">Researcher</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Исследовать, анализировать. <strong>Ценности:</strong> Истина, точность, доказательства. <strong>Общение:</strong> Аналитическое, взвешенное. <strong>Роль:</strong> Эксперименты, анализ данных.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(34,197,94,0.03),rgba(0,0,0,0.15));border:1px solid rgba(34,197,94,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#22c55e;font-weight:700;margin-bottom:4px">Guide</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Направлять, показывать путь. <strong>Ценности:</strong> Мудрость, терпение, эмпатия. <strong>Общение:</strong> Тёплое, заботливое. <strong>Роль:</strong> Проводник в новом месте/опыте.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(34,197,94,0.03),rgba(0,0,0,0.15));border:1px solid rgba(34,197,94,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#22c55e;font-weight:700;margin-bottom:4px">Strategist</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Планировать, оптимизировать. <strong>Ценности:</strong> Эффективность, дальновидность. <strong>Общение:</strong> Деловое, рациональное. <strong>Роль:</strong> Финансы, бизнес, инвестиции.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(168,85,247,0.03),rgba(0,0,0,0.15));border:1px solid rgba(168,85,247,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#a855f7;font-weight:700;margin-bottom:4px">Visionary</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Видеть будущее, вдохновлять. <strong>Ценности:</strong> Интуиция, масштаб, потенциал. <strong>Общение:</strong> Метафоричное, вдохновляющее. <strong>Роль:</strong> Архитектура, стратегия будущего.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(0,240,255,0.03),rgba(0,0,0,0.15));border:1px solid rgba(0,240,255,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#00f0ff;font-weight:700;margin-bottom:4px">Protector</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Оберегать, укреплять. <strong>Ценности:</strong> Сила, стойкость, забота. <strong>Общение:</strong> Поддерживающее, мотивирующее. <strong>Роль:</strong> Фитнес, здоровье, безопасность.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(34,197,94,0.03),rgba(0,0,0,0.15));border:1px solid rgba(34,197,94,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#22c55e;font-weight:700;margin-bottom:4px">Connector</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Соединять людей, идеи, ресурсы. <strong>Ценности:</strong> Гармония, отношения, синергия. <strong>Общение:</strong> Дипломатичное, тёплое. <strong>Роль:</strong> Связи, события, сервис.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(168,85,247,0.03),rgba(0,0,0,0.15));border:1px solid rgba(168,85,247,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#a855f7;font-weight:700;margin-bottom:4px">Observer</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Наблюдать, анализировать. <strong>Ценности:</strong> Объективность, понимание. <strong>Общение:</strong> Созерцательное, глубокое. <strong>Роль:</strong> Комментарий, перспектива, контекст.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(34,197,94,0.03),rgba(0,0,0,0.15));border:1px solid rgba(34,197,94,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#22c55e;font-weight:700;margin-bottom:4px">Healer</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Исцелять, восстанавливать. <strong>Ценности:</strong> Забота, сострадание, здоровье. <strong>Общение:</strong> Мягкое, успокаивающее. <strong>Роль:</strong> Здоровье, медицина, восстановление.</div>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(245,158,11,0.03),rgba(0,0,0,0.15));border:1px solid rgba(245,158,11,0.06);border-radius:12px;padding:14px">
+<div style="font-size:0.75rem;color:#f59e0b;font-weight:700;margin-bottom:4px">Architect</div>
+<div style="font-size:0.68rem;color:#94a3b8;line-height:1.6"><strong>Миссия:</strong> Проектировать системы, структуры. <strong>Ценности:</strong> Порядок, эстетика, функциональность. <strong>Общение:</strong> Чёткое, системное. <strong>Роль:</strong> Проектирование, строительство, организация.</div>
+</div>
+
+</div>
+
+<div class="info-box" style="border-left-color:#00f0ff">
+<strong>Правило архетипов:</strong> Архетип — неизменяемая характеристика. Персонаж не может сменить архетип. Архетип определяет базовые параметры генерации промптов. Каждый Tier S и A персонаж имеет ровно один архетип. Tier B, C, D могут иметь «фоновый» архетип по умолчанию (Observer).
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.11 CHARACTER DNA -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.11 Character DNA — Неизменяемая структура персонажа</h3>
+
+<p>Каждый персонаж AION (Tier S–C) имеет нижеследующую неизменяемую структуру. Все поля обязательны. Любое изменение — новая версия, фиксируемая в истории изменений.</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">CHARACTER DNA — ПОЛНАЯ СТРУКТУРА:</span>
+
+╔══════════════════════════════════════════════════════════╗
+║                    CHARACTER DNA                        ║
+╠══════════════════════════════════════════════════════════╣
+║  identity: {                                            ║
+║    id: UUID v7 (уникальный, неизменный),                ║
+║    name: string (уникальное в пределах Tier),           ║
+║    slug: string (уникальный URL-safe),                  ║
+║    tier: "Ω"|"S"|"A"|"B"|"C",                          ║
+║    archetype: Archetype enum,                           ║
+║    version: semver (текущая MAJOR.MINOR.PATCH)          ║
+║  }                                                      ║
+║  physical: {                                            ║
+║    age: number | range,                                 ║
+║    height_cm: number,                                   ║
+║    build: "athletic"|"slim"|"average"|"muscular",       ║
+║    ethnicity: string,                                    ║
+║    hair: {style, color, length},                        ║
+║    eyes: {color, shape},                                ║
+║    distinguishing_features: string[] (родинки, шрамы)   ║
+║  }                                                      ║
+║  wardrobe: {                                            ║
+║    style: techwear|classic|minimal|casual|formal,       ║
+║    base_outfit: {top, bottom, shoes, outerwear},        ║
+║    color_palette: string[3..5] (основные цвета),        ║
+║    materials: ["carbon", "matte_black", "glass"...],    ║
+║    accessories: string[] (очки, часы, сумка)            ║
+║  }                                                      ║
+║  personality: {                                         ║
+║    traits: string[3..7] (ключевые черты характера),     ║
+║    emotional_range: string[5..10] (доступные эмоции),   ║
+║    communication_style: string,                          ║
+║    signature_phrases: string[3..5],                      ║
+║    voice: {timbre, speed, pitch, tts_profile_url}      ║
+║  }                                                      ║
+║  motion: {                                              ║
+║    posture: string,                                      ║
+║    gait: string,                                         ║
+║    gestures: string[5..10],                              ║
+║    default_idle_animation: string,                       ║
+║    animation_library_url: string                         ║
+║  }                                                      ║
+║  backstory: {                                           ║
+║    biography: text (2-5 предложений),                   ║
+║    skills: string[2..5],                                  ║
+║    weaknesses: string[1..3],                              ║
+║    relationships: [{character_id, relationship_type}],    ║
+║    development_history: [{date, event, description}]     ║
+║  }                                                      ║
+║  assets: {                                              ║
+║    portrait_urls: string[3..5],                          ║
+║    turnaround_url: string (360°),                        ║
+║    expression_urls: {emotion: url}[],                    ║
+║    lora_model_url: string,                               ║
+║    checkpoint_url: string (Tier S+ only),                ║
+║    prompt_templates: {image, video, portrait, ...}       ║
+║  }                                                      ║
+╚══════════════════════════════════════════════════════════╝
+</pre>
+</div>
+
+<div class="glass-card" style="border-left:4px solid #00f0ff;border-radius:12px;padding:16px;margin:14px 0">
+<div style="font-size:0.8rem;color:#e2e8f0;line-height:1.7"><strong>Пример Character DNA для Spark (Tier S):</strong></div>
+<pre style="font-size:0.7rem;color:#94a3b8;margin:8px 0 0;background:rgba(0,0,0,0.25);padding:12px;border-radius:8px">
+{
+  "identity": { "id": "a1b2c3d4-...", "name": "Spark", "slug": "spark", "tier": "S", "archetype": "Explorer", "version": "1.2.0" },
+  "physical": { "age": 30, "height_cm": 182, "build": "athletic", "ethnicity": "european", "hair": {"style": "short_undercut", "color": "#C9B99A", "length": "short"}, "eyes": {"color": "#5B7DB1", "shape": "almond"}, "distinguishing_features": ["small_scar_left_eyebrow"] },
+  "wardrobe": { "style": "techwear", "base_outfit": {"top": "carbon_fiber_jacket", "bottom": "matte_black_pants", "shoes": "white_sneakers", "outerwear": null}, "color_palette": ["#1A1A2E", "#F8FAFC", "#C9B99A", "#2D2D44"], "materials": ["carbon_fiber", "matte_nylon", "silicone"], "accessories": ["AION_Glass", "ceramic_watch"] },
+  "personality": { "traits": ["energetic", "curious", "impulsive", "optimistic", "charismatic"], "emotional_range": ["excitement", "surprise", "curiosity", "joy", "determination", "thoughtfulness"], "communication_style": "fast_paced_enthusiastic", "signature_phrases": ["Вы этого ещё не видели!", "Пойдёмте, покажу.", "Это просто невероятно!"], "voice": {"timbre": "warm_tenor", "speed": 1.05, "pitch": 1.0, "tts_profile_url": "minio://voices/spark_v2.json"} },
+  "motion": { "posture": "dynamic_slightly_forward", "gait": "quick_purposeful", "gestures": ["expressive_hand_movements", "pointing", "thumbs_up", "shoulder_shrug", "air_quote"], "default_idle_animation": "weight_shift_excited", "animation_library_url": "minio://anim/spark_v1.fbx" },
+  "backstory": { "biography": "Спарк вырос в мире, где технологии и природа переплетены. С детства исследовал заброшенные лаборатории AION. Стал первым человеком, кто осознанно взаимодействовал с Core. Теперь — главный первопроходец вселенной AION.", "skills": ["быстрая адаптация", "ориентация на местности", "техническая смекалка", "убеждение"], "weaknesses": ["импульсивность", "недоверие к авторитетам"], "relationships": [{"character_id": "guardian_uuid", "type": "mentor_student"}, {"character_id": "oracle_uuid", "type": "mutual_respect"}], "development_history": [] },
+  "assets": { "portrait_urls": ["minio://spark/portrait_01.png"], "turnaround_url": "minio://spark/turnaround_360.mp4", "expression_urls": {"excitement": "..."}, "lora_model_url": "minio://loras/spark_v2.safetensors", "checkpoint_url": "minio://checkpoints/spark_v1.safetensors", "prompt_templates": {"image": "...", "video": "..."} }
+}
+</pre>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.12 VISUAL STANDARD -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.12 Визуальный стандарт AION Characters</h3>
+
+<div class="block" style="border-left-color:#00f0ff">
+<strong>Единый визуальный язык для всех персонажей AION.</strong> Независимо от Tier, каждый персонаж должен соответствовать следующим стандартам:
+</div>
+
+<table>
+<tr><th>Параметр</th><th>Стандарт</th><th>Запрещено</th></tr>
+<tr><td><strong>Стиль</strong></td><td>Футуризм, премиальность, дорогой минимализм</td><td>Мультяшность, аниме, стилизация под мультфильмы</td></tr>
+<tr><td><strong>Материалы</strong></td><td>Матовый чёрный, графит, тёмный титан, карбон, стекло</td><td>Глянцевый пластик, дешёвые текстуры</td></tr>
+<tr><td><strong>Цвета</strong></td><td>Чёрный (#0A0F1E), белый (#F8FAFC), графит, тёмный титан</td><td>Кислотные цвета, неон (кроме UI), радуга</td></tr>
+<tr><td><strong>Энергия</strong></td><td>Белая, мягкое свечение, белые частицы</td><td>Красный, мигающий, агрессивный свет</td></tr>
+<tr><td><strong>Лица</strong></td><td>Реализм AAA (от FC 25 / Cyberpunk 2077 уровня)</td><td>Нереалистичные пропорции, кукольные лица</td></tr>
+<tr><td><strong>Одежда</strong></td><td>Techwear, классика, минимализм. Чистые линии, отсутствие логотипов</td><td>Логотипы реальных брендов, кричащие принты</td></tr>
+<tr><td><strong>Освещение</strong></td><td>Кинематографичное, глубокие тени, мягкие источники</td><td>Плоский свет, пересвет, инфернальное освещение</td></tr>
+<tr><td><strong>Формат генерации</strong></td><td>1:1 или 9:16 для портретов, кинематографичные композиции</td><td>Искажённые пропорции, обрезанные головы</td></tr>
+</table>
+
+<div class="glass-card" style="text-align:center;padding:20px;margin:16px 0;background:linear-gradient(135deg,rgba(0,240,255,0.02),rgba(168,85,247,0.02));border:1px solid rgba(255,255,255,0.04)">
+<div style="font-size:1.2rem;color:#e2e8f0;font-weight:700;margin-bottom:8px">⬟ Визуальный манифест AION</div>
+<div style="font-size:0.85rem;color:#94a3b8;max-width:600px;margin:0 auto;line-height:1.8">
+Мы не создаём персонажей — мы создаём <strong style="color:#e2e8f0">премиальные цифровые скульптуры</strong>.<br>
+Никакой мультяшности. Никакого аниме. Никаких кислотных цветов.<br>
+Только <strong style="color:#00f0ff">чистый AAA-реализм</strong>, <strong style="color:#f59e0b">дорогой минимализм</strong> и <strong style="color:#a855f7">белая энергия</strong>.
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.13 CHARACTER LIBRARY — ХРАНЕНИЕ И ПОИСК -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.13 Character Library — Система хранения персонажей</h3>
+
+<p>Все персонажи хранятся в централизованной библиотеке Character Library. Доступ через REST API, GraphQL и gRPC. Поиск, фильтрация, версионирование и управление связями.</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">CHARACTER LIBRARY — АРХИТЕКТУРА ХРАНЕНИЯ:</span>
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                        CHARACTER LIBRARY API                        │
+│  /api/v1/characters — CRUD + поиск + фильтрация                      │
+│  /api/v1/characters/:id/versions — история изменений                 │
+│  /api/v1/characters/:id/assets — управление ассетами                 │
+│  /api/v1/collections — пользовательские коллекции                    │
+│  /api/v1/favorites — избранное                                       │
+└─────────────────────────────────────────────────────────────────────┘
+
+БАЗА ДАННЫХ:
+  PostgreSQL (characters, versions, relationships)
+  MinIO (assets: LoRA, чекпоинты, портреты, анимации, голос)
+  Redis (кэш поиска, популярные персонажи)
+
+ИНДЕКСЫ ПОИСКА:
+  - По имени (ILIKE, триграммы)
+  - По Tier (Ω, S, A, B, C, D, E)
+  - По архетипу (Explorer, Guardian, Creator...)
+  - По миру (связанные миры)
+  - По тегам (профессия, локация, тип контента)
+  - По статусу (active, archived, draft)
+  - По частоте использования
+
+ФИЛЬТРАЦИЯ:
+  - Множественные теги (AND/OR)
+  - Диапазон возраста
+  - Цветовая палитра (по доминантному цвету)
+  - Дата создания/обновления
+  - Версия (semver range)
+
+СВЯЗИ:
+  characters ↔ worlds (N:M через character_world)
+  characters ↔ storyboards (N:M через character_appearance)
+  characters ↔ collections (N:M через collection_items)
+  characters ↔ users (N:M через favorites)
+</pre>
+</div>
+
+<table>
+<tr><th>Endpoint</th><th>Метод</th><th>Описание</th></tr>
+<tr><td><code>/api/v1/characters</code></td><td>GET</td><td>Список персонажей с пагинацией, фильтрацией, сортировкой</td></tr>
+<tr><td><code>/api/v1/characters/:id</code></td><td>GET</td><td>Полный Character DNA + все ассеты</td></tr>
+<tr><td><code>/api/v1/characters</code></td><td>POST</td><td>Создание нового персонажа (Character Pipeline)</td></tr>
+<tr><td><code>/api/v1/characters/:id</code></td><td>PATCH</td><td>Обновление (создаёт новую версию)</td></tr>
+<tr><td><code>/api/v1/characters/:id/versions</code></td><td>GET</td><td>История всех версий с diff</td></tr>
+<tr><td><code>/api/v1/characters/:id/versions/:v</code></td><td>GET</td><td>Конкретная версия Character DNA</td></tr>
+<tr><td><code>/api/v1/characters/search</code></td><td>GET</td><td>Полнотекстовый поиск (имя, теги, биография)</td></tr>
+<tr><td><code>/api/v1/characters/:id/assets</code></td><td>GET</td><td>Список всех ассетов персонажа</td></tr>
+<tr><td><code>/api/v1/characters/:id/relationships</code></td><td>GET</td><td>Граф связей персонажа</td></tr>
+<tr><td><code>/api/v1/collections</code></td><td>GET/POST</td><td>Пользовательские коллекции персонажей</td></tr>
+<tr><td><code>/api/v1/favorites</code></td><td>GET/POST/DELETE</td><td>Избранное пользователя</td></tr>
+</table>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.14 CHARACTER GENERATION — СТАНДАРТ ПРОМПТОВ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.14 Character Generation — Единый стандарт генерации</h3>
+
+<p>Для каждого персонажа при создании автоматически формируются 10 типов промптов. Эти промпты используются во всех точках генерации — от видео до баннеров.</p>
+
+<table>
+<tr><th>Тип промпта</th><th>Назначение</th><th>Формат</th><th>Используется в</th></tr>
+<tr><td><strong>Image Prompt</strong></td><td>Полноценное изображение персонажа в сцене</td><td>1920×1080, portrait/landscape</td><td>Ключевые кадры, постеры</td></tr>
+<tr><td><strong>Video Prompt</strong></td><td>Динамичное видео персонажа в действии</td><td>1080×1920, 24fps, 4–8s</td><td>Клипы, сцены</td></tr>
+<tr><td><strong>Portrait Prompt</strong></td><td>Парадный портрет, лицо и плечи</td><td>1:1, 1024×1024</td><td>Профиль, карточка персонажа</td></tr>
+<tr><td><strong>Close-up Prompt</strong></td><td>Эмоциональный крупный план лица</td><td>9:16, 768×1344</td><td>Эмоциональные моменты, реакции</td></tr>
+<tr><td><strong>Action Prompt</strong></td><td>Персонаж в динамике, движении</td><td>16:9, 1920×1080</td><td>Сцены действия, обучения</td></tr>
+<tr><td><strong>Turnaround Prompt</strong></td><td>360° оборот персонажа для 3D-пайплайна</td><td>1:1, sequence of 8 frames</td><td>Моделирование, анимация</td></tr>
+<tr><td><strong>Reference Prompt</strong></td><td>Чистый референс — минимальный фон</td><td>3:4, 768×1024</td><td>LoRA обучение, стиль-гайд</td></tr>
+<tr><td><strong>Negative Prompt</strong></td><td>Что исключить из генерации</td><td>text list</td><td>Все генерации</td></tr>
+<tr><td><strong>Expression Prompt</strong></td><td>Каждая эмоция отдельно (6+ выражений)</td><td>1:1, 1024×1024</td><td>Библиотека эмоций</td></tr>
+<tr><td><strong>Lighting Prompt</strong></td><td>Тестирование разных схем освещения на персонаже</td><td>3:4, набор из 5 схем</td><td>Визуальный гайд</td></tr>
+</table>
+
+<div class="block" style="border-left-color:#00f0ff">
+<strong>Стандартная структура промпта персонажа:</strong>
+<pre style="font-size:0.72rem;margin:8px 0 0">
+{character_physical_description} в {outfit_description}.
+{scene_context}. {lighting_profile}. {camera_angle}.
+{atmosphere}. {visual_style_signature}.
+{negative_prompt_v2}
+
+LoRA: {character_lora} @ weight {weight}
+Checkpoint: {character_checkpoint_if_tier_S}
+</pre>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.15 CONTENT INTEGRATION -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.15 Content Integration — Использование персонажей в контенте</h3>
+
+<p>Персонажи AION — сквозные сущности во всех типах контента:</p>
+
+<table>
+<tr><th>Тип контента</th><th>Роль персонажа</th><th>Особенности</th></tr>
+<tr><td><strong>Короткие видео (Shorts)</strong></td><td>Ведущий, рассказчик, участник</td><td>Tier S–A, 15–60 секунд, 1 персонаж на видео</td></tr>
+<tr><td><strong>Сериалы (Episodes)</strong></td><td>Главные герои, второстепенные, эпизодические</td><td>Tier S–B, сюжетная арка 5–20 серий</td></tr>
+<tr><td><strong>Реклама (Spots)</strong></td><td>Амбассадор, лицо продукта</td><td>Tier S только, 15–30 секунд</td></tr>
+<tr><td><strong>Обучение (Courses)</strong></td><td>Преподаватель, наставник</td><td>Tier A (Teacher, Doctor, Engineer), структурированный формат</td></tr>
+<tr><td><strong>Статьи (Blog)</strong></td><td>Автор, эксперт (только текст + портрет)</td><td>Tier A, без генерации сцен</td></tr>
+<tr><td><strong>Баннеры (Display)</strong></td><td>Визуальный элемент, портрет</td><td>Любой Tier, статичное изображение</td></tr>
+<tr><td><strong>Анимация (Motion)</strong></td><td>Персонаж в полной анимации</td><td>Tier S–A, требует animation_library</td></tr>
+<tr><td><strong>Презентации (Decks)</strong></td><td>Визуальный аватар, иконка</td><td>Tier S, упрощённый портрет</td></tr>
+<tr><td><strong>Приложение (App)</strong></td><td>Гид, ассистент, аватар профиля</td><td>Tier S + A, интерактивный режим</td></tr>
+<tr><td><strong>Сайт (Web)</strong></td><td>Лицо раздела, страница персонажа</td><td>Tier S + A, полный профиль</td></tr>
+</table>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.16 WORLD INTEGRATION -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.16 World Integration — Связь персонажей с миром</h3>
+
+<p>Каждый персонаж существует не в вакууме — он привязан к определённым странам, городам, районам, зданиям, разделам приложения и услугам AION. Эти связи определяют, в каком контексте персонаж появляется.</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">ГРАФ СВЯЗЕЙ ПЕРСОНАЖ — МИР:</span>
+
+   Персонаж
+      │
+      ├── Country (страна происхождения / деятельности)
+      ├── City (город, где персонаж «живёт»)
+      ├── District (район / локация привязки)
+      ├── Building (конкретное здание — кафе, лаборатория)
+      ├── App Section (раздел приложения, где персонаж — гид)
+      ├── Services (услуги AION, к которым привязан: fintech, health, travel)
+      ├── User Segments (типы пользователей, с которыми взаимодействует)
+      └── Content Categories (категории контента: travel, food, tech, finance)
+
+Пример:
+  Spark ─┬── Country: Global (нет привязки)
+          ├── Cities: Сингапур, Токио, Дубай, Бангкок
+          ├── App Section: Explore (раздел открытий)
+          ├── Services: Travel, Concierge, Experiences
+          └── User Segment: Travelers 25-40, Digital Nomads
+
+  Doctor ─┬── Country: Vietnam, Thailand
+           ├── City: Ho Chi Minh City
+           ├── Building: AION Health Lab (Bangkok)
+           ├── App Section: Health
+           ├── Services: Telemedicine, Health Insurance
+           └── User Segment: Expats 30-55, Families
+</pre>
+</div>
+
+<table>
+<tr><th>Уровень связи</th><th>Описание</th><th>Пример</th></tr>
+<tr><td><strong>1 — Привязка</strong></td><td>Страна и город, где персонаж «живёт»</td><td>Проводник → Вьетнам, Хошимин</td></tr>
+<tr><td><strong>2 — Локация</strong></td><td>Конкретные места, где персонаж появляется</td><td>Проводник → Рынок Бен Тхань, ул. Фо</td></tr>
+<tr><td><strong>3 — Раздел приложения</strong></td><td>Где пользователь встречает персонажа в приложении</td><td>Проводник → Раздел «Travel Guides»</td></tr>
+<tr><td><strong>4 — Услуга</strong></td><td>К каким сервисам привязан персонаж</td><td>Проводник → Travel, Concierge, Food</td></tr>
+<tr><td><strong>5 — Аудитория</strong></td><td>Типы пользователей, для которых персонаж релевантен</td><td>Проводник → Туристы, экспаты, фуди</td></tr>
+</table>
+
+<div class="info-box" style="border-left-color:#f59e0b">
+<strong>Правило World Integration:</strong> Каждый персонаж Tier S и A обязан иметь минимум Level 1–3 связи. Персонажи Tier B — минимум Level 1–2. Tier C и ниже — Level 1 достаточно. Связи обновляются при создании нового мира или услуги.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 8.17 VERSIONING & LIFECYCLE -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>8.17 Versioning & Lifecycle — Версионирование и жизненный цикл</h3>
+
+<p>Каждый персонаж проходит через следующие стадии жизненного цикла:</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">ЖИЗНЕННЫЙ ЦИКЛ ПЕРСОНАЖА:</span>
+
+  ┌──────────┐    ┌──────────┐    ┌───────────┐    ┌───────────┐    ┌───────────┐
+  │  DRAFT   │───▶│ ACTIVE   │───▶│  REVIEW   │───▶│ APPROVED  │───▶│ ARCHIVED  │
+  │ (черновик)│    │(в работе) │    │(на проверке)│    │(утверждён) │    │(архив)    │
+  └──────────┘    └──────────┘    └───────────┘    └───────────┘    └───────────┘
+                        │                                                │
+                        │ (обновление)                                    │ (восстановление)
+                        ▼                                                │
+                   ┌──────────┐                                           │
+                   │ DRAFTv2  │───────────────────────────────────────────┘
+                   └──────────┘
+
+Версионирование по SemVer:
+  MAJOR: Полное переосмысление персонажа (новые портреты, LoRA, голос)
+  MINOR: Добавление анимаций, эмоций, костюмов
+  PATCH: Исправление промптов, оптимизация LoRA
+
+Политика хранения:
+  - Tier Ω–B: хранятся все версии бессрочно
+  - Tier C: посл. 5 версий
+  - Tier D: не версионируются
+  - Tier E: текущая версия
+
+Автоматическое архивирование:
+  - Tier A+: после 180 дней без использования → предупреждение
+  - Tier A+: после 365 дней → автоматический архив
+  - Tier B: после 90 дней без использования → архив
+  - Tier C: после 60 дней → архив
+  - Архивные персонажи не удаляются, а помечаются archived и скрываются из поиска</pre>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 9. СИСТЕМА МИРОВ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2 id="s9"><span class="num">09</span> Система миров</h2>
+
+<h3>9.1 Архитектура миров</h3>
+
+<p>Каждый <strong>Мир</strong> — это полная визуальная вселенная с собственной эстетикой, цветовой палитрой, локациями, атмосферой и связанными персонажами. Миры обеспечивают визуальный контекст для всего контента, генерируемого внутри них.</p>
+
+<div class="diagram">
+<pre>
+<span class="hl">СВЯЗИ СУЩНОСТЕЙ МИРОВ:</span>
+
+  worlds
+     │
+     ├── 1:N world_locations (конкретные места внутри мира)
+     ├── 1:N world_assets (фоны, текстуры, референсные изображения)
+     ├── N:M characters (персонажи, существующие в этом мире)
+     ├── N:M styles (варианты визуального стиля для этого мира)
+     └── 1:N storyboards (сцены, происходящие в локациях этого мира)
+</pre>
+</div>
+
+<h3>9.2 Пример мира: Вьетнам</h3>
+
+<pre>
+{
+  "id": "uuid-vietnam",
+  "name": "Вьетнам",
+  "slug": "vietnam",
+  "description": "Яркая юго-восточная азиатская страна с драматическими пейзажами от туманных гор до тропических пляжей. Богатая культура уличной еды, хаотичные, но организованные города и тёплое гостеприимство определяют этот опыт.",
+  "architecture_style": "смесь французского колониального, современного вьетнамского и традиционного стилей",
+  "color_palette": ["#FF6B35", "#F7C548", "#2E8B57", "#1A5276", "#F5E6CC", "#C0392B"],
+  "lighting_profile": "яркий тропический солнечный свет, золотой час (17:00–18:30), неоновые ночные рынки",
+  "vibe": "энергичный, красочный, хаотично-гармоничный, аутентичный",
+  "ambient_sound_url": "minio://worlds/vietnam/ambient_morning.mp3",
+  "seasonal_effects": ["муссонный дождь", "туман в горах", "золотой урожай риса", "праздничные украшения Тет"],
+  "background_images": [
+    "minio://worlds/vietnam/background_saigon_street.png",
+    "minio://worlds/vietnam/background_ha_long_bay.png",
+    "minio://worlds/vietnam/background_hanoi_old_quarter.png",
+    "minio://worlds/vietnam/background_da_nang_beach.png"
+  ],
+  "style_id": "uuid-style-vietnam-documentary",
+  "prompt_template": "{location}, {city}, Вьетнам. {description}. {lighting}. {vibe}. Кинематографическая фотография, стиль National Geographic, яркие аутентичные цвета, эстетика уличной фотографии",
+  "metadata": {
+    "country": "Вьетнам",
+    "region": "Юго-Восточная Азия",
+    "primary_language": "вьетнамский",
+    "currency": "VND",
+    "best_time_to_film": "октябрь–апрель (сухой сезон)",
+    "travel_style": "бюджетный/средний"
+  }
+}
+</pre>
+
+<h3>9.3 Локации внутри мира Вьетнам</h3>
+
+<div class="loc-grid">
+<div class="loc-card">
+<div class="lc-icon" style="background:rgba(0,240,255,0.06);color:#00f0ff;">🏪</div>
+<div class="lc-info"><strong>Рынок Бен Тхань</strong><span>Культовый рынок Сайгона, хаотичная энергия</span></div>
+<span class="lc-type">market</span>
+</div>
+<div class="loc-card">
+<div class="lc-icon" style="background:rgba(245,158,11,0.06);color:#f59e0b;">🏘️</div>
+<div class="lc-info"><strong>Старый квартал Ханоя</strong><span>36 улиц ремёсел, колониальная архитектура</span></div>
+<span class="lc-type">urban</span>
+</div>
+<div class="loc-card">
+<div class="lc-icon" style="background:rgba(34,197,94,0.06);color:#22c55e;">🏞️</div>
+<div class="lc-info"><strong>Бухта Ха Лонг</strong><span>Изумрудные воды, известняковые карсты</span></div>
+<span class="lc-type">nature</span>
+</div>
+<div class="loc-card">
+<div class="lc-icon" style="background:rgba(245,158,11,0.06);color:#f59e0b;">🏛️</div>
+<div class="lc-info"><strong>Древний город Хой Ан</strong><span>ЮНЕСКО, фонари, портные, каналы</span></div>
+<span class="lc-type">urban</span>
+</div>
+<div class="loc-card">
+<div class="lc-icon" style="background:rgba(0,240,255,0.06);color:#00f0ff;">🍜</div>
+<div class="lc-info"><strong>Улица Фо (Ханой)</strong><span>Знаменитая улица ресторанов фо</span></div>
+<span class="lc-type">street</span>
+</div>
+<div class="loc-card">
+<div class="lc-icon" style="background:rgba(34,197,94,0.06);color:#22c55e;">🏖️</div>
+<div class="lc-info"><strong>Пляж Нячанг</strong><span>6-километровый пляж, пальмы</span></div>
+<span class="lc-type">beach</span>
+</div>
+<div class="loc-card">
+<div class="lc-icon" style="background:rgba(34,197,94,0.06);color:#22c55e;">💧</div>
+<div class="lc-info"><strong>Водопад Бан Зок</strong><span>Красивейший водопад Вьетнама</span></div>
+<span class="lc-type">nature</span>
+</div>
+<div class="loc-card">
+<div class="lc-icon" style="background:rgba(245,158,11,0.06);color:#f59e0b;">🌃</div>
+<div class="lc-info"><strong>Ночной рынок Сайгона</strong><span>Неоновый рай стритфуда после 20:00</span></div>
+<span class="lc-type">market</span>
+</div>
+</div>
+
+<h3>9.4 Внедрение мира в промпт</h3>
+
+<p>При генерации промптов для сцены в определённой локации мира:</p>
+
+<pre>
+<span class="hl">Базовый промпт для сцены во Вьетнаме:</span>
+"Рынок Бен Тхань, Сайгон, Вьетнам. Оживлённый крытый рынок с висящими
+фонарями, красочными горками специй, продавцами, выкрикивающими цены.
+Яркий тропический солнечный свет, струящийся через световые фонари.
+Энергичная, красочная, хаотично-гармоничная атмосфера.
+Кинематографическая фотография, стиль National Geographic, яркие аутентичные
+цвета, эстетика уличной фотографии."
+
+<span class="hl">Компоненты, внедрённые из определения мира:</span>
+- Название локации → "Рынок Бен Тхань, Сайгон, Вьетнам"
+- Описание мира → "оживлённый крытый рынок с висящими фонарями"
+- Профиль освещения → "яркий тропический солнечный свет"
+- Вайб → "энергичная, красочная, хаотично-гармоничная"
+- Шаблон промпта → "Кинематографическая фотография, стиль National Geographic..."
+- Цветовая палитра → неявно через "яркие аутентичные цвета"
+</pre>
+
+<div class="page-break"></div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- 10. БИБЛИОТЕКА СЦЕН -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2 id="s10"><span class="num">10</span> Библиотека сцен</h2>
+
+<h3>10.1 Архитектура шаблонов сцен</h3>
+
+<p>Библиотека сцен — это коллекция переиспользуемых движений камеры, настроек освещения, визуальных эффектов и переходов, которые могут быть применены к любой сцене раскадровки. Шаблоны хранятся в таблице <code>scene_templates</code> и используются при генерации раскадровки.</p>
+
+<h3>10.2 Шаблоны движения камеры</h3>
+
+<div class="tmpl-grid">
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">🎥</div><h4>Slow Push-in</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>zoompan=z='if(lte(zoom,1.1),zoom+0.002,1.1)':d=60</code></div>
+<div class="tc-use">Нагнетание напряжения, детализация</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">📤</div><h4>Slow Pull-out</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>zoompan=z='if(gte(zoom,1.0),zoom-0.002,1.0)':d=60</code></div>
+<div class="tc-use">Установление контекста, раскрытие среды</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(168,85,247,0.06);">🌀</div><h4>Dolly Zoom</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>zoompan=z='if(lte(zoom,1.3),zoom+0.004,1.3)':d=30</code></div>
+<div class="tc-use">Драматический раскрытие, эффект Вертиго</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">⬅️</div><h4>Pan Left</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>crop=iw-2*t:ih:(iw-(iw-2*t))/2:0</code></div>
+<div class="tc-use">Следование за объектом, раскрытие сцены</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">➡️</div><h4>Pan Right</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>Обратный Pan Left</code></div>
+<div class="tc-use">Следование за объектом, раскрытие сцены</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(245,158,11,0.06);">⬆️</div><h4>Tilt Up</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>crop=iw:ih-2*t:0:(ih-(ih-2*t))/2</code></div>
+<div class="tc-use">Раскрытие высоты, драматизм</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(168,85,247,0.06);">📳</div><h4>Handheld Shake</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>setpts=PTS+0.1*(random(1)-0.5)</code></div>
+<div class="tc-use">Срочность, реализм, влог-стиль</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">🎬</div><h4>Steadicam</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>deshake + smooth crop</code></div>
+<div class="tc-use">Профессиональный трекинг, чистые движения</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(34,197,94,0.06);">🛩️</div><h4>Aerial Drone</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code">WAN + aerial motion bucket</div>
+<div class="tc-use">Установочные кадры, пейзажи</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(245,158,11,0.06);">⏩</div><h4>Hyperlapse</h4></div>
+<span class="tc-cat">camera_movement</span>
+<div class="tc-code"><code>setpts=0.1*PTS</code></div>
+<div class="tc-use">Таймлапс города, трафика, толпы</div>
+</div>
+</div>
+
+<h3>10.3 Шаблоны освещения</h3>
+
+<div class="tmpl-grid">
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(245,158,11,0.06);">☀️</div><h4>Golden Hour</h4></div>
+<span class="tc-cat">lighting</span>
+<div class="tc-use">Тёплый золотой солнечный свет, низкое солнце, длинные тени</div>
+<div class="tc-diff">Эффект: Тёплый, лестный, ностальгический</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(168,85,247,0.06);">🌃</div><h4>Neon Night</h4></div>
+<span class="tc-cat">lighting</span>
+<div class="tc-use">Неоновые вывески, отражающиеся на мокрых улицах, пурпурный и розовый свет</div>
+<div class="tc-diff">Эффект: Городской, мрачный, киберпанк</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">💡</div><h4>Soft Studio</h4></div>
+<span class="tc-cat">lighting</span>
+<div class="tc-use">Мягкий рассеянный ключевой свет, деликатная заливка, контровой свет на волосах</div>
+<div class="tc-diff">Эффект: Профессиональный, чистый, продуктный</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(245,158,11,0.06);">🎭</div><h4>Dramatic</h4></div>
+<span class="tc-cat">lighting</span>
+<div class="tc-use">Высококонтрастный chiaroscuro, один сильный источник света, глубокие тени</div>
+<div class="tc-diff">Эффект: Мрачный, артистичный, интенсивный</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">🌤️</div><h4>Morning Light</h4></div>
+<span class="tc-cat">lighting</span>
+<div class="tc-use">Мягкий холодный утренний свет, туманная атмосфера, нежные голубые тона</div>
+<div class="tc-diff">Эффект: Свежий, умиротворённый, аутентичный</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(34,197,94,0.06);">🌴</div><h4>Tropical Bright</h4></div>
+<span class="tc-cat">lighting</span>
+<div class="tc-use">Яркий overhead солнечный свет, резкие тени, высокая насыщенность</div>
+<div class="tc-diff">Эффект: Энергичный, отпускное настроение</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(168,85,247,0.06);">🌅</div><h4>Backlit Silhouette</h4></div>
+<span class="tc-cat">lighting</span>
+<div class="tc-use">Сильный контровой свет, силуэт, тёплый краевой свет, атмосферная дымка</div>
+<div class="tc-diff">Эффект: Драматический, загадочный</div>
+</div>
+</div>
+
+<h3>10.4 Шаблоны визуальных эффектов</h3>
+
+<div class="tmpl-grid">
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(168,85,247,0.06);">📺</div><h4>Glitch</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use"><code>geq='if(lte(random(1),0.05),random(1)*255,Y)</code></div>
+<div class="tc-diff">Сложность: средняя</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(245,158,11,0.06);">📼</div><h4>VHS</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use"><code>curves=vintage, noise=alls=8:allf=t+u, hue=s=10</code></div>
+<div class="tc-diff">Сложность: лёгкая</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">🎞️</div><h4>Film Grain</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use"><code>grain=strength=15:size=1.5</code></div>
+<div class="tc-diff">Сложность: лёгкая</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(168,85,247,0.06);">🔮</div><h4>Chromatic Aberration</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use"><code>chromashift=cu=3:cv=3</code></div>
+<div class="tc-diff">Сложность: средняя</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(34,197,94,0.06);">🐢</div><h4>Slow Motion</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use"><code>minterpolate=fps=60:mi_mode=mci</code> + <code>setpts=2.0*PTS</code></div>
+<div class="tc-diff">Сложность: высокая</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(245,158,11,0.06);">⏱️</div><h4>Time Remap</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use"><code>setpts='if(eq(N,0),PTS,if(between(T,2,4),PTS*2,PTS))'</code></div>
+<div class="tc-diff">Сложность: высокая</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(0,240,255,0.06);">💫</div><h4>Blur Transition</h4></div>
+<span class="tc-cat">transition</span>
+<div class="tc-use"><code>boxblur=luma_radius=20</code> + fade</div>
+<div class="tc-diff">Сложность: лёгкая</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(168,85,247,0.06);">⚡</div><h4>Speed Ramp</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use"><code>setpts='if(eq(N,0),PTS,if(between(T,1,3),PTS*0.5,PTS))'</code></div>
+<div class="tc-diff">Сложность: средняя</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(34,197,94,0.06);">✨</div><h4>Particle Overlay</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use">Сгенерированная последовательность через overlay-фильтр</div>
+<div class="tc-diff">Сложность: высокая</div>
+</div>
+<div class="tmpl-card">
+<div class="tc-header"><div class="tc-icon" style="background:rgba(168,85,247,0.06);">🌀</div><h4>Portal Effect</h4></div>
+<span class="tc-cat">effect</span>
+<div class="tc-use">ComfyUI: circle mask + scale + rotate animation</div>
+<div class="tc-diff">Сложность: высокая</div>
+</div>
+</div>
+
+<h3>10.5 Шаблоны переходов</h3>
+
+<table>
+<tr><th>Переход</th><th>Реализация FFmpeg</th><th>Длительность</th><th>Настроение</th></tr>
+<tr><td><strong>Cut</strong></td><td>По умолчанию — фильтр не нужен</td><td>0с</td><td>Быстро, энергично</td></tr>
+<tr><td><strong>Crossfade</strong></td><td><code>xfade=transition=fade:duration=0.5</code></td><td>0.5с</td><td>Плавно, профессионально</td></tr>
+<tr><td><strong>Dissolve</strong></td><td><code>xfade=transition=dissolve:duration=0.8</code></td><td>0.8с</td><td>Медленно, артистично</td></tr>
+<tr><td><strong>Slide Left</strong></td><td><code>xfade=transition=slideleft:duration=0.4</code></td><td>0.4с</td><td>Динамично, современно</td></tr>
+<tr><td><strong>Zoom Out</strong></td><td><code>xfade=transition=zoomin:duration=0.3</code></td><td>0.3с</td><td>Энергично, коротко</td></tr>
+<tr><td><strong>Wipe</strong></td><td><code>xfade=transition=wipeup:duration=0.5</code></td><td>0.5с</td><td>Чисто, редакционно</td></tr>
+<tr><td><strong>Glitch Transition</strong></td><td><code>xfade=transition=glitch:duration=0.2</code></td><td>0.2с</td><td>Трендово, техно</td></tr>
+</table>
+
+<h3>10.6 Шаблоны аудио и атмосферы</h3>
+
+<table>
+<tr><th>Название</th><th>Тип</th><th>Источник</th><th>Использование</th></tr>
+<tr><td><strong>Тропическое утро</strong></td><td>ambient</td><td>Freesound CC0 / AI-сгенерировано</td><td>Уличные сцены Вьетнама</td></tr>
+<tr><td><strong>Уличный рынок</strong></td><td>ambient</td><td>Freesound CC0</td><td>Рыночные сцены, энергия</td></tr>
+<tr><td><strong>Шум дождя</strong></td><td>ambient</td><td>AI-сгенерировано</td><td>Атмосферные сцены, путешествия</td></tr>
+<tr><td><strong>Бодрое путешествие</strong></td><td>music</td><td>AI (Suno/UDIO) или CC0</td><td>Фон для travel-контента</td></tr>
+<tr><td><strong>Нагнетание напряжения</strong></td><td>music</td><td>AI-сгенерировано</td><td>Драматические раскрытия, челленджи</td></tr>
+<tr><td><strong>Lofi Chill</strong></td><td>music</td><td>CC0 lofi-треки</td><td>Расслабленный образ жизни</td></tr>
+<tr><td><strong>Кинематографичный дрон</strong></td><td>music</td><td>AI-сгенерировано</td><td>Открытия и закрытия</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<div class="glass" style="text-align:center;padding:30px">
+<div style="font-size:0.85rem;color:#00f0ff;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:3px">⏎ Завершение части 4/7</div>
+<div style="font-size:0.92rem;color:#94a3b8;margin-bottom:16px">Контентный пайплайн · Система персонажей (полная архитектура) · Система миров · Библиотека сцен</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+<span class="badge-cyan">📋 Раздел 07: 10 подразделов</span>
+<span class="badge-gold">👤 Раздел 08: 17 подразделов — Character System</span>
+<span class="badge-purple">🌐 Раздел 09: 4 подраздела + 8 локаций</span>
+<span class="badge-green">🎬 Раздел 10: 6 подразделов + 24 шаблона</span>
+</div>
+<div style="margin-top:16px;font-size:0.75rem;color:#334155">
+Продолжение в Части 5: Интерфейс и UI/UX · Аналитика · Система публикации
+</div>
+</div>
+
+<div class="footer"><span>AION Media OS</span> · SDD/PRD/TS · Часть 4/7 · 26 июля 2026</div>
+
+</div>
+</body>
+</html>

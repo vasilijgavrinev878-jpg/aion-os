@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Все заведения Нячанга — каталог по кухням</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.5;color:#1a1a1a;background:#f8f9fa}
+  .w{max-width:1200px;margin:0 auto;padding:20px}
+  h1{font-size:26px;margin-bottom:8px}
+  .m{background:#e9ecef;padding:12px 16px;border-radius:8px;margin-bottom:20px;font-size:13px;color:#555}
+  .n{position:sticky;top:0;background:#fff;border-bottom:1px solid #dee2e6;padding:8px 0;margin-bottom:16px;z-index:100}
+  .n a{display:inline-block;margin:2px 3px;padding:3px 8px;background:#e9ecef;border-radius:4px;color:#333;text-decoration:none;font-size:11px}
+  .n a:hover{background:#0d6efd;color:#fff}
+  .s{background:#fff;border:1px solid #dee2e6;border-radius:8px;margin-bottom:14px;overflow:hidden}
+  .s h2{font-size:16px;padding:10px 14px;background:#f1f3f5;cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center}
+  .s h2 .c{font-size:12px;color:#666;font-weight:400}
+  .s.closed .b{display:none}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#f8f9fa;padding:6px 10px;text-align:left;font-weight:600;font-size:11px;color:#555;border-bottom:2px solid #dee2e6;white-space:nowrap}
+  td{padding:5px 10px;border-bottom:1px solid #eee;vertical-align:top}
+  tr:hover td{background:#f8f9fa}
+  td.nu{color:#999;width:32px;text-align:right}
+  .sum td:first-child{text-align:left;width:auto}
+  .sum td:last-child{text-align:right;font-weight:600;width:80px}
+  .sum tr:last-child td{font-weight:700;font-size:15px;border-top:2px solid #0d6efd}
+  .note{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-top:16px;font-size:13px}
+  @media print{.n{display:none}.s.closed .b{display:block}body{font-size:12px}.w{max-width:100%;padding:10px}}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>Все заведения Нячанга — каталог по кухням</h1>
+<div class="m"><strong>Источники:</strong> TripAdvisor, Sluurpy, Foody.vn (11 120+ мест), ALMA Resort, VietnamSpot, Senspa Nha Trang, VinWonders, KhanhHoa Review, VietnamWayfarer, Mytour, Klook, Evendo, SeekVietnam, SenSpa, Ivivu, база AION и др. &nbsp;|&nbsp; <strong>Дата:</strong> Июнь 2026 &nbsp;|&nbsp; <strong>Всего:</strong> ~580+</div>
+<div class="n" id="nav"></div>
+
+<!-- 1. Русская -->
+<div class="s" id="s1"><h2>1. Русская кухня <span class="c">(22)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес / Контакт</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Grill Yard</td><td>Центр</td><td>5 кухонь, русская, 700-1400₽</td></tr>
+<tr><td class=nu>2</td><td>Есенин (Esenin)</td><td>+84 93 240 76 40</td><td>Русская, европейская</td></tr>
+<tr><td class=nu>3</td><td>Маленькая Армения</td><td>Центр</td><td>Армянская, кавказская, 525-1050₽</td></tr>
+<tr><td class=nu>4</td><td>Изба</td><td>Север</td><td>Русская домашняя, 525-1050₽</td></tr>
+<tr><td class=nu>5</td><td>Караван</td><td>Центр</td><td>Узбекская, 525-875₽</td></tr>
+<tr><td class=nu>6</td><td>Veranda</td><td>—</td><td>Ресторан-бар, живая музыка</td></tr>
+<tr><td class=nu>7</td><td>Космос</td><td>+84 123 312 03 75</td><td>Русская, европейская</td></tr>
+<tr><td class=nu>8</td><td>Трактир Русский дом</td><td>—</td><td>Русская кухня</td></tr>
+<tr><td class=nu>9</td><td>Парк Горького</td><td>—</td><td>Русская кухня</td></tr>
+<tr><td class=nu>10</td><td>TakiDa</td><td>26B Trần Quang Khải, Lộc Thọ</td><td>Русская + паназиатская</td></tr>
+<tr><td class=nu>11</td><td>Cilantro</td><td>—</td><td>Русская + паназиатская</td></tr>
+<tr><td class=nu>12</td><td>CHEKHOV Coffee&Food</td><td>164 Bạch Đằng</td><td>Русская кухня, экспаты</td></tr>
+<tr><td class=nu>13</td><td>О, Пельмешки!</td><td>34/2 Nguyễn Thiện Thuật</td><td>Пельмени, русская</td></tr>
+<tr><td class=nu>14</td><td>Pancakes House</td><td>—</td><td>Русские блины</td></tr>
+<tr><td class=nu>15</td><td>Rock Cafe</td><td>86 Nguyễn Thiện Thuật</td><td>Русский рок-стиль</td></tr>
+<tr><td class=nu>16</td><td>Сибирячка</td><td>—</td><td>Русская кухня</td></tr>
+<tr><td class=nu>17</td><td>Русский двор</td><td>—</td><td>Русская кухня</td></tr>
+<tr><td class=nu>18</td><td>Москва</td><td>—</td><td>Русская кухня</td></tr>
+<tr><td class=nu>19</td><td>Кафе СОЛО</td><td>—</td><td>Русское барбекю</td></tr>
+<tr><td class=nu>20</td><td>MoonMilk</td><td>Север (район экспатов)</td><td>Русская кухня</td></tr>
+<tr><td class=nu>21</td><td>Dream Beach (Nhà hàng Nga)</td><td>96B Trần Phú</td><td>Русский ресторан</td></tr>
+<tr><td class=nu>22</td><td>Веранда на Чан Хат Чане</td><td>—</td><td>Русский гриль, брускетты</td></tr>
+</table></div></div>
+
+<!-- 2. Вьетнамская -->
+<div class="s" id="s2"><h2>2. Вьетнамская кухня <span class="c">(172)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Yen's Restaurant</td><td>73/6 Trần Quang Khải</td><td>Классическая вьетнамская</td></tr>
+<tr><td class=nu>2</td><td>Lanterns Vietnamese Restaurant</td><td>30A Nguyễn Thiện Thuật</td><td>Традиционная, лучшая в городе</td></tr>
+<tr><td class=nu>3</td><td>Lang Ngon (Làng Ngon)</td><td>83 Nguyễn Thị Minh Khai</td><td>300 блюд всех регионов</td></tr>
+<tr><td class=nu>4</td><td>Nha Trang Xưa</td><td>30 Thái Thông, Vĩnh Thái</td><td>Традиционная, 09:00-21:00</td></tr>
+<tr><td class=nu>5</td><td>Mắm Restaurant</td><td>72 Nguyễn Thiện Thuật</td><td>Домашняя вьетнамская</td></tr>
+<tr><td class=nu>6</td><td>Lac Canh Restaurant</td><td>44 Nguyễn Bình Khiêm</td><td>Легенда с 1978, гриль</td></tr>
+<tr><td class=nu>7</td><td>Phở Hồng (Pho Hong)</td><td>—</td><td>Фо, гигантские порции</td></tr>
+<tr><td class=nu>8</td><td>Phở Hạnh Phúc</td><td>—</td><td>Вьетнамская кухня</td></tr>
+<tr><td class=nu>9</td><td>Phở Bắc Hải</td><td>65A Quang Trung, Lộc Thọ</td><td>Традиционный фо</td></tr>
+<tr><td class=nu>10</td><td>Bánh Mì Phan</td><td>1A Phan Chu Trinh</td><td>Культовый бань ми, очередь</td></tr>
+<tr><td class=nu>11</td><td>Làng Xưa</td><td>28 Thái Thông, Vĩnh Thái</td><td>Традиционный, 08:00-22:00</td></tr>
+<tr><td class=nu>12</td><td>Đèn Lồng Đỏ</td><td>—</td><td>Популярный, свежие морепродукты</td></tr>
+<tr><td class=nu>13</td><td>Cánh Buồm Seafood</td><td>—</td><td>Морепродукты</td></tr>
+<tr><td class=nu>14</td><td>Cơm Gà Trâm Anh</td><td>10 Ba Triệu</td><td>Блюда из курицы</td></tr>
+<tr><td class=nu>15</td><td>Ăn Thôi</td><td>64C Nguyễn Thị Minh Khai</td><td>Современная вьетнамская</td></tr>
+<tr><td class=nu>16</td><td>Quán Ngon Đó</td><td>Phạm Văn Đồng</td><td>Современная</td></tr>
+<tr><td class=nu>17</td><td>Cơm nhà Khói Bếp</td><td>17-19 Hát Giang</td><td>Домашняя кухня</td></tr>
+<tr><td class=nu>18</td><td>85 Tô Hiến Thành (Bánh Xèo)</td><td>85 Tô Hiến Thành</td><td>Бань сео</td></tr>
+<tr><td class=nu>19</td><td>Đặng Văn Quyên (Nem)</td><td>16A Lãn Ông</td><td>Нем, 15:00-22:00</td></tr>
+<tr><td class=nu>20</td><td>Cô Uyên (Cá Da)</td><td>6 Hòn Chồng, Vĩnh Hải</td><td>Рыба-кожанка на гриле</td></tr>
+<tr><td class=nu>21</td><td>Sông Ngư</td><td>5A Phan Chu Trinh</td><td>Суп-лапша с медузой</td></tr>
+<tr><td class=nu>22</td><td>Cô Loan (Bánh Căn)</td><td>227 Võ Thị Sáu</td><td>Мини-блинчики с кальмаром</td></tr>
+<tr><td class=nu>23</td><td>Hương Giang (Bún Bò Huế)</td><td>133 Nguyễn Thị Minh Khai</td><td>Лапша Bún Bò Huế</td></tr>
+<tr><td class=nu>24</td><td>Cô Hà (Bánh Canh)</td><td>14 Phan Chu Trinh</td><td>Тапиоковая лапша</td></tr>
+<tr><td class=nu>25</td><td>Thái Thanh (Bún Chả)</td><td>14 Lý Tự Trọng</td><td>Бун ча, крабовая лапша</td></tr>
+<tr><td class=nu>26</td><td>Bạch Đằng 69</td><td>69 Bạch Đằng</td><td>Тушёная утка, 16:00-22:00</td></tr>
+<tr><td class=nu>27</td><td>Bánh Xèo Cô Tâm</td><td>6 Tháp Bà</td><td>Бань сео</td></tr>
+<tr><td class=nu>28</td><td>Bún Sứa Đốc Léc</td><td>87 Yersin</td><td>Лапша с медузой</td></tr>
+<tr><td class=nu>29</td><td>Bánh Bèo Bé Tư</td><td>—</td><td>Бань бео</td></tr>
+<tr><td class=nu>30</td><td>Bún Cá Nguyên Loan</td><td>123 Ngô Gia Tự</td><td>Бюджетная, 05:00-22:00</td></tr>
+<tr><td class=nu>31</td><td>Bún Cá Năm Beo</td><td>—</td><td>Бун ка</td></tr>
+<tr><td class=nu>32</td><td>Bánh Canh Bà Thừa</td><td>55 Yersin</td><td>Бань кань, 06:00-10:00, 14:00-18:30</td></tr>
+<tr><td class=nu>33</td><td>Nem Nướng Cô Nô</td><td>24 Hai Bà Trưng</td><td>Нем из Ниньхоа</td></tr>
+<tr><td class=nu>34</td><td>Bánh Xèo Chảo 28 Phan Bội Châu</td><td>28 Phan Bội Châu</td><td>Бань сео</td></tr>
+<tr><td class=nu>35</td><td>Cà Mèn</td><td>—</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>36</td><td>Ngọc Trai</td><td>96A Trần Phú</td><td>Морепродукты, с 2004</td></tr>
+<tr><td class=nu>37</td><td>Nha Phong 3</td><td>63B Cù Lao Trung</td><td>Свой аквариум</td></tr>
+<tr><td class=nu>38</td><td>Bún Cá Min</td><td>170 Bạch Đằng</td><td>Bún Cá</td></tr>
+<tr><td class=nu>39</td><td>Thành Đô Xưa</td><td>—</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>40</td><td>Linh's Vietnamese Cuisine</td><td>—</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>41</td><td>Chuon Chuon Kim</td><td>—</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>42</td><td>Cát Biển Nha Trang</td><td>10 Hồng Bàng</td><td>Морепродукты</td></tr>
+<tr><td class=nu>43</td><td>Sen Vàng</td><td>101 Trịnh Phong</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>44</td><td>Quán Ốc Xuân Anh</td><td>25 Tháp Bà</td><td>Улитки</td></tr>
+<tr><td class=nu>45</td><td>Bánh Căn 24 Tô Hiến Thành</td><td>24 Tô Hiến Thành</td><td>Бань кан</td></tr>
+<tr><td class=nu>46</td><td>Vịt Cầu Dứa</td><td>Cầu Dứa</td><td>Тушёная утка</td></tr>
+<tr><td class=nu>47</td><td>Bún Sứa Dì Loan</td><td>—</td><td>Лапша с медузой</td></tr>
+<tr><td class=nu>48</td><td>Bò Nướng Lạc Cảnh</td><td>44 Nguyễn Bình Khiêm</td><td>Говядина, 09:30-21:00</td></tr>
+<tr><td class=nu>49</td><td>An Thoi</td><td>—</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>50</td><td>Trúc Coffee (Bò Lắc Cảnh)</td><td>—</td><td>Говядина</td></tr>
+<tr><td class=nu>51</td><td>Bún Cá Ba Xuân</td><td>16 Hoàng Hoa Thám</td><td>Эталонный бульон, 05:30-10:00</td></tr>
+<tr><td class=nu>52</td><td>Bún Cá Dì Lâm</td><td>4 Trần Quang Khải</td><td>06:00-11:00</td></tr>
+<tr><td class=nu>53</td><td>Bún Cá Cô Thủy</td><td>26 Ngô Gia Tự</td><td>Выбор байкеров, 05:30-09:30</td></tr>
+<tr><td class=nu>54</td><td>Bún Cá Bà Gia</td><td>8 Ngô May</td><td>Два бульона, 06:00-11:00</td></tr>
+<tr><td class=nu>55</td><td>Bún Cá 34 Phan Bội Châu</td><td>34 Phan Bội Châu</td><td>06:30-10:30</td></tr>
+<tr><td class=nu>56</td><td>Bún Sứa Hàn Thuyên</td><td>24 Hàn Thuyên</td><td>Лапша с медузой</td></tr>
+<tr><td class=nu>57</td><td>Bún Cá Cây Bàng</td><td>6 Hàn Thuyên</td><td>Bún Cá</td></tr>
+<tr><td class=nu>58</td><td>Bánh Canh Cô Liên</td><td>26 Núi Một</td><td>Бань кань</td></tr>
+<tr><td class=nu>59</td><td>Bánh Canh Hồng</td><td>42 Nguyễn Thái Học</td><td>Бань кань</td></tr>
+<tr><td class=nu>60</td><td>Bánh Xèo Hải Phương</td><td>46/27 Hùng Vương</td><td>11:00-23:00</td></tr>
+<tr><td class=nu>61</td><td>Bánh Căn Út Năm</td><td>16 Phạm Hồng Thái</td><td>Бань кан</td></tr>
+<tr><td class=nu>62</td><td>Bánh Căn Cô Lan</td><td>107 2/4 Street</td><td>Бань кан</td></tr>
+<tr><td class=nu>63</td><td>Cây Cảnh Restaurant</td><td>141/5 Nguyễn Thị Minh Khai</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>64</td><td>Cá Rạn Restaurant</td><td>98 Trịnh Phong</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>65</td><td>Cơm Gà Số 1</td><td>19 Ngô Gia Tự</td><td>Cơm gà</td></tr>
+<tr><td class=nu>66</td><td>Hùng Restaurant</td><td>508 23/10 Street</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>67</td><td>Dũng Linh Restaurant</td><td>29 Phan Chu Trinh</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>68</td><td>Bánh Ướt Diên Khánh</td><td>16A Hồng Linh</td><td>06:00-11:00</td></tr>
+<tr><td class=nu>69</td><td>Bánh Ướt Bình Minh</td><td>139 Ngô Gia Tự</td><td>Паровые блинчики</td></tr>
+<tr><td class=nu>70</td><td>Tý Rô Seafood</td><td>5A Tô Hiệu</td><td>Морепродукты</td></tr>
+<tr><td class=nu>71</td><td>Gia Vị Restaurant</td><td>7 Ngô Đức Kế</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>72</td><td>Bánh Đập Bình Minh</td><td>27 Lê Đại Hành</td><td>Рисовая бумага смэш</td></tr>
+<tr><td class=nu>73</td><td>Bánh Đập Hồng Lĩnh</td><td>16A Hồng Lĩnh</td><td>06:00-11:00</td></tr>
+<tr><td class=nu>74</td><td>Cơm Tấm Sườn Nướng</td><td>56 Hoàng Văn Thụ</td><td>Cơm tấm</td></tr>
+<tr><td class=nu>75</td><td>Cơm Tấm Kiều Giang</td><td>79 Hoàng Hoa Thám</td><td>Cơm tấm</td></tr>
+<tr><td class=nu>76</td><td>Cơm Gà Hà</td><td>75 Ngô Gia Tự</td><td>Cơm gà</td></tr>
+<tr><td class=nu>77</td><td>Cơm Gà Như Ý</td><td>—</td><td>Cơm gà</td></tr>
+<tr><td class=nu>78</td><td>Quán Xoài Sầu Khải</td><td>1 Phật Học</td><td>Xôi cá</td></tr>
+<tr><td class=nu>79</td><td>Bánh Mì Nguyên Văn Lộc</td><td>79 Lê Thánh Tôn</td><td>Бань ми с рыбным пирожком</td></tr>
+<tr><td class=nu>80</td><td>Bánh Mì Nguyên Hương</td><td>—</td><td>Бань ми</td></tr>
+<tr><td class=nu>81</td><td>Bánh Tráng Xoài Thái Nguyên</td><td>11E Thái Nguyên</td><td>Манго с рисовой бумагой</td></tr>
+<tr><td class=nu>82</td><td>Xôi Cá Cơm</td><td>11A Ngô Sĩ Liên</td><td>17:30-20:30</td></tr>
+<tr><td class=nu>83</td><td>Bánh Căn 15 Tháp Bà</td><td>15 Tháp Bà</td><td>Бань кан</td></tr>
+<tr><td class=nu>84</td><td>Bánh Căn Cô Tư</td><td>51 Tô Hiến Thành</td><td>Бань кан</td></tr>
+<tr><td class=nu>85</td><td>Bánh Căn 151 Hoàng Văn Thụ</td><td>151 Hoàng Văn Thụ</td><td>Бань кан</td></tr>
+<tr><td class=nu>86</td><td>Bánh Căn Tháng Năm</td><td>—</td><td>Бань кан</td></tr>
+<tr><td class=nu>87</td><td>Bún Sứa Cô Ba</td><td>105 Hoàng Hoa Thám</td><td>Лапша с медузой</td></tr>
+<tr><td class=nu>88</td><td>Cơm Niêu Hương Việt</td><td>—</td><td>Cơm niêu</td></tr>
+<tr><td class=nu>89</td><td>Cơm Chuồn Chuồn Kim</td><td>—</td><td>Cơm</td></tr>
+<tr><td class=nu>90</td><td>Phở Hợp Lợi</td><td>49 Yersin</td><td>Фо, от 30K</td></tr>
+<tr><td class=nu>91</td><td>Gỏi Cá Mai Hà Ra</td><td>166 23/10 Street</td><td>Салат из рыбы</td></tr>
+<tr><td class=nu>92</td><td>Gỏi Cá Nguyên</td><td>44 Nguyễn Thị Minh Khai</td><td>Салат из рыбы</td></tr>
+<tr><td class=nu>93</td><td>Gỏi Cá Hạnh</td><td>128 Yersin</td><td>Салат из рыбы</td></tr>
+<tr><td class=nu>94</td><td>Gỏi Cá Mai Cô Hằng</td><td>54 Tháp Bà</td><td>10:30-20:30</td></tr>
+<tr><td class=nu>95</td><td>Bánh Đập Hồng Bàng</td><td>68A Hồng Bàng</td><td>Рисовая бумага смэш</td></tr>
+<tr><td class=nu>96</td><td>Bánh Đập Cô Hà</td><td>16 Thái Nguyên</td><td>Рисовая бумага смэш</td></tr>
+<tr><td class=nu>97</td><td>Bánh Đập Ngọc Lan</td><td>18 Nguyễn Trãi</td><td>Рисовая бумага смэш</td></tr>
+<tr><td class=nu>98</td><td>Yến Sào Khánh Hòa</td><td>248 Thống Nhất</td><td>Гнёзда стрижей</td></tr>
+<tr><td class=nu>99</td><td>Nhà Yến Sanest</td><td>22 Lê Thánh Tôn</td><td>Гнёзда стрижей</td></tr>
+<tr><td class=nu>100</td><td>Yến Sào Hòn Ngọc Việt</td><td>26 Văn Đồn</td><td>Гнёзда стрижей</td></tr>
+<tr><td class=nu>101</td><td>Nem Nướng Vũ Thành An</td><td>15 Lê Lợi</td><td>09:00-21:00</td></tr>
+<tr><td class=nu>102</td><td>Nem Nướng Ngọc Tiên</td><td>59 Lê Thành Phương</td><td>10:00-21:30</td></tr>
+<tr><td class=nu>103</td><td>Nem Nướng Cô Năm Ninh Hòa</td><td>02 Tô Hiến Thành</td><td>10:00-22:00</td></tr>
+<tr><td class=nu>104</td><td>Nem Nướng Ninh Hòa Tô Hựu</td><td>80 Tô Hựu</td><td>Нем</td></tr>
+<tr><td class=nu>105</td><td>Bún Chả Cá Hạnh Nhiên</td><td>32C Lê Đại Hành</td><td>Bún chả cá</td></tr>
+<tr><td class=nu>106</td><td>Bánh Căn 134</td><td>134 Trần Quý Cáp</td><td>Бань кан</td></tr>
+<tr><td class=nu>107</td><td>Bánh Xèo 10A</td><td>10A Huỳnh Thúc Kháng</td><td>Бань сео</td></tr>
+<tr><td class=nu>108</td><td>Cơm Tấm Đô Thành</td><td>—</td><td>Cơm tấm</td></tr>
+<tr><td class=nu>109</td><td>Bánh Canh Bột Lọc Riêu Cua Hoa Lư</td><td>—</td><td>Бань кань с крабом</td></tr>
+<tr><td class=nu>110</td><td>Bánh Canh Ghẹ Bột Lọc Tôm Tít</td><td>Tháp Bà</td><td>Бань кань</td></tr>
+<tr><td class=nu>111</td><td>Bánh Canh Cua Linh</td><td>—</td><td>Бань кань</td></tr>
+<tr><td class=nu>112</td><td>Bún Riêu Mã Vòng</td><td>1 Thái Nguyên</td><td>Бун риеу</td></tr>
+<tr><td class=nu>113</td><td>Cháo Đêm Nha Trang</td><td>383 Lê Hồng Phong</td><td>18:00-01:00</td></tr>
+<tr><td class=nu>114</td><td>Gỏi Khô Bò Hàn Thuyên</td><td>11 Lê Lợi</td><td>14:00-22:30</td></tr>
+<tr><td class=nu>115</td><td>Quán Flan Đông Sương</td><td>Tháp Bà</td><td>Флан (пудинг)</td></tr>
+<tr><td class=nu>116</td><td>Xiên Que 12 Bạch Đằng</td><td>12 Bạch Đằng</td><td>14:00-22:00</td></tr>
+<tr><td class=nu>117</td><td>Phở Bò Tái Gân</td><td>—</td><td>Фо с говядиной</td></tr>
+<tr><td class=nu>118</td><td>Bánh Canh Cua Thố Đá T&N</td><td>27 Vân Đồn</td><td>Бань кань</td></tr>
+<tr><td class=nu>119</td><td>Súp Cua Vân Nguyễn</td><td>63 Trần Bình Trọng</td><td>Крабовый суп</td></tr>
+<tr><td class=nu>120</td><td>Bánh Canh Cua Mai Xuân Thưởng</td><td>115 Mai Xuân Thưởng</td><td>Бань кань</td></tr>
+<tr><td class=nu>121</td><td>Bánh Canh Cua Số 10</td><td>10 Thích Quảng Đức</td><td>Бань кань</td></tr>
+<tr><td class=nu>122</td><td>Cô Thoa Bánh Canh — Bún Cá</td><td>53A Vân Đồn</td><td>Бань кань + бун cá</td></tr>
+<tr><td class=nu>123</td><td>Bánh Canh Riêu Cua</td><td>167B Đồng Nai</td><td>Бань кань</td></tr>
+<tr><td class=nu>124</td><td>Bánh Canh Cua Bột Lọc</td><td>—</td><td>Бань кань</td></tr>
+<tr><td class=nu>125</td><td>Lẩu Cá Kèo 2 Tôm</td><td>—</td><td>Хотпот с бычками</td></tr>
+<tr><td class=nu>126</td><td>Tiệm Cơm Gà Hà</td><td>—</td><td>Cơm gà</td></tr>
+<tr><td class=nu>127</td><td>Cơm Tấm Cây Khói</td><td>—</td><td>Cơm tấm</td></tr>
+<tr><td class=nu>128</td><td>Bánh Mì Chấm Hẻm Đoàn Kết</td><td>—</td><td>Бань ми</td></tr>
+<tr><td class=nu>129</td><td>Zodiac Station</td><td>—</td><td>Уличная еда</td></tr>
+<tr><td class=nu>130</td><td>Lẩu Hồi 44A Hát Giang</td><td>44A Hát Giang</td><td>Хотпот</td></tr>
+<tr><td class=nu>131</td><td>Lẩu Bò A Sang</td><td>—</td><td>Хотпот с говядиной</td></tr>
+<tr><td class=nu>132</td><td>Lẩu Bò Bà Triệu</td><td>—</td><td>Хотпот с говядиной</td></tr>
+<tr><td class=nu>133</td><td>Lẩu Bò Hùng</td><td>—</td><td>Хотпот с говядиной</td></tr>
+<tr><td class=nu>134</td><td>Dê Hương Sơn</td><td>—</td><td>Козлятина</td></tr>
+<tr><td class=nu>135</td><td>Dê Nhà Gỗ</td><td>—</td><td>Козлятина</td></tr>
+<tr><td class=nu>136</td><td>Dê Đồng Nội</td><td>—</td><td>Козлятина</td></tr>
+<tr><td class=nu>137</td><td>Quán Cơm Tấm Sườn Que</td><td>—</td><td>Cơm tấm</td></tr>
+<tr><td class=nu>138</td><td>Cơm Tấm Phúc</td><td>—</td><td>Cơm tấm</td></tr>
+<tr><td class=nu>139</td><td>Tiệm Ăn Cô Ba</td><td>—</td><td>Хотпот с бычками</td></tr>
+<tr><td class=nu>140</td><td>Linh Cá Kèo</td><td>—</td><td>Хотпот с бычками</td></tr>
+<tr><td class=nu>141</td><td>Bún Cá Cô Ba</td><td>—</td><td>Bún Cá</td></tr>
+<tr><td class=nu>142</td><td>Bánh Canh Cứu Đói Nguyễn Hữu Huân</td><td>—</td><td>Бань кань</td></tr>
+<tr><td class=nu>143</td><td>Quán Bánh Căn Mực Võ Thị Sáu</td><td>Võ Thị Sáu</td><td>Бань кан с кальмаром</td></tr>
+<tr><td class=nu>144</td><td>Bún Bò Huế 100</td><td>—</td><td>Bún bò Huế</td></tr>
+<tr><td class=nu>145</td><td>Ốc Long Vũ</td><td>30 Tháp Bà</td><td>Улитки</td></tr>
+<tr><td class=nu>146</td><td>Ốc 24</td><td>24 Ngô Đức Kế</td><td>Улитки</td></tr>
+<tr><td class=nu>147</td><td>Hẻm Ốc</td><td>—</td><td>Улитки</td></tr>
+<tr><td class=nu>148</td><td>Ồ Trà Sữa</td><td>—</td><td>Чай с молоком</td></tr>
+<tr><td class=nu>149</td><td>Bò Né Niêm Yết</td><td>—</td><td>Говядина на сковороде</td></tr>
+<tr><td class=nu>150</td><td>Tàu Hủ Nóng Lê Thánh Tôn</td><td>Lê Thánh Tôn</td><td>Тофу</td></tr>
+<tr><td class=nu>151</td><td>Ớt Hiểm Vietnamese Kitchen</td><td>—</td><td>Домашняя</td></tr>
+<tr><td class=nu>152</td><td>La Nha Restaurant</td><td>—</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>153</td><td>Nhà Bếp Nha Trang</td><td>—</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>154</td><td>Cơm Gà Giòn Da A Tài</td><td>—</td><td>Cơm gà giòn</td></tr>
+<tr><td class=nu>155</td><td>Cơm Niêu Nhà Đỏ 3</td><td>—</td><td>Cơm niêu</td></tr>
+<tr><td class=nu>156</td><td>Mì Quảng Đá Chẹt</td><td>—</td><td>Mì Quảng</td></tr>
+<tr><td class=nu>157</td><td>Bún Đậu Meo Meo</td><td>—</td><td>Bún đậu</td></tr>
+<tr><td class=nu>158</td><td>Bánh Mỳ Ba Lẹ</td><td>—</td><td>Бань ми</td></tr>
+<tr><td class=nu>159</td><td>Bánh Mì Út Thương</td><td>15 Võ Thị Sáu</td><td>Бань ми</td></tr>
+<tr><td class=nu>160</td><td>Bánh Căn Cô Trang</td><td>3A Tháp Bà</td><td>Бань кан</td></tr>
+<tr><td class=nu>161</td><td>Bánh Xèo 31</td><td>31 Ngô Đức Kế</td><td>Бань сео</td></tr>
+<tr><td class=nu>162</td><td>Bánh Căn Cô Tư Tháp Bà</td><td>120 Tháp Bà</td><td>Бань кан</td></tr>
+<tr><td class=nu>163</td><td>Phở Gia Truyền</td><td>158 Hoàng Hoa Thám</td><td>Фо бо, 06:00</td></tr>
+<tr><td class=nu>164</td><td>Champa Garden Restaurant</td><td>304 Hai Tháng Tư</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>165</td><td>Cơm Nhà Nha Trang</td><td>—</td><td>Домашняя</td></tr>
+<tr><td class=nu>166</td><td>Tuấn's Vietnamese Cuisine</td><td>—</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>167</td><td>Bánh Ướt Lòng Gà H5</td><td>—</td><td>Бань ыот</td></tr>
+<tr><td class=nu>168</td><td>Nem Nướng Mỹ Gia</td><td>—</td><td>Нем</td></tr>
+<tr><td class=nu>169</td><td>Nem 52</td><td>29-31 Lê Lợi</td><td>Нем + бань сео</td></tr>
+<tr><td class=nu>170</td><td>Great Street Food Night Market</td><td>Nguyễn Thiện Thuật (у собора)</td><td>С 18:30</td></tr>
+<tr><td class=nu>171</td><td>Vinh Hai Market</td><td>—</td><td>Местный рынок</td></tr>
+<tr><td class=nu>172</td><td>Bai Duong Beach Restaurants</td><td>Bãi Dương</td><td>Пляжные морепродукты</td></tr>
+</table></div></div>
+
+<!-- 3. Морепродукты -->
+<div class="s" id="s3"><h2>3. Морепродукты (Seafood) <span class="c">(58)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Costa Seafood</td><td>32-34 Trần Phú</td><td>Элитный, 180° view</td></tr>
+<tr><td class=nu>2</td><td>Thanh Sương Seafood</td><td>15 Trần Phú</td><td>Крупный, популярный</td></tr>
+<tr><td class=nu>3</td><td>Bờ Kè Tháp Bà</td><td>52 Cù Huân</td><td>Набережная морепродуктов</td></tr>
+<tr><td class=nu>4</td><td>Hải Sản Mộc Quán</td><td>30 Nguyễn Thiện Thuật</td><td>Буфет, 200-300K</td></tr>
+<tr><td class=nu>5</td><td>Hải Sản Đông Hải</td><td>24 Tô Hiến Thành</td><td>Морепродукты</td></tr>
+<tr><td class=nu>6</td><td>Vinh San Seafood</td><td>—</td><td>Известный</td></tr>
+<tr><td class=nu>7</td><td>CUI Seafood Restaurant</td><td>—</td><td>Элитный</td></tr>
+<tr><td class=nu>8</td><td>Trần Gia Restaurant</td><td>Hòn Rớ</td><td>Местный</td></tr>
+<tr><td class=nu>9</td><td>Hải Sản Làng Bè</td><td>291 Nguyễn Văn Linh</td><td>Плавучий ресторан</td></tr>
+<tr><td class=nu>10</td><td>Hải sản Gió Biển</td><td>Phạm Văn Đồng</td><td>200-350K</td></tr>
+<tr><td class=nu>11</td><td>Hải sản Bến Cảng</td><td>Cầu Đá</td><td>150-300K</td></tr>
+<tr><td class=nu>12</td><td>Hải sản Làng Chài</td><td>Phạm Văn Đồng</td><td>250-400K</td></tr>
+<tr><td class=nu>13</td><td>Hải sản Cầu Đá</td><td>Гавань</td><td>150-250K, местный</td></tr>
+<tr><td class=nu>14</td><td>Hải sản Hạnh Xuân</td><td>Tháp Bà</td><td>180-300K</td></tr>
+<tr><td class=nu>15</td><td>Hải sản Cô Liên</td><td>Phạm Văn Đồng</td><td>200-350K</td></tr>
+<tr><td class=nu>16</td><td>Hải sản Tám Mẹo</td><td>Vĩnh Hải</td><td>150-280K</td></tr>
+<tr><td class=nu>17</td><td>Hải sản Nhật Phong 3</td><td>Trần Phú</td><td>250-400K</td></tr>
+<tr><td class=nu>18</td><td>Hải sản Sơn Thủy</td><td>Trần Phú</td><td>250-450K</td></tr>
+<tr><td class=nu>19</td><td>Hải sản Phú Quý</td><td>Phạm Văn Đồng</td><td>180-300K</td></tr>
+<tr><td class=nu>20</td><td>Hải sản Biển Việt</td><td>Tháp Bà</td><td>150-280K</td></tr>
+<tr><td class=nu>21</td><td>Hải sản Đại Lãnh</td><td>Центр</td><td>250-400K</td></tr>
+<tr><td class=nu>22</td><td>Hải sản Bãi Dài</td><td>Bãi Dài</td><td>300-600K</td></tr>
+<tr><td class=nu>23</td><td>Ozone Seafood</td><td>Vinpearl Hòn Tre</td><td>5*</td></tr>
+<tr><td class=nu>24</td><td>Lagoon Seafood</td><td>Vinpearl Condotel</td><td>Романтичный</td></tr>
+<tr><td class=nu>25</td><td>Sea Gate</td><td>Meliá Vinpearl Cam Ranh</td><td>Элитный</td></tr>
+<tr><td class=nu>26</td><td>Costa Robata Nha Trang</td><td>—</td><td>Японский стиль</td></tr>
+<tr><td class=nu>27</td><td>Bến Thuyền Nha Trang</td><td>48 Ngô Đến</td><td>10:00-22:00</td></tr>
+<tr><td class=nu>28</td><td>Hà Linh Seafood</td><td>3 Tô Hiệu</td><td>Морепродукты</td></tr>
+<tr><td class=nu>29</td><td>Mr Lobster (Bờ Kè)</td><td>—</td><td>Омары</td></tr>
+<tr><td class=nu>30</td><td>Xóm Chài Seafood</td><td>—</td><td>Местный</td></tr>
+<tr><td class=nu>31</td><td>Un In BBQ</td><td>—</td><td>Контейнер-ресторан</td></tr>
+<tr><td class=nu>32</td><td>Light House</td><td>—</td><td>Аквариум, экзотика</td></tr>
+<tr><td class=nu>33</td><td>Hải Sản Bờ Kè</td><td>Trần Phú</td><td>250-400K</td></tr>
+<tr><td class=nu>34</td><td>Cua Biển Quán</td><td>Trần Phú</td><td>400-600K</td></tr>
+<tr><td class=nu>35</td><td>Đại Dương Xanh Seafood</td><td>9A Trần Phú</td><td>Морепродукты</td></tr>
+<tr><td class=nu>36</td><td>Lan Chi Seafood</td><td>4 Tháp Bà</td><td>Морепродукты</td></tr>
+<tr><td class=nu>37</td><td>Lẩu Mực Đại Lãnh</td><td>Trần Nhật Duật</td><td>Кальмарный хотпот</td></tr>
+<tr><td class=nu>38</td><td>Hải Sản Long Vũ</td><td>133 Tháp Bà</td><td>200-350K</td></tr>
+<tr><td class=nu>39</td><td>Hải Sạn Bờ Kè</td><td>42B Cù Huân</td><td>Набережная</td></tr>
+<tr><td class=nu>40</td><td>Quán Hải Sạn Bà Trâm</td><td>—</td><td>100-500K</td></tr>
+<tr><td class=nu>41</td><td>Quán Ốc Thanh Tâm</td><td>8 Tháp Bà</td><td>Ракушки, 70K+</td></tr>
+<tr><td class=nu>42</td><td>Chợ Đầм (2 этаж)</td><td>Chợ Đầm</td><td>40-150K</td></tr>
+<tr><td class=nu>43</td><td>Bến Cá Quán</td><td>102 Trần Phú</td><td>Хотпот</td></tr>
+<tr><td class=nu>44</td><td>Nhà hàng Hải Sản</td><td>50 Trần Phú</td><td>Морепродукты</td></tr>
+<tr><td class=nu>45</td><td>Hải Sạn Bên Sông Xóm Cồn</td><td>206 Xóm Cồn</td><td>150-300K</td></tr>
+<tr><td class=nu>46</td><td>Nhà Hàng Hằng 66</td><td>46 Cù Huân</td><td>Местный</td></tr>
+<tr><td class=nu>47</td><td>Quán Hải Sản Bốn Bao</td><td>Xóm Cồn</td><td>Местный</td></tr>
+<tr><td class=nu>48</td><td>Hải Sản Trí Nguyễn</td><td>132 Trần Phú</td><td>200-350K</td></tr>
+<tr><td class=nu>49</td><td>Hải Sản Quán Trường</td><td>—</td><td>Местный</td></tr>
+<tr><td class=nu>50</td><td>Seafood Harbor</td><td>Trần Phú (новый)</td><td>Хорошее соотношение цены</td></tr>
+<tr><td class=nu>51</td><td>Amigos Restaurant</td><td>Trần Phú</td><td>С 2000-х</td></tr>
+<tr><td class=nu>52</td><td>Cá Bay</td><td>02 Lê Lợi</td><td>Морепродукты</td></tr>
+<tr><td class=nu>53</td><td>Cá Nóc Nhím Go 79</td><td>—</td><td>Иглобрюх</td></tr>
+<tr><td class=nu>54</td><td>Quán Gỏi Ốc Cửa Bé</td><td>—</td><td>Салат из улиток</td></tr>
+<tr><td class=nu>55</td><td>Veranda</td><td>—</td><td>Морепродукты</td></tr>
+<tr><td class=nu>56</td><td>Biển Việt</td><td>Tháp Bà</td><td>150-280K</td></tr>
+<tr><td class=nu>57</td><td>Ốc 21</td><td>—</td><td>Улитки</td></tr>
+<tr><td class=nu>58</td><td>Hải Sạn Hạnh Xuân</td><td>Tháp Bà</td><td>180-300K</td></tr>
+</table></div></div>
+
+<!-- 4. Итальянская -->
+<div class="s" id="s4"><h2>4. Итальянская кухня <span class="c">(9)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>La Baia Italian</td><td>Mia Resort Nha Trang</td><td>Итальянская</td></tr>
+<tr><td class=nu>2</td><td>La Cala – Gusto Italiano</td><td>Bạch Đằng</td><td>Южно-итальянская</td></tr>
+<tr><td class=nu>3</td><td>Bottega 26</td><td>—</td><td>Итальянская</td></tr>
+<tr><td class=nu>4</td><td>Pizza 4P's Nha Trang</td><td>Sheraton, 1 этаж</td><td>Своя буррата</td></tr>
+<tr><td class=nu>5</td><td>Olivia Restaurant</td><td>—</td><td>Итальянская</td></tr>
+<tr><td class=nu>6</td><td>Little Italy City Pizza</td><td>—</td><td>Пицца</td></tr>
+<tr><td class=nu>7</td><td>Pizza Giang</td><td>—</td><td>Пицца</td></tr>
+<tr><td class=nu>8</td><td>Marco (Nhà hàng Ý)</td><td>46-48 Lý Thánh Tôn</td><td>Итальянская</td></tr>
+<tr><td class=nu>9</td><td>La Mancha</td><td>78 Nguyễn Thiện Thuật</td><td>Итальянская</td></tr>
+</table></div></div>
+
+<!-- 5. Японская -->
+<div class="s" id="s5"><h2>5. Японская кухня <span class="c">(11)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Kiwami (Sushi Kiwami)</td><td>136 Bạch Đằng</td><td>Японский шеф-повар</td></tr>
+<tr><td class=nu>2</td><td>Mitami Japanese</td><td>—</td><td>Один из старейших</td></tr>
+<tr><td class=nu>3</td><td>Sushi Sakura</td><td>50 Nguyễn Thị Minh Khai</td><td>Мегапопулярный</td></tr>
+<tr><td class=nu>4</td><td>Sushi Mania</td><td>—</td><td>Суши</td></tr>
+<tr><td class=nu>5</td><td>Oh! Sushi Bar</td><td>—</td><td>Суши</td></tr>
+<tr><td class=nu>6</td><td>Costa Robata</td><td>—</td><td>Японский гриль</td></tr>
+<tr><td class=nu>7</td><td>Mikado Sushi</td><td>Lý Tự Trọng</td><td>Конвейер</td></tr>
+<tr><td class=nu>8</td><td>Tomita Sushi</td><td>—</td><td>Суши</td></tr>
+<tr><td class=nu>9</td><td>A'memoir Cafe & Japanese</td><td>An Viên</td><td>Японская</td></tr>
+<tr><td class=nu>10</td><td>An Lam Bistro</td><td>9 Lê Thánh Tôn</td><td>Европейская + рамен</td></tr>
+<tr><td class=nu>11</td><td>Sushi Kiwami Restaurant</td><td>—</td><td>Японская</td></tr>
+</table></div></div>
+
+<!-- 6. Корейская -->
+<div class="s" id="s6"><h2>6. Корейская кухня <span class="c">(11)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>GoGi House</td><td>Lotte Nha Trang</td><td>Korean BBQ</td></tr>
+<tr><td class=nu>2</td><td>Veteran Restaurant</td><td>—</td><td>Korean BBQ</td></tr>
+<tr><td class=nu>3</td><td>Jejuga</td><td>—</td><td>Корейская</td></tr>
+<tr><td class=nu>4</td><td>King BBQ</td><td>Vincom Nha Trang</td><td>BBQ</td></tr>
+<tr><td class=nu>5</td><td>QooQoo Buffet</td><td>—</td><td>250+ блюд</td></tr>
+<tr><td class=nu>6</td><td>Mì Cay Hàn Quốc (Minchu)</td><td>—</td><td>Острая лапша</td></tr>
+<tr><td class=nu>7</td><td>Akira BBQ</td><td>—</td><td>BBQ</td></tr>
+<tr><td class=nu>8</td><td>Kichi Kichi</td><td>—</td><td>Korean BBQ</td></tr>
+<tr><td class=nu>9</td><td>Chicken K</td><td>—</td><td>Korean Fried Chicken</td></tr>
+<tr><td class=nu>10</td><td>Ù's Kimbap</td><td>—</td><td>Кимбап</td></tr>
+<tr><td class=nu>11</td><td>OPPA Snack Bar</td><td>23 Đặng Tất</td><td>Корейские закуски</td></tr>
+</table></div></div>
+
+<!-- 7. Индийская -->
+<div class="s" id="s7"><h2>7. Индийская кухня <span class="c">(3)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Ganesh Indian Restaurant</td><td>82/186 Nguyễn Thiện Thuật</td><td>Лучший индийский</td></tr>
+<tr><td class=nu>2</td><td>Yashoda Indian</td><td>—</td><td>Индийская</td></tr>
+<tr><td class=nu>3</td><td>Omar's Tandoori (Omar Indian)</td><td>96A/8 Trần Phú</td><td>Индийская</td></tr>
+</table></div></div>
+
+<!-- 8. Греческая -->
+<div class="s" id="s8"><h2>8. Греческая и средиземноморская <span class="c">(5)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>MIX Greek Restaurant</td><td>77 Hùng Vương</td><td>Греческая</td></tr>
+<tr><td class=nu>2</td><td>Pita GR Greek</td><td>7G/3 Hùng Vương</td><td>Средиземноморская</td></tr>
+<tr><td class=nu>3</td><td>Hispania Nha Trang</td><td>—</td><td>Modern Spanish, Michelin</td></tr>
+<tr><td class=nu>4</td><td>Greek Souvlaki</td><td>—</td><td>Уличная греческая</td></tr>
+<tr><td class=nu>5</td><td>Egoist Mediterranean</td><td>—</td><td>Средиземноморская</td></tr>
+</table></div></div>
+
+<!-- 9. Тайская -->
+<div class="s" id="s9"><h2>9. Тайская кухня <span class="c">(3)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Same Same But Different</td><td>—</td><td>Тайская, с 1995</td></tr>
+<tr><td class=nu>2</td><td>Sam Lor Thai – Tuktuk</td><td>76 Đống Đa</td><td>100-300K</td></tr>
+<tr><td class=nu>3</td><td>An La Ghien</td><td>58C Trần Nhật Duật</td><td>Каша из лягушки</td></tr>
+</table></div></div>
+
+<!-- 10. Китайская -->
+<div class="s" id="s10"><h2>10. Китайская кухня <span class="c">(4)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Steam n' Spice</td><td>Sheraton, 2 этаж</td><td>Китайская</td></tr>
+<tr><td class=nu>2</td><td>Hoa Hoa (Mì Cay)</td><td>2 Hai Bà Trưng</td><td>16:00-02:00</td></tr>
+<tr><td class=nu>3</td><td>Mì Bò Chợ Lớn</td><td>—</td><td>Китайская лапша</td></tr>
+<tr><td class=nu>4</td><td>Thành Đô Xưa</td><td>—</td><td>Китайская</td></tr>
+</table></div></div>
+
+<!-- 11. Европейская -->
+<div class="s" id="s11"><h2>11. Европейская и международная <span class="c">(43)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Alpaca Homestyle Cafe</td><td>3-я линия ЕвроКвартала</td><td>Паста, тако</td></tr>
+<tr><td class=nu>2</td><td>Sailing Club Nha Trang</td><td>Trần Phú</td><td>Beach-клуб</td></tr>
+<tr><td class=nu>3</td><td>Louisiane Brewhouse</td><td>29 Trần Phú</td><td>Пивоварня</td></tr>
+<tr><td class=nu>4</td><td>Cookbook Cafe</td><td>InterContinental</td><td>Международная</td></tr>
+<tr><td class=nu>5</td><td>Altitude Rooftop Bar</td><td>—</td><td>Rooftop</td></tr>
+<tr><td class=nu>6</td><td>&More by Sheraton</td><td>Sheraton</td><td>Рейтинг 4.9</td></tr>
+<tr><td class=nu>7</td><td>Swiss House La Casserole</td><td>—</td><td>Швейцарская</td></tr>
+<tr><td class=nu>8</td><td>German Haus Bremen</td><td>—</td><td>Немецкая</td></tr>
+<tr><td class=nu>9</td><td>La Velvet</td><td>—</td><td>Европейская</td></tr>
+<tr><td class=nu>10</td><td>Livin'</td><td>5A Ngô Thời Nhiệm</td><td>BBQ, smoked meats</td></tr>
+<tr><td class=nu>11</td><td>Bao Ngon</td><td>—</td><td>Бао-бургеры</td></tr>
+<tr><td class=nu>12</td><td>Nom Nom Nha Trang</td><td>7/16 Trần Quang Khải</td><td>Рейтинг 4.4</td></tr>
+<tr><td class=nu>13</td><td>Rainforest Cafe</td><td>146 Võ Trứ</td><td>Джунгли-стиль</td></tr>
+<tr><td class=nu>14</td><td>Oi Nha Trang</td><td>11 Yersin</td><td>Колониальный сад</td></tr>
+<tr><td class=nu>15</td><td>Secrets Bar & Grill</td><td>—</td><td>Бар-гриль</td></tr>
+<tr><td class=nu>16</td><td>Xóm Mới Garden</td><td>144 Võ Trứ</td><td>6 концепций</td></tr>
+<tr><td class=nu>17</td><td>Café Culture Brunch Club</td><td>—</td><td>Рейтинг 4.9</td></tr>
+<tr><td class=nu>18</td><td>Artisan Cafe & Eatery</td><td>—</td><td>Завтраки</td></tr>
+<tr><td class=nu>19</td><td>Ana Beach House</td><td>Ana Beach Club</td><td>Пляжный</td></tr>
+<tr><td class=nu>20</td><td>Galangal</td><td>—</td><td>Рейтинг 4.7</td></tr>
+<tr><td class=nu>21</td><td>RuNam Nha Trang</td><td>—</td><td>Рейтинг 4.2</td></tr>
+<tr><td class=nu>22</td><td>Good Morning</td><td>—</td><td>Европейская</td></tr>
+<tr><td class=nu>23</td><td>Time House Bistro</td><td>—</td><td>Завтраки</td></tr>
+<tr><td class=nu>24</td><td>Story</td><td>—</td><td>У моря</td></tr>
+<tr><td class=nu>25</td><td>La Plage</td><td>—</td><td>Пляжный</td></tr>
+<tr><td class=nu>26</td><td>An Lam Bistro</td><td>9 Lê Thánh Tôn</td><td>Стейки</td></tr>
+<tr><td class=nu>27</td><td>1993 COFFEE & TEA</td><td>—</td><td>Блины</td></tr>
+<tr><td class=nu>28</td><td>Nha Trang Palace Hotel Restaurant</td><td>—</td><td>Завтраки</td></tr>
+<tr><td class=nu>29</td><td>Em Oi Hotel Restaurant</td><td>—</td><td>Завтраки</td></tr>
+<tr><td class=nu>30</td><td>Aqualine Bar</td><td>InterContinental</td><td>Бар</td></tr>
+<tr><td class=nu>31</td><td>The Rooftop Lounge</td><td>Havana Hotel</td><td>Rooftop</td></tr>
+<tr><td class=nu>32</td><td>Havana 360° Skydeck</td><td>38 Trần Phú</td><td>360°</td></tr>
+<tr><td class=nu>33</td><td>Skylight Nha Trang</td><td>43 эт. Havana</td><td>Sky bar</td></tr>
+<tr><td class=nu>34</td><td>Imperial Restaurant</td><td>Sunrise Beach Hotel</td><td>Международная</td></tr>
+<tr><td class=nu>35</td><td>The Square</td><td>Novotel Nha Trang</td><td>Международная</td></tr>
+<tr><td class=nu>36</td><td>Sandals Restaurant</td><td>Mia Resort</td><td>Western + Vietnamese</td></tr>
+<tr><td class=nu>37</td><td>Spices Buffet</td><td>Premier Havana Hotel</td><td>Буфет</td></tr>
+<tr><td class=nu>38</td><td>Artichoke Restaurant</td><td>Premier Havana Hotel</td><td>Международная</td></tr>
+<tr><td class=nu>39</td><td>Clubhouse Agusta</td><td>Vinpearl</td><td>Буфет</td></tr>
+<tr><td class=nu>40</td><td>Greens</td><td>Vinpearl</td><td>Буфет с видом</td></tr>
+<tr><td class=nu>41</td><td>Sands</td><td>Vinpearl</td><td>Азия-Европа</td></tr>
+<tr><td class=nu>42</td><td>Cheers Sports Pub</td><td>—</td><td>Британский паб</td></tr>
+<tr><td class=nu>43</td><td>La Fenêtre</td><td>—</td><td>Французская колониальная вилла</td></tr>
+</table></div></div>
+
+<!-- 12. Немецкая -->
+<div class="s" id="s12"><h2>12. Немецкая / Швейцарская <span class="c">(3)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Swiss House La Casserole</td><td>Швейцарская</td></tr>
+<tr><td class=nu>2</td><td>German Haus Bremen</td><td>Немецкая</td></tr>
+<tr><td class=nu>3</td><td>Voilà Restaurant</td><td>Швейцарская</td></tr>
+</table></div></div>
+
+<!-- 13. Мексиканская -->
+<div class="s" id="s13"><h2>13. Мексиканская <span class="c">(2)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Cactus Mexican Food</td><td>Мексиканская</td></tr>
+<tr><td class=nu>2</td><td>Shantaram</td><td>Мексиканская, пицца</td></tr>
+</table></div></div>
+
+<!-- 14. Вегетарианская -->
+<div class="s" id="s14"><h2>14. Вегетарианская и веганская <span class="c">(10)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Ivegan Supershop</td><td>—</td><td>Рейтинг 5.0</td></tr>
+<tr><td class=nu>2</td><td>Phuoc Thien Vegetarian</td><td>—</td><td>Вегетарианская</td></tr>
+<tr><td class=nu>3</td><td>Sen Thien Quan</td><td>—</td><td>Вегетарианская</td></tr>
+<tr><td class=nu>4</td><td>Yen Vegetarian & Yoga</td><td>—</td><td>Вегетарианская</td></tr>
+<tr><td class=nu>5</td><td>Phap Hy Vegetarian</td><td>—</td><td>Вегетарианская</td></tr>
+<tr><td class=nu>6</td><td>Phat Hoc Vegetarian</td><td>—</td><td>Вегетарианская</td></tr>
+<tr><td class=nu>7</td><td>Bồ Đề (Bo De)</td><td>11 Huỳnh Thúc Kháng</td><td>Веганская</td></tr>
+<tr><td class=nu>8</td><td>Sweet Secret</td><td>—</td><td>Сыроедческие десерты</td></tr>
+<tr><td class=nu>9</td><td>Thien Duyen Vegetarian</td><td>28 Hai Tháng Tư</td><td>Вегетарианская</td></tr>
+<tr><td class=nu>10</td><td>Shakti — Chay & Cafe</td><td>—</td><td>Вегетарианское бистро</td></tr>
+</table></div></div>
+
+<!-- 15. Кофейни -->
+<div class="s" id="s15"><h2>15. Кофейни <span class="c">(110)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Cafe Culture</td><td>—</td><td>Британская, рейтинг 4.9</td></tr>
+<tr><td class=nu>2</td><td>Iced Coffee Simply Original</td><td>49 Nguyễn Thiện Thuật</td><td>Кофе</td></tr>
+<tr><td class=nu>3</td><td>Cuppa Coffee</td><td>—</td><td>Завтраки</td></tr>
+<tr><td class=nu>4</td><td>Ola Cafe</td><td>31 Nguyễn Hữu Huân</td><td>Coconut Coffee</td></tr>
+<tr><td class=nu>5</td><td>Coffee Maker Roastery</td><td>—</td><td>Спешлти</td></tr>
+<tr><td class=nu>6</td><td>Nora Coffee Roastery</td><td>—</td><td>Спешлти, десерты</td></tr>
+<tr><td class=nu>7</td><td>Lee Dane</td><td>—</td><td>Чизкейки</td></tr>
+<tr><td class=nu>8</td><td>Bakeboy — Bakery & Coffee</td><td>Север</td><td>Маковые косички</td></tr>
+<tr><td class=nu>9</td><td>Chakokoro Matcha Cafe</td><td>—</td><td>Матча, стиль Миядзаки</td></tr>
+<tr><td class=nu>10</td><td>Moka Cafe</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>11</td><td>Mango Cafe</td><td>—</td><td>Фотозоны</td></tr>
+<tr><td class=nu>12</td><td>April's House Cafe</td><td>—</td><td>Фотостудии</td></tr>
+<tr><td class=nu>13</td><td>I am cake Cafe</td><td>—</td><td>Десерты</td></tr>
+<tr><td class=nu>14</td><td>Les Temps Tea</td><td>Chợ Đầm</td><td>Кокосовый кофе</td></tr>
+<tr><td class=nu>15</td><td>RailWay Coffee</td><td>—</td><td>Ж/д тематика</td></tr>
+<tr><td class=nu>16</td><td>Cafe Dep</td><td>—</td><td>Яичный кофе</td></tr>
+<tr><td class=nu>17</td><td>Highlands Coffee</td><td>—</td><td>Сеть</td></tr>
+<tr><td class=nu>18</td><td>Trung Nguyên Legend</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>19</td><td>Jungle Coffee</td><td>08 Lê Quý Đôn</td><td>Интерьер джунглей</td></tr>
+<tr><td class=nu>20</td><td>Hoa Đồng Nội Coffee</td><td>—</td><td>Скандинавский стиль</td></tr>
+<tr><td class=nu>21</td><td>Trốn Cafe</td><td>46 Lê Quý Đôn</td><td>Винтаж</td></tr>
+<tr><td class=nu>22</td><td>Hòn Kiến Coffee</td><td>—</td><td>Вид на море</td></tr>
+<tr><td class=nu>23</td><td>Camelia Cafe</td><td>—</td><td>Приморский</td></tr>
+<tr><td class=nu>24</td><td>Coffee Baka Hòn Chồng</td><td>—</td><td>Огород</td></tr>
+<tr><td class=nu>25</td><td>Amazon Coffee & Bar</td><td>—</td><td>Зелёный</td></tr>
+<tr><td class=nu>26</td><td>City Fox Bistro</td><td>—</td><td>Стильный</td></tr>
+<tr><td class=nu>27</td><td>S – Coffee & Tea</td><td>—</td><td>Сад</td></tr>
+<tr><td class=nu>28</td><td>Book Cafe PNC</td><td>—</td><td>Книжный магазин</td></tr>
+<tr><td class=nu>29</td><td>Scorp Coffee</td><td>—</td><td>EDM вечером</td></tr>
+<tr><td class=nu>30</td><td>Eighteen House Coffee</td><td>—</td><td>Дерево, уют</td></tr>
+<tr><td class=nu>31</td><td>Bluem cafe & more</td><td>—</td><td>Минимализм</td></tr>
+<tr><td class=nu>32</td><td>Capybara Coffee & Tea</td><td>9 Nguyễn Hữu Huân</td><td>Капибары</td></tr>
+<tr><td class=nu>33</td><td>K Cafe</td><td>—</td><td>Классический</td></tr>
+<tr><td class=nu>34</td><td>LÈNG Coffee & More</td><td>45 D. Hiến Quyền</td><td>Спешлти</td></tr>
+<tr><td class=nu>35</td><td>Tam Hoàng Cafe</td><td>—</td><td>Старый дом</td></tr>
+<tr><td class=nu>36</td><td>Susan Koi Coffee</td><td>Север</td><td>Карпы кои</td></tr>
+<tr><td class=nu>37</td><td>Sky Garden</td><td>—</td><td>Сад</td></tr>
+<tr><td class=nu>38</td><td>Stockholm Bistro & Coworking</td><td>—</td><td>Коворкинг $6/день</td></tr>
+<tr><td class=nu>39</td><td>Coffee & Playstation</td><td>—</td><td>Игры</td></tr>
+<tr><td class=nu>40</td><td>Ngay Binh Yen</td><td>—</td><td>Солёный кофе</td></tr>
+<tr><td class=nu>41</td><td>Yến Phương Fresh Coffee</td><td>—</td><td>Свежий кофе</td></tr>
+<tr><td class=nu>42</td><td>An Đào Tea & Coffee</td><td>7 Mê Linh</td><td>Чай и кофе</td></tr>
+<tr><td class=nu>43</td><td>Catarchy (ex. Pirate Bay)</td><td>—</td><td>Кошачье кафе</td></tr>
+<tr><td class=nu>44</td><td>Mee Tea</td><td>—</td><td>Большие напитки</td></tr>
+<tr><td class=nu>45</td><td>Dr. Juice</td><td>—</td><td>Соки</td></tr>
+<tr><td class=nu>46</td><td>Kem Bơ Vfruit</td><td>—</td><td>Авокадное мороженое</td></tr>
+<tr><td class=nu>47</td><td>Bread 1</td><td>—</td><td>Пекарня</td></tr>
+<tr><td class=nu>48</td><td>Ivory Coffee Shop</td><td>—</td><td>Рейтинг 5.0</td></tr>
+<tr><td class=nu>49</td><td>RuNam Nha Trang</td><td>—</td><td>Завтраки</td></tr>
+<tr><td class=nu>50</td><td>AN Cafe</td><td>40 Lê Đại Hành</td><td>06:30-22:00</td></tr>
+<tr><td class=nu>51</td><td>Atlas Café</td><td>Север</td><td>Бранч</td></tr>
+<tr><td class=nu>52</td><td>Paramount Cafe</td><td>Trần Phú</td><td>View бич</td></tr>
+<tr><td class=nu>53</td><td>Crow Acoustic Coffee</td><td>—</td><td>Живая музыка</td></tr>
+<tr><td class=nu>54</td><td>Nirvana Rock Cafe</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>55</td><td>Toastina</td><td>26-28 Trần Phú</td><td>07:00-22:00</td></tr>
+<tr><td class=nu>56</td><td>Runam Bistro</td><td>32-34 Trần Phú</td><td>07:30-22:30</td></tr>
+<tr><td class=nu>57</td><td>Lam Cafe</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>58</td><td>A & C Homestay and Cafe</td><td>—</td><td>Кофе + хостел</td></tr>
+<tr><td class=nu>59</td><td>Candle Coffee House</td><td>—</td><td>Атмосферный</td></tr>
+<tr><td class=nu>60</td><td>Coffee Time</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>61</td><td>blu:m — Café & More</td><td>—</td><td>Чёрно-белый</td></tr>
+<tr><td class=nu>62</td><td>GÁC de.art</td><td>—</td><td>Арт, работа</td></tr>
+<tr><td class=nu>63</td><td>Thỏ Cầm Cọ</td><td>—</td><td>Чай</td></tr>
+<tr><td class=nu>64</td><td>Gạch Đỏ Bakery & Coffee</td><td>—</td><td>Выпечка</td></tr>
+<tr><td class=nu>65</td><td>YEN Coffee n More</td><td>—</td><td>Кокосовый кофе</td></tr>
+<tr><td class=nu>66</td><td>Mer. coffee & tea</td><td>—</td><td>Кофе и чай</td></tr>
+<tr><td class=nu>67</td><td>The Dreamers Coffee</td><td>—</td><td>Check-in</td></tr>
+<tr><td class=nu>68</td><td>Amore Gardens</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>69</td><td>San Coffee and Cocktail</td><td>Trần Phú</td><td>Кофе + коктейли</td></tr>
+<tr><td class=nu>70</td><td>Nhặt Coffee</td><td>Phước Đồng</td><td>Бюджетный</td></tr>
+<tr><td class=nu>71</td><td>La Maison</td><td>—</td><td>Тихий</td></tr>
+<tr><td class=nu>72</td><td>Mây Rooftop Coffee & Bar</td><td>—</td><td>Rooftop</td></tr>
+<tr><td class=nu>73</td><td>Chốn Bình Yên Coffee</td><td>—</td><td>24/7</td></tr>
+<tr><td class=nu>74</td><td>Ume Cafe by Ola</td><td>—</td><td>Вьетнамский</td></tr>
+<tr><td class=nu>75</td><td>Léhem Café by Acoustic</td><td>—</td><td>Живая музыка</td></tr>
+<tr><td class=nu>76</td><td>Nếp Café</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>77</td><td>The Sun Nha Trang</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>78</td><td>Gác. Tea.Coffee.Chill</td><td>—</td><td>Чай, кофе</td></tr>
+<tr><td class=nu>79</td><td>The Log Coffee</td><td>Trần Nhật Duật</td><td>07:00-22:00</td></tr>
+<tr><td class=nu>80</td><td>Đây Là Tiệm Cà Phê</td><td>30/1 Đoàn Trần Nghiệp</td><td>07:00-22:00</td></tr>
+<tr><td class=nu>81</td><td>Điềm.mm</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>82</td><td>Here Garden Coffee</td><td>Thôn Thủy Tú, Vĩnh Thái</td><td>Сад</td></tr>
+<tr><td class=nu>83</td><td>ABH Coffee (A Bờ Hờ)</td><td>—</td><td>Вид на море</td></tr>
+<tr><td class=nu>84</td><td>MAI COFFEE & MORE</td><td>Ninh Hòa</td><td>Деревенский</td></tr>
+<tr><td class=nu>85</td><td>CEDRUSS COFFEE & TEA</td><td>—</td><td>Прибрежный</td></tr>
+<tr><td class=nu>86</td><td>SEN COFFEE DIÊN AN</td><td>Diên An, Diên Khánh</td><td>Сад</td></tr>
+<tr><td class=nu>87</td><td>Sep'on Cafe & Cocktails</td><td>—</td><td>Коктейли</td></tr>
+<tr><td class=nu>88</td><td>Thong Dong Local Cafe</td><td>—</td><td>2 филиала</td></tr>
+<tr><td class=nu>89</td><td>Vic Coffee & Tea</td><td>—</td><td>Кофе и чай</td></tr>
+<tr><td class=nu>90</td><td>Xưởng 1925 Coffee Shop</td><td>8 Đống Đa</td><td>Индустриальный</td></tr>
+<tr><td class=nu>91</td><td>FUKU Coffee and Ceramic</td><td>15 Trần Hưng Đạo</td><td>Керамика + кофе</td></tr>
+<tr><td class=nu>92</td><td>Hạ Vũ Coffee & Tea</td><td>Lê Thánh Tôn</td><td>Китайский стиль</td></tr>
+<tr><td class=nu>93</td><td>Cà Phê Rù Rì</td><td>23 Nguyễn Chánh</td><td>Кофе</td></tr>
+<tr><td class=nu>94</td><td>Cộng Sự Cà Phê</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>95</td><td>Grizzly Coffee & Bakery</td><td>—</td><td>Выпечка</td></tr>
+<tr><td class=nu>96</td><td>Alam Coffee Roastery</td><td>140 Hoàng Hoa Thám</td><td>Ростер</td></tr>
+<tr><td class=nu>97</td><td>Black Coffee Premium Roastery</td><td>—</td><td>Ростер</td></tr>
+<tr><td class=nu>98</td><td>ANDAO Coffee & Chocolate</td><td>7 Mê Linh</td><td>Шоколад</td></tr>
+<tr><td class=nu>99</td><td>Moc 88 Coffee & Tea</td><td>—</td><td>Кофе</td></tr>
+<tr><td class=nu>100</td><td>La Viet Coffee</td><td>8 Lê Lợi</td><td>Спешлти</td></tr>
+<tr><td class=nu>101</td><td>Tê Bê Chilling Cocktail Bar</td><td>—</td><td>Коктейли</td></tr>
+<tr><td class=nu>102</td><td>Túi Mơ To Coffee</td><td>31/8A Biệt Thự</td><td>Стиль Далат</td></tr>
+<tr><td class=nu>103</td><td>Cộng Cafe</td><td>—</td><td>Сеть</td></tr>
+<tr><td class=nu>104</td><td>Sailing Club Coffee</td><td>72-74 Trần Phú</td><td>07:00-23:00</td></tr>
+<tr><td class=nu>105</td><td>Hòn Chồng Coffee</td><td>Đồi Hòn Chồng</td><td>06:00-21:00</td></tr>
+<tr><td class=nu>106</td><td>Nov • Coffee n Cakey</td><td>61 Lê Đại Hành</td><td>Десерты</td></tr>
+<tr><td class=nu>107</td><td>Red Brick Bakery & Coffee</td><td>—</td><td>Выпечка</td></tr>
+<tr><td class=nu>108</td><td>Sol Coffee & Desserts</td><td>—</td><td>Кроффлы</td></tr>
+<tr><td class=nu>109</td><td>ICEPAN Nha Trang</td><td>—</td><td>Мороженое</td></tr>
+<tr><td class=nu>110</td><td>Lak Coffee</td><td>—</td><td>Кофе</td></tr>
+</table></div></div>
+
+<!-- 16. Буфеты -->
+<div class="s" id="s16"><h2>16. Буфеты (Buffet) <span class="c">(20)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Цена</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Feast Restaurant</td><td>Sheraton, 26-28 Trần Phú</td><td>520-1288K</td><td>5*</td></tr>
+<tr><td class=nu>2</td><td>Grill Garden</td><td>40/86C Trần Phú</td><td>280-350K</td><td>BBQ</td></tr>
+<tr><td class=nu>3</td><td>Ngon Gallery</td><td>62 Trần Phú</td><td>300-600K</td><td>100+ блюд</td></tr>
+<tr><td class=nu>4</td><td>Zallo Buffet</td><td>17 Cao Văn Bé</td><td>200-300K</td><td>BBQ + морепродукты</td></tr>
+<tr><td class=nu>5</td><td>Poseidon (Gold Coast)</td><td>1 Trần Hưng Đạo, 5 эт.</td><td>—</td><td>Морепродукты</td></tr>
+<tr><td class=nu>6</td><td>Ambassador Club</td><td>—</td><td>360-1150K</td><td>Морепродукты</td></tr>
+<tr><td class=nu>7</td><td>Spices Buffet</td><td>Premier Havana Hotel</td><td>—</td><td>Шведский стол</td></tr>
+<tr><td class=nu>8</td><td>I Like Buffet</td><td>61 Đặng Tất</td><td>139-259K</td><td>BBQ</td></tr>
+<tr><td class=nu>9</td><td>Ozone</td><td>Vinpearl Hòn Tre</td><td>—</td><td>Морепродукты</td></tr>
+<tr><td class=nu>10</td><td>Coral Restaurant</td><td>VinWonders Hòn Tre</td><td>—</td><td>Буфет</td></tr>
+<tr><td class=nu>11</td><td>East Garden Buffet</td><td>The Empyrean Hotel</td><td>500K</td><td>В отеле</td></tr>
+<tr><td class=nu>12</td><td>Happy BBQ</td><td>—</td><td>Бюджетный</td><td>BBQ</td></tr>
+<tr><td class=nu>13</td><td>Aroma Buffet</td><td>—</td><td>Бюджетный</td><td>Морепродукты</td></tr>
+<tr><td class=nu>14</td><td>Buk Buk</td><td>—</td><td>Бюджетный</td><td>Буфет</td></tr>
+<tr><td class=nu>15</td><td>Roly Buffet BBQ</td><td>Villa 15-16 hem 86B Trần Phú</td><td>150-300K</td><td>15:00-23:00</td></tr>
+<tr><td class=nu>16</td><td>Pool Buffet</td><td>—</td><td>Бюджетный</td><td>Буфет</td></tr>
+<tr><td class=nu>17</td><td>Akira BBQ</td><td>—</td><td>—</td><td>BBQ</td></tr>
+<tr><td class=nu>18</td><td>Bách Giai</td><td>Vinpearl</td><td>—</td><td>Азиатский</td></tr>
+<tr><td class=nu>19</td><td>King BBQ</td><td>Vincom Nha Trang</td><td>—</td><td>Корейский BBQ</td></tr>
+<tr><td class=nu>20</td><td>Lẩu AKIRA BBQ</td><td>—</td><td>—</td><td>Лау + BBQ</td></tr>
+</table></div></div>
+
+<!-- 17. Гриль -->
+<div class="s" id="s17"><h2>17. Гриль и BBQ <span class="c">(13)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Lac Canh Restaurant</td><td>44 Nguyễn Bình Khiêm</td><td>С 1978</td></tr>
+<tr><td class=nu>2</td><td>Grill Garden</td><td>40 Trần Phú</td><td>Буфет-гриль</td></tr>
+<tr><td class=nu>3</td><td>Un In BBQ</td><td>—</td><td>Контейнер</td></tr>
+<tr><td class=nu>4</td><td>Zallo Buffet BBQ</td><td>17 Cao Văn Bé</td><td>BBQ</td></tr>
+<tr><td class=nu>5</td><td>Làng Nướng Phú Nông</td><td>—</td><td>Деревенский</td></tr>
+<tr><td class=nu>6</td><td>Quán Nướng Ba Lợi</td><td>—</td><td>Местный</td></tr>
+<tr><td class=nu>7</td><td>Lẩu & Nướng BoBo</td><td>—</td><td>Хотпот + гриль</td></tr>
+<tr><td class=nu>8</td><td>Nướng Ngói SUBO</td><td>—</td><td>Черепичный гриль</td></tr>
+<tr><td class=nu>9</td><td>Hẻm Hotpot & BBQ</td><td>—</td><td>Хотпот + BBQ</td></tr>
+<tr><td class=nu>10</td><td>BBQ Vườn Mơ</td><td>—</td><td>Садовый</td></tr>
+<tr><td class=nu>11</td><td>Nướng ngói 79 Kuken</td><td>—</td><td>Черепичный</td></tr>
+<tr><td class=nu>12</td><td>Livin'</td><td>—</td><td>Smoked meats</td></tr>
+<tr><td class=nu>13</td><td>Happy BBQ</td><td>—</td><td>Бюджетный</td></tr>
+</table></div></div>
+
+<!-- 18. Уличная еда -->
+<div class="s" id="s18"><h2>18. Уличная еда и фастфуд <span class="c">(20)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Bánh Mì Phan</td><td>1A Phan Chu Trinh, культовый</td></tr>
+<tr><td class=nu>2</td><td>Greek Souvlaki</td><td>Уличная греческая</td></tr>
+<tr><td class=nu>3</td><td>Bread 1</td><td>Пекарня</td></tr>
+<tr><td class=nu>4</td><td>Pizza Hut</td><td>Сеть</td></tr>
+<tr><td class=nu>5</td><td>KFC</td><td>Сеть</td></tr>
+<tr><td class=nu>6</td><td>Lotteria</td><td>Сеть</td></tr>
+<tr><td class=nu>7</td><td>Hennessy's Fastfood</td><td>12 Võ Thị Sáu</td></tr>
+<tr><td class=nu>8</td><td>Bờ Kè Tháp Bà</td><td>Уличные морепродукты</td></tr>
+<tr><td class=nu>9</td><td>Hoang Xuan Seafood</td><td>Север</td></tr>
+<tr><td class=nu>10</td><td>Bun Ca 51</td><td>51 Võ Thị Sáu</td></tr>
+<tr><td class=nu>11</td><td>Cheese Snails</td><td>Улитки с сыром</td></tr>
+<tr><td class=nu>12</td><td>Bãi Tiến Snails</td><td>Улитки</td></tr>
+<tr><td class=nu>13</td><td>OPPA Snack Bar</td><td>23 Đặng Tất</td></tr>
+<tr><td class=nu>14</td><td>Chicken K</td><td>Korean Fried Chicken</td></tr>
+<tr><td class=nu>15</td><td>Ù's Kimbap</td><td>Кимбап</td></tr>
+<tr><td class=nu>16</td><td>Quỳnh Trâm Seafood</td><td>Морепродукты</td></tr>
+<tr><td class=nu>17</td><td>Quán Hồng Ngọc C2</td><td>Уличная еда</td></tr>
+<tr><td class=nu>18</td><td>Chợ Đêm Nha Trang</td><td>46 Trần Phú</td></tr>
+<tr><td class=nu>19</td><td>Chợ Đầm</td><td>Главный рынок</td></tr>
+<tr><td class=nu>20</td><td>Xóm Mới Market</td><td>49 Ngô Gia Tự</td></tr>
+</table></div></div>
+
+<!-- 19. Пекарни -->
+<div class="s" id="s19"><h2>19. Пекарни и кондитерские <span class="c">(7)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Bakeboy — Bakery & Coffee</td><td>Маковые косички</td></tr>
+<tr><td class=nu>2</td><td>Bread 1</td><td>Бань ми</td></tr>
+<tr><td class=nu>3</td><td>Sweet Secret</td><td>Сыроедческие десерты</td></tr>
+<tr><td class=nu>4</td><td>Lee Dane</td><td>Чизкейки</td></tr>
+<tr><td class=nu>5</td><td>Candy Praline (@candy_praline)</td><td>Кондитерская</td></tr>
+<tr><td class=nu>6</td><td>Red Gate Bakery Cafe</td><td>Выпечка</td></tr>
+<tr><td class=nu>7</td><td>Kem Bơ Vfruit</td><td>Авокадное мороженое</td></tr>
+</table></div></div>
+
+<!-- 20. Бары -->
+<div class="s" id="s20"><h2>20. Бары и пабы <span class="c">(13)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Адрес</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Louisiane Brewhouse</td><td>29 Trần Phú</td><td>Крафтовое пиво</td></tr>
+<tr><td class=nu>2</td><td>Altitude Rooftop Bar</td><td>—</td><td>Rooftop</td></tr>
+<tr><td class=nu>3</td><td>Havana 360° Skydeck</td><td>38 Trần Phú</td><td>360°</td></tr>
+<tr><td class=nu>4</td><td>Skylight Nha Trang</td><td>43 эт. Havana</td><td>Sky bar</td></tr>
+<tr><td class=nu>5</td><td>Sailing Club Nha Trang</td><td>Trần Phú</td><td>Beach-клуб</td></tr>
+<tr><td class=nu>6</td><td>Sunshine Bar</td><td>—</td><td>Бар</td></tr>
+<tr><td class=nu>7</td><td>Secrets Bar & Grill</td><td>—</td><td>Бар-гриль</td></tr>
+<tr><td class=nu>8</td><td>Cheers Sports Pub</td><td>—</td><td>Спорт-паб</td></tr>
+<tr><td class=nu>9</td><td>The Cloud Bar</td><td>—</td><td>Кальян, рейтинг 4.8</td></tr>
+<tr><td class=nu>10</td><td>Aqualine Bar</td><td>InterContinental</td><td>У бассейна</td></tr>
+<tr><td class=nu>11</td><td>The Rooftop Lounge</td><td>Havana Hotel</td><td>Rooftop</td></tr>
+<tr><td class=nu>12</td><td>Wave Bar</td><td>Vinpearl Luxury</td><td>Над морем</td></tr>
+<tr><td class=nu>13</td><td>Yasaka Beer Garden</td><td>18 Trần Phú</td><td>Пивной сад</td></tr>
+</table></div></div>
+
+<!-- 21. Завтраки -->
+<div class="s" id="s21"><h2>21. Завтраки (Breakfast & Brunch) <span class="c">(8)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Artisan Cafe & Eatery</td><td>Завтраки</td></tr>
+<tr><td class=nu>2</td><td>Café Culture Brunch Club</td><td>Рейтинг 4.9</td></tr>
+<tr><td class=nu>3</td><td>Alpaca Homestyle Cafe</td><td>Завтраки</td></tr>
+<tr><td class=nu>4</td><td>Red Gate Bakery Cafe</td><td>Выпечка</td></tr>
+<tr><td class=nu>5</td><td>Time House Bistro</td><td>Завтраки</td></tr>
+<tr><td class=nu>6</td><td>Atlas Café</td><td>Бранч</td></tr>
+<tr><td class=nu>7</td><td>Iced Coffee Simply Original</td><td>Завтраки</td></tr>
+<tr><td class=nu>8</td><td>Sweet Secret</td><td>Завтраки</td></tr>
+</table></div></div>
+
+<!-- 22. Отельные -->
+<div class="s" id="s22"><h2>Отельные рестораны <span class="c">(24)</span></h2><div class="b">
+<table><tr><th>#</th><th>Название</th><th>Отель</th><th>Особенности</th></tr>
+<tr><td class=nu>1</td><td>Cookbook Cafe</td><td>InterContinental</td><td>Международная</td></tr>
+<tr><td class=nu>2</td><td>Feast</td><td>Sheraton</td><td>Буфет 5*</td></tr>
+<tr><td class=nu>3</td><td>Steam n' Spice</td><td>Sheraton</td><td>Китайская</td></tr>
+<tr><td class=nu>4</td><td>Spices Buffet</td><td>Premier Havana</td><td>Буфет</td></tr>
+<tr><td class=nu>5</td><td>Artichoke Restaurant</td><td>Premier Havana</td><td>Международная</td></tr>
+<tr><td class=nu>6</td><td>Havana 360° Skydeck</td><td>Premier Havana</td><td>Rooftop</td></tr>
+<tr><td class=nu>7</td><td>The Square</td><td>Novotel</td><td>Международная</td></tr>
+<tr><td class=nu>8</td><td>Sandals Restaurant</td><td>Mia Resort</td><td>Western + Vietnamese</td></tr>
+<tr><td class=nu>9</td><td>La Baia</td><td>Mia Resort</td><td>Итальянская</td></tr>
+<tr><td class=nu>10</td><td>Imperial Restaurant</td><td>Sunrise Beach</td><td>Международная</td></tr>
+<tr><td class=nu>11</td><td>Huong Viet Restaurant</td><td>Sunrise Beach</td><td>Вьетнамская</td></tr>
+<tr><td class=nu>12</td><td>Dining by the Bay</td><td>Six Senses Ninh Van Bay</td><td>Modern Asian</td></tr>
+<tr><td class=nu>13</td><td>Dining by the Rocks</td><td>Six Senses</td><td>Под открытым небом</td></tr>
+<tr><td class=nu>14</td><td>Wine Cave Dinner</td><td>Six Senses</td><td>Эксклюзив</td></tr>
+<tr><td class=nu>15</td><td>Marina Restaurant</td><td>Vinpearl</td><td>Азия, Европа</td></tr>
+<tr><td class=nu>16</td><td>Oceania Restaurant</td><td>Vinpearl</td><td>Паста, итальянская</td></tr>
+<tr><td class=nu>17</td><td>Lotus Restaurant</td><td>Vinpearl</td><td>Азиатская</td></tr>
+<tr><td class=nu>18</td><td>Orchid Restaurant</td><td>Vinpearl</td><td>Европейская</td></tr>
+<tr><td class=nu>19</td><td>Camellia Restaurant</td><td>Vinpearl</td><td>Международная</td></tr>
+<tr><td class=nu>20</td><td>Jasmine Restaurant</td><td>Vinpearl</td><td>Китайская</td></tr>
+<tr><td class=nu>21</td><td>Sea Breeze Restaurant</td><td>Vinpearl</td><td>BBQ</td></tr>
+<tr><td class=nu>22</td><td>Blue Lagoon</td><td>Vinpearl</td><td>Морепродукты</td></tr>
+<tr><td class=nu>23</td><td>Banana Leaf</td><td>Diamond Bay Resort</td><td>Азиатская</td></tr>
+<tr><td class=nu>24</td><td>Crown Restaurant</td><td>Crown Hotel</td><td>Западная + азиатская</td></tr>
+</table></div></div>
+
+<!-- Summary -->
+<div class="s" id="sum"><h2>Сводка <span class="c">(всего ~580+)</span></h2><div class="b">
+<table class="sum"><tr><th>Категория</th><th>Кол-во</th></tr>
+<tr><td>Русская кухня</td><td>22</td></tr>
+<tr><td>Вьетнамская кухня</td><td>172</td></tr>
+<tr><td>Морепродукты</td><td>58</td></tr>
+<tr><td>Итальянская</td><td>9</td></tr>
+<tr><td>Японская</td><td>11</td></tr>
+<tr><td>Корейская</td><td>11</td></tr>
+<tr><td>Индийская</td><td>3</td></tr>
+<tr><td>Греческая и средиземноморская</td><td>5</td></tr>
+<tr><td>Тайская</td><td>3</td></tr>
+<tr><td>Китайская</td><td>4</td></tr>
+<tr><td>Европейская и международная</td><td>43</td></tr>
+<tr><td>Немецкая / Швейцарская</td><td>3</td></tr>
+<tr><td>Мексиканская</td><td>2</td></tr>
+<tr><td>Вегетарианская и веганская</td><td>10</td></tr>
+<tr><td>Кофейни</td><td>110</td></tr>
+<tr><td>Буфеты</td><td>20</td></tr>
+<tr><td>Гриль и BBQ</td><td>13</td></tr>
+<tr><td>Уличная еда и фастфуд</td><td>20</td></tr>
+<tr><td>Пекарни и кондитерские</td><td>7</td></tr>
+<tr><td>Бары и пабы</td><td>13</td></tr>
+<tr><td>Завтраки</td><td>8</td></tr>
+<tr><td>Отельные рестораны</td><td>24</td></tr>
+<tr><td><strong>ИТОГО</strong></td><td><strong>~580+</strong></td></tr>
+</table></div></div>
+
+<div class="note">
+  <strong>Примечание:</strong> Полный список всех заведений Нячанга превышает 1 000 (по данным Foody.vn — 11 120 мест всех типов). Выше представлены наиболее известные и документированные заведения. Уличные лотки, мелкие кафе для местных и недокументированные заведения не вошли в каталог.
+</div>
+
+<script>
+document.querySelectorAll('.s h2').forEach(function(h){h.addEventListener('click',function(){this.parentElement.classList.toggle('closed')})});
+(function(){var n=document.getElementById('nav');document.querySelectorAll('.s').forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.textContent=s.querySelector('h2').textContent.split('(')[0].trim();n.appendChild(a)})})();
+</script>
+
+</div></body></html>

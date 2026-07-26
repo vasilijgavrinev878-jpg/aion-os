@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТЗ — Услуги для животных AION</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#03070d;color:#e2e8f0;line-height:1.6;padding:30px 20px}
+.container{max-width:800px;margin:0 auto}
+h1{font-size:1.8rem;color:#fff;margin-bottom:4px}
+.sub{color:#94a3b8;font-size:0.9rem;margin-bottom:24px;border-bottom:1px solid #1e293b;padding-bottom:12px}
+h2{font-size:1.2rem;color:#7c4dff;margin-top:26px;margin-bottom:8px;border-bottom:1px solid #1e293b;padding-bottom:6px}
+h3{font-size:1rem;color:#fff;margin-top:16px;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:0.87rem}
+th{background:#0a0f1d;color:#fff;border:1px solid #1e293b;padding:7px 10px;text-align:left;font-weight:600}
+td{border:1px solid #1e293b;padding:6px 10px;vertical-align:top}
+tr:nth-child(even){background:#050912}
+td:first-child{color:#60a5fa;font-weight:600;white-space:nowrap}
+code{color:#94a3b8;font-size:0.82rem}
+.schema{border-left:3px solid #7c4dff;padding:10px 16px;margin:10px 0 20px;background:rgba(105,50,242,0.05);border-radius:0 6px 6px 0;font-size:0.9rem}
+@media(max-width:600px){td:first-child{white-space:normal}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⟁ ТЗ — Услуги для животных</h1>
+<p class="sub">Параметры для анкеты партнёра. Все поля индексируются для AI-поиска.</p>
+
+<div class="schema">
+<strong>Тип услуги:</strong> Груминг / Ветеринар / Передержка / Выгул / Дрессировка / Зоотовары
+</div>
+
+<!-- ===== 1. ОБЩИЕ ПОЛЯ ===== -->
+<h2>1. Общие поля (все услуги)</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>id</td><td>UUID (авто)</td></tr>
+<tr><td>Название</td><td>строка, до 80 символов</td></tr>
+<tr><td>Описание</td><td>текст, до 3000 символов</td></tr>
+<tr><td>Тип услуги</td><td>Груминг / Ветеринар / Передержка / Выгул / Дрессировка / Зоотовары</td></tr>
+<tr><td>Цена</td><td>число</td></tr>
+<tr><td>Валюта</td><td>VND / USD / RUB / THB / TRY</td></tr>
+<tr><td>Локация</td><td>строка (город)</td></tr>
+<tr><td>Статус</td><td>Доступно / Временно недоступно</td></tr>
+<tr><td>ID партнёра</td><td>UUID</td></tr>
+</table>
+
+<!-- ===== 2. ГРУМИНГ ===== -->
+<h2>2. Груминг</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Вид животного</td><td>Собаки / Кошки / Грызуны / Птицы / Экзотика</td></tr>
+<tr><td>Тип</td><td>Стрижка / Купание / Расчёсывание / Обработка от паразитов / Комплекс</td></tr>
+</table>
+
+<!-- ===== 3. ВЕТЕРИНАР ===== -->
+<h2>3. Ветеринар</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Вид животного</td><td>Собаки / Кошки / Грызуны / Птицы / Экзотика / Все</td></tr>
+<tr><td>Тип</td><td>Приём / Вакцинация / Стерилизация / Рентген / УЗИ / Анализы / Стационар</td></tr>
+<tr><td>Выезд</td><td>Есть / Нет</td></tr>
+</table>
+
+<!-- ===== 4. ПЕРЕДЕРЖКА ===== -->
+<h2>4. Передержка</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Вид животного</td><td>Собаки / Кошки / Грызуны / Птицы / Все</td></tr>
+<tr><td>Срок</td><td>дни</td></tr>
+</table>
+
+<!-- ===== 5. ВЫГУЛ ===== -->
+<h2>5. Выгул</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>График</td><td>Разово / Ежедневно / По будням / По выходным</td></tr>
+<tr><td>Продолжительность</td><td>30 мин / 1 час / 2 часа</td></tr>
+</table>
+
+<!-- ===== 6. ДРЕССИРОВКА ===== -->
+<h2>6. Дрессировка</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Тип</td><td>Щенки / Общий курс / Защита / Адаптация / Коррекция поведения / Трюки</td></tr>
+<tr><td>Формат</td><td>Индивидуально / Группа / На дому / На площадке</td></tr>
+</table>
+
+<!-- ===== 7. ЗООТОВАРЫ ===== -->
+<h2>7. Зоотовары</h2>
+
+<table>
+<tr><th>Поле</th><th>Тип / Значения</th></tr>
+<tr><td>Вид животного</td><td>Собаки / Кошки / Грызуны / Птицы / Рыбы / Рептилии</td></tr>
+<tr><td>Категория</td><td>Корм / Амуниция / Игрушки / Лежанки / Переноски / Гигиена / Аквариумистика</td></tr>
+</table>
+
+<div style="text-align:center;color:#475569;font-size:0.82rem;margin-top:30px;border-top:1px solid #1e293b;padding-top:16px">
+AION · ТЗ Услуги для животных · Июль 2026
+</div>
+
+</div>
+</body>
+</html>

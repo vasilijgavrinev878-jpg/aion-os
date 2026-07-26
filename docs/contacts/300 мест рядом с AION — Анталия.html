@@ -1,0 +1,837 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>300 мест рядом — Анталия | AION</title>
+<style>
+  :root {
+    --primary: #0A0F1E;
+    --accent: #6366f1;
+    --gold: #D4A853;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --deep-blue: #0A1628;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .cover {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1a2a4a 50%, var(--deep-blue) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '∞';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.04;
+    top: -60px;
+    right: -40px;
+    font-weight: 100;
+  }
+  .cover::after {
+    content: 'AION';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.03;
+    bottom: -40px;
+    left: -20px;
+    font-weight: 900;
+    letter-spacing: 20px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .cover .subtitle {
+    font-size: 16px;
+    opacity: 0.75;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  .cover .meta {
+    margin-top: 28px;
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+  }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav a:hover { background: var(--bg-alt); color: var(--accent); }
+
+  .section {
+    padding: 24px 32px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--deep-blue);
+  }
+  .section-header .count {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+  }
+  .entry {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+  .entry:hover { border-color: var(--accent); }
+
+  .entry .num {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .entry h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin: 2px 0 4px;
+  }
+  .entry .loc {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  .entry .desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .entry .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .entry .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag-price { background: #f0fdf4; color: #15803d; }
+  .tag-time { background: #fefce8; color: #a16207; }
+  .tag-info { background: #eef2ff; color: #4338ca; }
+  .tag-warn { background: #fef2f2; color: #dc2626; }
+
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 28px; }
+    .section { padding: 16px 14px; }
+    .entry-grid { grid-template-columns: 1fr; }
+    .nav { padding: 6px 10px; gap: 2px; }
+    .nav a { font-size: 11px; padding: 2px 6px; }
+  }
+
+  .section ul { list-style: none; margin: 0; padding: 0; }
+  .section li {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .section li strong { color: var(--deep-blue); }
+  .section li .meta { color: var(--text-light); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">AION City Guide</div>
+  <h1>300 мест рядом</h1>
+  <div class="subtitle">Полный гид по Анталии — всё, что нужно русскоязычному</div>
+  <div class="meta">AION · Июнь 2026 · 14 разделов · 301 место</div>
+</div>
+
+<nav class="nav" id="nav">
+  <a href="#sight">Достопримечательности</a>
+  <a href="#beach">Пляжи</a>
+  <a href="#islands">Острова</a>
+  <a href="#spa">СПА</a>
+  <a href="#beauty">Красота</a>
+  <a href="#markets">Рынки</a>
+  <a href="#shopping">Шопинг</a>
+  <a href="#kids">Дети</a>
+  <a href="#sport">Спорт</a>
+  <a href="#med">Медицина</a>
+  <a href="#transport">Транспорт</a>
+  <a href="#food">Рестораны</a>
+  <a href="#night">Ночная жизнь</a>
+  <a href="#services">Сервисы</a>
+</nav>
+
+<div class="section" id="sight">
+<div class="section-header"><h2>Достопримечательности</h2><span class="count">25 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#1</div><h3>Калеичи (Старый город)</h3><div class="loc">Центр Анталии</div><div class="desc">Исторический центр с узкими улочками, османскими домами, гаванью и башнями. Главное место для прогулок.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#2</div><h3>Ворота Адриана</h3><div class="loc">Калеичи</div><div class="desc">Триумфальная арка II века н. э. в честь императора Адриана. Лучший образец римской архитектуры.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#3</div><h3>Яхт-марина Анталии</h3><div class="loc">Калеичи</div><div class="desc">Старая гавань с панорамными видами, яхтами, ресторанами. Закаты и прогулки на лодках.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#4</div><h3>Водопад Дюден</h3><div class="loc">~10 км от центра</div><div class="desc">Нижний водопад Дюден обрушивается прямо в море. Смотровая площадка, кафе. Очень живописно.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#5</div><h3>Верхний водопад Дюден</h3><div class="loc">К северу от города</div><div class="desc">Парк с водопадом в окружении зелени. Рестораны, дорожки, мостики. Хорошо в жару.</div><div class="tags"><span class="tag tag-price">10 TRY</span><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#6</div><h3>Минарет Йивли</h3><div class="loc">Калеичи</div><div class="desc">Сельджукский минарет «С бороздами» XIII века. Символ города, высота 38 м.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#7</div><h3>Античный театр Аспендос</h3><div class="loc">~35 км от Анталии</div><div class="desc">Лучше всего сохранившийся античный театр в мире на 15 000 мест. До сих пор используется.</div><div class="tags"><span class="tag tag-price">200 TRY</span><span class="tag tag-time">8:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#8</div><h3>Акведук Аспендос</h3><div class="loc">~35 км от Анталии</div><div class="desc">Древний римский акведук. Часть комплекса Аспендос, впечатляющая инженерия.</div><div class="tags"><span class="tag tag-price">Входит в билет</span></div></div>
+
+<div class="entry"><div class="num">#9</div><h3>Перге (Perge)</h3><div class="loc">~18 км от Анталии</div><div class="desc">Древний город с римскими банями, стадионом, агорой. Один из важнейших археологических памятников.</div><div class="tags"><span class="tag tag-price">100 TRY</span><span class="tag tag-time">8:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#10</div><h3>Олимпос (Olympos)</h3><div class="loc">~80 км от Анталии</div><div class="desc">Древний ликийский город среди леса прямо у пляжа. Руины, ликийские гробницы.</div><div class="tags"><span class="tag tag-price">100 TRY</span><span class="tag tag-time">8:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#11</div><h3>Пламя Химеры</h3><div class="loc">Гора Олимпос, Чиралы</div><div class="desc">Вечный огонь, горящий из скал. Подъём вечером, лучший закат. Берите фонарик.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Вечером</span></div></div>
+
+<div class="entry"><div class="num">#12</div><h3>Музей Анталии</h3><div class="loc">Кonyaaltı Caddesi</div><div class="desc">Один из лучших музеев Турции: залы саркофагов, мозаик, статуй. История от палеолита.</div><div class="tags"><span class="tag tag-price">100 TRY</span><span class="tag tag-time">8:30–17:30</span></div></div>
+
+<div class="entry"><div class="num">#13</div><h3>Часовая башня (Saat Kulesi)</h3><div class="loc">Калеичи</div><div class="desc">Историческая часовая башня на площади. Популярное место встречи.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#14</div><h3>Дюден-парк</h3><div class="loc">Район Лара</div><div class="desc">Зелёный парк с дорожками, фонтанами и видом на море. Отдых для всей семьи.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#15</div><h3>Пляж Коньяалты</h3><div class="loc">Konyaaltı</div><div class="desc">Галечный пляж с променадом длиной 7 км. Кафе, бары, спортивные площадки.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#16</div><h3>Терраса Арслан Хан</h3><div class="loc">Калеичи</div><div class="desc">Исторический караван-сарай XIII века. Отреставрирован, внутри кафе и магазины.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#17</div><h3>Караалиоглу-парк</h3><div class="loc">Konyaaltı</div><div class="desc">Парк на скале с панорамным видом на Средиземное море и горы. Лучшее место для заката.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#18</div><h3>Мечеть Текели Мехмет Паша</h3><div class="loc">Калеичи</div><div class="desc">Османская мечеть XVIII века с красивым куполом и минаретом. Действующая.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#19</div><h3>Сирали (Çıralı) — пляж и черепахи</h3><div class="loc">~80 км от Анталии</div><div class="desc">Пляж гнездования черепах Caretta-Caretta. Заповедная зона, отели.</div><div class="tags"><span class="tag tag-info">Сезон гнездования</span></div></div>
+
+<div class="entry"><div class="num">#20</div><h3>Каньон Гёйнюк</h3><div class="loc">~60 км от Анталии</div><div class="desc">Живописный каньон с водопадами, трекинг-маршрутами и плаванием. Вход платный.</div><div class="tags"><span class="tag tag-price">50 TRY</span></div></div>
+
+<div class="entry"><div class="num">#21</div><h3>Археологический парк Ксантос</h3><div class="loc">~100 км от Анталии</div><div class="desc">Древняя столица Ликии. Некрополь, амфитеатр, стелы. Объект ЮНЕСКО.</div><div class="tags"><span class="tag tag-price">100 TRY</span></div></div>
+
+<div class="entry"><div class="num">#22</div><h3>Лара-Бич променад</h3><div class="loc">Lara</div><div class="desc">Песчаный пляж с отелями и кафе. Протяжённая набережная для прогулок.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#23</div><h3>Канатная дорога Tünektepe</h3><div class="loc">Konyaaltı</div><div class="desc">Кабинки на гору с видом на весь залив. Наверху ресторан и смотровая.</div><div class="tags"><span class="tag tag-price">200–300 TRY</span><span class="tag tag-time">10:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#24</div><h3>Древний город Сиде</h3><div class="loc">~75 км от Анталии</div><div class="desc">Античный город на полуострове. Храм Аполлона, амфитеатр прямо у моря.</div><div class="tags"><span class="tag tag-price">100 TRY</span></div></div>
+
+<div class="entry"><div class="num">#25</div><h3>Музей игрушек Анталии</h3><div class="loc">Калеичи</div><div class="desc">Уникальная коллекция старинных игрушек. Интересно детям и взрослым.</div><div class="tags"><span class="tag tag-price">50 TRY</span><span class="tag tag-time">9:00–18:00</span></div></div>
+</div></div>
+
+<div class="section" id="beach">
+<div class="section-header"><h2>Пляжи</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#26</div><h3>Konyaaltı Beach</h3><div class="loc">Konyaaltı</div><div class="desc">Главный городской пляж с галькой и песком. Протяжённый променад, кафе, души.</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#27</div><h3>Lara Beach</h3><div class="loc">Lara</div><div class="desc">Песчаный пляж с пологим входом. Лучший для детей. Много отелей «всё включено».</div><div class="tags"><span class="tag tag-price">Бесплатно</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#28</div><h3>Çıralı Beach</h3><div class="loc">~80 км от Анталии</div><div class="desc">Дикий пляж длиной 3 км. Место гнездования черепах. Чистейшая вода.</div><div class="tags"><span class="tag tag-info">Заповедник</span></div></div>
+
+<div class="entry"><div class="num">#29</div><h3>Olympos Beach</h3><div class="loc">Олимпос</div><div class="desc">Пляж среди руин античного города. Уникальная атмосфера, treehouse-отели.</div><div class="tags"><span class="tag tag-price">100 TRY</span></div></div>
+
+<div class="entry"><div class="num">#30</div><h3>Mermerli Beach</h3><div class="loc">Калеичи</div><div class="desc">Небольшой пляж прямо в старом городе у крепостных стен. Вход платный.</div><div class="tags"><span class="tag tag-price">50 TRY</span><span class="tag tag-time">8:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#31</div><h3>Kleopatra Beach (Аланья)</h3><div class="loc">~130 км от Анталии</div><div class="desc">Знаменитый пляж с золотым песком. Говорят, песок привозили для Клеопатры.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#32</div><h3>Капуташ-Бич</h3><div class="loc">~100 км от Анталии</div><div class="desc">Маленькая бухта с бирюзовой водой между скал. Один из самых фотогеничных пляжей.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#33</div><h3>Финике-пляж</h3><div class="loc">~120 км от Анталии</div><div class="desc">Спокойный пляж в тихом городе. Мало туристов, много местных.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#34</div><h3>Кемер-Бич</h3><div class="loc">Kemer Merkez</div><div class="desc">Городской пляж Кемера. Галька, чистая вода, пирс для прыжков.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#35</div><h3>Çakıl Beach</h3><div class="loc">Konyaaltı</div><div class="desc">Галечный пляж на восточной части. Меньше людей, хорошее место для заката.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#36</div><h3>Beldibi Beach</h3><div class="loc">Beldibi, ~25 км от Анталии</div><div class="desc">Пляж среди соснового леса. Кемпинг, кафе, спокойный отдых.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#37</div><h3>Konyaaltı Plajı (Mavi Bayrak)</h3><div class="loc">Konyaaltı</div><div class="desc">Участок с Голубым флагом. Шезлонги, зонты, водные виды спорта.</div><div class="tags"><span class="tag tag-price">Шезлонг 50 TRY</span><span class="tag tag-time">8:00–19:00</span></div></div>
+</div></div>
+
+<div class="section" id="islands">
+<div class="section-header"><h2>Острова и морские экскурсии</h2><span class="count">10 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#38</div><h3>Яхт-тур «12 островов»</h3><div class="loc">Гавань Калеичи</div><div class="desc">Морская прогулка вдоль побережья. Купание, обед, остановки в бухтах. 6–8 часов.</div><div class="tags"><span class="tag tag-price">500–1000 TRY</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#39</div><h3>Дайвинг в Анталии</h3><div class="loc">Konyaaltı / Калеичи</div><div class="desc">Центры дайвинга для начинающих и опытных. Погружения к рифам и затонувшим кораблям.</div><div class="tags"><span class="tag tag-price">от 600 TRY</span></div></div>
+
+<div class="entry"><div class="num">#40</div><h3>Паром на остров Кекова</h3><div class="loc">~120 км от Анталии</div><div class="desc">Экскурсия к затонувшему городу. Прозрачная вода, руины под водой.</div><div class="tags"><span class="tag tag-price">400–800 TRY</span><span class="tag tag-info">На целый день</span></div></div>
+
+<div class="entry"><div class="num">#41</div><h3>Рыбалка в открытом море</h3><div class="loc">От причала Калеичи</div><div class="desc">Морская рыбалка с туром. Снаряжение включено, улов готовят на борту.</div><div class="tags"><span class="tag tag-price">600–1000 TRY</span></div></div>
+
+<div class="entry"><div class="num">#42</div><h3>Рафтинг на реке Чам</h3><div class="loc">~50 км от Анталии</div><div class="desc">Туры с инструкторами. 2–3 часа сплава по горной реке. Все уровни.</div><div class="tags"><span class="tag tag-price">500–900 TRY</span><span class="tag tag-info">Трансфер включён</span></div></div>
+
+<div class="entry"><div class="num">#43</div><h3>Парасейлинг в Аланье</h3><div class="loc">Пляж Клеопатры</div><div class="desc">Полёт над морем за катером. Панорамный вид на замок и город.</div><div class="tags"><span class="tag tag-price">600–1000 TRY</span></div></div>
+
+<div class="entry"><div class="num">#44</div><h3>Морское сафари на лодке</h3><div class="loc">Гавань Калеичи</div><div class="desc">Быстрая лодка с музыкой. Остановки для купания, пенная вечеринка.</div><div class="tags"><span class="tag tag-price">300–600 TRY</span></div></div>
+
+<div class="entry"><div class="num">#45</div><h3>Катание на водных лыжах</h3><div class="loc">Konyaaltı</div><div class="desc">Прокат гидроциклов, водных лыж, бананов. На пляже.</div><div class="tags"><span class="tag tag-price">200–400 TRY</span></div></div>
+
+<div class="entry"><div class="num">#46</div><h3>Каньонинг в Гёйнюке</h3><div class="loc">~60 км от Анталии</div><div class="desc">Спуск по каньону с прыжками в воду. Экстрим для смелых.</div><div class="tags"><span class="tag tag-price">500–800 TRY</span></div></div>
+
+<div class="entry"><div class="num">#47</div><h3>Каякинг у Олимпоса</h3><div class="loc">Пляж Олимпос</div><div class="desc">Морской каякинг вдоль руин. Особенно красиво на закате.</div><div class="tags"><span class="tag tag-price">300–500 TRY</span></div></div>
+</div></div>
+
+<div class="section" id="spa">
+<div class="section-header"><h2>СПА</h2><span class="count">15 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#48</div><h3>Haman Kaleiçi</h3><div class="loc">Калеичи</div><div class="desc">Исторический турецкий хаммам в старом городе. Пар, пилинг, массаж.</div><div class="tags"><span class="tag tag-price">400–800 TRY</span><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#49</div><h3>Imperial Spa Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Современный спа-центр с хаммамом, сауной, джакузи и массажем.</div><div class="tags"><span class="tag tag-price">500–1000 TRY</span><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#50</div><h3>Aksu Hamam</h3><div class="loc">Aksu</div><div class="desc">Традиционный турецкий хаммам с мраморным столом. Недорого.</div><div class="tags"><span class="tag tag-price">200–500 TRY</span><span class="tag tag-time">8:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#51</div><h3>Seven Spas Wellness</h3><div class="loc">Lara</div><div class="desc">Спа-центр на территории отеля. Доступен для внешних гостей.</div><div class="tags"><span class="tag tag-price">от 600 TRY</span></div></div>
+
+<div class="entry"><div class="num">#52</div><h3>Талассо-центр Konyaaltı</h3><div class="loc">Konyaaltı</div><div class="desc">Морские процедуры: водоросли, соли, массаж с видом на море.</div><div class="tags"><span class="tag tag-price">от 800 TRY</span></div></div>
+
+<div class="entry"><div class="num">#53</div><h3>Nirvana Spa</h3><div class="loc">Lara</div><div class="desc">Элитный спа при отеле Nirvana. Широкий выбор процедур.</div><div class="tags"><span class="tag tag-price">от 1000 TRY</span></div></div>
+
+<div class="entry"><div class="num">#54</div><h3>Lara Hamam&Sauna</h3><div class="loc">Lara</div><div class="desc">Комплекс хаммам + сауна. Мужской и женский залы раздельные.</div><div class="tags"><span class="tag tag-price">300–600 TRY</span></div></div>
+
+<div class="entry"><div class="num">#55</div><h3>Green Garden Spa</h3><div class="loc">Konyaaltı</div><div class="desc">Спа в зелёном саду. Массаж, обёртывания, уход за лицом.</div><div class="tags"><span class="tag tag-price">от 400 TRY</span></div></div>
+
+<div class="entry"><div class="num">#56</div><h3>Ottoman SPA Center</h3><div class="loc">Muratpaşa</div><div class="desc">Османский стиль, хаммам, массаж, скраб. Приятные интерьеры.</div><div class="tags"><span class="tag tag-price">300–700 TRY</span><span class="tag tag-time">9:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#57</div><h3>Elixir Spa Antalya</h3><div class="loc">Lara</div><div class="desc">Современный спа с ароматерапией, криотерапией, соляной комнатой.</div><div class="tags"><span class="tag tag-price">от 700 TRY</span></div></div>
+
+<div class="entry"><div class="num">#58</div><h3>Adalya Hamamı</h3><div class="loc">Konyaaltı</div><div class="desc">Хаммам для всей семьи. Доступные цены, чистота.</div><div class="tags"><span class="tag tag-price">250–500 TRY</span></div></div>
+
+<div class="entry"><div class="num">#59</div><h3>Nazar Hamam</h3><div class="loc">Калеичи</div><div class="desc">Турецкая баня в центре. Скраб, пенный массаж, масла.</div><div class="tags"><span class="tag tag-price">350–600 TRY</span></div></div>
+
+<div class="entry"><div class="num">#60</div><h3>Alya Spa & Wellness</h3><div class="loc">Konyaaltı</div><div class="desc">Спа-салон с видом на море. Массаж, уходы, джакузи.</div><div class="tags"><span class="tag tag-price">от 500 TRY</span></div></div>
+
+<div class="entry"><div class="num">#61</div><h3>Rixos Spa Antalya</h3><div class="loc">Lara</div><div class="desc">Премиальный спа в Rixos Downtown. Доступ по дневному абонементу.</div><div class="tags"><span class="tag tag-price">от 1200 TRY</span></div></div>
+
+<div class="entry"><div class="num">#62</div><h3>Deniz Spa</h3><div class="loc">Konyaaltı</div><div class="desc">Небольшой спа-центр у пляжа. Массаж, хаммам.</div><div class="tags"><span class="tag tag-price">300–500 TRY</span></div></div>
+</div></div>
+
+<div class="section" id="beauty">
+<div class="section-header"><h2>Салоны красоты и Nail-студии</h2><span class="count">14 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#63</div><h3>Nail Art Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Маникюр, педикюр, дизайн. Русскоязычные мастера.</div><div class="tags"><span class="tag tag-price">Маникюр от 200 TRY</span></div></div>
+
+<div class="entry"><div class="num">#64</div><h3>Beauty Dream Antalya</h3><div class="loc">Muratpaşa</div><div class="desc">Стрижки, окрашивание, уход. Русский персонал.</div><div class="tags"><span class="tag tag-price">Стрижка от 300 TRY</span></div></div>
+
+<div class="entry"><div class="num">#65</div><h3>Pink Nail & Beauty</h3><div class="loc">Konyaaltı</div><div class="desc">Ногтевой сервис, наращивание ресниц, брови.</div><div class="tags"><span class="tag tag-price">Маникюр от 250 TRY</span></div></div>
+
+<div class="entry"><div class="num">#66</div><h3>Glamour Hair Studio</h3><div class="loc">Konyaaltı</div><div class="desc">Парикмахерская для мужчин и женщин. Стильные стрижки.</div><div class="tags"><span class="tag tag-price">Стрижка от 350 TRY</span></div></div>
+
+<div class="entry"><div class="num">#67</div><h3>Alya Beauty Center</h3><div class="loc">Lara</div><div class="desc">Комплексный салон: ногти, волосы, брови, косметология.</div><div class="tags"><span class="tag tag-price">от 300 TRY</span></div></div>
+
+<div class="entry"><div class="num">#68</div><h3>Nail Time Antalya</h3><div class="loc">Калеичи</div><div class="desc">Быстрый маникюр и педикюр. Гель-лак, дизайн.</div><div class="tags"><span class="tag tag-price">Маникюр от 200 TRY</span></div></div>
+
+<div class="entry"><div class="num">#69</div><h3>Barber King Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Мужская парикмахерская. Стрижки, борода, бритьё.</div><div class="tags"><span class="tag tag-price">Мужская стрижка от 250 TRY</span></div></div>
+
+<div class="entry"><div class="num">#70</div><h3>Lash & Brow Studio</h3><div class="loc">Muratpaşa</div><div class="desc">Ресницы, брови, ламинирование. Сертифицированные мастера.</div><div class="tags"><span class="tag tag-price">Ресницы от 400 TRY</span></div></div>
+
+<div class="entry"><div class="num">#71</div><h3>Golden Nails Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Студия маникюра с европейскими материалами.</div><div class="tags"><span class="tag tag-price">от 250 TRY</span></div></div>
+
+<div class="entry"><div class="num">#72</div><h3>Beauty Queen Salon</h3><div class="loc">Lara</div><div class="desc">Салон красоты полного цикла. Макияж, причёски, маникюр.</div><div class="tags"><span class="tag tag-price">от 400 TRY</span></div></div>
+
+<div class="entry"><div class="num">#73</div><h3>Rus Nail House</h3><div class="loc">Konyaaltı</div><div class="desc">Русские мастера маникюра. Дизайн, наращивание, шеллак.</div><div class="tags"><span class="tag tag-price">Маникюр от 300 TRY</span></div></div>
+
+<div class="entry"><div class="num">#74</div><h3>Fresh Barber Shop</h3><div class="loc">Muratpaşa</div><div class="desc">Классический барбершоп. Горячее бритьё, стрижки машинкой.</div><div class="tags"><span class="tag tag-price">от 200 TRY</span></div></div>
+
+<div class="entry"><div class="num">#75</div><h3>Viva Nails & Spa</h3><div class="loc">Konyaaltı</div><div class="desc">Маникюр + спа-уход для рук и ног.</div><div class="tags"><span class="tag tag-price">от 350 TRY</span></div></div>
+
+<div class="entry"><div class="num">#76</div><h3>Bella Beauty Studio</h3><div class="loc">Lara</div><div class="desc">Студия красоты: брови, ресницы, маникюр, косметология.</div><div class="tags"><span class="tag tag-price">от 300 TRY</span></div></div>
+</div></div>
+
+<div class="section" id="markets">
+<div class="section-header"><h2>Рынки</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#77</div><h3>Калеичи-рынок (Kaleiçi Pazarı)</h3><div class="loc">Калеичи</div><div class="desc">Традиционный рынок свежих продуктов. Фрукты, овощи, сыры, оливки.</div><div class="tags"><span class="tag tag-time">6:00–13:00</span><span class="tag tag-info">Суббота, четверг</span></div></div>
+
+<div class="entry"><div class="num">#78</div><h3>Рынок Кепез (Kepez Pazarı)</h3><div class="loc">Kepez</div><div class="desc">Большой районный рынок. Одежда, продукты, хозтовары. Низкие цены.</div><div class="tags"><span class="tag tag-time">6:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#79</div><h3>Рынок Муратпаша</h3><div class="loc">Muratpaşa</div><div class="desc">Продуктовый рынок для местных. Всё свежее, цены ниже туристических.</div><div class="tags"><span class="tag tag-time">6:00–14:00</span></div></div>
+
+<div class="entry"><div class="num">#80</div><h3>Коньяалты-рынок (Konyaaltı Pazarı)</h3><div class="loc">Konyaaltı</div><div class="desc">Субботний рынок у моря. Фрукты, овощи, текстиль, сувениры.</div><div class="tags"><span class="tag tag-time">6:00–15:00</span></div></div>
+
+<div class="entry"><div class="num">#81</div><h3>Рыбный рынок Анталии</h3><div class="loc">Muratpaşa</div><div class="desc">Свежая рыба и морепродукты прямо с лодок. Можно заказать приготовление рядом.</div><div class="tags"><span class="tag tag-time">5:00–12:00</span></div></div>
+
+<div class="entry"><div class="num">#82</div><h3>Сельскохозяйственный рынок (Toptancı Hali)</h3><div class="loc">Kepez</div><div class="desc">Оптовый рынок фруктов и овощей. Очень дёшево, большими партиями.</div><div class="tags"><span class="tag tag-time">5:00–12:00</span></div></div>
+
+<div class="entry"><div class="num">#83</div><h3>Блошиный рынок (Bit Pazarı)</h3><div class="loc">Kepez</div><div class="desc">Блошиный рынок со старыми вещами, винтажом и антиквариатом.</div><div class="tags"><span class="tag tag-time">8:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#84</div><h3>Рынок тканей (Kumaş Pazarı)</h3><div class="loc">Muratpaşa</div><div class="desc">Огромный выбор тканей от производителей. Шторы, одежда на заказ.</div><div class="tags"><span class="tag tag-time">8:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#85</div><h3>Цветочный рынок</h3><div class="loc">Konyaaltı</div><div class="desc">Свежие цветы и растения. В 3–5 раз дешевле, чем в РФ.</div><div class="tags"><span class="tag tag-time">7:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#86</div><h3>Анталия-ночной рынок в Ларе</h3><div class="loc">Lara</div><div class="desc">Вечерний рынок: сувениры, одежда, еда, развлечения.</div><div class="tags"><span class="tag tag-time">18:00–23:00</span></div></div>
+
+<div class="entry"><div class="num">#87</div><h3>Специализированный чайный рынок</h3><div class="loc">Muratpaşa</div><div class="desc">Все сорта турецкого чая, кофе, специи, сладости.</div><div class="tags"><span class="tag tag-time">8:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#88</div><h3>Экопродукты — Köy Pazarı</h3><div class="loc">Konyaaltı</div><div class="desc">Фермерский рынок: домашние сыры, мёд, оливки, яйца от кур.</div><div class="tags"><span class="tag tag-time">6:00–14:00</span><span class="tag tag-info">Воскресенье</span></div></div>
+</div></div>
+
+<div class="section" id="shopping">
+<div class="section-header"><h2>Торговые центры и шопинг</h2><span class="count">18 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#89</div><h3>MarkAntalya AVM</h3><div class="loc">Muratpaşa</div><div class="desc">Крупнейший ТЦ Анталии. 200+ магазинов, кинотеатр, фуд-корт.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#90</div><h3>TerraCity AVM</h3><div class="loc">Kepez</div><div class="desc">Современный ТЦ с международными брендами, кафе и детской зоной.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#91</div><h3>Migros AVM</h3><div class="loc">Konyaaltı</div><div class="desc">Торговый центр с супермаркетом Migros, бутиками, ресторанами.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#92</div><h3>ÖzdilekPark AVM</h3><div class="loc">Muratpaşa</div><div class="desc">ТЦ с огромным выбором товаров для дома, одежды, электроники.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#93</div><h3>5M Migros</h3><div class="loc">Konyaaltı</div><div class="desc">Крупный супермаркет с отделом свежих продуктов, пекарня.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#94</div><h3>Migros Toptan (Metro)</h3><div class="loc">Kepez</div><div class="desc">Оптовый супермаркет. Выгодные цены на большие упаковки.</div><div class="tags"><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#95</div><h3>Kleopatra Caddesi (шопинг-улица)</h3><div class="loc">Konyaaltı</div><div class="desc">Пешеходная улица с магазинами, бутиками, сувенирами.</div><div class="tags"><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#96</div><h3>Işıklar Caddesi</h3><div class="loc">Muratpaşa</div><div class="desc">Главная торговая улица. Одежда, обувь, аксессуары.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#97</div><h3>Kipa AVM</h3><div class="loc">Kepez</div><div class="desc">ТЦ сети Kipa (Tesco). Продукты, одежда, бытовая химия.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#98</div><h3>Decathlon Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Магазин спортивных товаров. Всё для активного отдыха.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#99</div><h3>MediaMarkt Antalya</h3><div class="loc">MarkAntalya AVM</div><div class="desc">Сеть электроники. Техника, ноутбуки, телефоны.</div><div class="tags"><span class="tag tag-time">10:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#100</div><h3>Koçtaş / Bauhaus</h3><div class="loc">Kepez</div><div class="desc">Строительные гипермаркеты. Всё для дома и ремонта.</div><div class="tags"><span class="tag tag-time">8:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#101</div><h3>Аутлет-центр Lara</h3><div class="loc">Lara</div><div class="desc">Дисконт-магазины брендовой одежды. Сезонные скидки.</div><div class="tags"><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#102</div><h3>Altınkum Caddesi магазины</h3><div class="loc">Lara</div><div class="desc">Торговая улица в районе Лара. Бутики, кафе, аптеки.</div><div class="tags"><span class="tag tag-time">9:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#103</div><h3>Grand Bazaar Antalya</h3><div class="loc">Muratpaşa</div><div class="desc">Крытый базар: ковры, ювелирка, кожа, сувениры. Торгуйтесь!</div><div class="tags"><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#104</div><h3>Artemis AVM</h3><div class="loc">Kepez</div><div class="desc">Небольшой ТЦ: продуктовый, магазины одежды, кафе.</div><div class="tags"><span class="tag tag-time">10:00–21:00</span></div></div>
+
+<div class="entry"><div class="num">#105</div><h3>CarrefourSA Lara</h3><div class="loc">Lara</div><div class="desc">Супермаркет французской сети. Большой выбор продуктов.</div><div class="tags"><span class="tag tag-time">8:00–22:00</span></div></div>
+
+<div class="entry"><div class="num">#106</div><h3>Üçkapılar Shopping Street</h3><div class="loc">Muratpaşa</div><div class="desc">Пешеходная улица «Трое ворот». Магазины, кафе.</div><div class="tags"><span class="tag tag-time">9:00–21:00</span></div></div>
+</div></div>
+
+<div class="section" id="kids">
+<div class="section-header"><h2>Детские центры и развлечения</h2><span class="count">14 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#107</div><h3>Aktur Lunapark</h3><div class="loc">Konyaaltı</div><div class="desc">Парк аттракционов у моря. Колесо обозрения, автодром, карусели.</div><div class="tags"><span class="tag tag-price">Аттракционы от 20 TRY</span></div></div>
+
+<div class="entry"><div class="num">#108</div><h3>Аквапарк Aqualand Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Крупный аквапарк с горками, волновым бассейном, детской зоной.</div><div class="tags"><span class="tag tag-price">400–600 TRY</span><span class="tag tag-time">10:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#109</div><h3>Аквапарк Troy Aqua</h3><div class="loc">Lara</div><div class="desc">Аквапарк в Lara Beach Hotel. Открыт для внешних гостей.</div><div class="tags"><span class="tag tag-price">300–500 TRY</span></div></div>
+
+<div class="entry"><div class="num">#110</div><h3>Детская игровая в MarkAntalya</h3><div class="loc">MarkAntalya AVM</div><div class="desc">Крытая игровая зона с лабиринтами, батутами, автоматами.</div><div class="tags"><span class="tag tag-price">от 100 TRY</span></div></div>
+
+<div class="entry"><div class="num">#111</div><h3>Kidiland TerraCity</h3><div class="loc">TerraCity AVM</div><div class="desc">Детский центр: горки, шариковые бассейны, анимация.</div><div class="tags"><span class="tag tag-price">100–200 TRY</span></div></div>
+
+<div class="entry"><div class="num">#112</div><h3>Дельфинарий Sealanya</h3><div class="loc">Lara</div><div class="desc">Шоу с дельфинами, плавание с дельфинами. Детский восторг.</div><div class="tags"><span class="tag tag-price">400–800 TRY</span></div></div>
+
+<div class="entry"><div class="num">#113</div><h3>Мини-зоопарк Kepez</h3><div class="loc">Kepez</div><div class="desc">Бесплатный зоопарк в парке. Олени, пони, козы.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#114</div><h3>Airport Park (авиасимулятор)</h3><div class="loc">Muratpaşa</div><div class="desc">Симулятор полёта для детей. Интерактивный музей авиации.</div><div class="tags"><span class="tag tag-price">200–400 TRY</span></div></div>
+
+<div class="entry"><div class="num">#115</div><h3>Боулинг в MarkAntalya</h3><div class="loc">MarkAntalya AVM</div><div class="desc">Современный боулинг на 12 дорожек. Детские шары.</div><div class="tags"><span class="tag tag-price">100–200 TRY/игра</span></div></div>
+
+<div class="entry"><div class="num">#116</div><h3>Парк «80-летие» (80.Yıl Parkı)</h3><div class="loc">Muratpaşa</div><div class="desc">Большой парк с детскими площадками, прудами, утками.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#117</div><h3>Центр батутов Jumpland</h3><div class="loc">Konyaaltı</div><div class="desc">Крытый парк батутов с поролоновыми ямами. Для всех возрастов.</div><div class="tags"><span class="tag tag-price">150–300 TRY/час</span></div></div>
+
+<div class="entry"><div class="num">#118</div><h3>Русскоязычный детский клуб</h3><div class="loc">Konyaaltı</div><div class="desc">Развивающие занятия, творчество, подготовка к школе.</div><div class="tags"><span class="tag tag-info">Русскоязычный</span></div></div>
+
+<div class="entry"><div class="num">#119</div><h3>Верёвочный парк Antalya Park</h3><div class="loc">Konyaaltı</div><div class="desc">Трассы на деревьях для детей разного возраста. Страховка.</div><div class="tags"><span class="tag tag-price">200–400 TRY</span></div></div>
+
+<div class="entry"><div class="num">#120</div><h3>Конный клуб для детей</h3><div class="loc">Kepez</div><div class="desc">Верховая езда для начинающих. Пони для малышей.</div><div class="tags"><span class="tag tag-price">200 TRY/30 мин</span></div></div>
+</div></div>
+
+<div class="section" id="sport">
+<div class="section-header"><h2>Спорт и активности</h2><span class="count">18 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#121</div><h3>Гора Тахталы (Olympos Teleferik)</h3><div class="loc">~40 км от Анталии</div><div class="desc">Канатная дорога на гору 2365 м. Панорама побережья, треккинг.</div><div class="tags"><span class="tag tag-price">400–700 TRY</span><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#122</div><h3>Кайтсёрфинг в Ларе</h3><div class="loc">Lara Beach</div><div class="desc">Школа кайтсёрфинга. Обучение для начинающих, прокат.</div><div class="tags"><span class="tag tag-price">Урок от 500 TRY</span></div></div>
+
+<div class="entry"><div class="num">#123</div><h3>Дайвинг-центр Anda Scuba</h3><div class="loc">Konyaaltı</div><div class="desc">PADI-центр. Погружения на рифы, ночной дайвинг, курсы.</div><div class="tags"><span class="tag tag-price">от 800 TRY</span></div></div>
+
+<div class="entry"><div class="num">#124</div><h3>Фитнес-клуб Sports International</h3><div class="loc">Fener</div><div class="desc">Тренажёрный зал, бассейн, групповые занятия. Дневные абонементы.</div><div class="tags"><span class="tag tag-price">Дневной 100 TRY</span></div></div>
+
+<div class="entry"><div class="num">#125</div><h3>Гольф-клуб Antalya Golf Club</h3><div class="loc">Belek, ~30 км</div><div class="desc">Поле 18 лунок. Прокат клюшек, обучение. Красивая природа.</div><div class="tags"><span class="tag tag-price">1000–2000 TRY</span></div></div>
+
+<div class="entry"><div class="num">#126</div><h3>Теннисный клуб Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Корты с покрытием hard. Прокат ракеток, тренер.</div><div class="tags"><span class="tag tag-price">200–400 TRY/час</span></div></div>
+
+<div class="entry"><div class="num">#127</div><h3>Беговой парк Karaalioğlu</h3><div class="loc">Konyaaltı</div><div class="desc">Парк с дорожками для бега, спортивными площадками.</div><div class="tags"><span class="tag tag-price">Бесплатно</span></div></div>
+
+<div class="entry"><div class="num">#128</div><h3>Йога на пляже Konyaaltı</h3><div class="loc">Konyaaltı</div><div class="desc">Групповые занятия йогой у моря. Утро и закат.</div><div class="tags"><span class="tag tag-price">100–200 TRY</span></div></div>
+
+<div class="entry"><div class="num">#129</div><h3>Веломаршрут Konyaaltı — Lara</h3><div class="loc">Променад</div><div class="desc">Прокат велосипедов. Длина маршрута 15 км вдоль моря.</div><div class="tags"><span class="tag tag-price">Прокат от 100 TRY/час</span></div></div>
+
+<div class="entry"><div class="num">#130</div><h3>Страйкбол Анталия</h3><div class="loc">Kepez</div><div class="desc">Поле для страйкбола со сценариями. Снаряжение в аренду.</div><div class="tags"><span class="tag tag-price">от 400 TRY</span></div></div>
+
+<div class="entry"><div class="num">#131</div><h3>Треккинг в Ликийском ущелье</h3><div class="loc">~50 км от Анталии</div><div class="desc">Пеший поход по Ликийской тропе. Живописные виды на море.</div><div class="tags"><span class="tag tag-info">С гидом</span></div></div>
+
+<div class="entry"><div class="num">#132</div><h3>Пул / бильярд</h3><div class="loc">Konyaaltı</div><div class="desc">Несколько бильярдных клубов. Американский пул.</div><div class="tags"><span class="tag tag-price">50–150 TRY/час</span></div></div>
+
+<div class="entry"><div class="num">#133</div><h3>Конный клуб Antalya</h3><div class="loc">Kepez</div><div class="desc">Верховая езда по горам и полям. Для любого уровня.</div><div class="tags"><span class="tag tag-price">400–800 TRY/час</span></div></div>
+
+<div class="entry"><div class="num">#134</div><h3>Мини-гольф Lara</h3><div class="loc">Lara</div><div class="desc">Развлекательный мини-гольф для всей семьи.</div><div class="tags"><span class="tag tag-price">200 TRY</span></div></div>
+
+<div class="entry"><div class="num">#135</div><h3>Боевые искусства (Taekwondo)</h3><div class="loc">Muratpaşa</div><div class="desc">Секции турецкого таэквондо для детей и взрослых.</div><div class="tags"><span class="tag tag-price">от 300 TRY/мес</span></div></div>
+
+<div class="entry"><div class="num">#136</div><h3>Скалодром Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Крытый скалодром с трассами разной сложности.</div><div class="tags"><span class="tag tag-price">200–400 TRY</span></div></div>
+
+<div class="entry"><div class="num">#137</div><h3>Футбольные поля Muratpaşa</h3><div class="loc">Muratpaşa</div><div class="desc">Крытое футбольное поле. Аренда, сборные команды.</div><div class="tags"><span class="tag tag-price">от 300 TRY/час</span></div></div>
+
+<div class="entry"><div class="num">#138</div><h3>Дайвинг для начинающих (бассейн)</h3><div class="loc">Konyaaltı</div><div class="desc">Обучение дайвингу в бассейне. Пробное погружение.</div><div class="tags"><span class="tag tag-price">300–500 TRY</span></div></div>
+</div></div>
+
+<div class="section" id="med">
+<div class="section-header"><h2>Медицина и клиники</h2><span class="count">14 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#139</div><h3>Medical Park Antalya</h3><div class="loc">Muratpaşa</div><div class="desc">Крупная частная больница. Многопрофильная, международный отдел.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#140</div><h3>Acıbadem Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Сеть Acıbadem. Высокий уровень, англоязычный персонал.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#141</div><h3>Antalya Eğitim Araştırma</h3><div class="loc">Muratpaşa</div><div class="desc">Государственная учебная больница. Скорая, хирургия.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#142</div><h3>Anadolu Hastanesi</h3><div class="loc">Konyaaltı</div><div class="desc">Частная больница. Хорошее отделение стоматологии.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#143</div><h3>Стоматология DentWay</h3><div class="loc">Konyaaltı</div><div class="desc">Имплантация, виниры, отбеливание. Русскоговорящий персонал.</div><div class="tags"><span class="tag tag-time">9:00–20:00</span></div></div>
+
+<div class="entry"><div class="num">#144</div><h3>Русский врач в Анталии</h3><div class="loc">По городу</div><div class="desc">Русскоязычные врачи: терапевт, педиатр, гинеколог. Выезд на дом.</div><div class="tags"><span class="tag tag-info">Через чаты</span></div></div>
+
+<div class="entry"><div class="num">#145</div><h3>Аптека (Eczane) — 24/7</h3><div class="loc">Muratpaşa</div><div class="desc">Круглосуточные аптеки города. Дежурная аптека по схеме.</div><div class="tags"><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#146</div><h3>Центр вакцинации</h3><div class="loc">Muratpaşa</div><div class="desc">Прививки для детей и взрослых. Все виды вакцин.</div><div class="tags"><span class="tag tag-time">8:00–17:00</span></div></div>
+
+<div class="entry"><div class="num">#147</div><h3>Клиника эстетической медицины</h3><div class="loc">Konyaaltı</div><div class="desc">Лазерная эпиляция, косметология, удаление новообразований.</div><div class="tags"><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#148</div><h3>Офтальмология Net Kornea</h3><div class="loc">Muratpaşa</div><div class="desc">Лазерная коррекция зрения. Диагностика.</div><div class="tags"><span class="tag tag-time">9:00–18:00</span></div></div>
+
+<div class="entry"><div class="num">#149</div><h3>Центр МРТ и КТ</h3><div class="loc">Konyaaltı</div><div class="desc">Современное оборудование. Быстрая запись.</div><div class="tags"><span class="tag tag-time">8:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#150</div><h3>Психолог / психотерапевт</h3><div class="loc">Онлайн / очно</div><div class="desc">Русскоязычные психологи. Адаптация, тревога.</div><div class="tags"><span class="tag tag-info">Русскоязычный</span></div></div>
+
+<div class="entry"><div class="num">#151</div><h3>Зелёная аптека (Fitoterapi)</h3><div class="loc">Konyaaltı</div><div class="desc">Травы, БАДы, натуральные средства.</div><div class="tags"><span class="tag tag-time">9:00–19:00</span></div></div>
+
+<div class="entry"><div class="num">#152</div><h3>Скорая помощь 112</h3><div class="loc">По всему городу</div><div class="desc">Экстренная медпомощь. Принимают на турецком/английском.</div><div class="tags"><span class="tag tag-warn">112</span></div></div>
+</div></div>
+
+<div class="section" id="transport">
+<div class="section-header"><h2>Такси и транспорт</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#153</div><h3>BiTaksi / Uber Antalya</h3><div class="loc">Весь город</div><div class="desc">Приложение для вызова такси. Фиксированная цена.</div><div class="tags"><span class="tag tag-price">От 50 TRY</span><span class="tag tag-time">Круглосуточно</span></div></div>
+
+<div class="entry"><div class="num">#154</div><h3>AntRay (Трамвай)</h3><div class="loc">2 линии</div><div class="desc">Скоростной трамвай. Связывает центр, аэропорт, Konyaaltı.</div><div class="tags"><span class="tag tag-price">10–15 TRY</span><span class="tag tag-time">5:30–00:00</span></div></div>
+
+<div class="entry"><div class="num">#155</div><h3>Автобусы Antalya Kart</h3><div class="loc">По городу</div><div class="desc">Городские автобусы. Проезд через карту. Маршруты по всем районам.</div><div class="tags"><span class="tag tag-price">10 TRY</span></div></div>
+
+<div class="entry"><div class="num">#156</div><h3>Долмуш (маршрутка)</h3><div class="loc">Весь город</div><div class="desc">Небольшие автобусы по фиксированным маршрутам. Быстро.</div><div class="tags"><span class="tag tag-price">10–25 TRY</span></div></div>
+
+<div class="entry"><div class="num">#157</div><h3>Такси — официальный счётчик</h3><div class="loc">Стоянки по городу</div><div class="desc">Жёлтые такси. Счётчик, открытие 35 TRY + км.</div><div class="tags"><span class="tag tag-price">Счётчик</span></div></div>
+
+<div class="entry"><div class="num">#158</div><h3>Аренда авто в аэропорту</h3><div class="loc">AYT / по городу</div><div class="desc">Localrent, RentGo, Garenta. От 400 TRY/день.</div><div class="tags"><span class="tag tag-price">от 400 TRY/день</span></div></div>
+
+<div class="entry"><div class="num">#159</div><h3>Аренда мотоцикла/скутера</h3><div class="loc">Konyaaltı</div><div class="desc">Скутер 50cc без прав. Популярно среди туристов.</div><div class="tags"><span class="tag tag-price">от 200 TRY/день</span></div></div>
+
+<div class="entry"><div class="num">#160</div><h3>Транспорт: трансфер в аэропорт</h3><div class="loc">Любой район</div><div class="desc">Фиксированные цены. Через приложение или отель.</div><div class="tags"><span class="tag tag-price">200–600 TRY</span></div></div>
+
+<div class="entry"><div class="num">#161</div><h3>Havaş (автобус до аэропорта)</h3><div class="loc">Konyaaltı / Калеичи</div><div class="desc">Экспресс-автобус до аэропорта AYT. Расписание онлайн.</div><div class="tags"><span class="tag tag-price">50–80 TRY</span></div></div>
+
+<div class="entry"><div class="num">#162</div><h3>Метро (строится)</h3><div class="loc">Muratpaşa — Konyaaltı</div><div class="desc">Линия метро в разработке. Открытие в ближайшие годы.</div><div class="tags"><span class="tag tag-info">Строительство</span></div></div>
+
+<div class="entry"><div class="num">#163</div><h3>Междугородние автобусы</h3><div class="loc">Otogar (автовокзал)</div><div class="desc">До Стамбула, Измира, Каппадокии. Удобные туристические автобусы.</div><div class="tags"><span class="tag tag-price">от 300 TRY</span></div></div>
+
+<div class="entry"><div class="num">#164</div><h3>Русское такси</h3><div class="loc">По городу</div><div class="desc">Такси с русскоязычным водителем. Аэропорт, экскурсии.</div><div class="tags"><span class="tag tag-info">Через чаты</span></div></div>
+</div></div>
+
+<div class="section" id="food">
+<div class="section-header"><h2>Рестораны и кафе</h2><span class="count">105 мест</span></div>
+
+<h3 style="margin-bottom:6px">Турецкая кухня</h3>
+<ul>
+<li><strong>#165 7 Mehmet Restaurant</strong> — Konyaaltı · С 1937, 650+ блюд, 900–1500 TL</li>
+<li><strong>#166 Seraser Fine Dining</strong> — Калеичи · Средиземноморская, особняк</li>
+<li><strong>#167 Vanilla Restaurant</strong> — Калеичи · Популярный, 4.6★, 250–500 TL</li>
+<li><strong>#168 Parlak Restaurant</strong> — Muratpaşa · Тандыр кебаб, семейный</li>
+<li><strong>#169 Kaleiçi Meyhanesi</strong> — Калеичи · Мейхане, традиционные мезе</li>
+<li><strong>#170 Meşhur Piyazcı</strong> — Lara · Пияз — фасолевый салат</li>
+<li><strong>#171 Dönerci Hamdi Usta</strong> — Lara · Легендарный дёнер, с 1855</li>
+<li><strong>#172 Ziyade Köfte & Piyaz</strong> — Muratpaşa · Кёфте + пияз</li>
+<li><strong>#173 Çömlekçi Restaurant</strong> — Калеичи · Глиняные горшочки</li>
+<li><strong>#174 Arma Restaurant</strong> — Калеичи · Вид на море, 4.5★</li>
+<li><strong>#175 Gizli Bahçe Restaurant</strong> — Калеичи · Скрытый сад, 4.5★</li>
+<li><strong>#176 Patio Bistro & Restaurant</strong> — Калеичи · Турецкая + средиземноморская</li>
+<li><strong>#177 Şişçi Mücahit</strong> — Konyaaltı · С 1990, мясо на мангале</li>
+<li><strong>#178 Tiritcizade Restoran</strong> — Konyaaltı · Конья-кухня, 4.2★</li>
+<li><strong>#179 Şişçi Ramazan</strong> — Konyaaltı · Шиш-кебаб</li>
+<li><strong>#180 Sultanyar Kebapçısı</strong> — Kepez · Урфа-кебаб</li>
+<li><strong>#181 Paşa Bey Kebap</strong> — Muratpaşa · Классический кебаб</li>
+<li><strong>#182 Chayote Restaurant</strong> — Lara · Турецкая фьюжн, шеф Tuncay</li>
+<li><strong>#183 Sauvignon Restaurant</strong> — Калеичи · Элитный, 4.9★</li>
+<li><strong>#184 Kastelo Kaleici Steak Gastro Bar</strong> — Калеичи · Стейк-гастробар, 4.9★</li>
+<li><strong>#185 Terrace Steak House</strong> — Калеичи · Стейки с видом, 4.9★</li>
+<li><strong>#186 Nar Beach Bistro</strong> — Lara · Пляжный, буфет-завтрак</li>
+<li><strong>#187 LOKANTA 1741</strong> — Muratpaşa · Османская кухня</li>
+<li><strong>#188 Begonvil Plus Gözleme</strong> — Калеичи · Гёзлеме + ван-завтрак</li>
+<li><strong>#189 Aynalı Restaurant</strong> — Калеичи · Турецкая, 4.3★</li>
+<li><strong>#190 Baba Mutfağı Ev Yemekleri</strong> — Muratpaşa · Домашняя кухня</li>
+<li><strong>#191 Leyla Meyhanesi</strong> — Калеичи · Классическая мейхане</li>
+<li><strong>#192 Asmalı Cavit</strong> — Muratpaşa · Мейхане с историей</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Русская кухня</h3>
+<ul>
+<li><strong>#193 Mamma Ruski Pelmeni</strong> — Konyaaltı · Пельмени, русская кухня</li>
+<li><strong>#194 Русский дворик (Russian Dvorik)</strong> — Konyaaltı · Борщ, пельмени, 800–1500 TL</li>
+<li><strong>#195 Matryoshka Café</strong> — Konyaaltı · Блины, вареники</li>
+<li><strong>#196 Pushkin Bistro</strong> — Калеичи · Русская + европейская</li>
+<li><strong>#197 Babushka Restaurant</strong> — Konyaaltı · Домашняя русская кухня</li>
+<li><strong>#198 Rus Sofrası</strong> — Muratpaşa · Русская кухня</li>
+<li><strong>#199 BİLGE CAFE & RESTAURANT</strong> — Konyaaltı · Русско-турецкая кухня</li>
+<li><strong>#200 KATRİN KAFE</strong> — Konyaaltı · Русская + турецкая</li>
+<li><strong>#201 Bruschetta Coffee & Kitchen</strong> — Konyaaltı · Русская, завтраки</li>
+<li><strong>#202 Varenik & Co</strong> — Muratpaşa · Вареники, борщ</li>
+<li><strong>#203 U Rusa (У Руса)</strong> — Konyaaltı · Русская, баня</li>
+<li><strong>#204 Shashlik House</strong> — Konyaaltı · Шашлык, мангал</li>
+<li><strong>#205 Pelmeni Club</strong> — Konyaaltı · Пельмени, вареники</li>
+<li><strong>#206 Simidim Park</strong> — Muratpaşa · Завтраки, русская</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Средиземноморская и международная</h3>
+<ul>
+<li><strong>#207 BigChefs Antalya</strong> — Konyaaltı · Международная, сеть</li>
+<li><strong>#208 Vamos A la Chef</strong> — Konyaaltı · Международная</li>
+<li><strong>#209 Rokka Fusion</strong> — Konyaaltı · Фьюжн</li>
+<li><strong>#210 Food in Box</strong> — Konyaaltı · Американская, 4.7★</li>
+<li><strong>#211 Grani Gastro Pub</strong> — Калеичи · Гастропаб</li>
+<li><strong>#212 7 Mehmet Restaurant</strong> — Konyaaltı · Турецкая, 650+ блюд</li>
+<li><strong>#213 Terrace Steak House</strong> — Калеичи · Стейки, 4.9★</li>
+<li><strong>#214 Sunset View Restaurant & Bar</strong> — Konyaaltı · Закат, море</li>
+<li><strong>#215 Top Deck Antalya</strong> — Konyaaltı · Панорамный вид</li>
+<li><strong>#216 Fige Restaurant</strong> — Lara · Fine dining</li>
+<li><strong>#217 Vogue Restaurant</strong> — Lara · Люкс-ресторан</li>
+<li><strong>#218 Club Arma Restaurant</strong> — Калеичи · Марина, 4.5★</li>
+<li><strong>#219 Lil'a Restaurant</strong> — Lara · Средиземноморская, Michelin</li>
+<li><strong>#220 Topaz Restaurant</strong> — Konyaaltı · Мишлен, средиземноморская</li>
+<li><strong>#221 AQUA Restaurant</strong> — Lara · Мишлен, морепродукты</li>
+<li><strong>#222 Avlu Restaurant</strong> — Lara · Турецкая, Michelin</li>
+<li><strong>#223 Deraliye</strong> — Muratpaşa · Османская кухня</li>
+<li><strong>#224 Terrazza Italia</strong> — Lara · Итальянская</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Итальянская кухня</h3>
+<ul>
+<li><strong>#225 Pizza Il Forno</strong> — Lara · Неаполитанская пицца</li>
+<li><strong>#226 Rosso Italian Restaurant</strong> — Калеичи · Итальянская классика</li>
+<li><strong>#227 il Vicino Pizzeria</strong> — Konyaaltı · Пиццерия, 4.3★</li>
+<li><strong>#228 La Mancha</strong> — Konyaaltı · Итальянская, 4.2★</li>
+<li><strong>#229 Pizza 4P's</strong> — Konyaaltı · Буррата, японско-итальянская</li>
+<li><strong>#230 Trattoria da Luca</strong> — Konyaaltı · Траттория</li>
+<li><strong>#231 Romeo & Juliet Italian</strong> — Lara · Романтическая обстановка</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Морепродукты</h3>
+<ul>
+<li><strong>#232 Balıkçı Meyhanesi Kaleiçi</strong> — Калеичи · Рыбная мейхане, 4.9★</li>
+<li><strong>#233 Salaş Balik & Restaurant</strong> — Muratpaşa · Рыба, 4.5★</li>
+<li><strong>#234 İşliyen Balık</strong> — Konyaaltı · Свежая рыба, 4.8★</li>
+<li><strong>#235 Adab-ı Balık Fish Restaurant</strong> — Калеичи · Рыбный, элитный</li>
+<li><strong>#236 Balıkçı Hasan</strong> — Калеичи · Рыбная таверна</li>
+<li><strong>#237 Lara Balık</strong> — Lara · Морепродукты, 4.0★</li>
+<li><strong>#238 Mavi Balık</strong> — Konyaaltı · Голубая рыба</li>
+<li><strong>#239 Calipso Fish Restaurant</strong> — Konyaaltı · Высокая кухня</li>
+<li><strong>#240 Midyeci Ahmet</strong> — Muratpaşa · Мидии</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Азиатская кухня</h3>
+<ul>
+<li><strong>#241 KOKOYAKI SUSHI</strong> — Konyaaltı · Суши, паназиатская</li>
+<li><strong>#242 Prime Sushi Lara</strong> — Lara · Японская кухня</li>
+<li><strong>#243 Mizuhi Sushi Pub</strong> — Konyaaltı · Суши + паб</li>
+<li><strong>#244 Thai Kitchen Antalya</strong> — Калеичи · Тайская кухня</li>
+<li><strong>#245 China Town Restaurant</strong> — Konyaaltı · Китайская кухня</li>
+<li><strong>#246 GoGi House Korean BBQ</strong> — Konyaaltı · Корейский BBQ</li>
+<li><strong>#247 Ganesh Indian Restaurant</strong> — Konyaaltı · Индийская, лучший</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Гриль и BBQ</h3>
+<ul>
+<li><strong>#248 Günaydın Steakhouse</strong> — Lara · Лучший стейк-хаус</li>
+<li><strong>#249 Etçi Mehmet</strong> — Konyaaltı · Мясо на мангале</li>
+<li><strong>#250 Vahap Usta Et Restaurant</strong> — Konyaaltı · Мясной ресторан</li>
+<li><strong>#251 RAGIP Steak Fish House</strong> — Konyaaltı · Стейки + рыба</li>
+<li><strong>#252 Beef Club Antalya</strong> — Lara · Премиум-стейки</li>
+<li><strong>#253 Ocakbaşı Restaurant</strong> — Muratpaşa · Очакбаши (мангал)</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Кофейни</h3>
+<ul>
+<li><strong>#254 Kahve Dünyası</strong> — Lara · Сеть, турецкий кофе</li>
+<li><strong>#255 Danjeh Coffee</strong> — Konyaaltı · Спешелти-кофе</li>
+<li><strong>#256 Kronotrop Coffee</strong> — Konyaaltı · Третья волна</li>
+<li><strong>#257 Mona Coffee & More</strong> — Konyaaltı · Спешелти</li>
+<li><strong>#258 Coffetainer</strong> — Konyaaltı · Кофе в контейнере</li>
+<li><strong>#259 Latte Art Café</strong> — Калеичи · Латте-арт</li>
+<li><strong>#260 Mado Antalya</strong> — Konyaaltı · Кофе, мороженое</li>
+<li><strong>#261 Mavi Köşk Cafe</strong> — Калеичи · Голубой дом</li>
+<li><strong>#262 Falez Coffee</strong> — Konyaaltı · Вид на скалы</li>
+<li><strong>#263 Keyif Café</strong> — Калеичи · Кейф (удовольствие)</li>
+<li><strong>#264 Pastane Cemil</strong> — Калеичи · Кондитерская, кофе</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Уличная еда и фастфуд</h3>
+<ul>
+<li><strong>#265 Dönerci Hamdi Usta</strong> — Lara · Легендарный дёнер</li>
+<li><strong>#266 Kumrucu Şevki</strong> — Konyaaltı · Кумру</li>
+<li><strong>#267 Kokoreççi Cemal</strong> — Side · Кокореч</li>
+<li><strong>#268 Pideci Ahmet</strong> — Калеичи · Уличная пиде</li>
+<li><strong>#269 Tezgah Burger</strong> — Lara · Крафтовые бургеры</li>
+<li><strong>#270 Balık Ekmek (Eminönü style)</strong> — Калеичи · Рыбный сэндвич</li>
+<li><strong>#271 Gözlemeci Nine</strong> — Калеичи · Гёзлеме ручной работы</li>
+<li><strong>#272 Simit Sarayı</strong> — Muratpaşa · Симит, выпечка</li>
+</ul>
+
+<h3 style="margin-bottom:6px;margin-top:16px">Завтраки и вегетарианское</h3>
+<ul>
+<li><strong>#273 Kahvaltı Evi Kaleiçi</strong> — Калеичи · Серпме-завтрак</li>
+<li><strong>#274 Sera Garden Breakfast</strong> — Lara · Сад, завтрак</li>
+<li><strong>#275 Yaşam Vegan Cafe</strong> — Muratpaşa · Веган-кафе</li>
+<li><strong>#276 Green Garden Cafe</strong> — Калеичи · Зелёный сад</li>
+<li><strong>#277 Vanilla Lounge Breakfast</strong> — Калеичи · Менемен, 4.5★</li>
+</ul>
+</div>
+
+<div class="section" id="night">
+<div class="section-header"><h2>Ночная жизнь</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#278</div><h3>Arena Sports Bar Lounge</h3><div class="loc">Konyaaltı</div><div class="desc">Спорт-бар, кальян, живая музыка. Популярен среди экспатов.</div><div class="tags"><span class="tag tag-time">18:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#279</div><h3>Jameson Irish Pub</h3><div class="loc">Калеичи</div><div class="desc">Настоящий ирландский паб. Пиво, виски, трансляции спорта.</div><div class="tags"><span class="tag tag-time">16:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#280</div><h3>Jolly Joker Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Живая музыка, концерты, коктейли. Известная сеть.</div><div class="tags"><span class="tag tag-time">20:00–3:00</span></div></div>
+
+<div class="entry"><div class="num">#281</div><h3>Hayal Kahvesi Antalya</h3><div class="loc">Konyaaltı</div><div class="desc">Джаз-клуб, живая музыка. Уютная атмосфера.</div><div class="tags"><span class="tag tag-time">20:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#282</div><h3>Sky Bar Antalya</h3><div class="loc">Lara</div><div class="desc">360° панорамный вид на город, коктейли, диджей.</div><div class="tags"><span class="tag tag-time">18:00–1:00</span></div></div>
+
+<div class="entry"><div class="num">#283</div><h3>Fıstık Pub</h3><div class="loc">Konyaaltı</div><div class="desc">Пиво, закуски, фисташковый кофе. Популярное место.</div><div class="tags"><span class="tag tag-time">14:00–1:00</span></div></div>
+
+<div class="entry"><div class="num">#284</div><h3>Castle Bar Kaleiçi</h3><div class="loc">Калеичи</div><div class="desc">Бар у замка, вид на марину. Закаты с коктейлем.</div><div class="tags"><span class="tag tag-time">17:00–1:00</span></div></div>
+
+<div class="entry"><div class="num">#285</div><h3>Club 29 Antalya</h3><div class="loc">Lara</div><div class="desc">Ночной клуб с диджеями, танцпол, VIP-зоны.</div><div class="tags"><span class="tag tag-time">23:00–4:00</span></div></div>
+
+<div class="entry"><div class="num">#286</div><h3>Nox Bar Antalya</h3><div class="loc">Калеичи</div><div class="desc">Ночной бар с коктейлями и танцами.</div><div class="tags"><span class="tag tag-time">20:00–3:00</span></div></div>
+
+<div class="entry"><div class="num">#287</div><h3>Throne Rock Bar</h3><div class="loc">Konyaaltı</div><div class="desc">Рок-бар, живая музыка, крафтовое пиво.</div><div class="tags"><span class="tag tag-time">18:00–2:00</span></div></div>
+
+<div class="entry"><div class="num">#288</div><h3>Pio Gastro Bar & Bistro</h3><div class="loc">Калеичи</div><div class="desc">Гастробар с авторскими коктейлями и закусками.</div><div class="tags"><span class="tag tag-time">16:00–1:00</span></div></div>
+
+<div class="entry"><div class="num">#289</div><h3>Illusion Pub</h3><div class="loc">Калеичи</div><div class="desc">Караоке-бар, весёлая атмосфера.</div><div class="tags"><span class="tag tag-time">20:00–3:00</span></div></div>
+</div></div>
+
+<div class="section" id="services">
+<div class="section-header"><h2>Полезные сервисы</h2><span class="count">12 мест</span></div>
+<div class="entry-grid">
+
+<div class="entry"><div class="num">#290</div><h3>Обмен валют (AION)</h3><div class="loc">Mini App / Telegram</div><div class="desc">Лучший курс в Анталии. TRY ↔ USD ↔ RUB. 24/7. Без очередей.</div><div class="tags"><span class="tag tag-info">Через AION</span></div></div>
+
+<div class="entry"><div class="num">#291</div><h3>Прачечная (Çamaşırhane)</h3><div class="loc">Konyaaltı</div><div class="desc">Стирка, глажка, химчистка. Доставка.</div><div class="tags"><span class="tag tag-price">100–200 TRY/кг</span></div></div>
+
+<div class="entry"><div class="num">#292</div><h3>Визовый центр / ВНЖ</h3><div class="loc">Muratpaşa / через AION</div><div class="desc">Помощь в оформлении ВНЖ. Русскоязычные консультанты.</div><div class="tags"><span class="tag tag-info">Через AION</span></div></div>
+
+<div class="entry"><div class="num">#293</div><h3>Ремонт телефонов</h3><div class="loc">Işıklar Caddesi</div><div class="desc">Замена стекла, аккумулятора, ремонт. Быстро.</div><div class="tags"><span class="tag tag-price">от 200 TRY</span></div></div>
+
+<div class="entry"><div class="num">#294</div><h3>Почта (PTT)</h3><div class="loc">Центральный офис</div><div class="desc">Отправка посылок, денежные переводы, почтовые услуги.</div></div>
+
+<div class="entry"><div class="num">#295</div><h3>Печать и копирование</h3><div class="loc">Konyaaltı</div><div class="desc">Фото на документы, сканирование, печать.</div><div class="tags"><span class="tag tag-price">30–50 TRY</span></div></div>
+
+<div class="entry"><div class="num">#296</div><h3>Швейная мастерская</h3><div class="loc">Рынки / Muratpaşa</div><div class="desc">Пошив, подшив, ремонт одежды.</div></div>
+
+<div class="entry"><div class="num">#297</div><h3>Аренда туристического снаряжения</h3><div class="loc">@antalya_rent</div><div class="desc">Палатки, коврики, рюкзаки для походов.</div></div>
+
+<div class="entry"><div class="num">#298</div><h3>Русский маркет (продукты)</h3><div class="loc">Konyaaltı</div><div class="desc">Магазин русских продуктов: гречка, борщ, сметана.</div></div>
+
+<div class="entry"><div class="num">#299</div><h3>Ключи и замки</h3><div class="loc">Мастерские / рынки</div><div class="desc">Изготовление ключей, ремонт замков.</div></div>
+
+<div class="entry"><div class="num">#300</div><h3>Нотариус (Noter)</h3><div class="loc">Центр</div><div class="desc">Заверение документов, переводы. Есть английский.</div></div>
+
+<div class="entry"><div class="num">#301</div><h3>Туристическая полиция</h3><div class="loc">Калеичи</div><div class="desc">Помощь туристам: кража, потеря документов.</div><div class="tags"><span class="tag tag-warn">155</span></div></div>
+</div></div>
+
+<div style="text-align:center;padding:24px 32px;font-size:12px;color:var(--text-light);border-top:1px solid var(--border);letter-spacing:1px">
+  AION · 300 мест рядом · Июнь 2026 · Анталия, Турция<br>
+  Обновляется · Для Mini App AION
+</div>
+
+</body>
+</html>
