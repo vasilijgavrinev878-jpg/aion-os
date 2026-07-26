@@ -1,7 +1,0 @@
-{
-  "api_key": "your_groq_api_key_here",
-  "model": "llama-3.3-70b-versatile",
-  "base_url": "https://api.groq.com/openai/v1",
-  "site_url": "",
-  "site_name": "AION Docs"
-}
