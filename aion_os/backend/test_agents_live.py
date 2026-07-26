@@ -273,7 +273,7 @@ async def main():
     # Check Groq key
     if not GROQ_API_KEY:
         print("  ⚠️  OPENAI_API_KEY not set in environment")
-        print("  Set: export OPENAI_API_KEY=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")
+        print("  Set: export OPENAI_API_KEY=your_groq_api_key_here")
         return
 
     print(f"  ✅ Groq API key configured: {GROQ_API_KEY[:15]}...")

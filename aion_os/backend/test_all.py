@@ -121,7 +121,7 @@ def main():
     # Check for Groq API key
     if not os.environ.get("OPENAI_API_KEY"):
         print(f"  {YELLOW}⚠ No Groq API key set. Set OPENAI_API_KEY for agent tests.{RESET}")
-        print(f"    export OPENAI_API_KEY=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")
+        print(f"    export OPENAI_API_KEY=your_groq_api_key_here")
         print()
 
     results = []
